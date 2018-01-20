@@ -1,0 +1,125 @@
+{"text":".","children": [
+		{
+			name:'root',
+			eType:'root',
+			iconCls:'task-folder',
+			expanded: true,
+			children:[{name:'SIM Cloud',eType:'cloud',iconCls:'icon-cloud',expanded: true,children:[{name:'System1',eType:'system',leaf:true,iconCls:'icon-server-conn'},{name:'System2',eType:'system',leaf:true,iconCls:'icon-server'}]},
+							{name:'DOMAIN',eType:'fdomain',iconCls:'task-folder',expanded: true,children:[{name:'Domain2',eType:'domain',iconCls:'icon-door',leaf:true},{name:'Dinstar Domain',eType:'domain',iconCls:'icon-door-open',
+							expanded: true,
+							children:[
+							{
+			name:'Zone',eType:'froamzone',iconCls:'task-folder',expanded: true,children:[{
+	        name:'Shenzhen',
+	        eType:'roamzone',
+	        iconCls:'icon-roamzone',
+	        expanded: true,
+	        children:[{
+            name:'sz-Nanshan-gx(<span style="color:green;">2</span>/2)',
+            eType:'site',
+            iconCls:'icon-site',
+            expanded: true,
+            children:[{
+                name:'dwg2016-1(<span style="color:green;">11</span>/16)',
+                eType:'nes',
+                iconCls:'icon-gateway',
+                
+                children:[
+							{name:'Port1',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port2',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port3',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port4',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port5',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port6',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port7',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port8',eType:'port',iconCls:'icon-bullet-orange',leaf:true},
+							{name:'Port9',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port10',eType:'port',iconCls:'icon-bullet-red',leaf:true},
+							{name:'Port11',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port12',eType:'port',iconCls:'icon-bullet-red',leaf:true},
+							{name:'Port13',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port14',eType:'port',iconCls:'icon-bullet-orange',leaf:true},
+							{name:'Port15',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port16',eType:'port',iconCls:'icon-bullet-green',leaf:true}
+							]
+            },{
+                name:'dwg2016-2(<span style="color:green;">12</span>/16)',
+                iconCls:'icon-gateway',
+                eType:'nes',
+                children:[
+							{name:'Port1',eType:'port',iconCls:'icon-bullet-orange',leaf:true},
+							{name:'Port2',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port3',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port4',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port5',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port6',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port7',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port8',eType:'port',iconCls:'icon-bullet-orange',leaf:true},
+							{name:'Port9',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port10',eType:'port',iconCls:'icon-bullet-red',leaf:true},
+							{name:'Port11',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port12',eType:'port',iconCls:'icon-bullet-red',leaf:true},
+							{name:'Port13',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port14',eType:'port',iconCls:'icon-bullet-orange',leaf:true},
+							{name:'Port15',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port16',eType:'port',iconCls:'icon-bullet-green',leaf:true}
+							]
+            }]
+        }, {
+            name:'sz-Futian-zs(<span style="color:green;">2</span>/2)',
+          	eType:'site',
+            iconCls:'icon-site',
+            expanded: true,
+            children:[{
+                name:'dwg2016-10(<span style="color:green;">13</span>/16)',
+                eType:'nes',
+                iconCls:'icon-gateway',
+                children:[
+						{name:'Port1',eType:'port',iconCls:'icon-bullet-orange',leaf:true},
+						{name:'Port2',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+						{name:'Port3',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+						{name:'Port4',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+						{name:'Port5',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+						{name:'Port6',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+						{name:'Port7',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+						{name:'Port8',eType:'port',iconCls:'icon-bullet-orange',leaf:true},
+						{name:'Port9',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+						{name:'Port10',eType:'port',iconCls:'icon-bullet-red',leaf:true},
+						{name:'Port11',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+						{name:'Port12',eType:'port',iconCls:'icon-bullet-red',leaf:true},
+						{name:'Port13',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+						{name:'Port14',eType:'port',iconCls:'icon-bullet-orange',leaf:true},
+						{name:'Port15',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+						{name:'Port16',eType:'port',iconCls:'icon-bullet-green',leaf:true}
+						]
+            },{
+                name:'dwg2016-11(<span style="color:green;">9</span>/16)',
+              	eType:'nes',
+                iconCls:'icon-gateway',
+				children:[
+							{name:'Port1',eType:'port',iconCls:'icon-bullet-orange',leaf:true},
+							{name:'Port2',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port3',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port4',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port5',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port6',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port7',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port8',eType:'port',iconCls:'icon-bullet-orange',leaf:true},
+							{name:'Port9',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port10',eType:'port',iconCls:'icon-bullet-red',leaf:true},
+							{name:'Port11',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port12',eType:'port',iconCls:'icon-bullet-red',leaf:true},
+							{name:'Port13',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port14',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port15',eType:'port',iconCls:'icon-bullet-green',leaf:true},
+							{name:'Port16',eType:'port',iconCls:'icon-bullet-green',leaf:true}
+							]
+            }]
+        }]
+        }]
+    }]}]},
+							]
+				
+		}
+    
+]}

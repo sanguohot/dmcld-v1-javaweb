@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblPmdSysCurMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblPmdSysCur" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="sys_uuid" property="sysUuid" jdbcType="INTEGER" />
+    <result column="serial_no" property="serialNo" jdbcType="INTEGER" />
+    <result column="generate_time" property="generateTime" jdbcType="TIMESTAMP" />
+    <result column="sys_run_timelen" property="sysRunTimelen" jdbcType="INTEGER" />
+    <result column="sys_load_val" property="sysLoadVal" jdbcType="INTEGER" />
+    <result column="db_req_cnt" property="dbReqCnt" jdbcType="INTEGER" />
+    <result column="db_fail_cnt" property="dbFailCnt" jdbcType="INTEGER" />
+    <result column="cur_cpu_idle" property="curCpuIdle" jdbcType="INTEGER" />
+    <result column="min_cpu_idle" property="minCpuIdle" jdbcType="INTEGER" />
+    <result column="max_cpu_idle" property="maxCpuIdle" jdbcType="INTEGER" />
+    <result column="cur_mem_free" property="curMemFree" jdbcType="INTEGER" />
+    <result column="min_mem_free" property="minMemFree" jdbcType="INTEGER" />
+    <result column="max_mem_free" property="maxMemFree" jdbcType="INTEGER" />
+    <result column="recv_pkt_cnt" property="recvPktCnt" jdbcType="INTEGER" />
+    <result column="send_pkt_cnt" property="sendPktCnt" jdbcType="INTEGER" />
+    <result column="recv_bytes_cnt" property="recvBytesCnt" jdbcType="BIGINT" />
+    <result column="send_bytes_cnt" property="sendBytesCnt" jdbcType="BIGINT" />
+    <result column="cur_disk_free" property="curDiskFree" jdbcType="INTEGER" />
+  </resultMap>
+  
+ <!-- ###################################  new begin #####################################-->
+   <resultMap id="SysResultMap" type="com.dinstar.sim.model.TblPmdSysCur" extends="BaseResultMap" >
+   	<result column="sys_name" property="sysName" jdbcType="CHAR" />
+   </resultMap>
+    <!-- ###################################  new end #####################################-->
+
+  <!-- ###################################  new begin #####################################-->
+ <select id="selectByExample1" resultMap="SysResultMap" parameterType="com.dinstar.sim.model.TblPmdSysCurCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    tc.*
+    ,ts.`name` AS sys_name
+    from tbl_pmd_sys_cur tc
+    LEFT JOIN tbl_sys ts ON(tc.sys_uuid = ts.uuid)
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClause != null" >
+     	limit ${limitClause} 
+    </if>
+  </select>
+   <!-- ###################################  new end #####################################-->
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, sys_uuid, serial_no, generate_time, sys_run_timelen, sys_load_val, 
+    db_req_cnt, db_fail_cnt, cur_cpu_idle, min_cpu_idle, max_cpu_idle, cur_mem_free, 
+    min_mem_free, max_mem_free, recv_pkt_cnt, send_pkt_cnt, recv_bytes_cnt, send_bytes_cnt, 
+    cur_disk_free
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblPmdSysCurCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_pmd_sys_cur
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+        <if test="limitClause != null" >
+     	limit ${limitClause} 
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_pmd_sys_cur
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_pmd_sys_cur
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblPmdSysCurCriteria" >
+    delete from tbl_pmd_sys_cur
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblPmdSysCur" >
+    insert into tbl_pmd_sys_cur (uuid, rec_status, sys_uuid, 
+      serial_no, generate_time, sys_run_timelen, 
+      sys_load_val, db_req_cnt, db_fail_cnt, 
+      cur_cpu_idle, min_cpu_idle, max_cpu_idle, 
+      cur_mem_free, min_mem_free, max_mem_free, 
+      recv_pkt_cnt, send_pkt_cnt, recv_bytes_cnt, 
+      send_bytes_cnt, cur_disk_free)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{sysUuid,jdbcType=INTEGER}, 
+      #{serialNo,jdbcType=INTEGER}, #{generateTime,jdbcType=TIMESTAMP}, #{sysRunTimelen,jdbcType=INTEGER}, 
+      #{sysLoadVal,jdbcType=INTEGER}, #{dbReqCnt,jdbcType=INTEGER}, #{dbFailCnt,jdbcType=INTEGER}, 
+      #{curCpuIdle,jdbcType=INTEGER}, #{minCpuIdle,jdbcType=INTEGER}, #{maxCpuIdle,jdbcType=INTEGER}, 
+      #{curMemFree,jdbcType=INTEGER}, #{minMemFree,jdbcType=INTEGER}, #{maxMemFree,jdbcType=INTEGER}, 
+      #{recvPktCnt,jdbcType=INTEGER}, #{sendPktCnt,jdbcType=INTEGER}, #{recvBytesCnt,jdbcType=BIGINT}, 
+      #{sendBytesCnt,jdbcType=BIGINT}, #{curDiskFree,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblPmdSysCur" >
+    insert into tbl_pmd_sys_cur
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="sysUuid != null" >
+        sys_uuid,
+      </if>
+      <if test="serialNo != null" >
+        serial_no,
+      </if>
+      <if test="generateTime != null" >
+        generate_time,
+      </if>
+      <if test="sysRunTimelen != null" >
+        sys_run_timelen,
+      </if>
+      <if test="sysLoadVal != null" >
+        sys_load_val,
+      </if>
+      <if test="dbReqCnt != null" >
+        db_req_cnt,
+      </if>
+      <if test="dbFailCnt != null" >
+        db_fail_cnt,
+      </if>
+      <if test="curCpuIdle != null" >
+        cur_cpu_idle,
+      </if>
+      <if test="minCpuIdle != null" >
+        min_cpu_idle,
+      </if>
+      <if test="maxCpuIdle != null" >
+        max_cpu_idle,
+      </if>
+      <if test="curMemFree != null" >
+        cur_mem_free,
+      </if>
+      <if test="minMemFree != null" >
+        min_mem_free,
+      </if>
+      <if test="maxMemFree != null" >
+        max_mem_free,
+      </if>
+      <if test="recvPktCnt != null" >
+        recv_pkt_cnt,
+      </if>
+      <if test="sendPktCnt != null" >
+        send_pkt_cnt,
+      </if>
+      <if test="recvBytesCnt != null" >
+        recv_bytes_cnt,
+      </if>
+      <if test="sendBytesCnt != null" >
+        send_bytes_cnt,
+      </if>
+      <if test="curDiskFree != null" >
+        cur_disk_free,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="sysUuid != null" >
+        #{sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="generateTime != null" >
+        #{generateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysRunTimelen != null" >
+        #{sysRunTimelen,jdbcType=INTEGER},
+      </if>
+      <if test="sysLoadVal != null" >
+        #{sysLoadVal,jdbcType=INTEGER},
+      </if>
+      <if test="dbReqCnt != null" >
+        #{dbReqCnt,jdbcType=INTEGER},
+      </if>
+      <if test="dbFailCnt != null" >
+        #{dbFailCnt,jdbcType=INTEGER},
+      </if>
+      <if test="curCpuIdle != null" >
+        #{curCpuIdle,jdbcType=INTEGER},
+      </if>
+      <if test="minCpuIdle != null" >
+        #{minCpuIdle,jdbcType=INTEGER},
+      </if>
+      <if test="maxCpuIdle != null" >
+        #{maxCpuIdle,jdbcType=INTEGER},
+      </if>
+      <if test="curMemFree != null" >
+        #{curMemFree,jdbcType=INTEGER},
+      </if>
+      <if test="minMemFree != null" >
+        #{minMemFree,jdbcType=INTEGER},
+      </if>
+      <if test="maxMemFree != null" >
+        #{maxMemFree,jdbcType=INTEGER},
+      </if>
+      <if test="recvPktCnt != null" >
+        #{recvPktCnt,jdbcType=INTEGER},
+      </if>
+      <if test="sendPktCnt != null" >
+        #{sendPktCnt,jdbcType=INTEGER},
+      </if>
+      <if test="recvBytesCnt != null" >
+        #{recvBytesCnt,jdbcType=BIGINT},
+      </if>
+      <if test="sendBytesCnt != null" >
+        #{sendBytesCnt,jdbcType=BIGINT},
+      </if>
+      <if test="curDiskFree != null" >
+        #{curDiskFree,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblPmdSysCurCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_pmd_sys_cur
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_pmd_sys_cur
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.sysUuid != null" >
+        sys_uuid = #{record.sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.serialNo != null" >
+        serial_no = #{record.serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.generateTime != null" >
+        generate_time = #{record.generateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sysRunTimelen != null" >
+        sys_run_timelen = #{record.sysRunTimelen,jdbcType=INTEGER},
+      </if>
+      <if test="record.sysLoadVal != null" >
+        sys_load_val = #{record.sysLoadVal,jdbcType=INTEGER},
+      </if>
+      <if test="record.dbReqCnt != null" >
+        db_req_cnt = #{record.dbReqCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.dbFailCnt != null" >
+        db_fail_cnt = #{record.dbFailCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.curCpuIdle != null" >
+        cur_cpu_idle = #{record.curCpuIdle,jdbcType=INTEGER},
+      </if>
+      <if test="record.minCpuIdle != null" >
+        min_cpu_idle = #{record.minCpuIdle,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxCpuIdle != null" >
+        max_cpu_idle = #{record.maxCpuIdle,jdbcType=INTEGER},
+      </if>
+      <if test="record.curMemFree != null" >
+        cur_mem_free = #{record.curMemFree,jdbcType=INTEGER},
+      </if>
+      <if test="record.minMemFree != null" >
+        min_mem_free = #{record.minMemFree,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxMemFree != null" >
+        max_mem_free = #{record.maxMemFree,jdbcType=INTEGER},
+      </if>
+      <if test="record.recvPktCnt != null" >
+        recv_pkt_cnt = #{record.recvPktCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendPktCnt != null" >
+        send_pkt_cnt = #{record.sendPktCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.recvBytesCnt != null" >
+        recv_bytes_cnt = #{record.recvBytesCnt,jdbcType=BIGINT},
+      </if>
+      <if test="record.sendBytesCnt != null" >
+        send_bytes_cnt = #{record.sendBytesCnt,jdbcType=BIGINT},
+      </if>
+      <if test="record.curDiskFree != null" >
+        cur_disk_free = #{record.curDiskFree,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_pmd_sys_cur
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      sys_uuid = #{record.sysUuid,jdbcType=INTEGER},
+      serial_no = #{record.serialNo,jdbcType=INTEGER},
+      generate_time = #{record.generateTime,jdbcType=TIMESTAMP},
+      sys_run_timelen = #{record.sysRunTimelen,jdbcType=INTEGER},
+      sys_load_val = #{record.sysLoadVal,jdbcType=INTEGER},
+      db_req_cnt = #{record.dbReqCnt,jdbcType=INTEGER},
+      db_fail_cnt = #{record.dbFailCnt,jdbcType=INTEGER},
+      cur_cpu_idle = #{record.curCpuIdle,jdbcType=INTEGER},
+      min_cpu_idle = #{record.minCpuIdle,jdbcType=INTEGER},
+      max_cpu_idle = #{record.maxCpuIdle,jdbcType=INTEGER},
+      cur_mem_free = #{record.curMemFree,jdbcType=INTEGER},
+      min_mem_free = #{record.minMemFree,jdbcType=INTEGER},
+      max_mem_free = #{record.maxMemFree,jdbcType=INTEGER},
+      recv_pkt_cnt = #{record.recvPktCnt,jdbcType=INTEGER},
+      send_pkt_cnt = #{record.sendPktCnt,jdbcType=INTEGER},
+      recv_bytes_cnt = #{record.recvBytesCnt,jdbcType=BIGINT},
+      send_bytes_cnt = #{record.sendBytesCnt,jdbcType=BIGINT},
+      cur_disk_free = #{record.curDiskFree,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblPmdSysCur" >
+    update tbl_pmd_sys_cur
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="sysUuid != null" >
+        sys_uuid = #{sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="serialNo != null" >
+        serial_no = #{serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="generateTime != null" >
+        generate_time = #{generateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysRunTimelen != null" >
+        sys_run_timelen = #{sysRunTimelen,jdbcType=INTEGER},
+      </if>
+      <if test="sysLoadVal != null" >
+        sys_load_val = #{sysLoadVal,jdbcType=INTEGER},
+      </if>
+      <if test="dbReqCnt != null" >
+        db_req_cnt = #{dbReqCnt,jdbcType=INTEGER},
+      </if>
+      <if test="dbFailCnt != null" >
+        db_fail_cnt = #{dbFailCnt,jdbcType=INTEGER},
+      </if>
+      <if test="curCpuIdle != null" >
+        cur_cpu_idle = #{curCpuIdle,jdbcType=INTEGER},
+      </if>
+      <if test="minCpuIdle != null" >
+        min_cpu_idle = #{minCpuIdle,jdbcType=INTEGER},
+      </if>
+      <if test="maxCpuIdle != null" >
+        max_cpu_idle = #{maxCpuIdle,jdbcType=INTEGER},
+      </if>
+      <if test="curMemFree != null" >
+        cur_mem_free = #{curMemFree,jdbcType=INTEGER},
+      </if>
+      <if test="minMemFree != null" >
+        min_mem_free = #{minMemFree,jdbcType=INTEGER},
+      </if>
+      <if test="maxMemFree != null" >
+        max_mem_free = #{maxMemFree,jdbcType=INTEGER},
+      </if>
+      <if test="recvPktCnt != null" >
+        recv_pkt_cnt = #{recvPktCnt,jdbcType=INTEGER},
+      </if>
+      <if test="sendPktCnt != null" >
+        send_pkt_cnt = #{sendPktCnt,jdbcType=INTEGER},
+      </if>
+      <if test="recvBytesCnt != null" >
+        recv_bytes_cnt = #{recvBytesCnt,jdbcType=BIGINT},
+      </if>
+      <if test="sendBytesCnt != null" >
+        send_bytes_cnt = #{sendBytesCnt,jdbcType=BIGINT},
+      </if>
+      <if test="curDiskFree != null" >
+        cur_disk_free = #{curDiskFree,jdbcType=INTEGER},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblPmdSysCur" >
+    update tbl_pmd_sys_cur
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      sys_uuid = #{sysUuid,jdbcType=INTEGER},
+      serial_no = #{serialNo,jdbcType=INTEGER},
+      generate_time = #{generateTime,jdbcType=TIMESTAMP},
+      sys_run_timelen = #{sysRunTimelen,jdbcType=INTEGER},
+      sys_load_val = #{sysLoadVal,jdbcType=INTEGER},
+      db_req_cnt = #{dbReqCnt,jdbcType=INTEGER},
+      db_fail_cnt = #{dbFailCnt,jdbcType=INTEGER},
+      cur_cpu_idle = #{curCpuIdle,jdbcType=INTEGER},
+      min_cpu_idle = #{minCpuIdle,jdbcType=INTEGER},
+      max_cpu_idle = #{maxCpuIdle,jdbcType=INTEGER},
+      cur_mem_free = #{curMemFree,jdbcType=INTEGER},
+      min_mem_free = #{minMemFree,jdbcType=INTEGER},
+      max_mem_free = #{maxMemFree,jdbcType=INTEGER},
+      recv_pkt_cnt = #{recvPktCnt,jdbcType=INTEGER},
+      send_pkt_cnt = #{sendPktCnt,jdbcType=INTEGER},
+      recv_bytes_cnt = #{recvBytesCnt,jdbcType=BIGINT},
+      send_bytes_cnt = #{sendBytesCnt,jdbcType=BIGINT},
+      cur_disk_free = #{curDiskFree,jdbcType=INTEGER}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

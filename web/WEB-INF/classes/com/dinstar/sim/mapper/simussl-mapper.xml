@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- ne port mapper -->
+<mapper namespace="com.dinstar.sim.mapper.SIMUssl">
+	<resultMap type="com.dinstar.sim.mapper.SIMUssl" id="simUssl">
+		<id column="uuid" property="uuid" jdbcType="INTEGER" />
+	    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="imsi" property="imsi" jdbcType="CHAR" />
+	    <result column="alias" property="alias" jdbcType="CHAR" />
+	    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+	    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+	    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+	    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+	    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+	    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+	    <result column="grp_uuid" property="grpUuid" jdbcType="INTEGER" />
+	    <result column="orig_zone_uuid" property="origZoneUuid" jdbcType="INTEGER" />
+	    <result column="last_site_uuid" property="lastSiteUuid" jdbcType="INTEGER" />
+	    <result column="bkp_uuid" property="bkpUuid" jdbcType="INTEGER" />
+	    <result column="icc_id" property="iccId" jdbcType="CHAR" />
+	    <result column="bind_imei" property="bindImei" jdbcType="CHAR" />
+	    <result column="pin1_code" property="pin1Code" jdbcType="CHAR" />
+	    <result column="pin2_code" property="pin2Code" jdbcType="CHAR" />
+	    <result column="puk1_code" property="puk1Code" jdbcType="CHAR" />
+	    <result column="puk2_code" property="puk2Code" jdbcType="CHAR" />
+	    <result column="smsc" property="smsc" jdbcType="CHAR" />
+	    <result column="operator" property="operator" jdbcType="CHAR" />
+	    <result column="mobile" property="mobile" jdbcType="CHAR" />
+	    <result column="prepaid_fee" property="prepaidFee" jdbcType="DECIMAL" />
+	    <result column="total_cost" property="totalCost" jdbcType="DECIMAL" />
+	    <result column="cur_balance" property="curBalance" jdbcType="DECIMAL" />
+	    <result column="money_type" property="moneyType" jdbcType="INTEGER" />
+	    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	    <result column="last_load_time" property="lastLoadTime" jdbcType="TIMESTAMP" />
+	    <result column="last_bind_time" property="lastBindTime" jdbcType="TIMESTAMP" />
+	    <result column="last_used_time" property="lastUsedTime" jdbcType="TIMESTAMP" />
+	    <result column="deactive_reason" property="deactiveReason" jdbcType="INTEGER" />
+	    <result column="blocked_flag" property="blockedFlag" jdbcType="INTEGER" />
+	    
+	    <result column="ussl_uuid" property="usslUuid" jdbcType="INTEGER" />
+	    <result column="ussl_rec_status" property="usslRecStatus" jdbcType="INTEGER" />
+	    <result column="ussl_domain_uuid" property="usslDomainUuid" jdbcType="INTEGER" />
+	    <result column="user_task_type" property="userTaskType" jdbcType="INTEGER" />
+	    <result column="user_task_id" property="userTaskId" jdbcType="INTEGER" />
+	    <result column="ussd_index" property="ussdIndex" jdbcType="INTEGER" />
+	    <result column="ussd_sn" property="ussdSn" jdbcType="INTEGER" />
+	    <result column="ussl_alias" property="usslAlias" jdbcType="CHAR" />
+	    <result column="spec_sim_uuid" property="specSimUuid" jdbcType="INTEGER" />
+	    <result column="gwp_uuid" property="gwpUuid" jdbcType="INTEGER" />
+	    <result column="sim_uuid" property="simUuid" jdbcType="INTEGER" />
+	    <result column="ussl_action_status" property="usslActionStatus" jdbcType="INTEGER" />
+	    <result column="ussl_action_result" property="usslActionResult" jdbcType="INTEGER" />
+	    <result column="ussd_direction" property="ussdDirection" jdbcType="INTEGER" />
+	    <result column="cur_fail_retries" property="curFailRetries" jdbcType="INTEGER" />
+	    <result column="max_fail_retries" property="maxFailRetries" jdbcType="INTEGER" />
+	    <result column="ussd_param" property="ussdParam" jdbcType="INTEGER" />
+	    <result column="ussd_status" property="ussdStatus" jdbcType="INTEGER" />
+	    <result column="ussd_result" property="ussdResult" jdbcType="INTEGER" />
+	    <result column="ussd_time" property="ussdTime" jdbcType="TIMESTAMP" />
+	    <result column="result_time" property="resultTime" jdbcType="TIMESTAMP" />
+     	<result column="content" property="content" jdbcType="LONGVARCHAR" />
+     	<result column="bkp_port_no_str" property="bkpPortNoStr" jdbcType="CHAR" />
+  <result column="detail_desc" property="detailDesc" jdbcType="VARCHAR" />
+  </resultMap>	    
+  
+   <select id="getSimUssl" resultMap="simUssl" >
+    	select ts.*,
+		tu.uuid as ussl_uuid,tu.rec_status as ussl_rec_status,
+		tu.domain_uuid as ussl_domain_uuid, tu.user_task_type,tu.user_task_id,
+		tu.ussd_index,tu.ussd_sn,tu.alias as ussl_alias,tu.spec_sim_uuid,
+		tu.gwp_uuid,tu.sim_uuid,tu.action_result as ussl_action_result,
+		tu.action_status as ussl_action_status,tu.ussd_direction,tu.cur_fail_retries,tu.max_fail_retries,
+		tu.ussd_param,tu.content,tu.ussd_status,tu.ussd_result,tu.ussd_time,tu.result_time,
+		CASE ts.bkp_uuid
+			WHEN 0
+			THEN NULL
+			WHEN NULL
+			THEN NULL
+			ELSE
+			(		CASE tn.alias 
+					WHEN NULL
+					THEN 
+					CONCAT(tn.product_sn,'[',tp.port_no,']')
+					WHEN ''
+					THEN
+					CONCAT(tn.product_sn,'[',tp.port_no,']')
+					ELSE
+					CONCAT(tn.alias,'[',tp.port_no,']')
+					END)
+		END AS bkp_port_no_str
+		from tbl_sim ts left join tbl_ussl tu
+		on(ts.uuid=tu.spec_sim_uuid)
+		LEFT JOIN tbl_bkp bkp on(ts.bkp_uuid = bkp.uuid)
+		LEFT JOIN tbl_port tp on(bkp.port_uuid=tp.uuid)
+		left JOIN tbl_ne  tn on(tp.ne_uuid = tn.uuid)
+		where ts.rec_status!=2
+		
+		 and ts.domain_uuid=#{domainUuid}
+		 and ts.grp_uuid=#{grpUuid}
+	
+		<if test="adminStatus!=null">
+		 and ts.admin_status=#{adminStatus}
+		</if>
+		<if test="runStatus!=null">
+		 and ts.run_status=#{runStatus}
+		</if>
+		<if test="ussdStatus!=null">
+		 and tu.ussd_status=#{ussdStatus}
+		</if>
+		<if test="ussdResult!=null">
+		 and tu.ussd_result=#{ussdResult}
+		</if>
+		<if test="imsi !=null">
+		 and ts.imsi like #{imsi}
+		</if>
+		<if test="alias !=null">
+		 and ts.alias like #{alias}
+		</if>
+		
+		<if test="content !=null">
+		 and tu.content like #{content}
+		</if>
+		<if test="ussdTimeB !=null">
+			<![CDATA[ 
+			 and tu.ussd_time >= #{ussdTimeB}
+			 ]]>
+		</if>
+		<if test="ussdTimeE !=null">
+			<![CDATA[
+			 and tu.ussd_time <= #{ussdTimeE}
+			]]>
+		</if>
+		<if test="resultTimeB !=null">
+			<![CDATA[ 
+			 and tu.result_time >= #{resultTimeB}
+			 ]]>
+		</if>
+		<if test="resultTimeE !=null">
+			<![CDATA[
+			 and tu.result_time <= #{resultTimeE}
+			]]>
+		</if>
+		<if test="sort != null" >
+     		 order by ${sort}
+    	</if>
+		<if test="limit>0">LIMIT #{start},#{limit}</if>
+  </select>
+   <select id="countSimUssl" resultType="java.lang.Integer" >
+    	select count(ts.uuid)
+		from tbl_sim ts left join tbl_ussl tu
+		on(ts.uuid=tu.spec_sim_uuid)
+		where ts.rec_status!=2
+		
+		 and ts.domain_uuid=#{domainUuid}
+		 and ts.grp_uuid=#{grpUuid}
+		
+		<if test="adminStatus!=null">
+		 and ts.admin_status=#{adminStatus}
+		</if>
+		<if test="runStatus!=null">
+		 and ts.run_status=#{runStatus}
+		</if>
+		<if test="ussdStatus!=null">
+		 and tu.ussd_status=#{ussdStatus}
+		</if>
+		<if test="ussdResult!=null">
+		 and tu.ussd_result=#{ussdResult}
+		</if>
+		<if test="imsi !=null">
+		 and ts.imsi like #{imsi}
+		</if>
+		<if test="alias !=null">
+		 and ts.alias like #{alias}
+		</if>
+		
+		<if test="content !=null">
+		 and tu.content like #{content}
+		</if>
+		<if test="ussdTimeB !=null">
+			<![CDATA[ 
+			 and tu.ussd_time >= #{ussdTimeB}
+			 ]]>
+		</if>
+		<if test="ussdTimeE !=null">
+			<![CDATA[
+			 and tu.ussd_time <= #{ussdTimeE}
+			]]>
+		</if>
+		<if test="resultTimeB !=null">
+			<![CDATA[ 
+			 and tu.result_time >= #{resultTimeB}
+			 ]]>
+		</if>
+		<if test="resultTimeE !=null">
+			<![CDATA[
+			 and tu.result_time <= #{resultTimeE}
+			]]>
+		</if>
+		
+  </select>
+   
+    
+</mapper>

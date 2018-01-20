@@ -1,0 +1,61 @@
+<form action="" method="post" ng-controller="WhiteListForTELCtrl">
+  <input type="hidden" id="values" name="values" value="">
+  <table width="600px" border="0" align="center" cellpadding="0"
+         cellspacing="0" class="tbltitle">
+    <tbody>
+    <tr>
+      <td width="1%">
+        <img src="image/subarc_l.gif" alt="subarc_left" align="left">
+      </td>
+      <td>
+        Telnet访问控制列表
+      </td>
+      <td width="1%">
+        <img src="image/subarc_r.gif" alt="subarc_right" align="right">
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <table width="600px" align="center" class="tblbody">
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td>
+        <table width="100%" cellpadding="0" cellspacing="0" class="context">
+          <tr>
+            <td width="5%">&nbsp;</td>
+            <td width="55%">&nbsp;</td>
+            <td width="40%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>Telnet访问控制列表:</td>
+            <td>
+              <label><input type="checkbox" name="TelWhiteListEnable" id="TelWhiteListEnable" ng-click="onElementClicked()" alt="config/system/white_list_for_telnet/enable" /> 启用</label>
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>
+              <select name="TelWhiteList" id="TelWhiteList" size="9" class="list" style="width:96%;" disabled>
+              </select>
+            </td>
+            <td  style="vertical-align:bottom;">
+              <input type="button" name="TelBtnDelete" id="TelBtnDelete" value="删除" class="button" ng-click="onItemDelete()" disabled />
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><input type="text" name="TelItem" id="TelItem" class="text" style="width:96%" disabled /></td>
+            <td><input type="button" name="TelBtnAdd" id="TelBtnAdd" value="添加" class="button" ng-click="onItemAdd()" disabled /></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+      <td width="5%">&nbsp;</td>
+    </tr>
+  </table>
+</form>

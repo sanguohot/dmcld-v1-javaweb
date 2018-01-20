@@ -1,0 +1,8 @@
+{
+	success: true,
+	site: [
+                {siteid:1,sitename:'sz_futian_guoxin',roamzoneid:1,roamzonename:'shenzhen',desc: 'sz r&d center zone',},
+				{siteid:2,sitename:'sz_futian_zhongshan',roamzoneid:1,roamzonename:'shenzhen',desc: 'sz manufacture center zone',},
+				{siteid:3,sitename:'hk_harbour',roamzoneid:2,roamzonename:'hongkong',desc: 'hongkong market department',},
+            ]
+}

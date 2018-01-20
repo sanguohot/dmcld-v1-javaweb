@@ -1,0 +1,73 @@
+#top_title{
+  width:100%;
+  height:100px;
+  text-align: center;
+  font-size: 3em;
+  font-family: '黑体';
+}
+
+.content{
+  width:100%;
+}
+
+.content_left_td{
+  width:13%;
+  background-color: #056aa6;
+  height: auto;
+  overflow-y: hidden;
+}
+
+.content_middle_td{
+  position: absolute;
+  width:8%;
+  height: 80%;
+  background-color: #056aa6;
+  z-index: -1;
+}
+
+.content_right_td{
+  width:80%
+}
+
+.Menu{
+  height: 600px;
+  overflow: auto;
+  background-color: #056aa6;
+}
+
+.Menu tr{
+  height: 25px;
+}
+
+.menu_click {
+  font-style: normal;
+  font-variant: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: normal;
+  font-family: Arial;
+  text-decoration: none;
+  color: #f5f5f5;
+}
+
+.href_click{
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: normal;
+  font-family: Arial;
+  text-decoration: none;
+  color:#f5f5f5;
+}
+
+.div_included{
+  height: 600px;
+  overflow: auto;
+}
+
+.domain-group {
+    background-repeat:no-repeat
+}
+
+

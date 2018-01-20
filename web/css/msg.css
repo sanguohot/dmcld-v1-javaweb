@@ -1,0 +1,102 @@
+.biginfo_m {
+font: bold 16px Verdana;
+color: #4a8f00;
+}
+.addrtitle {
+color: #798699;
+}
+.myWidth{
+width:55px;
+display:-moz-inline-box;
+display:inline-block;
+}
+.ico_sendf {
+display: inline-block;
+width: 40px;
+height: 40px;
+background: url(../picture/ico_sendf104474.gif) no-repeat;
+}
+
+.aCls{
+text-decoration:none;
+color:blue;
+cursor: pointer;
+}
+
+.aCls:hover{
+text-decoration:underline;
+}
+
+.readmailinfo {
+background: #eff5fb;
+border-top: 1px solid #fff;
+border-bottom: 1px solid #aac1de;
+}
+.left, .qm_left {
+float: left;
+}
+.sub_title {
+font: bold 14px "lucida Grande",Verdana,"Microsoft YaHei";
+}
+.settingtable {
+background-color: #eff5fb;
+}
+.txt_left {
+text-align: left;
+}
+
+.tcolor {
+font: normal 12px "lucida Grande",Verdana,"Microsoft YaHei";
+color: #7f7f7f;
+}
+.nowrap {
+white-space: nowrap;
+}
+
+body {
+background: #fff;
+color: #000;
+font-weight: normal;
+font-family: "lucida Grande",Verdana,"Microsoft YaHei";
+padding: 0 7px 6px 4px;
+margin: 0;
+}
+element.style {
+}
+.qm_con_body_content {
+height: auto;
+min-height: 100px;
+_height: 100px;
+word-wrap: break-word;
+font-size: 14px;
+font-family: "lucida Grande",Verdana,"Microsoft YaHei";
+}
+.qmbox {
+padding: 0;
+}
+.msg_win_div{
+text-align:center;
+margin-left:auto; 
+margin-right:auto;
+}
+.msg_win_div2{
+padding:5px 5px 0 5px;
+}
+.msg_win_div3{
+width:770px;
+word-break:break-all;
+}
+.line_01{
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    line-height: 1px;
+    border-left: 200px solid #ddd;
+    border-right: 200px solid #ddd;
+    text-align: center;
+}
+.msg16{
+background-image: url(../picture/m1_16.png);
+}
+.msg32{
+  background-image: url(../picture/m1_32.png);
+}

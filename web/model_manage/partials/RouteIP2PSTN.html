@@ -1,0 +1,425 @@
+<form  name="RouteIP2PSTN" id="RouteIP2PSTN" ng-controller="RouteIP2PSTNCtrl">
+<table width="700px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+	<tbody><tr>
+		<td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+		<td>IP-&gt;Tel路由</td>
+		<td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+	</tr>
+	</tbody></table>
+<table cellpadding="0" cellspacing="0" class="tblcontext" width="700px" align="center">
+<tbody><tr class="thead">
+	<td width="5%">&nbsp;</td>
+	<td width="10%">索引</td>
+	<td width="20%">描述</td>
+	<td width="15%">呼叫来源</td>
+	<td width="15%">主叫前缀</td>
+	<td width="20%">被叫前缀</td>
+	<td width="15%">呼叫目标</td>
+</tr>
+<tr id="RouteIP2PSTNNone" align="center">
+	<td>&nbsp;</td>
+	<td>---</td>
+	<td>---</td>
+	<td>---</td>
+	<td>---</td>
+	<td>---</td>
+	<td>---</td>
+</tr>
+<tr id="last" align="center" class="interval">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+<tr id="idRouteIP2PSTN0" align="center" style="display:none">
+	<td>
+		<input name="RouteIP2PSTNEnable0" type="checkbox" id="RouteIP2PSTNEnable0" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc0">
+
+	</td>
+	<td id="idSrcTrunk0">
+
+	</td>
+	<td id="idSrcPrefix0">
+
+	</td>
+	<td id="idDestPrefix0">
+
+	</td>
+	<td id="idDestTrunk0">
+
+	</td>
+</tr>
+<tr id="idRouteIP2PSTN1" align="center" style="display:none">
+	<td>
+		<input name="RouteIP2PSTNEnable1" type="checkbox" id="RouteIP2PSTNEnable1" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc1">
+
+	</td>
+	<td id="idSrcTrunk1">
+
+	</td>
+	<td id="idSrcPrefix1">
+
+	</td>
+	<td id="idDestPrefix1">
+
+	</td>
+	<td id="idDestTrunk1">
+
+	</td>
+</tr>
+<tr id="idRouteIP2PSTN2" align="center" style="display:none">
+	<td>
+		<input name="RouteIP2PSTNEnable2" type="checkbox" id="RouteIP2PSTNEnable2" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc2">
+
+	</td>
+	<td id="idSrcTrunk2">
+
+	</td>
+	<td id="idSrcPrefix2">
+
+	</td>
+	<td id="idDestPrefix2">
+
+	</td>
+	<td id="idDestTrunk2">
+
+	</td>
+</tr>
+<tr id="idRouteIP2PSTN3" align="center" style="display:none">
+	<td>
+		<input name="RouteIP2PSTNEnable3" type="checkbox" id="RouteIP2PSTNEnable3" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc3">
+
+	</td>
+	<td id="idSrcTrunk3">
+
+	</td>
+	<td id="idSrcPrefix3">
+
+	</td>
+	<td id="idDestPrefix3">
+
+	</td>
+	<td id="idDestTrunk3">
+
+	</td>
+</tr>
+<tr id="idRouteIP2PSTN4" align="center" style="display:none">
+	<td>
+		<input name="RouteIP2PSTNEnable4" type="checkbox" id="RouteIP2PSTNEnable4" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc4">
+
+	</td>
+	<td id="idSrcTrunk4">
+
+	</td>
+	<td id="idSrcPrefix4">
+
+	</td>
+	<td id="idDestPrefix4">
+
+	</td>
+	<td id="idDestTrunk4">
+
+	</td>
+</tr>
+<tr id="idRouteIP2PSTN5" align="center" style="display:none">
+	<td>
+		<input name="RouteIP2PSTNEnable5" type="checkbox" id="RouteIP2PSTNEnable5" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc5">
+
+	</td>
+	<td id="idSrcTrunk5">
+
+	</td>
+	<td id="idSrcPrefix5">
+
+	</td>
+	<td id="idDestPrefix5">
+
+	</td>
+	<td id="idDestTrunk5">
+
+	</td>
+</tr>
+<tr id="idRouteIP2PSTN6" align="center" style="display:none">
+	<td>
+		<input name="RouteIP2PSTNEnable6" type="checkbox" id="RouteIP2PSTNEnable6" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc6">
+
+	</td>
+	<td id="idSrcTrunk6">
+
+	</td>
+	<td id="idSrcPrefix6">
+
+	</td>
+	<td id="idDestPrefix6">
+
+	</td>
+	<td id="idDestTrunk6">
+
+	</td>
+</tr>
+<tr id="idRouteIP2PSTN7" align="center" style="display:none">
+	<td>
+		<input name="RouteIP2PSTNEnable7" type="checkbox" id="RouteIP2PSTNEnable7" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc7">
+
+	</td>
+	<td id="idSrcTrunk7">
+
+	</td>
+	<td id="idSrcPrefix7">
+
+	</td>
+	<td id="idDestPrefix7">
+
+	</td>
+	<td id="idDestTrunk7">
+
+	</td>
+</tr>
+<tr id="idRouteIP2PSTN8" align="center" style="display:none">
+	<td>
+		<input name="RouteIP2PSTNEnable8" type="checkbox" id="RouteIP2PSTNEnable8" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc8">
+
+	</td>
+	<td id="idSrcTrunk8">
+
+	</td>
+	<td id="idSrcPrefix8">
+
+	</td>
+	<td id="idDestPrefix8">
+
+	</td>
+	<td id="idDestTrunk8">
+
+	</td>
+</tr>
+<tr id="idRouteIP2PSTN9" align="center" style="display:none">
+	<td>
+		<input name="RouteIP2PSTNEnable9" type="checkbox" id="RouteIP2PSTNEnable9" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc9">
+
+	</td>
+	<td id="idSrcTrunk9">
+
+	</td>
+	<td id="idSrcPrefix9">
+
+	</td>
+	<td id="idDestPrefix9">
+
+	</td>
+	<td id="idDestTrunk9">
+
+	</td>
+</tr>
+<tr id="idRouteIP2PSTN10" align="center" style="display:none">
+	<td>
+		<input name="RouteIP2PSTNEnable10" type="checkbox" id="RouteIP2PSTNEnable10" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc10">
+
+	</td>
+	<td id="idSrcTrunk10">
+
+	</td>
+	<td id="idSrcPrefix10">
+
+	</td>
+	<td id="idDestPrefix10">
+
+	</td>
+	<td id="idDestTrunk10">
+
+	</td>
+</tr>
+<tr id="idRouteIP2PSTN11" align="center" style="display:none">
+	<td>
+		<input name="RouteIP2PSTNEnable11" type="checkbox" id="RouteIP2PSTNEnable11" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc11">
+
+	</td>
+	<td id="idSrcTrunk11">
+
+	</td>
+	<td id="idSrcPrefix11">
+
+	</td>
+	<td id="idDestPrefix11">
+
+	</td>
+	<td id="idDestTrunk11">
+
+	</td>
+</tr>
+<tr id="idRouteIP2PSTN12" align="center" style="display:none">
+	<td>
+		<input name="RouteIP2PSTNEnable12" type="checkbox" id="RouteIP2PSTNEnable12" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc12">
+
+	</td>
+	<td id="idSrcTrunk12">
+
+	</td>
+	<td id="idSrcPrefix12">
+
+	</td>
+	<td id="idDestPrefix12">
+
+	</td>
+	<td id="idDestTrunk12">
+
+	</td>
+</tr>
+<tr id="idRouteIP2PSTN13" align="center" style="display:none">
+	<td>
+		<input name="RouteIP2PSTNEnable13" type="checkbox" id="RouteIP2PSTNEnable13" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc13">
+
+	</td>
+	<td id="idSrcTrunk13">
+
+	</td>
+	<td id="idSrcPrefix13">
+
+	</td>
+	<td id="idDestPrefix13">
+
+	</td>
+	<td id="idDestTrunk13">
+
+	</td>
+</tr>
+<tr id="idRouteIP2PSTN14" align="center" style="display:none">
+	<td>
+		<input name="RouteIP2PSTNEnable14" type="checkbox" id="RouteIP2PSTNEnable14" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc14">
+
+	</td>
+	<td id="idSrcTrunk14">
+
+	</td>
+	<td id="idSrcPrefix14">
+
+	</td>
+	<td id="idDestPrefix14">
+
+	</td>
+	<td id="idDestTrunk14">
+
+	</td>
+</tr>
+<tr id="idRouteIP2PSTN15" align="center" style="display:none">
+	<td>
+		<input name="RouteIP2PSTNEnable15" type="checkbox" id="RouteIP2PSTNEnable15" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc15">
+
+	</td>
+	<td id="idSrcTrunk15">
+
+	</td>
+	<td id="idSrcPrefix15">
+
+	</td>
+	<td id="idDestPrefix15">
+
+	</td>
+	<td id="idDestTrunk15">
+
+	</td>
+</tr>
+</tbody></table>
+<table align="center" width="700px" class="tblpageinfo">
+	<tbody><tr>
+		<td>
+			共计:&nbsp;
+			0&nbsp;条
+			&nbsp;&nbsp;
+			<input type="hidden" name="curpage" id="curpage" value="">
+			<select name="page" class="alist" id="page" onchange="doRefresh();" disabled="">
+			</select>
+		</td>
+	</tr>
+	</tbody></table>
+<p align="center" class="buttonbox">
+  <button name="Add" id="Add" onclick="AddData();">添加</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <button name="Mod" id="Mod" onclick="ModData();" disabled="">修改</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <button name="Del" id="Del" onclick="return DelData();" disabled="">删除</button>
+</p>
+</form>

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblNeCfgMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblNeCfg" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="alias" property="alias" jdbcType="VARCHAR" />
+    <result column="device_sn" property="deviceSn" jdbcType="VARCHAR" />
+    <result column="default_conf_model" property="defaultConfModel" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="size" property="size" jdbcType="BIGINT" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="detail_desc" property="detailDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, name, alias, device_sn, default_conf_model, type, status, size, 
+    path, create_time, detail_desc
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblNeCfgCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <choose>
+        <when test="myCol!=null"> ${myCol}</when>
+        <otherwise><include refid="Base_Column_List" /></otherwise>
+    </choose>
+    from tbl_ne_cfg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="groupBy != null" >
+      group by ${groupBy}
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+   <if test="limitClause != null" >
+      limit ${limitClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_ne_cfg
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_ne_cfg
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblNeCfgCriteria" >
+    delete from tbl_ne_cfg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblNeCfg" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_ne_cfg (uuid, rec_status, name, 
+      alias, device_sn, default_conf_model, 
+      type, status, size, 
+      path, create_time, detail_desc
+      )
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{alias,jdbcType=VARCHAR}, #{deviceSn,jdbcType=VARCHAR}, #{defaultConfModel,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{size,jdbcType=BIGINT}, 
+      #{path,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{detailDesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblNeCfg" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_ne_cfg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="deviceSn != null" >
+        device_sn,
+      </if>
+      <if test="defaultConfModel != null" >
+        default_conf_model,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceSn != null" >
+        #{deviceSn,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultConfModel != null" >
+        #{defaultConfModel,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=BIGINT},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailDesc != null" >
+        #{detailDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblNeCfgCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_ne_cfg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_ne_cfg
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alias != null" >
+        alias = #{record.alias,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceSn != null" >
+        device_sn = #{record.deviceSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.defaultConfModel != null" >
+        default_conf_model = #{record.defaultConfModel,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.size != null" >
+        size = #{record.size,jdbcType=BIGINT},
+      </if>
+      <if test="record.path != null" >
+        path = #{record.path,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.detailDesc != null" >
+        detail_desc = #{record.detailDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_ne_cfg
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      alias = #{record.alias,jdbcType=VARCHAR},
+      device_sn = #{record.deviceSn,jdbcType=VARCHAR},
+      default_conf_model = #{record.defaultConfModel,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      size = #{record.size,jdbcType=BIGINT},
+      path = #{record.path,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      detail_desc = #{record.detailDesc,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblNeCfg" >
+    update tbl_ne_cfg
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceSn != null" >
+        device_sn = #{deviceSn,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultConfModel != null" >
+        default_conf_model = #{defaultConfModel,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=BIGINT},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc = #{detailDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblNeCfg" >
+    update tbl_ne_cfg
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      alias = #{alias,jdbcType=VARCHAR},
+      device_sn = #{deviceSn,jdbcType=VARCHAR},
+      default_conf_model = #{defaultConfModel,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      size = #{size,jdbcType=BIGINT},
+      path = #{path,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      detail_desc = #{detailDesc,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

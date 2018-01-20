@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- tree mapper
+ #{domainUuid,mode=IN,jdbcType=INTEGER},#{userType,mode=IN,jdbcType=INTEGER},#{userUuid,mode=IN,jdbcType=INTEGER}
+  -->
+<mapper namespace="com.dinstar.sim.mapper.User">
+	<resultMap id="baseResultMap" type="com.dinstar.sim.model.UserMapper" >
+	    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+	    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+	    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+	     <result column="grp_uuid" property="grpUuid" jdbcType="INTEGER" />
+	      <result column="name_cn" property="nameCn" jdbcType="CHAR" />
+	       <result column="type_str" property="typeStr" jdbcType="CHAR" />
+	    <result column="role_name" property="roleName" jdbcType="CHAR" />
+	    <result column="name" property="name" jdbcType="CHAR" />
+	    <result column="alias" property="alias" jdbcType="CHAR" />
+	    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+	    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+	    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+	    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+	    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+	    <result column="type" property="type" jdbcType="INTEGER" />
+	    <result column="password_md5" property="passwordMd5" jdbcType="CHAR" />
+	    <result column="mobile" property="mobile" jdbcType="CHAR" />
+	    <result column="phone" property="phone" jdbcType="CHAR" />
+	    <result column="email" property="email" jdbcType="CHAR" />
+	    <result column="address" property="address" jdbcType="CHAR" />
+	    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	    <result column="last_reg_time" property="lastRegTime" jdbcType="TIMESTAMP" />
+	    <result column="reg_fail_count" property="regFailCount" jdbcType="INTEGER" />
+	    <result column="pwd_length" property="pwdLength" jdbcType="INTEGER" />
+	    <result column="pwd_level" property="pwdLevel" jdbcType="INTEGER" />
+	    <result column="api_enabled" property="apiEnabled" jdbcType="INTEGER" />
+	    <result column="api_auth_type" property="apiAuthType" jdbcType="INTEGER" />
+	    <result column="api_auth_pwd" property="apiAuthPwd" jdbcType="CHAR" />
+	    <result column="rsa_pub_key" property="rsaPubKey" jdbcType="CHAR" />
+	    <result column="max_timeout_sec" property="maxTimeoutSec" jdbcType="INTEGER" />
+	    <result column="max_req_per_min" property="maxReqPerMin" jdbcType="INTEGER" />
+	    <result column="req_cnt_per_min" property="reqCntPerMin" jdbcType="INTEGER" />
+	    <result column="total_req_count" property="totalReqCount" jdbcType="INTEGER" />
+	    <result column="last_req_sn" property="lastReqSn" jdbcType="INTEGER" />
+	    <result column="api_auth_fail_cnt" property="apiAuthFailCnt" jdbcType="INTEGER" />
+	    <result column="cli_ip_addr" property="cliIpAddr" jdbcType="CHAR" />
+	    <result column="cli_port_no" property="cliPortNo" jdbcType="INTEGER" />
+	    <result column="api_acl_flag" property="apiAclFlag" jdbcType="INTEGER" />
+	    <result column="valid_ip_addr" property="validIpAddr" jdbcType="CHAR" />
+	    <result column="valid_ip_addr2" property="validIpAddr2" jdbcType="CHAR" />
+	    <result column="valid_ip_addr3" property="validIpAddr3" jdbcType="CHAR" />
+	    <result column="api_trap_flag" property="apiTrapFlag" jdbcType="INTEGER" />
+	    <result column="trap_ip_addr" property="trapIpAddr" jdbcType="CHAR" />
+	    <result column="trap_port_no" property="trapPortNo" jdbcType="INTEGER" />
+	    <result column="last_used_time" property="lastUsedTime" jdbcType="TIMESTAMP" />
+	    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+	    <result column="domain_name" property="domainName" jdbcType="CHAR" />
+	    <result column="sys_name" property="sysName" jdbcType="CHAR" />
+  </resultMap>
+    
+    <select id="countUserList" resultType="java.lang.Integer" parameterType="java.util.HashMap">		
+		SELECT count(*) 
+				from tbl_user tu
+		LEFT JOIN tbl_role tro ON(tro.role_id=tu.role_id)
+		LEFT JOIN tbl_domain td ON(tu.domain_uuid=td.uuid) 
+		WHERE 1=1
+		and tu.rec_status!=2
+		<if test="sysUuid>0" >
+			and td.sys_uuid = #{sysUuid}
+		</if>
+		<if test="domainUuid>0" >
+			and tu.domain_uuid = #{domainUuid}
+		</if>
+		<if test="userName!=null and userName!=''" >
+        	AND tu.`name` like #{userName}
+      	</if>
+      	<if test="phone!=null and phone!=''" >
+        	AND tu.phone like #{phone}
+      	</if>
+      	<if test="email!=null and email!=''" >
+        	AND tu.email like #{email}
+      	</if>
+      	 <if test="grpUuid>0" >
+        	AND tu.grp_uuid=#{grpUuid}
+      	</if>
+      	<if test="domainName!=null and domainName!=''" >
+        	AND td.`name` like #{domainName}
+      	</if>
+        <if test="search!=null and search!=''" >
+          ${search}
+        </if>
+     	<if test="uuid>0" >
+          and tu.uuid=#{uuid}
+        </if>
+		AND tro.role_id IN
+		<foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+		#{item}
+		</foreach>
+		<if test="cloudUuid!=null and cloudUuid>0" >
+			and (td.cloud_uuid=#{cloudUuid})
+			<if test="cloudUuid==1" >
+			or tu.role_id in
+			<foreach collection="superList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+			</if>
+		</if>
+		ORDER BY tu.role_id
+	</select>
+	 <select id="getUserList" resultMap="baseResultMap" parameterType="java.util.HashMap">		
+		SELECT tu.*,tro.`name` as role_name,td.`name` as domain_name,ts.`name` as sys_name,tdg.name_cn,tdg.type_str
+		from tbl_user tu
+		LEFT JOIN tbl_role tro ON(tro.role_id=tu.role_id)
+		LEFT JOIN tbl_domain td ON(tu.domain_uuid=td.uuid)
+		LEFT JOIN tbl_sys ts ON(td.sys_uuid=ts.uuid) 
+		LEFT JOIN tbl_domain_group tdg ON(tu.grp_uuid = tdg.uuid) 
+		WHERE 1=1
+		and tu.rec_status!=2
+		<if test="sysUuid>0" >
+			and td.sys_uuid = #{sysUuid}
+		</if>
+		<if test="domainUuid>0" >
+			and tu.domain_uuid = #{domainUuid}
+		</if>
+		<if test="userName!=null and userName!=''" >
+        	AND tu.`name` like #{userName}
+      	</if>
+      	<if test="phone!=null and phone!=''" >
+        	AND tu.phone like #{phone}
+      	</if>
+      	<if test="email!=null and email!=''" >
+        	AND tu.email like #{email}
+      	</if>
+      	<if test="grpUuid>0" >
+        	AND tu.grp_uuid=#{grpUuid}
+      	</if>
+      	<if test="domainName!=null and domainName!=''" >
+        	AND td.`name` like #{domainName}
+      	</if>
+      	<if test="search!=null and search!=''" >
+          ${search}
+        </if>
+        <if test="uuid>0" >
+          and tu.uuid=#{uuid}
+        </if> 
+		AND tro.role_id IN
+		<foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+		#{item}
+		</foreach>
+		<if test="cloudUuid!=null and cloudUuid>0" >
+			and (td.cloud_uuid=#{cloudUuid})
+			<if test="cloudUuid==1" >
+			or tu.role_id in
+			<foreach collection="superList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+			</if>
+		</if>
+				<if test="sort != null" >
+     		 order by ${sort}
+    	</if>
+		<if test="limit>0">LIMIT #{start},#{limit}</if>
+	</select>
+	<select id="selectByExample" resultMap="baseResultMap" parameterType="com.dinstar.sim.model.UserMapper">
+	
+	 select * from tbl_user where rec_status!=2 order by uuid DESC
+	</select>
+	<update id="updateByMap"  parameterType="com.dinstar.sim.model.UserMapper">
+	update tbl_user set grp_uuid=#{grpUuid},role_id=#{roleId} where uuid=#{uuid} and domain_uuid=#{domainUuid}
+	
+	
+	</update>
+</mapper>

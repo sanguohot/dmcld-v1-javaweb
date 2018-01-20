@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">  
+<struts>  
+<!-- DMCloud专用 -->
+	<package name="struts-dm" extends="json-default">
+		<interceptors>  
+	    	<interceptor name="timeoutInterceptor" class="com.dinstar.sim.action.SessionTimeoutInterceptor"></interceptor>  
+	    	<interceptor-stack name="timeoutStack">  
+	        	<interceptor-ref name="timeoutInterceptor"/>  
+	        	<interceptor-ref name="defaultStack"/>  
+	    	</interceptor-stack>  
+		</interceptors>
+		<default-interceptor-ref name="timeoutStack"/>  
+
+		<action name="batchManager" class="batchAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		
+		<action name="batchTreeManager" class="batchTreeAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		
+		<action name="webapi" class="webAPIAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		
+		<action name="neapi" class="neAPIAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+				<action name="alarmApiManager" class="alarmAPIAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		<action name="domainGrpManager" class="domainGrpAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		<action name="userGrpManager" class="userGrpAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		<action name="alarmAttrManager" class="alarmAttrAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		<action name="privilegeNewManager" class="privilegeNewAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		<action name="tapeManager" class="tapeAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		<action name="authNumManager" class="authNumAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		<action name="numDMManager" class="numAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		<action name="pmdTapeManager" class="pmdTapeAction">
+      <result name="success" type="json"/>
+      <result name="error" type="json"/>
+    </action>
+    		<action name="devReportManager" class="devReportAction">
+      <result name="success" type="json"/>
+      <result name="error" type="json"/>
+    </action>
+        <action name="pmdAuthManager" class="pmdAuthAction">
+      <result name="success" type="json"/>
+      <result name="error" type="json"/>
+    </action>
+     <action name="freqManager" class="freqAction">
+	      <result name="success" type="json"/>
+	      <result name="error" type="json"/>
+     </action>   
+      <action name="batchConfigurationManager" class="batchConfigurationAction">
+	      <result name="success" type="json"/>
+	      <result name="error" type="json"/>
+     </action> 
+     <action name="sipConfigManager" class="sipConfigAction">
+	      <result name="success" type="json"/>
+	      <result name="error" type="json"/>
+     </action>   
+
+	 <action name="columnsManager" class="columnsAction">
+	      <result name="success" type="json"/>
+	      <result name="error" type="json"/>
+     </action>   
+	</package>
+	
+</struts>  

@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<!-- 注解探测器 -->
+	<context:component-scan base-package="com.dinstar.sim" />
+	
+	<bean id="cloudMapperDao" class="com.dinstar.sim.dao.impl.CloudMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="cloudServiceDao" class="com.dinstar.sim.service.impl.CloudServiceImpl">
+		<property name="cloudMapperDao" ref="cloudMapperDao" />
+	</bean>
+
+	<bean id="sysMapperDao" class="com.dinstar.sim.dao.impl.SysMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="sysServiceDao" class="com.dinstar.sim.service.impl.SysServiceImpl">
+		<property name="sysMapperDao" ref="sysMapperDao" />
+	</bean>
+
+	<bean id="zoneMapperDao" class="com.dinstar.sim.dao.impl.ZoneMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="zoneServiceDao" class="com.dinstar.sim.service.impl.ZoneServiceImpl">
+		<property name="zoneMapperDao" ref="zoneMapperDao" />
+	</bean>
+
+	<bean id="siteMapperDao" class="com.dinstar.sim.dao.impl.SiteMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="siteServiceDao" class="com.dinstar.sim.service.impl.SiteServiceImpl">
+		<property name="siteMapperDao" ref="siteMapperDao" />
+	</bean>
+
+	<bean id="neMapperDao" class="com.dinstar.sim.dao.operation.impl.NeMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="neServiceDao" class="com.dinstar.sim.service.operation.impl.NeServiceImpl">
+		<property name="neMapperDao" ref="neMapperDao" />
+	</bean>
+	<bean id="priceServiceDao" class="com.dinstar.sim.service.impl.PriceServiceImpl">
+	</bean>	
+	<bean id="priceMapperDao" class="com.dinstar.sim.dao.operation.impl.PriceMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+
+	<bean id="alarmManServiceDao" class="com.dinstar.sim.service.impl.AlarmManServiceImpl">
+	</bean>	
+	<bean id="alarmManMapperDao" class="com.dinstar.sim.dao.operation.impl.AlarmManMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="alarmGrpServiceDao" class="com.dinstar.sim.service.impl.AlarmGrpServiceImpl">
+	</bean>	
+	<bean id="alarmGrpMapperDao" class="com.dinstar.sim.dao.operation.impl.AlarmGrpMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="alarmMgServiceDao" class="com.dinstar.sim.service.impl.AlarmMgServiceImpl">
+	</bean>
+	<bean id="alarmPushRuleMapperDao" class="com.dinstar.sim.dao.operation.impl.AlarmPushRuleMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="alarmPushRuleServiceDao" class="com.dinstar.sim.service.impl.AlarmPushRuleServiceImpl">
+	</bean>			
+	<bean id="alarmMgMapperDao" class="com.dinstar.sim.dao.operation.impl.AlarmMgMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+		
+	<bean id="salesServiceDao" class="com.dinstar.sim.service.impl.SalesServiceImpl">
+
+	</bean>	
+	<bean id="salesMapperDao" class="com.dinstar.sim.dao.operation.impl.SalesMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="agCdrServiceDao" class="com.dinstar.sim.service.impl.AgCdrServiceImpl">
+
+	</bean>	
+	<bean id="agCdrMapperDao" class="com.dinstar.sim.dao.operation.impl.AgCdrMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="payServiceDao" class="com.dinstar.sim.service.impl.PayServiceImpl">
+	</bean>
+	
+	<bean id="bkMapperDao" class="com.dinstar.sim.dao.operation.impl.BkMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="bkServiceDao" class="com.dinstar.sim.service.operation.impl.BkServiceImpl">
+		<property name="bkMapperDao" ref="bkMapperDao" />
+	</bean>
+	
+	<bean id="bkpMapperDao" class="com.dinstar.sim.dao.operation.impl.BkpMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="bkpServiceDao" class="com.dinstar.sim.service.operation.impl.BkpServiceImpl">
+		<property name="bkpMapperDao" ref="bkpMapperDao" />
+	</bean>	
+	<bean id="gwMapperDao" class="com.dinstar.sim.dao.operation.impl.GwMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="gwServiceDao" class="com.dinstar.sim.service.operation.impl.GwServiceImpl">
+		<property name="gwMapperDao" ref="gwMapperDao" />
+	</bean>	
+	
+	<bean id="portMapperDao" class="com.dinstar.sim.dao.operation.impl.PortMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="portServiceDao" class="com.dinstar.sim.service.operation.impl.PortServiceImpl">
+		<property name="portMapperDao" ref="portMapperDao" />
+	</bean>		
+	
+	<bean id="gwpMapperDao" class="com.dinstar.sim.dao.operation.impl.GwpMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="gwpServiceDao" class="com.dinstar.sim.service.operation.impl.GwpServiceImpl">
+		<property name="gwpMapperDao" ref="gwpMapperDao" />
+	</bean>	
+	
+	<bean id="grpMapperDao" class="com.dinstar.sim.dao.operation.impl.GrpMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="grpServiceDao" class="com.dinstar.sim.service.operation.impl.GrpServiceImpl">
+		<property name="grpMapperDao" ref="grpMapperDao" />
+	</bean>	
+	
+	<bean id="paidGrpMapperDao" class="com.dinstar.sim.dao.operation.impl.PaidGrpMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="paidGrpServiceDao" class="com.dinstar.sim.service.operation.impl.PaidGrpServiceImpl">
+		<property name="paidGrpMapperDao" ref="paidGrpMapperDao" />
+	</bean>	
+	
+	<bean id="paidListMapperDao" class="com.dinstar.sim.dao.operation.impl.PaidListMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="paidListServiceDao" class="com.dinstar.sim.service.operation.impl.PaidListServiceImpl">
+		<property name="paidListMapperDao" ref="paidListMapperDao" />
+	</bean>	
+	
+	<bean id="policyMapperDao" class="com.dinstar.sim.dao.operation.impl.PolicyMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="policyServiceDao" class="com.dinstar.sim.service.operation.impl.PolicyServiceImpl">
+		<property name="policyMapperDao" ref="policyMapperDao" />
+	</bean>	
+	
+	<bean id="ruleMapperDao" class="com.dinstar.sim.dao.operation.impl.RuleMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="ruleServiceDao" class="com.dinstar.sim.service.operation.impl.RuleServiceImpl">
+		<property name="ruleMapperDao" ref="ruleMapperDao" />
+	</bean>	
+	
+	<bean id="simMapperDao" class="com.dinstar.sim.dao.operation.impl.SimMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="simCardServiceDao" class="com.dinstar.sim.service.operation.impl.SimCardServiceImpl">
+		<property name="simMapperDao" ref="simMapperDao" />
+	</bean>	
+	
+	<bean id="nodeMapperDao" class="com.dinstar.sim.dao.impl.NodeMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="nodeServiceDao" class="com.dinstar.sim.service.impl.NodeServiceImpl">
+		<property name="nodeMapperDao" ref="nodeMapperDao" />
+	</bean>	
+	
+	<bean id="nodeGrpMapperDao" class="com.dinstar.sim.dao.impl.NodeGrpMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="nodeGrpServiceDao" class="com.dinstar.sim.service.impl.NodeGrpServiceImpl">
+		<property name="nodeGrpMapperDao" ref="nodeGrpMapperDao" />
+	</bean>	
+	
+	<bean id="nodeListMapperDao" class="com.dinstar.sim.dao.impl.NodeListMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="nodeListServiceDao" class="com.dinstar.sim.service.impl.NodeListServiceImpl">
+		<property name="nodeListMapperDao" ref="nodeListMapperDao" />
+	</bean>	
+	
+	<bean id="procMapperDao" class="com.dinstar.sim.dao.impl.ProcMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="procServiceDao" class="com.dinstar.sim.service.impl.ProcServiceImpl">
+		<property name="procMapperDao" ref="procMapperDao" />
+	</bean>	
+	
+	<bean id="agMapperDao" class="com.dinstar.sim.dao.operation.impl.AgMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="agServiceDao" class="com.dinstar.sim.service.operation.impl.AgServiceImpl">
+		<property name="agMapperDao" ref="agMapperDao" />
+	</bean>	
+	
+	<bean id="agpMapperDao" class="com.dinstar.sim.dao.operation.impl.AgpMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="agpServiceDao" class="com.dinstar.sim.service.operation.impl.AgpServiceImpl">
+		<property name="agpMapperDao" ref="agpMapperDao" />
+	</bean>	
+	
+	<bean id="tgMapperDao" class="com.dinstar.sim.dao.operation.impl.TgMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="tgServiceDao" class="com.dinstar.sim.service.operation.impl.TgServiceImpl">
+		<property name="tgMapperDao" ref="tgMapperDao" />
+	</bean>	
+	
+	<bean id="tgpMapperDao" class="com.dinstar.sim.dao.operation.impl.TgpMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="tgpServiceDao" class="com.dinstar.sim.service.operation.impl.TgpServiceImpl">
+		<property name="tgpMapperDao" ref="tgpMapperDao" />
+	</bean>	
+	
+	<bean id="alarmDescMapperDao" class="com.dinstar.sim.dao.operation.impl.AlarmDescMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="alarmDescServiceDao" class="com.dinstar.sim.service.operation.impl.AlarmDescServiceImpl">
+		<property name="alarmDescMapperDao" ref="alarmDescMapperDao" />
+	</bean>	
+	
+	<bean id="alarmDomainDescMapperDao" class="com.dinstar.sim.dao.operation.impl.AlarmDomainDescMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="alarmDomainDescServiceDao" class="com.dinstar.sim.service.operation.impl.AlarmDomainDescServiceImpl">
+		<property name="alarmDomainDescMapperDao" ref="alarmDomainDescMapperDao" />
+	</bean>	
+
+	<bean id="domainAlarmServiceDao" class="com.dinstar.sim.service.operation.impl.DomainAlarmServiceImpl">
+		<property name="alarmDomainDescMapperDao" ref="alarmDomainDescMapperDao" />
+	</bean>	
+	
+	<bean id="alarmMapperDao" class="com.dinstar.sim.dao.operation.impl.AlarmMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="alarmServiceDao" class="com.dinstar.sim.service.operation.impl.AlarmServiceImpl">
+		<property name="alarmMapperDao" ref="alarmMapperDao" />
+	</bean>	
+	
+	<bean id="objectTypeMapperDao" class="com.dinstar.sim.dao.impl.ObjectTypeMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="objectTypeServiceDao" class="com.dinstar.sim.service.impl.ObjectTypeServiceImpl">
+		<property name="objectTypeMapperDao" ref="objectTypeMapperDao" />
+	</bean>	
+	
+	<bean id="causeDescMapperDao" class="com.dinstar.sim.dao.operation.impl.CauseDescMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="causeDescServiceDao" class="com.dinstar.sim.service.operation.impl.CauseDescServiceImpl">
+		<property name="causeDescMapperDao" ref="causeDescMapperDao" />
+	</bean>	
+	
+	<bean id="enumDefMapperDao" class="com.dinstar.sim.dao.impl.EnumDefMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="enumDefServiceDao" class="com.dinstar.sim.service.impl.EnumDefServiceImpl">
+		<property name="enumDefMapperDao" ref="enumDefMapperDao" />
+	</bean>	
+
+	<bean id="logUserMapperDao" class="com.dinstar.sim.dao.impl.LogUserMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="logUserServiceDao" class="com.dinstar.sim.service.impl.LogUserServiceImpl">
+		<property name="logUserMapperDao" ref="logUserMapperDao" />
+	</bean>
+		
+	<bean id="msgRecUnreadMapperDao" class="com.dinstar.sim.dao.operation.impl.MsgRecUnreadMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="msgRecReadMapperDao" class="com.dinstar.sim.dao.operation.impl.MsgRecReadMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="msgSendMapperDao" class="com.dinstar.sim.dao.operation.impl.MsgSendMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="msgMapperDao" class="com.dinstar.sim.dao.operation.impl.MsgMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="msgServiceDao" class="com.dinstar.sim.service.impl.MsgServiceImpl">
+		<property name="msgMapperDao" ref="msgMapperDao" />
+		<property name="msgRecReadMapperDao" ref="msgRecReadMapperDao" />
+		<property name="msgRecUnreadMapperDao" ref="msgRecUnreadMapperDao" />
+		<property name="msgSendMapperDao" ref="msgSendMapperDao" />
+	</bean>
+		
+	<bean id="cookieMapperDao" class="com.dinstar.sim.dao.impl.CookieMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="cookieServiceDao" class="com.dinstar.sim.service.impl.CookieServiceImpl">
+		<property name="cookieMapperDao" ref="cookieMapperDao" />
+	</bean>	
+
+	<bean id="licPaidCardMapperDao" class="com.dinstar.sim.dao.impl.LicPaidCardMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="licPaidCardServiceDao" class="com.dinstar.sim.service.impl.LicPaidCardServiceImpl">
+		<property name="licPaidCardMapperDao" ref="licPaidCardMapperDao" />
+	</bean>	
+
+	<bean id="operationTreeDataDao" class="com.dinstar.sim.service.operation.impl.OperationTreeDataServerImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>	
+
+	<bean id="udpSendHandleDao" class="com.dinstar.sim.util.UDPSendHandle">
+		<property name="sysServiceDao" ref="sysServiceDao" />
+	</bean>	
+	<bean id="webAPIHandleDao" class="com.dinstar.sim.util.WebAPIHandle">
+		<property name="sysServiceDao" ref="sysServiceDao" />
+	</bean>	
+	<bean id="actionResultHandleDao" class="com.dinstar.sim.util.ActionResultHandle">
+		<property name="sysMapperDao" ref="sysMapperDao" />
+		<property name="domainMapperDao" ref="domainMapperDao" />
+		<property name="licPaidCardMapperDao" ref="licPaidCardMapperDao" />
+	</bean>	
+	<bean id="checkServiceDao" class="com.dinstar.sim.service.impl.CheckServiceImpl">
+	</bean>	
+	
+	<bean id="alarmLogServiceDao" class="com.dinstar.sim.service.operation.impl.AlarmLogServiceImpl">
+		<property name="alarmLogMapperDao" ref="alarmLogMapperDao" />
+	</bean>	
+
+	<bean id="alarmLogMapperDao" class="com.dinstar.sim.dao.operation.impl.AlarmLogMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>	
+	
+	<bean id="apiServiceDao" class="com.dinstar.sim.service.impl.APIServiceImpl">
+	</bean>	
+	
+	<bean id="authHisServiceDao" class="com.dinstar.sim.service.impl.AuthHisServiceImpl">
+		<property name="authHisMapperDao" ref="authHisMapperDao" />
+	</bean>	
+
+	<bean id="authHisMapperDao" class="com.dinstar.sim.dao.operation.impl.AuthHisMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>	
+			
+	<bean id="configServiceDao" class="com.dinstar.sim.service.impl.ConfigServiceImpl">
+	<!--	<property name="domainServiceDao" ref="domainServiceDao" />
+		<property name="grpServiceDao" ref="grpServiceDao" />
+		<property name="policyServiceDao" ref="policyServiceDao" />
+		<property name="ruleServiceDao" ref="ruleServiceDao" />
+		<property name="neServiceDao" ref="neServiceDao" />
+		<property name="siteServiceDao" ref="siteServiceDao" />
+		<property name="userServiceDao" ref="userServiceDao" />
+		<property name="zoneServiceDao" ref="zoneServiceDao" />
+		
+		<bean id="timerTaskHandleDao" class="com.dinstar.sim.util.TimerTaskHandle">
+		<property name="treeServiceDao" ref="treeServiceDao" />
+	</bean>	
+	--></bean>
+
+	
+
+	<bean id="operationTreeServiceDao" class="com.dinstar.sim.service.operation.impl.OperationTreeServiceImpl">
+		<property name="bkpServiceDao" ref="bkpServiceDao" />
+		<property name="cloudServiceDao" ref="cloudServiceDao" />
+		<property name="domainServiceDao" ref="domainServiceDao" />
+		<property name="grpServiceDao" ref="grpServiceDao" />
+		<property name="gwpServiceDao" ref="gwpServiceDao" />
+		<property name="neServiceDao" ref="neServiceDao" />
+		<property name="policyServiceDao" ref="policyServiceDao" />
+		<property name="ruleServiceDao" ref="ruleServiceDao" />
+		<property name="siteServiceDao" ref="siteServiceDao" />
+		<property name="sysServiceDao" ref="sysServiceDao" />
+		<property name="userServiceDao" ref="userServiceDao" />
+		<property name="zoneServiceDao" ref="zoneServiceDao" />
+		<property name="nodeServiceDao" ref="nodeServiceDao" />
+		<property name="nodeListServiceDao" ref="nodeListServiceDao" />
+		<property name="procServiceDao" ref="procServiceDao" />
+	</bean>
+	
+	<bean id="alarmAttrMapperDao" class="com.dinstar.sim.dao.operation.impl.AlarmAttrMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="alarmAttrServiceDao" class="com.dinstar.sim.service.impl.AlarmAttrServiceImpl">
+		<property name="alarmAttrMapperDao" ref="alarmAttrMapperDao" />
+	</bean>	
+	<bean id="columnsMapperDao" class="com.dinstar.sim.dao.impl.ColumnsMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="columnsServiceDao" class="com.dinstar.sim.service.impl.ColumnsServiceImpl">
+		<property name="columnsMapperDao" ref="columnsMapperDao" />
+	</bean>	
+	
+</beans>

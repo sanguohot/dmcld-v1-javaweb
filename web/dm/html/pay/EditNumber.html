@@ -1,0 +1,30 @@
+<span action="editNumber" class="editable editable-click editable-unsaved editable-open" style="display: none;">{{=it.value}}</span>
+<span class="editable-container editable-inline" style=""><div>
+    <div class="editableform-loading" style="display: none;"><i class="light-blue icon-2x icon-spinner icon-spin"></i>
+    </div>
+    <form class="form-inline editableform" style="">
+        <div class="control-group">
+            <div>
+                <div class="editable-input" style="margin-right:-20px;">
+                    <div class="ace-spinner" style="width: 50px;">
+                        <div class="input-group"><input type="text" class="spinner-input form-control" maxlength="2" value="{{=it.value}}">
+
+                            <div class="spinner-buttons input-group-btn btn-group-vertical">
+                                <button type="button" class="btn spinner-up btn-xs btn-success"><i
+                                        class="fa fa-plus"></i></button>
+                                <button type="button" class="btn spinner-down btn-xs btn-danger"><i
+                                        class="fa fa-minus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="editable-buttons">`
+                    <button type="button" class="btn btn-info editable-submit" style="margin-right:0;"><i class="fa fa-check"></i>
+                    </button>
+                    <button type="button" class="btn editable-cancel" style="margin-right:0;margin-left:-3px;"><i class="fa fa-remove"></i></button>
+                </div>
+            </div>
+            <div class="editable-error-block help-block" style="display: none;"></div>
+        </div>
+    </form>
+</div></span>

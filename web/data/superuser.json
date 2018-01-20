@@ -1,0 +1,8 @@
+{
+	success: true,
+	superusers: [
+                {name:'dinstar',password:'0',domain:'dinstar',status:'online', level: 'administrator'},
+				{name:'huawei',password:'1',domain:'huawei',status:'offline', level: 'administrator'},
+				{name:'zhongxing',password:'2',domain:'zhongxing',status:'offline', level: 'administrator'},
+            ]
+}

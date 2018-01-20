@@ -1,0 +1,8 @@
+{
+	success: true,
+	users: [
+                {name:'dinstar',password:'0',status:'online', level: 'administrator'},
+				{name:'huawei',password:'1',status:'offline', level: 'operator'},
+				{name:'zhongxing',password:'2',status:'offline', level: 'operator'},
+            ]
+}

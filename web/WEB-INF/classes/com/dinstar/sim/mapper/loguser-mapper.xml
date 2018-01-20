@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- ne port mapper -->
+<mapper namespace="com.dinstar.sim.mapper.Loguser">
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblLogUser" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="serial_no" property="serialNo" jdbcType="INTEGER" />
+    <result column="generate_time" property="generateTime" jdbcType="TIMESTAMP" />
+    <result column="domain_name" property="domainName" jdbcType="CHAR" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="CHAR" />
+    <result column="user_uuid" property="userUuid" jdbcType="INTEGER" />
+    <result column="object_type" property="objectType" jdbcType="INTEGER" />
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="object_name" property="objectName" jdbcType="CHAR" />
+    <result column="batch_set" property="batchSet" jdbcType="INTEGER" />
+    <result column="operate" property="operate" jdbcType="INTEGER" />
+    <result column="ip_addr" property="ipAddr" jdbcType="CHAR" />
+    <result column="exec_sql" property="execSql" jdbcType="VARCHAR" />
+    <result column="exec_result" property="execResult" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="LogUserMapper" type="com.dinstar.sim.mapper.LogUserMapper" extends="BaseResultMap" >
+    <result column="object_type_name" property="objectTypeName" jdbcType="CHAR" />
+  </resultMap>
+
+	
+   <select id="countLogUser" resultType="java.lang.Integer" >
+		SELECT COUNT(*)
+		FROM tbl_log_user tl
+		LEFT JOIN tbl_object_type tot ON(tl.object_type = tot.object_type_id)
+		WHERE (tl.rec_status IS NULL OR tl.rec_status != 2)
+		<if test="domainName!=null and domainName!=''">AND tl.domain_name like #{domainName}</if>
+		<if test="domainUuid>0">AND tl.domain_uuid = #{domainUuid}</if>
+		<if test="objectType>0">AND tl.object_type = #{objectType}</if>
+		<if test="objectId>0">AND tl.object_id = #{objectId}</if>
+		<if test="userName!=null and userName!=''">AND tl.user_name like #{userName}</if>
+		<if test="execResult!=null and execResult!=-1">
+			AND tl.exec_result = #{execResult}
+		</if>
+		<if test="timeBegin !=null and timeBegin!=''">
+			<![CDATA[ 
+			 and tl.generate_time >= #{timeBegin}
+			 ]]>
+		</if>
+		<if test="timeEnd !=null and timeEnd!=''">
+			<![CDATA[
+			 and tl.generate_time <= #{timeEnd}
+			]]>
+		</if>
+		<if test="ipAddr!=null and ipAddr!=''">AND tl.ip_addr like #{ipAddr}</if>
+		<if test="objectTypeName!=null and objectTypeName!=''">AND tot.name like #{objectTypeName}</if>
+		<if test="objectName!=null and objectName!=''">AND tl.object_name like #{objectName}</if>
+		<if test="operate>0">AND tl.operate =#{operate}</if>
+  </select>
+    
+    <select id="getLogUserList" resultMap="LogUserMapper">
+		SELECT tl.*
+		,tot.`name` as object_type_name
+		FROM tbl_log_user tl
+		LEFT JOIN tbl_object_type tot ON(tl.object_type = tot.object_type_id)
+		WHERE (tl.rec_status IS NULL OR tl.rec_status != 2)
+		<if test="domainName!=null and domainName!=''">AND tl.domain_name like #{domainName}</if>
+		<if test="domainUuid>0">AND tl.domain_uuid = #{domainUuid}</if>
+		<if test="objectType>0">AND tl.object_type = #{objectType}</if>
+		<if test="objectId>0">AND tl.object_id = #{objectId}</if>
+		<if test="userName!=null and userName!=''">AND tl.user_name like #{userName}</if>
+				<if test="execResult!=null and execResult!=-1">
+			AND tl.exec_result = #{execResult}
+		</if>
+		<if test="timeBegin !=null and timeBegin!=''">
+			<![CDATA[ 
+			 and tl.generate_time >= #{timeBegin}
+			 ]]>
+		</if>
+		<if test="timeEnd !=null and timeEnd!=''">
+			<![CDATA[
+			 and tl.generate_time <= #{timeEnd}
+			]]>
+		</if>
+		<if test="ipAddr!=null and ipAddr!=''">AND tl.ip_addr like #{ipAddr}</if>
+		<if test="objectTypeName!=null and objectTypeName!=''">AND tot.name like #{objectTypeName}</if>
+		<if test="objectName!=null and objectName!=''">AND tl.object_name like #{objectName}</if>
+		<if test="operate>0">AND tl.operate =#{operate}</if>
+				<if test="sort != null" >
+     		 order by ${sort}
+    	</if>
+		<if test="limit>0">LIMIT #{start},#{limit}</if>		
+    </select>
+</mapper>

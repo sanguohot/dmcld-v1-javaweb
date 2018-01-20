@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- ne port mapper -->
+<mapper namespace="com.dinstar.sim.mapper.PayCar">
+	  <!-- 自定义 -->  
+  <insert id="insertMulSelective" parameterType="java.util.List">   
+    insert into tbl_pay_car (rec_status, domain_uuid, 
+      domain_name, user_domain_uuid, user_domain_name, 
+      user_name, user_uuid, product_id, 
+      product_name, product_sn, cnt, 
+      detail_desc)   
+    values  
+    <foreach collection="list" item="item" index="index" separator="," >
+    (#{item.recStatus}, #{item.domainUuid}, 
+      #{item.domainName}, #{item.userDomainUuid}, #{item.userDomainName}, 
+      #{item.userName}, #{item.userUuid}, #{item.productId}, 
+      #{item.productName}, #{item.productSn}, #{item.cnt}
+      , #{item.detailDesc})
+    </foreach>
+    ON DUPLICATE key UPDATE rec_status=values(rec_status),cnt=values(cnt)
+    ,product_id=values(product_id),product_sn=values(product_sn),product_name=values(product_name)
+    ,detail_desc=values(detail_desc),domain_uuid=values(domain_uuid),domain_name=values(domain_name)   
+</insert>
+</mapper>

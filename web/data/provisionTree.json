@@ -1,0 +1,18 @@
+{"text":".","children": [
+		{
+			uuid:'1',
+			name:'root',
+			eType:'root',
+			iconCls:'task-folder',
+			expanded: true,
+			children:[{uuid:'1',name:'sbk-32(<span style="color:green;">1</span>/2)',eType:'producttype',iconCls:'icon-door',expanded: true,children:[
+										{uuid:'1',name:'v1.1.100',eType:'package',iconCls:'icon-package',leaf:true},
+										{uuid:'2',name:'v1.2.100',eType:'package',iconCls:'icon-package',leaf:true}
+										]},
+								{uuid:'2',name:'gw-32(<span style="color:green;">2</span>/2)',eType:'productType',iconCls:'icon-door',expanded: true,children:[
+										{uuid:'3',name:'v1.1.100',eType:'package',iconCls:'icon-package',leaf:true},
+										{uuid:'4',name:'v1.1.200',eType:'package',iconCls:'icon-package',leaf:true}
+										]}
+								]
+		} 
+]}

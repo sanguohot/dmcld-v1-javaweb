@@ -1,0 +1,129 @@
+.header-wrap {
+height: 62px;
+background: #00a2ca;
+position: relative;
+z-index: 103;
+}
+.header-wrap .header-inner {
+position: relative;
+height: 62px;
+margin: auto;
+}
+.y-row {
+min-width: 1000px;
+max-width: 1200px;
+margin-left: auto;
+margin-right: auto;
+zoom: 1;
+}
+.y-row .y-span1, .y-row .y-span2, .y-row .y-span3, .y-row .y-span4, .y-row .y-span5, .y-row .y-span6, .y-row .y-span7, .y-row .y-span8, .y-row .y-span9, .y-row .y-span10, .y-row .y-span11, .y-row .y-span12 {
+float: left;
+display: inline;
+margin-right: 2%;
+}
+.header-wrap .header-inner .logo {
+position: absolute;
+display: inherit;
+font-size: 120px;
+line-height: 62px;
+height: 62px;
+color: #fff;
+left: 0;
+top: 0;
+}
+.header-wrap .header-inner nav ul li.selected {
+background-color: #0095bb;
+}
+.y-row .y-last {
+margin-right: 0!important;
+}
+.y-row .y-span2 {
+width: 15%;
+}
+
+ul, menu, dir {
+display: block;
+list-style-type: disc;
+-webkit-margin-before: 1em;
+-webkit-margin-after: 1em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+-webkit-padding-start: 40px;
+}
+.sub-menus {
+position: absolute;
+left: 0;
+right: 0;
+top: 89px;
+z-index: 102;
+}
+.sub-menu1 {
+position: absolute;
+left: 230px;
+right: 0;
+line-height:62px;
+top: 0;
+height:62px;
+width:100px;
+text-align:center;
+z-index: 102;
+}
+.sub-menu2 {
+position: absolute;
+left: 330px;
+right: 0;
+line-height:62px;
+top: 0;
+height:62px;
+width:100px;
+text-align:center;
+z-index: 102;
+}
+.header-wrap .header-inner .nav-right {
+float: right;
+padding-top: 19px;
+width: 100%;
+}
+.header-search {
+float: right;
+position: relative;
+margin-top: 14px;
+padding-top: 0!important;
+background-color: #008ab0;
+overflow: hidden;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+-ms-border-radius: 4px;
+-o-border-radius: 4px;
+border-radius: 4px;
+}
+
+.header-search .search-key.empty {
+color: #7ed1e8;
+}
+.header-search .search-key {
+font-family: "\5FAE\8F6F\96C5\9ED1","Microsoft Yahei","Hiragino Sans GB";
+background-color: transparent;
+border: none;
+outline: none;
+font-size: 14px;
+color: #fff;
+padding: 0 0 0 5px;
+width: 100%;
+zoom: 1;
+margin: 0;
+height: 32px;
+}
+input, select, textarea {
+font-size: 100%;
+}
+.divSearch{	
+position: absolute;
+left: 1100px;
+right: 20px;
+top: 20px;
+height:20px;
+width:100px;
+text-align:center;
+z-index: 102;
+}

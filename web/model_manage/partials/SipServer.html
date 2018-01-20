@@ -1,0 +1,225 @@
+<form ng-controller = 'SipServerCtrl' name="SipServerCfg" id="SipServerCfg" >
+<table width="600px" border=0 align="center" cellpadding=0 cellspacing=0 class="tbltitle">
+  <tr>
+    <td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+    <td>SIP服务器</td>
+    <td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+  </tr>
+</table>
+<table width="600px" align="center" class="tblbody">
+<tr>
+<td width="5%">&nbsp;</td>
+<td>
+<table width="100%" cellspacing="0" cellpadding="0" class="context">
+<tr>
+  <td width="5%">&nbsp;</td>
+  <td width="45%">&nbsp;</td>
+  <td width="50%">&nbsp;</td>
+</tr>
+<tr id="id_PriServerTitle" style="display:none">
+  <td colspan="3" class="td_title">主用SIP服务器</td>
+</tr>
+<tr id="id_PriServerAddr" style="display:none">
+  <td>&nbsp;</td>
+  <td>主用SIP服务器地址</td>
+  <td>
+    <input name="PrimServerAddr" class="text" id="PrimServerAddr" value="" size="18" maxlength="127" alt="config/sipserver/server0/domain">
+  </td>
+</tr>
+<tr id="id_PriServerPort" style="display:none">
+  <td>&nbsp;</td>
+  <td>主用SIP服务器端口(默认: 5060)</td>
+  <td>
+    <input name="PrimServerPort" class="text" id="PrimServerPort" value="5060" size="18" maxlength="5" alt="config/sipserver/server0/port">
+  </td>
+</tr>
+<tr id="id_PriServerRegEp" style="display:none">
+  <td>&nbsp;</td>
+  <td>注册时长(默认: 1800)</td>
+  <td>
+    <input name="PrimRegInterval" class="text" id="PrimRegInterval" value="1800" size="18" maxlength="4" alt="config/sipserver/server0/reg_interval">
+    秒</td>
+</tr>
+<tr id="id_PriServerHeart" style="display:none">
+  <td>&nbsp;</td>
+  <td>心跳</td>
+  <td>
+    <input id="PrimServerOptEnable" name="PrimServerOptEnable" type="checkbox"  alt="config/sipserver/server0/heartbeat" >启用
+  </td>
+</tr>
+<tr id="id_PriServerSpan" style="display:none">
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr id="id_SedServerTitle" style="display:none">
+  <td colspan="3" class="td_title">备用SIP服务器</td>
+</tr>
+<tr id="id_SedServerAddr" style="display:none">
+  <td>&nbsp;</td>
+  <td>备用SIP服务器地址</td>
+  <td>
+    <input name="SecondServerAddr" class="text" id="SecondServerAddr" value="" size="18" maxlength="127" alt="config/sipserver/server1/domain">
+  </td>
+</tr>
+<tr id="id_SedServerPort" style="display:none">
+  <td>&nbsp;</td>
+  <td>备用SIP服务器端口(默认: 5060)</td>
+  <td>
+    <input name="SecondServerPort" class="text" id="SecondServerPort" value="5060" size="18" maxlength="5" alt="config/sipserver/server1/port">
+  </td>
+</tr>
+<tr id="id_SedServerRegEp" style="display:none">
+  <td>&nbsp;</td>
+  <td>注册时长(默认: 1800)</td>
+  <td>
+    <input name="SecondRegInterval" class="text" id="SecondRegInterval" value="1800" size="18" maxlength="4" alt="config/sipserver/server1/reg_interval">
+    秒</td>
+</tr>
+<tr id="id_SedServerHeart" style="display:none">
+  <td>&nbsp;</td>
+  <td>心跳</td>
+  <td>
+    <input id="SecondServerOptEnable" name="SecondServerOptEnable" type="checkbox"  alt="config/sipserver/server1/heartbeat" >启用
+  </td>
+</tr>
+<tr id="id_SedServerSpan" style="display:none">
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr id="id_PriOutboundTitle" style="display:none">
+  <td colspan="3" class="td_title">主用外拨代理服务器</td>
+</tr>
+<tr id="id_PriOutboundAddr" style="display:none">
+  <td>&nbsp;</td>
+  <td>主用外拨代理服务器地址</td>
+  <td>
+    <input name="PriOutboundAddr" class="text" id="PriOutboundAddr" value="" size="18" maxlength="127" alt="config/sipserver/outbound/domain">
+  </td>
+</tr>
+<tr id="id_PriOutboundPort" style="display:none">
+  <td>&nbsp;</td>
+  <td>主用外拨代理服务器端口(默认: 5060)</td>
+  <td>
+    <input name="PriOutboundPort" class="text" id="PriOutboundPort" value="5060" size="18" maxlength="5" alt="config/sipserver/outbound/port">
+  </td>
+</tr>
+<tr id="id_PriOutboundSpan" style="display:none">
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr id="id_SecOutboundTitle" style="display:none">
+  <td colspan="3" class="td_title">备用外拨代理服务器</td>
+</tr>
+<tr id="id_SecOutboundAddr" style="display:none">
+  <td>&nbsp;</td>
+  <td>备用外拨代理服务器地址</td>
+  <td>
+    <input name="SecOutboundAddr" class="text" id="SecOutboundAddr" value="" size="18" maxlength="127" alt="config/sipserver/outbound/sec_domain">
+  </td>
+</tr>
+<tr id="id_SecOutboundPort" style="display:none">
+  <td>&nbsp;</td>
+  <td>备用外拨代理服务器端口(默认: 5060)</td>
+  <td>
+    <input name="SecOutboundPort" class="text" id="OutboundPort1" value="5060" size="18" maxlength="5" alt="config/sipserver/outbound/sec_port">
+  </td>
+</tr>
+<tr id="id_SecOutboundSpan" style="display:none">
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td colspan="3" class="td_title">注册</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>注册失败后重新注册间隔</td>
+  <td>
+    <input name="RegAgainInterval" class="text" id="RegAgainInterval" value="30" size="18" maxlength="3" alt="config/sip/retry_reg_interval"> 秒
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>每秒注册次数(0表示不限制)</td>
+  <td>
+    <input name="RegTimesPerS" class="text" id="RegTimesPerS" value="0" size="18" maxlength="3" alt="config/sip/reg_times_pers">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td colspan="2" class="td_title">SIP传输方式</td>
+  <td>
+    <select name="SIPTransType" class="list" id="SIPTransType" onChange="mouse_click();" alt="config/sipserver/transport">
+      <option value="0" selected>UDP</option>
+      <option value="1" >TCP</option>
+      <option value="3" >TLS</option>
+      <option value="4" >自适应</option>
+    </select>
+  </td>
+</tr>
+<tr id="id_SIPSURL" style="display:none">
+  <td>&nbsp;</td>
+  <td>SIPS URL</td>
+  <td>
+    <input id="SIPSURLEnable" name="SIPSURLEnable" type="checkbox" onChange="mouse_click();" checked alt="config/sip/sips_url">Enable
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td colspan="3" class="td_title">本地SIP端口</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>使用随机端口</td>
+  <td >
+    <input id="SipPortRandom" name="SipPortRandom" type="checkbox" onClick="mouse_click();" alt="config/sipserver/local/random_port">启用
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>本地SIP UDP/TCP端口</td>
+  <td>
+    <input name="SipUDPLocalPort" class="text" id="SipUDPLocalPort" size="18" maxlength="5" alt="config/sipserver/local/udp_port">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>本地SIP TLS端口</td>
+  <td>
+    <input name="SipTLSLocalPort" class="text" id="SipTLSLocalPort" size="18" maxlength="5" alt="config/sipserver/local/tls_port">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr style="display:none">
+  <td colspan="2">注册</td>
+  <td >
+    <input id="ServerRegEnable" name="ServerRegEnable" type="checkbox" checked >启用
+  </td>
+</tr>
+<tr style="display:none">
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+</table>
+</td>
+<td width="5%">&nbsp;</td>
+</tr>
+</table>
+</form>

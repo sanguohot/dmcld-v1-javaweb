@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- ag 端口映射配置文件 -->
+<mapper namespace="com.dinstar.sim.mapper.Agp">
+	<resultMap type="com.dinstar.sim.mapper.AgpMapper" id="agpMapperMap">
+
+	 <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="ne_uuid" property="neUuid" jdbcType="INTEGER" />
+    <result column="shelf_no" property="shelfNo" jdbcType="INTEGER" />
+    <result column="slot_no" property="slotNo" jdbcType="INTEGER" />
+    <result column="port_no" property="portNo" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="port_policy_uuid" property="portPolicyUuid" jdbcType="INTEGER" />
+    <result column="port_grp_uuid" property="portGrpUuid" jdbcType="INTEGER" />
+    <result column="lock_port_uuid" property="lockPortUuid" jdbcType="INTEGER" />
+    <result column="lock_sim_uuid" property="lockSimUuid" jdbcType="INTEGER" />
+    <result column="lock_bkp_uuid" property="lockBkpUuid" jdbcType="INTEGER" />
+	
+	 <!-- agp info -->
+    <result column="agp_uuid" property="agpUuid" jdbcType="INTEGER" />
+    <result column="agp_rec_status" property="agpRecStatus" jdbcType="INTEGER" />
+    <result column="agp_port_uuid" property="agpPortUuid" jdbcType="INTEGER" />
+    <result column="agp_alias" property="agpAlias" jdbcType="CHAR" />
+    <result column="agp_domain_uuid" property="agpDomainUuid" jdbcType="INTEGER" />
+    <result column="agp_work_state" property="agpWorkState" jdbcType="INTEGER" />
+    <result column="agp_work_mode" property="agpWorkMode" jdbcType="INTEGER" />
+    <result column="agp_primary_status" property="agpPrimaryStatus" jdbcType="INTEGER" />
+    <result column="agp_secondary_status" property="agpSecondaryStatus" jdbcType="INTEGER" />
+    <result column="agp_last_fail" property="agpLastFail" jdbcType="INTEGER" />
+    <result column="agp_call_status" property="agpCallStatus" jdbcType="INTEGER" />
+    <result column="agp_last_duration" property="agpLastDuration" jdbcType="INTEGER" />
+    <result column="agp_voltage" property="agpVoltage" jdbcType="INTEGER" />
+    <result column="agp_current" property="agpCurrent" jdbcType="INTEGER" />
+    <result column="agp_reg_fail_count" property="agpRegFailCount" jdbcType="INTEGER" />
+    <result column="agp_primary_sip" property="agpPrimarySip" jdbcType="CHAR" />
+    <result column="agp_secondary_sip" property="agpSecondarySip" jdbcType="CHAR" />
+	
+	<!-- lan info -->
+    <result column="lan_uuid" property="lanUuid" jdbcType="INTEGER" />
+    <result column="lan_rec_status" property="lanRecStatus" jdbcType="INTEGER" />
+    <result column="lan_port_uuid" property="lanPortUuid" jdbcType="INTEGER" />
+    <result column="lan_alias" property="lanAlias" jdbcType="CHAR" />
+    <result column="lan_domain_uuid" property="lanDomainUuid" jdbcType="INTEGER" />
+    <result column="lan_work_state" property="lanWorkState" jdbcType="INTEGER" />
+    <result column="lan_mode" property="lanMode" jdbcType="INTEGER" />
+
+    <result column="ne_sn" property="neSn" jdbcType="BINARY" />
+    <result column="ne_alias" property="neAlias" jdbcType="INTEGER" />
+    
+    <!-- pmd  -->
+
+    <result column="value0" property="value0" jdbcType="INTEGER" />
+    <result column="value1" property="value1" jdbcType="INTEGER" />
+    <result column="value2" property="value2" jdbcType="INTEGER" />
+    <result column="value3" property="value3" jdbcType="INTEGER" />
+    <result column="value4" property="value4" jdbcType="INTEGER" />
+    <result column="value5" property="value5" jdbcType="INTEGER" />
+    <result column="value6" property="value6" jdbcType="INTEGER" />
+    <result column="value7" property="value7" jdbcType="INTEGER" />
+    <result column="value8" property="value8" jdbcType="INTEGER" />
+    <result column="value9" property="value9" jdbcType="INTEGER" />
+	</resultMap>
+	
+
+	<select id="getAllListByNe" resultMap="agpMapperMap">
+		select p.*
+		FROM tbl_port p
+		WHERE (p.rec_status IS NULL OR p.rec_status!=2)
+		and p.ne_uuid=#{neUuid}
+		<if test="domainUuid>0">AND p.domain_uuid =#{domainUuid}</if>
+		and p.run_status!=0 
+		order by p.type,p.port_no
+    </select>
+    
+    <!-- AG port -->    
+    
+     <select id="getAgpListByNe" resultMap="agpMapperMap">
+		select p.*,
+		
+		tgp.uuid as agp_uuid,tgp.rec_status as agp_rec_status,tgp.port_uuid as agp_port_uuid,tgp.alias as agp_alias,tgp.domain_uuid as agp_domain_uuid,
+		tgp.work_state as agp_work_state,tgp.work_mode as agp_work_mode,tgp.primary_status as agp_primary_status,
+		tgp.secondary_status as agp_secondary_status,tgp.last_fail as agp_last_fail,tgp.call_status as agp_call_status,
+		tgp.last_duration as agp_last_duration,tgp.voltage as agp_voltage,tgp.current as agp_current,tgp.reg_fail_count as agp_reg_fail_count
+		,tgp.primary_sip as agp_primary_sip,tgp.secondary_sip as agp_secondary_sip
+		FROM tbl_port p
+		INNER JOIN tbl_agp tgp ON(p.uuid = tgp.port_uuid)
+		WHERE (p.rec_status IS NULL OR p.rec_status!=2)
+		<if test="domainUuid>0">AND p.domain_uuid =#{domainUuid}</if>
+    <if test="neUuid>0">and p.ne_uuid=#{neUuid}</if>
+    <if test="idl!=null">
+      and p.ne_uuid in
+      <foreach collection="idl" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+    </if>
+		order by p.port_no
+    </select>
+    
+     <select id="getAgpList" resultMap="agpMapperMap">
+    select ${col}
+    FROM tbl_port p
+    INNER JOIN tbl_agp tgp ON(p.uuid = tgp.port_uuid)
+    WHERE (p.rec_status IS NULL OR p.rec_status!=2)
+    <if test="domainUuid>0">AND p.domain_uuid =#{domainUuid}</if>
+    <if test="neUuid>0">and p.ne_uuid=#{neUuid}</if>
+      <choose>
+        <when test="type=='agp'">
+        and  1=1
+        </when>     
+        <when test="type=='fxs'">
+          and tgp.work_mode=1
+        </when>
+        <when test="type=='fxo'">
+          and tgp.work_mode=2
+        </when>
+        <when test="type=='regsuccagp'">
+          and (tgp.secondary_status=2 or tgp.primary_status=2)
+        </when>
+        <when test="type=='regfailagp'">
+          and (tgp.secondary_status=3 or tgp.primary_status=3)
+        </when>
+        <when test="type=='noregagp'">
+          and (tgp.secondary_status!=2 and tgp.primary_status!=2 and tgp.primary_status!=3 and tgp.secondary_status!=3)
+        </when>                             
+        <otherwise>
+        and 2=2
+        </otherwise>
+      </choose> 
+    <if test="idl!=null">
+      and p.ne_uuid in
+      <foreach collection="idl" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+    </if>
+    <if test="limit>0">limit #{start},#{limit}</if>
+    </select>
+    
+    <!--  lan -->
+   
+    <select id="getLanListByNe" resultMap="agpMapperMap">
+		select p.*,
+		tgp.uuid as lan_uuid,tgp.rec_status as lan_rec_status,
+		tgp.port_uuid as lan_port_uuid,tgp.alias as lan_alias,tgp.domain_uuid as lan_domain_uuid,
+		
+		tgp.work_state as lan_work_state,tgp.`mode` as lan_mode,
+		
+		pmd.value0,pmd.value1,pmd.value2,pmd.value3,pmd.value4,pmd.value5,pmd.value6,pmd.value7,pmd.value8,pmd.value9
+		
+		FROM tbl_port p
+		INNER JOIN tbl_lan tgp ON(p.uuid = tgp.port_uuid)
+		left join tbl_pmd_lan_cur pmd on(tgp.port_uuid=pmd.port_uuid)
+		WHERE (p.rec_status IS NULL OR p.rec_status!=2)
+		and p.ne_uuid=#{neUuid}
+		<if test="domainUuid>0">AND p.domain_uuid =#{domainUuid}</if>
+		and p.run_status!=0 
+		order by p.port_no
+    </select>
+    
+	    
+   
+    <select id="getAgpByPortUuid" resultMap="agpMapperMap">
+		select tp.*,tap.uuid as agp_uuid,tap.rec_status as agp_rec_status,
+		tap.port_uuid,tap.alias as agp_alias,tap.domain_uuid as agp_domain_uuid,
+		tap.mod_type,tap.work_state,tap.primary_user,tap.primary_user_reg,tap.secondary_user,tap.secondary_user_reg,
+		tn.product_sn AS ne_sn,
+		tn.alias AS ne_alias
+		from tbl_port tp left join tbl_agp tap on (tp.uuid=tap.port_uuid)
+		LEFT JOIN tbl_ne tn ON(tp.ne_uuid = tn.uuid)
+		where  tp.uuid=#{uuid}
+		<if test="domainUuid>0">AND tp.domain_uuid =#{domainUuid}</if>
+    </select>
+    
+   
+    <select id="getAgpByUuid" resultMap="agpMapperMap">
+		select tp.*,tap.uuid as agp_uuid,tap.rec_status as agp_rec_status,
+		tap.port_uuid,tap.alias as agp_alias,tap.domain_uuid as agp_domain_uuid,
+		tap.mod_type,tap.work_state,tap.primary_user,tap.primary_user_reg,tap.secondary_user,tap.secondary_user_reg,
+		tn.product_sn AS ne_sn,
+		tn.alias AS ne_alias
+		from tbl_port tp left join tbl_agp tap on (tp.uuid=tap.port_uuid)
+		LEFT JOIN tbl_ne tn ON(tp.ne_uuid = tn.uuid)
+		where  tap.uuid=#{agpUuid}
+		<if test="domainUuid>0">AND tp.domain_uuid =#{domainUuid}</if>
+    </select>
+    <select id="getListAll" resultMap="agpMapperMap">
+    select tgp.uuid,tgp.domain_uuid
+    from ${tbn} tgp
+    </select>
+</mapper>

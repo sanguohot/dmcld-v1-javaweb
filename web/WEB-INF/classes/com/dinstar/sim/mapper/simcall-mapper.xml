@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- sim call mapper -->
+<mapper namespace="com.dinstar.sim.mapper.SIMCall">
+	<resultMap type="com.dinstar.sim.mapper.SIMCall" id="simCall">
+		<id column="uuid" property="uuid" jdbcType="INTEGER" />
+	    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="imsi" property="imsi" jdbcType="CHAR" />
+	    <result column="alias" property="alias" jdbcType="CHAR" />
+	    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+	    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+	    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+	    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+	    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+	    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+	    <result column="grp_uuid" property="grpUuid" jdbcType="INTEGER" />
+	    <result column="orig_zone_uuid" property="origZoneUuid" jdbcType="INTEGER" />
+	    <result column="last_site_uuid" property="lastSiteUuid" jdbcType="INTEGER" />
+	    <result column="bkp_uuid" property="bkpUuid" jdbcType="INTEGER" />
+	    <result column="icc_id" property="iccId" jdbcType="CHAR" />
+	    <result column="bind_imei" property="bindImei" jdbcType="CHAR" />
+	    <result column="pin1_code" property="pin1Code" jdbcType="CHAR" />
+	    <result column="pin2_code" property="pin2Code" jdbcType="CHAR" />
+	    <result column="puk1_code" property="puk1Code" jdbcType="CHAR" />
+	    <result column="puk2_code" property="puk2Code" jdbcType="CHAR" />
+	    <result column="smsc" property="smsc" jdbcType="CHAR" />
+	    <result column="operator" property="operator" jdbcType="CHAR" />
+	    <result column="mobile" property="mobile" jdbcType="CHAR" />
+	    <result column="prepaid_fee" property="prepaidFee" jdbcType="DECIMAL" />
+	    <result column="total_cost" property="totalCost" jdbcType="DECIMAL" />
+	    <result column="cur_balance" property="curBalance" jdbcType="DECIMAL" />
+	    <result column="money_type" property="moneyType" jdbcType="INTEGER" />
+	    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	    <result column="last_load_time" property="lastLoadTime" jdbcType="TIMESTAMP" />
+	    <result column="last_bind_time" property="lastBindTime" jdbcType="TIMESTAMP" />
+	    <result column="last_used_time" property="lastUsedTime" jdbcType="TIMESTAMP" />
+	    <result column="deactive_reason" property="deactiveReason" jdbcType="INTEGER" />
+	    <result column="blocked_flag" property="blockedFlag" jdbcType="INTEGER" />
+	    
+	    <result column="call_uuid" property="callUuid" jdbcType="INTEGER" />
+    <result column="call_rec_status" property="callRecStatus" jdbcType="INTEGER" />
+    <result column="call_domain_uuid" property="callDomainUuid" jdbcType="INTEGER" />
+    <result column="spec_sim_uuid" property="specSimUuid" jdbcType="INTEGER" />
+    <result column="call_alias" property="callAlias" jdbcType="CHAR" />
+    <result column="call_action_status" property="callActionStatus" jdbcType="INTEGER" />
+    <result column="user_task_id" property="userTaskId" jdbcType="INTEGER" />
+    <result column="call_index" property="callIndex" jdbcType="INTEGER" />
+    <result column="call_sn" property="callSn" jdbcType="INTEGER" />
+    <result column="gwp_uuid" property="gwpUuid" jdbcType="INTEGER" />
+    <result column="sim_uuid" property="simUuid" jdbcType="INTEGER" />
+    <result column="call_direction" property="callDirection" jdbcType="INTEGER" />
+    <result column="call_action_result" property="callActionResult" jdbcType="INTEGER" />
+    <result column="user_task_type" property="userTaskType" jdbcType="INTEGER" />
+    <result column="cur_fail_retries" property="curFailRetries" jdbcType="INTEGER" />
+    <result column="max_fail_retries" property="maxFailRetries" jdbcType="INTEGER" />
+    <result column="call_number" property="callNumber" jdbcType="CHAR" />
+    <result column="connect_flag" property="connectFlag" jdbcType="INTEGER" />
+    <result column="call_duration" property="callDuration" jdbcType="INTEGER" />
+     <result column="billing_sec" property="billingSec" jdbcType="INTEGER" />
+    <result column="test_tone_mode" property="testToneMode" jdbcType="INTEGER" />
+    <result column="dtmf_number" property="dtmfNumber" jdbcType="CHAR" />
+    <result column="call_status" property="callStatus" jdbcType="INTEGER" />
+    <result column="gsm_code" property="gsmCode" jdbcType="INTEGER" />
+    <result column="call_result" property="callResult" jdbcType="INTEGER" />
+    <result column="call_time" property="callTime" jdbcType="TIMESTAMP" />
+    <result column="result_time" property="resultTime" jdbcType="TIMESTAMP" />
+    
+    <!-- 2014年4月4日 14:49:43 add -->
+    <result column="caller_number" property="callerNumber" jdbcType="VARCHAR" />
+    <result column="src_ip" property="srcIp" jdbcType="VARCHAR" />
+    <result column="hangup_side" property="hangupSide" jdbcType="INTEGER" />
+    <result column="end_reason" property="endReason" jdbcType="VARCHAR" />
+    <result column="detail_desc" property="detailDesc" jdbcType="VARCHAR" />
+  </resultMap>	    
+  
+   <select id="getSimCall" resultMap="simCall" >
+    	select ts.*,
+		tc.uuid as call_uuid,tc.rec_status as call_rec_status,tc.domain_uuid as call_domain_uuid,
+		tc.spec_sim_uuid,tc.alias as call_alias,tc.action_status as call_action_status,
+		tc.user_task_id,tc.call_index,tc.call_sn,tc.gwp_uuid,tc.sim_uuid,tc.call_direction,
+		tc.action_result as call_action_result,tc.user_task_type,tc.cur_fail_retries,tc.max_fail_retries,
+		tc.call_number,tc.connect_flag,tc.call_duration,tc.test_tone_mode,tc.dtmf_number,tc.call_status,
+		tc.call_result,tc.call_time,tc.result_time,tc.gsm_code,
+		tc.caller_number,tc.src_ip,tc.hangup_side,tc.end_reason,
+		CASE ts.bkp_uuid
+			WHEN 0
+			THEN NULL
+			WHEN NULL
+			THEN NULL
+			ELSE
+			(		CASE tn.alias 
+					WHEN NULL
+					THEN 
+					CONCAT(tn.product_sn,'[',tp.port_no,']')
+					WHEN ''
+					THEN
+					CONCAT(tn.product_sn,'[',tp.port_no,']')
+					ELSE
+					CONCAT(tn.alias,'[',tp.port_no,']')
+					END)
+		END AS bkp_port_no_str
+		from tbl_sim ts 
+		left join tbl_call tc on (ts.uuid=tc.spec_sim_uuid)
+		LEFT JOIN tbl_bkp bkp on(ts.bkp_uuid = bkp.uuid)
+		LEFT JOIN tbl_port tp on(bkp.port_uuid=tp.uuid)
+		left JOIN tbl_ne  tn on(tp.ne_uuid = tn.uuid)		
+		where ts.rec_status!=2
+		
+		 and ts.domain_uuid=#{domainUuid}
+		
+		 and ts.grp_uuid=#{grpUuid}
+		
+		<if test="adminStatus!=null">
+		 and ts.admin_status=#{adminStatus}
+		</if>
+		<if test="runStatus!=null">
+		 and ts.run_status=#{runStatus}
+		</if>
+		<if test="imsi !=null">
+		 and ts.imsi like #{imsi}
+		</if>
+		<if test="alias !=null">
+		 and ts.alias like #{alias}
+		</if>
+		<if test="callStatus!=null">
+		 and tc.call_status=#{callStatus}
+		</if>
+		<if test="callResult!=null">
+		 and tc.call_result=#{callResult}
+		</if>
+		<if test="number !=null">
+		 and tc.call_number like #{number}
+		</if>
+		<if test="content !=null">
+		 and tc.content like #{content}
+		</if>
+		<if test="callTimeB !=null">
+			<![CDATA[ 
+			 and tc.call_time >= #{callTimeB}
+			 ]]>
+		</if>
+		<if test="callTimeE !=null">
+			<![CDATA[
+			 and tc.call_time <= #{callTimeE}
+			]]>
+		</if>
+		<if test="resultTimeB !=null">
+			<![CDATA[ 
+			 and tc.result_time >= #{resultTimeB}
+			 ]]>
+		</if>
+		<if test="resultTimeE !=null">
+			<![CDATA[
+			 and tc.result_time <= #{resultTimeE}
+			]]>
+		</if>
+		<if test="sort != null" >
+     		 order by ${sort}
+    	</if>
+		<if test="limit>0">LIMIT #{start},#{limit}</if>
+  </select>
+   <select id="countSimCall" resultType="java.lang.Integer" >
+    	select count(ts.uuid) from tbl_sim ts 
+		left join tbl_call tc
+		on (ts.uuid=tc.spec_sim_uuid)
+		where ts.rec_status!=2
+		and ts.domain_uuid=#{domainUuid}
+		
+		and ts.grp_uuid=#{grpUuid}
+		
+		<if test="adminStatus!=null">
+		 and ts.admin_status=#{adminStatus}
+		</if>
+		<if test="runStatus!=null">
+		 and ts.run_status=#{runStatus}
+		</if>
+		<if test="callStatus!=null">
+		 and tc.call_status=#{callStatus}
+		</if>
+		<if test="callResult!=null">
+		 and tc.call_result=#{callResult}
+		</if>
+		<if test="imsi !=null">
+		 and ts.imsi like #{imsi}
+		</if>
+		<if test="alias !=null">
+		 and ts.alias like #{alias}
+		</if>
+		<if test="number !=null">
+		 and tc.call_number like #{number}
+		</if>
+		<if test="content !=null">
+		 and tc.content like #{content}
+		</if>
+		<if test="callTimeB !=null">
+			<![CDATA[ 
+			 and tc.call_time >= #{callTimeB}
+			 ]]>
+		</if>
+		<if test="callTimeE !=null">
+			<![CDATA[
+			 and tc.call_time <= #{callTimeE}
+			]]>
+		</if>
+		<if test="resultTimeB !=null">
+			<![CDATA[ 
+			 and tc.result_time >= #{resultTimeB}
+			 ]]>
+		</if>
+		<if test="resultTimeE !=null">
+			<![CDATA[
+			 and tc.result_time <= #{resultTimeE}
+			]]>
+		</if>
+		
+  </select>
+   
+    
+</mapper>

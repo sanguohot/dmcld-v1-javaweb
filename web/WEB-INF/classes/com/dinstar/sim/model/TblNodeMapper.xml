@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblNodeMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblNode" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="cloud_uuid" property="cloudUuid" jdbcType="INTEGER" />
+    <result column="default_flag" property="defaultFlag" jdbcType="INTEGER" />
+    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="priority" property="priority" jdbcType="INTEGER" />
+    <result column="ip_addr" property="ipAddr" jdbcType="CHAR" />
+    <result column="port_no" property="portNo" jdbcType="INTEGER" />
+    <result column="encrypt_type" property="encryptType" jdbcType="INTEGER" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="bytes_tx" property="bytesTx" jdbcType="BIGINT" />
+    <result column="bytes_rx" property="bytesRx" jdbcType="BIGINT" />
+    <result column="allocs_tot" property="allocsTot" jdbcType="BIGINT" />
+    <result column="allocs_cur" property="allocsCur" jdbcType="INTEGER" />
+    <result column="last_reg_time" property="lastRegTime" jdbcType="TIMESTAMP" />
+    <result column="last_hb_time" property="lastHbTime" jdbcType="TIMESTAMP" />
+    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+    
+    <result column="lat" property="lat" jdbcType="REAL" />
+    <result column="lng" property="lng" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, name, alias, cloud_uuid, default_flag, admin_status, opr_status, 
+    run_status, action_status, action_result, priority, ip_addr, port_no, encrypt_type, 
+    password, bytes_tx, bytes_rx, allocs_tot, allocs_cur, last_reg_time, last_hb_time, 
+    detail_desc,lat,lng
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblNodeCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_node
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_node
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_node
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblNodeCriteria" >
+    delete from tbl_node
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblNode" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_node (uuid, rec_status, name, 
+      alias, cloud_uuid, default_flag, 
+      admin_status, opr_status, run_status, 
+      action_status, action_result, priority, 
+      ip_addr, port_no, encrypt_type, 
+      password, bytes_tx, bytes_rx, 
+      allocs_tot, allocs_cur, last_reg_time, 
+      last_hb_time, detail_desc)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, 
+      #{alias,jdbcType=CHAR}, #{cloudUuid,jdbcType=INTEGER}, #{defaultFlag,jdbcType=INTEGER}, 
+      #{adminStatus,jdbcType=INTEGER}, #{oprStatus,jdbcType=INTEGER}, #{runStatus,jdbcType=INTEGER}, 
+      #{actionStatus,jdbcType=INTEGER}, #{actionResult,jdbcType=INTEGER}, #{priority,jdbcType=INTEGER}, 
+      #{ipAddr,jdbcType=CHAR}, #{portNo,jdbcType=INTEGER}, #{encryptType,jdbcType=INTEGER}, 
+      #{password,jdbcType=CHAR}, #{bytesTx,jdbcType=BIGINT}, #{bytesRx,jdbcType=BIGINT}, 
+      #{allocsTot,jdbcType=BIGINT}, #{allocsCur,jdbcType=INTEGER}, #{lastRegTime,jdbcType=TIMESTAMP}, 
+      #{lastHbTime,jdbcType=TIMESTAMP}, #{detailDesc,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblNode" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_node
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="cloudUuid != null" >
+        cloud_uuid,
+      </if>
+      <if test="defaultFlag != null" >
+        default_flag,
+      </if>
+      <if test="adminStatus != null" >
+        admin_status,
+      </if>
+      <if test="oprStatus != null" >
+        opr_status,
+      </if>
+      <if test="runStatus != null" >
+        run_status,
+      </if>
+      <if test="actionStatus != null" >
+        action_status,
+      </if>
+      <if test="actionResult != null" >
+        action_result,
+      </if>
+      <if test="priority != null" >
+        priority,
+      </if>
+      <if test="ipAddr != null" >
+        ip_addr,
+      </if>
+      <if test="portNo != null" >
+        port_no,
+      </if>
+      <if test="encryptType != null" >
+        encrypt_type,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="bytesTx != null" >
+        bytes_tx,
+      </if>
+      <if test="bytesRx != null" >
+        bytes_rx,
+      </if>
+      <if test="allocsTot != null" >
+        allocs_tot,
+      </if>
+      <if test="allocsCur != null" >
+        allocs_cur,
+      </if>
+      <if test="lastRegTime != null" >
+        last_reg_time,
+      </if>
+      <if test="lastHbTime != null" >
+        last_hb_time,
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=CHAR},
+      </if>
+      <if test="cloudUuid != null" >
+        #{cloudUuid,jdbcType=INTEGER},
+      </if>
+      <if test="defaultFlag != null" >
+        #{defaultFlag,jdbcType=INTEGER},
+      </if>
+      <if test="adminStatus != null" >
+        #{adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oprStatus != null" >
+        #{oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="runStatus != null" >
+        #{runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionStatus != null" >
+        #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="ipAddr != null" >
+        #{ipAddr,jdbcType=CHAR},
+      </if>
+      <if test="portNo != null" >
+        #{portNo,jdbcType=INTEGER},
+      </if>
+      <if test="encryptType != null" >
+        #{encryptType,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="bytesTx != null" >
+        #{bytesTx,jdbcType=BIGINT},
+      </if>
+      <if test="bytesRx != null" >
+        #{bytesRx,jdbcType=BIGINT},
+      </if>
+      <if test="allocsTot != null" >
+        #{allocsTot,jdbcType=BIGINT},
+      </if>
+      <if test="allocsCur != null" >
+        #{allocsCur,jdbcType=INTEGER},
+      </if>
+      <if test="lastRegTime != null" >
+        #{lastRegTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastHbTime != null" >
+        #{lastHbTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailDesc != null" >
+        #{detailDesc,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblNodeCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_node
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_node
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=CHAR},
+      </if>
+      <if test="record.alias != null" >
+        alias = #{record.alias,jdbcType=CHAR},
+      </if>
+      <if test="record.cloudUuid != null" >
+        cloud_uuid = #{record.cloudUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.defaultFlag != null" >
+        default_flag = #{record.defaultFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.adminStatus != null" >
+        admin_status = #{record.adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.oprStatus != null" >
+        opr_status = #{record.oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.runStatus != null" >
+        run_status = #{record.runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionStatus != null" >
+        action_status = #{record.actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionResult != null" >
+        action_result = #{record.actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.priority != null" >
+        priority = #{record.priority,jdbcType=INTEGER},
+      </if>
+      <if test="record.ipAddr != null" >
+        ip_addr = #{record.ipAddr,jdbcType=CHAR},
+      </if>
+      <if test="record.portNo != null" >
+        port_no = #{record.portNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.encryptType != null" >
+        encrypt_type = #{record.encryptType,jdbcType=INTEGER},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=CHAR},
+      </if>
+      <if test="record.bytesTx != null" >
+        bytes_tx = #{record.bytesTx,jdbcType=BIGINT},
+      </if>
+      <if test="record.bytesRx != null" >
+        bytes_rx = #{record.bytesRx,jdbcType=BIGINT},
+      </if>
+      <if test="record.allocsTot != null" >
+        allocs_tot = #{record.allocsTot,jdbcType=BIGINT},
+      </if>
+      <if test="record.allocsCur != null" >
+        allocs_cur = #{record.allocsCur,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastRegTime != null" >
+        last_reg_time = #{record.lastRegTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastHbTime != null" >
+        last_hb_time = #{record.lastHbTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.detailDesc != null" >
+        detail_desc = #{record.detailDesc,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_node
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=CHAR},
+      alias = #{record.alias,jdbcType=CHAR},
+      cloud_uuid = #{record.cloudUuid,jdbcType=INTEGER},
+      default_flag = #{record.defaultFlag,jdbcType=INTEGER},
+      admin_status = #{record.adminStatus,jdbcType=INTEGER},
+      opr_status = #{record.oprStatus,jdbcType=INTEGER},
+      run_status = #{record.runStatus,jdbcType=INTEGER},
+      action_status = #{record.actionStatus,jdbcType=INTEGER},
+      action_result = #{record.actionResult,jdbcType=INTEGER},
+      priority = #{record.priority,jdbcType=INTEGER},
+      ip_addr = #{record.ipAddr,jdbcType=CHAR},
+      port_no = #{record.portNo,jdbcType=INTEGER},
+      encrypt_type = #{record.encryptType,jdbcType=INTEGER},
+      password = #{record.password,jdbcType=CHAR},
+      bytes_tx = #{record.bytesTx,jdbcType=BIGINT},
+      bytes_rx = #{record.bytesRx,jdbcType=BIGINT},
+      allocs_tot = #{record.allocsTot,jdbcType=BIGINT},
+      allocs_cur = #{record.allocsCur,jdbcType=INTEGER},
+      last_reg_time = #{record.lastRegTime,jdbcType=TIMESTAMP},
+      last_hb_time = #{record.lastHbTime,jdbcType=TIMESTAMP},
+      detail_desc = #{record.detailDesc,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblNode" >
+    update tbl_node
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=CHAR},
+      </if>
+      <if test="cloudUuid != null" >
+        cloud_uuid = #{cloudUuid,jdbcType=INTEGER},
+      </if>
+      <if test="defaultFlag != null" >
+        default_flag = #{defaultFlag,jdbcType=INTEGER},
+      </if>
+      <if test="adminStatus != null" >
+        admin_status = #{adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oprStatus != null" >
+        opr_status = #{oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="runStatus != null" >
+        run_status = #{runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionStatus != null" >
+        action_status = #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        action_result = #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="priority != null" >
+        priority = #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="ipAddr != null" >
+        ip_addr = #{ipAddr,jdbcType=CHAR},
+      </if>
+      <if test="portNo != null" >
+        port_no = #{portNo,jdbcType=INTEGER},
+      </if>
+      <if test="encryptType != null" >
+        encrypt_type = #{encryptType,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="bytesTx != null" >
+        bytes_tx = #{bytesTx,jdbcType=BIGINT},
+      </if>
+      <if test="bytesRx != null" >
+        bytes_rx = #{bytesRx,jdbcType=BIGINT},
+      </if>
+      <if test="allocsTot != null" >
+        allocs_tot = #{allocsTot,jdbcType=BIGINT},
+      </if>
+      <if test="allocsCur != null" >
+        allocs_cur = #{allocsCur,jdbcType=INTEGER},
+      </if>
+      <if test="lastRegTime != null" >
+        last_reg_time = #{lastRegTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastHbTime != null" >
+        last_hb_time = #{lastHbTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc = #{detailDesc,jdbcType=CHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblNode" >
+    update tbl_node
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      name = #{name,jdbcType=CHAR},
+      alias = #{alias,jdbcType=CHAR},
+      cloud_uuid = #{cloudUuid,jdbcType=INTEGER},
+      default_flag = #{defaultFlag,jdbcType=INTEGER},
+      admin_status = #{adminStatus,jdbcType=INTEGER},
+      opr_status = #{oprStatus,jdbcType=INTEGER},
+      run_status = #{runStatus,jdbcType=INTEGER},
+      action_status = #{actionStatus,jdbcType=INTEGER},
+      action_result = #{actionResult,jdbcType=INTEGER},
+      priority = #{priority,jdbcType=INTEGER},
+      ip_addr = #{ipAddr,jdbcType=CHAR},
+      port_no = #{portNo,jdbcType=INTEGER},
+      encrypt_type = #{encryptType,jdbcType=INTEGER},
+      password = #{password,jdbcType=CHAR},
+      bytes_tx = #{bytesTx,jdbcType=BIGINT},
+      bytes_rx = #{bytesRx,jdbcType=BIGINT},
+      allocs_tot = #{allocsTot,jdbcType=BIGINT},
+      allocs_cur = #{allocsCur,jdbcType=INTEGER},
+      last_reg_time = #{lastRegTime,jdbcType=TIMESTAMP},
+      last_hb_time = #{lastHbTime,jdbcType=TIMESTAMP},
+      detail_desc = #{detailDesc,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

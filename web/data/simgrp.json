@@ -1,0 +1,9 @@
+{
+	success: true,
+	simgrps: [
+                {simgrpid:1,domain:0,simgrpname:'unicomm-prepaid',desc: 'test1',},
+                {simgrpid:2,domain:0,simgrpname:'mobile-global',desc: 'test2',},
+				{simgrpid:3,domain:0,simgrpname:'mobile-postpaid',desc: 'test3',},
+
+            ]
+}

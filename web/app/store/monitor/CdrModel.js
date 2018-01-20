@@ -1,0 +1,30 @@
+Ext.define('app.store.monitor.CdrModel', {
+    extend: 'Ext.data.Model',
+    fields: [
+             {name: 'uuid',type:'int'},
+             {name: 'recStatus',type:'int'},
+             {name: 'domainUuid',type:'int'},
+             {name: 'callSn',type:'int'},
+             {name: 'alias',type:'string'},
+             {name: 'gwpUuid',type:'int'},
+             {name: 'simUuid',type:'int'},
+             {name: 'callDirection',type:'int'},
+             {name: 'callNumber',type:'string'},
+             {name: 'startTime',type:'date'},
+             {name: 'activeTime',type:'date'},
+             {name: 'pddTimelen',type:'int'},
+             {name: 'duration',type:'int'},
+             {name: 'callResult',type:'int'},
+             {name: 'cdrFlag',type:'int'},
+             {name: 'callStatus',type:'int'},
+             {name: 'resultTime',type:'date'},
+             {name: 'callIndex',type:'int'},
+             {name: 'gsmCode',type:'int'},
+             {name: 'billingSec',type:'int'},
+             
+             {name: 'callerNumber',type:'string'},
+             {name: 'srcIp',type:'string'},
+             {name: 'hangupSide',type:'int'},
+             {name: 'endReason',type:'string'},
+             ]
+});

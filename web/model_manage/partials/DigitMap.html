@@ -1,0 +1,130 @@
+<form  name="DigitMapCfg" id="DigitMapCfg" ng-controller = "DigitMapCtrl">
+	<table width="600px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+		<tbody><tr>
+			<td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+			<td>拨号规则</td>
+			<td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+		</tr>
+		</tbody></table>
+	<table width="600px" align="center" class="tblbody">
+		<tbody><tr>
+			<td class="sidebar">&nbsp;</td>
+			<td>
+				<table width="100%" cellspacing="0" cellpadding="0" class="context">
+					<tbody><tr>
+						<td width="5%">&nbsp;</td>
+						<td width="45%">&nbsp;</td>
+						<td width="50%">&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td>匹配失败(注册成功时)</td>
+						<td>
+							<select name="MatchFailProc" class="list" id="MatchFailProc" alt="config/digitmap/match_fail_proc">
+								<option value="0" selected="">呼叫结束</option>
+								<option value="1">继续送往服务器</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<table width="100%" cellspacing="0" cellpadding="0">
+								<tbody><tr>
+									<td align="center">
+										<textarea name="DigitMap" id="DigitMap" cols="90" rows="15" alt="config/digitmap/digitmap" >*13|*99|*98|*78|*79|*#|[*#]xx#|*#xx#|[*#][0-9*#]x[0-9*].x#|x.#|x.T</textarea>
+									</td>
+								</tr>
+								</tbody></table>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3">&nbsp;</td>
+					</tr>
+					</tbody></table>
+			</td>
+			<td width="5%">&nbsp;</td>
+		</tr>
+		</tbody></table>
+	<table width="600px" align="center" cellpadding="0" cellspacing="0">
+		<tbody><tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr align="center">
+			<script language="javascript" type="text/javascript">
+				if (g_OSType == "Linux")
+				{
+					document.write("<td class='notes'>注意:&nbsp;'拨号规则'总长度不能超过5120！</td>");
+				}
+				else
+				{
+					document.write("<td class='notes'>注意:&nbsp;'拨号规则'总长度不能超过184！</td>");
+				}
+			</script><td class="notes">注意:&nbsp;'拨号规则'总长度不能超过5120！</td>
+		</tr>
+		</tbody></table>
+	<p>&nbsp;</p>
+	<table width="600px" align="center" cellpadding="0" cellspacing="0">
+		<tbody><tr class="notetitle">
+			<td>拨号规则语法:</td>
+		</tr>
+		<tr align="center">
+			<td>
+				<div align="left">
+          <pre class="explanation">1. 支持对象
+   数字:一位0-9的数字。
+   Timer:符号T代表一段定时时间。
+   DTMF:一位数字，一个定时器，或者在A,B,C,D,#,*中的一个字符。
+2. []
+  取值范围为中括号内的DTMF符号，但只能取其中之一。
+3. ()
+  取值范围为小括号内的表达式，但只能取其中之一。
+4. |
+   |:分隔表达式或者DTMF符号。   
+5. —
+   两个字符有分隔符-，可以代表所有这两个字符间的字符，该区域必须处
+   于中括号内。
+6. x 
+   x:代表任何0-9间的数字。
+7. .
+   .:代表任意个数的DTMF符号。
+8. +
+   +:代表至少有一个DTMF符号。
+9. ?
+   ?:代表没有或者只有一个DTMF符号。
+     </pre>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr class="notetitle">
+			<td>实例:</td>
+		</tr>
+		<tr align="center">
+			<td>
+				<div align="left">
+          <pre class="explanation">1. xxxxxxx | x11
+   七位数字，每位范围0-9；或者三位数字，首位范围为0-9，剩余两位为11。
+   如:1234567（匹配），123456（不匹配）；511（匹配），512（不匹配）。
+
+2. [2-8] xxxxxx | 13xxxxxxxxx
+   七位数字，首位范围为2-8，其余每位范围为0-9；或者十一位数字，前两位为13，其余每位范围为0-9。
+   如3123456（匹配），1123456（不匹配）；13416261162（匹配），12416261162（不匹配）。
+   
+3. (13 | 15 | 18)xxxxxxxxx
+   十一位数字，前两位为13或15或18，其余每位范围为0-9。
+   如:13416261162（匹配），12416261162（不匹配）。
+              
+4. [1-357-9]xx
+   三位数字，首位为1或2或3或5或7或8或9，其余每位范围为0-9。
+   如:123（匹配），423（不匹配）。
+     </pre>
+				</div>
+			</td>
+		</tr>
+		</tbody></table>
+</form>

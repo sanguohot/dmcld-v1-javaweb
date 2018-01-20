@@ -1,0 +1,37 @@
+﻿[
+    {
+        "name": "mtg-172.16.124.12",
+		"productName": "mtg2000b",
+        "version": "02360201",
+		"runStatus":"Active",
+		"lastRegTime":"2015-03-11 00:15:18"
+    },
+    {
+        "name": "mtg-172.16.124.13",
+		"productName": "mtg2000b",
+        "version": "02360202",
+		"runStatus":"Active",
+		"lastRegTime":"2015-03-11 00:15:18"
+    },
+    {
+        "name": "mtg-172.16.124.14",
+		"productName": "mtg2000b",
+        "version": "02360203",
+		"runStatus":"Active",
+		"lastRegTime":"2015-03-11 00:15:18"
+    },
+    {
+        "name": "mtg-172.16.124.15",
+		"productName": "mtg2000b",
+        "version": "02360204",
+		"runStatus":"Active",
+		"lastRegTime":"2015-03-11 00:15:18"
+    },
+    {
+        "name": "mtg-172.16.124.16",
+		"productName": "mtg2000b",
+        "version": "02360205",
+		"runStatus":"Active",
+		"lastRegTime":"2015-03-11 00:15:18"
+    }   
+]

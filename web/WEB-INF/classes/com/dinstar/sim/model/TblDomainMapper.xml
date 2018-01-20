@@ -1,0 +1,2044 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblDomainMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblDomain" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="admin_user_uuid" property="adminUserUuid" jdbcType="INTEGER" />
+    <result column="cloud_uuid" property="cloudUuid" jdbcType="INTEGER" />
+    <result column="auth_sys_uuid" property="authSysUuid" jdbcType="INTEGER" />
+    <result column="sys_uuid" property="sysUuid" jdbcType="INTEGER" />
+    <result column="proc_uuid" property="procUuid" jdbcType="INTEGER" />
+    <result column="vendor_id" property="vendorId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="alm_status_bits" property="almStatusBits" jdbcType="INTEGER" />
+    <result column="paid_card_uuid" property="paidCardUuid" jdbcType="INTEGER" />
+    <result column="paid_card_type" property="paidCardType" jdbcType="INTEGER" />
+    <result column="paid_card_price" property="paidCardPrice" jdbcType="INTEGER" />
+    <result column="trial_balance" property="trialBalance" jdbcType="REAL" />
+    <result column="premium_balance" property="premiumBalance" jdbcType="REAL" />
+    <result column="lic_new_sign_type" property="licNewSignType" jdbcType="INTEGER" />
+    <result column="lic_new_sim_num" property="licNewSimNum" jdbcType="INTEGER" />
+    <result column="lic_new_hbm_flag" property="licNewHbmFlag" jdbcType="INTEGER" />
+    <result column="lic_renew_days" property="licRenewDays" jdbcType="INTEGER" />
+    <result column="lic_first_cost" property="licFirstCost" jdbcType="INTEGER" />
+    <result column="lic_period_cost" property="licPeriodCost" jdbcType="INTEGER" />
+    <result column="lic_extra_balance" property="licExtraBalance" jdbcType="REAL" />
+    <result column="idle_time" property="idleTime" jdbcType="INTEGER" />
+    <result column="spec_cloud_uuid" property="specCloudUuid" jdbcType="INTEGER" />
+    <result column="spec_sys_uuid" property="specSysUuid" jdbcType="INTEGER" />
+    <result column="sys_locked_flag" property="sysLockedFlag" jdbcType="INTEGER" />
+    <result column="node_encrypt_flag" property="nodeEncryptFlag" jdbcType="INTEGER" />
+    <result column="dev_time_flag" property="devTimeFlag" jdbcType="INTEGER" />
+    <result column="timezone_flag" property="timezoneFlag" jdbcType="INTEGER" />
+    <result column="ntp_server1" property="ntpServer1" jdbcType="CHAR" />
+    <result column="ntp_server2" property="ntpServer2" jdbcType="CHAR" />
+    <result column="idle_switch_flag" property="idleSwitchFlag" jdbcType="INTEGER" />
+    <result column="smooth_switch_flag" property="smoothSwitchFlag" jdbcType="INTEGER" />
+    <result column="offline_clean_mode" property="offlineCleanMode" jdbcType="INTEGER" />
+    <result column="switch_timeout" property="switchTimeout" jdbcType="INTEGER" />
+    <result column="scp_timeout_sec" property="scpTimeoutSec" jdbcType="INTEGER" />
+    <result column="scp_ping_channel" property="scpPingChannel" jdbcType="INTEGER" />
+    <result column="hbm_send_retries" property="hbmSendRetries" jdbcType="INTEGER" />
+    <result column="save_sms_fail" property="saveSmsFail" jdbcType="INTEGER" />
+    <result column="save_ussd_fail" property="saveUssdFail" jdbcType="INTEGER" />
+    <result column="save_call_fail" property="saveCallFail" jdbcType="INTEGER" />
+    <result column="port_stats_flag" property="portStatsFlag" jdbcType="INTEGER" />
+    <result column="sim_stats_flag" property="simStatsFlag" jdbcType="INTEGER" />
+    <result column="sms_capacity" property="smsCapacity" jdbcType="INTEGER" />
+    <result column="sms_sending_cnt" property="smsSendingCnt" jdbcType="INTEGER" />
+    <result column="total_ne_count" property="totalNeCount" jdbcType="INTEGER" />
+    <result column="online_ne_count" property="onlineNeCount" jdbcType="INTEGER" />
+    <result column="total_sim_card" property="totalSimCard" jdbcType="INTEGER" />
+    <result column="online_sim_card" property="onlineSimCard" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+    <result column="push_interval" property="pushInterval" jdbcType="INTEGER" />
+    <result column="push_sms_interval" property="pushSmsInterval" jdbcType="INTEGER" />
+    <result column="push_call_interval" property="pushCallInterval" jdbcType="INTEGER" />
+    <result column="push_mail_interval" property="pushMailInterval" jdbcType="INTEGER" />
+    <result column="push_sms_level" property="pushSmsLevel" jdbcType="INTEGER" />
+    <result column="push_sms_encode" property="pushSmsEncode" jdbcType="INTEGER" />
+    <result column="push_ne_uuid1" property="pushNeUuid1" jdbcType="INTEGER" />
+    <result column="push_sms_port1" property="pushSmsPort1" jdbcType="INTEGER" />
+    <result column="push_ne_uuid2" property="pushNeUuid2" jdbcType="INTEGER" />
+    <result column="push_sms_port2" property="pushSmsPort2" jdbcType="INTEGER" />
+    <result column="push_sms_addr" property="pushSmsAddr" jdbcType="VARCHAR" />
+    <result column="push_sms_retry_max" property="pushSmsRetryMax" jdbcType="INTEGER" />
+    <result column="push_call_level" property="pushCallLevel" jdbcType="INTEGER" />
+    <result column="push_call_addr" property="pushCallAddr" jdbcType="VARCHAR" />
+    <result column="push_call_retry_max" property="pushCallRetryMax" jdbcType="INTEGER" />
+    <result column="push_mail_level" property="pushMailLevel" jdbcType="INTEGER" />
+    <result column="push_mail_addr" property="pushMailAddr" jdbcType="VARCHAR" />
+    <result column="push_mail_retry_max" property="pushMailRetryMax" jdbcType="INTEGER" />
+    <result column="mail_relay_enable" property="mailRelayEnable" jdbcType="INTEGER" />
+    <result column="smtp_server" property="smtpServer" jdbcType="VARCHAR" />
+    <result column="smtp_port" property="smtpPort" jdbcType="INTEGER" />
+    <result column="start_tls" property="startTls" jdbcType="INTEGER" />
+    <result column="smtp_user_name" property="smtpUserName" jdbcType="VARCHAR" />
+    <result column="smtp_pass_word" property="smtpPassWord" jdbcType="VARCHAR" />
+    <result column="mail_from" property="mailFrom" jdbcType="VARCHAR" />
+    <result column="push_ne_uuid" property="pushNeUuid" jdbcType="INTEGER" />
+    <result column="alarm_short_period" property="alarmShortPeriod" jdbcType="INTEGER" />
+    <result column="alarm_long_period" property="alarmLongPeriod" jdbcType="INTEGER" />
+    <result column="status_short_period" property="statusShortPeriod" jdbcType="INTEGER" />
+    <result column="status_long_period" property="statusLongPeriod" jdbcType="INTEGER" />
+    <result column="statics_period" property="staticsPeriod" jdbcType="INTEGER" />
+    <result column="node_grp_uuid" property="nodeGrpUuid" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="expire_time" property="expireTime" jdbcType="TIMESTAMP" />
+    <result column="clear_stats_flag" property="clearStatsFlag" jdbcType="INTEGER" />
+    <result column="offline_clean_flag" property="offlineCleanFlag" jdbcType="INTEGER" />
+    <result column="anti_call_scan_enable" property="antiCallScanEnable" jdbcType="INTEGER" />
+    <result column="short_call_param" property="shortCallParam" jdbcType="INTEGER" />
+    <result column="long_call_param1" property="longCallParam1" jdbcType="INTEGER" />
+    <result column="long_call_param2" property="longCallParam2" jdbcType="INTEGER" />
+    <result column="long_call_param3" property="longCallParam3" jdbcType="INTEGER" />
+    <result column="number_expire_time" property="numberExpireTime" jdbcType="INTEGER" />
+    <result column="caller_gray_flag" property="callerGrayFlag" jdbcType="INTEGER" />
+    <result column="callee_gray_flag" property="calleeGrayFlag" jdbcType="INTEGER" />
+    <result column="ip_gray_flag" property="ipGrayFlag" jdbcType="INTEGER" />
+    <result column="dynamic_statics_enable" property="dynamicStaticsEnable" jdbcType="INTEGER" />
+    <result column="black_infect_flag" property="blackInfectFlag" jdbcType="INTEGER" />
+    <result column="number_valid_len" property="numberValidLen" jdbcType="INTEGER" />
+    <result column="fail_call_weight" property="failCallWeight" jdbcType="INTEGER" />
+    <result column="dynamic_caller_enable" property="dynamicCallerEnable" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="local_time_zone" property="localTimeZone" jdbcType="INTEGER" />
+    <result column="dc_switch" property="dcSwitch" jdbcType="INTEGER" />
+    <result column="asr_threshold" property="asrThreshold" jdbcType="INTEGER" />
+    <result column="caps_threshold" property="capsThreshold" jdbcType="INTEGER" />
+    <result column="call_switch" property="callSwitch" jdbcType="INTEGER" />
+    <result column="alarm_api_switch" property="alarmApiSwitch" jdbcType="INTEGER" />
+    <result column="alarm_api_host" property="alarmApiHost" jdbcType="CHAR" />
+    <result column="alarm_api_port" property="alarmApiPort" jdbcType="INTEGER" />
+    <result column="alarm_api_path" property="alarmApiPath" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, name, alias, admin_user_uuid, cloud_uuid, auth_sys_uuid, sys_uuid, 
+    proc_uuid, vendor_id, product_id, admin_status, opr_status, run_status, action_status, 
+    action_result, alm_status_bits, paid_card_uuid, paid_card_type, paid_card_price, 
+    trial_balance, premium_balance, lic_new_sign_type, lic_new_sim_num, lic_new_hbm_flag, 
+    lic_renew_days, lic_first_cost, lic_period_cost, lic_extra_balance, idle_time, spec_cloud_uuid, 
+    spec_sys_uuid, sys_locked_flag, node_encrypt_flag, dev_time_flag, timezone_flag, 
+    ntp_server1, ntp_server2, idle_switch_flag, smooth_switch_flag, offline_clean_mode, 
+    switch_timeout, scp_timeout_sec, scp_ping_channel, hbm_send_retries, save_sms_fail, 
+    save_ussd_fail, save_call_fail, port_stats_flag, sim_stats_flag, sms_capacity, sms_sending_cnt, 
+    total_ne_count, online_ne_count, total_sim_card, online_sim_card, create_time, update_time, 
+    last_login_time, detail_desc, push_interval, push_sms_interval, push_call_interval, 
+    push_mail_interval, push_sms_level, push_sms_encode, push_ne_uuid1, push_sms_port1, 
+    push_ne_uuid2, push_sms_port2, push_sms_addr, push_sms_retry_max, push_call_level, 
+    push_call_addr, push_call_retry_max, push_mail_level, push_mail_addr, push_mail_retry_max, 
+    mail_relay_enable, smtp_server, smtp_port, start_tls, smtp_user_name, smtp_pass_word, 
+    mail_from, push_ne_uuid, alarm_short_period, alarm_long_period, status_short_period, 
+    status_long_period, statics_period, node_grp_uuid, type, expire_time, clear_stats_flag, 
+    offline_clean_flag, anti_call_scan_enable, short_call_param, long_call_param1, long_call_param2, 
+    long_call_param3, number_expire_time, caller_gray_flag, callee_gray_flag, ip_gray_flag, 
+    dynamic_statics_enable, black_infect_flag, number_valid_len, fail_call_weight, dynamic_caller_enable, 
+    level, local_time_zone, dc_switch, asr_threshold, caps_threshold, call_switch, alarm_api_switch, 
+    alarm_api_host, alarm_api_port, alarm_api_path
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblDomainCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <choose>
+        <when test="myCol!=null"> ${myCol}</when>
+        <otherwise><include refid="Base_Column_List" /></otherwise>
+    </choose>    
+    from tbl_domain
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+   <if test="groupBy != null" >
+      group by ${groupBy}
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+   <if test="limitClause != null" >
+      limit ${limitClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_domain
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_domain
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblDomainCriteria" >
+    delete from tbl_domain
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblDomain" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_domain (uuid, rec_status, name, 
+      alias, admin_user_uuid, cloud_uuid, 
+      auth_sys_uuid, sys_uuid, proc_uuid, 
+      vendor_id, product_id, admin_status, 
+      opr_status, run_status, action_status, 
+      action_result, alm_status_bits, paid_card_uuid, 
+      paid_card_type, paid_card_price, trial_balance, 
+      premium_balance, lic_new_sign_type, lic_new_sim_num, 
+      lic_new_hbm_flag, lic_renew_days, lic_first_cost, 
+      lic_period_cost, lic_extra_balance, idle_time, 
+      spec_cloud_uuid, spec_sys_uuid, sys_locked_flag, 
+      node_encrypt_flag, dev_time_flag, timezone_flag, 
+      ntp_server1, ntp_server2, idle_switch_flag, 
+      smooth_switch_flag, offline_clean_mode, switch_timeout, 
+      scp_timeout_sec, scp_ping_channel, hbm_send_retries, 
+      save_sms_fail, save_ussd_fail, save_call_fail, 
+      port_stats_flag, sim_stats_flag, sms_capacity, 
+      sms_sending_cnt, total_ne_count, online_ne_count, 
+      total_sim_card, online_sim_card, create_time, 
+      update_time, last_login_time, detail_desc, 
+      push_interval, push_sms_interval, push_call_interval, 
+      push_mail_interval, push_sms_level, push_sms_encode, 
+      push_ne_uuid1, push_sms_port1, push_ne_uuid2, 
+      push_sms_port2, push_sms_addr, push_sms_retry_max, 
+      push_call_level, push_call_addr, push_call_retry_max, 
+      push_mail_level, push_mail_addr, push_mail_retry_max, 
+      mail_relay_enable, smtp_server, smtp_port, 
+      start_tls, smtp_user_name, smtp_pass_word, 
+      mail_from, push_ne_uuid, alarm_short_period, 
+      alarm_long_period, status_short_period, status_long_period, 
+      statics_period, node_grp_uuid, type, 
+      expire_time, clear_stats_flag, offline_clean_flag, 
+      anti_call_scan_enable, short_call_param, long_call_param1, 
+      long_call_param2, long_call_param3, number_expire_time, 
+      caller_gray_flag, callee_gray_flag, ip_gray_flag, 
+      dynamic_statics_enable, black_infect_flag, 
+      number_valid_len, fail_call_weight, dynamic_caller_enable, 
+      level, local_time_zone, dc_switch, 
+      asr_threshold, caps_threshold, call_switch, 
+      alarm_api_switch, alarm_api_host, alarm_api_port, 
+      alarm_api_path)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, 
+      #{alias,jdbcType=CHAR}, #{adminUserUuid,jdbcType=INTEGER}, #{cloudUuid,jdbcType=INTEGER}, 
+      #{authSysUuid,jdbcType=INTEGER}, #{sysUuid,jdbcType=INTEGER}, #{procUuid,jdbcType=INTEGER}, 
+      #{vendorId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{adminStatus,jdbcType=INTEGER}, 
+      #{oprStatus,jdbcType=INTEGER}, #{runStatus,jdbcType=INTEGER}, #{actionStatus,jdbcType=INTEGER}, 
+      #{actionResult,jdbcType=INTEGER}, #{almStatusBits,jdbcType=INTEGER}, #{paidCardUuid,jdbcType=INTEGER}, 
+      #{paidCardType,jdbcType=INTEGER}, #{paidCardPrice,jdbcType=INTEGER}, #{trialBalance,jdbcType=REAL}, 
+      #{premiumBalance,jdbcType=REAL}, #{licNewSignType,jdbcType=INTEGER}, #{licNewSimNum,jdbcType=INTEGER}, 
+      #{licNewHbmFlag,jdbcType=INTEGER}, #{licRenewDays,jdbcType=INTEGER}, #{licFirstCost,jdbcType=INTEGER}, 
+      #{licPeriodCost,jdbcType=INTEGER}, #{licExtraBalance,jdbcType=REAL}, #{idleTime,jdbcType=INTEGER}, 
+      #{specCloudUuid,jdbcType=INTEGER}, #{specSysUuid,jdbcType=INTEGER}, #{sysLockedFlag,jdbcType=INTEGER}, 
+      #{nodeEncryptFlag,jdbcType=INTEGER}, #{devTimeFlag,jdbcType=INTEGER}, #{timezoneFlag,jdbcType=INTEGER}, 
+      #{ntpServer1,jdbcType=CHAR}, #{ntpServer2,jdbcType=CHAR}, #{idleSwitchFlag,jdbcType=INTEGER}, 
+      #{smoothSwitchFlag,jdbcType=INTEGER}, #{offlineCleanMode,jdbcType=INTEGER}, #{switchTimeout,jdbcType=INTEGER}, 
+      #{scpTimeoutSec,jdbcType=INTEGER}, #{scpPingChannel,jdbcType=INTEGER}, #{hbmSendRetries,jdbcType=INTEGER}, 
+      #{saveSmsFail,jdbcType=INTEGER}, #{saveUssdFail,jdbcType=INTEGER}, #{saveCallFail,jdbcType=INTEGER}, 
+      #{portStatsFlag,jdbcType=INTEGER}, #{simStatsFlag,jdbcType=INTEGER}, #{smsCapacity,jdbcType=INTEGER}, 
+      #{smsSendingCnt,jdbcType=INTEGER}, #{totalNeCount,jdbcType=INTEGER}, #{onlineNeCount,jdbcType=INTEGER}, 
+      #{totalSimCard,jdbcType=INTEGER}, #{onlineSimCard,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{detailDesc,jdbcType=CHAR}, 
+      #{pushInterval,jdbcType=INTEGER}, #{pushSmsInterval,jdbcType=INTEGER}, #{pushCallInterval,jdbcType=INTEGER}, 
+      #{pushMailInterval,jdbcType=INTEGER}, #{pushSmsLevel,jdbcType=INTEGER}, #{pushSmsEncode,jdbcType=INTEGER}, 
+      #{pushNeUuid1,jdbcType=INTEGER}, #{pushSmsPort1,jdbcType=INTEGER}, #{pushNeUuid2,jdbcType=INTEGER}, 
+      #{pushSmsPort2,jdbcType=INTEGER}, #{pushSmsAddr,jdbcType=VARCHAR}, #{pushSmsRetryMax,jdbcType=INTEGER}, 
+      #{pushCallLevel,jdbcType=INTEGER}, #{pushCallAddr,jdbcType=VARCHAR}, #{pushCallRetryMax,jdbcType=INTEGER}, 
+      #{pushMailLevel,jdbcType=INTEGER}, #{pushMailAddr,jdbcType=VARCHAR}, #{pushMailRetryMax,jdbcType=INTEGER}, 
+      #{mailRelayEnable,jdbcType=INTEGER}, #{smtpServer,jdbcType=VARCHAR}, #{smtpPort,jdbcType=INTEGER}, 
+      #{startTls,jdbcType=INTEGER}, #{smtpUserName,jdbcType=VARCHAR}, #{smtpPassWord,jdbcType=VARCHAR}, 
+      #{mailFrom,jdbcType=VARCHAR}, #{pushNeUuid,jdbcType=INTEGER}, #{alarmShortPeriod,jdbcType=INTEGER}, 
+      #{alarmLongPeriod,jdbcType=INTEGER}, #{statusShortPeriod,jdbcType=INTEGER}, #{statusLongPeriod,jdbcType=INTEGER}, 
+      #{staticsPeriod,jdbcType=INTEGER}, #{nodeGrpUuid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{expireTime,jdbcType=TIMESTAMP}, #{clearStatsFlag,jdbcType=INTEGER}, #{offlineCleanFlag,jdbcType=INTEGER}, 
+      #{antiCallScanEnable,jdbcType=INTEGER}, #{shortCallParam,jdbcType=INTEGER}, #{longCallParam1,jdbcType=INTEGER}, 
+      #{longCallParam2,jdbcType=INTEGER}, #{longCallParam3,jdbcType=INTEGER}, #{numberExpireTime,jdbcType=INTEGER}, 
+      #{callerGrayFlag,jdbcType=INTEGER}, #{calleeGrayFlag,jdbcType=INTEGER}, #{ipGrayFlag,jdbcType=INTEGER}, 
+      #{dynamicStaticsEnable,jdbcType=INTEGER}, #{blackInfectFlag,jdbcType=INTEGER}, 
+      #{numberValidLen,jdbcType=INTEGER}, #{failCallWeight,jdbcType=INTEGER}, #{dynamicCallerEnable,jdbcType=INTEGER}, 
+      #{level,jdbcType=INTEGER}, #{localTimeZone,jdbcType=INTEGER}, #{dcSwitch,jdbcType=INTEGER}, 
+      #{asrThreshold,jdbcType=INTEGER}, #{capsThreshold,jdbcType=INTEGER}, #{callSwitch,jdbcType=INTEGER}, 
+      #{alarmApiSwitch,jdbcType=INTEGER}, #{alarmApiHost,jdbcType=CHAR}, #{alarmApiPort,jdbcType=INTEGER}, 
+      #{alarmApiPath,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblDomain" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_domain
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="adminUserUuid != null" >
+        admin_user_uuid,
+      </if>
+      <if test="cloudUuid != null" >
+        cloud_uuid,
+      </if>
+      <if test="authSysUuid != null" >
+        auth_sys_uuid,
+      </if>
+      <if test="sysUuid != null" >
+        sys_uuid,
+      </if>
+      <if test="procUuid != null" >
+        proc_uuid,
+      </if>
+      <if test="vendorId != null" >
+        vendor_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="adminStatus != null" >
+        admin_status,
+      </if>
+      <if test="oprStatus != null" >
+        opr_status,
+      </if>
+      <if test="runStatus != null" >
+        run_status,
+      </if>
+      <if test="actionStatus != null" >
+        action_status,
+      </if>
+      <if test="actionResult != null" >
+        action_result,
+      </if>
+      <if test="almStatusBits != null" >
+        alm_status_bits,
+      </if>
+      <if test="paidCardUuid != null" >
+        paid_card_uuid,
+      </if>
+      <if test="paidCardType != null" >
+        paid_card_type,
+      </if>
+      <if test="paidCardPrice != null" >
+        paid_card_price,
+      </if>
+      <if test="trialBalance != null" >
+        trial_balance,
+      </if>
+      <if test="premiumBalance != null" >
+        premium_balance,
+      </if>
+      <if test="licNewSignType != null" >
+        lic_new_sign_type,
+      </if>
+      <if test="licNewSimNum != null" >
+        lic_new_sim_num,
+      </if>
+      <if test="licNewHbmFlag != null" >
+        lic_new_hbm_flag,
+      </if>
+      <if test="licRenewDays != null" >
+        lic_renew_days,
+      </if>
+      <if test="licFirstCost != null" >
+        lic_first_cost,
+      </if>
+      <if test="licPeriodCost != null" >
+        lic_period_cost,
+      </if>
+      <if test="licExtraBalance != null" >
+        lic_extra_balance,
+      </if>
+      <if test="idleTime != null" >
+        idle_time,
+      </if>
+      <if test="specCloudUuid != null" >
+        spec_cloud_uuid,
+      </if>
+      <if test="specSysUuid != null" >
+        spec_sys_uuid,
+      </if>
+      <if test="sysLockedFlag != null" >
+        sys_locked_flag,
+      </if>
+      <if test="nodeEncryptFlag != null" >
+        node_encrypt_flag,
+      </if>
+      <if test="devTimeFlag != null" >
+        dev_time_flag,
+      </if>
+      <if test="timezoneFlag != null" >
+        timezone_flag,
+      </if>
+      <if test="ntpServer1 != null" >
+        ntp_server1,
+      </if>
+      <if test="ntpServer2 != null" >
+        ntp_server2,
+      </if>
+      <if test="idleSwitchFlag != null" >
+        idle_switch_flag,
+      </if>
+      <if test="smoothSwitchFlag != null" >
+        smooth_switch_flag,
+      </if>
+      <if test="offlineCleanMode != null" >
+        offline_clean_mode,
+      </if>
+      <if test="switchTimeout != null" >
+        switch_timeout,
+      </if>
+      <if test="scpTimeoutSec != null" >
+        scp_timeout_sec,
+      </if>
+      <if test="scpPingChannel != null" >
+        scp_ping_channel,
+      </if>
+      <if test="hbmSendRetries != null" >
+        hbm_send_retries,
+      </if>
+      <if test="saveSmsFail != null" >
+        save_sms_fail,
+      </if>
+      <if test="saveUssdFail != null" >
+        save_ussd_fail,
+      </if>
+      <if test="saveCallFail != null" >
+        save_call_fail,
+      </if>
+      <if test="portStatsFlag != null" >
+        port_stats_flag,
+      </if>
+      <if test="simStatsFlag != null" >
+        sim_stats_flag,
+      </if>
+      <if test="smsCapacity != null" >
+        sms_capacity,
+      </if>
+      <if test="smsSendingCnt != null" >
+        sms_sending_cnt,
+      </if>
+      <if test="totalNeCount != null" >
+        total_ne_count,
+      </if>
+      <if test="onlineNeCount != null" >
+        online_ne_count,
+      </if>
+      <if test="totalSimCard != null" >
+        total_sim_card,
+      </if>
+      <if test="onlineSimCard != null" >
+        online_sim_card,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time,
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc,
+      </if>
+      <if test="pushInterval != null" >
+        push_interval,
+      </if>
+      <if test="pushSmsInterval != null" >
+        push_sms_interval,
+      </if>
+      <if test="pushCallInterval != null" >
+        push_call_interval,
+      </if>
+      <if test="pushMailInterval != null" >
+        push_mail_interval,
+      </if>
+      <if test="pushSmsLevel != null" >
+        push_sms_level,
+      </if>
+      <if test="pushSmsEncode != null" >
+        push_sms_encode,
+      </if>
+      <if test="pushNeUuid1 != null" >
+        push_ne_uuid1,
+      </if>
+      <if test="pushSmsPort1 != null" >
+        push_sms_port1,
+      </if>
+      <if test="pushNeUuid2 != null" >
+        push_ne_uuid2,
+      </if>
+      <if test="pushSmsPort2 != null" >
+        push_sms_port2,
+      </if>
+      <if test="pushSmsAddr != null" >
+        push_sms_addr,
+      </if>
+      <if test="pushSmsRetryMax != null" >
+        push_sms_retry_max,
+      </if>
+      <if test="pushCallLevel != null" >
+        push_call_level,
+      </if>
+      <if test="pushCallAddr != null" >
+        push_call_addr,
+      </if>
+      <if test="pushCallRetryMax != null" >
+        push_call_retry_max,
+      </if>
+      <if test="pushMailLevel != null" >
+        push_mail_level,
+      </if>
+      <if test="pushMailAddr != null" >
+        push_mail_addr,
+      </if>
+      <if test="pushMailRetryMax != null" >
+        push_mail_retry_max,
+      </if>
+      <if test="mailRelayEnable != null" >
+        mail_relay_enable,
+      </if>
+      <if test="smtpServer != null" >
+        smtp_server,
+      </if>
+      <if test="smtpPort != null" >
+        smtp_port,
+      </if>
+      <if test="startTls != null" >
+        start_tls,
+      </if>
+      <if test="smtpUserName != null" >
+        smtp_user_name,
+      </if>
+      <if test="smtpPassWord != null" >
+        smtp_pass_word,
+      </if>
+      <if test="mailFrom != null" >
+        mail_from,
+      </if>
+      <if test="pushNeUuid != null" >
+        push_ne_uuid,
+      </if>
+      <if test="alarmShortPeriod != null" >
+        alarm_short_period,
+      </if>
+      <if test="alarmLongPeriod != null" >
+        alarm_long_period,
+      </if>
+      <if test="statusShortPeriod != null" >
+        status_short_period,
+      </if>
+      <if test="statusLongPeriod != null" >
+        status_long_period,
+      </if>
+      <if test="staticsPeriod != null" >
+        statics_period,
+      </if>
+      <if test="nodeGrpUuid != null" >
+        node_grp_uuid,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="expireTime != null" >
+        expire_time,
+      </if>
+      <if test="clearStatsFlag != null" >
+        clear_stats_flag,
+      </if>
+      <if test="offlineCleanFlag != null" >
+        offline_clean_flag,
+      </if>
+      <if test="antiCallScanEnable != null" >
+        anti_call_scan_enable,
+      </if>
+      <if test="shortCallParam != null" >
+        short_call_param,
+      </if>
+      <if test="longCallParam1 != null" >
+        long_call_param1,
+      </if>
+      <if test="longCallParam2 != null" >
+        long_call_param2,
+      </if>
+      <if test="longCallParam3 != null" >
+        long_call_param3,
+      </if>
+      <if test="numberExpireTime != null" >
+        number_expire_time,
+      </if>
+      <if test="callerGrayFlag != null" >
+        caller_gray_flag,
+      </if>
+      <if test="calleeGrayFlag != null" >
+        callee_gray_flag,
+      </if>
+      <if test="ipGrayFlag != null" >
+        ip_gray_flag,
+      </if>
+      <if test="dynamicStaticsEnable != null" >
+        dynamic_statics_enable,
+      </if>
+      <if test="blackInfectFlag != null" >
+        black_infect_flag,
+      </if>
+      <if test="numberValidLen != null" >
+        number_valid_len,
+      </if>
+      <if test="failCallWeight != null" >
+        fail_call_weight,
+      </if>
+      <if test="dynamicCallerEnable != null" >
+        dynamic_caller_enable,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="localTimeZone != null" >
+        local_time_zone,
+      </if>
+      <if test="dcSwitch != null" >
+        dc_switch,
+      </if>
+      <if test="asrThreshold != null" >
+        asr_threshold,
+      </if>
+      <if test="capsThreshold != null" >
+        caps_threshold,
+      </if>
+      <if test="callSwitch != null" >
+        call_switch,
+      </if>
+      <if test="alarmApiSwitch != null" >
+        alarm_api_switch,
+      </if>
+      <if test="alarmApiHost != null" >
+        alarm_api_host,
+      </if>
+      <if test="alarmApiPort != null" >
+        alarm_api_port,
+      </if>
+      <if test="alarmApiPath != null" >
+        alarm_api_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=CHAR},
+      </if>
+      <if test="adminUserUuid != null" >
+        #{adminUserUuid,jdbcType=INTEGER},
+      </if>
+      <if test="cloudUuid != null" >
+        #{cloudUuid,jdbcType=INTEGER},
+      </if>
+      <if test="authSysUuid != null" >
+        #{authSysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="sysUuid != null" >
+        #{sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="procUuid != null" >
+        #{procUuid,jdbcType=INTEGER},
+      </if>
+      <if test="vendorId != null" >
+        #{vendorId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="adminStatus != null" >
+        #{adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oprStatus != null" >
+        #{oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="runStatus != null" >
+        #{runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionStatus != null" >
+        #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="almStatusBits != null" >
+        #{almStatusBits,jdbcType=INTEGER},
+      </if>
+      <if test="paidCardUuid != null" >
+        #{paidCardUuid,jdbcType=INTEGER},
+      </if>
+      <if test="paidCardType != null" >
+        #{paidCardType,jdbcType=INTEGER},
+      </if>
+      <if test="paidCardPrice != null" >
+        #{paidCardPrice,jdbcType=INTEGER},
+      </if>
+      <if test="trialBalance != null" >
+        #{trialBalance,jdbcType=REAL},
+      </if>
+      <if test="premiumBalance != null" >
+        #{premiumBalance,jdbcType=REAL},
+      </if>
+      <if test="licNewSignType != null" >
+        #{licNewSignType,jdbcType=INTEGER},
+      </if>
+      <if test="licNewSimNum != null" >
+        #{licNewSimNum,jdbcType=INTEGER},
+      </if>
+      <if test="licNewHbmFlag != null" >
+        #{licNewHbmFlag,jdbcType=INTEGER},
+      </if>
+      <if test="licRenewDays != null" >
+        #{licRenewDays,jdbcType=INTEGER},
+      </if>
+      <if test="licFirstCost != null" >
+        #{licFirstCost,jdbcType=INTEGER},
+      </if>
+      <if test="licPeriodCost != null" >
+        #{licPeriodCost,jdbcType=INTEGER},
+      </if>
+      <if test="licExtraBalance != null" >
+        #{licExtraBalance,jdbcType=REAL},
+      </if>
+      <if test="idleTime != null" >
+        #{idleTime,jdbcType=INTEGER},
+      </if>
+      <if test="specCloudUuid != null" >
+        #{specCloudUuid,jdbcType=INTEGER},
+      </if>
+      <if test="specSysUuid != null" >
+        #{specSysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="sysLockedFlag != null" >
+        #{sysLockedFlag,jdbcType=INTEGER},
+      </if>
+      <if test="nodeEncryptFlag != null" >
+        #{nodeEncryptFlag,jdbcType=INTEGER},
+      </if>
+      <if test="devTimeFlag != null" >
+        #{devTimeFlag,jdbcType=INTEGER},
+      </if>
+      <if test="timezoneFlag != null" >
+        #{timezoneFlag,jdbcType=INTEGER},
+      </if>
+      <if test="ntpServer1 != null" >
+        #{ntpServer1,jdbcType=CHAR},
+      </if>
+      <if test="ntpServer2 != null" >
+        #{ntpServer2,jdbcType=CHAR},
+      </if>
+      <if test="idleSwitchFlag != null" >
+        #{idleSwitchFlag,jdbcType=INTEGER},
+      </if>
+      <if test="smoothSwitchFlag != null" >
+        #{smoothSwitchFlag,jdbcType=INTEGER},
+      </if>
+      <if test="offlineCleanMode != null" >
+        #{offlineCleanMode,jdbcType=INTEGER},
+      </if>
+      <if test="switchTimeout != null" >
+        #{switchTimeout,jdbcType=INTEGER},
+      </if>
+      <if test="scpTimeoutSec != null" >
+        #{scpTimeoutSec,jdbcType=INTEGER},
+      </if>
+      <if test="scpPingChannel != null" >
+        #{scpPingChannel,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSendRetries != null" >
+        #{hbmSendRetries,jdbcType=INTEGER},
+      </if>
+      <if test="saveSmsFail != null" >
+        #{saveSmsFail,jdbcType=INTEGER},
+      </if>
+      <if test="saveUssdFail != null" >
+        #{saveUssdFail,jdbcType=INTEGER},
+      </if>
+      <if test="saveCallFail != null" >
+        #{saveCallFail,jdbcType=INTEGER},
+      </if>
+      <if test="portStatsFlag != null" >
+        #{portStatsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="simStatsFlag != null" >
+        #{simStatsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="smsCapacity != null" >
+        #{smsCapacity,jdbcType=INTEGER},
+      </if>
+      <if test="smsSendingCnt != null" >
+        #{smsSendingCnt,jdbcType=INTEGER},
+      </if>
+      <if test="totalNeCount != null" >
+        #{totalNeCount,jdbcType=INTEGER},
+      </if>
+      <if test="onlineNeCount != null" >
+        #{onlineNeCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalSimCard != null" >
+        #{totalSimCard,jdbcType=INTEGER},
+      </if>
+      <if test="onlineSimCard != null" >
+        #{onlineSimCard,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailDesc != null" >
+        #{detailDesc,jdbcType=CHAR},
+      </if>
+      <if test="pushInterval != null" >
+        #{pushInterval,jdbcType=INTEGER},
+      </if>
+      <if test="pushSmsInterval != null" >
+        #{pushSmsInterval,jdbcType=INTEGER},
+      </if>
+      <if test="pushCallInterval != null" >
+        #{pushCallInterval,jdbcType=INTEGER},
+      </if>
+      <if test="pushMailInterval != null" >
+        #{pushMailInterval,jdbcType=INTEGER},
+      </if>
+      <if test="pushSmsLevel != null" >
+        #{pushSmsLevel,jdbcType=INTEGER},
+      </if>
+      <if test="pushSmsEncode != null" >
+        #{pushSmsEncode,jdbcType=INTEGER},
+      </if>
+      <if test="pushNeUuid1 != null" >
+        #{pushNeUuid1,jdbcType=INTEGER},
+      </if>
+      <if test="pushSmsPort1 != null" >
+        #{pushSmsPort1,jdbcType=INTEGER},
+      </if>
+      <if test="pushNeUuid2 != null" >
+        #{pushNeUuid2,jdbcType=INTEGER},
+      </if>
+      <if test="pushSmsPort2 != null" >
+        #{pushSmsPort2,jdbcType=INTEGER},
+      </if>
+      <if test="pushSmsAddr != null" >
+        #{pushSmsAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="pushSmsRetryMax != null" >
+        #{pushSmsRetryMax,jdbcType=INTEGER},
+      </if>
+      <if test="pushCallLevel != null" >
+        #{pushCallLevel,jdbcType=INTEGER},
+      </if>
+      <if test="pushCallAddr != null" >
+        #{pushCallAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="pushCallRetryMax != null" >
+        #{pushCallRetryMax,jdbcType=INTEGER},
+      </if>
+      <if test="pushMailLevel != null" >
+        #{pushMailLevel,jdbcType=INTEGER},
+      </if>
+      <if test="pushMailAddr != null" >
+        #{pushMailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="pushMailRetryMax != null" >
+        #{pushMailRetryMax,jdbcType=INTEGER},
+      </if>
+      <if test="mailRelayEnable != null" >
+        #{mailRelayEnable,jdbcType=INTEGER},
+      </if>
+      <if test="smtpServer != null" >
+        #{smtpServer,jdbcType=VARCHAR},
+      </if>
+      <if test="smtpPort != null" >
+        #{smtpPort,jdbcType=INTEGER},
+      </if>
+      <if test="startTls != null" >
+        #{startTls,jdbcType=INTEGER},
+      </if>
+      <if test="smtpUserName != null" >
+        #{smtpUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="smtpPassWord != null" >
+        #{smtpPassWord,jdbcType=VARCHAR},
+      </if>
+      <if test="mailFrom != null" >
+        #{mailFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="pushNeUuid != null" >
+        #{pushNeUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alarmShortPeriod != null" >
+        #{alarmShortPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="alarmLongPeriod != null" >
+        #{alarmLongPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="statusShortPeriod != null" >
+        #{statusShortPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="statusLongPeriod != null" >
+        #{statusLongPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="staticsPeriod != null" >
+        #{staticsPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="nodeGrpUuid != null" >
+        #{nodeGrpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="expireTime != null" >
+        #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clearStatsFlag != null" >
+        #{clearStatsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="offlineCleanFlag != null" >
+        #{offlineCleanFlag,jdbcType=INTEGER},
+      </if>
+      <if test="antiCallScanEnable != null" >
+        #{antiCallScanEnable,jdbcType=INTEGER},
+      </if>
+      <if test="shortCallParam != null" >
+        #{shortCallParam,jdbcType=INTEGER},
+      </if>
+      <if test="longCallParam1 != null" >
+        #{longCallParam1,jdbcType=INTEGER},
+      </if>
+      <if test="longCallParam2 != null" >
+        #{longCallParam2,jdbcType=INTEGER},
+      </if>
+      <if test="longCallParam3 != null" >
+        #{longCallParam3,jdbcType=INTEGER},
+      </if>
+      <if test="numberExpireTime != null" >
+        #{numberExpireTime,jdbcType=INTEGER},
+      </if>
+      <if test="callerGrayFlag != null" >
+        #{callerGrayFlag,jdbcType=INTEGER},
+      </if>
+      <if test="calleeGrayFlag != null" >
+        #{calleeGrayFlag,jdbcType=INTEGER},
+      </if>
+      <if test="ipGrayFlag != null" >
+        #{ipGrayFlag,jdbcType=INTEGER},
+      </if>
+      <if test="dynamicStaticsEnable != null" >
+        #{dynamicStaticsEnable,jdbcType=INTEGER},
+      </if>
+      <if test="blackInfectFlag != null" >
+        #{blackInfectFlag,jdbcType=INTEGER},
+      </if>
+      <if test="numberValidLen != null" >
+        #{numberValidLen,jdbcType=INTEGER},
+      </if>
+      <if test="failCallWeight != null" >
+        #{failCallWeight,jdbcType=INTEGER},
+      </if>
+      <if test="dynamicCallerEnable != null" >
+        #{dynamicCallerEnable,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="localTimeZone != null" >
+        #{localTimeZone,jdbcType=INTEGER},
+      </if>
+      <if test="dcSwitch != null" >
+        #{dcSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="asrThreshold != null" >
+        #{asrThreshold,jdbcType=INTEGER},
+      </if>
+      <if test="capsThreshold != null" >
+        #{capsThreshold,jdbcType=INTEGER},
+      </if>
+      <if test="callSwitch != null" >
+        #{callSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="alarmApiSwitch != null" >
+        #{alarmApiSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="alarmApiHost != null" >
+        #{alarmApiHost,jdbcType=CHAR},
+      </if>
+      <if test="alarmApiPort != null" >
+        #{alarmApiPort,jdbcType=INTEGER},
+      </if>
+      <if test="alarmApiPath != null" >
+        #{alarmApiPath,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblDomainCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_domain
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_domain
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=CHAR},
+      </if>
+      <if test="record.alias != null" >
+        alias = #{record.alias,jdbcType=CHAR},
+      </if>
+      <if test="record.adminUserUuid != null" >
+        admin_user_uuid = #{record.adminUserUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cloudUuid != null" >
+        cloud_uuid = #{record.cloudUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.authSysUuid != null" >
+        auth_sys_uuid = #{record.authSysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sysUuid != null" >
+        sys_uuid = #{record.sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.procUuid != null" >
+        proc_uuid = #{record.procUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.vendorId != null" >
+        vendor_id = #{record.vendorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.productId != null" >
+        product_id = #{record.productId,jdbcType=INTEGER},
+      </if>
+      <if test="record.adminStatus != null" >
+        admin_status = #{record.adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.oprStatus != null" >
+        opr_status = #{record.oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.runStatus != null" >
+        run_status = #{record.runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionStatus != null" >
+        action_status = #{record.actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionResult != null" >
+        action_result = #{record.actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.almStatusBits != null" >
+        alm_status_bits = #{record.almStatusBits,jdbcType=INTEGER},
+      </if>
+      <if test="record.paidCardUuid != null" >
+        paid_card_uuid = #{record.paidCardUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.paidCardType != null" >
+        paid_card_type = #{record.paidCardType,jdbcType=INTEGER},
+      </if>
+      <if test="record.paidCardPrice != null" >
+        paid_card_price = #{record.paidCardPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.trialBalance != null" >
+        trial_balance = #{record.trialBalance,jdbcType=REAL},
+      </if>
+      <if test="record.premiumBalance != null" >
+        premium_balance = #{record.premiumBalance,jdbcType=REAL},
+      </if>
+      <if test="record.licNewSignType != null" >
+        lic_new_sign_type = #{record.licNewSignType,jdbcType=INTEGER},
+      </if>
+      <if test="record.licNewSimNum != null" >
+        lic_new_sim_num = #{record.licNewSimNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.licNewHbmFlag != null" >
+        lic_new_hbm_flag = #{record.licNewHbmFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.licRenewDays != null" >
+        lic_renew_days = #{record.licRenewDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.licFirstCost != null" >
+        lic_first_cost = #{record.licFirstCost,jdbcType=INTEGER},
+      </if>
+      <if test="record.licPeriodCost != null" >
+        lic_period_cost = #{record.licPeriodCost,jdbcType=INTEGER},
+      </if>
+      <if test="record.licExtraBalance != null" >
+        lic_extra_balance = #{record.licExtraBalance,jdbcType=REAL},
+      </if>
+      <if test="record.idleTime != null" >
+        idle_time = #{record.idleTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.specCloudUuid != null" >
+        spec_cloud_uuid = #{record.specCloudUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.specSysUuid != null" >
+        spec_sys_uuid = #{record.specSysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sysLockedFlag != null" >
+        sys_locked_flag = #{record.sysLockedFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.nodeEncryptFlag != null" >
+        node_encrypt_flag = #{record.nodeEncryptFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.devTimeFlag != null" >
+        dev_time_flag = #{record.devTimeFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.timezoneFlag != null" >
+        timezone_flag = #{record.timezoneFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.ntpServer1 != null" >
+        ntp_server1 = #{record.ntpServer1,jdbcType=CHAR},
+      </if>
+      <if test="record.ntpServer2 != null" >
+        ntp_server2 = #{record.ntpServer2,jdbcType=CHAR},
+      </if>
+      <if test="record.idleSwitchFlag != null" >
+        idle_switch_flag = #{record.idleSwitchFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.smoothSwitchFlag != null" >
+        smooth_switch_flag = #{record.smoothSwitchFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.offlineCleanMode != null" >
+        offline_clean_mode = #{record.offlineCleanMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.switchTimeout != null" >
+        switch_timeout = #{record.switchTimeout,jdbcType=INTEGER},
+      </if>
+      <if test="record.scpTimeoutSec != null" >
+        scp_timeout_sec = #{record.scpTimeoutSec,jdbcType=INTEGER},
+      </if>
+      <if test="record.scpPingChannel != null" >
+        scp_ping_channel = #{record.scpPingChannel,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmSendRetries != null" >
+        hbm_send_retries = #{record.hbmSendRetries,jdbcType=INTEGER},
+      </if>
+      <if test="record.saveSmsFail != null" >
+        save_sms_fail = #{record.saveSmsFail,jdbcType=INTEGER},
+      </if>
+      <if test="record.saveUssdFail != null" >
+        save_ussd_fail = #{record.saveUssdFail,jdbcType=INTEGER},
+      </if>
+      <if test="record.saveCallFail != null" >
+        save_call_fail = #{record.saveCallFail,jdbcType=INTEGER},
+      </if>
+      <if test="record.portStatsFlag != null" >
+        port_stats_flag = #{record.portStatsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.simStatsFlag != null" >
+        sim_stats_flag = #{record.simStatsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.smsCapacity != null" >
+        sms_capacity = #{record.smsCapacity,jdbcType=INTEGER},
+      </if>
+      <if test="record.smsSendingCnt != null" >
+        sms_sending_cnt = #{record.smsSendingCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalNeCount != null" >
+        total_ne_count = #{record.totalNeCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.onlineNeCount != null" >
+        online_ne_count = #{record.onlineNeCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalSimCard != null" >
+        total_sim_card = #{record.totalSimCard,jdbcType=INTEGER},
+      </if>
+      <if test="record.onlineSimCard != null" >
+        online_sim_card = #{record.onlineSimCard,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastLoginTime != null" >
+        last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.detailDesc != null" >
+        detail_desc = #{record.detailDesc,jdbcType=CHAR},
+      </if>
+      <if test="record.pushInterval != null" >
+        push_interval = #{record.pushInterval,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushSmsInterval != null" >
+        push_sms_interval = #{record.pushSmsInterval,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushCallInterval != null" >
+        push_call_interval = #{record.pushCallInterval,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushMailInterval != null" >
+        push_mail_interval = #{record.pushMailInterval,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushSmsLevel != null" >
+        push_sms_level = #{record.pushSmsLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushSmsEncode != null" >
+        push_sms_encode = #{record.pushSmsEncode,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushNeUuid1 != null" >
+        push_ne_uuid1 = #{record.pushNeUuid1,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushSmsPort1 != null" >
+        push_sms_port1 = #{record.pushSmsPort1,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushNeUuid2 != null" >
+        push_ne_uuid2 = #{record.pushNeUuid2,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushSmsPort2 != null" >
+        push_sms_port2 = #{record.pushSmsPort2,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushSmsAddr != null" >
+        push_sms_addr = #{record.pushSmsAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pushSmsRetryMax != null" >
+        push_sms_retry_max = #{record.pushSmsRetryMax,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushCallLevel != null" >
+        push_call_level = #{record.pushCallLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushCallAddr != null" >
+        push_call_addr = #{record.pushCallAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pushCallRetryMax != null" >
+        push_call_retry_max = #{record.pushCallRetryMax,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushMailLevel != null" >
+        push_mail_level = #{record.pushMailLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushMailAddr != null" >
+        push_mail_addr = #{record.pushMailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pushMailRetryMax != null" >
+        push_mail_retry_max = #{record.pushMailRetryMax,jdbcType=INTEGER},
+      </if>
+      <if test="record.mailRelayEnable != null" >
+        mail_relay_enable = #{record.mailRelayEnable,jdbcType=INTEGER},
+      </if>
+      <if test="record.smtpServer != null" >
+        smtp_server = #{record.smtpServer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smtpPort != null" >
+        smtp_port = #{record.smtpPort,jdbcType=INTEGER},
+      </if>
+      <if test="record.startTls != null" >
+        start_tls = #{record.startTls,jdbcType=INTEGER},
+      </if>
+      <if test="record.smtpUserName != null" >
+        smtp_user_name = #{record.smtpUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smtpPassWord != null" >
+        smtp_pass_word = #{record.smtpPassWord,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mailFrom != null" >
+        mail_from = #{record.mailFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pushNeUuid != null" >
+        push_ne_uuid = #{record.pushNeUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmShortPeriod != null" >
+        alarm_short_period = #{record.alarmShortPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmLongPeriod != null" >
+        alarm_long_period = #{record.alarmLongPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.statusShortPeriod != null" >
+        status_short_period = #{record.statusShortPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.statusLongPeriod != null" >
+        status_long_period = #{record.statusLongPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.staticsPeriod != null" >
+        statics_period = #{record.staticsPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.nodeGrpUuid != null" >
+        node_grp_uuid = #{record.nodeGrpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.expireTime != null" >
+        expire_time = #{record.expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.clearStatsFlag != null" >
+        clear_stats_flag = #{record.clearStatsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.offlineCleanFlag != null" >
+        offline_clean_flag = #{record.offlineCleanFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.antiCallScanEnable != null" >
+        anti_call_scan_enable = #{record.antiCallScanEnable,jdbcType=INTEGER},
+      </if>
+      <if test="record.shortCallParam != null" >
+        short_call_param = #{record.shortCallParam,jdbcType=INTEGER},
+      </if>
+      <if test="record.longCallParam1 != null" >
+        long_call_param1 = #{record.longCallParam1,jdbcType=INTEGER},
+      </if>
+      <if test="record.longCallParam2 != null" >
+        long_call_param2 = #{record.longCallParam2,jdbcType=INTEGER},
+      </if>
+      <if test="record.longCallParam3 != null" >
+        long_call_param3 = #{record.longCallParam3,jdbcType=INTEGER},
+      </if>
+      <if test="record.numberExpireTime != null" >
+        number_expire_time = #{record.numberExpireTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.callerGrayFlag != null" >
+        caller_gray_flag = #{record.callerGrayFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.calleeGrayFlag != null" >
+        callee_gray_flag = #{record.calleeGrayFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.ipGrayFlag != null" >
+        ip_gray_flag = #{record.ipGrayFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.dynamicStaticsEnable != null" >
+        dynamic_statics_enable = #{record.dynamicStaticsEnable,jdbcType=INTEGER},
+      </if>
+      <if test="record.blackInfectFlag != null" >
+        black_infect_flag = #{record.blackInfectFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.numberValidLen != null" >
+        number_valid_len = #{record.numberValidLen,jdbcType=INTEGER},
+      </if>
+      <if test="record.failCallWeight != null" >
+        fail_call_weight = #{record.failCallWeight,jdbcType=INTEGER},
+      </if>
+      <if test="record.dynamicCallerEnable != null" >
+        dynamic_caller_enable = #{record.dynamicCallerEnable,jdbcType=INTEGER},
+      </if>
+      <if test="record.level != null" >
+        level = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.localTimeZone != null" >
+        local_time_zone = #{record.localTimeZone,jdbcType=INTEGER},
+      </if>
+      <if test="record.dcSwitch != null" >
+        dc_switch = #{record.dcSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="record.asrThreshold != null" >
+        asr_threshold = #{record.asrThreshold,jdbcType=INTEGER},
+      </if>
+      <if test="record.capsThreshold != null" >
+        caps_threshold = #{record.capsThreshold,jdbcType=INTEGER},
+      </if>
+      <if test="record.callSwitch != null" >
+        call_switch = #{record.callSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmApiSwitch != null" >
+        alarm_api_switch = #{record.alarmApiSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmApiHost != null" >
+        alarm_api_host = #{record.alarmApiHost,jdbcType=CHAR},
+      </if>
+      <if test="record.alarmApiPort != null" >
+        alarm_api_port = #{record.alarmApiPort,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmApiPath != null" >
+        alarm_api_path = #{record.alarmApiPath,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_domain
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=CHAR},
+      alias = #{record.alias,jdbcType=CHAR},
+      admin_user_uuid = #{record.adminUserUuid,jdbcType=INTEGER},
+      cloud_uuid = #{record.cloudUuid,jdbcType=INTEGER},
+      auth_sys_uuid = #{record.authSysUuid,jdbcType=INTEGER},
+      sys_uuid = #{record.sysUuid,jdbcType=INTEGER},
+      proc_uuid = #{record.procUuid,jdbcType=INTEGER},
+      vendor_id = #{record.vendorId,jdbcType=INTEGER},
+      product_id = #{record.productId,jdbcType=INTEGER},
+      admin_status = #{record.adminStatus,jdbcType=INTEGER},
+      opr_status = #{record.oprStatus,jdbcType=INTEGER},
+      run_status = #{record.runStatus,jdbcType=INTEGER},
+      action_status = #{record.actionStatus,jdbcType=INTEGER},
+      action_result = #{record.actionResult,jdbcType=INTEGER},
+      alm_status_bits = #{record.almStatusBits,jdbcType=INTEGER},
+      paid_card_uuid = #{record.paidCardUuid,jdbcType=INTEGER},
+      paid_card_type = #{record.paidCardType,jdbcType=INTEGER},
+      paid_card_price = #{record.paidCardPrice,jdbcType=INTEGER},
+      trial_balance = #{record.trialBalance,jdbcType=REAL},
+      premium_balance = #{record.premiumBalance,jdbcType=REAL},
+      lic_new_sign_type = #{record.licNewSignType,jdbcType=INTEGER},
+      lic_new_sim_num = #{record.licNewSimNum,jdbcType=INTEGER},
+      lic_new_hbm_flag = #{record.licNewHbmFlag,jdbcType=INTEGER},
+      lic_renew_days = #{record.licRenewDays,jdbcType=INTEGER},
+      lic_first_cost = #{record.licFirstCost,jdbcType=INTEGER},
+      lic_period_cost = #{record.licPeriodCost,jdbcType=INTEGER},
+      lic_extra_balance = #{record.licExtraBalance,jdbcType=REAL},
+      idle_time = #{record.idleTime,jdbcType=INTEGER},
+      spec_cloud_uuid = #{record.specCloudUuid,jdbcType=INTEGER},
+      spec_sys_uuid = #{record.specSysUuid,jdbcType=INTEGER},
+      sys_locked_flag = #{record.sysLockedFlag,jdbcType=INTEGER},
+      node_encrypt_flag = #{record.nodeEncryptFlag,jdbcType=INTEGER},
+      dev_time_flag = #{record.devTimeFlag,jdbcType=INTEGER},
+      timezone_flag = #{record.timezoneFlag,jdbcType=INTEGER},
+      ntp_server1 = #{record.ntpServer1,jdbcType=CHAR},
+      ntp_server2 = #{record.ntpServer2,jdbcType=CHAR},
+      idle_switch_flag = #{record.idleSwitchFlag,jdbcType=INTEGER},
+      smooth_switch_flag = #{record.smoothSwitchFlag,jdbcType=INTEGER},
+      offline_clean_mode = #{record.offlineCleanMode,jdbcType=INTEGER},
+      switch_timeout = #{record.switchTimeout,jdbcType=INTEGER},
+      scp_timeout_sec = #{record.scpTimeoutSec,jdbcType=INTEGER},
+      scp_ping_channel = #{record.scpPingChannel,jdbcType=INTEGER},
+      hbm_send_retries = #{record.hbmSendRetries,jdbcType=INTEGER},
+      save_sms_fail = #{record.saveSmsFail,jdbcType=INTEGER},
+      save_ussd_fail = #{record.saveUssdFail,jdbcType=INTEGER},
+      save_call_fail = #{record.saveCallFail,jdbcType=INTEGER},
+      port_stats_flag = #{record.portStatsFlag,jdbcType=INTEGER},
+      sim_stats_flag = #{record.simStatsFlag,jdbcType=INTEGER},
+      sms_capacity = #{record.smsCapacity,jdbcType=INTEGER},
+      sms_sending_cnt = #{record.smsSendingCnt,jdbcType=INTEGER},
+      total_ne_count = #{record.totalNeCount,jdbcType=INTEGER},
+      online_ne_count = #{record.onlineNeCount,jdbcType=INTEGER},
+      total_sim_card = #{record.totalSimCard,jdbcType=INTEGER},
+      online_sim_card = #{record.onlineSimCard,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+      detail_desc = #{record.detailDesc,jdbcType=CHAR},
+      push_interval = #{record.pushInterval,jdbcType=INTEGER},
+      push_sms_interval = #{record.pushSmsInterval,jdbcType=INTEGER},
+      push_call_interval = #{record.pushCallInterval,jdbcType=INTEGER},
+      push_mail_interval = #{record.pushMailInterval,jdbcType=INTEGER},
+      push_sms_level = #{record.pushSmsLevel,jdbcType=INTEGER},
+      push_sms_encode = #{record.pushSmsEncode,jdbcType=INTEGER},
+      push_ne_uuid1 = #{record.pushNeUuid1,jdbcType=INTEGER},
+      push_sms_port1 = #{record.pushSmsPort1,jdbcType=INTEGER},
+      push_ne_uuid2 = #{record.pushNeUuid2,jdbcType=INTEGER},
+      push_sms_port2 = #{record.pushSmsPort2,jdbcType=INTEGER},
+      push_sms_addr = #{record.pushSmsAddr,jdbcType=VARCHAR},
+      push_sms_retry_max = #{record.pushSmsRetryMax,jdbcType=INTEGER},
+      push_call_level = #{record.pushCallLevel,jdbcType=INTEGER},
+      push_call_addr = #{record.pushCallAddr,jdbcType=VARCHAR},
+      push_call_retry_max = #{record.pushCallRetryMax,jdbcType=INTEGER},
+      push_mail_level = #{record.pushMailLevel,jdbcType=INTEGER},
+      push_mail_addr = #{record.pushMailAddr,jdbcType=VARCHAR},
+      push_mail_retry_max = #{record.pushMailRetryMax,jdbcType=INTEGER},
+      mail_relay_enable = #{record.mailRelayEnable,jdbcType=INTEGER},
+      smtp_server = #{record.smtpServer,jdbcType=VARCHAR},
+      smtp_port = #{record.smtpPort,jdbcType=INTEGER},
+      start_tls = #{record.startTls,jdbcType=INTEGER},
+      smtp_user_name = #{record.smtpUserName,jdbcType=VARCHAR},
+      smtp_pass_word = #{record.smtpPassWord,jdbcType=VARCHAR},
+      mail_from = #{record.mailFrom,jdbcType=VARCHAR},
+      push_ne_uuid = #{record.pushNeUuid,jdbcType=INTEGER},
+      alarm_short_period = #{record.alarmShortPeriod,jdbcType=INTEGER},
+      alarm_long_period = #{record.alarmLongPeriod,jdbcType=INTEGER},
+      status_short_period = #{record.statusShortPeriod,jdbcType=INTEGER},
+      status_long_period = #{record.statusLongPeriod,jdbcType=INTEGER},
+      statics_period = #{record.staticsPeriod,jdbcType=INTEGER},
+      node_grp_uuid = #{record.nodeGrpUuid,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER},
+      expire_time = #{record.expireTime,jdbcType=TIMESTAMP},
+      clear_stats_flag = #{record.clearStatsFlag,jdbcType=INTEGER},
+      offline_clean_flag = #{record.offlineCleanFlag,jdbcType=INTEGER},
+      anti_call_scan_enable = #{record.antiCallScanEnable,jdbcType=INTEGER},
+      short_call_param = #{record.shortCallParam,jdbcType=INTEGER},
+      long_call_param1 = #{record.longCallParam1,jdbcType=INTEGER},
+      long_call_param2 = #{record.longCallParam2,jdbcType=INTEGER},
+      long_call_param3 = #{record.longCallParam3,jdbcType=INTEGER},
+      number_expire_time = #{record.numberExpireTime,jdbcType=INTEGER},
+      caller_gray_flag = #{record.callerGrayFlag,jdbcType=INTEGER},
+      callee_gray_flag = #{record.calleeGrayFlag,jdbcType=INTEGER},
+      ip_gray_flag = #{record.ipGrayFlag,jdbcType=INTEGER},
+      dynamic_statics_enable = #{record.dynamicStaticsEnable,jdbcType=INTEGER},
+      black_infect_flag = #{record.blackInfectFlag,jdbcType=INTEGER},
+      number_valid_len = #{record.numberValidLen,jdbcType=INTEGER},
+      fail_call_weight = #{record.failCallWeight,jdbcType=INTEGER},
+      dynamic_caller_enable = #{record.dynamicCallerEnable,jdbcType=INTEGER},
+      level = #{record.level,jdbcType=INTEGER},
+      local_time_zone = #{record.localTimeZone,jdbcType=INTEGER},
+      dc_switch = #{record.dcSwitch,jdbcType=INTEGER},
+      asr_threshold = #{record.asrThreshold,jdbcType=INTEGER},
+      caps_threshold = #{record.capsThreshold,jdbcType=INTEGER},
+      call_switch = #{record.callSwitch,jdbcType=INTEGER},
+      alarm_api_switch = #{record.alarmApiSwitch,jdbcType=INTEGER},
+      alarm_api_host = #{record.alarmApiHost,jdbcType=CHAR},
+      alarm_api_port = #{record.alarmApiPort,jdbcType=INTEGER},
+      alarm_api_path = #{record.alarmApiPath,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblDomain" >
+    update tbl_domain
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=CHAR},
+      </if>
+      <if test="adminUserUuid != null" >
+        admin_user_uuid = #{adminUserUuid,jdbcType=INTEGER},
+      </if>
+      <if test="cloudUuid != null" >
+        cloud_uuid = #{cloudUuid,jdbcType=INTEGER},
+      </if>
+      <if test="authSysUuid != null" >
+        auth_sys_uuid = #{authSysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="sysUuid != null" >
+        sys_uuid = #{sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="procUuid != null" >
+        proc_uuid = #{procUuid,jdbcType=INTEGER},
+      </if>
+      <if test="vendorId != null" >
+        vendor_id = #{vendorId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="adminStatus != null" >
+        admin_status = #{adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oprStatus != null" >
+        opr_status = #{oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="runStatus != null" >
+        run_status = #{runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionStatus != null" >
+        action_status = #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        action_result = #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="almStatusBits != null" >
+        alm_status_bits = #{almStatusBits,jdbcType=INTEGER},
+      </if>
+      <if test="paidCardUuid != null" >
+        paid_card_uuid = #{paidCardUuid,jdbcType=INTEGER},
+      </if>
+      <if test="paidCardType != null" >
+        paid_card_type = #{paidCardType,jdbcType=INTEGER},
+      </if>
+      <if test="paidCardPrice != null" >
+        paid_card_price = #{paidCardPrice,jdbcType=INTEGER},
+      </if>
+      <if test="trialBalance != null" >
+        trial_balance = #{trialBalance,jdbcType=REAL},
+      </if>
+      <if test="premiumBalance != null" >
+        premium_balance = #{premiumBalance,jdbcType=REAL},
+      </if>
+      <if test="licNewSignType != null" >
+        lic_new_sign_type = #{licNewSignType,jdbcType=INTEGER},
+      </if>
+      <if test="licNewSimNum != null" >
+        lic_new_sim_num = #{licNewSimNum,jdbcType=INTEGER},
+      </if>
+      <if test="licNewHbmFlag != null" >
+        lic_new_hbm_flag = #{licNewHbmFlag,jdbcType=INTEGER},
+      </if>
+      <if test="licRenewDays != null" >
+        lic_renew_days = #{licRenewDays,jdbcType=INTEGER},
+      </if>
+      <if test="licFirstCost != null" >
+        lic_first_cost = #{licFirstCost,jdbcType=INTEGER},
+      </if>
+      <if test="licPeriodCost != null" >
+        lic_period_cost = #{licPeriodCost,jdbcType=INTEGER},
+      </if>
+      <if test="licExtraBalance != null" >
+        lic_extra_balance = #{licExtraBalance,jdbcType=REAL},
+      </if>
+      <if test="idleTime != null" >
+        idle_time = #{idleTime,jdbcType=INTEGER},
+      </if>
+      <if test="specCloudUuid != null" >
+        spec_cloud_uuid = #{specCloudUuid,jdbcType=INTEGER},
+      </if>
+      <if test="specSysUuid != null" >
+        spec_sys_uuid = #{specSysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="sysLockedFlag != null" >
+        sys_locked_flag = #{sysLockedFlag,jdbcType=INTEGER},
+      </if>
+      <if test="nodeEncryptFlag != null" >
+        node_encrypt_flag = #{nodeEncryptFlag,jdbcType=INTEGER},
+      </if>
+      <if test="devTimeFlag != null" >
+        dev_time_flag = #{devTimeFlag,jdbcType=INTEGER},
+      </if>
+      <if test="timezoneFlag != null" >
+        timezone_flag = #{timezoneFlag,jdbcType=INTEGER},
+      </if>
+      <if test="ntpServer1 != null" >
+        ntp_server1 = #{ntpServer1,jdbcType=CHAR},
+      </if>
+      <if test="ntpServer2 != null" >
+        ntp_server2 = #{ntpServer2,jdbcType=CHAR},
+      </if>
+      <if test="idleSwitchFlag != null" >
+        idle_switch_flag = #{idleSwitchFlag,jdbcType=INTEGER},
+      </if>
+      <if test="smoothSwitchFlag != null" >
+        smooth_switch_flag = #{smoothSwitchFlag,jdbcType=INTEGER},
+      </if>
+      <if test="offlineCleanMode != null" >
+        offline_clean_mode = #{offlineCleanMode,jdbcType=INTEGER},
+      </if>
+      <if test="switchTimeout != null" >
+        switch_timeout = #{switchTimeout,jdbcType=INTEGER},
+      </if>
+      <if test="scpTimeoutSec != null" >
+        scp_timeout_sec = #{scpTimeoutSec,jdbcType=INTEGER},
+      </if>
+      <if test="scpPingChannel != null" >
+        scp_ping_channel = #{scpPingChannel,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSendRetries != null" >
+        hbm_send_retries = #{hbmSendRetries,jdbcType=INTEGER},
+      </if>
+      <if test="saveSmsFail != null" >
+        save_sms_fail = #{saveSmsFail,jdbcType=INTEGER},
+      </if>
+      <if test="saveUssdFail != null" >
+        save_ussd_fail = #{saveUssdFail,jdbcType=INTEGER},
+      </if>
+      <if test="saveCallFail != null" >
+        save_call_fail = #{saveCallFail,jdbcType=INTEGER},
+      </if>
+      <if test="portStatsFlag != null" >
+        port_stats_flag = #{portStatsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="simStatsFlag != null" >
+        sim_stats_flag = #{simStatsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="smsCapacity != null" >
+        sms_capacity = #{smsCapacity,jdbcType=INTEGER},
+      </if>
+      <if test="smsSendingCnt != null" >
+        sms_sending_cnt = #{smsSendingCnt,jdbcType=INTEGER},
+      </if>
+      <if test="totalNeCount != null" >
+        total_ne_count = #{totalNeCount,jdbcType=INTEGER},
+      </if>
+      <if test="onlineNeCount != null" >
+        online_ne_count = #{onlineNeCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalSimCard != null" >
+        total_sim_card = #{totalSimCard,jdbcType=INTEGER},
+      </if>
+      <if test="onlineSimCard != null" >
+        online_sim_card = #{onlineSimCard,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc = #{detailDesc,jdbcType=CHAR},
+      </if>
+      <if test="pushInterval != null" >
+        push_interval = #{pushInterval,jdbcType=INTEGER},
+      </if>
+      <if test="pushSmsInterval != null" >
+        push_sms_interval = #{pushSmsInterval,jdbcType=INTEGER},
+      </if>
+      <if test="pushCallInterval != null" >
+        push_call_interval = #{pushCallInterval,jdbcType=INTEGER},
+      </if>
+      <if test="pushMailInterval != null" >
+        push_mail_interval = #{pushMailInterval,jdbcType=INTEGER},
+      </if>
+      <if test="pushSmsLevel != null" >
+        push_sms_level = #{pushSmsLevel,jdbcType=INTEGER},
+      </if>
+      <if test="pushSmsEncode != null" >
+        push_sms_encode = #{pushSmsEncode,jdbcType=INTEGER},
+      </if>
+      <if test="pushNeUuid1 != null" >
+        push_ne_uuid1 = #{pushNeUuid1,jdbcType=INTEGER},
+      </if>
+      <if test="pushSmsPort1 != null" >
+        push_sms_port1 = #{pushSmsPort1,jdbcType=INTEGER},
+      </if>
+      <if test="pushNeUuid2 != null" >
+        push_ne_uuid2 = #{pushNeUuid2,jdbcType=INTEGER},
+      </if>
+      <if test="pushSmsPort2 != null" >
+        push_sms_port2 = #{pushSmsPort2,jdbcType=INTEGER},
+      </if>
+      <if test="pushSmsAddr != null" >
+        push_sms_addr = #{pushSmsAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="pushSmsRetryMax != null" >
+        push_sms_retry_max = #{pushSmsRetryMax,jdbcType=INTEGER},
+      </if>
+      <if test="pushCallLevel != null" >
+        push_call_level = #{pushCallLevel,jdbcType=INTEGER},
+      </if>
+      <if test="pushCallAddr != null" >
+        push_call_addr = #{pushCallAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="pushCallRetryMax != null" >
+        push_call_retry_max = #{pushCallRetryMax,jdbcType=INTEGER},
+      </if>
+      <if test="pushMailLevel != null" >
+        push_mail_level = #{pushMailLevel,jdbcType=INTEGER},
+      </if>
+      <if test="pushMailAddr != null" >
+        push_mail_addr = #{pushMailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="pushMailRetryMax != null" >
+        push_mail_retry_max = #{pushMailRetryMax,jdbcType=INTEGER},
+      </if>
+      <if test="mailRelayEnable != null" >
+        mail_relay_enable = #{mailRelayEnable,jdbcType=INTEGER},
+      </if>
+      <if test="smtpServer != null" >
+        smtp_server = #{smtpServer,jdbcType=VARCHAR},
+      </if>
+      <if test="smtpPort != null" >
+        smtp_port = #{smtpPort,jdbcType=INTEGER},
+      </if>
+      <if test="startTls != null" >
+        start_tls = #{startTls,jdbcType=INTEGER},
+      </if>
+      <if test="smtpUserName != null" >
+        smtp_user_name = #{smtpUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="smtpPassWord != null" >
+        smtp_pass_word = #{smtpPassWord,jdbcType=VARCHAR},
+      </if>
+      <if test="mailFrom != null" >
+        mail_from = #{mailFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="pushNeUuid != null" >
+        push_ne_uuid = #{pushNeUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alarmShortPeriod != null" >
+        alarm_short_period = #{alarmShortPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="alarmLongPeriod != null" >
+        alarm_long_period = #{alarmLongPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="statusShortPeriod != null" >
+        status_short_period = #{statusShortPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="statusLongPeriod != null" >
+        status_long_period = #{statusLongPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="staticsPeriod != null" >
+        statics_period = #{staticsPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="nodeGrpUuid != null" >
+        node_grp_uuid = #{nodeGrpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="expireTime != null" >
+        expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clearStatsFlag != null" >
+        clear_stats_flag = #{clearStatsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="offlineCleanFlag != null" >
+        offline_clean_flag = #{offlineCleanFlag,jdbcType=INTEGER},
+      </if>
+      <if test="antiCallScanEnable != null" >
+        anti_call_scan_enable = #{antiCallScanEnable,jdbcType=INTEGER},
+      </if>
+      <if test="shortCallParam != null" >
+        short_call_param = #{shortCallParam,jdbcType=INTEGER},
+      </if>
+      <if test="longCallParam1 != null" >
+        long_call_param1 = #{longCallParam1,jdbcType=INTEGER},
+      </if>
+      <if test="longCallParam2 != null" >
+        long_call_param2 = #{longCallParam2,jdbcType=INTEGER},
+      </if>
+      <if test="longCallParam3 != null" >
+        long_call_param3 = #{longCallParam3,jdbcType=INTEGER},
+      </if>
+      <if test="numberExpireTime != null" >
+        number_expire_time = #{numberExpireTime,jdbcType=INTEGER},
+      </if>
+      <if test="callerGrayFlag != null" >
+        caller_gray_flag = #{callerGrayFlag,jdbcType=INTEGER},
+      </if>
+      <if test="calleeGrayFlag != null" >
+        callee_gray_flag = #{calleeGrayFlag,jdbcType=INTEGER},
+      </if>
+      <if test="ipGrayFlag != null" >
+        ip_gray_flag = #{ipGrayFlag,jdbcType=INTEGER},
+      </if>
+      <if test="dynamicStaticsEnable != null" >
+        dynamic_statics_enable = #{dynamicStaticsEnable,jdbcType=INTEGER},
+      </if>
+      <if test="blackInfectFlag != null" >
+        black_infect_flag = #{blackInfectFlag,jdbcType=INTEGER},
+      </if>
+      <if test="numberValidLen != null" >
+        number_valid_len = #{numberValidLen,jdbcType=INTEGER},
+      </if>
+      <if test="failCallWeight != null" >
+        fail_call_weight = #{failCallWeight,jdbcType=INTEGER},
+      </if>
+      <if test="dynamicCallerEnable != null" >
+        dynamic_caller_enable = #{dynamicCallerEnable,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="localTimeZone != null" >
+        local_time_zone = #{localTimeZone,jdbcType=INTEGER},
+      </if>
+      <if test="dcSwitch != null" >
+        dc_switch = #{dcSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="asrThreshold != null" >
+        asr_threshold = #{asrThreshold,jdbcType=INTEGER},
+      </if>
+      <if test="capsThreshold != null" >
+        caps_threshold = #{capsThreshold,jdbcType=INTEGER},
+      </if>
+      <if test="callSwitch != null" >
+        call_switch = #{callSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="alarmApiSwitch != null" >
+        alarm_api_switch = #{alarmApiSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="alarmApiHost != null" >
+        alarm_api_host = #{alarmApiHost,jdbcType=CHAR},
+      </if>
+      <if test="alarmApiPort != null" >
+        alarm_api_port = #{alarmApiPort,jdbcType=INTEGER},
+      </if>
+      <if test="alarmApiPath != null" >
+        alarm_api_path = #{alarmApiPath,jdbcType=CHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblDomain" >
+    update tbl_domain
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      name = #{name,jdbcType=CHAR},
+      alias = #{alias,jdbcType=CHAR},
+      admin_user_uuid = #{adminUserUuid,jdbcType=INTEGER},
+      cloud_uuid = #{cloudUuid,jdbcType=INTEGER},
+      auth_sys_uuid = #{authSysUuid,jdbcType=INTEGER},
+      sys_uuid = #{sysUuid,jdbcType=INTEGER},
+      proc_uuid = #{procUuid,jdbcType=INTEGER},
+      vendor_id = #{vendorId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      admin_status = #{adminStatus,jdbcType=INTEGER},
+      opr_status = #{oprStatus,jdbcType=INTEGER},
+      run_status = #{runStatus,jdbcType=INTEGER},
+      action_status = #{actionStatus,jdbcType=INTEGER},
+      action_result = #{actionResult,jdbcType=INTEGER},
+      alm_status_bits = #{almStatusBits,jdbcType=INTEGER},
+      paid_card_uuid = #{paidCardUuid,jdbcType=INTEGER},
+      paid_card_type = #{paidCardType,jdbcType=INTEGER},
+      paid_card_price = #{paidCardPrice,jdbcType=INTEGER},
+      trial_balance = #{trialBalance,jdbcType=REAL},
+      premium_balance = #{premiumBalance,jdbcType=REAL},
+      lic_new_sign_type = #{licNewSignType,jdbcType=INTEGER},
+      lic_new_sim_num = #{licNewSimNum,jdbcType=INTEGER},
+      lic_new_hbm_flag = #{licNewHbmFlag,jdbcType=INTEGER},
+      lic_renew_days = #{licRenewDays,jdbcType=INTEGER},
+      lic_first_cost = #{licFirstCost,jdbcType=INTEGER},
+      lic_period_cost = #{licPeriodCost,jdbcType=INTEGER},
+      lic_extra_balance = #{licExtraBalance,jdbcType=REAL},
+      idle_time = #{idleTime,jdbcType=INTEGER},
+      spec_cloud_uuid = #{specCloudUuid,jdbcType=INTEGER},
+      spec_sys_uuid = #{specSysUuid,jdbcType=INTEGER},
+      sys_locked_flag = #{sysLockedFlag,jdbcType=INTEGER},
+      node_encrypt_flag = #{nodeEncryptFlag,jdbcType=INTEGER},
+      dev_time_flag = #{devTimeFlag,jdbcType=INTEGER},
+      timezone_flag = #{timezoneFlag,jdbcType=INTEGER},
+      ntp_server1 = #{ntpServer1,jdbcType=CHAR},
+      ntp_server2 = #{ntpServer2,jdbcType=CHAR},
+      idle_switch_flag = #{idleSwitchFlag,jdbcType=INTEGER},
+      smooth_switch_flag = #{smoothSwitchFlag,jdbcType=INTEGER},
+      offline_clean_mode = #{offlineCleanMode,jdbcType=INTEGER},
+      switch_timeout = #{switchTimeout,jdbcType=INTEGER},
+      scp_timeout_sec = #{scpTimeoutSec,jdbcType=INTEGER},
+      scp_ping_channel = #{scpPingChannel,jdbcType=INTEGER},
+      hbm_send_retries = #{hbmSendRetries,jdbcType=INTEGER},
+      save_sms_fail = #{saveSmsFail,jdbcType=INTEGER},
+      save_ussd_fail = #{saveUssdFail,jdbcType=INTEGER},
+      save_call_fail = #{saveCallFail,jdbcType=INTEGER},
+      port_stats_flag = #{portStatsFlag,jdbcType=INTEGER},
+      sim_stats_flag = #{simStatsFlag,jdbcType=INTEGER},
+      sms_capacity = #{smsCapacity,jdbcType=INTEGER},
+      sms_sending_cnt = #{smsSendingCnt,jdbcType=INTEGER},
+      total_ne_count = #{totalNeCount,jdbcType=INTEGER},
+      online_ne_count = #{onlineNeCount,jdbcType=INTEGER},
+      total_sim_card = #{totalSimCard,jdbcType=INTEGER},
+      online_sim_card = #{onlineSimCard,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      detail_desc = #{detailDesc,jdbcType=CHAR},
+      push_interval = #{pushInterval,jdbcType=INTEGER},
+      push_sms_interval = #{pushSmsInterval,jdbcType=INTEGER},
+      push_call_interval = #{pushCallInterval,jdbcType=INTEGER},
+      push_mail_interval = #{pushMailInterval,jdbcType=INTEGER},
+      push_sms_level = #{pushSmsLevel,jdbcType=INTEGER},
+      push_sms_encode = #{pushSmsEncode,jdbcType=INTEGER},
+      push_ne_uuid1 = #{pushNeUuid1,jdbcType=INTEGER},
+      push_sms_port1 = #{pushSmsPort1,jdbcType=INTEGER},
+      push_ne_uuid2 = #{pushNeUuid2,jdbcType=INTEGER},
+      push_sms_port2 = #{pushSmsPort2,jdbcType=INTEGER},
+      push_sms_addr = #{pushSmsAddr,jdbcType=VARCHAR},
+      push_sms_retry_max = #{pushSmsRetryMax,jdbcType=INTEGER},
+      push_call_level = #{pushCallLevel,jdbcType=INTEGER},
+      push_call_addr = #{pushCallAddr,jdbcType=VARCHAR},
+      push_call_retry_max = #{pushCallRetryMax,jdbcType=INTEGER},
+      push_mail_level = #{pushMailLevel,jdbcType=INTEGER},
+      push_mail_addr = #{pushMailAddr,jdbcType=VARCHAR},
+      push_mail_retry_max = #{pushMailRetryMax,jdbcType=INTEGER},
+      mail_relay_enable = #{mailRelayEnable,jdbcType=INTEGER},
+      smtp_server = #{smtpServer,jdbcType=VARCHAR},
+      smtp_port = #{smtpPort,jdbcType=INTEGER},
+      start_tls = #{startTls,jdbcType=INTEGER},
+      smtp_user_name = #{smtpUserName,jdbcType=VARCHAR},
+      smtp_pass_word = #{smtpPassWord,jdbcType=VARCHAR},
+      mail_from = #{mailFrom,jdbcType=VARCHAR},
+      push_ne_uuid = #{pushNeUuid,jdbcType=INTEGER},
+      alarm_short_period = #{alarmShortPeriod,jdbcType=INTEGER},
+      alarm_long_period = #{alarmLongPeriod,jdbcType=INTEGER},
+      status_short_period = #{statusShortPeriod,jdbcType=INTEGER},
+      status_long_period = #{statusLongPeriod,jdbcType=INTEGER},
+      statics_period = #{staticsPeriod,jdbcType=INTEGER},
+      node_grp_uuid = #{nodeGrpUuid,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      clear_stats_flag = #{clearStatsFlag,jdbcType=INTEGER},
+      offline_clean_flag = #{offlineCleanFlag,jdbcType=INTEGER},
+      anti_call_scan_enable = #{antiCallScanEnable,jdbcType=INTEGER},
+      short_call_param = #{shortCallParam,jdbcType=INTEGER},
+      long_call_param1 = #{longCallParam1,jdbcType=INTEGER},
+      long_call_param2 = #{longCallParam2,jdbcType=INTEGER},
+      long_call_param3 = #{longCallParam3,jdbcType=INTEGER},
+      number_expire_time = #{numberExpireTime,jdbcType=INTEGER},
+      caller_gray_flag = #{callerGrayFlag,jdbcType=INTEGER},
+      callee_gray_flag = #{calleeGrayFlag,jdbcType=INTEGER},
+      ip_gray_flag = #{ipGrayFlag,jdbcType=INTEGER},
+      dynamic_statics_enable = #{dynamicStaticsEnable,jdbcType=INTEGER},
+      black_infect_flag = #{blackInfectFlag,jdbcType=INTEGER},
+      number_valid_len = #{numberValidLen,jdbcType=INTEGER},
+      fail_call_weight = #{failCallWeight,jdbcType=INTEGER},
+      dynamic_caller_enable = #{dynamicCallerEnable,jdbcType=INTEGER},
+      level = #{level,jdbcType=INTEGER},
+      local_time_zone = #{localTimeZone,jdbcType=INTEGER},
+      dc_switch = #{dcSwitch,jdbcType=INTEGER},
+      asr_threshold = #{asrThreshold,jdbcType=INTEGER},
+      caps_threshold = #{capsThreshold,jdbcType=INTEGER},
+      call_switch = #{callSwitch,jdbcType=INTEGER},
+      alarm_api_switch = #{alarmApiSwitch,jdbcType=INTEGER},
+      alarm_api_host = #{alarmApiHost,jdbcType=CHAR},
+      alarm_api_port = #{alarmApiPort,jdbcType=INTEGER},
+      alarm_api_path = #{alarmApiPath,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

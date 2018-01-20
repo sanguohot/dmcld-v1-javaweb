@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- tree mapper
+ #{domainUuid,mode=IN,jdbcType=INTEGER},#{userType,mode=IN,jdbcType=INTEGER},#{userUuid,mode=IN,jdbcType=INTEGER}
+  -->
+<mapper namespace="com.dinstar.sim.mapper.Dm">
+	<resultMap type="com.dinstar.sim.model.DmCalcCall" id="baseResultMap">
+		<result column="total_call_count" property="totalCallCount" jdbcType="BIGINT"/>
+		<result column="total_call_min" property="totalCallMin" jdbcType="BIGINT"/>
+		<result column="total_succ_count" property="totalSuccCount" jdbcType="BIGINT"/>
+		<result column="cur_call_count" property="curCallCount" jdbcType="BIGINT"/>
+		<result column="rise_call_cnt" property="riseCallCnt" jdbcType="BIGINT"/>
+		<result column="rise_call_time" property="riseCallTime" jdbcType="BIGINT"/>
+		<result column="total_call_time" property="totalCallTime" jdbcType="BIGINT"/>
+		<result column="total_call_fail_cnt" property="totalCallFailCnt" jdbcType="BIGINT"/>
+		<result column="rise_call_fail_cnt" property="riseCallFailCnt" jdbcType="BIGINT"/>
+		<result column="domain_uuid" property="domainUuid" jdbcType="BIGINT"/>
+		<result column="acd" property="acd" jdbcType="BIGINT"/>
+       <result column="asr" property="asr" jdbcType="BIGINT"/>
+       <result column="caps_in" property="capsIn" jdbcType="BIGINT" />
+    	<result column="caps_out" property="capsOut" jdbcType="BIGINT" />
+    	    <result column="cur_pstn" property="curPstn" jdbcType="BIGINT" />
+    <result column="cur_sip" property="curSip" jdbcType="BIGINT" />
+       <result column="generate_time" property="generateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+  
+ 	<resultMap type="com.dinstar.sim.model.DmDistributionCalc" id="distributionCalcMap">
+ 		<result column="domain_uuid" property="domainUuid" jdbcType="INTEGER"/>
+		<result column="int_type" property="intType" jdbcType="INTEGER"/>
+		<result column="str_type" property="strType" jdbcType="INTEGER"/>
+		<result column="cnt" property="cnt" jdbcType="INTEGER"/>
+		<result column="domain_uuid" property="domainUuid" jdbcType="INTEGER"/>
+    </resultMap>
+    
+  <resultMap type="com.dinstar.sim.model.TblNe" id="neMap">
+	    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER"/>
+	    <result column="product_id" property="productId" jdbcType="INTEGER"/>
+	    <result column="product_name" property="productName" jdbcType="CHAR" />
+	    <result column="total_count" property="totalCount" jdbcType="INTEGER" />
+	    <result column="port_type1" property="portType1" jdbcType="INTEGER" />
+	    <result column="port_count1" property="portCount1" jdbcType="INTEGER" />
+	    <result column="port_type2" property="portType2" jdbcType="INTEGER" />
+	    <result column="port_count2" property="portCount2" jdbcType="INTEGER" />
+	    <result column="port_type3" property="portType3" jdbcType="INTEGER" />
+	    <result column="port_count3" property="portCount3" jdbcType="INTEGER" />
+	    <result column="port_type4" property="portType4" jdbcType="INTEGER" />
+	    <result column="port_count4" property="portCount4" jdbcType="INTEGER" />
+	    <result column="port_type5" property="portType5" jdbcType="INTEGER" />
+	    <result column="port_count5" property="portCount5" jdbcType="INTEGER" />
+	    <result column="port_type6" property="portType6" jdbcType="INTEGER" />
+	    <result column="port_count6" property="portCount6" jdbcType="INTEGER" />
+	    <result column="port_type7" property="portType7" jdbcType="INTEGER" />
+	    <result column="port_count7" property="portCount7" jdbcType="INTEGER" />
+	    <result column="port_type8" property="portType8" jdbcType="INTEGER" />
+	    <result column="port_count8" property="portCount8" jdbcType="INTEGER" />
+    </resultMap>    
+     
+  	<resultMap type="com.dinstar.sim.model.DmPerCalc" id="perCalcMap">
+	   <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER"/>
+	   <result column="generate_time" property="generateTime" jdbcType="TIMESTAMP" />		
+	   <result column="send_pkt_cnt" property="sendPktCnt" jdbcType="INTEGER"/>
+	   <result column="send_loss_cnt" property="sendLossCnt" jdbcType="INTEGER"/>
+	   <result column="send_loss_rate" property="sendLossRate" jdbcType="INTEGER"/>
+	   <result column="recv_pkt_cnt" property="recvPktCnt" jdbcType="INTEGER"/>
+       <result column="recv_loss_cnt" property="recvLossCnt" jdbcType="INTEGER"/>
+ 	   <result column="recv_loss_rate" property="recvLossRate" jdbcType="INTEGER"/>
+	   <result column="total_pkt_cnt" property="totalPktCnt" jdbcType="INTEGER"/>
+	   <result column="total_loss_cnt" property="totalLossCnt" jdbcType="INTEGER"/>
+	   <result column="total_loss_rate" property="totalLossRate" jdbcType="INTEGER"/>
+	   <result column="recv_timeout_cnt" property="recvTimeoutCnt" jdbcType="INTEGER"/>
+       <result column="recv_timeout_rate" property="recvTimeoutRate" jdbcType="INTEGER"/>
+	   <result column="send_timeout_cnt" property="sendTimeoutCnt" jdbcType="INTEGER"/>
+	   <result column="send_timeout_rate" property="sendTimeoutRate" jdbcType="INTEGER"/>
+	   <result column="total_timeout_cnt" property="totalTimeoutCnt" jdbcType="INTEGER"/>
+	   <result column="total_timeout_rate" property="totalTimeoutRate" jdbcType="INTEGER"/>
+	   <result column="mem_alloc_fail_count" property="memAllocFailCount" jdbcType="INTEGER"/>
+       <result column="flash_rd_fail_count" property="flashRdFailCount" jdbcType="INTEGER"/>
+       <result column="flash_wt_fail_count" property="flashWtFailCount" jdbcType="INTEGER"/> 
+       <result column="flash_fail_count" property="flashFailCount" jdbcType="INTEGER"/>
+       
+ 	   <result column="avg_cpu_5" property="avgCpu5" jdbcType="INTEGER"/>
+	   <result column="avg_cpu_60" property="avgCpu60" jdbcType="INTEGER"/>
+       <result column="avg_cpu_600" property="avgCpu600" jdbcType="INTEGER"/>
+	   <result column="mem_aos_usage" property="memAosUsage" jdbcType="INTEGER"/>
+	   <result column="mem_linux_usage" property="memLinuxUsage" jdbcType="INTEGER"/>
+	   <result column="store_usage" property="storeUsage" jdbcType="INTEGER"/>
+	   <result column="total_dev_cnt" property="totalDevCnt" jdbcType="INTEGER"/>
+	   <result column="nat_mode_na" property="natModeNa" jdbcType="INTEGER"/>
+       <result column="nat_mode_stun" property="natModeStun" jdbcType="INTEGER"/>
+       <result column="nat_mode_upnp" property="natModeUpnp" jdbcType="INTEGER"/> 
+       <result column="nat_mode_static" property="natModeStatic" jdbcType="INTEGER"/>
+       
+ 	   <result column="nat_mode_dynamic" property="natModeDynamic" jdbcType="INTEGER"/>
+	   <result column="nat_mode_disable" property="natModeDisable" jdbcType="INTEGER"/>
+	   <result column="nat_status_na" property="natStatusNa" jdbcType="INTEGER"/>
+       <result column="nat_status_disable" property="natStatusDisable" jdbcType="INTEGER"/>
+       <result column="nat_status_succ" property="natStatusSucc" jdbcType="INTEGER"/> 
+       <result column="nat_status_fail" property="natStatusFail" jdbcType="INTEGER"/>
+       <result column="nat_status_syn" property="natStatusSyn" jdbcType="INTEGER"/>                
+       
+    </resultMap>
+    
+    <select id="getPortCount" resultMap="neMap" parameterType="java.util.HashMap">   
+	    SELECT count(uuid) as total_count,alias,product_id,product_name,
+			port_type1,SUM(port_count1) as port_count1,
+			port_type2,SUM(port_count2) as port_count2,
+			port_type3,SUM(port_count3) as port_count3,
+			port_type4,SUM(port_count4) as port_count4,
+			port_type5,SUM(port_count5) as port_count5,
+			port_type6,SUM(port_count6) as port_count6,
+			port_type7,SUM(port_count7) as port_count7,
+			port_type8,SUM(port_count8) as port_count8
+			FROM tbl_ne n where 1=1
+	    <if test="domainUuid>0" >
+        AND n.domain_uuid=#{domainUuid}
+      </if>
+      <if test="productIdList!=null">
+        and n.product_id in
+      <foreach collection="productIdList" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+      </if>
+      <if test="nol!=null">
+        and n.run_status in
+      <foreach collection="nol" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+      </if>
+      <if test="ol!=null">
+        and n.run_status not in
+      <foreach collection="ol" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+      </if>             
+			GROUP BY ${groupBy}
+  </select>
+    
+	 <select id="getCallList" resultMap="baseResultMap" parameterType="java.util.HashMap">		
+		SELECT FROM_UNIXTIME(FLOOR(UNIX_TIMESTAMP(generate_time)/300)*300) as time_15,n.serial_no,n.domain_uuid,n.generate_time
+		,sum(n.total_call_count) as total_call_count
+		,floor(sum(n.cur_call_count)) as cur_call_count
+		,floor(sum(n.total_call_time/60)) as total_call_min
+		<!--,sum(n.total_call_count-n.total_call_fail_cnt) as total_succ_count-->
+		,sum(n.rise_call_cnt) as rise_call_cnt
+		,sum(n.rise_call_time) as rise_call_time
+		,sum(n.total_call_fail_cnt) as total_call_fail_cnt
+		,sum(n.rise_call_fail_cnt) as rise_call_fail_cnt
+		,sum(n.caps_in) as caps_in
+		,sum(n.caps_out) as caps_out
+		,sum(n.cur_pstn) as cur_pstn
+		,sum(n.cur_sip) as cur_sip
+		<!--,floor(avg(n.rise_acd/60)) as acd-->
+		<!--,floor(avg(n.rise_asr)) as asr-->
+		<!--,floor(sum(n.total_call_count*(n.acd/60))) as total_call_min-->
+		<!--,floor(sum(n.total_call_count*(n.asr/100))) as total_succ_count-->
+		<!--,floor(sum(n.total_call_count*(n.acd/60))/sum(n.total_call_count)) as acd-->
+		<!--,floor(sum(n.total_call_count*(n.asr/100))/sum(n.total_call_count)*100) as asr-->
+		FROM ${table} n
+		WHERE n.rec_status!=2
+		<if test="domainUuid>0" >
+        	AND n.domain_uuid=#{domainUuid}
+      	</if>
+    <if test="neUuidList!=null">
+      and n.ne_uuid in
+      <foreach collection="neUuidList" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+    </if>   	
+		<if test="fromDate!=null and fromDate!=''" >
+			<![CDATA[
+        	and n.generate_time >= #{fromDate}
+        	]]>
+      	</if>
+		<if test="toDate!=null and toDate!=''" >
+			<![CDATA[
+        	and n.generate_time <= #{toDate}
+        	]]>
+      	</if>
+		group by time_15 
+		order by time_15 desc
+		<if test="limit>0" >
+        	LIMIT #{start},#{limit}
+      	</if>
+	</select>
+
+	<select id="getDistributionCalc" resultMap="distributionCalcMap" parameterType="java.util.HashMap">		
+		SELECT count(*) as cnt,${name} as int_type
+		FROM tbl_ne n
+		GROUP BY ${name}
+		<if test="domainUuid>0" >
+        	AND n.domain_uuid=#{domainUuid}
+      	</if>
+     <if test="neUuidList!=null">
+      and n.uuid in
+      <foreach collection="neUuidList" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+    </if>
+     <if test="siteUuidList!=null">
+      and n.site_uuid in
+      <foreach collection="siteUuidList" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+    </if>
+     <if test="productIdList!=null">
+      and n.product_id in
+      <foreach collection="productIdList" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+    </if>
+       	
+	</select>
+	<select id="getIdList" resultType="java.lang.Integer" parameterType="java.util.HashMap">		
+		SELECT uuid
+		FROM ${tb} t
+		where rec_status!=2
+		<if test="domainUuid>0" >
+        	AND t.domain_uuid=#{domainUuid}
+      	</if>
+		<if test="uuid>0" >
+        	AND t.uuid=#{uuid}
+      	</if>
+      <if test="uuidList!=null">
+      AND t.uuid in
+      <foreach collection="uuidList" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+     </if>    	    	
+      	<if test="name!=null and name!=''" >
+        	AND t.name like #{name}
+      	</if>
+       	<if test="alias!=null and alias!=''" >
+        	AND t.alias like #{alias}
+      	</if>     	
+       	<if test="detailDesc!=null and detailDesc!=''" >
+        	AND t.detail_desc like #{detailDesc}
+      	</if>
+      	<if test="other!=null and other!=''" >
+        	${other}
+      	</if>      	      	
+	</select>	
+	<select id="getPerNeCalc" resultMap="perCalcMap" parameterType="java.util.HashMap">		
+		SELECT round(avg(n.avg_cpu_5)) as avg_cpu_5,round(avg(n.avg_cpu_60)) as avg_cpu_60,round(avg(n.avg_cpu_600)) as avg_cpu_600
+		,round(avg(n.mem_aos_usage)) as mem_aos_usage,round(avg(n.mem_linux_usage)) as mem_linux_usage,round(avg(n.store_usage)) as store_usage, 
+		count(*) as total_dev_cnt
+		from tbl_ne n
+		WHERE n.rec_status!=2
+		<if test="domainUuid>0" >
+        	AND n.domain_uuid=#{domainUuid}
+      	</if>
+      	<if test="neUuidList!=null">
+      and n.uuid in
+      <foreach collection="neUuidList" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+    </if>
+     <if test="siteUuidList!=null">
+      and n.site_uuid in
+      <foreach collection="siteUuidList" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+    </if>
+     <if test="productIdList!=null">
+      and n.product_id in
+      <foreach collection="productIdList" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+    </if>
+	</select>
+	
+ 	<select id="getPerCalc" resultMap="perCalcMap" parameterType="java.util.HashMap">		
+		SELECT pn.generate_time,sum(pn.flash_rd_fail_count) as flash_rd_fail_count,sum(pn.flash_wt_fail_count) as flash_wt_fail_count,
+		sum(pn.send_pkt_cnt) as send_pkt_cnt,sum(pn.recv_pkt_cnt) as recv_pkt_cnt
+		,sum(pn.recv_loss_cnt) as recv_loss_cnt,sum(pn.send_loss_cnt) as send_loss_cnt
+		,sum(pn.mem_alloc_fail_count) as mem_alloc_fail_count,sum(pn.recv_timeout_cnt) as recv_timeout_cnt
+		,sum(pn.send_timeout_cnt) as send_timeout_cnt
+		FROM tbl_pmd_ne_cur pn
+		WHERE pn.rec_status!=2
+		<if test="domainUuid>0" >
+        	AND pn.domain_uuid=#{domainUuid}
+      	</if>
+       <if test="neUuidList!=null">
+      and pn.ne_uuid in
+      <foreach collection="neUuidList" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+    </if>
+	</select>
+			
+	<select id="countCallList"  parameterType="java.util.HashMap" resultType="java.lang.Integer">		
+		
+	</select>
+	 
+	<select id="getGwRate" statementType="CALLABLE" resultMap="baseResultMap" parameterType="java.util.HashMap">
+		<![CDATA[
+		  {call PROC_GET_PMD_BY_UUID (
+		  			#{neUuids,mode=IN,jdbcType=CHAR},
+		  			#{count,mode=IN,jdbcType=INTEGER}
+		  		)
+		  }
+		]]>
+	</select>
+</mapper>

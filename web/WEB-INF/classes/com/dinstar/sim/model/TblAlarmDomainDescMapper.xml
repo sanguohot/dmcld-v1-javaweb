@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblAlarmDomainDescMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblAlarmDomainDesc" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="alarm_id" property="alarmId" jdbcType="INTEGER" />
+    <result column="alarm_type" property="alarmType" jdbcType="INTEGER" />
+    <result column="alarm_level" property="alarmLevel" jdbcType="INTEGER" />
+    <result column="time_check_max" property="timeCheckMax" jdbcType="INTEGER" />
+    <result column="alarm_name" property="alarmName" jdbcType="CHAR" />
+    <result column="alarm_desc" property="alarmDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, domain_uuid, alarm_id, alarm_type, alarm_level, time_check_max, 
+    alarm_name, alarm_desc
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblAlarmDomainDescCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_alarm_domain_desc
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_alarm_domain_desc
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_alarm_domain_desc
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblAlarmDomainDescCriteria" >
+    delete from tbl_alarm_domain_desc
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblAlarmDomainDesc" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_alarm_domain_desc (uuid, rec_status, domain_uuid, 
+      alarm_id, alarm_type, alarm_level, 
+      time_check_max, alarm_name, alarm_desc
+      )
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{domainUuid,jdbcType=INTEGER}, 
+      #{alarmId,jdbcType=INTEGER}, #{alarmType,jdbcType=INTEGER}, #{alarmLevel,jdbcType=INTEGER}, 
+      #{timeCheckMax,jdbcType=INTEGER}, #{alarmName,jdbcType=CHAR}, #{alarmDesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblAlarmDomainDesc" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_alarm_domain_desc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="alarmId != null" >
+        alarm_id,
+      </if>
+      <if test="alarmType != null" >
+        alarm_type,
+      </if>
+      <if test="alarmLevel != null" >
+        alarm_level,
+      </if>
+      <if test="timeCheckMax != null" >
+        time_check_max,
+      </if>
+      <if test="alarmName != null" >
+        alarm_name,
+      </if>
+      <if test="alarmDesc != null" >
+        alarm_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alarmId != null" >
+        #{alarmId,jdbcType=INTEGER},
+      </if>
+      <if test="alarmType != null" >
+        #{alarmType,jdbcType=INTEGER},
+      </if>
+      <if test="alarmLevel != null" >
+        #{alarmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="timeCheckMax != null" >
+        #{timeCheckMax,jdbcType=INTEGER},
+      </if>
+      <if test="alarmName != null" >
+        #{alarmName,jdbcType=CHAR},
+      </if>
+      <if test="alarmDesc != null" >
+        #{alarmDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblAlarmDomainDescCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_alarm_domain_desc
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_alarm_domain_desc
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmId != null" >
+        alarm_id = #{record.alarmId,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmType != null" >
+        alarm_type = #{record.alarmType,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmLevel != null" >
+        alarm_level = #{record.alarmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.timeCheckMax != null" >
+        time_check_max = #{record.timeCheckMax,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmName != null" >
+        alarm_name = #{record.alarmName,jdbcType=CHAR},
+      </if>
+      <if test="record.alarmDesc != null" >
+        alarm_desc = #{record.alarmDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_alarm_domain_desc
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      alarm_id = #{record.alarmId,jdbcType=INTEGER},
+      alarm_type = #{record.alarmType,jdbcType=INTEGER},
+      alarm_level = #{record.alarmLevel,jdbcType=INTEGER},
+      time_check_max = #{record.timeCheckMax,jdbcType=INTEGER},
+      alarm_name = #{record.alarmName,jdbcType=CHAR},
+      alarm_desc = #{record.alarmDesc,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblAlarmDomainDesc" >
+    update tbl_alarm_domain_desc
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alarmId != null" >
+        alarm_id = #{alarmId,jdbcType=INTEGER},
+      </if>
+      <if test="alarmType != null" >
+        alarm_type = #{alarmType,jdbcType=INTEGER},
+      </if>
+      <if test="alarmLevel != null" >
+        alarm_level = #{alarmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="timeCheckMax != null" >
+        time_check_max = #{timeCheckMax,jdbcType=INTEGER},
+      </if>
+      <if test="alarmName != null" >
+        alarm_name = #{alarmName,jdbcType=CHAR},
+      </if>
+      <if test="alarmDesc != null" >
+        alarm_desc = #{alarmDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblAlarmDomainDesc" >
+    update tbl_alarm_domain_desc
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      alarm_id = #{alarmId,jdbcType=INTEGER},
+      alarm_type = #{alarmType,jdbcType=INTEGER},
+      alarm_level = #{alarmLevel,jdbcType=INTEGER},
+      time_check_max = #{timeCheckMax,jdbcType=INTEGER},
+      alarm_name = #{alarmName,jdbcType=CHAR},
+      alarm_desc = #{alarmDesc,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

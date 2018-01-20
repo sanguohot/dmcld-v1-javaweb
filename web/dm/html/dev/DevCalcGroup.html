@@ -1,0 +1,42 @@
+<div class="container-fluid" style="padding:5px;">
+    {{~it.list:value:index}}
+    <div class="row alert alert-success" style="margin-right:0px;margin-left:0px;margin-bottom:10px;">
+        <div class="col-md-9">
+            {{=value.title}}
+        </div>
+        <div class="col-md-3 visible-lg-block">
+            <span class="dc-label" style="text-align:center;margin-left:auto; margin-right:auto;width:100%;">{{=it.lan.versionDistribution}}&nbsp;{{=value.versionLink}}</span>
+        </div>
+        <div class="col-md-3">
+            <div><span class="dc-label">{{=it.lan.devCnt}}</span><span class="dc-value" ><span class="width35" >{{=value.total}}</span>{{=value.totalLink}}</span></div>
+            <div><span class="dc-label">{{=it.lan.onlineDevCnt}}</span><span class="dc-value" ><span class="width35" >{{=value.online}}</span>{{=value.onlineLink}}</span></div>
+            <div><span class="dc-label">{{=it.lan.devFaultCnt}}</span><span class="dc-value"><span class="width35" >{{=value.fault}}</span>{{=value.faultLink}}</span></div>
+            <!--<div><span class="dc-label">{{=it.lan.upgradingCnt}}</span><span class="dc-value" ><span class="width35" >{{=value.upgrade}}</span>{{=value.upgradeLink}}</span></div>-->
+            <div><span class="dc-label">{{=it.lan.dboEnableCnt}}</span><span class="dc-value" ><span class="width35" >{{=value.dbo}}</span>{{=value.dboLink}}</span></div>
+            <!--<div><span class="dc-label">{{=it.lan.batchingCnt}}</span><span class="dc-value" ><span class="width35" >{{=value.batch}}</span>{{=value.batchLink}}</span></div>-->
+        	<div><span class="dc-label">{{=it.lan.mtgCnt}}</span><span class="dc-value" ><span class="width35" >{{=value.mtg}}</span>{{=value.mtgLink}}</span></div>
+        	<div><span class="dc-label">{{=it.lan.dagCnt}}</span><span class="dc-value" ><span class="width35" >{{=value.dag}}</span>{{=value.dagLink}}</span></div>
+        </div>
+        <div class="col-md-3">
+            
+            <div><span class="dc-label">{{=it.lan.e1Cnt}}</span><span class="dc-value" >{{=value.e1}}</span></div>
+            <div><span class="dc-label">{{=it.lan.enableE1Cnt}}</span><span class="dc-value" >{{=value.enableE1}}</span></div>
+            <div><span class="dc-label">{{=it.lan.sipCnt}}</span><span class="dc-value" >{{=value.sip}}</span></div>
+            <div><span class="dc-label">{{=it.lan.priCnt}}</span><span class="dc-value" >{{=value.pri}}</span></div>
+            <div><span class="dc-label">{{=it.lan.ss7Cnt}}</span><span class="dc-value" >{{=value.ss7}}</span></div>
+        </div>
+        <div class="col-md-3">
+            
+            <div><span class="dc-label">AG{{=it.lan.portCnt}}</span><span class="dc-value" ><span class="width35" >{{=value.agp}}</span>{{=value.agpLink}}</span></div>
+            <!--<div><span class="dc-label">{{=it.lan.fxsCnt}}</span><span class="dc-value" ><span class="width35" >{{=value.fxs}}</span>{{=value.fxsLink}}</span></div>-->
+            <!--<div><span class="dc-label">{{=it.lan.fxoCnt}} </span><span class="dc-value" ><span class="width35" >{{=value.fxo}}</span>{{=value.fxoLink}}</span></div>-->
+            <!--<div><span class="dc-label">{{=it.lan.regSuccPortCnt}}</span><span class="dc-value" ><span class="width35" >{{=value.regSuccAgp}}</span>{{=value.regSuccAgpLink}}</span></div>-->
+            <!--<div><span class="dc-label">{{=it.lan.regFailPortCnt}}</span><span class="dc-value" ><span class="width35" >{{=value.regFailAgp}}</span>{{=value.regFailAgpLink}}</span></div>-->
+            <!--<div><span class="dc-label">{{=it.lan.noAccountPortCnt}}</span><span class="dc-value" ><span class="width35" >{{=value.noReg}}</span>{{=value.noRegLink}}</span></div>-->
+        </div>
+        <div class="col-md-3">
+            <div id="{{=value.cid}}" style="height:130px;width:100%"></div>
+        </div>
+    </div>
+    {{~}}
+</div>

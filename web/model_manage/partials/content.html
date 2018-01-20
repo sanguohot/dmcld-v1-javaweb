@@ -1,0 +1,117 @@
+<div style="width: 100%;background-color: #D9E5F3">
+    <table style="width: 100%">
+        <tr style="width: 100%">
+            <td style="width: 3%">
+                <button style="background-color:#D9E5F3;padding: 2px 4px"  class="btn btn-default" id="toSaveWhole" ng-click="toSaveWhole()">
+                    <img src="image/world.png" />保存</button></td>
+            <td style="width: 3%;text-align: center">|</td>
+          <td style="width: 3%">
+            <button style="background-color:#D9E5F3;padding: 2px 4px" title="用于将当前编辑项剔除保存逻辑"  class="btn btn-default" id="clearCurrent" ng-click="clearCurrent()">
+              <img src="image/world.png" />剔除当前</button></td>
+          <td style="width: 3%;text-align: center">|</td>
+          <td style="width: 3%">
+            <button style="background-color:#D9E5F3;padding: 2px 4px" title="若当前编辑项模板中有值，将回复为模板中的值"  class="btn btn-default" id="restoreCurrent" ng-click="restoreCurrent()">
+              <img src="image/world.png" />重载当前</button></td>
+          <td style="width: 3%;text-align: center">|</td>
+          <td style="width: 3%">
+            <button style="background-color:#D9E5F3;padding: 2px 4px" title="将恢复模板中所有值的项"  class="btn btn-default" id="restoreAll" ng-click="restoreAll()">
+              <img src="image/world.png" />重载所有</button></td>
+          <td style="width: 3%;text-align: center">|</td>
+            <td style="width: 79%"></td>
+          <td style="width: 3%">
+            <button style="background-color:#D9E5F3;padding: 2px 4px" class="btn btn-default" id="help" ng-click="help()">
+              <img src="image/help.png" />帮助</button></td>
+        </tr>
+    </table>
+</div>
+
+<div id="top_title" class="banner">{{title}}</div>
+<div>
+	<table class="content">
+		<tr>
+			<td style="width:2%;background-color: #056aa6;height: auto;"></td>
+			<td class="content_left_td">
+				<div ng-include="'partials/Menu.html'" class="Menu"></div>
+			</td>
+			<td class="content_middle_td">
+				<div style="position:absolute;width: 100%;height: 100%;border: 1px solid #f5f5f5;border-top-left-radius: 50px;background-color:#f5f5f5"></div>
+			</td>
+			<td class="content_right_td">
+				<div>
+					<div id="xmlContent">
+						<hr/>
+						<div ng-include = "'partials/SipServer.html'" class="div_included" ng-show="SipServer"></div>
+						<div ng-include = "'partials/LineParam.html'" class="div_included" ng-show="LineParam"></div>
+						<div ng-include = "'partials/MediaStream.html'" class="div_included" ng-show="MediaStream"></div>
+						<div ng-include = "'partials/SipParam.html'" class="div_included" ng-show="SipParam"></div>
+						<div ng-include = "'partials/FaxCfg.html'" class="div_included" ng-show="FaxCfg"></div>
+						<div ng-include = "'partials/DigitMap.html'" class="div_included" ng-show="DigitMap"></div>
+						<div ng-include = "'partials/FeatureCodes.html'" class="div_included" ng-show="FeatureCodes"></div>
+						<div ng-include = "'partials/SystemCfg.html'" class="div_included" ng-show="SystemCfg"></div>
+						<div ng-include = "'partials/ActionUrl.html'" class="div_included" ng-show="ActionUrl"></div>
+						<div ng-include = "'partials/WildProxyReg.html'" class="div_included" ng-show="WildProxyReg"></div>
+						<div ng-include = "'partials/PortGroup.html'" class="div_included" ng-show="PortGroup"></div>
+						<div ng-include = "'partials/IPTrunk.html'" class="div_included" ng-show="IPTrunk"></div>
+						<div ng-include = "'partials/RouteIP2PSTNParam.html'" class="div_included" ng-show="RouteIP2PSTNParam"></div>
+						<div ng-include = "'partials/RouteIP2PSTN.html'" class="div_included" ng-show="RouteIP2PSTN"></div>
+						<div ng-include = "'partials/RoutePSTN2IP.html'" class="div_included" ng-show="RoutePSTN2IP"></div>
+						<div ng-include = "'partials/RouteIP2IP.html'" class="div_included" ng-show="RouteIP2IP"></div>
+						<div ng-include = "'partials/TR069Param.html'" class="div_included" ng-show="TR069Param"></div>
+						<div ng-include = "'partials/NetSNMPParam.html'" class="div_included" ng-show="NetSNMPParam"></div>
+						<div ng-include = "'partials/SyslogParam.html'" class="div_included" ng-show="SyslogParam"></div>
+						<div ng-include = "'partials/Provision.html'" class="div_included" ng-show="Provision"></div>
+						<div ng-include = "'partials/CloudServerCfg.html'" class="div_included" ng-show="CloudServerCfg"></div>
+						<div ng-include = "'partials/UserManage.html'" class="div_included" ng-show="UserManage"></div>
+						<div ng-include = "'partials/RelayServerCfg.html'" class="div_included" ng-show="RelayServerCfg"></div>
+						<div ng-include = "'partials/RemoteServerCfg.html'" class="div_included" ng-show="RemoteServerCfg"></div>
+						<div ng-include = "'partials/WhiteListForWEB.html'" class="div_included" ng-show="WhiteListForWEB"></div>
+						<div ng-include = "'partials/WhiteListForTEL.html'" class="div_included" ng-show="WhiteListForTEL"></div>
+						<div ng-include = "'partials/Password.html'" class="div_included" ng-show="Password"></div>
+						<div ng-include = "'partials/Encrypt.html'" class="div_included" ng-show="Encrypt"></div>
+						<div ng-include = "'partials/EiaRecordCfg.html'" class="div_included" ng-show="EiaRecordCfg"></div>
+						
+						<!--<div ng-include = "'partials/LocalNetwork.html'" ></div>-->
+						<!--<div ng-include = "'partials/VLANCfg.html'" ></div>-->
+						<hr/>
+					</div>
+				</div>
+				<div style="color:#056aa6;position:fixed;left:30%;top:30%;border: 2px solid;
+				width: 320px;height: 250px;background-color: #f5f5f5" ng-show="is_post">
+					<table style="width: 100%;">
+						<tr style="background-color: #056aa6;color: #f5f5f5">
+							<td><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;配置信息：</h3></td>
+							<td style="text-align: right;font-size: 1.5em" ng-click="toClose('is_post')">X&nbsp;&nbsp;</td>
+						</tr>
+						<tr><td><hr/></td></tr>
+						<tr>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;模板名称：</td>
+							<td><input name="model_name" class="text" id="model_name" value="" size="18" maxlength="127"></td>
+						</tr>
+						<tr><td><br/></td></tr>
+						<tr>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;模板详细描述：</td>
+							<td><textarea  name="model_detail" class="text" id="model_detail" value="" style="height: 55px" maxlength="127"></textarea></td>
+						</tr>
+					</table>
+					<br>
+					<center><input type="button" value="确认" style="font-size: 1.5em" id="saveWhole" ng-click="saveWhole()"/></center>
+				</div>
+				<div style="color:#056aa6;position:fixed;left:30%;top:30%;border: 2px solid;
+				width: 320px;height: 150px;background-color: #f5f5f5" ng-show="is_alert">
+					<table style="width: 100%;">
+						<tr style="background-color: #056aa6;color: #f5f5f5">
+							<td><center style="font-size: 2em">提示：</center></td>
+						</tr>
+						<tr><td><hr/></td></tr>
+						<tr>
+							<td><center style="font-size: 1.3em">{{alertMsg}}</center></td>
+						</tr>
+					</table>
+					<br>
+					<center><input type="button" value="确认" style="font-size: 1.5em" ng-click="toClose('is_alert')"/></center>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+

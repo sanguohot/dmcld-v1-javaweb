@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblAgCdrMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblAgCdr" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="call_index" property="callIndex" jdbcType="INTEGER" />
+    <result column="call_sn" property="callSn" jdbcType="INTEGER" />
+    <result column="agp_uuid" property="agpUuid" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="call_number" property="callNumber" jdbcType="VARCHAR" />
+    <result column="caller_number" property="callerNumber" jdbcType="VARCHAR" />
+    <result column="peer_port" property="peerPort" jdbcType="INTEGER" />
+    <result column="local_port" property="localPort" jdbcType="INTEGER" />
+    <result column="duration_sec" property="durationSec" jdbcType="INTEGER" />
+    <result column="payload_type" property="payloadType" jdbcType="INTEGER" />
+    <result column="end_reason" property="endReason" jdbcType="INTEGER" />
+    <result column="end_code" property="endCode" jdbcType="INTEGER" />
+    <result column="session_normal" property="sessionNormal" jdbcType="INTEGER" />
+    <result column="rtp_packet_send" property="rtpPacketSend" jdbcType="INTEGER" />
+    <result column="rtp_packet_recv" property="rtpPacketRecv" jdbcType="INTEGER" />
+    <result column="rtp_packet_lost" property="rtpPacketLost" jdbcType="INTEGER" />
+    <result column="rtp_jitter" property="rtpJitter" jdbcType="INTEGER" />
+    <result column="rtp_delay" property="rtpDelay" jdbcType="INTEGER" />
+    <result column="rtp_out_of_order" property="rtpOutOfOrder" jdbcType="INTEGER" />
+    <result column="rtp_statistics" property="rtpStatistics" jdbcType="INTEGER" />
+    <result column="peer_ip" property="peerIp" jdbcType="VARCHAR" />
+    <result column="local_ip" property="localIp" jdbcType="VARCHAR" />
+    <result column="call_direction" property="callDirection" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="valid_flag" property="validFlag" jdbcType="INTEGER" />
+    <result column="identity" property="identity" jdbcType="INTEGER" />
+    <result column="ne_uuid" property="neUuid" jdbcType="INTEGER" />
+    <result column="product_sn" property="productSn" jdbcType="VARCHAR" />
+    <result column="port_alias" property="portAlias" jdbcType="CHAR" />
+    <result column="time_start_interval" property="timeStartInterval" jdbcType="INTEGER" />
+    <result column="time_result_interval" property="timeResultInterval" jdbcType="INTEGER" />
+    <result column="time_hour_offset" property="timeHourOffset" jdbcType="INTEGER" />
+    <result column="time_minute_offset" property="timeMinuteOffset" jdbcType="INTEGER" />
+    <result column="time_start_code" property="timeStartCode" jdbcType="INTEGER" />
+    <result column="time_end_code" property="timeEndCode" jdbcType="INTEGER" />
+    <result column="answer_time" property="answerTime" jdbcType="TIMESTAMP" />
+    <result column="time_answer_interval" property="timeAnswerInterval" jdbcType="INTEGER" />
+    <result column="recv_cdr_time" property="recvCdrTime" jdbcType="TIMESTAMP" />
+    <result column="rtp_jitter_mean" property="rtpJitterMean" jdbcType="INTEGER" />
+    <result column="rtp_jitter_max" property="rtpJitterMax" jdbcType="INTEGER" />
+    <result column="rtp_delay_mean" property="rtpDelayMean" jdbcType="INTEGER" />
+    <result column="rtp_delay_max" property="rtpDelayMax" jdbcType="INTEGER" />
+    <result column="rtp_lost_rate_mean" property="rtpLostRateMean" jdbcType="INTEGER" />
+    <result column="rtp_lost_rate_max" property="rtpLostRateMax" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, domain_uuid, call_index, call_sn, agp_uuid, start_time, end_time, call_number, 
+    caller_number, peer_port, local_port, duration_sec, payload_type, end_reason, end_code, 
+    session_normal, rtp_packet_send, rtp_packet_recv, rtp_packet_lost, rtp_jitter, rtp_delay, 
+    rtp_out_of_order, rtp_statistics, peer_ip, local_ip, call_direction, rec_status, 
+    valid_flag, identity, ne_uuid, product_sn, port_alias, time_start_interval, time_result_interval, 
+    time_hour_offset, time_minute_offset, time_start_code, time_end_code, answer_time, 
+    time_answer_interval, recv_cdr_time, rtp_jitter_mean, rtp_jitter_max, rtp_delay_mean, 
+    rtp_delay_max, rtp_lost_rate_mean, rtp_lost_rate_max
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblAgCdrCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <choose>
+        <when test="myCol!=null"> ${myCol}</when>
+        <otherwise><include refid="Base_Column_List" /></otherwise>
+    </choose>
+    from tbl_ag_cdr
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="groupBy != null" >
+      group by ${groupBy}
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+   <if test="limitClause != null" >
+      limit ${limitClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_ag_cdr
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_ag_cdr
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblAgCdrCriteria" >
+    delete from tbl_ag_cdr
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblAgCdr" >
+    insert into tbl_ag_cdr (uuid, domain_uuid, call_index, 
+      call_sn, agp_uuid, start_time, 
+      end_time, call_number, caller_number, 
+      peer_port, local_port, duration_sec, 
+      payload_type, end_reason, end_code, 
+      session_normal, rtp_packet_send, rtp_packet_recv, 
+      rtp_packet_lost, rtp_jitter, rtp_delay, 
+      rtp_out_of_order, rtp_statistics, peer_ip, 
+      local_ip, call_direction, rec_status, 
+      valid_flag, identity, ne_uuid, 
+      product_sn, port_alias, time_start_interval, 
+      time_result_interval, time_hour_offset, time_minute_offset, 
+      time_start_code, time_end_code, answer_time, 
+      time_answer_interval, recv_cdr_time, rtp_jitter_mean, 
+      rtp_jitter_max, rtp_delay_mean, rtp_delay_max, 
+      rtp_lost_rate_mean, rtp_lost_rate_max)
+    values (#{uuid,jdbcType=INTEGER}, #{domainUuid,jdbcType=INTEGER}, #{callIndex,jdbcType=INTEGER}, 
+      #{callSn,jdbcType=INTEGER}, #{agpUuid,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{callNumber,jdbcType=VARCHAR}, #{callerNumber,jdbcType=VARCHAR}, 
+      #{peerPort,jdbcType=INTEGER}, #{localPort,jdbcType=INTEGER}, #{durationSec,jdbcType=INTEGER}, 
+      #{payloadType,jdbcType=INTEGER}, #{endReason,jdbcType=INTEGER}, #{endCode,jdbcType=INTEGER}, 
+      #{sessionNormal,jdbcType=INTEGER}, #{rtpPacketSend,jdbcType=INTEGER}, #{rtpPacketRecv,jdbcType=INTEGER}, 
+      #{rtpPacketLost,jdbcType=INTEGER}, #{rtpJitter,jdbcType=INTEGER}, #{rtpDelay,jdbcType=INTEGER}, 
+      #{rtpOutOfOrder,jdbcType=INTEGER}, #{rtpStatistics,jdbcType=INTEGER}, #{peerIp,jdbcType=VARCHAR}, 
+      #{localIp,jdbcType=VARCHAR}, #{callDirection,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, 
+      #{validFlag,jdbcType=INTEGER}, #{identity,jdbcType=INTEGER}, #{neUuid,jdbcType=INTEGER}, 
+      #{productSn,jdbcType=VARCHAR}, #{portAlias,jdbcType=CHAR}, #{timeStartInterval,jdbcType=INTEGER}, 
+      #{timeResultInterval,jdbcType=INTEGER}, #{timeHourOffset,jdbcType=INTEGER}, #{timeMinuteOffset,jdbcType=INTEGER}, 
+      #{timeStartCode,jdbcType=INTEGER}, #{timeEndCode,jdbcType=INTEGER}, #{answerTime,jdbcType=TIMESTAMP}, 
+      #{timeAnswerInterval,jdbcType=INTEGER}, #{recvCdrTime,jdbcType=TIMESTAMP}, #{rtpJitterMean,jdbcType=INTEGER}, 
+      #{rtpJitterMax,jdbcType=INTEGER}, #{rtpDelayMean,jdbcType=INTEGER}, #{rtpDelayMax,jdbcType=INTEGER}, 
+      #{rtpLostRateMean,jdbcType=INTEGER}, #{rtpLostRateMax,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblAgCdr" >
+    insert into tbl_ag_cdr
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="callIndex != null" >
+        call_index,
+      </if>
+      <if test="callSn != null" >
+        call_sn,
+      </if>
+      <if test="agpUuid != null" >
+        agp_uuid,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="callNumber != null" >
+        call_number,
+      </if>
+      <if test="callerNumber != null" >
+        caller_number,
+      </if>
+      <if test="peerPort != null" >
+        peer_port,
+      </if>
+      <if test="localPort != null" >
+        local_port,
+      </if>
+      <if test="durationSec != null" >
+        duration_sec,
+      </if>
+      <if test="payloadType != null" >
+        payload_type,
+      </if>
+      <if test="endReason != null" >
+        end_reason,
+      </if>
+      <if test="endCode != null" >
+        end_code,
+      </if>
+      <if test="sessionNormal != null" >
+        session_normal,
+      </if>
+      <if test="rtpPacketSend != null" >
+        rtp_packet_send,
+      </if>
+      <if test="rtpPacketRecv != null" >
+        rtp_packet_recv,
+      </if>
+      <if test="rtpPacketLost != null" >
+        rtp_packet_lost,
+      </if>
+      <if test="rtpJitter != null" >
+        rtp_jitter,
+      </if>
+      <if test="rtpDelay != null" >
+        rtp_delay,
+      </if>
+      <if test="rtpOutOfOrder != null" >
+        rtp_out_of_order,
+      </if>
+      <if test="rtpStatistics != null" >
+        rtp_statistics,
+      </if>
+      <if test="peerIp != null" >
+        peer_ip,
+      </if>
+      <if test="localIp != null" >
+        local_ip,
+      </if>
+      <if test="callDirection != null" >
+        call_direction,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="validFlag != null" >
+        valid_flag,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+      <if test="neUuid != null" >
+        ne_uuid,
+      </if>
+      <if test="productSn != null" >
+        product_sn,
+      </if>
+      <if test="portAlias != null" >
+        port_alias,
+      </if>
+      <if test="timeStartInterval != null" >
+        time_start_interval,
+      </if>
+      <if test="timeResultInterval != null" >
+        time_result_interval,
+      </if>
+      <if test="timeHourOffset != null" >
+        time_hour_offset,
+      </if>
+      <if test="timeMinuteOffset != null" >
+        time_minute_offset,
+      </if>
+      <if test="timeStartCode != null" >
+        time_start_code,
+      </if>
+      <if test="timeEndCode != null" >
+        time_end_code,
+      </if>
+      <if test="answerTime != null" >
+        answer_time,
+      </if>
+      <if test="timeAnswerInterval != null" >
+        time_answer_interval,
+      </if>
+      <if test="recvCdrTime != null" >
+        recv_cdr_time,
+      </if>
+      <if test="rtpJitterMean != null" >
+        rtp_jitter_mean,
+      </if>
+      <if test="rtpJitterMax != null" >
+        rtp_jitter_max,
+      </if>
+      <if test="rtpDelayMean != null" >
+        rtp_delay_mean,
+      </if>
+      <if test="rtpDelayMax != null" >
+        rtp_delay_max,
+      </if>
+      <if test="rtpLostRateMean != null" >
+        rtp_lost_rate_mean,
+      </if>
+      <if test="rtpLostRateMax != null" >
+        rtp_lost_rate_max,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="callIndex != null" >
+        #{callIndex,jdbcType=INTEGER},
+      </if>
+      <if test="callSn != null" >
+        #{callSn,jdbcType=INTEGER},
+      </if>
+      <if test="agpUuid != null" >
+        #{agpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callNumber != null" >
+        #{callNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="callerNumber != null" >
+        #{callerNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="peerPort != null" >
+        #{peerPort,jdbcType=INTEGER},
+      </if>
+      <if test="localPort != null" >
+        #{localPort,jdbcType=INTEGER},
+      </if>
+      <if test="durationSec != null" >
+        #{durationSec,jdbcType=INTEGER},
+      </if>
+      <if test="payloadType != null" >
+        #{payloadType,jdbcType=INTEGER},
+      </if>
+      <if test="endReason != null" >
+        #{endReason,jdbcType=INTEGER},
+      </if>
+      <if test="endCode != null" >
+        #{endCode,jdbcType=INTEGER},
+      </if>
+      <if test="sessionNormal != null" >
+        #{sessionNormal,jdbcType=INTEGER},
+      </if>
+      <if test="rtpPacketSend != null" >
+        #{rtpPacketSend,jdbcType=INTEGER},
+      </if>
+      <if test="rtpPacketRecv != null" >
+        #{rtpPacketRecv,jdbcType=INTEGER},
+      </if>
+      <if test="rtpPacketLost != null" >
+        #{rtpPacketLost,jdbcType=INTEGER},
+      </if>
+      <if test="rtpJitter != null" >
+        #{rtpJitter,jdbcType=INTEGER},
+      </if>
+      <if test="rtpDelay != null" >
+        #{rtpDelay,jdbcType=INTEGER},
+      </if>
+      <if test="rtpOutOfOrder != null" >
+        #{rtpOutOfOrder,jdbcType=INTEGER},
+      </if>
+      <if test="rtpStatistics != null" >
+        #{rtpStatistics,jdbcType=INTEGER},
+      </if>
+      <if test="peerIp != null" >
+        #{peerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="localIp != null" >
+        #{localIp,jdbcType=VARCHAR},
+      </if>
+      <if test="callDirection != null" >
+        #{callDirection,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="validFlag != null" >
+        #{validFlag,jdbcType=INTEGER},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=INTEGER},
+      </if>
+      <if test="neUuid != null" >
+        #{neUuid,jdbcType=INTEGER},
+      </if>
+      <if test="productSn != null" >
+        #{productSn,jdbcType=VARCHAR},
+      </if>
+      <if test="portAlias != null" >
+        #{portAlias,jdbcType=CHAR},
+      </if>
+      <if test="timeStartInterval != null" >
+        #{timeStartInterval,jdbcType=INTEGER},
+      </if>
+      <if test="timeResultInterval != null" >
+        #{timeResultInterval,jdbcType=INTEGER},
+      </if>
+      <if test="timeHourOffset != null" >
+        #{timeHourOffset,jdbcType=INTEGER},
+      </if>
+      <if test="timeMinuteOffset != null" >
+        #{timeMinuteOffset,jdbcType=INTEGER},
+      </if>
+      <if test="timeStartCode != null" >
+        #{timeStartCode,jdbcType=INTEGER},
+      </if>
+      <if test="timeEndCode != null" >
+        #{timeEndCode,jdbcType=INTEGER},
+      </if>
+      <if test="answerTime != null" >
+        #{answerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeAnswerInterval != null" >
+        #{timeAnswerInterval,jdbcType=INTEGER},
+      </if>
+      <if test="recvCdrTime != null" >
+        #{recvCdrTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rtpJitterMean != null" >
+        #{rtpJitterMean,jdbcType=INTEGER},
+      </if>
+      <if test="rtpJitterMax != null" >
+        #{rtpJitterMax,jdbcType=INTEGER},
+      </if>
+      <if test="rtpDelayMean != null" >
+        #{rtpDelayMean,jdbcType=INTEGER},
+      </if>
+      <if test="rtpDelayMax != null" >
+        #{rtpDelayMax,jdbcType=INTEGER},
+      </if>
+      <if test="rtpLostRateMean != null" >
+        #{rtpLostRateMean,jdbcType=INTEGER},
+      </if>
+      <if test="rtpLostRateMax != null" >
+        #{rtpLostRateMax,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblAgCdrCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_ag_cdr
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_ag_cdr
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.callIndex != null" >
+        call_index = #{record.callIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.callSn != null" >
+        call_sn = #{record.callSn,jdbcType=INTEGER},
+      </if>
+      <if test="record.agpUuid != null" >
+        agp_uuid = #{record.agpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.callNumber != null" >
+        call_number = #{record.callNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.callerNumber != null" >
+        caller_number = #{record.callerNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.peerPort != null" >
+        peer_port = #{record.peerPort,jdbcType=INTEGER},
+      </if>
+      <if test="record.localPort != null" >
+        local_port = #{record.localPort,jdbcType=INTEGER},
+      </if>
+      <if test="record.durationSec != null" >
+        duration_sec = #{record.durationSec,jdbcType=INTEGER},
+      </if>
+      <if test="record.payloadType != null" >
+        payload_type = #{record.payloadType,jdbcType=INTEGER},
+      </if>
+      <if test="record.endReason != null" >
+        end_reason = #{record.endReason,jdbcType=INTEGER},
+      </if>
+      <if test="record.endCode != null" >
+        end_code = #{record.endCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.sessionNormal != null" >
+        session_normal = #{record.sessionNormal,jdbcType=INTEGER},
+      </if>
+      <if test="record.rtpPacketSend != null" >
+        rtp_packet_send = #{record.rtpPacketSend,jdbcType=INTEGER},
+      </if>
+      <if test="record.rtpPacketRecv != null" >
+        rtp_packet_recv = #{record.rtpPacketRecv,jdbcType=INTEGER},
+      </if>
+      <if test="record.rtpPacketLost != null" >
+        rtp_packet_lost = #{record.rtpPacketLost,jdbcType=INTEGER},
+      </if>
+      <if test="record.rtpJitter != null" >
+        rtp_jitter = #{record.rtpJitter,jdbcType=INTEGER},
+      </if>
+      <if test="record.rtpDelay != null" >
+        rtp_delay = #{record.rtpDelay,jdbcType=INTEGER},
+      </if>
+      <if test="record.rtpOutOfOrder != null" >
+        rtp_out_of_order = #{record.rtpOutOfOrder,jdbcType=INTEGER},
+      </if>
+      <if test="record.rtpStatistics != null" >
+        rtp_statistics = #{record.rtpStatistics,jdbcType=INTEGER},
+      </if>
+      <if test="record.peerIp != null" >
+        peer_ip = #{record.peerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.localIp != null" >
+        local_ip = #{record.localIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.callDirection != null" >
+        call_direction = #{record.callDirection,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.validFlag != null" >
+        valid_flag = #{record.validFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.identity != null" >
+        identity = #{record.identity,jdbcType=INTEGER},
+      </if>
+      <if test="record.neUuid != null" >
+        ne_uuid = #{record.neUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.productSn != null" >
+        product_sn = #{record.productSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.portAlias != null" >
+        port_alias = #{record.portAlias,jdbcType=CHAR},
+      </if>
+      <if test="record.timeStartInterval != null" >
+        time_start_interval = #{record.timeStartInterval,jdbcType=INTEGER},
+      </if>
+      <if test="record.timeResultInterval != null" >
+        time_result_interval = #{record.timeResultInterval,jdbcType=INTEGER},
+      </if>
+      <if test="record.timeHourOffset != null" >
+        time_hour_offset = #{record.timeHourOffset,jdbcType=INTEGER},
+      </if>
+      <if test="record.timeMinuteOffset != null" >
+        time_minute_offset = #{record.timeMinuteOffset,jdbcType=INTEGER},
+      </if>
+      <if test="record.timeStartCode != null" >
+        time_start_code = #{record.timeStartCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.timeEndCode != null" >
+        time_end_code = #{record.timeEndCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.answerTime != null" >
+        answer_time = #{record.answerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.timeAnswerInterval != null" >
+        time_answer_interval = #{record.timeAnswerInterval,jdbcType=INTEGER},
+      </if>
+      <if test="record.recvCdrTime != null" >
+        recv_cdr_time = #{record.recvCdrTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rtpJitterMean != null" >
+        rtp_jitter_mean = #{record.rtpJitterMean,jdbcType=INTEGER},
+      </if>
+      <if test="record.rtpJitterMax != null" >
+        rtp_jitter_max = #{record.rtpJitterMax,jdbcType=INTEGER},
+      </if>
+      <if test="record.rtpDelayMean != null" >
+        rtp_delay_mean = #{record.rtpDelayMean,jdbcType=INTEGER},
+      </if>
+      <if test="record.rtpDelayMax != null" >
+        rtp_delay_max = #{record.rtpDelayMax,jdbcType=INTEGER},
+      </if>
+      <if test="record.rtpLostRateMean != null" >
+        rtp_lost_rate_mean = #{record.rtpLostRateMean,jdbcType=INTEGER},
+      </if>
+      <if test="record.rtpLostRateMax != null" >
+        rtp_lost_rate_max = #{record.rtpLostRateMax,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_ag_cdr
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      call_index = #{record.callIndex,jdbcType=INTEGER},
+      call_sn = #{record.callSn,jdbcType=INTEGER},
+      agp_uuid = #{record.agpUuid,jdbcType=INTEGER},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      call_number = #{record.callNumber,jdbcType=VARCHAR},
+      caller_number = #{record.callerNumber,jdbcType=VARCHAR},
+      peer_port = #{record.peerPort,jdbcType=INTEGER},
+      local_port = #{record.localPort,jdbcType=INTEGER},
+      duration_sec = #{record.durationSec,jdbcType=INTEGER},
+      payload_type = #{record.payloadType,jdbcType=INTEGER},
+      end_reason = #{record.endReason,jdbcType=INTEGER},
+      end_code = #{record.endCode,jdbcType=INTEGER},
+      session_normal = #{record.sessionNormal,jdbcType=INTEGER},
+      rtp_packet_send = #{record.rtpPacketSend,jdbcType=INTEGER},
+      rtp_packet_recv = #{record.rtpPacketRecv,jdbcType=INTEGER},
+      rtp_packet_lost = #{record.rtpPacketLost,jdbcType=INTEGER},
+      rtp_jitter = #{record.rtpJitter,jdbcType=INTEGER},
+      rtp_delay = #{record.rtpDelay,jdbcType=INTEGER},
+      rtp_out_of_order = #{record.rtpOutOfOrder,jdbcType=INTEGER},
+      rtp_statistics = #{record.rtpStatistics,jdbcType=INTEGER},
+      peer_ip = #{record.peerIp,jdbcType=VARCHAR},
+      local_ip = #{record.localIp,jdbcType=VARCHAR},
+      call_direction = #{record.callDirection,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      valid_flag = #{record.validFlag,jdbcType=INTEGER},
+      identity = #{record.identity,jdbcType=INTEGER},
+      ne_uuid = #{record.neUuid,jdbcType=INTEGER},
+      product_sn = #{record.productSn,jdbcType=VARCHAR},
+      port_alias = #{record.portAlias,jdbcType=CHAR},
+      time_start_interval = #{record.timeStartInterval,jdbcType=INTEGER},
+      time_result_interval = #{record.timeResultInterval,jdbcType=INTEGER},
+      time_hour_offset = #{record.timeHourOffset,jdbcType=INTEGER},
+      time_minute_offset = #{record.timeMinuteOffset,jdbcType=INTEGER},
+      time_start_code = #{record.timeStartCode,jdbcType=INTEGER},
+      time_end_code = #{record.timeEndCode,jdbcType=INTEGER},
+      answer_time = #{record.answerTime,jdbcType=TIMESTAMP},
+      time_answer_interval = #{record.timeAnswerInterval,jdbcType=INTEGER},
+      recv_cdr_time = #{record.recvCdrTime,jdbcType=TIMESTAMP},
+      rtp_jitter_mean = #{record.rtpJitterMean,jdbcType=INTEGER},
+      rtp_jitter_max = #{record.rtpJitterMax,jdbcType=INTEGER},
+      rtp_delay_mean = #{record.rtpDelayMean,jdbcType=INTEGER},
+      rtp_delay_max = #{record.rtpDelayMax,jdbcType=INTEGER},
+      rtp_lost_rate_mean = #{record.rtpLostRateMean,jdbcType=INTEGER},
+      rtp_lost_rate_max = #{record.rtpLostRateMax,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblAgCdr" >
+    update tbl_ag_cdr
+    <set >
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="callIndex != null" >
+        call_index = #{callIndex,jdbcType=INTEGER},
+      </if>
+      <if test="callSn != null" >
+        call_sn = #{callSn,jdbcType=INTEGER},
+      </if>
+      <if test="agpUuid != null" >
+        agp_uuid = #{agpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callNumber != null" >
+        call_number = #{callNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="callerNumber != null" >
+        caller_number = #{callerNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="peerPort != null" >
+        peer_port = #{peerPort,jdbcType=INTEGER},
+      </if>
+      <if test="localPort != null" >
+        local_port = #{localPort,jdbcType=INTEGER},
+      </if>
+      <if test="durationSec != null" >
+        duration_sec = #{durationSec,jdbcType=INTEGER},
+      </if>
+      <if test="payloadType != null" >
+        payload_type = #{payloadType,jdbcType=INTEGER},
+      </if>
+      <if test="endReason != null" >
+        end_reason = #{endReason,jdbcType=INTEGER},
+      </if>
+      <if test="endCode != null" >
+        end_code = #{endCode,jdbcType=INTEGER},
+      </if>
+      <if test="sessionNormal != null" >
+        session_normal = #{sessionNormal,jdbcType=INTEGER},
+      </if>
+      <if test="rtpPacketSend != null" >
+        rtp_packet_send = #{rtpPacketSend,jdbcType=INTEGER},
+      </if>
+      <if test="rtpPacketRecv != null" >
+        rtp_packet_recv = #{rtpPacketRecv,jdbcType=INTEGER},
+      </if>
+      <if test="rtpPacketLost != null" >
+        rtp_packet_lost = #{rtpPacketLost,jdbcType=INTEGER},
+      </if>
+      <if test="rtpJitter != null" >
+        rtp_jitter = #{rtpJitter,jdbcType=INTEGER},
+      </if>
+      <if test="rtpDelay != null" >
+        rtp_delay = #{rtpDelay,jdbcType=INTEGER},
+      </if>
+      <if test="rtpOutOfOrder != null" >
+        rtp_out_of_order = #{rtpOutOfOrder,jdbcType=INTEGER},
+      </if>
+      <if test="rtpStatistics != null" >
+        rtp_statistics = #{rtpStatistics,jdbcType=INTEGER},
+      </if>
+      <if test="peerIp != null" >
+        peer_ip = #{peerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="localIp != null" >
+        local_ip = #{localIp,jdbcType=VARCHAR},
+      </if>
+      <if test="callDirection != null" >
+        call_direction = #{callDirection,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="validFlag != null" >
+        valid_flag = #{validFlag,jdbcType=INTEGER},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=INTEGER},
+      </if>
+      <if test="neUuid != null" >
+        ne_uuid = #{neUuid,jdbcType=INTEGER},
+      </if>
+      <if test="productSn != null" >
+        product_sn = #{productSn,jdbcType=VARCHAR},
+      </if>
+      <if test="portAlias != null" >
+        port_alias = #{portAlias,jdbcType=CHAR},
+      </if>
+      <if test="timeStartInterval != null" >
+        time_start_interval = #{timeStartInterval,jdbcType=INTEGER},
+      </if>
+      <if test="timeResultInterval != null" >
+        time_result_interval = #{timeResultInterval,jdbcType=INTEGER},
+      </if>
+      <if test="timeHourOffset != null" >
+        time_hour_offset = #{timeHourOffset,jdbcType=INTEGER},
+      </if>
+      <if test="timeMinuteOffset != null" >
+        time_minute_offset = #{timeMinuteOffset,jdbcType=INTEGER},
+      </if>
+      <if test="timeStartCode != null" >
+        time_start_code = #{timeStartCode,jdbcType=INTEGER},
+      </if>
+      <if test="timeEndCode != null" >
+        time_end_code = #{timeEndCode,jdbcType=INTEGER},
+      </if>
+      <if test="answerTime != null" >
+        answer_time = #{answerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeAnswerInterval != null" >
+        time_answer_interval = #{timeAnswerInterval,jdbcType=INTEGER},
+      </if>
+      <if test="recvCdrTime != null" >
+        recv_cdr_time = #{recvCdrTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rtpJitterMean != null" >
+        rtp_jitter_mean = #{rtpJitterMean,jdbcType=INTEGER},
+      </if>
+      <if test="rtpJitterMax != null" >
+        rtp_jitter_max = #{rtpJitterMax,jdbcType=INTEGER},
+      </if>
+      <if test="rtpDelayMean != null" >
+        rtp_delay_mean = #{rtpDelayMean,jdbcType=INTEGER},
+      </if>
+      <if test="rtpDelayMax != null" >
+        rtp_delay_max = #{rtpDelayMax,jdbcType=INTEGER},
+      </if>
+      <if test="rtpLostRateMean != null" >
+        rtp_lost_rate_mean = #{rtpLostRateMean,jdbcType=INTEGER},
+      </if>
+      <if test="rtpLostRateMax != null" >
+        rtp_lost_rate_max = #{rtpLostRateMax,jdbcType=INTEGER},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblAgCdr" >
+    update tbl_ag_cdr
+    set domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      call_index = #{callIndex,jdbcType=INTEGER},
+      call_sn = #{callSn,jdbcType=INTEGER},
+      agp_uuid = #{agpUuid,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      call_number = #{callNumber,jdbcType=VARCHAR},
+      caller_number = #{callerNumber,jdbcType=VARCHAR},
+      peer_port = #{peerPort,jdbcType=INTEGER},
+      local_port = #{localPort,jdbcType=INTEGER},
+      duration_sec = #{durationSec,jdbcType=INTEGER},
+      payload_type = #{payloadType,jdbcType=INTEGER},
+      end_reason = #{endReason,jdbcType=INTEGER},
+      end_code = #{endCode,jdbcType=INTEGER},
+      session_normal = #{sessionNormal,jdbcType=INTEGER},
+      rtp_packet_send = #{rtpPacketSend,jdbcType=INTEGER},
+      rtp_packet_recv = #{rtpPacketRecv,jdbcType=INTEGER},
+      rtp_packet_lost = #{rtpPacketLost,jdbcType=INTEGER},
+      rtp_jitter = #{rtpJitter,jdbcType=INTEGER},
+      rtp_delay = #{rtpDelay,jdbcType=INTEGER},
+      rtp_out_of_order = #{rtpOutOfOrder,jdbcType=INTEGER},
+      rtp_statistics = #{rtpStatistics,jdbcType=INTEGER},
+      peer_ip = #{peerIp,jdbcType=VARCHAR},
+      local_ip = #{localIp,jdbcType=VARCHAR},
+      call_direction = #{callDirection,jdbcType=INTEGER},
+      rec_status = #{recStatus,jdbcType=INTEGER},
+      valid_flag = #{validFlag,jdbcType=INTEGER},
+      identity = #{identity,jdbcType=INTEGER},
+      ne_uuid = #{neUuid,jdbcType=INTEGER},
+      product_sn = #{productSn,jdbcType=VARCHAR},
+      port_alias = #{portAlias,jdbcType=CHAR},
+      time_start_interval = #{timeStartInterval,jdbcType=INTEGER},
+      time_result_interval = #{timeResultInterval,jdbcType=INTEGER},
+      time_hour_offset = #{timeHourOffset,jdbcType=INTEGER},
+      time_minute_offset = #{timeMinuteOffset,jdbcType=INTEGER},
+      time_start_code = #{timeStartCode,jdbcType=INTEGER},
+      time_end_code = #{timeEndCode,jdbcType=INTEGER},
+      answer_time = #{answerTime,jdbcType=TIMESTAMP},
+      time_answer_interval = #{timeAnswerInterval,jdbcType=INTEGER},
+      recv_cdr_time = #{recvCdrTime,jdbcType=TIMESTAMP},
+      rtp_jitter_mean = #{rtpJitterMean,jdbcType=INTEGER},
+      rtp_jitter_max = #{rtpJitterMax,jdbcType=INTEGER},
+      rtp_delay_mean = #{rtpDelayMean,jdbcType=INTEGER},
+      rtp_delay_max = #{rtpDelayMax,jdbcType=INTEGER},
+      rtp_lost_rate_mean = #{rtpLostRateMean,jdbcType=INTEGER},
+      rtp_lost_rate_max = #{rtpLostRateMax,jdbcType=INTEGER}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

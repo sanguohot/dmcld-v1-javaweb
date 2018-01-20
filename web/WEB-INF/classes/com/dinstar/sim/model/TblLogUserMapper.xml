@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblLogUserMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblLogUser" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="serial_no" property="serialNo" jdbcType="INTEGER" />
+    <result column="generate_time" property="generateTime" jdbcType="TIMESTAMP" />
+    <result column="domain_name" property="domainName" jdbcType="CHAR" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="CHAR" />
+    <result column="user_uuid" property="userUuid" jdbcType="INTEGER" />
+    <result column="dst_domain_uuid" property="dstDomainUuid" jdbcType="INTEGER" />
+    <result column="dst_domain_name" property="dstDomainName" jdbcType="CHAR" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="role_name" property="roleName" jdbcType="CHAR" />
+    <result column="object_type" property="objectType" jdbcType="INTEGER" />
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="object_name" property="objectName" jdbcType="CHAR" />
+    <result column="batch_set" property="batchSet" jdbcType="INTEGER" />
+    <result column="operate" property="operate" jdbcType="INTEGER" />
+    <result column="ip_addr" property="ipAddr" jdbcType="CHAR" />
+    <result column="remote_port" property="remotePort" jdbcType="INTEGER" />
+    <result column="exec_sql" property="execSql" jdbcType="VARCHAR" />
+    <result column="exec_result" property="execResult" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.dinstar.sim.model.TblLogUser" extends="BaseResultMap" >
+    <result column="detail_desc" property="detailDesc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, serial_no, generate_time, domain_name, domain_uuid, user_name, 
+    user_uuid, dst_domain_uuid, dst_domain_name, role_id, role_name, object_type, object_id, 
+    object_name, batch_set, operate, ip_addr, remote_port, exec_sql, exec_result
+  </sql>
+  <sql id="Blob_Column_List" >
+    detail_desc
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.dinstar.sim.model.TblLogUserCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tbl_log_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblLogUserCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <choose>
+        <when test="myCol!=null"> ${myCol}</when>
+        <otherwise><include refid="Base_Column_List" /></otherwise>
+    </choose>
+    from tbl_log_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="groupBy != null" >
+      group by ${groupBy}
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+   <if test="limitClause != null" >
+      limit ${limitClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tbl_log_user
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_log_user
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblLogUserCriteria" >
+    delete from tbl_log_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblLogUser" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_log_user (uuid, rec_status, serial_no, 
+      generate_time, domain_name, domain_uuid, 
+      user_name, user_uuid, dst_domain_uuid, 
+      dst_domain_name, role_id, role_name, 
+      object_type, object_id, object_name, 
+      batch_set, operate, ip_addr, 
+      remote_port, exec_sql, exec_result, 
+      detail_desc)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{serialNo,jdbcType=INTEGER}, 
+      #{generateTime,jdbcType=TIMESTAMP}, #{domainName,jdbcType=CHAR}, #{domainUuid,jdbcType=INTEGER}, 
+      #{userName,jdbcType=CHAR}, #{userUuid,jdbcType=INTEGER}, #{dstDomainUuid,jdbcType=INTEGER}, 
+      #{dstDomainName,jdbcType=CHAR}, #{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=CHAR}, 
+      #{objectType,jdbcType=INTEGER}, #{objectId,jdbcType=INTEGER}, #{objectName,jdbcType=CHAR}, 
+      #{batchSet,jdbcType=INTEGER}, #{operate,jdbcType=INTEGER}, #{ipAddr,jdbcType=CHAR}, 
+      #{remotePort,jdbcType=INTEGER}, #{execSql,jdbcType=VARCHAR}, #{execResult,jdbcType=INTEGER}, 
+      #{detailDesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblLogUser" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_log_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="serialNo != null" >
+        serial_no,
+      </if>
+      <if test="generateTime != null" >
+        generate_time,
+      </if>
+      <if test="domainName != null" >
+        domain_name,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userUuid != null" >
+        user_uuid,
+      </if>
+      <if test="dstDomainUuid != null" >
+        dst_domain_uuid,
+      </if>
+      <if test="dstDomainName != null" >
+        dst_domain_name,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="roleName != null" >
+        role_name,
+      </if>
+      <if test="objectType != null" >
+        object_type,
+      </if>
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="objectName != null" >
+        object_name,
+      </if>
+      <if test="batchSet != null" >
+        batch_set,
+      </if>
+      <if test="operate != null" >
+        operate,
+      </if>
+      <if test="ipAddr != null" >
+        ip_addr,
+      </if>
+      <if test="remotePort != null" >
+        remote_port,
+      </if>
+      <if test="execSql != null" >
+        exec_sql,
+      </if>
+      <if test="execResult != null" >
+        exec_result,
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="generateTime != null" >
+        #{generateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="domainName != null" >
+        #{domainName,jdbcType=CHAR},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=CHAR},
+      </if>
+      <if test="userUuid != null" >
+        #{userUuid,jdbcType=INTEGER},
+      </if>
+      <if test="dstDomainUuid != null" >
+        #{dstDomainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="dstDomainName != null" >
+        #{dstDomainName,jdbcType=CHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=CHAR},
+      </if>
+      <if test="objectType != null" >
+        #{objectType,jdbcType=INTEGER},
+      </if>
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="objectName != null" >
+        #{objectName,jdbcType=CHAR},
+      </if>
+      <if test="batchSet != null" >
+        #{batchSet,jdbcType=INTEGER},
+      </if>
+      <if test="operate != null" >
+        #{operate,jdbcType=INTEGER},
+      </if>
+      <if test="ipAddr != null" >
+        #{ipAddr,jdbcType=CHAR},
+      </if>
+      <if test="remotePort != null" >
+        #{remotePort,jdbcType=INTEGER},
+      </if>
+      <if test="execSql != null" >
+        #{execSql,jdbcType=VARCHAR},
+      </if>
+      <if test="execResult != null" >
+        #{execResult,jdbcType=INTEGER},
+      </if>
+      <if test="detailDesc != null" >
+        #{detailDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblLogUserCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_log_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_log_user
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.serialNo != null" >
+        serial_no = #{record.serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.generateTime != null" >
+        generate_time = #{record.generateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.domainName != null" >
+        domain_name = #{record.domainName,jdbcType=CHAR},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=CHAR},
+      </if>
+      <if test="record.userUuid != null" >
+        user_uuid = #{record.userUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dstDomainUuid != null" >
+        dst_domain_uuid = #{record.dstDomainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dstDomainName != null" >
+        dst_domain_name = #{record.dstDomainName,jdbcType=CHAR},
+      </if>
+      <if test="record.roleId != null" >
+        role_id = #{record.roleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.roleName != null" >
+        role_name = #{record.roleName,jdbcType=CHAR},
+      </if>
+      <if test="record.objectType != null" >
+        object_type = #{record.objectType,jdbcType=INTEGER},
+      </if>
+      <if test="record.objectId != null" >
+        object_id = #{record.objectId,jdbcType=INTEGER},
+      </if>
+      <if test="record.objectName != null" >
+        object_name = #{record.objectName,jdbcType=CHAR},
+      </if>
+      <if test="record.batchSet != null" >
+        batch_set = #{record.batchSet,jdbcType=INTEGER},
+      </if>
+      <if test="record.operate != null" >
+        operate = #{record.operate,jdbcType=INTEGER},
+      </if>
+      <if test="record.ipAddr != null" >
+        ip_addr = #{record.ipAddr,jdbcType=CHAR},
+      </if>
+      <if test="record.remotePort != null" >
+        remote_port = #{record.remotePort,jdbcType=INTEGER},
+      </if>
+      <if test="record.execSql != null" >
+        exec_sql = #{record.execSql,jdbcType=VARCHAR},
+      </if>
+      <if test="record.execResult != null" >
+        exec_result = #{record.execResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.detailDesc != null" >
+        detail_desc = #{record.detailDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update tbl_log_user
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      serial_no = #{record.serialNo,jdbcType=INTEGER},
+      generate_time = #{record.generateTime,jdbcType=TIMESTAMP},
+      domain_name = #{record.domainName,jdbcType=CHAR},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      user_name = #{record.userName,jdbcType=CHAR},
+      user_uuid = #{record.userUuid,jdbcType=INTEGER},
+      dst_domain_uuid = #{record.dstDomainUuid,jdbcType=INTEGER},
+      dst_domain_name = #{record.dstDomainName,jdbcType=CHAR},
+      role_id = #{record.roleId,jdbcType=INTEGER},
+      role_name = #{record.roleName,jdbcType=CHAR},
+      object_type = #{record.objectType,jdbcType=INTEGER},
+      object_id = #{record.objectId,jdbcType=INTEGER},
+      object_name = #{record.objectName,jdbcType=CHAR},
+      batch_set = #{record.batchSet,jdbcType=INTEGER},
+      operate = #{record.operate,jdbcType=INTEGER},
+      ip_addr = #{record.ipAddr,jdbcType=CHAR},
+      remote_port = #{record.remotePort,jdbcType=INTEGER},
+      exec_sql = #{record.execSql,jdbcType=VARCHAR},
+      exec_result = #{record.execResult,jdbcType=INTEGER},
+      detail_desc = #{record.detailDesc,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_log_user
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      serial_no = #{record.serialNo,jdbcType=INTEGER},
+      generate_time = #{record.generateTime,jdbcType=TIMESTAMP},
+      domain_name = #{record.domainName,jdbcType=CHAR},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      user_name = #{record.userName,jdbcType=CHAR},
+      user_uuid = #{record.userUuid,jdbcType=INTEGER},
+      dst_domain_uuid = #{record.dstDomainUuid,jdbcType=INTEGER},
+      dst_domain_name = #{record.dstDomainName,jdbcType=CHAR},
+      role_id = #{record.roleId,jdbcType=INTEGER},
+      role_name = #{record.roleName,jdbcType=CHAR},
+      object_type = #{record.objectType,jdbcType=INTEGER},
+      object_id = #{record.objectId,jdbcType=INTEGER},
+      object_name = #{record.objectName,jdbcType=CHAR},
+      batch_set = #{record.batchSet,jdbcType=INTEGER},
+      operate = #{record.operate,jdbcType=INTEGER},
+      ip_addr = #{record.ipAddr,jdbcType=CHAR},
+      remote_port = #{record.remotePort,jdbcType=INTEGER},
+      exec_sql = #{record.execSql,jdbcType=VARCHAR},
+      exec_result = #{record.execResult,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblLogUser" >
+    update tbl_log_user
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="serialNo != null" >
+        serial_no = #{serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="generateTime != null" >
+        generate_time = #{generateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="domainName != null" >
+        domain_name = #{domainName,jdbcType=CHAR},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=CHAR},
+      </if>
+      <if test="userUuid != null" >
+        user_uuid = #{userUuid,jdbcType=INTEGER},
+      </if>
+      <if test="dstDomainUuid != null" >
+        dst_domain_uuid = #{dstDomainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="dstDomainName != null" >
+        dst_domain_name = #{dstDomainName,jdbcType=CHAR},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="roleName != null" >
+        role_name = #{roleName,jdbcType=CHAR},
+      </if>
+      <if test="objectType != null" >
+        object_type = #{objectType,jdbcType=INTEGER},
+      </if>
+      <if test="objectId != null" >
+        object_id = #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="objectName != null" >
+        object_name = #{objectName,jdbcType=CHAR},
+      </if>
+      <if test="batchSet != null" >
+        batch_set = #{batchSet,jdbcType=INTEGER},
+      </if>
+      <if test="operate != null" >
+        operate = #{operate,jdbcType=INTEGER},
+      </if>
+      <if test="ipAddr != null" >
+        ip_addr = #{ipAddr,jdbcType=CHAR},
+      </if>
+      <if test="remotePort != null" >
+        remote_port = #{remotePort,jdbcType=INTEGER},
+      </if>
+      <if test="execSql != null" >
+        exec_sql = #{execSql,jdbcType=VARCHAR},
+      </if>
+      <if test="execResult != null" >
+        exec_result = #{execResult,jdbcType=INTEGER},
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc = #{detailDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dinstar.sim.model.TblLogUser" >
+    update tbl_log_user
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      serial_no = #{serialNo,jdbcType=INTEGER},
+      generate_time = #{generateTime,jdbcType=TIMESTAMP},
+      domain_name = #{domainName,jdbcType=CHAR},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=CHAR},
+      user_uuid = #{userUuid,jdbcType=INTEGER},
+      dst_domain_uuid = #{dstDomainUuid,jdbcType=INTEGER},
+      dst_domain_name = #{dstDomainName,jdbcType=CHAR},
+      role_id = #{roleId,jdbcType=INTEGER},
+      role_name = #{roleName,jdbcType=CHAR},
+      object_type = #{objectType,jdbcType=INTEGER},
+      object_id = #{objectId,jdbcType=INTEGER},
+      object_name = #{objectName,jdbcType=CHAR},
+      batch_set = #{batchSet,jdbcType=INTEGER},
+      operate = #{operate,jdbcType=INTEGER},
+      ip_addr = #{ipAddr,jdbcType=CHAR},
+      remote_port = #{remotePort,jdbcType=INTEGER},
+      exec_sql = #{execSql,jdbcType=VARCHAR},
+      exec_result = #{execResult,jdbcType=INTEGER},
+      detail_desc = #{detailDesc,jdbcType=LONGVARCHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblLogUser" >
+    update tbl_log_user
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      serial_no = #{serialNo,jdbcType=INTEGER},
+      generate_time = #{generateTime,jdbcType=TIMESTAMP},
+      domain_name = #{domainName,jdbcType=CHAR},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=CHAR},
+      user_uuid = #{userUuid,jdbcType=INTEGER},
+      dst_domain_uuid = #{dstDomainUuid,jdbcType=INTEGER},
+      dst_domain_name = #{dstDomainName,jdbcType=CHAR},
+      role_id = #{roleId,jdbcType=INTEGER},
+      role_name = #{roleName,jdbcType=CHAR},
+      object_type = #{objectType,jdbcType=INTEGER},
+      object_id = #{objectId,jdbcType=INTEGER},
+      object_name = #{objectName,jdbcType=CHAR},
+      batch_set = #{batchSet,jdbcType=INTEGER},
+      operate = #{operate,jdbcType=INTEGER},
+      ip_addr = #{ipAddr,jdbcType=CHAR},
+      remote_port = #{remotePort,jdbcType=INTEGER},
+      exec_sql = #{execSql,jdbcType=VARCHAR},
+      exec_result = #{execResult,jdbcType=INTEGER}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

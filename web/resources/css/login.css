@@ -1,0 +1,60 @@
+.backcolor{background-color:#f0f0f0;}
+#login-box {
+    width: 595px;
+    height:352px;
+    /*border:1px solid #e0e0e0;*/
+    margin-top: 120px;
+    font-size:20px;
+    text-align: left;
+}
+
+.x-panel {
+    
+    border-color: #d0d0d0;
+    background-color:#FFF;
+    /**/background-image:url('../images/bg3.png');
+    background-repeat:no-repeat;
+    background-position: -5 -5;
+}
+
+.x-panel-header {
+    color:#333;
+	border:0px solid #d0d0d0;
+}
+.x-panel-body {
+    border-color:#d0d0d0;
+}
+#info-box {
+	border-bottom:1px solid #eee;
+}
+#form-ct {
+    padding: 8px 10px 4px;
+}
+
+#msg-ct {
+    width: auto;
+    padding: 2px 8px 8px 22px;
+    display: none;
+    font-weight: bold;
+}
+
+#ins {
+    width: auto;
+    padding: 2px 8px 10px 18px;
+}
+.right{
+    color:#F00;
+    font-size:12px;}
+#left-box {
+    text-align:center;
+    padding-top:25px;
+    padding-right:5px;
+    padding-left:5px;
+}
+#form-box {
+    text-align:center;
+    padding-top:10px;
+    padding-right:5px;
+}
+.mydivleft{float:left;align:center; width:30%;}
+.mydivright{float:right; width:50%;}

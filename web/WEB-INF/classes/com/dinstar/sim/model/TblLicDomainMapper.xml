@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblLicDomainMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblLicDomain" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="spec_domain_uuid" property="specDomainUuid" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="srv_domain" property="srvDomain" jdbcType="CHAR" />
+    <result column="serial_no" property="serialNo" jdbcType="INTEGER" />
+    <result column="sign_type" property="signType" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="CHAR" />
+    <result column="max_sim_card" property="maxSimCard" jdbcType="INTEGER" />
+    <result column="service_api" property="serviceApi" jdbcType="INTEGER" />
+    <result column="hbm_features" property="hbmFeatures" jdbcType="INTEGER" />
+    <result column="hbm_features02" property="hbmFeatures02" jdbcType="INTEGER" />
+    <result column="hbm_features03" property="hbmFeatures03" jdbcType="INTEGER" />
+    <result column="valid_days" property="validDays" jdbcType="INTEGER" />
+    <result column="expired_date" property="expiredDate" jdbcType="TIMESTAMP" />
+    <result column="sign_date" property="signDate" jdbcType="TIMESTAMP" />
+    <result column="sign_author" property="signAuthor" jdbcType="CHAR" />
+    <result column="dns_url" property="dnsUrl" jdbcType="CHAR" />
+    <result column="dns_url02" property="dnsUrl02" jdbcType="CHAR" />
+    <result column="auth_info" property="authInfo" jdbcType="CHAR" />
+    <result column="lic_status" property="licStatus" jdbcType="INTEGER" />
+    <result column="left_days" property="leftDays" jdbcType="INTEGER" />
+    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, spec_domain_uuid, alias, srv_domain, serial_no, sign_type, version, 
+    max_sim_card, service_api, hbm_features, hbm_features02, hbm_features03, valid_days, 
+    expired_date, sign_date, sign_author, dns_url, dns_url02, auth_info, lic_status, 
+    left_days, detail_desc
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblLicDomainCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_lic_domain
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_lic_domain
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_lic_domain
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblLicDomainCriteria" >
+    delete from tbl_lic_domain
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblLicDomain" >
+    insert into tbl_lic_domain (uuid, rec_status, spec_domain_uuid, 
+      alias, srv_domain, serial_no, 
+      sign_type, version, max_sim_card, 
+      service_api, hbm_features, hbm_features02, 
+      hbm_features03, valid_days, expired_date, 
+      sign_date, sign_author, dns_url, 
+      dns_url02, auth_info, lic_status, 
+      left_days, detail_desc)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{specDomainUuid,jdbcType=INTEGER}, 
+      #{alias,jdbcType=CHAR}, #{srvDomain,jdbcType=CHAR}, #{serialNo,jdbcType=INTEGER}, 
+      #{signType,jdbcType=INTEGER}, #{version,jdbcType=CHAR}, #{maxSimCard,jdbcType=INTEGER}, 
+      #{serviceApi,jdbcType=INTEGER}, #{hbmFeatures,jdbcType=INTEGER}, #{hbmFeatures02,jdbcType=INTEGER}, 
+      #{hbmFeatures03,jdbcType=INTEGER}, #{validDays,jdbcType=INTEGER}, #{expiredDate,jdbcType=TIMESTAMP}, 
+      #{signDate,jdbcType=TIMESTAMP}, #{signAuthor,jdbcType=CHAR}, #{dnsUrl,jdbcType=CHAR}, 
+      #{dnsUrl02,jdbcType=CHAR}, #{authInfo,jdbcType=CHAR}, #{licStatus,jdbcType=INTEGER}, 
+      #{leftDays,jdbcType=INTEGER}, #{detailDesc,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblLicDomain" >
+    insert into tbl_lic_domain
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="specDomainUuid != null" >
+        spec_domain_uuid,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="srvDomain != null" >
+        srv_domain,
+      </if>
+      <if test="serialNo != null" >
+        serial_no,
+      </if>
+      <if test="signType != null" >
+        sign_type,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="maxSimCard != null" >
+        max_sim_card,
+      </if>
+      <if test="serviceApi != null" >
+        service_api,
+      </if>
+      <if test="hbmFeatures != null" >
+        hbm_features,
+      </if>
+      <if test="hbmFeatures02 != null" >
+        hbm_features02,
+      </if>
+      <if test="hbmFeatures03 != null" >
+        hbm_features03,
+      </if>
+      <if test="validDays != null" >
+        valid_days,
+      </if>
+      <if test="expiredDate != null" >
+        expired_date,
+      </if>
+      <if test="signDate != null" >
+        sign_date,
+      </if>
+      <if test="signAuthor != null" >
+        sign_author,
+      </if>
+      <if test="dnsUrl != null" >
+        dns_url,
+      </if>
+      <if test="dnsUrl02 != null" >
+        dns_url02,
+      </if>
+      <if test="authInfo != null" >
+        auth_info,
+      </if>
+      <if test="licStatus != null" >
+        lic_status,
+      </if>
+      <if test="leftDays != null" >
+        left_days,
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="specDomainUuid != null" >
+        #{specDomainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=CHAR},
+      </if>
+      <if test="srvDomain != null" >
+        #{srvDomain,jdbcType=CHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="signType != null" >
+        #{signType,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=CHAR},
+      </if>
+      <if test="maxSimCard != null" >
+        #{maxSimCard,jdbcType=INTEGER},
+      </if>
+      <if test="serviceApi != null" >
+        #{serviceApi,jdbcType=INTEGER},
+      </if>
+      <if test="hbmFeatures != null" >
+        #{hbmFeatures,jdbcType=INTEGER},
+      </if>
+      <if test="hbmFeatures02 != null" >
+        #{hbmFeatures02,jdbcType=INTEGER},
+      </if>
+      <if test="hbmFeatures03 != null" >
+        #{hbmFeatures03,jdbcType=INTEGER},
+      </if>
+      <if test="validDays != null" >
+        #{validDays,jdbcType=INTEGER},
+      </if>
+      <if test="expiredDate != null" >
+        #{expiredDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signDate != null" >
+        #{signDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signAuthor != null" >
+        #{signAuthor,jdbcType=CHAR},
+      </if>
+      <if test="dnsUrl != null" >
+        #{dnsUrl,jdbcType=CHAR},
+      </if>
+      <if test="dnsUrl02 != null" >
+        #{dnsUrl02,jdbcType=CHAR},
+      </if>
+      <if test="authInfo != null" >
+        #{authInfo,jdbcType=CHAR},
+      </if>
+      <if test="licStatus != null" >
+        #{licStatus,jdbcType=INTEGER},
+      </if>
+      <if test="leftDays != null" >
+        #{leftDays,jdbcType=INTEGER},
+      </if>
+      <if test="detailDesc != null" >
+        #{detailDesc,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblLicDomainCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_lic_domain
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_lic_domain
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.specDomainUuid != null" >
+        spec_domain_uuid = #{record.specDomainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.alias != null" >
+        alias = #{record.alias,jdbcType=CHAR},
+      </if>
+      <if test="record.srvDomain != null" >
+        srv_domain = #{record.srvDomain,jdbcType=CHAR},
+      </if>
+      <if test="record.serialNo != null" >
+        serial_no = #{record.serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.signType != null" >
+        sign_type = #{record.signType,jdbcType=INTEGER},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=CHAR},
+      </if>
+      <if test="record.maxSimCard != null" >
+        max_sim_card = #{record.maxSimCard,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceApi != null" >
+        service_api = #{record.serviceApi,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmFeatures != null" >
+        hbm_features = #{record.hbmFeatures,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmFeatures02 != null" >
+        hbm_features02 = #{record.hbmFeatures02,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmFeatures03 != null" >
+        hbm_features03 = #{record.hbmFeatures03,jdbcType=INTEGER},
+      </if>
+      <if test="record.validDays != null" >
+        valid_days = #{record.validDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.expiredDate != null" >
+        expired_date = #{record.expiredDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.signDate != null" >
+        sign_date = #{record.signDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.signAuthor != null" >
+        sign_author = #{record.signAuthor,jdbcType=CHAR},
+      </if>
+      <if test="record.dnsUrl != null" >
+        dns_url = #{record.dnsUrl,jdbcType=CHAR},
+      </if>
+      <if test="record.dnsUrl02 != null" >
+        dns_url02 = #{record.dnsUrl02,jdbcType=CHAR},
+      </if>
+      <if test="record.authInfo != null" >
+        auth_info = #{record.authInfo,jdbcType=CHAR},
+      </if>
+      <if test="record.licStatus != null" >
+        lic_status = #{record.licStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.leftDays != null" >
+        left_days = #{record.leftDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.detailDesc != null" >
+        detail_desc = #{record.detailDesc,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_lic_domain
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      spec_domain_uuid = #{record.specDomainUuid,jdbcType=INTEGER},
+      alias = #{record.alias,jdbcType=CHAR},
+      srv_domain = #{record.srvDomain,jdbcType=CHAR},
+      serial_no = #{record.serialNo,jdbcType=INTEGER},
+      sign_type = #{record.signType,jdbcType=INTEGER},
+      version = #{record.version,jdbcType=CHAR},
+      max_sim_card = #{record.maxSimCard,jdbcType=INTEGER},
+      service_api = #{record.serviceApi,jdbcType=INTEGER},
+      hbm_features = #{record.hbmFeatures,jdbcType=INTEGER},
+      hbm_features02 = #{record.hbmFeatures02,jdbcType=INTEGER},
+      hbm_features03 = #{record.hbmFeatures03,jdbcType=INTEGER},
+      valid_days = #{record.validDays,jdbcType=INTEGER},
+      expired_date = #{record.expiredDate,jdbcType=TIMESTAMP},
+      sign_date = #{record.signDate,jdbcType=TIMESTAMP},
+      sign_author = #{record.signAuthor,jdbcType=CHAR},
+      dns_url = #{record.dnsUrl,jdbcType=CHAR},
+      dns_url02 = #{record.dnsUrl02,jdbcType=CHAR},
+      auth_info = #{record.authInfo,jdbcType=CHAR},
+      lic_status = #{record.licStatus,jdbcType=INTEGER},
+      left_days = #{record.leftDays,jdbcType=INTEGER},
+      detail_desc = #{record.detailDesc,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblLicDomain" >
+    update tbl_lic_domain
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="specDomainUuid != null" >
+        spec_domain_uuid = #{specDomainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=CHAR},
+      </if>
+      <if test="srvDomain != null" >
+        srv_domain = #{srvDomain,jdbcType=CHAR},
+      </if>
+      <if test="serialNo != null" >
+        serial_no = #{serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="signType != null" >
+        sign_type = #{signType,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=CHAR},
+      </if>
+      <if test="maxSimCard != null" >
+        max_sim_card = #{maxSimCard,jdbcType=INTEGER},
+      </if>
+      <if test="serviceApi != null" >
+        service_api = #{serviceApi,jdbcType=INTEGER},
+      </if>
+      <if test="hbmFeatures != null" >
+        hbm_features = #{hbmFeatures,jdbcType=INTEGER},
+      </if>
+      <if test="hbmFeatures02 != null" >
+        hbm_features02 = #{hbmFeatures02,jdbcType=INTEGER},
+      </if>
+      <if test="hbmFeatures03 != null" >
+        hbm_features03 = #{hbmFeatures03,jdbcType=INTEGER},
+      </if>
+      <if test="validDays != null" >
+        valid_days = #{validDays,jdbcType=INTEGER},
+      </if>
+      <if test="expiredDate != null" >
+        expired_date = #{expiredDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signDate != null" >
+        sign_date = #{signDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signAuthor != null" >
+        sign_author = #{signAuthor,jdbcType=CHAR},
+      </if>
+      <if test="dnsUrl != null" >
+        dns_url = #{dnsUrl,jdbcType=CHAR},
+      </if>
+      <if test="dnsUrl02 != null" >
+        dns_url02 = #{dnsUrl02,jdbcType=CHAR},
+      </if>
+      <if test="authInfo != null" >
+        auth_info = #{authInfo,jdbcType=CHAR},
+      </if>
+      <if test="licStatus != null" >
+        lic_status = #{licStatus,jdbcType=INTEGER},
+      </if>
+      <if test="leftDays != null" >
+        left_days = #{leftDays,jdbcType=INTEGER},
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc = #{detailDesc,jdbcType=CHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblLicDomain" >
+    update tbl_lic_domain
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      spec_domain_uuid = #{specDomainUuid,jdbcType=INTEGER},
+      alias = #{alias,jdbcType=CHAR},
+      srv_domain = #{srvDomain,jdbcType=CHAR},
+      serial_no = #{serialNo,jdbcType=INTEGER},
+      sign_type = #{signType,jdbcType=INTEGER},
+      version = #{version,jdbcType=CHAR},
+      max_sim_card = #{maxSimCard,jdbcType=INTEGER},
+      service_api = #{serviceApi,jdbcType=INTEGER},
+      hbm_features = #{hbmFeatures,jdbcType=INTEGER},
+      hbm_features02 = #{hbmFeatures02,jdbcType=INTEGER},
+      hbm_features03 = #{hbmFeatures03,jdbcType=INTEGER},
+      valid_days = #{validDays,jdbcType=INTEGER},
+      expired_date = #{expiredDate,jdbcType=TIMESTAMP},
+      sign_date = #{signDate,jdbcType=TIMESTAMP},
+      sign_author = #{signAuthor,jdbcType=CHAR},
+      dns_url = #{dnsUrl,jdbcType=CHAR},
+      dns_url02 = #{dnsUrl02,jdbcType=CHAR},
+      auth_info = #{authInfo,jdbcType=CHAR},
+      lic_status = #{licStatus,jdbcType=INTEGER},
+      left_days = #{leftDays,jdbcType=INTEGER},
+      detail_desc = #{detailDesc,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

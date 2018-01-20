@@ -1,0 +1,61 @@
+<form  name="RouteIP2PSTNParam" id="RouteIP2PSTNParam" ng-controller="RouteIP2PSTNParamCtrl">
+	<table width="600px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+		<tbody><tr>
+			<td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+			<td>路由参数</td>
+			<td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+		</tr>
+		</tbody></table>
+	<table width="600px" align="center" class="tblbody" cellpadding="1" cellspacing="0">
+		<tbody><tr>
+			<td class="sidebar">&nbsp;</td>
+			<td>
+				<table width="100%" class="context">
+					<tbody><tr>
+						<td width="5%">&nbsp;</td>
+						<td width="35%">&nbsp;</td>
+						<td width="60%">&nbsp;</td>
+					</tr>
+					<tr id="idIP2IPRouteEnable">
+						<td>&nbsp;</td>
+						<td class="td_title">IP-&gt;IP路由</td>
+						<td>
+							<input id="IP2IPRouteEnable" name="IP2IPRouteEnable" type="checkbox">启用
+						</td>
+					</tr>
+					<tr id="idSpace0">
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr id="IP2TelParam">
+						<td>&nbsp;</td>
+						<td>IP呼入</td>
+						<td>
+							<select name="IPInRouteMode" class="alist" id="IPInRouteMode" style="width:100%">
+								<option value="0" selected="">号码变换前路由</option>
+								<option value="1">号码变换后路由</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td>模拟线路呼入</td>
+						<td>
+							<select name="PSTNToIPRouteMode" class="alist" id="PSTNToIPRouteMode" style="width:100%">
+								<option value="0" selected="">号码变换前路由</option>
+								<option value="1">号码变换后路由</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					</tbody></table>
+			</td>
+			<td class="sidebar">&nbsp;</td>
+		</tr>
+		</tbody></table>
+</form>

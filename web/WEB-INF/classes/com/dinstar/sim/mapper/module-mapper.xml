@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- 模块映射配置文件 -->
+<mapper namespace="com.dinstar.sim.mapper.ModuleMapper">
+	<resultMap type="com.dinstar.sim.mapper.ModuleMapper" id="moduleMapperMap">
+		<result property="module" column="module" />
+		<result property="name" column="modulename" />
+		<result property="iconCls" column="icon" />
+		<result property="read" column="sel"/>
+		<result property="create" column="cre"/>
+		<result property="update" column="upd"/>
+		<result property="maintenance" column="maintenance"/>
+		<result property="delete" column="del"/>
+	</resultMap>
+	    
+    <select id="getDeskTopModule" parameterType="com.dinstar.sim.model.TblUser" resultMap="moduleMapperMap">
+    	select m.module,m.modulename,m.icon,u.sel,u.cre,u.upd,u.maintenance,u.del from tbl_module m, tbl_right  u 
+    	where m.moduleid=u.module_id and u.user_uuid=#{uuid} and u.sel=1 order by m.desc
+    </select>
+    <select id="getModuleList" parameterType="java.util.HashMap" resultMap="moduleMapperMap">
+		select m.module,m.modulename,m.icon from tbl_module m
+		WHERE 1=1
+		and m.moduleid IN
+		<foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+		#{item}
+		</foreach>
+		order by m.desc
+    </select>
+</mapper>

@@ -1,0 +1,7 @@
+{
+	success: true,
+	roamzone: [
+                {roamzoneid:1,roamzonename:'shenzhen',desc:'shenzhen roamzone'},
+                {roamzoneid:2,roamzonename:'hongkong',desc:'hongkong roamzone'},
+            ]
+}

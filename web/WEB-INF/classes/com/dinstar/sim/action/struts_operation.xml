@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">  
+<struts>  
+<!-- 业务管理配置文件 -->
+	<package name="struts-operation" extends="json-default">
+		<interceptors>  
+	    	<interceptor name="timeoutInterceptor" class="com.dinstar.sim.action.SessionTimeoutInterceptor"></interceptor>  
+	    	<interceptor-stack name="timeoutStack">  
+	        	<interceptor-ref name="timeoutInterceptor"/>  
+	        	<interceptor-ref name="defaultStack"/>  
+	    	</interceptor-stack>  
+		</interceptors>
+		<default-interceptor-ref name="timeoutStack"/>  
+		<!-- operation ne, bk, gw configuration -->
+		<action name="neManager" class="neAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		
+		<action name="nesInSiteManager" class="nesInSiteAction">  
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		<action name="neNaManager" class="neNaAction">  
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		
+		<action name="portManager" class="portAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		<action name="bkpManager" class="bkpAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		<action name="gwpManager" class="gwpAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+			<result name="input" type="json"/>
+		</action>
+		<action name="simCardManager" class="simCardAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		<action name="simCardInGroupManager" class="simCardInGroupAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		<action name="checkManager" class="checkCanDeleteAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		<action name="sysListManager" class="systemListAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		<action name="importSIMCard" class="importSIMCardAction">
+			 <interceptor-ref name="fileUploadStack"></interceptor-ref>  
+			<result name="success" type="json">
+				<param name="contentType">text/html;charset=UTF-8</param>  
+			</result>
+		</action>
+		<action name="exportSIMCardB" class="exportSIMCardAction">  
+            <result name="success" type="stream">  
+                <param name="contentType">application/vnd.ms-excel</param>  
+                <param name="contentDisposition">attachment;filename="SIMCard.xls"</param>  
+                <param name="inputName">inputStream</param>  
+            </result>  
+        </action>  
+		<action name="exportSIMCard" class="exportSIMCardAction">  
+            <result name="success" type="json"/>  
+        </action> 
+		<action name="exportPaidCard" class="exportPaidCardAction">  
+            <result name="success" type="json"/>  
+        </action> 
+		<action name="exportConfig" class="exportConfigAction">  
+            <result name="success" type="json"/>  
+        </action> 
+        <!-- 根据type获取combox下拉列表 -->
+		<action name="getCombox" class="comboxAction">  
+            <result name="success" type="json"/>  
+        </action>
+        <!-- paid group -->
+		<action name="paidGroupManager" class="paidGrpAction">  
+            <result name="success" type="json"/>  
+        </action>  
+        <!-- paid list -->
+		<action name="paidListManager" class="paidListAction">  
+            <result name="success" type="json"/>  
+        </action>
+       	<action name="importPaidCard" class="importPaidCardAction">
+			 <interceptor-ref name="fileUploadStack"></interceptor-ref>  
+			<result name="success" type="json">
+				<param name="contentType">text/html;charset=UTF-8</param>  
+			</result>
+		</action>  
+       	<action name="importConfig" class="importConfigAction">
+			 <interceptor-ref name="fileUploadStack"></interceptor-ref>  
+			<result name="success" type="json">
+				<param name="contentType">text/html;charset=UTF-8</param>  
+			</result>
+		</action>  
+		<!-- AG manager -->
+		<action name="agManager" class="agAction">  
+            <result name="success" type="json"/>  
+        </action>
+
+		<action name="agpManager" class="agpAction">  
+            <result name="success" type="json"/>  
+        </action>
+        <!-- TG manager -->
+		<action name="tgManager" class="tgAction">  
+            <result name="success" type="json"/>  
+        </action>
+
+		<action name="tgpManager" class="tgpAction">  
+            <result name="success" type="json"/>  
+        </action>
+        <action name="alarmManager" class="alarmAction">
+			<result name="success" type="json"></result>
+		</action> 
+
+        <action name="alarmDomainSettingManager" class="alarmDomainSettingAction">
+			<result name="success" type="json"></result>
+		</action> 
+		<!-- 获取ne对应的syslog文件 -->
+        <action name="provisionFileManager" class="provisionFileAction">
+			<result name="success" type="json"></result>
+			<result name="download" type="stream">
+				<param name="inputPath">inputSteam</param>
+			</result>
+		</action> 
+        <action name="attachment" class="attachmentAction">
+			<result name="success" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+		
+		<action name="logManager" class="logUserAction">
+			<result name="success" type="json"></result>
+		</action>  
+
+		<action name="runLogManager" class="runLogAction">
+			<result name="success" type="json"></result>
+		</action>  
+
+		<action name="cookieManager" class="cookieAction">
+			<result name="success" type="json"></result>
+		</action>  
+		<action name="check" class="checkAction">
+			<result name="success" type="json"></result>
+		</action>  
+
+		<action name="licSrvManager" class="licSrvAction">
+			<result name="success" type="json"></result>
+		</action>  
+		<action name="licDomainManager" class="licDomainAction">
+			<result name="success" type="json"></result>
+		</action>  
+
+		<action name="licPaidCardManager" class="licPaidCardAction">
+			<result name="success" type="json"></result>
+		</action>  
+		<action name="licenseManager" class="licenseAction">
+			<result name="success" type="json"></result>
+		</action> 
+		<action name="alarmLogManager" class="alarmLogAction">
+			<result name="success" type="json"></result>
+		</action> 
+
+		<action name="backupManager" class="backupAction">
+			<result name="success" type="json"></result>
+		</action> 
+		<action name="licPaidLogManager" class="licPaidLogAction">
+			<result name="success" type="json"></result>
+		</action>  
+		<action name="licSrvLogManager" class="licSrvLogAction">
+			<result name="success" type="json"></result>
+		</action>  
+		<action name="licDomainLogManager" class="licDomainLogAction">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="numManager" class="numberAction">
+			<result name="success" type="json"></result>
+		</action>    
+		<action name="msgManager" class="msgAction">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="androidManager" class="androidAction">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="dmManager" class="dmAction">
+			<result name="success" type="json"></result>
+		</action>
+    		<action name="payManager" class="payAction">
+			<result name="success" type="json"></result>
+		</action>
+    		<action name="agCdrManager" class="agCdrAction">
+			<result name="success" type="json"></result>
+		</action>		
+    		<action name="salesManager" class="salesAction">
+			<result name="success" type="json"></result>
+		</action>
+
+    	<action name="priceManager" class="priceAction">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="alarmMgManager" class="alarmMgAction">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="alarmManManager" class="alarmManAction">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="dtrManager" class="dtrAction">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="drpApiManager" class="drpApiAction">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="drpManager" class="drpAction">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="alarmGrpManager" class="alarmGrpAction">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="alarmPushRuleManager" class="alarmPushRuleAction">
+			<result name="success" type="json"></result>
+		</action>					
+		<action name="authHisManager" class="authHisAction">
+			<result name="success" type="json"></result>
+		</action>
+	</package>
+</struts>  
+

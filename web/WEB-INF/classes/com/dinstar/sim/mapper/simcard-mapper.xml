@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dinstar.sim.mapper.SimCard">
+	<resultMap type="com.dinstar.sim.model.TblSim" id="simCardMapperMap">
+	<id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="imsi" property="imsi" jdbcType="CHAR" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="alm_status_bits" property="almStatusBits" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="grp_uuid" property="grpUuid" jdbcType="INTEGER" />
+    <result column="promotion_grp_uuid" property="promotionGrpUuid" jdbcType="INTEGER" />
+    <result column="orig_zone_uuid" property="origZoneUuid" jdbcType="INTEGER" />
+    <result column="last_site_uuid" property="lastSiteUuid" jdbcType="INTEGER" />
+    <result column="next_site_uuid" property="nextSiteUuid" jdbcType="INTEGER" />
+    <result column="bkp_uuid" property="bkpUuid" jdbcType="INTEGER" />
+    <result column="local_gwp_uuid" property="localGwpUuid" jdbcType="INTEGER" />
+    <result column="lock_gwp_uuid" property="lockGwpUuid" jdbcType="INTEGER" />
+    <result column="icc_id" property="iccId" jdbcType="CHAR" />
+    <result column="bind_imei" property="bindImei" jdbcType="CHAR" />
+    <result column="pin1_code" property="pin1Code" jdbcType="CHAR" />
+    <result column="pin2_code" property="pin2Code" jdbcType="CHAR" />
+    <result column="puk1_code" property="puk1Code" jdbcType="CHAR" />
+    <result column="puk2_code" property="puk2Code" jdbcType="CHAR" />
+    <result column="operator" property="operator" jdbcType="CHAR" />
+    <result column="mobile" property="mobile" jdbcType="CHAR" />
+    <result column="sim_number" property="simNumber" jdbcType="CHAR" />
+    <result column="smsc" property="smsc" jdbcType="CHAR" />
+    <result column="money_type" property="moneyType" jdbcType="INTEGER" />
+    <result column="prepaid_fee" property="prepaidFee" jdbcType="DECIMAL" />
+    <result column="total_cost" property="totalCost" jdbcType="DECIMAL" />
+    <result column="last_balance" property="lastBalance" jdbcType="REAL" />
+    <result column="cur_balance" property="curBalance" jdbcType="REAL" />
+    <result column="left_call_time" property="leftCallTime" jdbcType="INTEGER" />
+    <result column="prom_call_time" property="promCallTime" jdbcType="INTEGER" />
+    <result column="last_group_time" property="lastGroupTime" jdbcType="TIMESTAMP" />
+    <result column="last_load_time" property="lastLoadTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_bind_time" property="lastBindTime" jdbcType="TIMESTAMP" />
+    <result column="last_used_time" property="lastUsedTime" jdbcType="TIMESTAMP" />
+    <result column="last_prom_time" property="lastPromTime" jdbcType="TIMESTAMP" />
+    <result column="last_balance_time" property="lastBalanceTime" jdbcType="TIMESTAMP" />
+    <result column="deactive_reason" property="deactiveReason" jdbcType="INTEGER" />
+    <result column="last_deactive_reason" property="lastDeactiveReason" jdbcType="INTEGER" />
+    <result column="blocked_flag" property="blockedFlag" jdbcType="INTEGER" />
+    <result column="low_balance_flag" property="lowBalanceFlag" jdbcType="INTEGER" />
+    <result column="no_balance_flag" property="noBalanceFlag" jdbcType="INTEGER" />
+    <result column="promotion_status" property="promotionStatus" jdbcType="INTEGER" />
+    <result column="promotion_count" property="promotionCount" jdbcType="INTEGER" />
+    <result column="promotion_time" property="promotionTime" jdbcType="TIMESTAMP" />
+    <result column="promotion_report" property="promotionReport" jdbcType="CHAR" />
+    <result column="hbm_acd_short_count" property="hbmAcdShortCount" jdbcType="INTEGER" />
+    <result column="hbm_acd_fail_count" property="hbmAcdFailCount" jdbcType="INTEGER" />
+    <result column="hbm_acd_sms_count" property="hbmAcdSmsCount" jdbcType="INTEGER" />
+    <result column="hbm_sms_fail_count" property="hbmSmsFailCount" jdbcType="INTEGER" />
+    <result column="hbm_call_fail_count" property="hbmCallFailCount" jdbcType="INTEGER" />
+    <result column="hbm_dtmf_fail_count" property="hbmDtmfFailCount" jdbcType="INTEGER" />
+    <result column="hbm_reg_fail_count" property="hbmRegFailCount" jdbcType="INTEGER" />
+    <result column="sim_recharged_flag" property="simRechargedFlag" jdbcType="INTEGER" />
+    <result column="paid_list_uuid" property="paidListUuid" jdbcType="INTEGER" />
+    <result column="local_sim_flag" property="localSimFlag" jdbcType="INTEGER" />
+    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+    
+    
+	    <result column="gwp_uuid" property="gwpUuid" jdbcType="INTEGER" />
+		<result column="gwp_port_no_str" property="gwpPortNoStr" jdbcType="CHAR" />
+		<result column="bkp_port_no_str" property="bkpPortNoStr" jdbcType="CHAR" />
+	    <result column="last_site_name" property="lastSiteName" jdbcType="CHAR" />
+<!-- 
+ 		<result column="sml_uuid" property="smlUuid" jdbcType="INTEGER" />
+	    <result column="sml_cur_fail_retries" property="smlCurFailRetries" jdbcType="INTEGER" />
+	    <result column="sml_max_fail_retries" property="smlMaxFailRetries" jdbcType="INTEGER" />
+	    <result column="sms_number" property="smsNumber" jdbcType="CHAR" />
+	    <result column="sml_encode" property="smlEncode" jdbcType="INTEGER" />
+	    <result column="sml_content" property="smlContent" jdbcType="INTEGER" />
+	    <result column="sms_status" property="smsStatus" jdbcType="INTEGER" />
+	    <result column="sms_receipt" property="smsReceipt" jdbcType="INTEGER" />
+	    <result column="sms_result" property="smsResult" jdbcType="INTEGER" />
+	    <result column="split_cnt" property="splitCnt" jdbcType="INTEGER" />
+	    <result column="split_succ_cnt" property="splitSuccCnt" jdbcType="INTEGER" />
+	    <result column="split_fail_cnt" property="splitFailCnt" jdbcType="INTEGER" />
+	    <result column="sms_time" property="smsTime" jdbcType="TIMESTAMP" />
+	    <result column="sml_result_time" property="smlResultTime" jdbcType="TIMESTAMP" />
+	    <result column="sml_receipt_time" property="smlReceiptTime" jdbcType="TIMESTAMP" />
+ 		
+ 		<result column="ussl_uuid" property="usslUuid" jdbcType="INTEGER" />
+	    <result column="ussd_direction" property="ussdDirection" jdbcType="INTEGER" />
+	    <result column="ussl_cur_fail_retries" property="usslCurFailRetries" jdbcType="INTEGER" />
+	    <result column="ussl_max_fail_retries" property="usslMaxFailRetries" jdbcType="INTEGER" />
+	    <result column="ussd_param" property="ussdParam" jdbcType="INTEGER" />
+	    <result column="ussd_status" property="ussdStatus" jdbcType="INTEGER" />
+	    <result column="ussd_result" property="ussdResult" jdbcType="INTEGER" />
+	    <result column="ussd_time" property="ussdTime" jdbcType="TIMESTAMP" />
+	    <result column="ussl_result_time" property="usslResultTime" jdbcType="TIMESTAMP" />
+     	<result column="ussl_content" property="usslContent" jdbcType="LONGVARCHAR" />
+
+ 		<result column="call_uuid" property="callUuid" jdbcType="INTEGER" />
+	    <result column="call_direction" property="callDirection" jdbcType="INTEGER" />
+	    <result column="call_cur_fail_retries" property="callCurFailRetries" jdbcType="INTEGER" />
+	    <result column="call_max_fail_retries" property="callMaxFailRetries" jdbcType="INTEGER" />
+	    <result column="call_number" property="callNumber" jdbcType="CHAR" />
+	    <result column="connect_flag" property="connectFlag" jdbcType="INTEGER" />
+	    <result column="call_duration" property="callDuration" jdbcType="INTEGER" />
+	    <result column="test_tone_mode" property="testToneMode" jdbcType="INTEGER" />
+	    <result column="dtmf_number" property="dtmfNumber" jdbcType="CHAR" />
+	    <result column="call_status" property="callStatus" jdbcType="INTEGER" />
+	    <result column="call_result" property="callResult" jdbcType="INTEGER" />
+	    <result column="call_time" property="callTime" jdbcType="TIMESTAMP" />
+	    <result column="call_result_time" property="callResultTime" jdbcType="TIMESTAMP" />
+	     -->
+	</resultMap>
+	    
+    <select id="getSimCardList" resultMap="simCardMapperMap">
+		SELECT tnc.operator as operator1,ts.*,bkp.gwp_uuid,tst.name as last_site_name,
+		CASE ts.bkp_uuid
+			WHEN 0
+			THEN NULL
+			WHEN NULL
+			THEN NULL
+			ELSE
+			(		CASE tn.alias 
+					WHEN NULL
+					THEN 
+					CONCAT(tn.product_sn,'[',if(tp.port_no >9 ,tp.port_no,CONCAT('0',tp.port_no)),']')
+					WHEN ''
+					THEN
+					CONCAT(tn.product_sn,'[',if(tp.port_no >9 ,tp.port_no,CONCAT('0',tp.port_no)),']')
+					ELSE
+					CONCAT(tn.alias,'[',if(tp.port_no >9 ,tp.port_no,CONCAT('0',tp.port_no)),']')
+					END)
+		END AS bkp_port_no_str,
+		CASE bkp.gwp_uuid 
+				WHEN 0 
+				THEN NULL
+				WHEN NULL
+				THEN NULL
+				ELSE
+				(select
+					CASE tn.alias 
+					WHEN NULL
+					THEN 
+					CONCAT(tn.product_sn,'[',if(tp.port_no >9 ,tp.port_no,CONCAT('0',tp.port_no)),']')
+					WHEN ''
+					THEN
+					CONCAT(tn.product_sn,'[',if(tp.port_no >9 ,tp.port_no,CONCAT('0',tp.port_no)),']')
+					ELSE
+					CONCAT(tn.alias,'[',if(tp.port_no >9 ,tp.port_no,CONCAT('0',tp.port_no)),']')
+					END
+					from tbl_ne tn ,tbl_port tp, tbl_gwp gwp 
+					where tn.uuid=tp.ne_uuid and tp.uuid=gwp.port_uuid and gwp.uuid=bkp.gwp_uuid )
+				END as gwp_port_no_str
+		
+		<!-- tsl.uuid as sml_uuid,
+		tsl.sms_number,tsl.encode as sml_encode,tsl.content as sml_content,tsl.sms_status,
+		tsl.sms_receipt,tsl.sms_result,tsl.split_cnt,tsl.split_succ_cnt,tsl.split_fail_cnt,
+		tsl.sms_time,tsl.result_time as sml_result_time,tsl.receipt_time,
+		tsl.cur_fail_retries as sml_cur_fail_retries,tsl.max_fail_retries as sml_max_fail_retries,
+		
+		tul.uuid as ussl_uuid,
+		tul.ussd_direction,tul.cur_fail_retries as ussl_cur_fail_retries,tul.max_fail_retries as ussl_max_fail_retries,
+		tul.ussd_param,tul.content as ussl_content,tul.ussd_status,
+		tul.ussd_result,tul.ussd_time,tul.result_time as ussl_result_time,
+		
+		tcl.uuid as call_uuid,
+		tcl.call_direction,tcl.cur_fail_retries as call_cur_fail_retries,tcl.max_fail_retries as call_max_fail_retries,
+		tcl.call_number,tcl.connect_flag,tcl.call_duration,tcl.test_tone_mode,tcl.dtmf_number,tcl.call_status,
+		tcl.call_result,tcl.call_time,tcl.result_time as call_result_time
+		left join tbl_sml tsl on(ts.uuid=tsl.spec_sim_uuid)
+		left join tbl_ussl tul on(ts.uuid=tul.spec_sim_uuid)
+		left join tbl_call tcl on (ts.uuid=tcl.spec_sim_uuid)
+		 -->
+		FROM tbl_sim ts
+		LEFT JOIN tbl_bkp bkp on(ts.bkp_uuid = bkp.uuid)
+		left JOIN tbl_gwp gwp on(bkp.gwp_uuid = gwp.uuid)
+		LEFT JOIN tbl_port tp on(bkp.port_uuid=tp.uuid)
+		left JOIN tbl_ne  tn on(tp.ne_uuid = tn.uuid)
+		left join tbl_site tst on(ts.last_site_uuid=tst.uuid)
+		left join tbl_network_code tnc on (tnc.mccmnc=SUBSTR(ts.imsi ,1 ,5))
+		where ts.rec_status!=#{recStatus}
+		
+		<if test="grpUuid>0">AND ts.grp_uuid =#{grpUuid}</if>
+		<if test="runStatus!=null and runStatus>0">AND ts.run_status =#{runStatus}</if>
+		<if test="adminStatus!=null and adminStatus>0">AND ts.admin_status =#{adminStatus}</if>
+		<if test="domainUuid>0">AND ts.domain_uuid =#{domainUuid}</if>
+		<if test="aliasLike!=null and aliasLike>0 and alias!=null and alias!=''">
+			<choose>
+				<when test="aliasLike=1">
+					AND ts.alias LIKE #{alias}
+				</when>
+				<otherwise>
+					AND ts.alias = #{alias}
+				</otherwise>
+			</choose>
+		</if>
+		<if test="imsiLike!=null and imsiLike>0 and imsi!=null and imsi!=''">
+			<choose>
+				<when test="imsiLike=1">
+					AND ts.imsi LIKE #{imsi}
+				</when>
+				<otherwise>
+					AND ts.imsi = #{imsi}
+				</otherwise>
+			</choose>
+		</if>
+		<if test="sort != null" >
+     		 order by ${sort}
+    	</if>
+		<if test="limit>0">LIMIT #{start},#{limit}</if>
+    </select>
+    
+    
+    <select id="countSimCardList" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM tbl_sim ts
+		LEFT JOIN tbl_bkp bkp on(ts.bkp_uuid = bkp.uuid)
+		left JOIN tbl_gwp gwp on(bkp.gwp_uuid = gwp.uuid)
+		LEFT JOIN tbl_port tp on(bkp.port_uuid=tp.uuid)
+		left JOIN tbl_ne  tn on(tp.ne_uuid = tn.uuid)
+		left join tbl_site tst on(ts.last_site_uuid=tst.uuid)
+		
+		where ts.rec_status!=2
+		
+		<if test="grpUuid>0">AND ts.grp_uuid =#{grpUuid}</if>
+		<if test="runStatus!=null and runStatus>0">AND ts.run_status =#{runStatus}</if>
+		<if test="domainUuid>0">AND ts.domain_uuid =#{domainUuid}</if>
+		<if test="adminStatus!=null and adminStatus>0">AND ts.admin_status =#{adminStatus}</if>
+
+
+		<if test="aliasLike!=null and aliasLike>0 and alias!=null and alias!=''">
+			<choose>
+				<when test="aliasLike=1">
+					AND ts.alias LIKE #{alias}
+				</when>
+				<otherwise>
+					AND ts.alias = #{alias}
+				</otherwise>
+			</choose>
+		</if>
+		<if test="imsiLike!=null and imsiLike>0 and imsi!=null and imsi!=''">
+			<choose>
+				<when test="imsiLike=1">
+					AND ts.imsi LIKE #{imsi}
+				</when>
+				<otherwise>
+					AND ts.imsi = #{imsi}
+				</otherwise>
+			</choose>
+		</if>
+    </select>
+    
+    
+    <select id="getSimCard" resultMap="simCardMapperMap">
+    	SELECT tnc.operator as operator1,ts.*,bkp.gwp_uuid,
+		CASE ts.bkp_uuid
+			WHEN 0
+			THEN NULL
+			WHEN NULL
+			THEN NULL
+			ELSE
+			(		CASE tn.alias 
+					WHEN NULL
+					THEN 
+					CONCAT(tn.product_sn,'[',tp.port_no,']')
+					WHEN ''
+					THEN
+					CONCAT(tn.product_sn,'[',tp.port_no,']')
+					ELSE
+					CONCAT(tn.alias,'[',tp.port_no,']')
+					END)
+		END AS bkp_port_no_str,
+		CASE bkp.gwp_uuid 
+				WHEN 0 
+				THEN NULL
+				WHEN NULL
+				THEN NULL
+				ELSE
+				(select
+					CASE tn.alias 
+					WHEN NULL
+					THEN 
+					CONCAT(tn.product_sn,'[',tp.port_no,']')
+					WHEN ''
+					THEN
+					CONCAT(tn.product_sn,'[',tp.port_no,']')
+					ELSE
+					CONCAT(tn.alias,'[',tp.port_no,']')
+					END
+					from tbl_ne tn ,tbl_port tp, tbl_gwp gwp 
+					where tn.uuid=tp.ne_uuid and tp.uuid=gwp.port_uuid and gwp.uuid=bkp.gwp_uuid )
+				END as gwp_port_no_str
+		FROM tbl_sim ts
+		LEFT JOIN tbl_bkp bkp on(ts.bkp_uuid = bkp.uuid)
+		left JOIN tbl_gwp gwp on(bkp.gwp_uuid = gwp.uuid)
+		LEFT JOIN tbl_port tp on(bkp.port_uuid=tp.uuid)
+		left JOIN tbl_ne  tn on(tp.ne_uuid = tn.uuid)
+		left join tbl_network_code tnc on (tnc.mccmnc=SUBSTR(ts.imsi ,1 ,5))
+		where ts.rec_status!=#{recStatus}
+		<if test="uuid>0">AND ts.uuid =#{uuid}</if>
+		<if test="domainUuid>0">AND ts.domain_uuid =#{domainUuid}</if>
+    </select>
+</mapper>

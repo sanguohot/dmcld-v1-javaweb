@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblBatchApplyLogMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblBatchApplyLog" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="batch_uuid" property="batchUuid" jdbcType="INTEGER" />
+    <result column="user_uuid" property="userUuid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="apply_ne_list" property="applyNeList" jdbcType="CHAR" />
+    <result column="ip_addr" property="ipAddr" jdbcType="CHAR" />
+    <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, domain_uuid, batch_uuid, user_uuid, status, apply_ne_list, ip_addr, apply_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblBatchApplyLogCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_batch_apply_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_batch_apply_log
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_batch_apply_log
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblBatchApplyLogCriteria" >
+    delete from tbl_batch_apply_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblBatchApplyLog" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_batch_apply_log (uuid, domain_uuid, batch_uuid, 
+      user_uuid, status, apply_ne_list, 
+      ip_addr, apply_time)
+    values (#{uuid,jdbcType=INTEGER}, #{domainUuid,jdbcType=INTEGER}, #{batchUuid,jdbcType=INTEGER}, 
+      #{userUuid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{applyNeList,jdbcType=CHAR}, 
+      #{ipAddr,jdbcType=CHAR}, #{applyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblBatchApplyLog" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_batch_apply_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="batchUuid != null" >
+        batch_uuid,
+      </if>
+      <if test="userUuid != null" >
+        user_uuid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="applyNeList != null" >
+        apply_ne_list,
+      </if>
+      <if test="ipAddr != null" >
+        ip_addr,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="batchUuid != null" >
+        #{batchUuid,jdbcType=INTEGER},
+      </if>
+      <if test="userUuid != null" >
+        #{userUuid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="applyNeList != null" >
+        #{applyNeList,jdbcType=CHAR},
+      </if>
+      <if test="ipAddr != null" >
+        #{ipAddr,jdbcType=CHAR},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblBatchApplyLogCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_batch_apply_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_batch_apply_log
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.batchUuid != null" >
+        batch_uuid = #{record.batchUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userUuid != null" >
+        user_uuid = #{record.userUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyNeList != null" >
+        apply_ne_list = #{record.applyNeList,jdbcType=CHAR},
+      </if>
+      <if test="record.ipAddr != null" >
+        ip_addr = #{record.ipAddr,jdbcType=CHAR},
+      </if>
+      <if test="record.applyTime != null" >
+        apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_batch_apply_log
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      batch_uuid = #{record.batchUuid,jdbcType=INTEGER},
+      user_uuid = #{record.userUuid,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      apply_ne_list = #{record.applyNeList,jdbcType=CHAR},
+      ip_addr = #{record.ipAddr,jdbcType=CHAR},
+      apply_time = #{record.applyTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblBatchApplyLog" >
+    update tbl_batch_apply_log
+    <set >
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="batchUuid != null" >
+        batch_uuid = #{batchUuid,jdbcType=INTEGER},
+      </if>
+      <if test="userUuid != null" >
+        user_uuid = #{userUuid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="applyNeList != null" >
+        apply_ne_list = #{applyNeList,jdbcType=CHAR},
+      </if>
+      <if test="ipAddr != null" >
+        ip_addr = #{ipAddr,jdbcType=CHAR},
+      </if>
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblBatchApplyLog" >
+    update tbl_batch_apply_log
+    set domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      batch_uuid = #{batchUuid,jdbcType=INTEGER},
+      user_uuid = #{userUuid,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      apply_ne_list = #{applyNeList,jdbcType=CHAR},
+      ip_addr = #{ipAddr,jdbcType=CHAR},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

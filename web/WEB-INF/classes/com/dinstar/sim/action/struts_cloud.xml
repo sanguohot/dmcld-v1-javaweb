@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">  
+<struts>  
+<!--  云管理配置文件 -->
+	<package name="struts-cloud" extends="json-default">
+		<interceptors>  
+	    	<interceptor name="timeoutInterceptor" class="com.dinstar.sim.action.SessionTimeoutInterceptor"></interceptor>  
+	    	<interceptor-stack name="timeoutStack">  
+	        	<interceptor-ref name="timeoutInterceptor"/>  
+	        	<interceptor-ref name="defaultStack"/>  
+	    	</interceptor-stack>  
+		</interceptors>
+		<default-interceptor-ref name="timeoutStack"/>  
+		<action name="cloudManager" class="cloudAction">  
+			<result name="success" type="json"/>
+		</action>
+	</package>
+</struts>  

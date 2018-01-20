@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="com.dinstar.sim.dao.DomainPackageVer">
+    <resultMap type="com.dinstar.sim.dao.DomainPackageVer" id="domainPackageVer">
+	 <id column="uuid" property="uuid" jdbcType="INTEGER" />
+	<result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="package_ver" property="packageVer" jdbcType="CHAR" />
+    <result column="see_status" property="seeStatus" jdbcType="INTEGER" />
+     <result column="name" property="name" jdbcType="CHAR" />
+   </resultMap>
+    <insert id="insertByExample" parameterType="com.dinstar.sim.dao.DomainPackageVer" useGeneratedKeys="true" keyProperty="uuid">
+        insert into tbl_domain_version 
+         <trim prefix="(" suffix=")" suffixOverrides="," >
+       <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="packageVer != null" >
+        package_ver,
+      </if>
+      <if test="seeStatus != null" >
+        see_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="packageVer!= null" >
+        #{packageVer,jdbcType=CHAR},
+      </if>
+      <if test="seeStatus != null" >
+        #{seeStatus,jdbcType=INTEGER},
+      </if>
+      </trim>
+    </insert>
+    <select id="selectByKeyExample"  parameterType="com.dinstar.sim.dao.DomainPackageVer" resultMap="domainPackageVer">
+      select * from ( SELECT
+	a. NAME,
+	a.uuid,
+	b.package_ver,
+	b.see_status
+     FROM
+	tbl_domain a
+     JOIN tbl_domain_version b ON a.uuid = b.domain_uuid
+    <if test="packageVer!=null and packageVer!=''" >
+   		 and b.package_ver=#{packageVer}
+     </if>
+     ) c
+     <if test="search!=null and search!=''" >
+   		 where c.name like #{search}
+     	</if>
+      <if test="limit>0">LIMIT ${start},${limit}</if>  
+    </select>
+    
+    <select id="countByExample" resultType="java.lang.Integer">
+      select count(*) from tbl_domain_version where 1=1
+     
+      <if test="domainUuid!=null and search!=''" >
+   		and domain_uuid= #{domainUuid}
+     </if>
+      and package_ver=#{packageVer}
+    </select>
+    <update id="updateByExample">
+     update tbl_domain_version set see_status=#{seeStatus} where
+     domain_uuid=#{domainUuid} and package_ver=#{packageVer}
+    </update>
+    <select id="count" resultType="java.lang.Integer">
+      select count(*) from tbl_domain where 1=1 
+       <if test="search!=null and search!=''" >
+   		and name like #{search}
+     	</if>
+    </select>
+    <delete id="deleteByMap"  parameterType="com.dinstar.sim.dao.DomainPackageVer">
+    delete from tbl_domain_version where 1=1  and package_ver=#{packageVer}
+    
+    </delete>
+    <select id="countPackageVerByExample" parameterType="com.dinstar.sim.dao.DomainPackageVer" resultType="java.lang.Integer">
+      select count(*) from tbl_domain_version where 1=1 and package_ver=#{packageVer}
+    </select>
+    <select id="countDomainPackageByExample" parameterType="com.dinstar.sim.dao.DomainPackageVer" resultType="java.lang.Integer">
+    select count(*) from tbl_domain_version a  JOIN tbl_domain b ON b.uuid = a.domain_uuid where 1=1 and package_ver=#{packageVer}
+    <if test="search!=null and search!=''" >
+   		 and b.name like #{search}
+    </if>
+    
+    </select>
+    <select id="selectDomainByExample" parameterType="com.dinstar.sim.dao.DomainPackageVer" resultMap="domainPackageVer">
+      select name from tbl_domain where 1=1  
+      <if test="search!=null and search!=''" >
+   		and   name like #{search}
+     </if>
+      <if test="limit>0">LIMIT ${start},${limit}</if>
+    
+    </select>
+    
+  </mapper>

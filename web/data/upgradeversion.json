@@ -1,0 +1,7 @@
+{
+	success: true,
+	versionList: [
+                {id:'1',version:'v1.1',name:'simbank version 1.1',type:'simbank model',status:1,createTime:'2011-05-08 14:53:10',updateTime:'2012-05-08 14:53:26',description:'update simbank to v1.1'},
+                {id:'2',version:'v1.2',name:'simbank version 1.2',type:'simbank logic',status:0,createTime:'2011-07-08 14:53:10',updateTime:'2012-05-08 14:53:26',description:'update simbank to v1.2'}
+            ]
+}

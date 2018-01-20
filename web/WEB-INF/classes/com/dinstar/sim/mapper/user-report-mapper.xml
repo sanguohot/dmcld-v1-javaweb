@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="com.dinstar.sim.dao.TblUserReport">
+    <resultMap type="com.dinstar.sim.dao.TblUserReport" id="TblUserReport">
+	 <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="domain_num" property="domainNum" jdbcType="CHAR" />
+    <result column="user_num" property="userNum" jdbcType="CHAR" />
+    <result column="login_user_num" property="loginUserNum" jdbcType="CHAR" />
+     <result column="local_sys_num" property="localSysNum" jdbcType="CHAR" />
+     <result column="del_status" property="delStatus" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+   </resultMap>
+   
+   <select id="selectByExample"  resultType="java.lang.Integer"  parameterType="com.dinstar.sim.dao.TblUserReport">
+   
+    select count(*) from ${tbl} where 1=1 
+      <if test="fromTime!=null and fromTime!=''" >
+   		 and create_time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>create_time
+     	</if>
+     	
+   
+   </select>
+    <select id="selectLocalSysByExample"  resultType="java.lang.Integer"  parameterType="com.dinstar.sim.dao.TblUserReport">
+   
+    select count(*) from tbl_sys_na where 1=1 and rec_status !=2
+      <if test="fromTime!=null and fromTime!=''" >
+   		 and create_time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>create_time
+     	</if>
+   
+   </select>
+  
+  <select id="selectByMap" resultType="java.lang.Integer"  parameterType="com.dinstar.sim.dao.TblUserReport">
+        select count(*) from tbl_log_user where 1=1 
+        and operate=12
+        and object_type=15
+      <if test="fromTime!=null and fromTime!=''" >
+   		 and generate_time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>generate_time
+     	</if>
+     
+  
+  </select>
+  <insert id="insetByExample" parameterType="com.dinstar.sim.dao.TblUserReport" useGeneratedKeys="true" keyProperty="uuid">
+  insert into tbl_user_report (uuid,domain_num,user_num,login_user_num,local_sys_num,del_status,create_time,update_time)
+    values(#{uuid,jdbcType=INTEGER},#{domainNum,jdbcType=CHAR},#{userNum,jdbcType=CHAR},#{loginUserNum,jdbcType=CHAR},
+    #{localSysNum,jdbcType=CHAR},#{delStatus,jdbcType=INTEGER},#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+    )
+  
+  
+   </insert>
+   <select id="selectUserReportByExample" parameterType="com.dinstar.sim.dao.TblUserReport" resultMap="TblUserReport" >
+     select * from tbl_user_report where 1=1 
+        <if test="fromTime!=null and fromTime!=''" >
+   		 and create_time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>create_time
+     	</if>
+     	and ${createTime}
+     	GROUP BY create_time 
+      order by create_time desc 
+      limit  #{start},#{limit}
+   
+   </select>
+    <select id="selectUserByExample" resultType="java.lang.Integer"  parameterType="com.dinstar.sim.dao.TblUserReport" >
+       
+        select count(*) from (
+      select count(*) from tbl_user_report where 1=1 
+      <if test="fromTime!=null and fromTime!=''" >
+   		 and create_time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>create_time
+     	</if>
+     	and ${createTime}
+     	GROUP BY create_time 
+     	
+     	) as a
+    </select>
+  </mapper>

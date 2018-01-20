@@ -1,0 +1,63 @@
+{
+    "children": [
+        {
+		    "defaultFlag": 0,
+            "eType": "systemconfig",
+            "expanded": true,
+            "iconCls": "database_root",
+            "leaf": false,
+            "name": "System Config",
+            "nid": "systemConfig_-1",
+            "runStatus": 0,
+            "tid": -1,
+            "children": [
+                {
+                    "children": [],
+                    "defaultFlag": 0,
+                    "eType": "alarmdesc",
+                    "expanded": true,
+                    "iconCls": "table",
+                    "leaf": true,
+                    "name": "tbl_alarm_desc",
+                    "nid": "alarmdesc_1",
+                    "runStatus": 0,
+                    "tid": 1
+                },
+                {
+                    "children": [],
+                    "defaultFlag": 0,
+                    "eType": "objecttype",
+                    "expanded": true,
+                    "iconCls": "table",
+                    "leaf": true,
+                    "name": "tbl_object_type",
+                    "nid": "objecttype_1",
+                    "runStatus": 0,
+                    "tid": 1
+                },{
+                    "children": [],
+                    "defaultFlag": 0,
+                    "eType": "cause",
+                    "expanded": true,
+                    "iconCls": "table",
+                    "leaf": true,
+                    "name": "tbl_cause_desc",
+                    "nid": "cause_1",
+                    "runStatus": 0,
+                    "tid": 1
+                },{
+                    "children": [],
+                    "defaultFlag": 0,
+                    "eType": "enumdef",
+                    "expanded": true,
+                    "iconCls": "table",
+                    "leaf": true,
+                    "name": "tbl_enum_def",
+                    "nid": "enumdef_1",
+                    "runStatus": 0,
+                    "tid": 1
+                }]
+            
+        }
+    ]
+}

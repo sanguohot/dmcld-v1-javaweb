@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblDevConfMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblDevConf" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="product_sn" property="productSn" jdbcType="CHAR" />
+    <result column="drp_address" property="drpAddress" jdbcType="CHAR" />
+    <result column="drp_port" property="drpPort" jdbcType="CHAR" />
+    <result column="net_manage_addr" property="netManageAddr" jdbcType="CHAR" />
+    <result column="net_manage_port" property="netManagePort" jdbcType="CHAR" />
+    <result column="sip_server_addr" property="sipServerAddr" jdbcType="CHAR" />
+    <result column="sip_server_port" property="sipServerPort" jdbcType="CHAR" />
+    <result column="drp_switch" property="drpSwitch" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="sip_switch" property="sipSwitch" jdbcType="INTEGER" />
+    <result column="net_switch" property="netSwitch" jdbcType="INTEGER" />
+    <result column="net_manger_switch" property="netMangerSwitch" jdbcType="INTEGER" />
+    <result column="ip_protocol" property="ipProtocol" jdbcType="INTEGER" />
+    <result column="network_mode" property="networkMode" jdbcType="INTEGER" />
+    <result column="wan_eth_mode" property="wanEthMode" jdbcType="INTEGER" />
+    <result column="net_mode" property="netMode" jdbcType="INTEGER" />
+    <result column="wan_ip" property="wanIp" jdbcType="CHAR" />
+    <result column="wan_mask" property="wanMask" jdbcType="CHAR" />
+    <result column="wan_mtu" property="wanMtu" jdbcType="CHAR" />
+    <result column="wan_gateway" property="wanGateway" jdbcType="CHAR" />
+    <result column="ppp_username" property="pppUsername" jdbcType="CHAR" />
+    <result column="ppp_password" property="pppPassword" jdbcType="CHAR" />
+    <result column="ppp_servicename" property="pppServicename" jdbcType="CHAR" />
+    <result column="lan_ethmode" property="lanEthmode" jdbcType="INTEGER" />
+    <result column="lan_ip" property="lanIp" jdbcType="CHAR" />
+    <result column="lan_mask" property="lanMask" jdbcType="CHAR" />
+    <result column="lan_mtu" property="lanMtu" jdbcType="CHAR" />
+    <result column="use_peer_dns" property="usePeerDns" jdbcType="CHAR" />
+    <result column="wan_dns1" property="wanDns1" jdbcType="CHAR" />
+    <result column="wan_dns2" property="wanDns2" jdbcType="CHAR" />
+    <result column="web_switch" property="webSwitch" jdbcType="INTEGER" />
+    <result column="web_port" property="webPort" jdbcType="CHAR" />
+    <result column="call_switch" property="callSwitch" jdbcType="INTEGER" />
+    <result column="call_keep" property="callKeep" jdbcType="CHAR" />
+   <result column="alias" property="alias" jdbcType="CHAR" />
+   <result column="domain_name" property="domainName" jdbcType="CHAR" />
+  <result column="ssl_port" property="sslPort" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, domain_uuid, product_sn, drp_address, drp_port, net_manage_addr, net_manage_port, 
+    sip_server_addr, sip_server_port, drp_switch, create_time, update_time, sip_switch, 
+    net_switch, net_manger_switch, ip_protocol, network_mode, wan_eth_mode, net_mode, 
+    wan_ip, wan_mask, wan_mtu, wan_gateway, ppp_username, ppp_password, ppp_servicename, 
+    lan_ethmode, lan_ip, lan_mask, lan_mtu, use_peer_dns, wan_dns1, wan_dns2, web_switch, 
+    web_port, call_switch, call_keep,ssl_port
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblDevConfCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <choose>
+        <when test="myCol!=null"> ${myCol}</when>
+        <otherwise><include refid="Base_Column_List" /></otherwise>
+    </choose>
+    from tbl_dev_conf
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="groupBy != null" >
+      group by ${groupBy}
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+   <if test="limitClause != null" >
+      limit ${limitClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_dev_conf
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_dev_conf
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblDevConfCriteria" >
+    delete from tbl_dev_conf
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblDevConf" useGeneratedKeys="true" keyProperty="uuid" >
+    insert into tbl_dev_conf (uuid, domain_uuid, product_sn, 
+      drp_address, drp_port, net_manage_addr, 
+      net_manage_port, sip_server_addr, sip_server_port, 
+      drp_switch, create_time, update_time, 
+      sip_switch, net_switch, net_manger_switch, 
+      ip_protocol, network_mode, wan_eth_mode, 
+      net_mode, wan_ip, wan_mask, 
+      wan_mtu, wan_gateway, ppp_username, 
+      ppp_password, ppp_servicename, lan_ethmode, 
+      lan_ip, lan_mask, lan_mtu, use_peer_dns, 
+      wan_dns1, wan_dns2, web_switch, 
+      web_port, call_switch, call_keep,ssl_port
+      )
+    values (#{uuid,jdbcType=INTEGER}, #{domainUuid,jdbcType=INTEGER}, #{productSn,jdbcType=CHAR}, 
+      #{drpAddress,jdbcType=CHAR}, #{drpPort,jdbcType=CHAR}, #{netManageAddr,jdbcType=CHAR}, 
+      #{netManagePort,jdbcType=CHAR}, #{sipServerAddr,jdbcType=CHAR}, #{sipServerPort,jdbcType=CHAR}, 
+      #{drpSwitch,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{sipSwitch,jdbcType=INTEGER}, #{netSwitch,jdbcType=INTEGER}, #{netMangerSwitch,jdbcType=INTEGER}, 
+      #{ipProtocol,jdbcType=INTEGER}, #{networkMode,jdbcType=INTEGER}, #{wanEthMode,jdbcType=INTEGER}, 
+      #{netMode,jdbcType=INTEGER}, #{wanIp,jdbcType=CHAR}, #{wanMask,jdbcType=CHAR}, 
+      #{wanMtu,jdbcType=CHAR}, #{wanGateway,jdbcType=CHAR}, #{pppUsername,jdbcType=CHAR}, 
+      #{pppPassword,jdbcType=CHAR}, #{pppServicename,jdbcType=CHAR}, #{lanEthmode,jdbcType=INTEGER}, 
+      #{lanIp,jdbcType=CHAR}, #{lanMask,jdbcType=CHAR}, #{lanMtu,jdbcType=CHAR}, #{usePeerDns,jdbcType=CHAR}, 
+      #{wanDns1,jdbcType=CHAR}, #{wanDns2,jdbcType=CHAR}, #{webSwitch,jdbcType=INTEGER}, 
+      #{webPort,jdbcType=CHAR}, #{callSwitch,jdbcType=INTEGER}, #{callKeep,jdbcType=CHAR}, #{sslPort,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblDevConf" useGeneratedKeys="true" keyProperty="uuid" >
+    insert into tbl_dev_conf
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="productSn != null" >
+        product_sn,
+      </if>
+      <if test="drpAddress != null" >
+        drp_address,
+      </if>
+      <if test="drpPort != null" >
+        drp_port,
+      </if>
+      <if test="netManageAddr != null" >
+        net_manage_addr,
+      </if>
+      <if test="netManagePort != null" >
+        net_manage_port,
+      </if>
+      <if test="sipServerAddr != null" >
+        sip_server_addr,
+      </if>
+      <if test="sipServerPort != null" >
+        sip_server_port,
+      </if>
+      <if test="drpSwitch != null" >
+        drp_switch,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="sipSwitch != null" >
+        sip_switch,
+      </if>
+      <if test="netSwitch != null" >
+        net_switch,
+      </if>
+      <if test="netMangerSwitch != null" >
+        net_manger_switch,
+      </if>
+      <if test="ipProtocol != null" >
+        ip_protocol,
+      </if>
+      <if test="networkMode != null" >
+        network_mode,
+      </if>
+      <if test="wanEthMode != null" >
+        wan_eth_mode,
+      </if>
+      <if test="netMode != null" >
+        net_mode,
+      </if>
+      <if test="wanIp != null" >
+        wan_ip,
+      </if>
+      <if test="wanMask != null" >
+        wan_mask,
+      </if>
+      <if test="wanMtu != null" >
+        wan_mtu,
+      </if>
+      <if test="wanGateway != null" >
+        wan_gateway,
+      </if>
+      <if test="pppUsername != null" >
+        ppp_username,
+      </if>
+      <if test="pppPassword != null" >
+        ppp_password,
+      </if>
+      <if test="pppServicename != null" >
+        ppp_servicename,
+      </if>
+      <if test="lanEthmode != null" >
+        lan_ethmode,
+      </if>
+      <if test="lanIp != null" >
+        lan_ip,
+      </if>
+      <if test="lanMask != null" >
+        lan_mask,
+      </if>
+      <if test="lanMtu != null" >
+        lan_mtu,
+      </if>
+      <if test="usePeerDns != null" >
+        use_peer_dns,
+      </if>
+      <if test="wanDns1 != null" >
+        wan_dns1,
+      </if>
+      <if test="wanDns2 != null" >
+        wan_dns2,
+      </if>
+      <if test="webSwitch != null" >
+        web_switch,
+      </if>
+      <if test="webPort != null" >
+        web_port,
+      </if>
+      <if test="callSwitch != null" >
+        call_switch,
+      </if>
+      <if test="callKeep != null" >
+        call_keep,
+      </if>
+      <if test="sslPort != null" >
+        ssl_port,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="productSn != null" >
+        #{productSn,jdbcType=CHAR},
+      </if>
+      <if test="drpAddress != null" >
+        #{drpAddress,jdbcType=CHAR},
+      </if>
+      <if test="drpPort != null" >
+        #{drpPort,jdbcType=CHAR},
+      </if>
+      <if test="netManageAddr != null" >
+        #{netManageAddr,jdbcType=CHAR},
+      </if>
+      <if test="netManagePort != null" >
+        #{netManagePort,jdbcType=CHAR},
+      </if>
+      <if test="sipServerAddr != null" >
+        #{sipServerAddr,jdbcType=CHAR},
+      </if>
+      <if test="sipServerPort != null" >
+        #{sipServerPort,jdbcType=CHAR},
+      </if>
+      <if test="drpSwitch != null" >
+        #{drpSwitch,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sipSwitch != null" >
+        #{sipSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="netSwitch != null" >
+        #{netSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="netMangerSwitch != null" >
+        #{netMangerSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="ipProtocol != null" >
+        #{ipProtocol,jdbcType=INTEGER},
+      </if>
+      <if test="networkMode != null" >
+        #{networkMode,jdbcType=INTEGER},
+      </if>
+      <if test="wanEthMode != null" >
+        #{wanEthMode,jdbcType=INTEGER},
+      </if>
+      <if test="netMode != null" >
+        #{netMode,jdbcType=INTEGER},
+      </if>
+      <if test="wanIp != null" >
+        #{wanIp,jdbcType=CHAR},
+      </if>
+      <if test="wanMask != null" >
+        #{wanMask,jdbcType=CHAR},
+      </if>
+      <if test="wanMtu != null" >
+        #{wanMtu,jdbcType=CHAR},
+      </if>
+      <if test="wanGateway != null" >
+        #{wanGateway,jdbcType=CHAR},
+      </if>
+      <if test="pppUsername != null" >
+        #{pppUsername,jdbcType=CHAR},
+      </if>
+      <if test="pppPassword != null" >
+        #{pppPassword,jdbcType=CHAR},
+      </if>
+      <if test="pppServicename != null" >
+        #{pppServicename,jdbcType=CHAR},
+      </if>
+      <if test="lanEthmode != null" >
+        #{lanEthmode,jdbcType=INTEGER},
+      </if>
+      <if test="lanIp != null" >
+        #{lanIp,jdbcType=CHAR},
+      </if>
+      <if test="lanMask != null" >
+        #{lanMask,jdbcType=CHAR},
+      </if>
+      <if test="lanMtu != null" >
+        #{lanMtu,jdbcType=CHAR},
+      </if>
+      <if test="usePeerDns != null" >
+        #{usePeerDns,jdbcType=CHAR},
+      </if>
+      <if test="wanDns1 != null" >
+        #{wanDns1,jdbcType=CHAR},
+      </if>
+      <if test="wanDns2 != null" >
+        #{wanDns2,jdbcType=CHAR},
+      </if>
+      <if test="webSwitch != null" >
+        #{webSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="webPort != null" >
+        #{webPort,jdbcType=CHAR},
+      </if>
+      <if test="callSwitch != null" >
+        #{callSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="callKeep != null" >
+        #{callKeep,jdbcType=CHAR},
+      </if>
+      <if test="sslPort != null" >
+        #{sslPort,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblDevConfCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_dev_conf
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_dev_conf
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.productSn != null" >
+        product_sn = #{record.productSn,jdbcType=CHAR},
+      </if>
+      <if test="record.drpAddress != null" >
+        drp_address = #{record.drpAddress,jdbcType=CHAR},
+      </if>
+      <if test="record.drpPort != null" >
+        drp_port = #{record.drpPort,jdbcType=CHAR},
+      </if>
+      <if test="record.netManageAddr != null" >
+        net_manage_addr = #{record.netManageAddr,jdbcType=CHAR},
+      </if>
+      <if test="record.netManagePort != null" >
+        net_manage_port = #{record.netManagePort,jdbcType=CHAR},
+      </if>
+      <if test="record.sipServerAddr != null" >
+        sip_server_addr = #{record.sipServerAddr,jdbcType=CHAR},
+      </if>
+      <if test="record.sipServerPort != null" >
+        sip_server_port = #{record.sipServerPort,jdbcType=CHAR},
+      </if>
+      <if test="record.drpSwitch != null" >
+        drp_switch = #{record.drpSwitch,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sipSwitch != null" >
+        sip_switch = #{record.sipSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="record.netSwitch != null" >
+        net_switch = #{record.netSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="record.netMangerSwitch != null" >
+        net_manger_switch = #{record.netMangerSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="record.ipProtocol != null" >
+        ip_protocol = #{record.ipProtocol,jdbcType=INTEGER},
+      </if>
+      <if test="record.networkMode != null" >
+        network_mode = #{record.networkMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.wanEthMode != null" >
+        wan_eth_mode = #{record.wanEthMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.netMode != null" >
+        net_mode = #{record.netMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.wanIp != null" >
+        wan_ip = #{record.wanIp,jdbcType=CHAR},
+      </if>
+      <if test="record.wanMask != null" >
+        wan_mask = #{record.wanMask,jdbcType=CHAR},
+      </if>
+      <if test="record.wanMtu != null" >
+        wan_mtu = #{record.wanMtu,jdbcType=CHAR},
+      </if>
+      <if test="record.wanGateway != null" >
+        wan_gateway = #{record.wanGateway,jdbcType=CHAR},
+      </if>
+      <if test="record.pppUsername != null" >
+        ppp_username = #{record.pppUsername,jdbcType=CHAR},
+      </if>
+      <if test="record.pppPassword != null" >
+        ppp_password = #{record.pppPassword,jdbcType=CHAR},
+      </if>
+      <if test="record.pppServicename != null" >
+        ppp_servicename = #{record.pppServicename,jdbcType=CHAR},
+      </if>
+      <if test="record.lanEthmode != null" >
+        lan_ethmode = #{record.lanEthmode,jdbcType=INTEGER},
+      </if>
+      <if test="record.lanIp != null" >
+        lan_ip = #{record.lanIp,jdbcType=CHAR},
+      </if>
+      <if test="record.lanMask != null" >
+        lan_mask = #{record.lanMask,jdbcType=CHAR},
+      </if>
+      <if test="record.lanMtu != null" >
+        lan_mtu = #{record.lanMtu,jdbcType=CHAR},
+      </if>
+      <if test="record.usePeerDns != null" >
+        use_peer_dns = #{record.usePeerDns,jdbcType=CHAR},
+      </if>
+      <if test="record.wanDns1 != null" >
+        wan_dns1 = #{record.wanDns1,jdbcType=CHAR},
+      </if>
+      <if test="record.wanDns2 != null" >
+        wan_dns2 = #{record.wanDns2,jdbcType=CHAR},
+      </if>
+      <if test="record.webSwitch != null" >
+        web_switch = #{record.webSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="record.webPort != null" >
+        web_port = #{record.webPort,jdbcType=CHAR},
+      </if>
+      <if test="record.callSwitch != null" >
+        call_switch = #{record.callSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="record.callKeep != null" >
+        call_keep = #{record.callKeep,jdbcType=CHAR},
+      </if>
+       <if test="record.sslPort != null" >
+       ssl_port = #{record.sslPort,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_dev_conf
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      product_sn = #{record.productSn,jdbcType=CHAR},
+      drp_address = #{record.drpAddress,jdbcType=CHAR},
+      drp_port = #{record.drpPort,jdbcType=CHAR},
+      net_manage_addr = #{record.netManageAddr,jdbcType=CHAR},
+      net_manage_port = #{record.netManagePort,jdbcType=CHAR},
+      sip_server_addr = #{record.sipServerAddr,jdbcType=CHAR},
+      sip_server_port = #{record.sipServerPort,jdbcType=CHAR},
+      drp_switch = #{record.drpSwitch,jdbcType=CHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      sip_switch = #{record.sipSwitch,jdbcType=INTEGER},
+      net_switch = #{record.netSwitch,jdbcType=INTEGER},
+      net_manger_switch = #{record.netMangerSwitch,jdbcType=INTEGER},
+      ip_protocol = #{record.ipProtocol,jdbcType=INTEGER},
+      network_mode = #{record.networkMode,jdbcType=INTEGER},
+      wan_eth_mode = #{record.wanEthMode,jdbcType=INTEGER},
+      net_mode = #{record.netMode,jdbcType=INTEGER},
+      wan_ip = #{record.wanIp,jdbcType=CHAR},
+      wan_mask = #{record.wanMask,jdbcType=CHAR},
+      wan_mtu = #{record.wanMtu,jdbcType=CHAR},
+      wan_gateway = #{record.wanGateway,jdbcType=CHAR},
+      ppp_username = #{record.pppUsername,jdbcType=CHAR},
+      ppp_password = #{record.pppPassword,jdbcType=CHAR},
+      ppp_servicename = #{record.pppServicename,jdbcType=CHAR},
+      lan_ethmode = #{record.lanEthmode,jdbcType=INTEGER},
+      lan_ip = #{record.lanIp,jdbcType=CHAR},
+      lan_mask = #{record.lanMask,jdbcType=CHAR},
+      lan_mtu = #{record.lanMtu,jdbcType=CHAR},
+      use_peer_dns = #{record.usePeerDns,jdbcType=CHAR},
+      wan_dns1 = #{record.wanDns1,jdbcType=CHAR},
+      wan_dns2 = #{record.wanDns2,jdbcType=CHAR},
+      web_switch = #{record.webSwitch,jdbcType=INTEGER},
+      web_port = #{record.webPort,jdbcType=CHAR},
+      call_switch = #{record.callSwitch,jdbcType=INTEGER},
+      call_keep = #{record.callKeep,jdbcType=CHAR}
+       ssl_port= #{record.sslPort,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblDevConf" >
+    update tbl_dev_conf
+    <set >
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="productSn != null" >
+        product_sn = #{productSn,jdbcType=CHAR},
+      </if>
+      <if test="drpAddress != null" >
+        drp_address = #{drpAddress,jdbcType=CHAR},
+      </if>
+      <if test="drpPort != null" >
+        drp_port = #{drpPort,jdbcType=CHAR},
+      </if>
+      <if test="netManageAddr != null" >
+        net_manage_addr = #{netManageAddr,jdbcType=CHAR},
+      </if>
+      <if test="netManagePort != null" >
+        net_manage_port = #{netManagePort,jdbcType=CHAR},
+      </if>
+      <if test="sipServerAddr != null" >
+        sip_server_addr = #{sipServerAddr,jdbcType=CHAR},
+      </if>
+      <if test="sipServerPort != null" >
+        sip_server_port = #{sipServerPort,jdbcType=CHAR},
+      </if>
+      <if test="drpSwitch != null" >
+        drp_switch = #{drpSwitch,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sipSwitch != null" >
+        sip_switch = #{sipSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="netSwitch != null" >
+        net_switch = #{netSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="netMangerSwitch != null" >
+        net_manger_switch = #{netMangerSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="ipProtocol != null" >
+        ip_protocol = #{ipProtocol,jdbcType=INTEGER},
+      </if>
+      <if test="networkMode != null" >
+        network_mode = #{networkMode,jdbcType=INTEGER},
+      </if>
+      <if test="wanEthMode != null" >
+        wan_eth_mode = #{wanEthMode,jdbcType=INTEGER},
+      </if>
+      <if test="netMode != null" >
+        net_mode = #{netMode,jdbcType=INTEGER},
+      </if>
+      <if test="wanIp != null" >
+        wan_ip = #{wanIp,jdbcType=CHAR},
+      </if>
+      <if test="wanMask != null" >
+        wan_mask = #{wanMask,jdbcType=CHAR},
+      </if>
+      <if test="wanMtu != null" >
+        wan_mtu = #{wanMtu,jdbcType=CHAR},
+      </if>
+      <if test="wanGateway != null" >
+        wan_gateway = #{wanGateway,jdbcType=CHAR},
+      </if>
+      <if test="pppUsername != null" >
+        ppp_username = #{pppUsername,jdbcType=CHAR},
+      </if>
+      <if test="pppPassword != null" >
+        ppp_password = #{pppPassword,jdbcType=CHAR},
+      </if>
+      <if test="pppServicename != null" >
+        ppp_servicename = #{pppServicename,jdbcType=CHAR},
+      </if>
+      <if test="lanEthmode != null" >
+        lan_ethmode = #{lanEthmode,jdbcType=INTEGER},
+      </if>
+      <if test="lanIp != null" >
+        lan_ip = #{lanIp,jdbcType=CHAR},
+      </if>
+      <if test="lanMask != null" >
+        lan_mask = #{lanMask,jdbcType=CHAR},
+      </if>
+      <if test="lanMtu != null" >
+        lan_mtu = #{lanMtu,jdbcType=CHAR},
+      </if>
+      <if test="usePeerDns != null" >
+        use_peer_dns = #{usePeerDns,jdbcType=CHAR},
+      </if>
+      <if test="wanDns1 != null" >
+        wan_dns1 = #{wanDns1,jdbcType=CHAR},
+      </if>
+      <if test="wanDns2 != null" >
+        wan_dns2 = #{wanDns2,jdbcType=CHAR},
+      </if>
+      <if test="webSwitch != null" >
+        web_switch = #{webSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="webPort != null" >
+        web_port = #{webPort,jdbcType=CHAR},
+      </if>
+      <if test="callSwitch != null" >
+        call_switch = #{callSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="callKeep != null" >
+        call_keep = #{callKeep,jdbcType=CHAR},
+      </if>
+      <if test="sslPort!= null" >
+        ssl_port= #{callKeep,jdbcType=CHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblDevConf" >
+    update tbl_dev_conf
+    set domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      product_sn = #{productSn,jdbcType=CHAR},
+      drp_address = #{drpAddress,jdbcType=CHAR},
+      drp_port = #{drpPort,jdbcType=CHAR},
+      net_manage_addr = #{netManageAddr,jdbcType=CHAR},
+      net_manage_port = #{netManagePort,jdbcType=CHAR},
+      sip_server_addr = #{sipServerAddr,jdbcType=CHAR},
+      sip_server_port = #{sipServerPort,jdbcType=CHAR},
+      drp_switch = #{drpSwitch,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      sip_switch = #{sipSwitch,jdbcType=INTEGER},
+      net_switch = #{netSwitch,jdbcType=INTEGER},
+      net_manger_switch = #{netMangerSwitch,jdbcType=INTEGER},
+      ip_protocol = #{ipProtocol,jdbcType=INTEGER},
+      network_mode = #{networkMode,jdbcType=INTEGER},
+      wan_eth_mode = #{wanEthMode,jdbcType=INTEGER},
+      net_mode = #{netMode,jdbcType=INTEGER},
+      wan_ip = #{wanIp,jdbcType=CHAR},
+      wan_mask = #{wanMask,jdbcType=CHAR},
+      wan_mtu = #{wanMtu,jdbcType=CHAR},
+      wan_gateway = #{wanGateway,jdbcType=CHAR},
+      ppp_username = #{pppUsername,jdbcType=CHAR},
+      ppp_password = #{pppPassword,jdbcType=CHAR},
+      ppp_servicename = #{pppServicename,jdbcType=CHAR},
+      lan_ethmode = #{lanEthmode,jdbcType=INTEGER},
+      lan_ip = #{lanIp,jdbcType=CHAR},
+      lan_mask = #{lanMask,jdbcType=CHAR},
+      lan_mtu = #{lanMtu,jdbcType=CHAR},
+      use_peer_dns = #{usePeerDns,jdbcType=CHAR},
+      wan_dns1 = #{wanDns1,jdbcType=CHAR},
+      wan_dns2 = #{wanDns2,jdbcType=CHAR},
+      web_switch = #{webSwitch,jdbcType=INTEGER},
+      web_port = #{webPort,jdbcType=CHAR},
+      call_switch = #{callSwitch,jdbcType=INTEGER},
+      call_keep = #{callKeep,jdbcType=CHAR}
+      ssl_port = #{sslPort,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <!-- 手动添加 -->
+    <select id="selectByExample1" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblDevConf" >
+   select a.* ,b.alias,b.domain_name from tbl_dev_conf a join  (select
+     *
+    
+    from tbl_ne
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    ) as b on a.product_sn=b.product_sns
+  
+   <if test="limitClause != null" >
+      limit ${limitClause}
+    </if>
+  </select>
+     <select id="countByExample1" resultType="java.lang.Integer" parameterType="com.dinstar.sim.model.TblDevConf" >
+   select count(*) from tbl_dev_conf a join  (select
+     *
+    
+    from tbl_ne
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    ) as b on a.product_sn=b.product_sns
+   
+   <if test="limitClause != null" >
+      limit ${limitClause}
+    </if>
+  </select>
+</mapper>

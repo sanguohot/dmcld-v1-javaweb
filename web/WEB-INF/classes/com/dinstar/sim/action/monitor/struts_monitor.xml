@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">  
+<struts>  
+<!-- 性能，监控配置文件 -->
+	<package name="struts-monitor" extends="json-default">
+<interceptors>  
+	    	<interceptor name="timeoutInterceptor" class="com.dinstar.sim.action.SessionTimeoutInterceptor"></interceptor>  
+	    	<interceptor-stack name="timeoutStack">  
+	        	<interceptor-ref name="timeoutInterceptor"/>  
+	        	<interceptor-ref name="defaultStack"/>  
+	    	</interceptor-stack>  
+		</interceptors>
+		<default-interceptor-ref name="timeoutStack"/>
+		<action name="pmdDomain15Manager" class="pmdDomain15Action">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="pmdDomain24Manager" class="pmdDomain24Action">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="pmdDomainCurManager" class="pmdDomainCurAction">  
+			<result name="success" type="json"/>
+		</action>
+		
+		<action name="pmdGrp15Manager" class="pmdGroup15Action">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="pmdGrp24Manager" class="pmdGroup24Action">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="pmdGrpCurManager" class="pmdGroupCurAction">  
+			<result name="success" type="json"/>
+		</action>
+
+
+		<action name="pmdGw15Manager" class="pmdGw15Action">  
+			<result name="success" type="json"/>
+		</action>
+		
+		<action name="pmdGw24Manager" class="pmdGw24Action">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="pmdGwCurManager" class="pmdGwCurAction">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="pmdNe15Manager" class="pmdNe15Action">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="pmdNe24Manager" class="pmdNe24Action">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="pmdNeCurManager" class="pmdNeCurAction">  
+			<result name="success" type="json"/>
+		</action>		
+		<action name="pmdGwp15Manager" class="pmdGwp15Action">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="pmdGwp24Manager" class="pmdGwp24Action">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="pmdGwpCurManager" class="pmdGwpCurAction">  
+			<result name="success" type="json"/>
+		</action>
+		
+		<action name="pmdSim15Manager" class="pmdSim15Action">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="pmdSim24Manager" class="pmdSim24Action">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="pmdSimCurManager" class="pmdSimCurAction">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="cdrManager" class="cdrAction">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="smsManager" class="smsAction">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="ussdManager" class="ussdAction">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="pmdSys15Manager" class="pmdSys15Action">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="pmdSys24Manager" class="pmdSys24Action">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="pmdSysCurManager" class="pmdSysCurAction">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="pmdNeManager" class="pmdNeAction">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="pmdTgMntManager" class="pmdTgMntAction">  
+			<result name="success" type="json"/>
+		</action>
+	</package>
+</struts>  

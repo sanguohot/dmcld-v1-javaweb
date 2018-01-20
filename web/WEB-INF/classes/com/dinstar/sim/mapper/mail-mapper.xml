@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dinstar.sim.mapper.Mail">
+	<resultMap id="mailListMap" type="com.dinstar.sim.model.TblMailLog" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="user_task_type" property="userTaskType" jdbcType="INTEGER" />
+    <result column="user_task_id" property="userTaskId" jdbcType="INTEGER" />
+    <result column="mail_index" property="mailIndex" jdbcType="INTEGER" />
+    <result column="mail_sn" property="mailSn" jdbcType="INTEGER" />
+    <result column="mailq_uuid" property="mailqUuid" jdbcType="INTEGER" />
+    <result column="dst_addr" property="dstAddr" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
+    <result column="mail_result" property="mailResult" jdbcType="INTEGER" />
+    <result column="result_desc" property="resultDesc" jdbcType="VARCHAR" />
+    <result column="mail_time" property="mailTime" jdbcType="TIMESTAMP" />
+    <result column="content_type" property="contentType" jdbcType="INTEGER" />
+
+    <result column="log_uuid" property="logUuid" jdbcType="INTEGER" />
+    <result column="mailq_uuid" property="mailqUuid" jdbcType="INTEGER" />
+    
+    <result column="domain_name" property="domainName" jdbcType="VARCHAR" />
+  </resultMap>
+	    
+    <select id="findMailList" resultMap="mailListMap">
+		select 0 as log_uuid,tm.uuid as mailq_uuid,domain_uuid,dst_addr,path,`subject`,content_type,
+		creat_time as mail_time,mail_status as mail_result,result_desc,
+		td.name as domain_name
+		from tbl_mailq tm left join tbl_domain td on(tm.domain_uuid=td.uuid)
+		where 1=1
+		<if test="domainUuid!=null and domainUuid > 0">
+			and td.uuid = #{domainUuid}
+		</if>
+		<if test="domainName!=null and domainName!=''">
+			and td.name like #{domainName}
+		</if>
+		<if test="dstAddr!=null and dstAddr!=''">
+			and tm.dstAddr like #{dstAddr}
+		</if>
+		<if test="subject!=null and subject!=''">
+			and tm.subject like #{subject}
+		</if>
+		<if test="mailResult!=null and mailResult > -1">
+			and tm.mail_status = #{mailResult}
+		</if>
+		
+		UNION 
+		select tml.uuid as log_uuid,tml.mailq_uuid,domain_uuid,dst_addr,path,`subject`,content_type,
+		mail_time,mail_result,result_desc,
+		td.name as domain_name
+		from tbl_mail_log tml left join tbl_domain td on(tml.domain_uuid=td.uuid)
+		where 1=1
+		<if test="domainUuid!=null and domainUuid > 0">
+			and td.uuid = #{domainUuid}
+		</if>
+		<if test="domainName!=null and domainName!=''">
+			and td.name like #{domainName}
+		</if>
+		<if test="dstAddr!=null and dstAddr!=''">
+			and tml.dstAddr like #{dstAddr}
+		</if>
+		<if test="subject!=null and subject!=''">
+			and tml.subject like #{subject}
+		</if>
+		<if test="mailResult!=null and mailResult > -1">
+			and tml.mail_result = #{mailResult}
+		</if>
+		<if test="sort != null" >
+     		 order by ${sort}
+    	</if>
+		<if test="limit>0">LIMIT #{start},#{limit}</if>
+    </select>
+    
+    
+    <select id="countMailList" resultType="java.lang.Integer">
+		select count(*) from (
+		select tm.uuid from tbl_mailq tm left join tbl_domain td on (tm.domain_uuid=td.uuid)
+		where 1=1
+		<if test="domainUuid!=null and domainUuid > 0">
+			and td.uuid = #{domainUuid}
+		</if>
+		<if test="domainName!=null and domainName!=''">
+			and td.name like #{domainName}
+		</if>
+		<if test="dstAddr!=null and dstAddr!=''">
+			and tm.dstAddr like #{dstAddr}
+		</if>
+		<if test="subject!=null and subject!=''">
+			and tm.subject like #{subject}
+		</if>
+		<if test="mailResult!=null and mailResult > -1">
+			and tm.mail_status = #{mailResult}
+		</if>
+		<if test="mailResult!=null and mailResult > -1">
+			and tm.mail_status = #{mailResult}
+		</if>
+		UNION 
+		select tml.uuid from tbl_mail_log tml left join tbl_domain td on (tml.domain_uuid=td.uuid)
+		where 1=1
+		<if test="domainUuid!=null and domainUuid > 0">
+			and td.uuid = #{domainUuid}
+		</if>
+		<if test="domainName!=null and domainName!=''">
+			and td.name like #{domainName}
+		</if>
+		<if test="dstAddr!=null and dstAddr!=''">
+			and tml.dstAddr like #{dstAddr}
+		</if>
+		<if test="subject!=null and subject!=''">
+			and tml.subject like #{subject}
+		</if>
+		<if test="mailResult!=null and mailResult > -1">
+			and tml.mail_result = #{mailResult}
+		</if>
+		) as tmp
+    </select>
+    
+    <delete id="deleteMailq" >
+	   delete tm from tbl_mailq tm left join tbl_domain td on (tm.domain_uuid=td.uuid) where 1=1
+		<if test="domainUuid!=null and domainUuid > 0">
+			and td.uuid = #{domainUuid}
+		</if>
+		<if test="domainName!=null and domainName!=''">
+			and td.name like #{domainName}
+		</if>
+		<if test="dstAddr!=null and dstAddr!=''">
+			and tm.dstAddr like #{dstAddr}
+		</if>
+		<if test="subject!=null and subject!=''">
+			and tm.subject like #{subject}
+		</if>
+		<if test="mailResult!=null and mailResult > -1">
+			and tm.mail_status = #{mailResult}
+		</if>
+		
+		
+		
+ 	</delete>
+ 	
+ 	  <delete id="deleteMailLog">
+	   delete tml from tbl_mail_log tml left join tbl_domain td on (tml.domain_uuid=td.uuid) 
+	   where 1=1
+		<if test="domainUuid!=null and domainUuid > 0">
+			and td.uuid = #{domainUuid}
+		</if>
+		<if test="domainName!=null and domainName!=''">
+			and td.name like #{domainName}
+		</if>
+		<if test="dstAddr!=null and dstAddr!=''">
+			and tml.dstAddr like #{dstAddr}
+		</if>
+		<if test="subject!=null and subject!=''">
+			and tml.subject like #{subject}
+		</if>
+		<if test="mailResult!=null and mailResult > -1">
+			and tml.mail_result = #{mailResult}
+		</if>
+ 	</delete>
+ 	
+ 	<update id="updateMailq" >
+	   update tbl_mailq tm ,tbl_domain td set tm.rec_status=#{recStatus},tm.action_status=#{actionStatus} 
+	   where tm.domain_uuid=td.uuid and tm.mail_status in(1,3,4) 
+		<if test="domainUuid!=null and domainUuid > 0">
+			and td.uuid = #{domainUuid}
+		</if>
+		<if test="domainName!=null and domainName!=''">
+			and td.name like #{domainName}
+		</if>
+		<if test="dstAddr!=null and dstAddr!=''">
+			and tm.dstAddr like #{dstAddr}
+		</if>
+		<if test="subject!=null and subject!=''">
+			and tm.subject like #{subject}
+		</if>
+		<if test="mailResult!=null and mailResult > -1">
+			and tm.mail_status = #{mailResult}
+		</if>
+ 	</update>
+    
+</mapper>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>懒人原生jQuery飞入购物车效果</title>
+	<style>
+	*{margin:0;padding:0;list-style: none;}
+	body{background: #333;overflow: hidden;}
+	.head-shopcart{width: 180px;height: 30px;line-height: 30px;text-align: left;padding: 0 10px;position: fixed;right: 0px;bottom: 0px;background: #D13131; color:#fff;font-size: 12px;}
+	#lanren{width: 430px;height: auto;margin: 100px auto;overflow: hidden;background: #fff;}
+	#lanren li{width: 200px;height: auto;float: left;margin:10px 0 0 10px;overflow: hidden;text-align: center;}
+	#lanren li img{margin-bottom: 10px;}
+	#lanren li a.btn-buy{width: 200px;height: 37px;margin-bottom:10px;display:block;background: url(images/btn-buy.jpg) no-repeat center top #D13131;overflow: hidden;}
+	</style>
+</head>
+<body>
+	<!--代码部分begin-->
+	<div id="lanren">
+		<li>
+			<img src="images/lanren01.jpg" width="200" height="320">
+			<a href="javascript:;" class="btn-buy"></a>
+		</li>
+		<li>
+			<img src="images/lanren02.jpg" width="200" height="320">
+			<a href="javascript:;" class="btn-buy"></a>
+		</li>
+	</div>
+	<div class="head-shopcart">我是购物车</div>
+	<script src="http://www.lanrenzhijia.com/ajaxjs/1.4.4/jquery-1.4.4.min.js"></script>
+	<script>
+	$('.btn-buy').bind('click',function(){
+		var img = $(this).parent().find('img');
+    //var img=$(this);
+		var flyElm = img.clone().css('opacity', 0.75);
+		$('body').append(flyElm);
+		flyElm.css({
+			'z-index': 9000,
+			'display': 'block',
+			'position': 'absolute',
+			'top': img.offset().top +'px',
+			'left': img.offset().left +'px',
+			'width': img.width() +'px',
+			'height': img.height() +'px'
+		});
+		flyElm.animate({
+			top: $('.head-shopcart').offset().top,
+			left: $('.head-shopcart').offset().left,
+			width: 20,
+			height: 32
+		}, 'slow', function() {
+			flyElm.remove();
+		});
+	}); 
+	</script>
+    <!--代码部分end-->
+</body>
+</html>

@@ -1,0 +1,14 @@
+<div class="form-group-sm">
+<label class="margin-bottom-0">{{=it.label}}</label>
+<div {{? it.inline }}class="btn-group"{{?}}>
+{{~it.list :value:index}}
+<label class="radio-inline">
+<input class="ace" type="radio" name="{{=it.name}}" value="{{=value.uuid}}" data-toggle="radio" checked="false">
+<span class="lbl"> {{=value.name}}</span>
+</label>
+{{~}}
+</div>
+ {{? it.help }}
+ <p class="help-block" style="padding-left:15px;">{{=it.help}}</p>
+ {{?}}
+</div>

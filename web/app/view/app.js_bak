@@ -1,0 +1,134 @@
+Ext.Loader.setPath('Ext.ux.desktop','app');
+
+Ext.require('Ext.container.Viewport');
+Ext.require('Ext.window.MessageBox');
+Ext.require('Ext.ux.desktop.ShortcutModel');
+Ext.require('app.view.simbank.List');
+Ext.require('app.view.Notepad');
+Ext.require('app.view.Settings');
+Ext.require('app.view.SystemStatus');
+Ext.require('app.view.SysUser');
+Ext.require('app.view.operation.OperationModule');
+
+Ext.define('dmsApp', {
+    extend: 'Ext.ux.desktop.App',
+
+    init: function() {
+        // custom logic before getXYZ methods get called...
+        this.callParent();
+        // now ready...
+    },
+	
+    getModules : function(){
+		
+        return [			
+			new app.view.simbank.List(),
+			new app.view.Notepad(),
+			new app.view.SystemStatus(),
+			new app.view.SysUser(),  
+			new app.view.operation.OperationModule()
+			/*
+            new MyDesktop.VideoWindow(),
+            //new MyDesktop.Blockalanche(),
+            new MyDesktop.TabWindow(),            
+            new MyDesktop.BogusMenuModule(),
+            new MyDesktop.BogusModule()
+			*/
+        ];
+    },
+
+    getDesktopConfig: function () {
+        var me = this, ret = me.callParent();
+
+        return Ext.apply(ret, {
+            //cls: 'ux-desktop-black',
+            contextMenuItems: [
+                { text: 'Change Settings', handler: me.onSettings, scope: me }
+            ],
+
+            shortcuts: Ext.create('Ext.data.Store', {
+                model: 'Ext.ux.desktop.ShortcutModel',
+                data: [
+//                    { name: 'SimBanks', iconCls: 'grid-shortcut', module: 'simbanks-win' },
+//					{ name: 'Gateways', iconCls: 'gateway-shortcut', module: 'gateways-win' },
+//                    { name: 'sysUsers', iconCls: 'accordion-shortcut', module: 'sysusers-win' },
+//					{ name: 'sysConfig', iconCls: 'config-shortcut', module: 'config-win' },
+//					{ name: 'Dispatcher', iconCls: 'dispatch-shortcut', module: 'dispatch-win' },
+//                    { name: 'Notepad', iconCls: 'notepad-shortcut', module: 'notepad' },
+                    { name: 'System Status', iconCls: 'cpu-shortcut', module: 'systemstatus'},
+                    {name:'Operatioin Module',iconCls:'dispatch-shortcut',module:'operation_win'}
+                ]
+            }),
+
+            wallpaper: 'resources/wallpapers/Wood-Sencha.jpg',
+            wallpaperStretch: false
+        });
+    },
+
+    // config for the start menu
+    getStartConfig : function() {
+        var me = this, ret = me.callParent();
+
+        return Ext.apply(ret, {
+            title: 'Dinstar Management System',
+            iconCls: 'user',
+            height: 300,
+            toolConfig: {
+                width: 100,
+                items: [
+                    {
+                        text:'Settings',
+                        iconCls:'settings',
+                        handler: me.onSettings,
+                        scope: me
+                    },
+                    '-',
+                    {
+                        text:'Logout',
+                        iconCls:'logout',
+                        handler: me.onLogout,
+                        scope: me
+                    }
+                ]
+            }
+        });
+    },
+
+    getTaskbarConfig: function () {
+        var ret = this.callParent();
+
+        return Ext.apply(ret, {
+            quickStart: [
+                { name: 'sysUsers Window', iconCls: 'accordion', module: 'acc-win' },
+                { name: 'simbank Window', iconCls: 'icon-grid', module: 'grid-win' }
+            ],
+            trayItems: [
+                { xtype: 'trayclock', flex: 1 }
+            ]
+        });
+    },
+
+    onLogout: function () {
+        Ext.Msg.confirm('Logout', 'Are you sure you want to logout?');
+    },
+
+    onSettings: function () {		
+        var dlg = new app.view.Settings({
+            desktop: this.desktop
+        });
+        dlg.show();
+    }
+	
+});
+	
+Ext.application({
+    name: 'dms',
+	appFolder: 'app',	
+	
+    launch: function() {
+        Ext.create('dmsApp', {
+            //layout: 'fit',			
+        });
+    }
+	
+});

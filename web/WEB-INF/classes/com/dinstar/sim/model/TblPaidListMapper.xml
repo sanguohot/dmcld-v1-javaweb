@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblPaidListMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblPaidList" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="paid_grp_uuid" property="paidGrpUuid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="paid_status" property="paidStatus" jdbcType="INTEGER" />
+    <result column="paid_mode" property="paidMode" jdbcType="INTEGER" />
+    <result column="paid_number" property="paidNumber" jdbcType="CHAR" />
+    <result column="paid_content" property="paidContent" jdbcType="CHAR" />
+    <result column="connect_flag" property="connectFlag" jdbcType="INTEGER" />
+    <result column="call_duration" property="callDuration" jdbcType="INTEGER" />
+    <result column="paid_report" property="paidReport" jdbcType="CHAR" />
+    <result column="paid_sim_uuid" property="paidSimUuid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_used_time" property="lastUsedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, paid_grp_uuid, name, alias, action_status, action_result, domain_uuid, 
+    paid_status, paid_mode, paid_number, paid_content, connect_flag, call_duration, paid_report, 
+    paid_sim_uuid, create_time, last_used_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblPaidListCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_paid_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+     <if test="limitClause != null" >
+     	limit ${limitClause} 
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_paid_list
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_paid_list
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblPaidListCriteria" >
+    delete from tbl_paid_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblPaidList" useGeneratedKeys="true" keyProperty="uuid" >
+    insert into tbl_paid_list (uuid, rec_status, paid_grp_uuid, 
+      name, alias, action_status, 
+      action_result, domain_uuid, paid_status, 
+      paid_mode, paid_number, paid_content, 
+      connect_flag, call_duration, paid_report, 
+      paid_sim_uuid, create_time, last_used_time
+      )
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{paidGrpUuid,jdbcType=INTEGER}, 
+      #{name,jdbcType=CHAR}, #{alias,jdbcType=CHAR}, #{actionStatus,jdbcType=INTEGER}, 
+      #{actionResult,jdbcType=INTEGER}, #{domainUuid,jdbcType=INTEGER}, #{paidStatus,jdbcType=INTEGER}, 
+      #{paidMode,jdbcType=INTEGER}, #{paidNumber,jdbcType=CHAR}, #{paidContent,jdbcType=CHAR}, 
+      #{connectFlag,jdbcType=INTEGER}, #{callDuration,jdbcType=INTEGER}, #{paidReport,jdbcType=CHAR}, 
+      #{paidSimUuid,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{lastUsedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblPaidList" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_paid_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="paidGrpUuid != null" >
+        paid_grp_uuid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="actionStatus != null" >
+        action_status,
+      </if>
+      <if test="actionResult != null" >
+        action_result,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="paidStatus != null" >
+        paid_status,
+      </if>
+      <if test="paidMode != null" >
+        paid_mode,
+      </if>
+      <if test="paidNumber != null" >
+        paid_number,
+      </if>
+      <if test="paidContent != null" >
+        paid_content,
+      </if>
+      <if test="connectFlag != null" >
+        connect_flag,
+      </if>
+      <if test="callDuration != null" >
+        call_duration,
+      </if>
+      <if test="paidReport != null" >
+        paid_report,
+      </if>
+      <if test="paidSimUuid != null" >
+        paid_sim_uuid,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastUsedTime != null" >
+        last_used_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="paidGrpUuid != null" >
+        #{paidGrpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=CHAR},
+      </if>
+      <if test="actionStatus != null" >
+        #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="paidStatus != null" >
+        #{paidStatus,jdbcType=INTEGER},
+      </if>
+      <if test="paidMode != null" >
+        #{paidMode,jdbcType=INTEGER},
+      </if>
+      <if test="paidNumber != null" >
+        #{paidNumber,jdbcType=CHAR},
+      </if>
+      <if test="paidContent != null" >
+        #{paidContent,jdbcType=CHAR},
+      </if>
+      <if test="connectFlag != null" >
+        #{connectFlag,jdbcType=INTEGER},
+      </if>
+      <if test="callDuration != null" >
+        #{callDuration,jdbcType=INTEGER},
+      </if>
+      <if test="paidReport != null" >
+        #{paidReport,jdbcType=CHAR},
+      </if>
+      <if test="paidSimUuid != null" >
+        #{paidSimUuid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUsedTime != null" >
+        #{lastUsedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblPaidListCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_paid_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_paid_list
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.paidGrpUuid != null" >
+        paid_grp_uuid = #{record.paidGrpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=CHAR},
+      </if>
+      <if test="record.alias != null" >
+        alias = #{record.alias,jdbcType=CHAR},
+      </if>
+      <if test="record.actionStatus != null" >
+        action_status = #{record.actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionResult != null" >
+        action_result = #{record.actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.paidStatus != null" >
+        paid_status = #{record.paidStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.paidMode != null" >
+        paid_mode = #{record.paidMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.paidNumber != null" >
+        paid_number = #{record.paidNumber,jdbcType=CHAR},
+      </if>
+      <if test="record.paidContent != null" >
+        paid_content = #{record.paidContent,jdbcType=CHAR},
+      </if>
+      <if test="record.connectFlag != null" >
+        connect_flag = #{record.connectFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.callDuration != null" >
+        call_duration = #{record.callDuration,jdbcType=INTEGER},
+      </if>
+      <if test="record.paidReport != null" >
+        paid_report = #{record.paidReport,jdbcType=CHAR},
+      </if>
+      <if test="record.paidSimUuid != null" >
+        paid_sim_uuid = #{record.paidSimUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUsedTime != null" >
+        last_used_time = #{record.lastUsedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_paid_list
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      paid_grp_uuid = #{record.paidGrpUuid,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=CHAR},
+      alias = #{record.alias,jdbcType=CHAR},
+      action_status = #{record.actionStatus,jdbcType=INTEGER},
+      action_result = #{record.actionResult,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      paid_status = #{record.paidStatus,jdbcType=INTEGER},
+      paid_mode = #{record.paidMode,jdbcType=INTEGER},
+      paid_number = #{record.paidNumber,jdbcType=CHAR},
+      paid_content = #{record.paidContent,jdbcType=CHAR},
+      connect_flag = #{record.connectFlag,jdbcType=INTEGER},
+      call_duration = #{record.callDuration,jdbcType=INTEGER},
+      paid_report = #{record.paidReport,jdbcType=CHAR},
+      paid_sim_uuid = #{record.paidSimUuid,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      last_used_time = #{record.lastUsedTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblPaidList" >
+    update tbl_paid_list
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="paidGrpUuid != null" >
+        paid_grp_uuid = #{paidGrpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=CHAR},
+      </if>
+      <if test="actionStatus != null" >
+        action_status = #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        action_result = #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="paidStatus != null" >
+        paid_status = #{paidStatus,jdbcType=INTEGER},
+      </if>
+      <if test="paidMode != null" >
+        paid_mode = #{paidMode,jdbcType=INTEGER},
+      </if>
+      <if test="paidNumber != null" >
+        paid_number = #{paidNumber,jdbcType=CHAR},
+      </if>
+      <if test="paidContent != null" >
+        paid_content = #{paidContent,jdbcType=CHAR},
+      </if>
+      <if test="connectFlag != null" >
+        connect_flag = #{connectFlag,jdbcType=INTEGER},
+      </if>
+      <if test="callDuration != null" >
+        call_duration = #{callDuration,jdbcType=INTEGER},
+      </if>
+      <if test="paidReport != null" >
+        paid_report = #{paidReport,jdbcType=CHAR},
+      </if>
+      <if test="paidSimUuid != null" >
+        paid_sim_uuid = #{paidSimUuid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUsedTime != null" >
+        last_used_time = #{lastUsedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblPaidList" >
+    update tbl_paid_list
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      paid_grp_uuid = #{paidGrpUuid,jdbcType=INTEGER},
+      name = #{name,jdbcType=CHAR},
+      alias = #{alias,jdbcType=CHAR},
+      action_status = #{actionStatus,jdbcType=INTEGER},
+      action_result = #{actionResult,jdbcType=INTEGER},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      paid_status = #{paidStatus,jdbcType=INTEGER},
+      paid_mode = #{paidMode,jdbcType=INTEGER},
+      paid_number = #{paidNumber,jdbcType=CHAR},
+      paid_content = #{paidContent,jdbcType=CHAR},
+      connect_flag = #{connectFlag,jdbcType=INTEGER},
+      call_duration = #{callDuration,jdbcType=INTEGER},
+      paid_report = #{paidReport,jdbcType=CHAR},
+      paid_sim_uuid = #{paidSimUuid,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_used_time = #{lastUsedTime,jdbcType=TIMESTAMP}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

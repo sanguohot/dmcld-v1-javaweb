@@ -1,0 +1,12 @@
+<div class="form-group">
+  <label class="control-label" for="{{=it.name}}">{{=it.label}}</label>
+
+  <div >
+    <div class="clearfix">
+      <input type="text" class="form-control" name="{{=it.name}}" value="{{=it.value}}">
+    </div>
+  </div>
+   {{? it.help }}
+ <p class="help-block" style="padding-left:15px;">{{=it.help}}</p>
+ {{?}}
+</div>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- ne port mapper -->
+<mapper namespace="com.dinstar.sim.mapper.Rule">
+	<resultMap type="com.dinstar.sim.model.TblRule" id="ruleMapperMap">
+	 	 <id column="uuid" property="uuid" jdbcType="INTEGER" />
+	    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="policy_uuid" property="policyUuid" jdbcType="INTEGER" />
+	    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+	    <result column="name" property="name" jdbcType="CHAR" />
+	    <result column="alias" property="alias" jdbcType="CHAR" />
+	    <result column="grp_uuid" property="grpUuid" jdbcType="INTEGER" />
+	    <result column="default_flag" property="defaultFlag" jdbcType="INTEGER" />
+	    <result column="activate_type" property="activateType" jdbcType="INTEGER" />
+	    <result column="priority" property="priority" jdbcType="INTEGER" />
+	    <result column="time_begin" property="timeBegin" jdbcType="TIMESTAMP" />
+	    <result column="time_end" property="timeEnd" jdbcType="TIMESTAMP" />
+	    <result column="day_sun" property="daySun" jdbcType="INTEGER" />
+	    <result column="day_mon" property="dayMon" jdbcType="INTEGER" />
+	    <result column="day_tue" property="dayTue" jdbcType="INTEGER" />
+	    <result column="day_web" property="dayWeb" jdbcType="INTEGER" />
+	    <result column="day_thu" property="dayThu" jdbcType="INTEGER" />
+	    <result column="day_fri" property="dayFri" jdbcType="INTEGER" />
+	    <result column="day_sat" property="daySat" jdbcType="INTEGER" />
+	    <result column="spec_call_rate" property="specCallRate" jdbcType="REAL" />
+	    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+
+	    <result column="group_name" property="grpName" jdbcType="CHAR" />
+	</resultMap>
+	    
+    <select id="getRuleDetail" resultMap="ruleMapperMap" parameterType="java.util.HashMap">
+		select tr.uuid,tr.rec_status,tr.policy_uuid,tr.`name`,tr.alias,tr.grp_uuid,tr.domain_uuid,tr.default_flag,
+		tr.activate_type,tr.priority,tr.time_begin,tr.time_end,tr.day_sun,tr.day_mon,tr.day_tue,tr.day_web,tr.day_thu,
+		tr.day_fri,tr.day_sat,tr.spec_call_rate,tr.detail_desc,
+		tg.name as group_name from tbl_rule tr 
+		left join tbl_grp tg on (tr.grp_uuid=tg.uuid) 
+		where  tr.rec_status!=2 and tr.policy_uuid=#{policyUuid}
+		<if test="domainUuid > 0" >
+        	AND tr.domain_uuid like #{domainUuid}
+      	</if>
+    </select>
+</mapper>

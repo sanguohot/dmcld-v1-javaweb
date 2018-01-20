@@ -1,0 +1,126 @@
+<form ng-click="mouse_click();"  name="ActionUrl" id="ActionUrl" ng-controller = "ActionUrlCtrl">
+	<table width="750px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+		<tbody><tr>
+			<td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left" width="7" height="24"> </td>
+			<td>端口状态上报配置</td>
+			<td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+		</tr>
+		</tbody></table>
+  <table width="750px" align="center" class="tblbody">
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td>
+        <table cellpadding="0" cellspacing="0" width="100%" class="context">
+          <col width="5%"><col width="25%"><col width="70%">
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td class="td_title">端口状态</td>
+            <td class="td_title">状态上报 URL</td>
+          </tr>
+          <tr>
+            <td colspan="5">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>设备启动</td>
+            <td>
+              <input class="text" id="event0" maxlength="128" name="event0" ng-click="mouse_click();" value="" alt="config/actionurl/action0">
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>端口摘机</td>
+            <td>
+              <input class="text" id="event1" maxlength="128" name="event1" ng-click="mouse_click();" value="" alt="config/actionurl/action1">
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>端口挂机</td>
+            <td>
+              <input class="text" id="event2" maxlength="128" name="event2" ng-click="mouse_click();" value="" alt="config/actionurl/action2">
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>电话呼入</td>
+            <td>
+              <input class="text" id="event3" maxlength="128" name="event3" ng-click="mouse_click();" value="" alt="config/actionurl/action3">
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>电话呼出</td>
+            <td>
+              <input class="text" id="event4" maxlength="128" name="event4" ng-click="mouse_click();" value="" alt="config/actionurl/action4">
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>呼叫建立</td>
+            <td>
+              <input class="text" id="event5" maxlength="128" name="event5" ng-click="mouse_click();" value="" alt="config/actionurl/action5">
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>呼叫终止</td>
+            <td>
+              <input class="text" id="event6" maxlength="128" name="event6" ng-click="mouse_click();" value="" alt="config/actionurl/action6">
+            </td>
+          </tr>
+          </tr>
+          <td>&nbsp;</td>
+          <td>注册状态</td>
+          <td>
+            <input class="text" id="event7" maxlength="128" name="event7" value="" alt="config/actionurl/action7">
+          </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>心跳</td>
+            <td>
+              <input class="text" id="event8" maxlength="128" name="event8" value="" alt="config/actionurl/action8">
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>心跳间隔</td>
+            <td>
+              <input class="text" id="HeartbeatInterval" maxlength="4" name="HeartbeatInterval" value="10" alt="config/actionurl/HeartbeatInterval">s
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5">&nbsp;</td>
+          </tr>
+        </table>
+      <td width="5%">&nbsp;</td>
+    </tr>
+  </table>
+  <div class="notes explanation" style="width:600px">
+    <p>Action URL作为一种手段能够让平台及时获取网关各种状态。它使用HTTP协议中的GET请求传输数据，网关作为HTTP客户端，在HTTP服务器侧，对网关发出的GET请求进行处理，并和平台协作，以达到获取网关各种状态的目的。</p>
+    <p><b>目前网关发出的GET请求可以使用如下参数</b>：
+    <ul>
+      <li>$sn--设备的序列号</li>
+      <li>$mac--设备的MAC地址</li>
+      <li>$called--被叫号码</li>
+      <li>$caller--主叫号码</li>
+      <li>$sipsrv--端口当前的SIP服务器IP地址</li>
+      <li>$sipport--端口当前的SIP服务器端口</li>
+      <li>$localuri--本端 sip uri</li>
+      <li>$peeruri--对端 sip uri</li>
+      <li>$localip--设备的IP地址</li>
+      <li>$userid--端口sip账号</li>
+      <li>$status--端口注册状态</li>
+    </ul>
+    </p>
+    <p><b>例如：</b><br />
+      如果在网关启动时需要获取网关的MAC地址，可是使用如下URL：http://host:port/file.php?macaddr=$mac<br />
+      其中：host为HTTP服务器的IP地址或者域名；port为服务器监听端口；file.php为HTTP服务器侧处理请求的脚本；$mac为变量名，在发出该请求时会被替换为本机的MAC地址</p>
+  </div>
+</form>

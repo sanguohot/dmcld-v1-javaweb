@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dinstar.sim.mapper.RunLog">
+ <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblRunLog" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="domain_name" property="domainName" jdbcType="VARCHAR" />
+    <result column="log_sn" property="logSn" jdbcType="INTEGER" />
+    <result column="log_index" property="logIndex" jdbcType="INTEGER" />
+    <result column="object_type" property="objectType" jdbcType="INTEGER" />
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="report_time" property="reportTime" jdbcType="TIMESTAMP" />
+    <result column="log" property="log" jdbcType="VARCHAR" />
+  </resultMap>
+
+	
+   <select id="countRunLog" resultType="java.lang.Integer" >
+		SELECT COUNT(*)
+		FROM tbl_run_log tl
+		LEFT JOIN tbl_domain td ON(tl.domain_uuid = td.uuid)
+		WHERE  tl.rec_status != 2
+		<if test="domainName!=null and domainName!=''">AND td.name like #{domainName}</if>
+		<if test="domainUuid!=null and domainUuid>0">AND td.uuid = #{domainUuid}</if>
+		<if test="objectType>0">AND tl.object_type = #{objectType}</if>
+		<if test="objectId>0">AND tl.object_id = #{objectId}</if>
+		<if test="timeBegin !=null">
+			<![CDATA[ 
+			 and tl.report_time >= #{timeBegin}
+			 ]]>
+		</if>
+		<if test="timeEnd !=null">
+			<![CDATA[
+			 and tl.report_time <= #{timeEnd}
+			]]>
+		</if>
+		<if test="log!=null and log!=''">AND tl.log like #{log}</if>
+  </select>
+    
+    <select id="getRunLog" resultMap="BaseResultMap">
+		SELECT tl.*,td.name as domain_name
+		FROM tbl_run_log tl
+		LEFT JOIN tbl_domain td ON(tl.domain_uuid = td.uuid)
+		WHERE  tl.rec_status != 2
+		<if test="domainName!=null and domainName!=''">AND td.name like #{domainName}</if>
+		<if test="domainUuid!=null and domainUuid>0">AND td.uuid = #{domainUuid}</if>
+		<if test="objectType>0">AND tl.object_type = #{objectType}</if>
+		<if test="objectId>0">AND tl.object_id = #{objectId}</if>
+		<if test="timeBegin !=null">
+			<![CDATA[ 
+			 and tl.report_time >= #{timeBegin}
+			 ]]>
+		</if>
+		<if test="timeEnd !=null">
+			<![CDATA[
+			 and tl.report_time <= #{timeEnd}
+			]]>
+		</if>
+		<if test="log!=null and log!=''">AND tl.log like #{log}</if>
+		<if test="sort != null" >
+     		 order by ${sort}
+    	</if>
+		<if test="limit>0">LIMIT #{start},#{limit}</if>		
+    </select>
+    <select id="countIpByExample" resultType="java.lang.Integer">
+     select count(distinct log) from tbl_run_log where 1=1
+     <if test="log !=null">
+	    and log like #{log}
+	</if>
+    
+    </select>
+    <select id="selectByExample" resultMap="BaseResultMap">
+      select *  from tbl_run_log where 1=1 
+      <if test="log !=null">
+			and log like #{log}
+	</if>
+	group by (log)
+	order by report_time desc
+    <if test="limit>0">LIMIT #{start},#{limit}</if>	
+    </select>
+</mapper>

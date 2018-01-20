@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblColumnsMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblColumns" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="user_uuid" property="userUuid" jdbcType="INTEGER" />
+    <result column="domain_name" property="domainName" jdbcType="CHAR" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="product_sn_str" property="productSnStr" jdbcType="CHAR" />
+    <result column="product_name" property="productName" jdbcType="CHAR" />
+    <result column="package_version" property="packageVersion" jdbcType="VARCHAR" />
+    <result column="run_status" property="runStatus" jdbcType="VARCHAR" />
+    <result column="last_reg_time" property="lastRegTime" jdbcType="VARCHAR" />
+    <result column="rm_run_status" property="rmRunStatus" jdbcType="CHAR" />
+    <result column="rm_package_version" property="rmPackageVersion" jdbcType="CHAR" />
+    <result column="rm_product_name" property="rmProductName" jdbcType="CHAR" />
+    <result column="rm_last_reg_time" property="rmLastRegTime" jdbcType="VARCHAR" />
+    <result column="admin_status" property="adminStatus" jdbcType="VARCHAR" />
+    <result column="outer_ip_addr" property="outerIpAddr" jdbcType="CHAR" />
+    <result column="upgrade_type" property="upgradeType" jdbcType="CHAR" />
+    <result column="report_switch" property="reportSwitch" jdbcType="CHAR" />
+    <result column="dbo_status" property="dboStatus" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="update_time" property="updateTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, user_uuid, domain_name, alias, product_sn_str, product_name, package_version, 
+    run_status, last_reg_time, rm_run_status, rm_package_version, rm_product_name, rm_last_reg_time, 
+    admin_status, outer_ip_addr, upgrade_type, report_switch, dbo_status, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblColumnsCriteria" >
+   select
+    <if test="distinct" >
+      distinct
+    </if>
+    <choose>
+        <when test="myCol!=null"> ${myCol}</when>
+        <otherwise><include refid="Base_Column_List" /></otherwise>
+    </choose>
+    from tbl_columns
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="groupBy != null" >
+      group by ${groupBy}
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+   <if test="limitClause != null" >
+      limit ${limitClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_columns
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_columns
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblColumnsCriteria" >
+    delete from tbl_columns
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblColumns" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_columns (uuid, user_uuid, domain_name, 
+      alias, product_sn_str, product_name, 
+      package_version, run_status, last_reg_time, 
+      rm_run_status, rm_package_version, rm_product_name, 
+      rm_last_reg_time, admin_status, outer_ip_addr, 
+      upgrade_type, report_switch, dbo_status, 
+      create_time, update_time)
+    values (#{uuid,jdbcType=INTEGER}, #{userUuid,jdbcType=INTEGER}, #{domainName,jdbcType=CHAR}, 
+      #{alias,jdbcType=CHAR}, #{productSnStr,jdbcType=CHAR}, #{productName,jdbcType=CHAR}, 
+      #{packageVersion,jdbcType=VARCHAR}, #{runStatus,jdbcType=VARCHAR}, #{lastRegTime,jdbcType=VARCHAR}, 
+      #{rmRunStatus,jdbcType=CHAR}, #{rmPackageVersion,jdbcType=CHAR}, #{rmProductName,jdbcType=CHAR}, 
+      #{rmLastRegTime,jdbcType=VARCHAR}, #{adminStatus,jdbcType=VARCHAR}, #{outerIpAddr,jdbcType=CHAR}, 
+      #{upgradeType,jdbcType=CHAR}, #{reportSwitch,jdbcType=CHAR}, #{dboStatus,jdbcType=CHAR}, 
+      #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblColumns" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_columns
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="userUuid != null" >
+        user_uuid,
+      </if>
+      <if test="domainName != null" >
+        domain_name,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="productSnStr != null" >
+        product_sn_str,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="packageVersion != null" >
+        package_version,
+      </if>
+      <if test="runStatus != null" >
+        run_status,
+      </if>
+      <if test="lastRegTime != null" >
+        last_reg_time,
+      </if>
+      <if test="rmRunStatus != null" >
+        rm_run_status,
+      </if>
+      <if test="rmPackageVersion != null" >
+        rm_package_version,
+      </if>
+      <if test="rmProductName != null" >
+        rm_product_name,
+      </if>
+      <if test="rmLastRegTime != null" >
+        rm_last_reg_time,
+      </if>
+      <if test="adminStatus != null" >
+        admin_status,
+      </if>
+      <if test="outerIpAddr != null" >
+        outer_ip_addr,
+      </if>
+      <if test="upgradeType != null" >
+        upgrade_type,
+      </if>
+      <if test="reportSwitch != null" >
+        report_switch,
+      </if>
+      <if test="dboStatus != null" >
+        dbo_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="userUuid != null" >
+        #{userUuid,jdbcType=INTEGER},
+      </if>
+      <if test="domainName != null" >
+        #{domainName,jdbcType=CHAR},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=CHAR},
+      </if>
+      <if test="productSnStr != null" >
+        #{productSnStr,jdbcType=CHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=CHAR},
+      </if>
+      <if test="packageVersion != null" >
+        #{packageVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="runStatus != null" >
+        #{runStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lastRegTime != null" >
+        #{lastRegTime,jdbcType=VARCHAR},
+      </if>
+      <if test="rmRunStatus != null" >
+        #{rmRunStatus,jdbcType=CHAR},
+      </if>
+      <if test="rmPackageVersion != null" >
+        #{rmPackageVersion,jdbcType=CHAR},
+      </if>
+      <if test="rmProductName != null" >
+        #{rmProductName,jdbcType=CHAR},
+      </if>
+      <if test="rmLastRegTime != null" >
+        #{rmLastRegTime,jdbcType=VARCHAR},
+      </if>
+      <if test="adminStatus != null" >
+        #{adminStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="outerIpAddr != null" >
+        #{outerIpAddr,jdbcType=CHAR},
+      </if>
+      <if test="upgradeType != null" >
+        #{upgradeType,jdbcType=CHAR},
+      </if>
+      <if test="reportSwitch != null" >
+        #{reportSwitch,jdbcType=CHAR},
+      </if>
+      <if test="dboStatus != null" >
+        #{dboStatus,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblColumnsCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_columns
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_columns
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userUuid != null" >
+        user_uuid = #{record.userUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.domainName != null" >
+        domain_name = #{record.domainName,jdbcType=CHAR},
+      </if>
+      <if test="record.alias != null" >
+        alias = #{record.alias,jdbcType=CHAR},
+      </if>
+      <if test="record.productSnStr != null" >
+        product_sn_str = #{record.productSnStr,jdbcType=CHAR},
+      </if>
+      <if test="record.productName != null" >
+        product_name = #{record.productName,jdbcType=CHAR},
+      </if>
+      <if test="record.packageVersion != null" >
+        package_version = #{record.packageVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.runStatus != null" >
+        run_status = #{record.runStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastRegTime != null" >
+        last_reg_time = #{record.lastRegTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rmRunStatus != null" >
+        rm_run_status = #{record.rmRunStatus,jdbcType=CHAR},
+      </if>
+      <if test="record.rmPackageVersion != null" >
+        rm_package_version = #{record.rmPackageVersion,jdbcType=CHAR},
+      </if>
+      <if test="record.rmProductName != null" >
+        rm_product_name = #{record.rmProductName,jdbcType=CHAR},
+      </if>
+      <if test="record.rmLastRegTime != null" >
+        rm_last_reg_time = #{record.rmLastRegTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminStatus != null" >
+        admin_status = #{record.adminStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outerIpAddr != null" >
+        outer_ip_addr = #{record.outerIpAddr,jdbcType=CHAR},
+      </if>
+      <if test="record.upgradeType != null" >
+        upgrade_type = #{record.upgradeType,jdbcType=CHAR},
+      </if>
+      <if test="record.reportSwitch != null" >
+        report_switch = #{record.reportSwitch,jdbcType=CHAR},
+      </if>
+      <if test="record.dboStatus != null" >
+        dbo_status = #{record.dboStatus,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=DATE},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_columns
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      user_uuid = #{record.userUuid,jdbcType=INTEGER},
+      domain_name = #{record.domainName,jdbcType=CHAR},
+      alias = #{record.alias,jdbcType=CHAR},
+      product_sn_str = #{record.productSnStr,jdbcType=CHAR},
+      product_name = #{record.productName,jdbcType=CHAR},
+      package_version = #{record.packageVersion,jdbcType=VARCHAR},
+      run_status = #{record.runStatus,jdbcType=VARCHAR},
+      last_reg_time = #{record.lastRegTime,jdbcType=VARCHAR},
+      rm_run_status = #{record.rmRunStatus,jdbcType=CHAR},
+      rm_package_version = #{record.rmPackageVersion,jdbcType=CHAR},
+      rm_product_name = #{record.rmProductName,jdbcType=CHAR},
+      rm_last_reg_time = #{record.rmLastRegTime,jdbcType=VARCHAR},
+      admin_status = #{record.adminStatus,jdbcType=VARCHAR},
+      outer_ip_addr = #{record.outerIpAddr,jdbcType=CHAR},
+      upgrade_type = #{record.upgradeType,jdbcType=CHAR},
+      report_switch = #{record.reportSwitch,jdbcType=CHAR},
+      dbo_status = #{record.dboStatus,jdbcType=CHAR},
+      create_time = #{record.createTime,jdbcType=DATE},
+      update_time = #{record.updateTime,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblColumns" >
+    update tbl_columns
+    <set >
+      <if test="userUuid != null" >
+        user_uuid = #{userUuid,jdbcType=INTEGER},
+      </if>
+      <if test="domainName != null" >
+        domain_name = #{domainName,jdbcType=CHAR},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=CHAR},
+      </if>
+      <if test="productSnStr != null" >
+        product_sn_str = #{productSnStr,jdbcType=CHAR},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=CHAR},
+      </if>
+      <if test="packageVersion != null" >
+        package_version = #{packageVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="runStatus != null" >
+        run_status = #{runStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lastRegTime != null" >
+        last_reg_time = #{lastRegTime,jdbcType=VARCHAR},
+      </if>
+      <if test="rmRunStatus != null" >
+        rm_run_status = #{rmRunStatus,jdbcType=CHAR},
+      </if>
+      <if test="rmPackageVersion != null" >
+        rm_package_version = #{rmPackageVersion,jdbcType=CHAR},
+      </if>
+      <if test="rmProductName != null" >
+        rm_product_name = #{rmProductName,jdbcType=CHAR},
+      </if>
+      <if test="rmLastRegTime != null" >
+        rm_last_reg_time = #{rmLastRegTime,jdbcType=VARCHAR},
+      </if>
+      <if test="adminStatus != null" >
+        admin_status = #{adminStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="outerIpAddr != null" >
+        outer_ip_addr = #{outerIpAddr,jdbcType=CHAR},
+      </if>
+      <if test="upgradeType != null" >
+        upgrade_type = #{upgradeType,jdbcType=CHAR},
+      </if>
+      <if test="reportSwitch != null" >
+        report_switch = #{reportSwitch,jdbcType=CHAR},
+      </if>
+      <if test="dboStatus != null" >
+        dbo_status = #{dboStatus,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblColumns" >
+    update tbl_columns
+    set user_uuid = #{userUuid,jdbcType=INTEGER},
+      domain_name = #{domainName,jdbcType=CHAR},
+      alias = #{alias,jdbcType=CHAR},
+      product_sn_str = #{productSnStr,jdbcType=CHAR},
+      product_name = #{productName,jdbcType=CHAR},
+      package_version = #{packageVersion,jdbcType=VARCHAR},
+      run_status = #{runStatus,jdbcType=VARCHAR},
+      last_reg_time = #{lastRegTime,jdbcType=VARCHAR},
+      rm_run_status = #{rmRunStatus,jdbcType=CHAR},
+      rm_package_version = #{rmPackageVersion,jdbcType=CHAR},
+      rm_product_name = #{rmProductName,jdbcType=CHAR},
+      rm_last_reg_time = #{rmLastRegTime,jdbcType=VARCHAR},
+      admin_status = #{adminStatus,jdbcType=VARCHAR},
+      outer_ip_addr = #{outerIpAddr,jdbcType=CHAR},
+      upgrade_type = #{upgradeType,jdbcType=CHAR},
+      report_switch = #{reportSwitch,jdbcType=CHAR},
+      dbo_status = #{dboStatus,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=DATE}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,73 @@
+*{ font-size:12px; font-family:Arial, '宋体';}
+/*表格标题*/
+.tbltitle td{ color:#FFF; background-color:#056aa6; font-weight:bolder; font-size:13px;}
+/*标题两边的圆角图片*/
+.subarc{ width:1%;}
+
+/*普通表格外边为了留出5%而设置的表格*/
+.tblbody{ background-color: white; color:#003399; border:#056aa6 1px solid;}
+/*边框*/
+.tblbody .sidebar{ width:5%;}
+/*实际内容的表格*/
+.tblbody .context{ width:100%;}
+/*表格的正常高度*/
+.tblbody tr{ height:24px;}
+/*普通表格里面的控件的边框*/
+.context .text,.list { border: 1px solid #056aa6; width:85%;}
+.context .button { border: 1px solid #056aa6; width:65px; -webkit-box-shadow: 0px 0px 5px #4A4A4A; -moz-box-shadow: 0px 0px 5px #4A4A4A; box-shadow: 0px 0px 5px #4A4A4A;}
+/*普通表格里面的控件的边框 需要右段对齐的控件*/
+.context .atext,.alist { border: 1px solid #056aa6; width:60%; float:right}
+/*普通表格里面的小标题*/
+.context .td_title { font-size:14px; font-weight:600;}
+
+/*表格里面*/
+/*对表格里面的字体修饰，并且有外边框*/
+.tblcontext{ color:#003399; border:#056aa6 1px solid;}
+/*对表格里面所的td进行修饰，主要是为了加一个边框*/
+.tblcontext td{ border-top:1px solid #A8B3C8;  height:30px;}
+/*对表格的头部加修饰，包括字体、背景、*/
+.tblcontext .thead { color: #000; background-color: #599bc6;}
+.thead td { text-align:center;}
+/*取消表格的头部中td的边框（一定在）.tablecontext td之后*/
+/*.thead td{ border-top:none;}*/
+/*让表格隔行显示阴影背景*/
+.tblcontext .interval{ background-color:#ECF0F8;}
+
+/*页码显示信息*/
+/*让页码信息和主表格有一点距离*/
+.tblpageinfo{ margin-top:5px; text-align:right; color:#003399; }
+/*修饰页面信息里面的空间*/
+.tblpageinfo select{  border: 1px solid #056aa6; width:75px;}
+
+/*提交按钮*/
+.buttonbox{ text-align:center; }
+.buttonbox input{ border: 1px solid #056aa6; width:65px; -webkit-box-shadow: 0px 0px 5px #4A4A4A; -moz-box-shadow: 0px 0px 5px #4A4A4A; box-shadow: 0px 0px 5px #4A4A4A;}
+
+/*警告信息*/
+.notes{ margin:auto; width:500px; color:#F00; line-height:18px;}
+.notes li{ list-style:decimal; text-indent:0em; list-style-position:inside;}
+
+/*菜单*/
+.menu{ background:#056aa6;}
+.menu a, a:link, a:visited, a:hover, a:active { color: #FFF;}
+/*设置菜单项的距离*/
+.menu tr{ height:20px;}
+/*顶级菜单*/
+.menu .topitem{ font-size:14px;}
+/*子菜单*/
+.menu .item{ font-size:12px; }
+
+/*圆角,使用该项对放置圆角的table进行修饰*/
+.arcbg{ background-color:#056aa6;}
+
+/*banner*/
+.banner{background-image:url(../image/banner_dinstar.png); background-color:#056aa6;  background-repeat:repeat-x;}
+
+/*对数图的解释,因为要统一风格，所以需要提取出来*/
+.explanation {font-size: 12px; color:#039; line-height:18px;}
+.notetitle{color:#039; font-size:13px; font-weight:bold;}
+
+/*feature code里面注释部分的样式*/
+.ex{ background:#F4F4F4; position:absolute; border:dimgrey 5px solid; color:#056aa6}
+.note_body p{ text-indent:2em;}
+.dash { border-bottom: #000 1px dashed;	display:inline-block ;}

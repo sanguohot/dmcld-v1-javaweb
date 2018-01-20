@@ -1,0 +1,35 @@
+ <div class="container-fluid">
+<from class="form-horizontal" role="from">
+	   <div class="from-group"> 
+	      		<label for="firstname" style="" class="control-label text-right">{{=it.lan.sendToRole}}</label>
+	             <div  style="">
+	                 <select multiple="" style="" class="chosen-select form-control " id="form-field-select-4" data-placeholder="{{=it.lan.chooseRole}}">
+	                   <option value="1">super_admin</option>
+	                   <option value="2">super_support</option>
+	                   <option value="3">domain_admin</option>
+	                   <option value="4">domain_editor</option>
+	                   <option value="5">domain_operator</option>
+	                   <option value="6">domain_viewer</option>
+	                   <option value="7">super_finance</option>
+	                   <option value="8">super_viewer</option><!--
+	                   <option value="9">domain_user01</option>
+	                   <option value="10">domain_user02</option>
+	                  <option value="11">domain_user03</option>
+	               --></select>
+	            </div>
+	   </div>
+	  
+	   <div class="form-group">
+	            <label for="lastname" style="margin-left: 1.5%" class="control-label text-right">{{=it.lan.theme}}</label>
+	             <input type="text" class="form-control " id="therm" placeholder="" style="width: 97%;margin-left: 1.5%;">
+	   </div>
+	   
+	    <div class="form-group">
+	     
+	       <label for="name" style="margin-left: 1.5%" class="control-label text-right">{{=it.lan.content}}</label>
+	       
+	          <textarea id="textarea" class="form-control" rows="20" placeholder="" style="width: 97%;margin-left: 1.5%;"></textarea>
+	 </div>
+
+</form>
+</div>

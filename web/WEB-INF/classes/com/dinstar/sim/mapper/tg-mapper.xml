@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- ne port mapper -->
+<mapper namespace="com.dinstar.sim.mapper.Tg">
+	<resultMap type="com.dinstar.sim.mapper.TgMapper" id="tgMapperMap">
+	<id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="alm_status_bits" property="almStatusBits" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="site_uuid" property="siteUuid" jdbcType="INTEGER" />
+    <result column="policy_uuid" property="policyUuid" jdbcType="INTEGER" />
+    <result column="vendor_id" property="vendorId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="CHAR" />
+    <result column="package_version" property="packageVersion" jdbcType="CHAR" />
+    <result column="package_build_time" property="packageBuildTime" jdbcType="TIMESTAMP" />
+    <result column="detail_ver" property="detailVer" jdbcType="VARCHAR" />
+    <result column="sip_agent" property="sipAgent" jdbcType="CHAR" />
+    <result column="sip_owner" property="sipOwner" jdbcType="CHAR" />
+    <result column="cli_prompt" property="cliPrompt" jdbcType="CHAR" />
+    <result column="dhcp_default" property="dhcpDefault" jdbcType="INTEGER" />
+    <result column="ip_type" property="ipType" jdbcType="INTEGER" />
+    <result column="ip_addr" property="ipAddr" jdbcType="CHAR" />
+    <result column="mac_addr_num" property="macAddrNum" jdbcType="INTEGER" />
+    <result column="made_factory" property="madeFactory" jdbcType="CHAR" />
+    <result column="made_site" property="madeSite" jdbcType="CHAR" />
+    <result column="made_date" property="madeDate" jdbcType="CHAR" />
+    <result column="test_site" property="testSite" jdbcType="CHAR" />
+    <result column="test_date" property="testDate" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="encrypt_type" property="encryptType" jdbcType="INTEGER" />
+    <result column="outer_ip_addr" property="outerIpAddr" jdbcType="CHAR" />
+    <result column="inner_ip_addr" property="innerIpAddr" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="last_reg_time" property="lastRegTime" jdbcType="TIMESTAMP" />
+    <result column="reg_fail_count" property="regFailCount" jdbcType="INTEGER" />
+    <result column="upgrade_type" property="upgradeType" jdbcType="INTEGER" />
+    <result column="upgrade_force_flag" property="upgradeForceFlag" jdbcType="INTEGER" />
+    <result column="target_software_ver" property="targetSoftwareVer" jdbcType="CHAR" />
+    <result column="upgrade_status" property="upgradeStatus" jdbcType="INTEGER" />
+    <result column="last_upgrade_result" property="lastUpgradeResult" jdbcType="INTEGER" />
+    <result column="last_upgrade_time" property="lastUpgradeTime" jdbcType="TIMESTAMP" />
+    <result column="port_total_count" property="portTotalCount" jdbcType="INTEGER" />
+    <result column="port_work_count" property="portWorkCount" jdbcType="INTEGER" />
+    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+    <result column="next_ne_alarm_sn" property="nextNeAlarmSn" jdbcType="INTEGER" />
+    <result column="syslog_status" property="syslogStatus" jdbcType="INTEGER" />
+    <result column="log_sys_uuid" property="logSysUuid" jdbcType="INTEGER" />
+    <result column="syslog_begin_date" property="syslogBeginDate" jdbcType="TIMESTAMP" />
+    <result column="syslog_end_date" property="syslogEndDate" jdbcType="TIMESTAMP" />
+    <result column="syslog_debug_level" property="syslogDebugLevel" jdbcType="INTEGER" />
+    <result column="cdr_log_flag" property="cdrLogFlag" jdbcType="INTEGER" />
+    <result column="signal_log_flag" property="signalLogFlag" jdbcType="INTEGER" />
+    <result column="media_log_flag" property="mediaLogFlag" jdbcType="INTEGER" />
+    <result column="system_log_flag" property="systemLogFlag" jdbcType="INTEGER" />
+    <result column="mng_log_flag" property="mngLogFlag" jdbcType="INTEGER" />
+    <result column="sipsrv_lock_flag" property="sipsrvLockFlag" jdbcType="INTEGER" />
+    <result column="primary_sip_server" property="primarySipServer" jdbcType="CHAR" />
+    <result column="primary_sipsrv_port" property="primarySipsrvPort" jdbcType="INTEGER" />
+    <result column="secondary_sip_server" property="secondarySipServer" jdbcType="CHAR" />
+    <result column="secondary_sipsrv_port" property="secondarySipsrvPort" jdbcType="INTEGER" />
+    <result column="ntp_status" property="ntpStatus" jdbcType="INTEGER" />
+    <result column="auto_reboot_flag" property="autoRebootFlag" jdbcType="INTEGER" />
+    <result column="switch_chip_status" property="switchChipStatus" jdbcType="INTEGER" />
+    <result column="cur_cpu" property="curCpu" jdbcType="INTEGER" />
+    <result column="avg_cpu_5" property="avgCpu5" jdbcType="INTEGER" />
+    <result column="avg_cpu_60" property="avgCpu60" jdbcType="INTEGER" />
+    <result column="avg_cpu_600" property="avgCpu600" jdbcType="INTEGER" />
+    <result column="dev_time" property="devTime" jdbcType="TIMESTAMP" />
+    <result column="alarm_flag" property="alarmFlag" jdbcType="INTEGER" />
+    <result column="loc_mcc" property="locMcc" jdbcType="INTEGER" />
+    <result column="loc_mnc" property="locMnc" jdbcType="INTEGER" />
+    <result column="loc_lac" property="locLac" jdbcType="INTEGER" />
+    <result column="loc_cell_id" property="locCellId" jdbcType="INTEGER" />
+    <result column="loc_status" property="locStatus" jdbcType="INTEGER" />
+    <result column="loc_lat" property="locLat" jdbcType="REAL" />
+    <result column="loc_lng" property="locLng" jdbcType="REAL" />
+    <result column="lock_status" property="lockStatus" jdbcType="INTEGER" />
+    <result column="mem_aos_usage" property="memAosUsage" jdbcType="INTEGER" />
+    <result column="mem_linux_usage" property="memLinuxUsage" jdbcType="INTEGER" />
+    <result column="nat_mode" property="natMode" jdbcType="INTEGER" />
+    <result column="nat_status" property="natStatus" jdbcType="INTEGER" />
+    <result column="store_usage" property="storeUsage" jdbcType="INTEGER" />
+    <result column="eth_link_mode" property="ethLinkMode" jdbcType="INTEGER" />
+    <result column="port_type1" property="portType1" jdbcType="INTEGER" />
+    <result column="port_count1" property="portCount1" jdbcType="INTEGER" />
+    <result column="port_type2" property="portType2" jdbcType="INTEGER" />
+    <result column="port_count2" property="portCount2" jdbcType="INTEGER" />
+    <result column="port_type3" property="portType3" jdbcType="INTEGER" />
+    <result column="port_count3" property="portCount3" jdbcType="INTEGER" />
+    <result column="port_type4" property="portType4" jdbcType="INTEGER" />
+    <result column="port_count4" property="portCount4" jdbcType="INTEGER" />
+    <result column="port_type5" property="portType5" jdbcType="INTEGER" />
+    <result column="port_count5" property="portCount5" jdbcType="INTEGER" />
+    <result column="port_type6" property="portType6" jdbcType="INTEGER" />
+    <result column="port_count6" property="portCount6" jdbcType="INTEGER" />
+    <result column="port_type7" property="portType7" jdbcType="INTEGER" />
+    <result column="port_count7" property="portCount7" jdbcType="INTEGER" />
+    <result column="port_type8" property="portType8" jdbcType="INTEGER" />
+    <result column="port_count8" property="portCount8" jdbcType="INTEGER" />
+    
+    <result column="product_sn" property="productSn" jdbcType="BINARY" />
+    <result column="mac_addr_begin" property="macAddrBegin" jdbcType="BINARY" />
+  	<!-- tg info -->
+    <result column="tg_uuid" property="tgUuid" jdbcType="INTEGER" />
+    <result column="tg_alias" property="tgAlias" jdbcType="CHAR" />
+	</resultMap>
+    
+    <select id="getTgAllInfo" resultMap="tgMapperMap" >
+		SELECT n.*,g.uuid as tg_uuid,g.alias as tg_alias
+		FROM tbl_ne n
+		LEFT JOIN tbl_tg g ON(n.uuid=g.ne_uuid)
+		WHERE n.rec_status!=2
+		and n.uuid=#{neUuid}
+		<if test="domainUuid>0">AND n.domain_uuid =#{domainUuid}</if>
+    </select>
+</mapper>

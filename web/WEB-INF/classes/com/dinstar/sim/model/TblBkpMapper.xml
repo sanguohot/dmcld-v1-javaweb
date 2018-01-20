@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblBkpMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblBkp" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="port_uuid" property="portUuid" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="gwp_uuid" property="gwpUuid" jdbcType="INTEGER" />
+    <result column="sim_uuid" property="simUuid" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="imsi" property="imsi" jdbcType="CHAR" />
+    <result column="last_error_count" property="lastErrorCount" jdbcType="INTEGER" />
+    <result column="last_bind_time" property="lastBindTime" jdbcType="TIMESTAMP" />
+    <result column="last_used_time" property="lastUsedTime" jdbcType="TIMESTAMP" />
+    <result column="cur_call_status" property="curCallStatus" jdbcType="INTEGER" />
+    <result column="cur_sms_status" property="curSmsStatus" jdbcType="INTEGER" />
+    <result column="cur_ussd_status" property="curUssdStatus" jdbcType="INTEGER" />
+    <result column="round_trip_delay" property="roundTripDelay" jdbcType="INTEGER" />
+    <result column="packet_all" property="packetAll" jdbcType="INTEGER" />
+    <result column="packet_retries" property="packetRetries" jdbcType="INTEGER" />
+    <result column="packet_timeout" property="packetTimeout" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.dinstar.sim.model.TblBkp" extends="BaseResultMap" >
+    <result column="atr" property="atr" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, port_uuid, alias, gwp_uuid, sim_uuid, domain_uuid, status, imsi, 
+    last_error_count, last_bind_time, last_used_time, cur_call_status, cur_sms_status, 
+    cur_ussd_status, round_trip_delay, packet_all, packet_retries, packet_timeout
+  </sql>
+  <sql id="Blob_Column_List" >
+    atr
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.dinstar.sim.model.TblBkpCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tbl_bkp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblBkpCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_bkp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tbl_bkp
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_bkp
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblBkpCriteria" >
+    delete from tbl_bkp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblBkp" >
+    insert into tbl_bkp (uuid, rec_status, port_uuid, 
+      alias, gwp_uuid, sim_uuid, 
+      domain_uuid, status, imsi, 
+      last_error_count, last_bind_time, last_used_time, 
+      cur_call_status, cur_sms_status, cur_ussd_status, 
+      round_trip_delay, packet_all, packet_retries, 
+      packet_timeout, atr)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{portUuid,jdbcType=INTEGER}, 
+      #{alias,jdbcType=CHAR}, #{gwpUuid,jdbcType=INTEGER}, #{simUuid,jdbcType=INTEGER}, 
+      #{domainUuid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{imsi,jdbcType=CHAR}, 
+      #{lastErrorCount,jdbcType=INTEGER}, #{lastBindTime,jdbcType=TIMESTAMP}, #{lastUsedTime,jdbcType=TIMESTAMP}, 
+      #{curCallStatus,jdbcType=INTEGER}, #{curSmsStatus,jdbcType=INTEGER}, #{curUssdStatus,jdbcType=INTEGER}, 
+      #{roundTripDelay,jdbcType=INTEGER}, #{packetAll,jdbcType=INTEGER}, #{packetRetries,jdbcType=INTEGER}, 
+      #{packetTimeout,jdbcType=INTEGER}, #{atr,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblBkp" >
+    insert into tbl_bkp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="portUuid != null" >
+        port_uuid,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="gwpUuid != null" >
+        gwp_uuid,
+      </if>
+      <if test="simUuid != null" >
+        sim_uuid,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="imsi != null" >
+        imsi,
+      </if>
+      <if test="lastErrorCount != null" >
+        last_error_count,
+      </if>
+      <if test="lastBindTime != null" >
+        last_bind_time,
+      </if>
+      <if test="lastUsedTime != null" >
+        last_used_time,
+      </if>
+      <if test="curCallStatus != null" >
+        cur_call_status,
+      </if>
+      <if test="curSmsStatus != null" >
+        cur_sms_status,
+      </if>
+      <if test="curUssdStatus != null" >
+        cur_ussd_status,
+      </if>
+      <if test="roundTripDelay != null" >
+        round_trip_delay,
+      </if>
+      <if test="packetAll != null" >
+        packet_all,
+      </if>
+      <if test="packetRetries != null" >
+        packet_retries,
+      </if>
+      <if test="packetTimeout != null" >
+        packet_timeout,
+      </if>
+      <if test="atr != null" >
+        atr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="portUuid != null" >
+        #{portUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=CHAR},
+      </if>
+      <if test="gwpUuid != null" >
+        #{gwpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="simUuid != null" >
+        #{simUuid,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="imsi != null" >
+        #{imsi,jdbcType=CHAR},
+      </if>
+      <if test="lastErrorCount != null" >
+        #{lastErrorCount,jdbcType=INTEGER},
+      </if>
+      <if test="lastBindTime != null" >
+        #{lastBindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUsedTime != null" >
+        #{lastUsedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="curCallStatus != null" >
+        #{curCallStatus,jdbcType=INTEGER},
+      </if>
+      <if test="curSmsStatus != null" >
+        #{curSmsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="curUssdStatus != null" >
+        #{curUssdStatus,jdbcType=INTEGER},
+      </if>
+      <if test="roundTripDelay != null" >
+        #{roundTripDelay,jdbcType=INTEGER},
+      </if>
+      <if test="packetAll != null" >
+        #{packetAll,jdbcType=INTEGER},
+      </if>
+      <if test="packetRetries != null" >
+        #{packetRetries,jdbcType=INTEGER},
+      </if>
+      <if test="packetTimeout != null" >
+        #{packetTimeout,jdbcType=INTEGER},
+      </if>
+      <if test="atr != null" >
+        #{atr,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblBkpCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_bkp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_bkp
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.portUuid != null" >
+        port_uuid = #{record.portUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.alias != null" >
+        alias = #{record.alias,jdbcType=CHAR},
+      </if>
+      <if test="record.gwpUuid != null" >
+        gwp_uuid = #{record.gwpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.simUuid != null" >
+        sim_uuid = #{record.simUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.imsi != null" >
+        imsi = #{record.imsi,jdbcType=CHAR},
+      </if>
+      <if test="record.lastErrorCount != null" >
+        last_error_count = #{record.lastErrorCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastBindTime != null" >
+        last_bind_time = #{record.lastBindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUsedTime != null" >
+        last_used_time = #{record.lastUsedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.curCallStatus != null" >
+        cur_call_status = #{record.curCallStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.curSmsStatus != null" >
+        cur_sms_status = #{record.curSmsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.curUssdStatus != null" >
+        cur_ussd_status = #{record.curUssdStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.roundTripDelay != null" >
+        round_trip_delay = #{record.roundTripDelay,jdbcType=INTEGER},
+      </if>
+      <if test="record.packetAll != null" >
+        packet_all = #{record.packetAll,jdbcType=INTEGER},
+      </if>
+      <if test="record.packetRetries != null" >
+        packet_retries = #{record.packetRetries,jdbcType=INTEGER},
+      </if>
+      <if test="record.packetTimeout != null" >
+        packet_timeout = #{record.packetTimeout,jdbcType=INTEGER},
+      </if>
+      <if test="record.atr != null" >
+        atr = #{record.atr,jdbcType=BINARY},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update tbl_bkp
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      port_uuid = #{record.portUuid,jdbcType=INTEGER},
+      alias = #{record.alias,jdbcType=CHAR},
+      gwp_uuid = #{record.gwpUuid,jdbcType=INTEGER},
+      sim_uuid = #{record.simUuid,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      imsi = #{record.imsi,jdbcType=CHAR},
+      last_error_count = #{record.lastErrorCount,jdbcType=INTEGER},
+      last_bind_time = #{record.lastBindTime,jdbcType=TIMESTAMP},
+      last_used_time = #{record.lastUsedTime,jdbcType=TIMESTAMP},
+      cur_call_status = #{record.curCallStatus,jdbcType=INTEGER},
+      cur_sms_status = #{record.curSmsStatus,jdbcType=INTEGER},
+      cur_ussd_status = #{record.curUssdStatus,jdbcType=INTEGER},
+      round_trip_delay = #{record.roundTripDelay,jdbcType=INTEGER},
+      packet_all = #{record.packetAll,jdbcType=INTEGER},
+      packet_retries = #{record.packetRetries,jdbcType=INTEGER},
+      packet_timeout = #{record.packetTimeout,jdbcType=INTEGER},
+      atr = #{record.atr,jdbcType=BINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_bkp
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      port_uuid = #{record.portUuid,jdbcType=INTEGER},
+      alias = #{record.alias,jdbcType=CHAR},
+      gwp_uuid = #{record.gwpUuid,jdbcType=INTEGER},
+      sim_uuid = #{record.simUuid,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      imsi = #{record.imsi,jdbcType=CHAR},
+      last_error_count = #{record.lastErrorCount,jdbcType=INTEGER},
+      last_bind_time = #{record.lastBindTime,jdbcType=TIMESTAMP},
+      last_used_time = #{record.lastUsedTime,jdbcType=TIMESTAMP},
+      cur_call_status = #{record.curCallStatus,jdbcType=INTEGER},
+      cur_sms_status = #{record.curSmsStatus,jdbcType=INTEGER},
+      cur_ussd_status = #{record.curUssdStatus,jdbcType=INTEGER},
+      round_trip_delay = #{record.roundTripDelay,jdbcType=INTEGER},
+      packet_all = #{record.packetAll,jdbcType=INTEGER},
+      packet_retries = #{record.packetRetries,jdbcType=INTEGER},
+      packet_timeout = #{record.packetTimeout,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblBkp" >
+    update tbl_bkp
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="portUuid != null" >
+        port_uuid = #{portUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=CHAR},
+      </if>
+      <if test="gwpUuid != null" >
+        gwp_uuid = #{gwpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="simUuid != null" >
+        sim_uuid = #{simUuid,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="imsi != null" >
+        imsi = #{imsi,jdbcType=CHAR},
+      </if>
+      <if test="lastErrorCount != null" >
+        last_error_count = #{lastErrorCount,jdbcType=INTEGER},
+      </if>
+      <if test="lastBindTime != null" >
+        last_bind_time = #{lastBindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUsedTime != null" >
+        last_used_time = #{lastUsedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="curCallStatus != null" >
+        cur_call_status = #{curCallStatus,jdbcType=INTEGER},
+      </if>
+      <if test="curSmsStatus != null" >
+        cur_sms_status = #{curSmsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="curUssdStatus != null" >
+        cur_ussd_status = #{curUssdStatus,jdbcType=INTEGER},
+      </if>
+      <if test="roundTripDelay != null" >
+        round_trip_delay = #{roundTripDelay,jdbcType=INTEGER},
+      </if>
+      <if test="packetAll != null" >
+        packet_all = #{packetAll,jdbcType=INTEGER},
+      </if>
+      <if test="packetRetries != null" >
+        packet_retries = #{packetRetries,jdbcType=INTEGER},
+      </if>
+      <if test="packetTimeout != null" >
+        packet_timeout = #{packetTimeout,jdbcType=INTEGER},
+      </if>
+      <if test="atr != null" >
+        atr = #{atr,jdbcType=BINARY},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dinstar.sim.model.TblBkp" >
+    update tbl_bkp
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      port_uuid = #{portUuid,jdbcType=INTEGER},
+      alias = #{alias,jdbcType=CHAR},
+      gwp_uuid = #{gwpUuid,jdbcType=INTEGER},
+      sim_uuid = #{simUuid,jdbcType=INTEGER},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      imsi = #{imsi,jdbcType=CHAR},
+      last_error_count = #{lastErrorCount,jdbcType=INTEGER},
+      last_bind_time = #{lastBindTime,jdbcType=TIMESTAMP},
+      last_used_time = #{lastUsedTime,jdbcType=TIMESTAMP},
+      cur_call_status = #{curCallStatus,jdbcType=INTEGER},
+      cur_sms_status = #{curSmsStatus,jdbcType=INTEGER},
+      cur_ussd_status = #{curUssdStatus,jdbcType=INTEGER},
+      round_trip_delay = #{roundTripDelay,jdbcType=INTEGER},
+      packet_all = #{packetAll,jdbcType=INTEGER},
+      packet_retries = #{packetRetries,jdbcType=INTEGER},
+      packet_timeout = #{packetTimeout,jdbcType=INTEGER},
+      atr = #{atr,jdbcType=BINARY}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblBkp" >
+    update tbl_bkp
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      port_uuid = #{portUuid,jdbcType=INTEGER},
+      alias = #{alias,jdbcType=CHAR},
+      gwp_uuid = #{gwpUuid,jdbcType=INTEGER},
+      sim_uuid = #{simUuid,jdbcType=INTEGER},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      imsi = #{imsi,jdbcType=CHAR},
+      last_error_count = #{lastErrorCount,jdbcType=INTEGER},
+      last_bind_time = #{lastBindTime,jdbcType=TIMESTAMP},
+      last_used_time = #{lastUsedTime,jdbcType=TIMESTAMP},
+      cur_call_status = #{curCallStatus,jdbcType=INTEGER},
+      cur_sms_status = #{curSmsStatus,jdbcType=INTEGER},
+      cur_ussd_status = #{curUssdStatus,jdbcType=INTEGER},
+      round_trip_delay = #{roundTripDelay,jdbcType=INTEGER},
+      packet_all = #{packetAll,jdbcType=INTEGER},
+      packet_retries = #{packetRetries,jdbcType=INTEGER},
+      packet_timeout = #{packetTimeout,jdbcType=INTEGER}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

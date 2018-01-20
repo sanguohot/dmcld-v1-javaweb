@@ -1,0 +1,115 @@
+@charset "utf-8"; 
+
+.btn-js,.btn-jsLong,.btn-jsLong-disable {
+	background-image: url(../img/add_120201.gif);
+	background-repeat: no-repeat
+}
+
+.txt-12 {
+	font-size: 12px
+}
+
+.txt-14 {
+	font-size: 14px
+}
+
+.btn-js {
+	display: block;
+	width: 78px;
+	height: 24px;
+	background-position: 0 0;
+	text-align: center;
+	line-height: 24px;
+	color: #333;
+	text-decoration: none;
+	font-size: 12px
+}
+
+.btn-js:hover {
+	background-position: 0 -36px;
+	text-decoration: none
+}
+
+.btn-jsLong {
+	display: block;
+	width: 130px;
+	height: 24px;
+	background-position: -108px 0;
+	text-align: center;
+	line-height: 24px;
+	color: #333;
+	text-decoration: none;
+	font-size: 12px
+}
+
+.btn-jsLong:hover {
+	background-position: -108px -36px;
+	text-decoration: none
+}
+
+.btn-jsLong:active {
+	background-position: -108px -72px;
+	text-decoration: none
+}
+
+.btn-jsLong-disable {
+	display: block;
+	width: 130px;
+	height: 24px;
+	background-position: -108px -108px;
+	line-height: 24px;
+	text-align: center;
+	color: #777;
+	cursor: default;
+	font-size: 12px
+}
+
+.g-dialogBox-ft input.btn-wbig {
+	width: 82px;
+	background-position: -87px -36px
+}
+
+.recommend .ico-free {
+	margin-left: 5px
+}
+
+.chose-list .numID-guide {
+	background-color: #FFFFE1;
+	padding: 14px 12px;
+	color: #333
+}
+
+.disableMask {
+	display: none
+}
+
+.g-collection-item-disable .disableMask {
+	width: 956px;
+	height: 67px;
+	background-color: #FFF;
+	left: 0;
+	top: 0;
+	position: absolute;
+	z-index: 5;
+	filter: alpha(Opacity = 50);
+	-moz-opacity: 0.5;
+	opacity: 0.5;
+	display: block
+}
+
+.numID-reg {
+	
+}
+
+.numID-reg .btline {
+	border-bottom: #CBCBCB 1px solid;
+	height: 20px;
+	margin: 0 190px 30px
+}
+
+.collection-main .goBack {
+	text-align: right;
+	font-size: 12px;
+	padding: 0 10px 20px 0;
+	margin-top: -30px
+}

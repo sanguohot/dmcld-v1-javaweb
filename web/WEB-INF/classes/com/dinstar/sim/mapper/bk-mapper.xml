@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- ne port mapper -->
+<mapper namespace="com.dinstar.sim.mapper.Bk">
+	<resultMap type="com.dinstar.sim.mapper.BkMapper" id="bkMapperMap">
+		 <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="site_uuid" property="siteUuid" jdbcType="INTEGER" />
+    <result column="policy_uuid" property="policyUuid" jdbcType="INTEGER" />
+    <result column="vendor_id" property="vendorId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="CHAR" />
+    <result column="package_version" property="packageVersion" jdbcType="CHAR" />
+    <result column="package_build_time" property="packageBuildTime" jdbcType="TIMESTAMP" />
+    <result column="sip_agent" property="sipAgent" jdbcType="CHAR" />
+    <result column="sip_owner" property="sipOwner" jdbcType="CHAR" />
+    <result column="cli_prompt" property="cliPrompt" jdbcType="CHAR" />
+    <result column="dhcp_default" property="dhcpDefault" jdbcType="INTEGER" />
+    <result column="ip_type" property="ipType" jdbcType="INTEGER" />
+    <result column="ip_addr" property="ipAddr" jdbcType="CHAR" />
+    <result column="mac_addr_num" property="macAddrNum" jdbcType="INTEGER" />
+    <result column="made_factory" property="madeFactory" jdbcType="CHAR" />
+    <result column="made_site" property="madeSite" jdbcType="CHAR" />
+    <result column="made_date" property="madeDate" jdbcType="CHAR" />
+    <result column="test_site" property="testSite" jdbcType="CHAR" />
+    <result column="test_date" property="testDate" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="encrypt_type" property="encryptType" jdbcType="INTEGER" />
+    <result column="outer_ip_addr" property="outerIpAddr" jdbcType="CHAR" />
+    <result column="inner_ip_addr" property="innerIpAddr" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="last_reg_time" property="lastRegTime" jdbcType="TIMESTAMP" />
+    <result column="reg_fail_count" property="regFailCount" jdbcType="INTEGER" />
+    <result column="upgrade_type" property="upgradeType" jdbcType="INTEGER" />
+    <result column="upgrade_status" property="upgradeStatus" jdbcType="INTEGER" />
+    <result column="target_software_ver" property="targetSoftwareVer" jdbcType="CHAR" />
+    <result column="last_upgrade_result" property="lastUpgradeResult" jdbcType="INTEGER" />
+    <result column="last_upgrade_time" property="lastUpgradeTime" jdbcType="TIMESTAMP" />
+    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+     <result column="product_sn" property="productSn" jdbcType="BINARY" />
+    <result column="mac_addr_begin" property="macAddrBegin" jdbcType="BINARY" />
+    <result column="default_grp_uuid" property="defaultGrpUuid" jdbcType="INTEGER" />
+    <result column="bk_uuid" property="bkUuid" jdbcType="INTEGER" />
+	</resultMap>
+	    
+    
+    <select id="getBkAllInfo" resultMap="bkMapperMap">
+		select tn.*,tb.default_grp_uuid as default_grp_uuid,tb.uuid as bk_uuid 
+		from tbl_ne tn, tbl_bk tb 
+		where tn.uuid=tb.ne_uuid
+		and tn.uuid=#{neUuid}
+		<if test="domainUuid>0">AND tn.domain_uuid =#{domainUuid}</if>
+    </select>
+    <update id="updateByRecord" parameterType="com.dinstar.sim.mapper.BkMapper" >
+    update tbl_ne tn,tbl_bk tb
+    <set >
+      <if test="recStatus != null" >
+        tn.rec_status = #{recStatus,jdbcType=INTEGER},
+        tb.rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        tn.alias = #{alias,jdbcType=CHAR},
+      </if>
+      <if test="adminStatus != null" >
+        tn.admin_status = #{adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oprStatus != null" >
+        tn.opr_status = #{oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="runStatus != null" >
+        tn.run_status = #{runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionStatus != null" >
+        tn.action_status = #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        tn.action_result = #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        tn.domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="siteUuid != null" >
+        tn.site_uuid = #{siteUuid,jdbcType=INTEGER},
+      </if>
+      <if test="policyUuid != null" >
+        tn.policy_uuid = #{policyUuid,jdbcType=INTEGER},
+      </if>
+      <if test="vendorId != null" >
+        tn.vendor_id = #{vendorId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        tn.product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        tn.product_name = #{productName,jdbcType=CHAR},
+      </if>
+      <if test="packageVersion != null" >
+        tn.package_version = #{packageVersion,jdbcType=CHAR},
+      </if>
+      <if test="packageBuildTime != null" >
+        tn.package_build_time = #{packageBuildTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sipAgent != null" >
+        tn.sip_agent = #{sipAgent,jdbcType=CHAR},
+      </if>
+      <if test="sipOwner != null" >
+        tn.sip_owner = #{sipOwner,jdbcType=CHAR},
+      </if>
+      <if test="cliPrompt != null" >
+        tn.cli_prompt = #{cliPrompt,jdbcType=CHAR},
+      </if>
+      <if test="dhcpDefault != null" >
+        tn.dhcp_default = #{dhcpDefault,jdbcType=INTEGER},
+      </if>
+      <if test="ipType != null" >
+        tn.ip_type = #{ipType,jdbcType=INTEGER},
+      </if>
+      <if test="ipAddr != null" >
+        tn.ip_addr = #{ipAddr,jdbcType=CHAR},
+      </if>
+      <if test="macAddrNum != null" >
+        tn.mac_addr_num = #{macAddrNum,jdbcType=INTEGER},
+      </if>
+      <if test="madeFactory != null" >
+        tn.made_factory = #{madeFactory,jdbcType=CHAR},
+      </if>
+      <if test="madeSite != null" >
+        tn.made_site = #{madeSite,jdbcType=CHAR},
+      </if>
+      <if test="madeDate != null" >
+        tn.made_date = #{madeDate,jdbcType=CHAR},
+      </if>
+      <if test="testSite != null" >
+        tn.test_site = #{testSite,jdbcType=CHAR},
+      </if>
+      <if test="testDate != null" >
+        tn.test_date = #{testDate,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="encryptType != null" >
+        encrypt_type = #{encryptType,jdbcType=INTEGER},
+      </if>
+      <if test="outerIpAddr != null" >
+        outer_ip_addr = #{outerIpAddr,jdbcType=CHAR},
+      </if>
+      <if test="innerIpAddr != null" >
+        inner_ip_addr = #{innerIpAddr,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        tn.update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastRegTime != null" >
+        tn.last_reg_time = #{lastRegTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regFailCount != null" >
+        tn.reg_fail_count = #{regFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="upgradeType != null" >
+        tn.upgrade_type = #{upgradeType,jdbcType=INTEGER},
+      </if>
+      
+      <if test="targetSoftwareVer != null" >
+        tn.target_software_ver = #{targetSoftwareVer,jdbcType=CHAR},
+      </if>
+      <if test="lastUpgradeResult != null" >
+        tn.last_upgrade_result = #{lastUpgradeResult,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpgradeTime != null" >
+        tn.last_upgrade_time = #{lastUpgradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailDesc != null" >
+        tn.detail_desc = #{detailDesc,jdbcType=CHAR},
+      </if>
+      <if test="productSn != null" >
+        tn.product_sn = #{productSn,jdbcType=BINARY},
+      </if>
+      <if test="macAddrBegin != null" >
+        tn.mac_addr_begin = #{macAddrBegin,jdbcType=BINARY},
+      </if>
+      <if test="defaultGrpUuid != null" >
+        tb.default_grp_uuid = #{defaultGrpUuid,jdbcType=INTEGER},
+      </if>
+    </set>
+	where tn.uuid=tb.ne_uuid
+	and tn.uuid=#{uuid}
+	<if test="domainUuid>0">AND tn.domain_uuid =#{domainUuid}</if>
+  </update>
+</mapper>

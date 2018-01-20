@@ -1,0 +1,28 @@
+Ext.define('app.store.log.LicDomainLogModel',{
+	extend: 'Ext.data.Model',
+	fields: [
+	         {name: 'uuid',type: 'int'},
+	         {name: 'domainUuid',type: 'int'},
+	         {name: 'domainName',type: 'string'},
+	         {name: 'actionStatus',type: 'int'},
+	         {name: 'actionResult',type: 'int'},
+	         {name: 'actionTime',type: 'string'},
+	         {name: 'trialRecharge',type: 'float'},
+	         {name: 'trialDiff',type: 'float'},
+	         {name: 'trialBalance',type: 'float'},
+	         {name: 'premiumRecharge',type: 'float'},
+	         {name: 'premiumDiff',type: 'float'},
+	         {name: 'premiumBalance',type: 'float'},
+	         {name: 'signType',type: 'int'},
+	         {name: 'maxSimCard',type: 'int'},
+	         {name: 'serviceApi',type: 'int'},
+	         {name: 'hbmFeatures',type: 'int'},
+	         {name: 'hbmFeatures02',type: 'int'},
+	         {name: 'hbmFeatures03',type: 'int'},
+	         {name: 'validDays',type: 'int'},
+	         {name: 'expiredDate',type: 'string'},
+	         {name: 'signDate',type: 'string'},
+	         {name: 'leftDays',type: 'int'},
+	         {name: 'detailDesc',type: 'string'},
+	        ]
+});

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblCauseDescMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblCauseDesc" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="cause_id" property="causeId" jdbcType="INTEGER" />
+    <result column="cause_name" property="causeName" jdbcType="CHAR" />
+    <result column="cause_desc" property="causeDesc" jdbcType="VARCHAR" />
+    <result column="cause_desc_cn" property="causeDescCn" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, cause_id, cause_name, cause_desc, cause_desc_cn
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblCauseDescCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_cause_desc
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClause != null" >
+     	limit ${limitClause} 
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_cause_desc
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_cause_desc
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblCauseDescCriteria" >
+    delete from tbl_cause_desc
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblCauseDesc" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_cause_desc (uuid, rec_status, cause_id, 
+      cause_name, cause_desc, cause_desc_cn
+      )
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{causeId,jdbcType=INTEGER}, 
+      #{causeName,jdbcType=CHAR}, #{causeDesc,jdbcType=VARCHAR}, #{causeDescCn,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblCauseDesc" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_cause_desc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="causeId != null" >
+        cause_id,
+      </if>
+      <if test="causeName != null" >
+        cause_name,
+      </if>
+      <if test="causeDesc != null" >
+        cause_desc,
+      </if>
+      <if test="causeDescCn != null" >
+        cause_desc_cn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="causeId != null" >
+        #{causeId,jdbcType=INTEGER},
+      </if>
+      <if test="causeName != null" >
+        #{causeName,jdbcType=CHAR},
+      </if>
+      <if test="causeDesc != null" >
+        #{causeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="causeDescCn != null" >
+        #{causeDescCn,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblCauseDescCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_cause_desc
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_cause_desc
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.causeId != null" >
+        cause_id = #{record.causeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.causeName != null" >
+        cause_name = #{record.causeName,jdbcType=CHAR},
+      </if>
+      <if test="record.causeDesc != null" >
+        cause_desc = #{record.causeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.causeDescCn != null" >
+        cause_desc_cn = #{record.causeDescCn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_cause_desc
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      cause_id = #{record.causeId,jdbcType=INTEGER},
+      cause_name = #{record.causeName,jdbcType=CHAR},
+      cause_desc = #{record.causeDesc,jdbcType=VARCHAR},
+      cause_desc_cn = #{record.causeDescCn,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblCauseDesc" >
+    update tbl_cause_desc
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="causeId != null" >
+        cause_id = #{causeId,jdbcType=INTEGER},
+      </if>
+      <if test="causeName != null" >
+        cause_name = #{causeName,jdbcType=CHAR},
+      </if>
+      <if test="causeDesc != null" >
+        cause_desc = #{causeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="causeDescCn != null" >
+        cause_desc_cn = #{causeDescCn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblCauseDesc" >
+    update tbl_cause_desc
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      cause_id = #{causeId,jdbcType=INTEGER},
+      cause_name = #{causeName,jdbcType=CHAR},
+      cause_desc = #{causeDesc,jdbcType=VARCHAR},
+      cause_desc_cn = #{causeDescCn,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

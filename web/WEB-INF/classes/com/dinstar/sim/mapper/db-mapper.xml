@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- tree mapper
+ #{domainUuid,mode=IN,jdbcType=INTEGER},#{userType,mode=IN,jdbcType=INTEGER},#{userUuid,mode=IN,jdbcType=INTEGER}
+  -->
+<mapper namespace="com.dinstar.sim.mapper.Db">
+	
+	<select id="createDb" resultType="int" parameterType="java.util.HashMap">
+  
+      <![CDATA[
+      DROP DATABASE IF EXISTS ${dbName};
+			CREATE DATABASE ${dbName} DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+			Delete FROM mysql.user Where User='${userName}' and Host='${host}';
+			create user '${userName}'@'${host}' identified by '${pwd}';
+			grant all privileges on ${dbName}.* to '${userName}'@'${host}' identified by '${pwd}' with grant option;
+			flush privileges;
+			
+    ]]>
+	</select>
+</mapper>

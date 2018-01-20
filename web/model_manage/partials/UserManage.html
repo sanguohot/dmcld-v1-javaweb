@@ -1,0 +1,51 @@
+<form  name="Port" id="Port" ng-controller="UserManageCtrl">
+	<table width="600px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+		<tbody><tr>
+			<td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+			<td><div id="idTableTitle">用户</div></td>
+			<td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+		</tr>
+		</tbody></table>
+	<table class="tblcontext" width="600px" cellpadding="0" cellspacing="0" align="center">
+		<tbody><tr class="thead" align="center">
+			<td class="PortAll" width="10%">&nbsp;</td>
+			<td align="center" width="30%">用户名</td>
+			<td align="center" width="30%">组</td>
+			<td align="center" width="30%">开启</td>
+		</tr>
+		<tr align="center" id="None0" class="interval" style="display:none">
+			<td>&nbsp;</td>
+			<td>---</td>
+			<td>---</td>
+			<td>---</td>
+		</tr>
+		<tr align="center" id="None1" style="display:none">
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<script language="JavaScript" type="text/JavaScript">
+			document.write("<tr align='center'><td class='PortAll'><input name='UserEnable0' type='checkbox' id='UserEnable0' onclick='mouse_click();'></td><td name='UserName0' id='UserName0'>admin</td><td>Admin</td><td>enable</td></tr>");
+		</script><tr align="center"><td class="PortAll"><input name="UserEnable0" type="checkbox" id="UserEnable0" onclick="mouse_click();"></td><td name="UserName0" id="UserName0">admin</td><td>Admin</td><td>enable</td></tr>
+		</tbody></table>
+	<table align="center" style="width:600px; margin:auto" class="tblpageinfo">
+		<tbody><tr>
+			<td colspan="4">&nbsp;</td>
+		</tr>
+		</tbody></table>
+	<p align="center" class="buttonbox">
+  <span id="idAdd">
+    <button name="Add" id="Add" onclick="AddData();">添加</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  </span>
+  <span id="idMod">
+    <button name="Mod" id="Mod" onclick="ModData();" disabled="">修改</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+  </span>
+  <span id="idClear">
+    <button name="Clear" id="Clear" onclick="return ClearData();" disabled="">删除</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+  </span>
+	</p>
+</form>

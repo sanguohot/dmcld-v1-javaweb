@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblEnumDefMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblEnumDef" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="type_name" property="typeName" jdbcType="CHAR" />
+    <result column="enum_id" property="enumId" jdbcType="INTEGER" />
+    <result column="enum_value" property="enumValue" jdbcType="CHAR" />
+    <result column="type_cnt" property="typeCnt" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, type_name, enum_id, enum_value
+  </sql>
+  <!--########################## 手动添加方法 #############################-->
+    <select id="getType" resultMap="BaseResultMap" parameterType="map" >
+    select count(*) as type_cnt,type_name,1 as uuid,2 as enum_id, 3 as enum_value from tbl_enum_def 
+    	where 1=1
+    	<if test="typeName != null" >
+     			and type_name like #{typeName}
+   		 </if>
+    group by type_name
+
+  </select>
+  
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblEnumDefCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_enum_def
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+     <if test="limitClause != null" >
+     	limit ${limitClause} 
+    </if>
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_enum_def
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_enum_def
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblEnumDefCriteria" >
+    delete from tbl_enum_def
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblEnumDef" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_enum_def (uuid, type_name, enum_id, 
+      enum_value)
+    values (#{uuid,jdbcType=INTEGER}, #{typeName,jdbcType=CHAR}, #{enumId,jdbcType=INTEGER}, 
+      #{enumValue,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblEnumDef" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_enum_def
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="typeName != null" >
+        type_name,
+      </if>
+      <if test="enumId != null" >
+        enum_id,
+      </if>
+      <if test="enumValue != null" >
+        enum_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="typeName != null" >
+        #{typeName,jdbcType=CHAR},
+      </if>
+      <if test="enumId != null" >
+        #{enumId,jdbcType=INTEGER},
+      </if>
+      <if test="enumValue != null" >
+        #{enumValue,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblEnumDefCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_enum_def
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_enum_def
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.typeName != null" >
+        type_name = #{record.typeName,jdbcType=CHAR},
+      </if>
+      <if test="record.enumId != null" >
+        enum_id = #{record.enumId,jdbcType=INTEGER},
+      </if>
+      <if test="record.enumValue != null" >
+        enum_value = #{record.enumValue,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_enum_def
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      type_name = #{record.typeName,jdbcType=CHAR},
+      enum_id = #{record.enumId,jdbcType=INTEGER},
+      enum_value = #{record.enumValue,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblEnumDef" >
+    update tbl_enum_def
+    <set >
+      <if test="typeName != null" >
+        type_name = #{typeName,jdbcType=CHAR},
+      </if>
+      <if test="enumId != null" >
+        enum_id = #{enumId,jdbcType=INTEGER},
+      </if>
+      <if test="enumValue != null" >
+        enum_value = #{enumValue,jdbcType=CHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblEnumDef" >
+    update tbl_enum_def
+    set type_name = #{typeName,jdbcType=CHAR},
+      enum_id = #{enumId,jdbcType=INTEGER},
+      enum_value = #{enumValue,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,543 @@
+<form  name="MediaStreamCfg" id="MediaStreamCfg" ng-controller = "MediaStreamCtrl">
+<table width="800px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+  <tbody><tr>
+    <td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+    <td>媒体参数</td>
+    <td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+  </tr>
+  </tbody></table>
+<table width="800px" align="center" class="tblbody" cellpadding="1" cellspacing="0">
+<tr>
+<td class="sidebar">&nbsp;</td>
+<td>
+<table width="100%" class="context">
+  <tr>
+    <td width="5%">&nbsp;</td>
+    <td width="5%">&nbsp;</td>
+    <td width="45%">&nbsp;</td>
+    <td width="45%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="3">使用随机端口</td>
+    <td >
+      <input id="RTPPortRandom" name="RTPPortRandom" type="checkbox" ng-click="mouse_click();"  alt="config/media/rtp_port_random">启用
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">RTP起始端口</td>
+    <td>
+      <input class="text" id="RtpPort" maxlength="5" name="RtpPort" size="18" value="8000" alt="config/media/start_rtp_port">
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">检测UDP头的校验和</td>
+    <td >
+      <input id="CheckTheUDPHeader" name="CheckTheUDPHeader" type="checkbox" ng-click="mouse_click();" checked alt="config/media/check_the_udp_header">启用
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="4" class="td_title">DTMF参数</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="2">DTMF发送模式</td>
+    <td>
+      <select name="DTMFMethod" class="list" id="DTMFMethod" ng-click="mouse_click();" alt="config/media/dtmf_method">
+        <option value="0" >INBAND</option>
+        <option value="1" >SIGNAL</option>
+        <option value="2" selected>RFC2833</option>
+      </select>
+    </td>
+  </tr>
+  <tr id="idRFC2833PTPrefered" style="display:none">
+    <td>&nbsp;</td>
+    <td colspan="2">RFC2833 Payload Type 优选</td>
+    <td>
+      <select name="RFC2833PTPrefered" class="list" id="RFC2833PTPrefered" alt="config/media/payload_pype_prefered">
+        <option value="0" selected>本端</option>
+        <option value="1" >远端</option>
+      </select>
+    </td>
+  </tr>
+  <tr id="idPayload2833" style="display:none">
+    <td>&nbsp;</td>
+    <td colspan="2">RFC2833 Payload Type</td>
+    <td>
+      <input class="text" id="Payload2833" maxlength="3" name="Payload2833" size="18" value="101" alt="config/media/payload_pype">
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="2">DTMF增益</td>
+    <td>
+      <select name="DTMFVolume" class="list" id="DTMFVolume" alt="config/media/dtmf_gain">
+        <option value="-6" >-6dB</option>
+        <option value="-4" >-4dB</option>
+        <option value="-2" >-2dB</option>
+        <option value="0" selected>0dB</option>
+        <option value="2" >+2dB</option>
+        <option value="4" >+4dB</option>
+        <option value="6" >+6dB</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="2">DTMF送号间隔</td>
+    <td>
+      <input class="text" id="DTMFSendInterval" maxlength="4" name="DTMFSendInterval" size="18" value="200" alt="config/media/dtmf_interval">
+      毫秒 </td>
+  </tr>
+  <tr id="idFlashEventBlank" style="display:none">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr id="idFlashEvent" style="display:none">
+    <td>&nbsp;</td>
+    <td colspan="2">发送拍叉事件</td>
+    <td>
+      <input id="SendFlashEvent" name="SendFlashEvent" type="checkbox" ng-click="mouse_click();"  alt="config/media/send_flash_event">启用
+    </td>
+  </tr>
+  <tr id="idFlashRTPEvent" style="display:none">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>拍叉事件值</td>
+    <td>
+      <input class="text" id="FlashRTPEvent" maxlength="5" name="FlashRTPEvent" size="18" value="16" alt="config/media/flashhook_rtp_event">
+    </td>
+  </tr>
+  <tr id="idContentType" style="display:none">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>Content-Type</td>
+    <td><input class="text" id="FlashContentType" maxlength="31" name="FlashContentType" size="18"
+               alt="config/media/content_type" value="application/dtmf-relay"></td>
+  </tr>
+  <tr id="idContentLength" style="display:none">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>Content-Length</td>
+    <td><input class="text" id="FlashContentLength" maxlength="31" name="FlashContentLength" size="18"
+               alt="config/media/content_length" value="11"></td>
+  </tr>
+  <tr id="idFlashBody" style="display:none">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>Body</td>
+    <td><input class="text" id="FlashBody" maxlength="31" name="FlashBody" size="18"
+               alt="config/media/body" value="Signal=16"></td>
+  </tr>
+  <tr id="idDTMFSend" style="display:none">
+    <td>&nbsp;</td>
+    <td colspan="2">通话中向模拟侧发送DTMF音</td>
+    <td>
+      <input id="SendDTMFTone2Analog" name="SendDTMFTone2Analog" type="checkbox" ng-click="mouse_click();"  alt="config/media/dtmf_tone_gen">启用
+    </td>
+  </tr>
+</table>
+<table width="100%" class="context">
+<tr>
+  <td width="5%">&nbsp;</td>
+  <td width="5%">&nbsp;</td>
+  <td width="18%">&nbsp;</td>
+  <td width="18%">&nbsp;</td>
+  <td width="21%">&nbsp;</td>
+  <td width="10%">&nbsp;</td>
+  <td width="23%">&nbsp;</td>
+</tr>
+<tr>
+  <td colspan="7" class="td_title">编解码优先级</td>
+</tr>
+<tr align="center">
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>编解码</td>
+  <td>Payload Type</td>
+  <td>打包时长(毫秒)</td>
+  <td>比特率(kbps)</td>
+  <td>静音抑制</td>
+</tr>
+<tr id="idCoder0th" style="display:none">
+  <td>&nbsp;</td>
+  <td>1</td>
+  <td>
+    <select name="CoderName0" class="list" id="CoderName0" ng-click="CoderChange(0);" alt="config/media/codec0/name">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderPT0" name="CoderPT0"  maxlength="3" disabled alt="config/media/codec0/payload_type">
+  </td>
+  <td>
+    <select name="CoderPktTime0" class="list" id="CoderPktTime0" alt="config/media/codec0/packetization">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderRate0" name="CoderRate0" maxlength="2" disabled alt="config/media/codec0/rate">
+  </td>
+  <td>
+    <select name="CoderSilence0" class="list" id="CoderSilence0" alt="config/media/codec0/silence_suppression">
+    </select>
+  </td>
+</tr>
+<tr id="idCoder1th" style="display:none">
+  <td>&nbsp;</td>
+  <td>2</td>
+  <td>
+    <select name="CoderName1" class="list" id="CoderName1" ng-click="CoderChange(1);" alt="config/media/codec1/name">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderPT1" name="CoderPT1" maxlength="3" disabled alt="config/media/codec1/payload_type">
+  </td>
+  <td>
+    <select name="CoderPktTime1" class="list" id="CoderPktTime1" alt="config/media/codec1/packetization">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderRate1" name="CoderRate1" maxlength="2" disabled alt="config/media/codec1/rate">
+  </td>
+  <td>
+    <select name="CoderSilence1" class="list" id="CoderSilence1" alt="config/media/codec1/silence_suppression">
+    </select>
+  </td>
+</tr>
+<tr id="idCoder2th" style="display:none">
+  <td>&nbsp;</td>
+  <td>3</td>
+  <td>
+    <select name="CoderName2" class="list" id="CoderName2" ng-click="CoderChange(2);" alt="config/media/codec2/name">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderPT2" name="CoderPT2" maxlength="3" disabled alt="config/media/codec2/payload_type">
+  </td>
+  <td>
+    <select name="CoderPktTime2" class="list" id="CoderPktTime2" alt="config/media/codec2/packetization">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderRate2" name="CoderRate2" maxlength="2" disabled alt="config/media/codec2/rate">
+  </td>
+  <td>
+    <select name="CoderSilence2" class="list" id="CoderSilence2" alt="config/media/codec2/silence_suppression">
+    </select>
+  </td>
+</tr>
+<tr id="idCoder3th" style="display:none">
+  <td>&nbsp;</td>
+  <td>4</td>
+  <td>
+    <select name="CoderName3" class="list" id="CoderName3" ng-click="CoderChange(3);" alt="config/media/codec3/name">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderPT3" name="CoderPT3" maxlength="3" disabled alt="config/media/codec3/payload_type">
+  </td>
+  <td>
+    <select name="CoderPktTime3" class="list" id="CoderPktTime3" alt="config/media/codec3/packetization">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderRate3" name="CoderRate3"  maxlength="2" disabled alt="config/media/codec3/rate">
+  </td>
+  <td>
+    <select name="CoderSilence3" class="list" id="CoderSilence3" alt="config/media/codec3/silence_suppression">
+    </select>
+  </td>
+</tr>
+<tr id="idCoder4th" style="display:none">
+  <td>&nbsp;</td>
+  <td>5</td>
+  <td>
+    <select name="CoderName4" class="list" id="CoderName4" ng-click="CoderChange(4);" alt="config/media/codec4/name">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderPT4" name="CoderPT4" maxlength="3"  disabled alt="config/media/codec4/payload_type">
+  </td>
+  <td>
+    <select name="CoderPktTime4" class="list" id="CoderPktTime4" alt="config/media/codec4/packetization">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderRate4" name="CoderRate4"  maxlength="2" disabled alt="config/media/codec4/rate">
+  </td>
+  <td>
+    <select name="CoderSilence4" class="list" id="CoderSilence4" alt="config/media/codec4/silence_suppression">
+    </select>
+  </td>
+</tr>
+<tr id="idCoder5th" style="display:none">
+  <td>&nbsp;</td>
+  <td>6</td>
+  <td>
+    <select name="CoderName5" class="list" id="CoderName5" ng-click="CoderChange(5);" alt="config/media/codec5/name">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderPT5" name="CoderPT5" maxlength="3" disabled alt="config/media/codec5/payload_type">
+  </td>
+  <td>
+    <select name="CoderPktTime5" class="list" id="CoderPktTime5" alt="config/media/codec5/packetization">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderRate5" name="CoderRate5"  maxlength="2" disabled alt="config/media/codec5/rate">
+  </td>
+  <td>
+    <select name="CoderSilence5" class="list" id="CoderSilence5" alt="config/media/codec5/silence_suppression">
+    </select>
+  </td>
+</tr>
+<tr id="idCoder6th" style="display:none">
+  <td>&nbsp;</td>
+  <td>7</td>
+  <td>
+    <select name="CoderName6" class="list" id="CoderName6" ng-click="CoderChange(6);" alt="config/media/codec6/name">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderPT6" name="CoderPT6" maxlength="3" disabled alt="config/media/codec6/payload_type">
+  </td>
+  <td>
+    <select name="CoderPktTime6" class="list" id="CoderPktTime6" alt="config/media/codec6/packetization">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderRate6" name="CoderRate6"  maxlength="2" disabled alt="config/media/codec6/rate">
+  </td>
+  <td>
+    <select name="CoderSilence6" class="list" id="CoderSilence6" alt="config/media/codec6/silence_suppression">
+    </select>
+  </td>
+</tr>
+<tr id="idCoder7th" style="display:none">
+  <td>&nbsp;</td>
+  <td>8</td>
+  <td>
+    <select name="CoderName7" class="list" id="CoderName7" ng-click="CoderChange(7);" alt="config/media/codec7/name">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderPT7" name="CoderPT7" maxlength="3" disabled alt="config/media/codec7/payload_type">
+  </td>
+  <td>
+    <select name="CoderPktTime7" class="list" id="CoderPktTime7" alt="config/media/codec7/packetization">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderRate7" name="CoderRate7"  maxlength="2" disabled alt="config/media/codec7/rate">
+  </td>
+  <td>
+    <select name="CoderSilence7" class="list" id="CoderSilence7" alt="config/media/codec7/silence_suppression" >
+    </select>
+  </td>
+</tr>
+<tr id="idCoder8th" style="display:none">
+  <td>&nbsp;</td>
+  <td>9</td>
+  <td>
+    <select name="CoderName8" class="list" id="CoderName8" ng-click="CoderChange(8);" alt="config/media/codec8/name">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderPT8" name="CoderPT8" maxlength="3" disabled alt="config/media/codec8/payload_type">
+  </td>
+  <td>
+    <select name="CoderPktTime8" class="list" id="CoderPktTime8" alt="config/media/codec8/packetization">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderRate8" name="CoderRate8"  maxlength="2" disabled alt="config/media/codec8/rate">
+  </td>
+  <td>
+    <select name="CoderSilence8" class="list" id="CoderSilence8" alt="config/media/codec8/silence_suppression" >
+    </select>
+  </td>
+</tr>
+<tr id="idCoder9th" style="display:none">
+  <td>&nbsp;</td>
+  <td>10</td>
+  <td>
+    <select name="CoderName9" class="list" id="CoderName9" ng-click="CoderChange(9);" alt="config/media/codec9/name">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderPT9" name="CoderPT9" maxlength="3" disabled alt="config/media/codec9/payload_type">
+  </td>
+  <td>
+    <select name="CoderPktTime9" class="list" id="CoderPktTime9" alt="config/media/codec9/packetization">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderRate9" name="CoderRate9"  maxlength="2" disabled alt="config/media/codec9/rate">
+  </td>
+  <td>
+    <select name="CoderSilence9" class="list" id="CoderSilence9" alt="config/media/codec9/silence_suppression" >
+    </select>
+  </td>
+</tr>
+<tr id="idCoder10th" style="display:none">
+  <td>&nbsp;</td>
+  <td>11</td>
+  <td>
+    <select name="CoderName10" class="list" id="CoderName10" ng-click="CoderChange(10);" alt="config/media/codec10/name">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderPT10" name="CoderPT10" maxlength="3" disabled alt="config/media/codec10/payload_type">
+  </td>
+  <td>
+    <select name="CoderPktTime10" class="list" id="CoderPktTime10" alt="config/media/codec10/packetization">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderRate10" name="CoderRate10"  maxlength="2" disabled alt="config/media/codec10/rate">
+  </td>
+  <td>
+    <select name="CoderSilence10" class="list" id="CoderSilence10" alt="config/media/codec10/silence_suppression" >
+    </select>
+  </td>
+</tr>
+<tr id="idCoder11th" style="display:none">
+  <td>&nbsp;</td>
+  <td>12</td>
+  <td>
+    <select name="CoderName11" class="list" id="CoderName11" ng-click="CoderChange(11);" alt="config/media/codec11/name">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderPT11" name="CoderPT11" maxlength="3" disabled alt="config/media/codec11/payload_type">
+  </td>
+  <td>
+    <select name="CoderPktTime11" class="list" id="CoderPktTime11" alt="config/media/codec11/packetization">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderRate11" name="CoderRate11"  maxlength="2" disabled alt="config/media/codec11/rate">
+  </td>
+  <td>
+    <select name="CoderSilence11" class="list" id="CoderSilence11" alt="config/media/codec11/silence_suppression" >
+    </select>
+  </td>
+</tr>
+<tr id="idCoder12th" style="display:none">
+  <td>&nbsp;</td>
+  <td>13</td>
+  <td>
+    <select name="CoderName12" class="list" id="CoderName12" ng-click="CoderChange(12);" alt="config/media/codec12/name">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderPT12" name="CoderPT12" maxlength="3" disabled alt="config/media/codec12/payload_type">
+  </td>
+  <td>
+    <select name="CoderPktTime12" class="list" id="CoderPktTime12" alt="config/media/codec12/packetization">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderRate12" name="CoderRate12"  maxlength="2" disabled alt="config/media/codec12/rate">
+  </td>
+  <td>
+    <select name="CoderSilence12" class="list" id="CoderSilence12" alt="config/media/codec12/silence_suppression" >
+    </select>
+  </td>
+</tr>
+<tr id="idCoder13th" style="display:none">
+  <td>&nbsp;</td>
+  <td>14</td>
+  <td>
+    <select name="CoderName13" class="list" id="CoderName13" ng-click="CoderChange(13);" alt="config/media/codec13/name">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderPT13" name="CoderPT13" maxlength="3" disabled alt="config/media/codec13/payload_type">
+  </td>
+  <td>
+    <select name="CoderPktTime13" class="list" id="CoderPktTime13" alt="config/media/codec13/packetization">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderRate13" name="CoderRate13"  maxlength="2" disabled alt="config/media/codec13/rate">
+  </td>
+  <td>
+    <select name="CoderSilence13" class="list" id="CoderSilence13" alt="config/media/codec13/silence_suppression" >
+    </select>
+  </td>
+</tr>
+<tr id="idCoder14th" style="display:none">
+  <td>&nbsp;</td>
+  <td>15</td>
+  <td>
+    <select name="CoderName14" class="list" id="CoderName14" ng-click="CoderChange(14);" alt="config/media/codec14/name">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderPT14" name="CoderPT14" maxlength="3" disabled alt="config/media/codec14/payload_type">
+  </td>
+  <td>
+    <select name="CoderPktTime14" class="list" id="CoderPktTime14" alt="config/media/codec14/packetization">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderRate14" name="CoderRate14"  maxlength="2" disabled alt="config/media/codec14/rate">
+  </td>
+  <td>
+    <select name="CoderSilence14" class="list" id="CoderSilence14" alt="config/media/codec14/silence_suppression" >
+    </select>
+  </td>
+</tr>
+<tr id="idCoder15th" style="display:none">
+  <td>&nbsp;</td>
+  <td>16</td>
+  <td>
+    <select name="CoderName15" class="list" id="CoderName15" ng-click="CoderChange(15);" alt="config/media/codec15/name">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderPT15" name="CoderPT15" maxlength="3" disabled alt="config/media/codec15/payload_type">
+  </td>
+  <td>
+    <select name="CoderPktTime15" class="list" id="CoderPktTime15" alt="config/media/codec15/packetization">
+    </select>
+  </td>
+  <td>
+    <input class="text" id="CoderRate15" name="CoderRate15"  maxlength="2" disabled alt="config/media/codec15/rate">
+  </td>
+  <td>
+    <select name="CoderSilence15" class="list" id="CoderSilence15" alt="config/media/codec15/silence_suppression" >
+    </select>
+  </td>
+</tr>
+<tr>
+  <td colspan="7">&nbsp;</td>
+</tr>
+<tr>
+  <td width="5%">&nbsp;</td>
+  <td colspan="2" width="45%">编解码优选</td>
+  <td width="5%">&nbsp;</td>
+  <td colspan="3" width="45%">
+    <select name="codecsPrefered" class="list" id="codecsPrefered" alt="config/media/codecs_prefered">
+      <option value="0" >本端</option>
+      <option value="1" selected>远端</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td colspan="7">&nbsp;</td>
+</tr>
+</table>
+</td>
+<td class="swidth">&nbsp;</td>
+</tr>
+</table>
+</form>

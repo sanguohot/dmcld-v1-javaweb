@@ -1,0 +1,36 @@
+<form id="{{=it.pid}}_form" role="form">
+    <div class="container-fluid my-tab">
+        <h4 class="header smaller lighter red">
+            {{=it.lan.portCalc}}[{{=it.sn}}]
+            <div style="float:right;" class="btn-group">
+            <a class="btn btn-sm btn-warning" name="back" href="#" ><i class="fa fa-reply bigger-120"></i>{{=it.lan.back}}</a>
+        </h4>
+
+        <div class="row alert alert-success">
+            <div class="row" style="margin-bottom:10px;">
+                <div class="col-md-12">
+                    <div class="form-group-sm">
+                        <label class="margin-bottom-0">{{=it.lan.portType}}</label>
+                        <div>
+                            {{~it.list:value:index}}
+                            <label class="radio-inline">
+                                <input class="ace" type="radio" name="{{=it.name}}" value="{{=value.value}}" data-toggle="radio" >
+                                <span class="lbl">&nbsp;{{=value.text}}</span>
+                            </label>
+                            {{~}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <h4 class="header smaller lighter red">
+            {{=it.lan.calcList}}
+        </h4>
+        <div id="{{=it.pid}}-pmd"></div>
+    </div>
+
+</form>

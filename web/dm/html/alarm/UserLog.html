@@ -1,0 +1,83 @@
+<form id="{{=it.pid}}_form" role="form">
+    <div class="container-fluid my-tab">
+        <h4 class="header smaller lighter red">
+            {{=it.lan.searchCondition}}
+        </h4>
+
+        <div class="row alert alert-success">
+            <div class="row" style="margin-bottom:10px;">
+                <div class="col-md-5">
+                    <div class="form-group-sm">
+                        <div class="input-group">
+                            <input type="text" id="{{=it.pid}}_search_input" style="padding-left:20px;padding-right:20px;" class="form-control search-query"
+                                   placeholder="{{=it.lan.objectDomain}}/{{=it.lan.userName}}/{{=it.lan.objectName}}">
+                                   <a href="#" id="{{=it.pid}}_search_clear"  style="position:absolute;top:7px;right:50px;z-index:2;text-decoration:none;" class="fa fa-times"></a>
+				<span class="input-group-btn">
+					<button type="button" id="{{=it.pid}}_search_bt" class="btn btn-info btn-sm" style="height:30px;">
+                        <span class="ace-icon fa fa-search icon-on-right"></span>
+                    </button>
+				</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7">&nbsp;</div>
+            </div>
+            <div class="row" style="margin-bottom:10px;">
+                <div class="col-md-4">
+                    <div class="form-group-sm">
+                        <div class="input-group date form_datetime" data-date="">
+                            <input name="fromTime" class="form-control" placeholder="{{=it.lan.fromTime}}" size="16" type="text"
+                                   value="">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group-sm">
+                        <div class="input-group date form_datetime" data-date="">
+                            <input name="toTime" class="form-control" placeholder="{{=it.lan.toTime}}" size="16" type="text" value="">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="btn-group">
+                        <button type="button" name="time" value="day" class="btn btn-sm btn-warning">{{=it.lan.today}}</button>
+                        <button type="button" name="time" value="3day" class="btn btn-sm btn-warning">{{=it.lan.last3Day}}</button>
+                        <button type="button" name="time" value="7day" class="btn btn-sm btn-warning">{{=it.lan.last7Day}}</button>
+                        <button type="button" name="time" value="month" class="btn btn-sm btn-warning">{{=it.lan.lastMonth}}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <select style="display: none;" class="chosen-select width-85" id="operate-sel"
+                            data-placeholder="{{=it.lan.plSelOperateType}}">
+                        <option value="0"></option>
+                        {{~it.operateList:value:index}}
+                        <option value="{{=value.value}}">{{=value.text}}</option>
+                        {{~}}
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select style="display: none;" class="chosen-select width-85" id="object-type-sel"
+                            data-placeholder="{{=it.lan.plSelOperateObject}}">
+                        <option value="0"></option>
+                        {{~it.objectList:value:index}}
+                        <option value="{{=value.value}}">{{=value.text}}</option>
+                        {{~}}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <h4 class="header smaller lighter red">
+            {{=it.lan.searchResult}}
+        </h4>
+        <table id="{{=it.pid}}_list"></table>
+    </div>
+
+</form>

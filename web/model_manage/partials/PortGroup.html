@@ -1,0 +1,396 @@
+<form name="PortGroup" id="PortGroup" ng-controller = "PortGroupCtrl">
+<input type="hidden" value="" id="PortGroupHidden0">
+<input type="hidden" value="" id="PortGroupHidden1">
+<input type="hidden" value="" id="PortGroupHidden2">
+<input type="hidden" value="" id="PortGroupHidden3">
+<input type="hidden" value="" id="PortGroupHidden4">
+<input type="hidden" value="" id="PortGroupHidden5">
+<input type="hidden" value="" id="PortGroupHidden6">
+<input type="hidden" value="" id="PortGroupHidden7">
+<input type="hidden" value="" id="PortGroupHidden8">
+<input type="hidden" value="" id="PortGroupHidden9">
+<input type="hidden" value="" id="PortGroupHidden10">
+<input type="hidden" value="" id="PortGroupHidden11">
+<input type="hidden" value="" id="PortGroupHidden12">
+<input type="hidden" value="" id="PortGroupHidden13">
+<input type="hidden" value="" id="PortGroupHidden14">
+<input type="hidden" value="" id="PortGroupHidden15">
+<table width="1050px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+	<tbody><tr>
+		<td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+		<td>端口组</td>
+		<td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+	</tr>
+	</tbody></table>
+<table class="tblcontext" width="1050px" align="center" cellpadding="0" cellspacing="0">
+<tbody><tr class="thead" align="center">
+	<td width="4%">&nbsp;</td>
+	<td width="4%">索引</td>
+	<td width="7%">描述</td>
+	<td width="10%">主SIP用户显示名称</td>
+	<td width="8%">主SIP账户</td>
+	<td width="10%">主SIP认证账户</td>
+	<td width="10%">备SIP用户显示名称</td>
+	<td width="9%">备SIP账户</td>
+	<td width="10%">备SIP认证账户</td>
+	<td width="6%">代拨号码</td>
+	<td width="6%">包含端口</td>
+	<td width="10%">端口选择方式</td>
+	<td width="6%">组内抢接功能键</td>
+</tr>
+<tr id="PortGroupNone" align="center">
+	<td>&nbsp;</td>
+	<td>---</td>
+	<td>---</td>
+	<td>---</td>
+	<td>---</td>
+	<td>---</td>
+	<td>---</td>
+	<td>---</td>
+	<td>---</td>
+	<td>---</td>
+	<td>---</td>
+	<td>---</td>
+	<td>---</td>
+</tr>
+<tr id="last" align="center" class="interval">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+<tr id="idPortGroup0" align="center" style="display:none">
+	<td>
+		<input name="PortGroupEnable0" type="checkbox" id="PortGroupEnable0" ng-click="mouse_click();">
+	</td>
+	<td></td>
+	<td id="idDesc0"></td>
+	<td id="idPrimDisplayName0"></td>
+	<td id="idPrimSipAcc0"></td>
+	<td id="idPrimAuthID0"></td>
+	<td id="idSecondDisplayName0"></td>
+	<td id="idSecondSipAcc0"></td>
+	<td id="idSecondAuthID0"></td>
+	<td id="idHotLine0">---</td>
+	<td id="idDestPrefix0" onmouseover="displayex(0);" onmouseout="hiddenex();">&nbsp;</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr id="idPortGroup1" align="center" style="display:none">
+	<td>
+		<input name="PortGroupEnable1" type="checkbox" id="PortGroupEnable1" ng-click="mouse_click();">
+	</td>
+	<td></td>
+	<td id="idDesc1"></td>
+	<td id="idPrimDisplayName1"></td>
+	<td id="idPrimSipAcc1"></td>
+	<td id="idPrimAuthID1"></td>
+	<td id="idSecondDisplayName1"></td>
+	<td id="idSecondSipAcc1"></td>
+	<td id="idSecondAuthID1"></td>
+	<td id="idHotLine1">---</td>
+	<td id="idDestPrefix1" onmouseover="displayex(1);" onmouseout="hiddenex();">&nbsp;</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr id="idPortGroup2" align="center" style="display:none">
+	<td>
+		<input name="PortGroupEnable2" type="checkbox" id="PortGroupEnable2" ng-click="mouse_click();">
+	</td>
+	<td></td>
+	<td id="idDesc2"></td>
+	<td id="idPrimDisplayName2"></td>
+	<td id="idPrimSipAcc2"></td>
+	<td id="idPrimAuthID2"></td>
+	<td id="idSecondDisplayName2"></td>
+	<td id="idSecondSipAcc2"></td>
+	<td id="idSecondAuthID2"></td>
+	<td id="idHotLine2">---</td>
+	<td id="idDestPrefix2" onmouseover="displayex(2);" onmouseout="hiddenex();">&nbsp;</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr id="idPortGroup3" align="center" style="display:none">
+	<td>
+		<input name="PortGroupEnable3" type="checkbox" id="PortGroupEnable3" ng-click="mouse_click();">
+	</td>
+	<td></td>
+	<td id="idDesc3"></td>
+	<td id="idPrimDisplayName3"></td>
+	<td id="idPrimSipAcc3"></td>
+	<td id="idPrimAuthID3"></td>
+	<td id="idSecondDisplayName3"></td>
+	<td id="idSecondSipAcc3"></td>
+	<td id="idSecondAuthID3"></td>
+	<td id="idHotLine3">---</td>
+	<td id="idDestPrefix3" onmouseover="displayex(3);" onmouseout="hiddenex();"></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr id="idPortGroup4" align="center" style="display:none">
+	<td>
+		<input name="PortGroupEnable4" type="checkbox" id="PortGroupEnable4" ng-click="mouse_click();">
+	</td>
+	<td></td>
+	<td id="idDesc4"></td>
+	<td id="idPrimDisplayName4"></td>
+	<td id="idPrimSipAcc4"></td>
+	<td id="idPrimAuthID4"></td>
+	<td id="idSecondDisplayName4"></td>
+	<td id="idSecondSipAcc4"></td>
+	<td id="idSecondAuthID4"></td>
+	<td id="idHotLine4">---</td>
+	<td id="idDestPrefix4" onmouseover="displayex(4);" onmouseout="hiddenex();">&nbsp;</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr id="idPortGroup5" align="center" style="display:none">
+	<td>
+		<input name="PortGroupEnable5" type="checkbox" id="PortGroupEnable5" ng-click="mouse_click();">
+	</td>
+	<td></td>
+	<td id="idDesc5"></td>
+	<td id="idPrimDisplayName5"></td>
+	<td id="idPrimSipAcc5"></td>
+	<td id="idPrimAuthID5"></td>
+	<td id="idSecondDisplayName5"></td>
+	<td id="idSecondSipAcc5"></td>
+	<td id="idSecondAuthID5"></td>
+	<td id="idHotLine5">---</td>
+	<td id="idDestPrefix5" onmouseover="displayex(5);" onmouseout="hiddenex();">&nbsp;</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr id="idPortGroup6" align="center" style="display:none">
+	<td>
+		<input name="PortGroupEnable6" type="checkbox" id="PortGroupEnable6" ng-click="mouse_click();">
+	</td>
+	<td></td>
+	<td id="idDesc6"></td>
+	<td id="idPrimDisplayName6"></td>
+	<td id="idPrimSipAcc6"></td>
+	<td id="idPrimAuthID6"></td>
+	<td id="idSecondDisplayName6"></td>
+	<td id="idSecondSipAcc6"></td>
+	<td id="idSecondAuthID6"></td>
+	<td id="idHotLine6">---</td>
+	<td id="idDestPrefix6" onmouseover="displayex(6);" onmouseout="hiddenex();">&nbsp;</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr id="idPortGroup7" align="center" style="display:none">
+	<td>
+		<input name="PortGroupEnable7" type="checkbox" id="PortGroupEnable7" ng-click="mouse_click();">
+	</td>
+	<td></td>
+	<td id="idDesc7"></td>
+	<td id="idPrimDisplayName7"></td>
+	<td id="idPrimSipAcc7"></td>
+	<td id="idPrimAuthID7"></td>
+	<td id="idSecondDisplayName7"></td>
+	<td id="idSecondSipAcc7"></td>
+	<td id="idSecondAuthID7"></td>
+	<td id="idHotLine7">---</td>
+	<td id="idDestPrefix7" onmouseover="displayex(7);" onmouseout="hiddenex();">&nbsp;</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr id="idPortGroup8" align="center" style="display:none">
+	<td>
+		<input name="PortGroupEnable8" type="checkbox" id="PortGroupEnable8" ng-click="mouse_click();">
+	</td>
+	<td></td>
+	<td id="idDesc8"></td>
+	<td id="idPrimDisplayName8"></td>
+	<td id="idPrimSipAcc8"></td>
+	<td id="idPrimAuthID8"></td>
+	<td id="idSecondDisplayName8"></td>
+	<td id="idSecondSipAcc8"></td>
+	<td id="idSecondAuthID8"></td>
+	<td id="idHotLine8">---</td>
+	<td id="idDestPrefix8" onmouseover="displayex(8);" onmouseout="hiddenex();">&nbsp;</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr id="idPortGroup9" align="center" style="display:none">
+	<td>
+		<input name="PortGroupEnable9" type="checkbox" id="PortGroupEnable9" ng-click="mouse_click();">
+	</td>
+	<td></td>
+	<td id="idDesc9"></td>
+	<td id="idPrimDisplayName9"></td>
+	<td id="idPrimSipAcc9"></td>
+	<td id="idPrimAuthID9"></td>
+	<td id="idSecondDisplayName9"></td>
+	<td id="idSecondSipAcc9"></td>
+	<td id="idSecondAuthID9"></td>
+	<td id="idHotLine9">---</td>
+	<td id="idDestPrefix9" onmouseover="displayex(9);" onmouseout="hiddenex();">&nbsp;</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr id="idPortGroup10" align="center" style="display:none">
+	<td>
+		<input name="PortGroupEnable10" type="checkbox" id="PortGroupEnable10" ng-click="mouse_click();">
+	</td>
+	<td></td>
+	<td id="idDesc10"></td>
+	<td id="idPrimDisplayName10"></td>
+	<td id="idPrimSipAcc10"></td>
+	<td id="idPrimAuthID10"></td>
+	<td id="idSecondDisplayName10"></td>
+	<td id="idSecondSipAcc10"></td>
+	<td id="idSecondAuthID10"></td>
+	<td id="idHotLine10">---</td>
+	<td id="idDestPrefix10" onmouseover="displayex(10);" onmouseout="hiddenex();">&nbsp;</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr id="idPortGroup11" align="center" style="display:none">
+	<td>
+		<input name="PortGroupEnable11" type="checkbox" id="PortGroupEnable11" ng-click="mouse_click();">
+	</td>
+	<td></td>
+	<td id="idDesc11"></td>
+	<td id="idPrimDisplayName11"></td>
+	<td id="idPrimSipAcc11"></td>
+	<td id="idPrimAuthID11"></td>
+	<td id="idSecondDisplayName11"></td>
+	<td id="idSecondSipAcc11"></td>
+	<td id="idSecondAuthID11"></td>
+	<td id="idHotLine11">---</td>
+	<td id="idDestPrefix11" onmouseover="displayex(11);" onmouseout="hiddenex();">&nbsp;</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr id="idPortGroup12" align="center" style="display:none">
+	<td>
+		<input name="PortGroupEnable12" type="checkbox" id="PortGroupEnable12" ng-click="mouse_click();">
+	</td>
+	<td></td>
+	<td id="idDesc12"></td>
+	<td id="idPrimDisplayName12"></td>
+	<td id="idPrimSipAcc12"></td>
+	<td id="idPrimAuthID12"></td>
+	<td id="idSecondDisplayName12"></td>
+	<td id="idSecondSipAcc12"></td>
+	<td id="idSecondAuthID12"></td>
+	<td id="idHotLine12">---</td>
+	<td id="idDestPrefix12" onmouseover="displayex(12);" onmouseout="hiddenex();">&nbsp;</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr id="idPortGroup13" align="center" style="display:none">
+	<td>
+		<input name="PortGroupEnable13" type="checkbox" id="PortGroupEnable13" ng-click="mouse_click();">
+	</td>
+	<td></td>
+	<td id="idDesc13"></td>
+	<td id="idPrimDisplayName13"></td>
+	<td id="idPrimSipAcc13"></td>
+	<td id="idPrimAuthID13"></td>
+	<td id="idSecondDisplayName13"></td>
+	<td id="idSecondSipAcc13"></td>
+	<td id="idSecondAuthID13"></td>
+	<td id="idHotLine13">---</td>
+	<td id="idDestPrefix13" onmouseover="displayex(13);" onmouseout="hiddenex();">&nbsp;</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr id="idPortGroup14" align="center" style="display:none">
+	<td>
+		<input name="PortGroupEnable14" type="checkbox" id="PortGroupEnable14" ng-click="mouse_click();">
+	</td>
+	<td></td>
+	<td id="idDesc14"></td>
+	<td id="idPrimDisplayName14"></td>
+	<td id="idPrimSipAcc14"></td>
+	<td id="idPrimAuthID14"></td>
+	<td id="idSecondDisplayName14"></td>
+	<td id="idSecondSipAcc14"></td>
+	<td id="idSecondAuthID14"></td>
+	<td id="idHotLine14">---</td>
+	<td id="idDestPrefix14" onmouseover="displayex(14);" onmouseout="hiddenex();">&nbsp;</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr id="idPortGroup15" align="center" style="display:none">
+	<td>
+		<input name="PortGroupEnable15" type="checkbox" id="PortGroupEnable15" ng-click="mouse_click();">
+	</td>
+	<td></td>
+	<td id="idDesc15"></td>
+	<td id="idPrimDisplayName15"></td>
+	<td id="idPrimSipAcc15"></td>
+	<td id="idPrimAuthID15"></td>
+	<td id="idSecondDisplayName15"></td>
+	<td id="idSecondSipAcc15"></td>
+	<td id="idSecondAuthID15"></td>
+	<td id="idHotLine15">---</td>
+	<td id="idDestPrefix15" onmouseover="displayex(15);" onmouseout="hiddenex();">&nbsp;</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+<div class="ex" id="ex" style="padding:15px;display:none;">
+	<p><strong>端口表</strong></p>
+	<table border="0" cellpadding="0" cellspacing="0" width="320px" bgcolor="#CCCCCC">
+		<script language="javascript" type="text/javascript">
+			document.write("<tr>");
+			document.write("<td>Slot</td>");
+			for (i=0; i<g_jDevInfo.TotalSlots; i++)
+			{
+				document.write("<td>" + i + "</td>");
+			}
+			document.write("</tr>");
+
+			for (j=0; j<g_jDevInfo.PortsPerSlot; j++)
+			{
+				document.write("<tr>");
+				document.write("<td>" + j + "</td>");
+				for (i=0; i<g_jDevInfo.TotalSlots; i++)
+				{
+					document.write("<td id='PortBox" + (i*g_jDevInfo.PortsPerSlot + j) + "'>&nbsp;</td>");
+				}
+				document.write("</tr>");
+			}
+		</script><tbody><tr><td>Slot</td></tr>
+	</tbody></table>
+	<table border="0" cellpadding="0" cellspacing="0" width="320px">
+		<colgroup><col width="2%"><col width="98%">
+		</colgroup><tbody><tr>
+		<td><div style="width:18px; height:18px; background-color:#CCC;">&nbsp;</div></td>
+		<td style="text-align:left;">不包含该端口</td>
+	</tr>
+	<tr>
+		<td><div style="width:18px; height:18px; background-color:#0F0;">&nbsp;</div></td>
+		<td style="text-align:left;">组内端口</td>
+	</tr>
+	</tbody></table>
+</div>
+<table align="center" width="1050px" class="tblpageinfo" display="none">
+	<tbody><tr>
+		<td>
+			共计:&nbsp;0&nbsp;条&nbsp;&nbsp;
+			<input type="hidden" name="curpage" id="curpage" value="">
+			<select name="page" class="list" id="page" onchange="doRefresh();" disabled=""></select>
+		</td>
+	</tr>
+	</tbody></table>
+<p align="center" class="buttonbox">
+	<button name="Add" id="Add" ng-click="AddData();">添加</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<button name="Mod" id="Mod" ng-click="ModData();" disabled="" display="none">修改</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<button name="Del" id="Del" ng-click="DelData();" disabled="">删除</button>
+</p>
+</form>

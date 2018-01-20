@@ -1,0 +1,11 @@
+这个是无法操作转过去，如果您想咨询（包括未签约商户接口集成技术问题及已签约商户技术报错等问题）技术相关问题，您可以登录支付宝账户点击链接https://b.alipay.com/order/supportHome.htm（需要您登录支付宝账户）联系商户在线客服咨询（工作时间：周一至周五9：00-18：00，节假日除外）。
+
+
+<%= AlipaySubmit.buildRequest(map, "POST", "确认") %>
+
+http://172.16.221.100/create_direct_pay_by_user-JAVA-UTF-8/return_url.jsp?buyer_email=hw535431%40163.com&buyer_id=2088512741097495&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InVbTzv%252BY2aDQTVkCMAm%252BT3i2YydWYk2URoB%252BmECBcdido8yk7b&notify_time=2015-09-24+00%3A01%3A24&notify_type=trade_status_sync&out_trade_no=451443023913615&payment_type=1&seller_email=susan%40dinstar.com&seller_id=2088022639244693&subject=451443023913615&total_fee=0.01&trade_no=2015092421001004490006575751&trade_status=TRADE_FINISHED&sign=a979f49ea1db9f489298001e755fbd70&sign_type=MD5
+
+
+http://172.16.221.100/create_direct_pay_by_user-JAVA-UTF-8/return_url.jsp?buyer_email=hw535431%40163.com&buyer_id=2088512741097495&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InVbTzv%252BY2aDQTVkCMAm%252BT3i2YydWYk2URoB%252BmECBcdido8yk7b&notify_time=2015-09-24+00%3A01%3A24&notify_type=trade_status_sync&out_trade_no=451443023913615&payment_type=1&seller_email=susan%40dinstar.com&seller_id=2088022639244693&subject=451443023913615&total_fee=0.01&trade_no=2015092421001004490006575751&trade_status=TRADE_SUCCESS&sign=a979f49ea1db9f489298001e755fbd70&sign_type=MD5
+
+http://server01.dmcld.com/create_direct_pay_by_user-JAVA-UTF-8/notify_url.jsp|121.41.104.107|utf-8]: http://server01.dmcld.com/create_direct_pay_by_user-JAVA-UTF-8/notify_url.jsp?discount=0.00&payment_type=1&subject=221443090654209&trade_no=2015092421001004490024494455&buyer_email=***&gmt_create=2015-09-24 18:31:12¬ify_type=trade_status_sync&quantity=1&out_trade_no=221443090654209&seller_id=2088022639244693¬ify_time=2015-09-24 18:55:29&trade_status=TRADE_SUCCESS&is_total_fee_adjust=N&total_fee=0.01&gmt_payment=2015-09-24 18:31:20&seller_email=***&price=0.01&buyer_id=2088512741097495¬ify_id=557e80dbd2ee1b564ca56ae9b969a6fjs4&use_coupon=N&sign_type=MD5&sign=***

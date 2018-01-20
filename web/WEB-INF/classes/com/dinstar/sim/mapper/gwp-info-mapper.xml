@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<!-- gwp bkp sim mapper file -->
+<mapper namespace="com.dinstar.sim.mapper.GwpBkpSimMapper">
+	<resultMap type="com.dinstar.sim.mapper.operation.GwpBkpSimMapper" id="gwpBkpSimMapperMap">
+	<!-- bkp -->
+    <result column="bkp_alias" property="bkpAlias" jdbcType="CHAR" />
+   <!-- sim -->
+    <result column="sim_imsi" property="simImsi" jdbcType="CHAR" />
+    <result column="sim_alias" property="simAlias" jdbcType="CHAR" />
+    <result column="icc_id" property="iccId" jdbcType="CHAR" />
+    <result column="bind_imei" property="bindImei" jdbcType="CHAR" />
+    <result column="operator" property="operator" jdbcType="CHAR" />
+    <result column="mobile" property="mobile" jdbcType="CHAR" />
+	</resultMap>
+	
+	<select id="getGwpBkpSim" resultMap="gwpBkpSimMapperMap">
+
+		select
+		bkp.alias as bkp_alias,
+		ts.imsi as sim_imsi,
+		ts.alias as sim_alias,
+		ts.icc_id, ts.bind_imei, ts.operator,
+		ts.mobile
+
+		from tbl_gwp gwp left join tbl_bkp bkp on(gwp.bkp_uuid=bkp.uuid) 
+		left join tbl_sim ts on (bkp.sim_uuid=ts.uuid)
+		where  gwp.uuid=#{uuid}
+		<if test="domainUuid>0">AND gwp.domain_uuid =#{domainUuid}</if>
+    </select>
+
+</mapper>

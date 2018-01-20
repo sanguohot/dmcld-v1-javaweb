@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblMailMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblMail" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="user_task_type" property="userTaskType" jdbcType="INTEGER" />
+    <result column="user_task_id" property="userTaskId" jdbcType="INTEGER" />
+    <result column="mail_index" property="mailIndex" jdbcType="INTEGER" />
+    <result column="mail_sn" property="mailSn" jdbcType="INTEGER" />
+    <result column="mailq_uuid" property="mailqUuid" jdbcType="INTEGER" />
+    <result column="dst_addr" property="dstAddr" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
+    <result column="mail_result" property="mailResult" jdbcType="INTEGER" />
+    <result column="result_desc" property="resultDesc" jdbcType="VARCHAR" />
+    <result column="mail_time" property="mailTime" jdbcType="TIMESTAMP" />
+    <result column="content_type" property="contentType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, domain_uuid, alias, action_status, action_result, user_task_type, 
+    user_task_id, mail_index, mail_sn, mailq_uuid, dst_addr, path, content, subject, 
+    creat_time, mail_result, result_desc, mail_time, content_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblMailCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_mail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_mail
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_mail
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblMailCriteria" >
+    delete from tbl_mail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblMail" >
+    insert into tbl_mail (uuid, rec_status, domain_uuid, 
+      alias, action_status, action_result, 
+      user_task_type, user_task_id, mail_index, 
+      mail_sn, mailq_uuid, dst_addr, 
+      path, content, subject, 
+      creat_time, mail_result, result_desc, 
+      mail_time, content_type)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{domainUuid,jdbcType=INTEGER}, 
+      #{alias,jdbcType=CHAR}, #{actionStatus,jdbcType=INTEGER}, #{actionResult,jdbcType=INTEGER}, 
+      #{userTaskType,jdbcType=INTEGER}, #{userTaskId,jdbcType=INTEGER}, #{mailIndex,jdbcType=INTEGER}, 
+      #{mailSn,jdbcType=INTEGER}, #{mailqUuid,jdbcType=INTEGER}, #{dstAddr,jdbcType=VARCHAR}, 
+      #{path,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, 
+      #{creatTime,jdbcType=TIMESTAMP}, #{mailResult,jdbcType=INTEGER}, #{resultDesc,jdbcType=VARCHAR}, 
+      #{mailTime,jdbcType=TIMESTAMP}, #{contentType,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblMail" >
+    insert into tbl_mail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="actionStatus != null" >
+        action_status,
+      </if>
+      <if test="actionResult != null" >
+        action_result,
+      </if>
+      <if test="userTaskType != null" >
+        user_task_type,
+      </if>
+      <if test="userTaskId != null" >
+        user_task_id,
+      </if>
+      <if test="mailIndex != null" >
+        mail_index,
+      </if>
+      <if test="mailSn != null" >
+        mail_sn,
+      </if>
+      <if test="mailqUuid != null" >
+        mailq_uuid,
+      </if>
+      <if test="dstAddr != null" >
+        dst_addr,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="subject != null" >
+        subject,
+      </if>
+      <if test="creatTime != null" >
+        creat_time,
+      </if>
+      <if test="mailResult != null" >
+        mail_result,
+      </if>
+      <if test="resultDesc != null" >
+        result_desc,
+      </if>
+      <if test="mailTime != null" >
+        mail_time,
+      </if>
+      <if test="contentType != null" >
+        content_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=CHAR},
+      </if>
+      <if test="actionStatus != null" >
+        #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="userTaskType != null" >
+        #{userTaskType,jdbcType=INTEGER},
+      </if>
+      <if test="userTaskId != null" >
+        #{userTaskId,jdbcType=INTEGER},
+      </if>
+      <if test="mailIndex != null" >
+        #{mailIndex,jdbcType=INTEGER},
+      </if>
+      <if test="mailSn != null" >
+        #{mailSn,jdbcType=INTEGER},
+      </if>
+      <if test="mailqUuid != null" >
+        #{mailqUuid,jdbcType=INTEGER},
+      </if>
+      <if test="dstAddr != null" >
+        #{dstAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null" >
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null" >
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mailResult != null" >
+        #{mailResult,jdbcType=INTEGER},
+      </if>
+      <if test="resultDesc != null" >
+        #{resultDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="mailTime != null" >
+        #{mailTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contentType != null" >
+        #{contentType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblMailCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_mail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_mail
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.alias != null" >
+        alias = #{record.alias,jdbcType=CHAR},
+      </if>
+      <if test="record.actionStatus != null" >
+        action_status = #{record.actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionResult != null" >
+        action_result = #{record.actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.userTaskType != null" >
+        user_task_type = #{record.userTaskType,jdbcType=INTEGER},
+      </if>
+      <if test="record.userTaskId != null" >
+        user_task_id = #{record.userTaskId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mailIndex != null" >
+        mail_index = #{record.mailIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.mailSn != null" >
+        mail_sn = #{record.mailSn,jdbcType=INTEGER},
+      </if>
+      <if test="record.mailqUuid != null" >
+        mailq_uuid = #{record.mailqUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dstAddr != null" >
+        dst_addr = #{record.dstAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.path != null" >
+        path = #{record.path,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subject != null" >
+        subject = #{record.subject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatTime != null" >
+        creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mailResult != null" >
+        mail_result = #{record.mailResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.resultDesc != null" >
+        result_desc = #{record.resultDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mailTime != null" >
+        mail_time = #{record.mailTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.contentType != null" >
+        content_type = #{record.contentType,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_mail
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      alias = #{record.alias,jdbcType=CHAR},
+      action_status = #{record.actionStatus,jdbcType=INTEGER},
+      action_result = #{record.actionResult,jdbcType=INTEGER},
+      user_task_type = #{record.userTaskType,jdbcType=INTEGER},
+      user_task_id = #{record.userTaskId,jdbcType=INTEGER},
+      mail_index = #{record.mailIndex,jdbcType=INTEGER},
+      mail_sn = #{record.mailSn,jdbcType=INTEGER},
+      mailq_uuid = #{record.mailqUuid,jdbcType=INTEGER},
+      dst_addr = #{record.dstAddr,jdbcType=VARCHAR},
+      path = #{record.path,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      subject = #{record.subject,jdbcType=VARCHAR},
+      creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      mail_result = #{record.mailResult,jdbcType=INTEGER},
+      result_desc = #{record.resultDesc,jdbcType=VARCHAR},
+      mail_time = #{record.mailTime,jdbcType=TIMESTAMP},
+      content_type = #{record.contentType,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblMail" >
+    update tbl_mail
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=CHAR},
+      </if>
+      <if test="actionStatus != null" >
+        action_status = #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        action_result = #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="userTaskType != null" >
+        user_task_type = #{userTaskType,jdbcType=INTEGER},
+      </if>
+      <if test="userTaskId != null" >
+        user_task_id = #{userTaskId,jdbcType=INTEGER},
+      </if>
+      <if test="mailIndex != null" >
+        mail_index = #{mailIndex,jdbcType=INTEGER},
+      </if>
+      <if test="mailSn != null" >
+        mail_sn = #{mailSn,jdbcType=INTEGER},
+      </if>
+      <if test="mailqUuid != null" >
+        mailq_uuid = #{mailqUuid,jdbcType=INTEGER},
+      </if>
+      <if test="dstAddr != null" >
+        dst_addr = #{dstAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null" >
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null" >
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mailResult != null" >
+        mail_result = #{mailResult,jdbcType=INTEGER},
+      </if>
+      <if test="resultDesc != null" >
+        result_desc = #{resultDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="mailTime != null" >
+        mail_time = #{mailTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contentType != null" >
+        content_type = #{contentType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblMail" >
+    update tbl_mail
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      alias = #{alias,jdbcType=CHAR},
+      action_status = #{actionStatus,jdbcType=INTEGER},
+      action_result = #{actionResult,jdbcType=INTEGER},
+      user_task_type = #{userTaskType,jdbcType=INTEGER},
+      user_task_id = #{userTaskId,jdbcType=INTEGER},
+      mail_index = #{mailIndex,jdbcType=INTEGER},
+      mail_sn = #{mailSn,jdbcType=INTEGER},
+      mailq_uuid = #{mailqUuid,jdbcType=INTEGER},
+      dst_addr = #{dstAddr,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      subject = #{subject,jdbcType=VARCHAR},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      mail_result = #{mailResult,jdbcType=INTEGER},
+      result_desc = #{resultDesc,jdbcType=VARCHAR},
+      mail_time = #{mailTime,jdbcType=TIMESTAMP},
+      content_type = #{contentType,jdbcType=INTEGER}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

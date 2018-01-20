@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- tree mapper
+ #{domainUuid,mode=IN,jdbcType=INTEGER},#{userType,mode=IN,jdbcType=INTEGER},#{userUuid,mode=IN,jdbcType=INTEGER}
+  -->
+<mapper namespace="com.dinstar.sim.mapper.Tree">
+	
+	 <select id="callCreateTree" statementType="CALLABLE">
+		
+		<![CDATA[
+		
+		  {call PROC_CREATE_TREE_1 ()}
+		
+		]]>
+		
+		</select>
+		
+		 <select id="callCreateTreePer" statementType="CALLABLE">
+		
+		<![CDATA[
+		
+		  {call PROC_CREATE_TREE_PER_1 ()}
+		
+		]]>
+		
+		</select>
+		
+		 <select id="callCreateTreeLic" statementType="CALLABLE">
+		
+		<![CDATA[
+		
+		  {call PROC_CREATE_TREE_LIC()}
+		
+		]]>
+		
+		</select>
+		
+		<select id="callCreateTreeBatch" statementType="CALLABLE">
+		
+		<![CDATA[
+		
+		  {call PROC_CREATE_TREE_BATCH()}
+		
+		]]>
+		
+		</select>
+		
+		
+		<select id="getLicenseTree" resultMap="com.dinstar.sim.dao.TblTreeMapper.BaseResultMap" parameterType="java.util.HashMap" >
+			<![CDATA[
+		
+			  {call PROC_GET_LICENSE_TREE (
+			  			#{types,mode=IN,jdbcType=INTEGER},
+			  			#{cloudUuid,mode=IN,jdbcType=INTEGER}
+			  		)
+			  }
+		
+		]]>
+ 		</select>
+</mapper>

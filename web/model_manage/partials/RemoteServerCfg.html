@@ -1,0 +1,52 @@
+<form ng-controller="RemoteServerCfgCtrl" name="EiaSetRemoteServerCfg" id="EiaSetRemoteServerCfg">
+<input style="display:none" type="text" name="fakeusernameremembered"/>
+<input style="display:none" type="password" name="fakepasswordremembered"/>
+  <table width="600px" border=0 align="center" cellpadding=0 cellspacing=0 class="tbltitle">
+    <tr class="title">
+      <td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+      <td>远程连接配置</td>
+      <td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+    </tr>
+  </table>
+  <table width="600px" align="center" class="tblbody" cellpadding=0 cellspacing=0>
+    <tr>
+      <td class="swidth" width="5%">&nbsp;</td>
+      <td>
+        <table width="100%" cellpadding=1 cellspacing=0 class="context">
+          <tr>
+            <td width="50%">&nbsp;</td>
+            <td width="50%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>启用</td>
+            <td>
+              <input id="RemoteEnable" name="RemoteEnable" type="checkbox" ng-click="mouse_click();" alt="config/remote_server/enable"></td>
+          </tr>
+          <tr id='id_RemoteAddr'>
+            <td width="50%">服务器URL/IP</td>
+            <td width="50%">
+              <input class="text" id="RemoteAddr" name="RemoteAddr" style="width:87%;" maxlength="127" value="" alt="config/remote_server/domain">
+            </td>
+          </tr>
+          <tr id='id_RemotePort'>
+            <td width="50%">服务器端口</td>
+            <td width="50%">
+              <input class="text" id="RemotePort" name="RemotePort" style="width:87%;" maxlength="5" value="" alt="config/remote_server/port">
+            </td>
+          </tr>
+          <tr id='id_RemotePwd' style="display:none">
+            <td width="50%">密码</td>
+            <td width="50%">
+              <input class="text" id="RemotePwd" name="RemotePwd" type="password" style="width:87%;" maxlength="31" value="" alt="config/remote_server/password">
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+      <td class="swidth" width="5%">&nbsp;</td>
+    </tr>
+  </table>
+</form>

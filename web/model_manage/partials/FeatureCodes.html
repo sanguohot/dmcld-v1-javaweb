@@ -1,0 +1,693 @@
+<form ng-click="mouse_click();"  name="featureCodesCfg" id="featureCodesCfg" ng-controller = "FeatureCodesCtrl">
+<table width="750px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+	<tbody><tr>
+		<td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left" width="7" height="24"> </td>
+		<td>功能键</td>
+		<td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+	</tr>
+	</tbody></table>
+<table width="750px" align="center" class="tblbody">
+<tr>
+<td width="5%">&nbsp;</td>
+<td>
+<table cellpadding="0" cellspacing="0" width="100%" class="context">
+<col width="5%"><col width="42%"><col width="20%"><col width="16%"><col width="17%">
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td class="td_title">功能</td>
+  <td class="td_title">功能键</td>
+  <td class="td_title">恢复默认</td>
+  <td class="td_title">状态</td>
+</tr>
+<tr>
+  <td colspan="5">&nbsp;</td>
+</tr>
+<tr>
+  <td colspan="5" class="td_title">设备功能</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td id="idFCQueryIPAddressItem">查询LAN口IP地址</td>
+  <td>
+    <input type="text" class="text" id="FCQueryIPAddress" maxlength="7" name="FCQueryIPAddress" value="*158#" alt="config/feature_code/feature20/current">
+  </td>
+  <td>
+    <input id="DefQueryIPAddressEnable" name="DefQueryIPAddressEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature20/usedefault">
+  </td>
+  <td>
+    <select name="QueryIPAddressFCEnable" class="list" id="QueryIPAddressFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature20/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr id="idFCQueryIPAddress" style="display:none;">
+  <td>&nbsp;</td>
+  <td>查询WAN口IP地址</td>
+  <td>
+    <input class="text" id="FCQueryWANIPAddress" maxlength="7" name="FCQueryWANIPAddress"  value="*159#" alt="config/feature_code/feature21/current">
+  </td>
+  <td>
+    <input id="DefQueryWANIPAddressEnable" name="DefQueryWANIPAddressEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature21/usedefault">
+  </td>
+  <td>
+    <select name="QueryWANIPAddressFCEnable" class="list" id="QueryWANIPAddressFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature21/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>查询电话号码</td>
+  <td>
+    <input class="text" id="FCQueryAccount" maxlength="7" name="FCQueryAccount" value="*114#" alt="config/feature_code/feature13/current">
+  </td>
+  <td>
+    <input id="DefQueryAccountEnable" name="DefQueryAccountEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature13/usedefault">
+  </td>
+  <td>
+    <select name="QueryAccountFCEnable" class="list" id="QueryAccountFCEnable"  ng-click="mouse_click();" alt="config/feature_code/feature13/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>查询端口组电话号码</td>
+  <td>
+    <input class="text" id="FCQueryPortGroup" maxlength="7" name="FCQueryPortGroup"  value="*115#" alt="config/feature_code/feature40/current">
+  </td>
+  <td>
+    <input id="DefQueryPortGroupEnable" name="DefQueryPortGroupEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature40/usedefault">
+  </td>
+  <td>
+    <select name="QueryPortGroupFCEnable" class="list" id="QueryPortGroupFCEnable"  ng-click="mouse_click();" alt="config/feature_code/feature40/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td colspan="5">&nbsp;</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td id="dx0"><div  class="dash" ng-mouseenter="display(0, 0)" ng-mouseleave="hide(0)">设置获取IP方式</div></td>
+  <td>
+    <input class="text" id="FCNetworkConnMode" maxlength="7" name="FCNetworkConnMode" value="*150*" alt="config/feature_code/feature15/current">
+  </td>
+  <td>
+    <input id="DefNetworkConnModeEnable" name="DefNetworkConnModeEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature15/usedefault">
+  </td>
+  <td>
+    <select name="NetworkConnModeFCEnable" class="list" id="NetworkConnModeFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature15/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr id="idFCNetworkWorkingMode" style="display:none;">
+  <td>&nbsp;</td>
+  <td id="dx1"><div  class="dash" ng-mouseenter="display(1, 1)" ng-mouseleave="hide(1)">设置网络模式</div></td>
+  <td>
+    <input class="text" id="FCNetworkWorkingMode" maxlength="7" name="FCNetworkWorkingMode" value="*157*" alt="config/feature_code/feature19/current">
+  </td>
+  <td>
+    <input id="DefNetworkWorkModeEnable" name="DefNetworkWorkModeEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature19/usedefault">
+  </td>
+  <td>
+    <select name="NetworkWorkModeFCEnable" class="list" id="NetworkWorkModeFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature19/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td id="dx2"><div  class="dash" ng-mouseenter="display(2, 2)" ng-mouseleave="hide(2)">设置IP地址</div></td>
+  <td>
+    <input class="text" id="FCIPAddressConfig" maxlength="7" name="FCIPAddressConfig" value="*152*" alt="config/feature_code/feature16/current">
+  </td>
+  <td>
+    <input id="DefIPAddressConfigEnable" name="DefIPAddressConfigEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature16/usedefault">
+  </td>
+  <td>
+    <select name="IPAddressConfigFCEnable" class="list" id="IPAddressConfigFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature16/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td id="dx3"><div  class="dash" ng-mouseenter="display(3, 3)" ng-mouseleave="hide(3)">设置子网掩码</div></td>
+  <td>
+    <input class="text" id="FCSubnetMaskConfig" maxlength="7" name="FCSubnetMaskConfig" value="*153*" alt="config/feature_code/feature17/current">
+  </td>
+  <td>
+    <input id="DefSubnetMaskConfigEnable" name="DefSubnetMaskConfigEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature17/usedefault">
+  </td>
+  <td>
+    <select name="SubnetMaskConfigFCEnable" class="list" id="SubnetMaskConfigFCEnable"  ng-click="mouse_click();" alt="config/feature_code/feature17/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td id="dx4"><div  class="dash" ng-mouseenter="display(4, 4)" ng-mouseleave="hide(4)">设置网关</div></td>
+  <td>
+    <input class="text" id="FCGatewayConfig" maxlength="7" name="FCGatewayConfig" value="*156*" alt="config/feature_code/feature18/current">
+  </td>
+  <td>
+    <input id="DefGatewayConfigEnable" name="DefGatewayConfigEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature18/usedefault">
+  </td>
+  <td>
+    <select name="GatewayConfigFCEnable" class="list" id="GatewayConfigFCEnable"  ng-click="mouse_click();" alt="config/feature_code/feature18/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>再次通过DHCP获取IP地址</td>
+  <td>
+    <input class="text" id="FCRenewDHCP" maxlength="7" name="FCRenewDHCP" value="*193#" alt="config/feature_code/feature24/current">
+  </td>
+  <td>
+    <input id="DefRenewDHCPEnable" name="DefRenewDHCPEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature24/usedefault">
+  </td>
+  <td>
+    <select name="RenewDHCPFCEnable" class="list" id="RenewDHCPFCEnable"  ng-click="mouse_click();" alt="config/feature_code/feature24/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td colspan="5">&nbsp;</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td id="dx15"><div  class="dash" ng-mouseenter="display(15, 15)" ng-mouseleave="hide(15)">端口音量增加</div></td>
+  <td>
+    <input class="text" id="FCPortVoiceUp" maxlength="7" name="FCPortVoiceUp" value="*170#" alt="config/feature_code/feature41/current">
+  </td>
+  <td>
+    <input id="DefPortVoiceUpEnable" name="DefPortVoiceUpEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature41/usedefault">
+  </td>
+  <td>
+    <select name="PortVoiceUpFCEnable" class="list" id="PortVoiceUpFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature41/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td id="dx16"><div  class="dash" ng-mouseenter="display(16, 16)" ng-mouseleave="hide(16)">端口音量减小</div></td>
+  <td>
+    <input class="text" id="FCPortVoiceDown" maxlength="7" name="FCPortVoiceDown" value="*171#" alt="config/feature_code/feature42/current">
+  </td>
+  <td>
+    <input id="DefPortVoiceDownEnable" name="DefPortVoiceDownEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature42/usedefault">
+  </td>
+  <td>
+    <select name="PortVoiceDownFCEnable" class="list" id="PortVoiceDownFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature42/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td colspan="5">&nbsp;</td>
+</tr>
+<tr id="idFCFXOConfigEnable" style="display:none;">
+  <td>&nbsp;</td>
+  <td id="dx5"><div  class="dash" ng-mouseenter="display(5, 5)" ng-mouseleave="hide(5)">打开FXO配置开关</div></td>
+  <td>
+    <input class="text" id="FCFXOConfigEnable" maxlength="7" name="FCFXOConfigEnable"  value="*149*">
+  </td>
+  <td>
+    <input id="DefFXOConfigEnable" name="DefFXOConfigEnable" type="checkbox" ng-click="mouse_click();" checked>
+  </td>
+  <td>
+    <select name="FXOConfigEnableFCEnable" class="list" id="FXOConfigEnableFCEnable" ng-click="mouse_click();">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td id="dx6"><div  class="dash" ng-mouseenter="display(6, 6)" ng-mouseleave="hide(6)">远程访问开关</div></td>
+  <td>
+    <input class="text" id="FCRemoteManagementEnable" maxlength="7" name="FCRemoteManagementEnable" value="*160*" alt="config/feature_code/feature22/current">
+  </td>
+  <td>
+    <input id="DefRMEnable" name="DefRMEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature22/usedefault">
+  </td>
+  <td>
+    <select name="RMEnableFCEnable" class="list" id="RMEnableFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature22/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td id="dx14"><div  class="dash" ng-mouseenter="display(14, 14)" ng-mouseleave="hide(14)">基本配置恢复出厂值</div></td>
+  <td>
+    <input class="text" id="FCBasicReset" maxlength="7" name="FCBasicReset" value="*165*" alt="config/feature_code/feature39/current">
+  </td>
+  <td>
+    <input id="DefBasicResetEnable" name="DefBasicResetEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature39/usedefault">
+  </td>
+  <td>
+    <select name="BasicResetFCEnable" class="list" id="BasicResetFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature39/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td id="dx7"><div  class="dash" ng-mouseenter="display(7, 7)" ng-mouseleave="hide(7)">恢复出厂设置</div></td>
+  <td>
+    <input class="text" id="FCFactoryReset" maxlength="7" name="FCFactoryReset" value="*166*" alt="config/feature_code/feature23/current">
+  </td>
+  <td>
+    <input id="DefFactoryResetEnable" name="DefFactoryResetEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature23/usedefault">
+  </td>
+  <td>
+    <select name="FactoryResetFCEnable" class="list" id="FactoryResetFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature23/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>重启设备</td>
+  <td>
+    <input class="text" id="FCResetDevice" maxlength="7" name="FCResetDevice" value="*111#" alt="config/feature_code/feature12/current">
+  </td>
+  <td>
+    <input id="DefResetDeviceEnable" name="DefResetDeviceEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature12/usedefault">
+  </td>
+  <td>
+    <select name="ResetDeviceFCEnable" class="list" id="ResetDeviceFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature12/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td colspan="56">&nbsp;</td>
+</tr>
+<tr>
+  <td colspan="5" class="td_title">呼叫功能</td>
+</tr>
+
+<tr>
+  <td>&nbsp;</td>
+  <td id="dx8"><div  class="dash" ng-mouseenter="display(8, 8)" ng-mouseleave="hide(8)">呼叫保持</div></td>
+  <td>
+    <input class="text" id="FCCallHold" maxlength="7" name="FCCallHold"  value="*#" alt="config/feature_code/feature38/current">
+  </td>
+  <td>
+    <input id="DefCallHoldEnable" name="DefCallHoldEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature38/usedefault">
+  </td>
+  <td>
+    <select name="CallHoldFCEnable" class="list" id="CallHoldFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature38/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+
+<tr>
+  <td>&nbsp;</td>
+  <td id="dx9"><div  class="dash" ng-mouseenter="display(9, 9)" ng-mouseleave="hide(9)">直接IP地址呼叫</div></td>
+  <td>
+    <input class="text" id="FCIPCall" maxlength="7" name="FCIPCall"  value="*47*" alt="config/feature_code/feature0/current">
+  </td>
+  <td>
+    <input id="DefIPCallEnable" name="DefIPCallEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature0/usedefault">
+  </td>
+  <td>
+    <select name="IPCallFCEnable" class="list" id="IPCallFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature0/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>启用呼叫等待</td>
+  <td>
+    <input class="text" id="FCCWActive" maxlength="7" name="FCCWActive" value="*51#" alt="config/feature_code/feature2/current">
+  </td>
+  <td>
+    <input id="DefCWActiveEnable" name="DefCWActiveEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature2/usedefault">
+  </td>
+  <td>
+    <select name="CWActiveFCEnable" class="list" id="CWActiveFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature2/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>禁用呼叫等待</td>
+  <td>
+    <input class="text" id="FCCWDeactive" maxlength="7" name="FCCWDeactive"  value="*50#" alt="config/feature_code/feature1/current">
+  </td>
+  <td>
+    <input id="DefCWDeactiveEnable" name="DefCWDeactiveEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature1/usedefault">
+  </td>
+  <td>
+    <select name="CWDeactiveFCEnable" class="list" id="CWDeactiveFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature1/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td colspan="5">&nbsp;</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td id="dx10"><div  class="dash" ng-mouseenter="display(10, 10)" ng-mouseleave="hide(10)">盲转</div></td>
+  <td>
+    <input class="text" id="FCCallForwarding" maxlength="7" name="FCCallForwarding" value="*87*" alt="config/feature_code/feature7/current">
+  </td>
+  <td>
+    <input id="DefCallForwardingEnable" name="DefCallForwardingEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature7/usedefault">
+  </td>
+  <td>
+    <select name="CallForwardingFCEnable" class="list" id="CallForwardingFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature7/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td id="dx11"><div  class="dash" ng-mouseenter="display(11, 11)" ng-mouseleave="hide(11)">启用无条件呼转</div></td>
+  <td>
+    <input class="text" id="FCUCFEnable" maxlength="7" name="FCUCFEnable" value="*72*" alt="config/feature_code/feature3/current">
+  </td>
+  <td>
+    <input id="DefUCFEnable" name="DefUCFEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature3/usedefault">
+  </td>
+  <td>
+    <select name="UCFEnableFCEnable" class="list" id="UCFEnableFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature3/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>禁用无条件呼转</td>
+  <td>
+    <input class="text" id="FCUCFDisable" maxlength="7" name="FCUCFDisable" value="*73#" alt="config/feature_code/feature4/current">
+  </td>
+  <td>
+    <input id="DefUCFDisable" name="DefUCFDisable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature4/usedefault">
+  </td>
+  <td>
+    <select name="UCFDisableFCEnable" class="list" id="UCFDisableFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature4/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td id="dx12"><div  class="dash" ng-mouseenter="display(12, 12)" ng-mouseleave="hide(12)">启用遇忙呼转</div></td>
+  <td>
+    <input class="text" id="FCBCFEnable" maxlength="7" name="FCBCFEnable" value="*90*" alt="config/feature_code/feature8/current">
+  </td>
+  <td>
+    <input id="DefBCFEnable" name="DefBCFEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature8/usedefault">
+  </td>
+  <td>
+    <select name="BCFEnableFCEnable" class="list" id="BCFEnableFCEnable"  ng-click="mouse_click();" alt="config/feature_code/feature8/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>禁用遇忙呼转</td>
+  <td>
+    <input class="text" id="FCBCFDisable" maxlength="7" name="FCBCFDisable" value="*91#" alt="config/feature_code/feature9/current">
+  </td>
+  <td>
+    <input id="DefBCFDisable" name="DefBCFDisable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature9/usedefault">
+  </td>
+  <td>
+    <select name="BCFDisableFCEnable" class="list" id="BCFDisableFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature9/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td id="dx13"><div  class="dash" ng-mouseenter="display(13, 13)" ng-mouseleave="hide(13)">启用无应答呼转</div></td>
+  <td>
+    <input class="text" id="FCNACFEnable" maxlength="7" name="FCNACFEnable" value="*92*" alt="config/feature_code/feature10/current">
+  </td>
+  <td>
+    <input id="DefNACFEnable" name="DefNACFEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature10/usedefault">
+  </td>
+  <td>
+    <select name="NACFEnableFCEnable" class="list" id="NACFEnableFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature10/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>禁用无应答呼转</td>
+  <td>
+    <input class="text" id="FCNACFDisable" maxlength="7" name="FCNACFDisable"  value="*93#" alt="config/feature_code/feature11/current">
+  </td>
+  <td>
+    <input id="DefNACFDisable" name="DefNACFDisable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature11/usedefault">
+  </td>
+  <td>
+    <select name="NACFDisableFCEnable" class="list" id="NACFDisableFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature11/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td colspan="5">&nbsp;</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>启用免打扰</td>
+  <td>
+    <input class="text" id="FCDNDActive" maxlength="7" name="FCDNDActive"  value="*78#" alt="config/feature_code/feature5/current">
+  </td>
+  <td>
+    <input id="DefDNDActiveEnable" name="DefDNDActiveEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature5/usedefault">
+  </td>
+  <td>
+    <select name="DNDActiveFCEnable" class="list" id="DNDActiveFCEnable"  ng-click="mouse_click();" alt="config/feature_code/feature5/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>禁用免打扰</td>
+  <td>
+    <input class="text" id="FCDNDDeactive" maxlength="7" name="FCDNDDeactive" value="*79#" alt="config/feature_code/feature6/current">
+  </td>
+  <td>
+    <input id="DefDNDDeactiveEnable" name="DefDNDDeactiveEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature6/usedefault">
+  </td>
+  <td>
+    <select name="DNDDeactiveFCEnable" class="list" id="DNDDeactiveFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature6/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>访问语音邮箱</td>
+  <td>
+    <input class="text" id="FCDialVoicemail" maxlength="7" name="FCDialVoicemail" value="*200#" alt="config/feature_code/feature31/current">
+  </td>
+  <td>
+    <input id="DefDialVoicemailEnable" name="DefDialVoicemailEnable" type="checkbox" ng-click="mouse_click();" checked alt="config/feature_code/feature31/usedefault">
+  </td>
+  <td>
+    <select name="DialVoicemailFCEnable" class="list" id="DialVoicemailFCEnable" ng-click="mouse_click();" alt="config/feature_code/feature31/enabled">
+      <option value="1" >禁用</option>
+      <option value="0" selected>启用</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td colspan="5">&nbsp;</td>
+</tr>
+</table>
+<td width="5%">&nbsp;</td>
+</tr>
+</table>
+</form>
+<div class="ex" id="ex0" style="display:none;">
+  <p style="font-weight:bolder;">以默认功能键为例：</p>
+  <div class="note_body">
+    <p>设置固定IP：请拨 *150*1#</p>
+    <p>通过DHCP服务器动态获取：请拨 *150*2#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+</div>
+
+<div class="ex" id="ex1" style="display:none;">
+  <p style="font-weight:bolder;">以默认功能键为例：</p>
+  <div class="note_body">
+    <p>设置路由模式：请拨 *157*0#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p>设置桥接模式：请拨 *157*1#</p>
+  </div>
+</div>
+
+<div class="ex" id="ex2" style="display:none;">
+  <p style="font-weight:bolder;">以默认功能键为例：</p>
+  <div class="note_body">
+    <p>设置IP地址为192.168.1.10，请拨 *152*192*168*1*10#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+</div>
+
+<div class="ex" id="ex3" style="display:none;">
+  <p style="font-weight:bolder;">以默认功能键为例：</p>
+  <div class="note_body">
+    <p>设置子网掩码为255.255.255.0：请拨 *153*255*255*255*0#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+</div>
+
+<div class="ex" id="ex4" style="display:none;">
+  <p style="font-weight:bolder;">以默认功能键为例：</p>
+  <div class="note_body">
+    <p>设置网关为192.168.1.1：请拨 *156*192*168*1*1#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+</div>
+
+<div class="ex" id="ex5" style="display:none;">
+  <p style="font-weight:bolder;">以默认功能键为例：</p>
+  <div class="note_body">
+    <p>打开FXO配置开关：请拨 *149*1#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p>关闭FXO配置开关：请拨 *149*0#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+</div>
+
+<div class="ex" id="ex6" style="display:none;">
+  <p style="font-weight:bolder;">以默认功能键为例：</p>
+  <div class="note_body">
+    <p>打开WAN口访问WEB开关：请拨 *160*1#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p>关闭WAN口访问WEB开关：请拨 *160*0#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p>打开LAN口访问WEB开关：请拨 *160*3#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p>关闭LAN口访问WEB开关：请拨 *160*2#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p>打开WAN口访问Telnet开关：请拨 *160*5#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p>关闭WAN口访问Telnet开关：请拨 *160*4#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p>打开LAN口访问Telnet开关：请拨 *160*7#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p>关闭LAN口访问Telnet开关：请拨 *160*6#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+</div>
+
+<div class="ex" id="ex7" style="display:none;">
+  <p style="font-weight:bolder;">以默认功能键为例：</p>
+  <div class="note_body">
+    <p>恢复出厂设置：请拨 *166*000000#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+</div>
+
+<div class="ex" id="ex8" style="display:none;">
+  <p style="font-weight:bolder;">以默认功能键为例：</p>
+  <div class="note_body">
+    <p>通话过程中，2秒内拨完 *# 即进入呼叫保持（可再通过拍叉或 *# 恢复通话）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+</div>
+
+<div class="ex" id="ex9" style="display:none;">
+  <p style="font-weight:bolder;">以默认功能键为例：</p>
+  <div class="note_body">
+    <p>目标IP为192.168.1.11，请拨 *47*192*168*1*11#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+</div>
+
+<div class="ex" id="ex10" style="display:none;">
+  <p style="font-weight:bolder;">以默认功能键为例：</p>
+  <div class="note_body">
+    <p>通话过程中，转接通话到801，请先拍叉再拨 *87*801#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+</div>
+
+<div class="ex" id="ex11" style="display:none;">
+  <p style="font-weight:bolder;">以默认功能键为例：</p>
+  <div class="note_body">
+    <p>设置无条件转移号码为01087654321，请拨 *72*01087654321#
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+</div>
+
+<div class="ex" id="ex12" style="display:none;">
+  <p style="font-weight:bolder;">以默认功能键为例：</p>
+  <div class="note_body">
+    <p>设置遇忙转移号码为01087654321，请拨 *90*01087654321#
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+</div>
+
+<div class="ex" id="ex13" style="display:none;">
+  <p style="font-weight:bolder;">以默认功能键为例：</p>
+  <div class="note_body">
+    <p>设置无应答转移号码为01087654321，请拨 *92*01087654321#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+</div>
+
+<div class="ex" id="ex14" style="display:none;">
+  <p style="font-weight:bolder;">以默认功能键为例：</p>
+  <div class="note_body">
+    <p>账户/密码和网络配置恢复出厂值：请拨 *165*000000#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+</div>
+
+<div class="ex" id="ex15" style="display:none;">
+  <p style="font-weight:bolder;">以默认功能键为例：</p>
+  <div class="note_body">
+    <p>设置端口音量增加：请拨 *170#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p>仅对本端口有效&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+</div>
+
+<div class="ex" id="ex16" style="display:none;">
+  <p style="font-weight:bolder;">以默认功能键为例：</p>
+  <div class="note_body">
+    <p>设置端口音量减小：请拨 *171#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p>仅对本端口有效&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+</div>

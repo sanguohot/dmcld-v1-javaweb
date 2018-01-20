@@ -1,0 +1,21 @@
+<div class="row alert alert-success" style="margin-right:0px;margin-left:0px;margin-bottom:10px;">
+    <div class="col-md-5">
+        <!--<div><span class="dc-label">{{=it.lan.outIp}}</span><span class="dc-value" >{{=it.value.outIp}}</span></div> -->
+        <div><span class="dc-label">{{=it.lan.realAddr}}</span><span class="dc-value" >{{=it.value.realAddr}}</span></div>
+        <div><span class="dc-label">{{=it.lan.isp}}</span><span class="dc-value">{{=it.value.isp}}</span></div>
+        <div><span class="dc-label">{{=it.lan.userDomain}}</span><span class="dc-value" >{{=it.value.userDomain}}</span></div>
+        <div><span class="dc-label">{{=it.lan.objectDomain}}</span><span class="dc-value" >{{=it.value.objectDomain}}</span></div>
+        <div><span class="dc-label">{{=it.lan.objectName}}</span><span class="dc-value" >{{=it.value.objectName}}</span></div>
+    </div>
+    <div class="col-md-2">
+    &nbsp;
+    </div>
+    <div class="col-md-5">
+        {{? it.showSql }}
+        <div>
+            <label>{{=it.lan.searchDetail}}</label>
+            <textarea class="autosize-transition form-control" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 90px;">{{=it.value.sql}}</textarea>
+        </div>
+        {{?}}
+    </div>
+</div>

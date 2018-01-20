@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblPmdEth15Mapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblPmdEth15" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="eth_uuid" property="ethUuid" jdbcType="INTEGER" />
+    <result column="serial_no" property="serialNo" jdbcType="INTEGER" />
+    <result column="generate_time" property="generateTime" jdbcType="TIMESTAMP" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="value0" property="value0" jdbcType="INTEGER" />
+    <result column="value1" property="value1" jdbcType="INTEGER" />
+    <result column="value2" property="value2" jdbcType="INTEGER" />
+    <result column="value3" property="value3" jdbcType="INTEGER" />
+    <result column="value4" property="value4" jdbcType="INTEGER" />
+    <result column="value5" property="value5" jdbcType="INTEGER" />
+    <result column="value6" property="value6" jdbcType="INTEGER" />
+    <result column="value7" property="value7" jdbcType="INTEGER" />
+    <result column="value8" property="value8" jdbcType="INTEGER" />
+    <result column="value9" property="value9" jdbcType="INTEGER" />
+    <result column="value10" property="value10" jdbcType="INTEGER" />
+    <result column="value11" property="value11" jdbcType="INTEGER" />
+    <result column="value12" property="value12" jdbcType="INTEGER" />
+    <result column="value13" property="value13" jdbcType="INTEGER" />
+    <result column="value14" property="value14" jdbcType="INTEGER" />
+    <result column="value15" property="value15" jdbcType="INTEGER" />
+    <result column="value16" property="value16" jdbcType="INTEGER" />
+    <result column="value17" property="value17" jdbcType="INTEGER" />
+    <result column="value18" property="value18" jdbcType="INTEGER" />
+    <result column="value19" property="value19" jdbcType="INTEGER" />
+    <result column="value20" property="value20" jdbcType="INTEGER" />
+    <result column="value21" property="value21" jdbcType="INTEGER" />
+    <result column="value22" property="value22" jdbcType="INTEGER" />
+    <result column="value23" property="value23" jdbcType="INTEGER" />
+    <result column="value24" property="value24" jdbcType="INTEGER" />
+    <result column="value25" property="value25" jdbcType="INTEGER" />
+    <result column="value26" property="value26" jdbcType="INTEGER" />
+    <result column="value27" property="value27" jdbcType="INTEGER" />
+    <result column="value28" property="value28" jdbcType="INTEGER" />
+    <result column="value29" property="value29" jdbcType="INTEGER" />
+    <result column="value30" property="value30" jdbcType="INTEGER" />
+    <result column="value31" property="value31" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, eth_uuid, serial_no, generate_time, domain_uuid, value0, value1, 
+    value2, value3, value4, value5, value6, value7, value8, value9, value10, value11, 
+    value12, value13, value14, value15, value16, value17, value18, value19, value20, 
+    value21, value22, value23, value24, value25, value26, value27, value28, value29, 
+    value30, value31
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblPmdEth15Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_pmd_eth_15
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_pmd_eth_15
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_pmd_eth_15
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblPmdEth15Criteria" >
+    delete from tbl_pmd_eth_15
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblPmdEth15" >
+    insert into tbl_pmd_eth_15 (uuid, rec_status, eth_uuid, 
+      serial_no, generate_time, domain_uuid, 
+      value0, value1, value2, 
+      value3, value4, value5, 
+      value6, value7, value8, 
+      value9, value10, value11, 
+      value12, value13, value14, 
+      value15, value16, value17, 
+      value18, value19, value20, 
+      value21, value22, value23, 
+      value24, value25, value26, 
+      value27, value28, value29, 
+      value30, value31)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{ethUuid,jdbcType=INTEGER}, 
+      #{serialNo,jdbcType=INTEGER}, #{generateTime,jdbcType=TIMESTAMP}, #{domainUuid,jdbcType=INTEGER}, 
+      #{value0,jdbcType=INTEGER}, #{value1,jdbcType=INTEGER}, #{value2,jdbcType=INTEGER}, 
+      #{value3,jdbcType=INTEGER}, #{value4,jdbcType=INTEGER}, #{value5,jdbcType=INTEGER}, 
+      #{value6,jdbcType=INTEGER}, #{value7,jdbcType=INTEGER}, #{value8,jdbcType=INTEGER}, 
+      #{value9,jdbcType=INTEGER}, #{value10,jdbcType=INTEGER}, #{value11,jdbcType=INTEGER}, 
+      #{value12,jdbcType=INTEGER}, #{value13,jdbcType=INTEGER}, #{value14,jdbcType=INTEGER}, 
+      #{value15,jdbcType=INTEGER}, #{value16,jdbcType=INTEGER}, #{value17,jdbcType=INTEGER}, 
+      #{value18,jdbcType=INTEGER}, #{value19,jdbcType=INTEGER}, #{value20,jdbcType=INTEGER}, 
+      #{value21,jdbcType=INTEGER}, #{value22,jdbcType=INTEGER}, #{value23,jdbcType=INTEGER}, 
+      #{value24,jdbcType=INTEGER}, #{value25,jdbcType=INTEGER}, #{value26,jdbcType=INTEGER}, 
+      #{value27,jdbcType=INTEGER}, #{value28,jdbcType=INTEGER}, #{value29,jdbcType=INTEGER}, 
+      #{value30,jdbcType=INTEGER}, #{value31,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblPmdEth15" >
+    insert into tbl_pmd_eth_15
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="ethUuid != null" >
+        eth_uuid,
+      </if>
+      <if test="serialNo != null" >
+        serial_no,
+      </if>
+      <if test="generateTime != null" >
+        generate_time,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="value0 != null" >
+        value0,
+      </if>
+      <if test="value1 != null" >
+        value1,
+      </if>
+      <if test="value2 != null" >
+        value2,
+      </if>
+      <if test="value3 != null" >
+        value3,
+      </if>
+      <if test="value4 != null" >
+        value4,
+      </if>
+      <if test="value5 != null" >
+        value5,
+      </if>
+      <if test="value6 != null" >
+        value6,
+      </if>
+      <if test="value7 != null" >
+        value7,
+      </if>
+      <if test="value8 != null" >
+        value8,
+      </if>
+      <if test="value9 != null" >
+        value9,
+      </if>
+      <if test="value10 != null" >
+        value10,
+      </if>
+      <if test="value11 != null" >
+        value11,
+      </if>
+      <if test="value12 != null" >
+        value12,
+      </if>
+      <if test="value13 != null" >
+        value13,
+      </if>
+      <if test="value14 != null" >
+        value14,
+      </if>
+      <if test="value15 != null" >
+        value15,
+      </if>
+      <if test="value16 != null" >
+        value16,
+      </if>
+      <if test="value17 != null" >
+        value17,
+      </if>
+      <if test="value18 != null" >
+        value18,
+      </if>
+      <if test="value19 != null" >
+        value19,
+      </if>
+      <if test="value20 != null" >
+        value20,
+      </if>
+      <if test="value21 != null" >
+        value21,
+      </if>
+      <if test="value22 != null" >
+        value22,
+      </if>
+      <if test="value23 != null" >
+        value23,
+      </if>
+      <if test="value24 != null" >
+        value24,
+      </if>
+      <if test="value25 != null" >
+        value25,
+      </if>
+      <if test="value26 != null" >
+        value26,
+      </if>
+      <if test="value27 != null" >
+        value27,
+      </if>
+      <if test="value28 != null" >
+        value28,
+      </if>
+      <if test="value29 != null" >
+        value29,
+      </if>
+      <if test="value30 != null" >
+        value30,
+      </if>
+      <if test="value31 != null" >
+        value31,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="ethUuid != null" >
+        #{ethUuid,jdbcType=INTEGER},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="generateTime != null" >
+        #{generateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="value0 != null" >
+        #{value0,jdbcType=INTEGER},
+      </if>
+      <if test="value1 != null" >
+        #{value1,jdbcType=INTEGER},
+      </if>
+      <if test="value2 != null" >
+        #{value2,jdbcType=INTEGER},
+      </if>
+      <if test="value3 != null" >
+        #{value3,jdbcType=INTEGER},
+      </if>
+      <if test="value4 != null" >
+        #{value4,jdbcType=INTEGER},
+      </if>
+      <if test="value5 != null" >
+        #{value5,jdbcType=INTEGER},
+      </if>
+      <if test="value6 != null" >
+        #{value6,jdbcType=INTEGER},
+      </if>
+      <if test="value7 != null" >
+        #{value7,jdbcType=INTEGER},
+      </if>
+      <if test="value8 != null" >
+        #{value8,jdbcType=INTEGER},
+      </if>
+      <if test="value9 != null" >
+        #{value9,jdbcType=INTEGER},
+      </if>
+      <if test="value10 != null" >
+        #{value10,jdbcType=INTEGER},
+      </if>
+      <if test="value11 != null" >
+        #{value11,jdbcType=INTEGER},
+      </if>
+      <if test="value12 != null" >
+        #{value12,jdbcType=INTEGER},
+      </if>
+      <if test="value13 != null" >
+        #{value13,jdbcType=INTEGER},
+      </if>
+      <if test="value14 != null" >
+        #{value14,jdbcType=INTEGER},
+      </if>
+      <if test="value15 != null" >
+        #{value15,jdbcType=INTEGER},
+      </if>
+      <if test="value16 != null" >
+        #{value16,jdbcType=INTEGER},
+      </if>
+      <if test="value17 != null" >
+        #{value17,jdbcType=INTEGER},
+      </if>
+      <if test="value18 != null" >
+        #{value18,jdbcType=INTEGER},
+      </if>
+      <if test="value19 != null" >
+        #{value19,jdbcType=INTEGER},
+      </if>
+      <if test="value20 != null" >
+        #{value20,jdbcType=INTEGER},
+      </if>
+      <if test="value21 != null" >
+        #{value21,jdbcType=INTEGER},
+      </if>
+      <if test="value22 != null" >
+        #{value22,jdbcType=INTEGER},
+      </if>
+      <if test="value23 != null" >
+        #{value23,jdbcType=INTEGER},
+      </if>
+      <if test="value24 != null" >
+        #{value24,jdbcType=INTEGER},
+      </if>
+      <if test="value25 != null" >
+        #{value25,jdbcType=INTEGER},
+      </if>
+      <if test="value26 != null" >
+        #{value26,jdbcType=INTEGER},
+      </if>
+      <if test="value27 != null" >
+        #{value27,jdbcType=INTEGER},
+      </if>
+      <if test="value28 != null" >
+        #{value28,jdbcType=INTEGER},
+      </if>
+      <if test="value29 != null" >
+        #{value29,jdbcType=INTEGER},
+      </if>
+      <if test="value30 != null" >
+        #{value30,jdbcType=INTEGER},
+      </if>
+      <if test="value31 != null" >
+        #{value31,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblPmdEth15Criteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_pmd_eth_15
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_pmd_eth_15
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.ethUuid != null" >
+        eth_uuid = #{record.ethUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.serialNo != null" >
+        serial_no = #{record.serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.generateTime != null" >
+        generate_time = #{record.generateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.value0 != null" >
+        value0 = #{record.value0,jdbcType=INTEGER},
+      </if>
+      <if test="record.value1 != null" >
+        value1 = #{record.value1,jdbcType=INTEGER},
+      </if>
+      <if test="record.value2 != null" >
+        value2 = #{record.value2,jdbcType=INTEGER},
+      </if>
+      <if test="record.value3 != null" >
+        value3 = #{record.value3,jdbcType=INTEGER},
+      </if>
+      <if test="record.value4 != null" >
+        value4 = #{record.value4,jdbcType=INTEGER},
+      </if>
+      <if test="record.value5 != null" >
+        value5 = #{record.value5,jdbcType=INTEGER},
+      </if>
+      <if test="record.value6 != null" >
+        value6 = #{record.value6,jdbcType=INTEGER},
+      </if>
+      <if test="record.value7 != null" >
+        value7 = #{record.value7,jdbcType=INTEGER},
+      </if>
+      <if test="record.value8 != null" >
+        value8 = #{record.value8,jdbcType=INTEGER},
+      </if>
+      <if test="record.value9 != null" >
+        value9 = #{record.value9,jdbcType=INTEGER},
+      </if>
+      <if test="record.value10 != null" >
+        value10 = #{record.value10,jdbcType=INTEGER},
+      </if>
+      <if test="record.value11 != null" >
+        value11 = #{record.value11,jdbcType=INTEGER},
+      </if>
+      <if test="record.value12 != null" >
+        value12 = #{record.value12,jdbcType=INTEGER},
+      </if>
+      <if test="record.value13 != null" >
+        value13 = #{record.value13,jdbcType=INTEGER},
+      </if>
+      <if test="record.value14 != null" >
+        value14 = #{record.value14,jdbcType=INTEGER},
+      </if>
+      <if test="record.value15 != null" >
+        value15 = #{record.value15,jdbcType=INTEGER},
+      </if>
+      <if test="record.value16 != null" >
+        value16 = #{record.value16,jdbcType=INTEGER},
+      </if>
+      <if test="record.value17 != null" >
+        value17 = #{record.value17,jdbcType=INTEGER},
+      </if>
+      <if test="record.value18 != null" >
+        value18 = #{record.value18,jdbcType=INTEGER},
+      </if>
+      <if test="record.value19 != null" >
+        value19 = #{record.value19,jdbcType=INTEGER},
+      </if>
+      <if test="record.value20 != null" >
+        value20 = #{record.value20,jdbcType=INTEGER},
+      </if>
+      <if test="record.value21 != null" >
+        value21 = #{record.value21,jdbcType=INTEGER},
+      </if>
+      <if test="record.value22 != null" >
+        value22 = #{record.value22,jdbcType=INTEGER},
+      </if>
+      <if test="record.value23 != null" >
+        value23 = #{record.value23,jdbcType=INTEGER},
+      </if>
+      <if test="record.value24 != null" >
+        value24 = #{record.value24,jdbcType=INTEGER},
+      </if>
+      <if test="record.value25 != null" >
+        value25 = #{record.value25,jdbcType=INTEGER},
+      </if>
+      <if test="record.value26 != null" >
+        value26 = #{record.value26,jdbcType=INTEGER},
+      </if>
+      <if test="record.value27 != null" >
+        value27 = #{record.value27,jdbcType=INTEGER},
+      </if>
+      <if test="record.value28 != null" >
+        value28 = #{record.value28,jdbcType=INTEGER},
+      </if>
+      <if test="record.value29 != null" >
+        value29 = #{record.value29,jdbcType=INTEGER},
+      </if>
+      <if test="record.value30 != null" >
+        value30 = #{record.value30,jdbcType=INTEGER},
+      </if>
+      <if test="record.value31 != null" >
+        value31 = #{record.value31,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_pmd_eth_15
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      eth_uuid = #{record.ethUuid,jdbcType=INTEGER},
+      serial_no = #{record.serialNo,jdbcType=INTEGER},
+      generate_time = #{record.generateTime,jdbcType=TIMESTAMP},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      value0 = #{record.value0,jdbcType=INTEGER},
+      value1 = #{record.value1,jdbcType=INTEGER},
+      value2 = #{record.value2,jdbcType=INTEGER},
+      value3 = #{record.value3,jdbcType=INTEGER},
+      value4 = #{record.value4,jdbcType=INTEGER},
+      value5 = #{record.value5,jdbcType=INTEGER},
+      value6 = #{record.value6,jdbcType=INTEGER},
+      value7 = #{record.value7,jdbcType=INTEGER},
+      value8 = #{record.value8,jdbcType=INTEGER},
+      value9 = #{record.value9,jdbcType=INTEGER},
+      value10 = #{record.value10,jdbcType=INTEGER},
+      value11 = #{record.value11,jdbcType=INTEGER},
+      value12 = #{record.value12,jdbcType=INTEGER},
+      value13 = #{record.value13,jdbcType=INTEGER},
+      value14 = #{record.value14,jdbcType=INTEGER},
+      value15 = #{record.value15,jdbcType=INTEGER},
+      value16 = #{record.value16,jdbcType=INTEGER},
+      value17 = #{record.value17,jdbcType=INTEGER},
+      value18 = #{record.value18,jdbcType=INTEGER},
+      value19 = #{record.value19,jdbcType=INTEGER},
+      value20 = #{record.value20,jdbcType=INTEGER},
+      value21 = #{record.value21,jdbcType=INTEGER},
+      value22 = #{record.value22,jdbcType=INTEGER},
+      value23 = #{record.value23,jdbcType=INTEGER},
+      value24 = #{record.value24,jdbcType=INTEGER},
+      value25 = #{record.value25,jdbcType=INTEGER},
+      value26 = #{record.value26,jdbcType=INTEGER},
+      value27 = #{record.value27,jdbcType=INTEGER},
+      value28 = #{record.value28,jdbcType=INTEGER},
+      value29 = #{record.value29,jdbcType=INTEGER},
+      value30 = #{record.value30,jdbcType=INTEGER},
+      value31 = #{record.value31,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblPmdEth15" >
+    update tbl_pmd_eth_15
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="ethUuid != null" >
+        eth_uuid = #{ethUuid,jdbcType=INTEGER},
+      </if>
+      <if test="serialNo != null" >
+        serial_no = #{serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="generateTime != null" >
+        generate_time = #{generateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="value0 != null" >
+        value0 = #{value0,jdbcType=INTEGER},
+      </if>
+      <if test="value1 != null" >
+        value1 = #{value1,jdbcType=INTEGER},
+      </if>
+      <if test="value2 != null" >
+        value2 = #{value2,jdbcType=INTEGER},
+      </if>
+      <if test="value3 != null" >
+        value3 = #{value3,jdbcType=INTEGER},
+      </if>
+      <if test="value4 != null" >
+        value4 = #{value4,jdbcType=INTEGER},
+      </if>
+      <if test="value5 != null" >
+        value5 = #{value5,jdbcType=INTEGER},
+      </if>
+      <if test="value6 != null" >
+        value6 = #{value6,jdbcType=INTEGER},
+      </if>
+      <if test="value7 != null" >
+        value7 = #{value7,jdbcType=INTEGER},
+      </if>
+      <if test="value8 != null" >
+        value8 = #{value8,jdbcType=INTEGER},
+      </if>
+      <if test="value9 != null" >
+        value9 = #{value9,jdbcType=INTEGER},
+      </if>
+      <if test="value10 != null" >
+        value10 = #{value10,jdbcType=INTEGER},
+      </if>
+      <if test="value11 != null" >
+        value11 = #{value11,jdbcType=INTEGER},
+      </if>
+      <if test="value12 != null" >
+        value12 = #{value12,jdbcType=INTEGER},
+      </if>
+      <if test="value13 != null" >
+        value13 = #{value13,jdbcType=INTEGER},
+      </if>
+      <if test="value14 != null" >
+        value14 = #{value14,jdbcType=INTEGER},
+      </if>
+      <if test="value15 != null" >
+        value15 = #{value15,jdbcType=INTEGER},
+      </if>
+      <if test="value16 != null" >
+        value16 = #{value16,jdbcType=INTEGER},
+      </if>
+      <if test="value17 != null" >
+        value17 = #{value17,jdbcType=INTEGER},
+      </if>
+      <if test="value18 != null" >
+        value18 = #{value18,jdbcType=INTEGER},
+      </if>
+      <if test="value19 != null" >
+        value19 = #{value19,jdbcType=INTEGER},
+      </if>
+      <if test="value20 != null" >
+        value20 = #{value20,jdbcType=INTEGER},
+      </if>
+      <if test="value21 != null" >
+        value21 = #{value21,jdbcType=INTEGER},
+      </if>
+      <if test="value22 != null" >
+        value22 = #{value22,jdbcType=INTEGER},
+      </if>
+      <if test="value23 != null" >
+        value23 = #{value23,jdbcType=INTEGER},
+      </if>
+      <if test="value24 != null" >
+        value24 = #{value24,jdbcType=INTEGER},
+      </if>
+      <if test="value25 != null" >
+        value25 = #{value25,jdbcType=INTEGER},
+      </if>
+      <if test="value26 != null" >
+        value26 = #{value26,jdbcType=INTEGER},
+      </if>
+      <if test="value27 != null" >
+        value27 = #{value27,jdbcType=INTEGER},
+      </if>
+      <if test="value28 != null" >
+        value28 = #{value28,jdbcType=INTEGER},
+      </if>
+      <if test="value29 != null" >
+        value29 = #{value29,jdbcType=INTEGER},
+      </if>
+      <if test="value30 != null" >
+        value30 = #{value30,jdbcType=INTEGER},
+      </if>
+      <if test="value31 != null" >
+        value31 = #{value31,jdbcType=INTEGER},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblPmdEth15" >
+    update tbl_pmd_eth_15
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      eth_uuid = #{ethUuid,jdbcType=INTEGER},
+      serial_no = #{serialNo,jdbcType=INTEGER},
+      generate_time = #{generateTime,jdbcType=TIMESTAMP},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      value0 = #{value0,jdbcType=INTEGER},
+      value1 = #{value1,jdbcType=INTEGER},
+      value2 = #{value2,jdbcType=INTEGER},
+      value3 = #{value3,jdbcType=INTEGER},
+      value4 = #{value4,jdbcType=INTEGER},
+      value5 = #{value5,jdbcType=INTEGER},
+      value6 = #{value6,jdbcType=INTEGER},
+      value7 = #{value7,jdbcType=INTEGER},
+      value8 = #{value8,jdbcType=INTEGER},
+      value9 = #{value9,jdbcType=INTEGER},
+      value10 = #{value10,jdbcType=INTEGER},
+      value11 = #{value11,jdbcType=INTEGER},
+      value12 = #{value12,jdbcType=INTEGER},
+      value13 = #{value13,jdbcType=INTEGER},
+      value14 = #{value14,jdbcType=INTEGER},
+      value15 = #{value15,jdbcType=INTEGER},
+      value16 = #{value16,jdbcType=INTEGER},
+      value17 = #{value17,jdbcType=INTEGER},
+      value18 = #{value18,jdbcType=INTEGER},
+      value19 = #{value19,jdbcType=INTEGER},
+      value20 = #{value20,jdbcType=INTEGER},
+      value21 = #{value21,jdbcType=INTEGER},
+      value22 = #{value22,jdbcType=INTEGER},
+      value23 = #{value23,jdbcType=INTEGER},
+      value24 = #{value24,jdbcType=INTEGER},
+      value25 = #{value25,jdbcType=INTEGER},
+      value26 = #{value26,jdbcType=INTEGER},
+      value27 = #{value27,jdbcType=INTEGER},
+      value28 = #{value28,jdbcType=INTEGER},
+      value29 = #{value29,jdbcType=INTEGER},
+      value30 = #{value30,jdbcType=INTEGER},
+      value31 = #{value31,jdbcType=INTEGER}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

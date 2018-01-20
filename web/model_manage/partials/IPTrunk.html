@@ -1,0 +1,376 @@
+<form  name="IPTrunk" id="IPTrunk" ng-controller = "IPTrunkCtrl">
+<table width="700px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+	<tbody><tr>
+		<td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+		<td>IP中继</td>
+		<td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+	</tr>
+	</tbody></table>
+<table cellpadding="0" cellspacing="0" width="700px" align="center" class="tblcontext">
+<tbody><tr class="thead">
+	<td width="5%">&nbsp;</td>
+	<td width="8%">索引</td>
+	<td width="10%">名称</td>
+	<td width="11%">对端地址</td>
+	<td width="11%">对端端口</td>
+	<td width="10%">心跳</td>
+</tr>
+<tr id="IpCfgNone" align="center">
+	<td>&nbsp;</td>
+	<td>---</td>
+	<td>---</td>
+	<td>---</td>
+	<td>---</td>
+	<td>---</td>
+</tr>
+<tr id="last" align="center" class="interval">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+<tr id="idIpCfg0" align="center" style="display:none">
+	<td>
+		<input name="IPTrunkEnable0" type="checkbox" id="IPTrunkEnable0" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc0">
+
+	</td>
+	<td id="idDomain0">
+
+	</td>
+	<td id="idPort0">
+
+	</td>
+	<td>
+
+	</td>
+</tr>
+<tr id="idIpCfg1" align="center" style="display:none">
+	<td>
+		<input name="IPTrunkEnable1" type="checkbox" id="IPTrunkEnable1" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc1">
+
+	</td>
+	<td id="idDomain1">
+
+	</td>
+	<td id="idPort1">
+
+	</td>
+	<td>
+
+	</td>
+</tr>
+<tr id="idIpCfg2" align="center" style="display:none">
+	<td>
+		<input name="IPTrunkEnable2" type="checkbox" id="IPTrunkEnable2" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc2">
+
+	</td>
+	<td id="idDomain2">
+
+	</td>
+	<td id="idPort2">
+
+	</td>
+	<td>
+
+	</td>
+</tr>
+<tr id="idIpCfg3" align="center" style="display:none">
+	<td>
+		<input name="IPTrunkEnable3" type="checkbox" id="IPTrunkEnable3" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc3">
+
+	</td>
+	<td id="idDomain3">
+
+	</td>
+	<td id="idPort3">
+
+	</td>
+	<td>
+
+	</td>
+</tr>
+<tr id="idIpCfg4" align="center" style="display:none">
+	<td>
+		<input name="IPTrunkEnable4" type="checkbox" id="IPTrunkEnable4" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc4">
+
+	</td>
+	<td id="idDomain4">
+
+	</td>
+	<td id="idPort4">
+
+	</td>
+	<td>
+
+	</td>
+</tr>
+<tr id="idIpCfg5" align="center" style="display:none">
+	<td>
+		<input name="IPTrunkEnable5" type="checkbox" id="IPTrunkEnable5" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc5">
+
+	</td>
+	<td id="idDomain5">
+
+	</td>
+	<td id="idPort5">
+
+	</td>
+	<td>
+
+	</td>
+</tr>
+<tr id="idIpCfg6" align="center" style="display:none">
+	<td>
+		<input name="IPTrunkEnable6" type="checkbox" id="IPTrunkEnable6" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc6">
+
+	</td>
+	<td id="idDomain6">
+
+	</td>
+	<td id="idPort6">
+
+	</td>
+	<td>
+
+	</td>
+</tr>
+<tr id="idIpCfg7" align="center" style="display:none">
+	<td>
+		<input name="IPTrunkEnable7" type="checkbox" id="IPTrunkEnable7" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc7">
+
+	</td>
+	<td id="idDomain7">
+
+	</td>
+	<td id="idPort7">
+
+	</td>
+	<td>
+
+	</td>
+</tr>
+<tr id="idIpCfg8" align="center" style="display:none">
+	<td>
+		<input name="IPTrunkEnable8" type="checkbox" id="IPTrunkEnable8" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc8">
+
+	</td>
+	<td id="idDomain8">
+
+	</td>
+	<td id="idPort8">
+
+	</td>
+	<td>
+
+	</td>
+</tr>
+<tr id="idIpCfg9" align="center" style="display:none">
+	<td>
+		<input name="IPTrunkEnable9" type="checkbox" id="IPTrunkEnable9" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc9">
+
+	</td>
+	<td id="idDomain9">
+
+	</td>
+	<td id="idPort9">
+
+	</td>
+	<td>
+
+	</td>
+</tr>
+<tr id="idIpCfg10" align="center" style="display:none">
+	<td>
+		<input name="IPTrunkEnable10" type="checkbox" id="IPTrunkEnable10" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc10">
+
+	</td>
+	<td id="idDomain10">
+
+	</td>
+	<td id="idPort10">
+
+	</td>
+	<td>
+
+	</td>
+</tr>
+<tr id="idIpCfg11" align="center" style="display:none">
+	<td>
+		<input name="IPTrunkEnable11" type="checkbox" id="IPTrunkEnable11" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc11">
+
+	</td>
+	<td id="idDomain11">
+
+	</td>
+	<td id="idPort11">
+
+	</td>
+	<td>
+
+	</td>
+</tr>
+<tr id="idIpCfg12" align="center" style="display:none">
+	<td>
+		<input name="IPTrunkEnable12" type="checkbox" id="IPTrunkEnable12" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc12">
+
+	</td>
+	<td id="idDomain12">
+
+	</td>
+	<td id="idPort12">
+
+	</td>
+	<td>
+
+	</td>
+</tr>
+<tr id="idIpCfg13" align="center" style="display:none">
+	<td>
+		<input name="IPTrunkEnable13" type="checkbox" id="IPTrunkEnable13" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc13">
+
+	</td>
+	<td id="idDomain13">
+
+	</td>
+	<td id="idPort13">
+
+	</td>
+	<td>
+
+	</td>
+</tr>
+<tr id="idIpCfg14" align="center" style="display:none">
+	<td>
+		<input name="IPTrunkEnable14" type="checkbox" id="IPTrunkEnable14" onclick="mouse_click();">
+
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc14">
+
+	</td>
+	<td id="idDomain14">
+
+	</td>
+	<td id="idPort14">
+
+	</td>
+	<td>
+
+	</td>
+</tr>
+<tr id="idIpCfg15" align="center" style="display:none">
+	<td>
+		<input name="IPTrunkEnable15" type="checkbox" id="IPTrunkEnable15" onclick="mouse_click();">
+	</td>
+	<td>
+
+	</td>
+	<td id="idDesc15">
+
+	</td>
+	<td id="idDomain15">
+
+	</td>
+	<td id="idPort15">
+
+	</td>
+	<td>
+
+	</td>
+</tr>
+</tbody></table>
+<table width="700px" align="center" class="tblpageinfo">
+	<tbody><tr>
+		<td>
+			共计:&nbsp;
+			0&nbsp;条
+			&nbsp;&nbsp;
+			<input type="hidden" name="curpage" id="curpage" value="">
+			<select name="page" class="alist" id="page" onchange="doRefresh();" disabled="">
+			</select>
+		</td>
+	</tr>
+	</tbody></table>
+<p align="center" class="buttonbox">
+	<button name="Add" id="Add" onclick="AddData();">添加</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<button name="Mod" id="Mod" onclick="ModData();" disabled="">修改</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<button name="Del" id="Del"  onclick="return DelData();" disabled="">删除</button>
+</p>
+<p>&nbsp;</p>
+</form>

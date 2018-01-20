@@ -1,0 +1,144 @@
+{"text":".","children": [
+    {
+        name:'RoamGroup: Shenzhen',
+        iconCls:'task-folder',
+        expanded: true,
+        children:[{
+            name:'sz-Nanshan-gx',
+            iconCls:'task-folder',
+            children:[{
+                name:'dwg2016-1',
+                roundtrip:0.25,
+                status:'linked',
+				desc:' nanshan guoxing building test machine',
+                leaf:true,
+                iconCls:'icon-gateway'
+            },{
+                name:'dwg2016-2',
+                roundtrip:.4,
+                status:'offline',
+                leaf:true,
+                iconCls:'icon-gateway'
+            },{
+                name:'dwg2016-3',
+                roundtrip:.4,
+                status:'online',
+                leaf:true,
+                iconCls:'icon-gateway'
+            },{
+                name: 'dwg2016-4',
+                roundtrip: .2,
+                status: 'online',
+                leaf: true,
+                iconCls: 'icon-gateway'
+            }]
+        }, {
+            name:'sz-Futian-zs',
+            roundtrip:12,
+            status:'online',
+            iconCls:'task-folder',
+            expanded: true,
+            children:[{
+                name:'dwg2016-10',
+                roundtrip:6.5,
+                status:'online',
+                leaf:true,
+                iconCls:'icon-gateway'
+            },{
+                name:'dwg2016-11',
+                roundtrip: 2.75,
+                status:'online',
+                iconCls:'icon-gateway',
+				leaf: true
+            },{
+                name:'dwg2016-12',
+                roundtrip:2.75,
+                status:'online',
+                leaf:true,
+                iconCls:'icon-gateway'
+            },{
+                name: 'dwg2016-13',
+                roundtrip: .75,
+                status: 'online',
+                leaf: true,
+                iconCls: 'icon-gateway'
+            }, {
+                name: 'dwg2016-14',
+                roundtrip: 2,
+                status: 'online',
+                leaf: true,
+                iconCls: 'icon-gateway'
+            }]
+        }]
+    },{
+        name:'RoamGroup: Hongkong',
+        iconCls:'task-folder',
+        children:[{
+            name: 'hk-santian',
+            iconCls: 'task-folder',
+            children: [{
+                name: 'dwg2016-20',
+                roundtrip: 0.25,
+                status: 'online',
+                iconCls: 'icon-gateway',
+                leaf: true
+            }, {
+                name: 'dwg2016-21',
+                roundtrip: 0.25,
+                status: 'online',
+                iconCls: 'icon-gateway',
+                leaf: true
+            }, {
+                name: 'dwg2016-22',
+                roundtrip: 0.25,
+                status: 'online',
+                iconCls: 'icon-gateway',
+                leaf: true
+            }]
+        },{
+            name: 'hk-univ',
+            iconCls: 'task-folder',
+            children: [{
+                name: 'dwg2032-1',
+                roundtrip: 0.25,
+                status: 'offline',
+                iconCls: 'icon-gateway',
+                leaf: true
+            }, {
+                name: 'dwg2032-2',
+                roundtrip: 0.25,
+                status: 'offline',
+                iconCls: 'icon-gateway',
+                leaf: true
+            }, {
+                name: 'dwg2032-3',
+                roundtrip: 0.25,
+                status: 'offline',
+                iconCls: 'icon-gateway',
+                leaf: true
+            },{
+                name: 'dwg2032-4',
+                roundtrip: 3,
+                status: 'linked',
+                iconCls: 'icon-gateway',
+                leaf: true
+            }]
+        },{
+            name: 'hk-harbor',
+            iconCls: 'task-folder',
+            children: [{
+                name: 'dwg2008c-1',
+                roundtrip: 0.25,
+                status: 'offline',
+                iconCls: 'icon-gateway',
+                leaf: true
+            }, {
+                name: 'dwg2008c-2',
+                roundtrip: 0.25,
+                status: 'linked',
+                iconCls: 'icon-gateway',
+                leaf: true
+            }]
+        }]
+    }
+]}

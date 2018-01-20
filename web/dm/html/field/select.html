@@ -1,0 +1,13 @@
+<div class="form-group" >
+  <label class="control-label" for="{{=it.name}}">{{=it.label}}</label>
+  
+ <select data-placeholder="{{? it.placeholder }}{{=it.placeholder}}{{?}}" {{? it.multiple }}multiple="multiple"{{?}} {{? it.multiCls}}class='multiselect'{{?}} name="{{=it.name}}" class="form-control {{? it.chosen}}chosen-select width-85{{?}}"> 
+     {{? it.emptyOption }}<option></option>{{?}}
+     {{~it.list :value:index}}
+     <option {{? value.alarmId }}value="{{=value.alarmId}}"{{?? }}value="{{=value.uuid}}"{{?}}  {{? value.selected }}selected="selected"{{?}}>{{=value.name}}</option>
+     {{~}}
+ </select>
+ {{? it.help }}
+ <p class="help-block" style="padding-left:15px;">{{=it.help}}</p>
+ {{?}}
+</div>

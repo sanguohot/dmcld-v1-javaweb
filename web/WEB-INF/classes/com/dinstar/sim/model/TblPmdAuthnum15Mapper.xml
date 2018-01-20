@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblPmdAuthnum15Mapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblPmdAuthnum15" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="sys_uuid" property="sysUuid" jdbcType="INTEGER" />
+    <result column="serial_no" property="serialNo" jdbcType="INTEGER" />
+    <result column="avg_process_time" property="avgProcessTime" jdbcType="INTEGER" />
+    <result column="max_process_time" property="maxProcessTime" jdbcType="INTEGER" />
+    <result column="total_process" property="totalProcess" jdbcType="INTEGER" />
+    <result column="cur_pending_cnt" property="curPendingCnt" jdbcType="INTEGER" />
+    <result column="cur_deal_cnt" property="curDealCnt" jdbcType="INTEGER" />
+    <result column="cur_deal_status1" property="curDealStatus1" jdbcType="INTEGER" />
+    <result column="cur_deal_status2" property="curDealStatus2" jdbcType="INTEGER" />
+    <result column="cur_deal_status3" property="curDealStatus3" jdbcType="INTEGER" />
+    <result column="cur_deal_status4" property="curDealStatus4" jdbcType="INTEGER" />
+    <result column="generate_time" property="generateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, sys_uuid, serial_no, avg_process_time, max_process_time, total_process, 
+    cur_pending_cnt, cur_deal_cnt, cur_deal_status1, cur_deal_status2, cur_deal_status3, 
+    cur_deal_status4, generate_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblPmdAuthnum15Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_pmd_authnum_15
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_pmd_authnum_15
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_pmd_authnum_15
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblPmdAuthnum15Criteria" >
+    delete from tbl_pmd_authnum_15
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblPmdAuthnum15" >
+    insert into tbl_pmd_authnum_15 (uuid, rec_status, sys_uuid, 
+      serial_no, avg_process_time, max_process_time, 
+      total_process, cur_pending_cnt, cur_deal_cnt, 
+      cur_deal_status1, cur_deal_status2, cur_deal_status3, 
+      cur_deal_status4, generate_time)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{sysUuid,jdbcType=INTEGER}, 
+      #{serialNo,jdbcType=INTEGER}, #{avgProcessTime,jdbcType=INTEGER}, #{maxProcessTime,jdbcType=INTEGER}, 
+      #{totalProcess,jdbcType=INTEGER}, #{curPendingCnt,jdbcType=INTEGER}, #{curDealCnt,jdbcType=INTEGER}, 
+      #{curDealStatus1,jdbcType=INTEGER}, #{curDealStatus2,jdbcType=INTEGER}, #{curDealStatus3,jdbcType=INTEGER}, 
+      #{curDealStatus4,jdbcType=INTEGER}, #{generateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblPmdAuthnum15" >
+    insert into tbl_pmd_authnum_15
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="sysUuid != null" >
+        sys_uuid,
+      </if>
+      <if test="serialNo != null" >
+        serial_no,
+      </if>
+      <if test="avgProcessTime != null" >
+        avg_process_time,
+      </if>
+      <if test="maxProcessTime != null" >
+        max_process_time,
+      </if>
+      <if test="totalProcess != null" >
+        total_process,
+      </if>
+      <if test="curPendingCnt != null" >
+        cur_pending_cnt,
+      </if>
+      <if test="curDealCnt != null" >
+        cur_deal_cnt,
+      </if>
+      <if test="curDealStatus1 != null" >
+        cur_deal_status1,
+      </if>
+      <if test="curDealStatus2 != null" >
+        cur_deal_status2,
+      </if>
+      <if test="curDealStatus3 != null" >
+        cur_deal_status3,
+      </if>
+      <if test="curDealStatus4 != null" >
+        cur_deal_status4,
+      </if>
+      <if test="generateTime != null" >
+        generate_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="sysUuid != null" >
+        #{sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="avgProcessTime != null" >
+        #{avgProcessTime,jdbcType=INTEGER},
+      </if>
+      <if test="maxProcessTime != null" >
+        #{maxProcessTime,jdbcType=INTEGER},
+      </if>
+      <if test="totalProcess != null" >
+        #{totalProcess,jdbcType=INTEGER},
+      </if>
+      <if test="curPendingCnt != null" >
+        #{curPendingCnt,jdbcType=INTEGER},
+      </if>
+      <if test="curDealCnt != null" >
+        #{curDealCnt,jdbcType=INTEGER},
+      </if>
+      <if test="curDealStatus1 != null" >
+        #{curDealStatus1,jdbcType=INTEGER},
+      </if>
+      <if test="curDealStatus2 != null" >
+        #{curDealStatus2,jdbcType=INTEGER},
+      </if>
+      <if test="curDealStatus3 != null" >
+        #{curDealStatus3,jdbcType=INTEGER},
+      </if>
+      <if test="curDealStatus4 != null" >
+        #{curDealStatus4,jdbcType=INTEGER},
+      </if>
+      <if test="generateTime != null" >
+        #{generateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblPmdAuthnum15Criteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_pmd_authnum_15
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_pmd_authnum_15
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.sysUuid != null" >
+        sys_uuid = #{record.sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.serialNo != null" >
+        serial_no = #{record.serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.avgProcessTime != null" >
+        avg_process_time = #{record.avgProcessTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxProcessTime != null" >
+        max_process_time = #{record.maxProcessTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalProcess != null" >
+        total_process = #{record.totalProcess,jdbcType=INTEGER},
+      </if>
+      <if test="record.curPendingCnt != null" >
+        cur_pending_cnt = #{record.curPendingCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.curDealCnt != null" >
+        cur_deal_cnt = #{record.curDealCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.curDealStatus1 != null" >
+        cur_deal_status1 = #{record.curDealStatus1,jdbcType=INTEGER},
+      </if>
+      <if test="record.curDealStatus2 != null" >
+        cur_deal_status2 = #{record.curDealStatus2,jdbcType=INTEGER},
+      </if>
+      <if test="record.curDealStatus3 != null" >
+        cur_deal_status3 = #{record.curDealStatus3,jdbcType=INTEGER},
+      </if>
+      <if test="record.curDealStatus4 != null" >
+        cur_deal_status4 = #{record.curDealStatus4,jdbcType=INTEGER},
+      </if>
+      <if test="record.generateTime != null" >
+        generate_time = #{record.generateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_pmd_authnum_15
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      sys_uuid = #{record.sysUuid,jdbcType=INTEGER},
+      serial_no = #{record.serialNo,jdbcType=INTEGER},
+      avg_process_time = #{record.avgProcessTime,jdbcType=INTEGER},
+      max_process_time = #{record.maxProcessTime,jdbcType=INTEGER},
+      total_process = #{record.totalProcess,jdbcType=INTEGER},
+      cur_pending_cnt = #{record.curPendingCnt,jdbcType=INTEGER},
+      cur_deal_cnt = #{record.curDealCnt,jdbcType=INTEGER},
+      cur_deal_status1 = #{record.curDealStatus1,jdbcType=INTEGER},
+      cur_deal_status2 = #{record.curDealStatus2,jdbcType=INTEGER},
+      cur_deal_status3 = #{record.curDealStatus3,jdbcType=INTEGER},
+      cur_deal_status4 = #{record.curDealStatus4,jdbcType=INTEGER},
+      generate_time = #{record.generateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblPmdAuthnum15" >
+    update tbl_pmd_authnum_15
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="sysUuid != null" >
+        sys_uuid = #{sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="serialNo != null" >
+        serial_no = #{serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="avgProcessTime != null" >
+        avg_process_time = #{avgProcessTime,jdbcType=INTEGER},
+      </if>
+      <if test="maxProcessTime != null" >
+        max_process_time = #{maxProcessTime,jdbcType=INTEGER},
+      </if>
+      <if test="totalProcess != null" >
+        total_process = #{totalProcess,jdbcType=INTEGER},
+      </if>
+      <if test="curPendingCnt != null" >
+        cur_pending_cnt = #{curPendingCnt,jdbcType=INTEGER},
+      </if>
+      <if test="curDealCnt != null" >
+        cur_deal_cnt = #{curDealCnt,jdbcType=INTEGER},
+      </if>
+      <if test="curDealStatus1 != null" >
+        cur_deal_status1 = #{curDealStatus1,jdbcType=INTEGER},
+      </if>
+      <if test="curDealStatus2 != null" >
+        cur_deal_status2 = #{curDealStatus2,jdbcType=INTEGER},
+      </if>
+      <if test="curDealStatus3 != null" >
+        cur_deal_status3 = #{curDealStatus3,jdbcType=INTEGER},
+      </if>
+      <if test="curDealStatus4 != null" >
+        cur_deal_status4 = #{curDealStatus4,jdbcType=INTEGER},
+      </if>
+      <if test="generateTime != null" >
+        generate_time = #{generateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblPmdAuthnum15" >
+    update tbl_pmd_authnum_15
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      sys_uuid = #{sysUuid,jdbcType=INTEGER},
+      serial_no = #{serialNo,jdbcType=INTEGER},
+      avg_process_time = #{avgProcessTime,jdbcType=INTEGER},
+      max_process_time = #{maxProcessTime,jdbcType=INTEGER},
+      total_process = #{totalProcess,jdbcType=INTEGER},
+      cur_pending_cnt = #{curPendingCnt,jdbcType=INTEGER},
+      cur_deal_cnt = #{curDealCnt,jdbcType=INTEGER},
+      cur_deal_status1 = #{curDealStatus1,jdbcType=INTEGER},
+      cur_deal_status2 = #{curDealStatus2,jdbcType=INTEGER},
+      cur_deal_status3 = #{curDealStatus3,jdbcType=INTEGER},
+      cur_deal_status4 = #{curDealStatus4,jdbcType=INTEGER},
+      generate_time = #{generateTime,jdbcType=TIMESTAMP}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- tree mapper
+ #{domainUuid,mode=IN,jdbcType=INTEGER},#{userType,mode=IN,jdbcType=INTEGER},#{userUuid,mode=IN,jdbcType=INTEGER}
+  -->
+<mapper namespace="com.dinstar.sim.mapper.Site">
+	 <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblSite" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="zone_uuid" property="zoneUuid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="next_site_uuid" property="nextSiteUuid" jdbcType="INTEGER" />
+    <result column="default_flag" property="defaultFlag" jdbcType="INTEGER" />
+    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+    <result column="mtg_threshold_sec" property="mtgThresholdSec" jdbcType="INTEGER" />
+    <result column="mtg_status" property="mtgStatus" jdbcType="INTEGER" />
+    <result column="mtg_call_time_sec" property="mtgCallTimeSec" jdbcType="INTEGER" />
+    <result column="mtg_switch" property="mtgSwitch" jdbcType="INTEGER" />
+    <result column="mtg_offline_call_time_sec" property="mtgOfflineCallTimeSec" jdbcType="INTEGER" />
+    <result column="mtg_rise_call_time_sec" property="mtgRiseCallTimeSec" jdbcType="INTEGER" />
+    <result column="alm_status_bits" property="almStatusBits" jdbcType="INTEGER" />
+    <result column="mtg_last_call_time_sec" property="mtgLastCallTimeSec" jdbcType="INTEGER" />
+    <result column="mtg_total_call_time_sec" property="mtgTotalCallTimeSec" jdbcType="INTEGER" />
+    <result column="mtg_call_money" property="mtgCallMoney" jdbcType="INTEGER" />
+    <result column="mtg_call_money_per_sec" property="mtgCallMoneyPerSec" jdbcType="INTEGER" />
+  </resultMap>
+    <select id="getUserSiteList" resultMap="BaseResultMap" parameterType="java.util.HashMap">		
+		SELECT CONCAT('[',z.name,']',s.name) as name,s.uuid,s.zone_uuid,s.domain_uuid
+		from tbl_site s
+		LEFT join tbl_zone z on(s.zone_uuid=z.uuid)
+		<if test="userUuid>0" >
+          left join tbl_user_site u on(u.site_uuid=s.uuid) 
+        </if> 	
+		WHERE 1=1
+     	<if test="domainUuid>0" >
+          and s.domain_uuid=#{domainUuid}
+        </if>
+     	<if test="userUuid>0" >
+          and u.user_uuid=#{userUuid}
+        </if>
+	</select>
+</mapper>

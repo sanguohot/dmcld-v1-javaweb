@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html lang="en" ng-app="myApp" style="height: 100%">
+<head>
+	<meta charset="utf-8" />
+	<title>配置模板管理系统</title>
+
+	<link href="lib/angular-snap.min.css" rel="stylesheet" />
+	<link href="lib/bootstrap-3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="lib/bootstrap-3.1.1/css/bootstrap-responsive.css" rel="stylesheet" />
+	<link href="topcoat/css/topcoat-mobile.css" rel="stylesheet" />
+	<link href="css/styles.css" rel="stylesheet">
+	<link href="css/animations.css" rel="stylesheet">
+	<link href="css/index.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+
+	<script src="lib/angular.js"></script>
+	<script src="lib/angular-route.js"></script>
+	<script src="lib/angular-touch.js"></script>
+	<script src="lib/angular-resource.js"></script>
+	<script src="lib/angular-animate.js"></script>
+	<script src="lib/angular-mobile.js"></script>
+	<script src="lib/angular-sanitize.min.js"></script>
+	<script src="lib/angular-cookies.min.js"></script>
+
+	<script src ="lib/jquery/jquery-1.8.3.js"></script>
+	<script src ="lib/bootstrap-3.1.1/js/bootstrap.min.js"></script>
+	<script src ="lib/ui-bootstrap-tpls-0.10.0.min.js"></script>
+	<script src="lib/snap.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/encodebase64.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/angular-snap.min.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="js/app.js"></script>
+	<script src="js/controllers.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/rest-services.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/httpProvider.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/func.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body style="height: 100%">
+<div ng-controller="MainCtrl" >
+<div  id="wrapper">
+	<snap-drawer>
+
+	</snap-drawer>
+
+	<snap-content style="background-color: #f5f5f5;height: 100%;width: 100%">
+		<section id="main" ng-class="{menuOpen: menuOpen}" >
+			<div ng-view ng-class="slide"></div>
+		</section>
+
+		<div snap-dragger style="height:1px;margin-top:1px">
+		</div>
+	</snap-content>
+
+</div><!-- end page -->
+
+</div>
+</body>
+</html>

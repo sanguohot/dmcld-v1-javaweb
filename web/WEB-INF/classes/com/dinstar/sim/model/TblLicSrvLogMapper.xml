@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblLicSrvLogMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblLicSrvLog" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="sys_uuid" property="sysUuid" jdbcType="INTEGER" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="action_time" property="actionTime" jdbcType="TIMESTAMP" />
+    <result column="trial_recharge" property="trialRecharge" jdbcType="REAL" />
+    <result column="trial_diff" property="trialDiff" jdbcType="REAL" />
+    <result column="trial_balance" property="trialBalance" jdbcType="REAL" />
+    <result column="premium_recharge" property="premiumRecharge" jdbcType="REAL" />
+    <result column="premium_diff" property="premiumDiff" jdbcType="REAL" />
+    <result column="premium_balance" property="premiumBalance" jdbcType="REAL" />
+    <result column="sign_type" property="signType" jdbcType="INTEGER" />
+    <result column="srv_mode" property="srvMode" jdbcType="INTEGER" />
+    <result column="srv_magic" property="srvMagic" jdbcType="CHAR" />
+    <result column="max_sim_card" property="maxSimCard" jdbcType="INTEGER" />
+    <result column="service_api" property="serviceApi" jdbcType="INTEGER" />
+    <result column="hbm_features" property="hbmFeatures" jdbcType="INTEGER" />
+    <result column="hbm_features02" property="hbmFeatures02" jdbcType="INTEGER" />
+    <result column="hbm_features03" property="hbmFeatures03" jdbcType="INTEGER" />
+    <result column="valid_days" property="validDays" jdbcType="INTEGER" />
+    <result column="expired_date" property="expiredDate" jdbcType="TIMESTAMP" />
+    <result column="sign_date" property="signDate" jdbcType="TIMESTAMP" />
+    <result column="left_days" property="leftDays" jdbcType="INTEGER" />
+    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, sys_uuid, action_status, action_result, action_time, trial_recharge, trial_diff, 
+    trial_balance, premium_recharge, premium_diff, premium_balance, sign_type, srv_mode, 
+    srv_magic, max_sim_card, service_api, hbm_features, hbm_features02, hbm_features03, 
+    valid_days, expired_date, sign_date, left_days, detail_desc
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblLicSrvLogCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_lic_srv_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClause != null">limit ${limitClause}</if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_lic_srv_log
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_lic_srv_log
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblLicSrvLogCriteria" >
+    delete from tbl_lic_srv_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblLicSrvLog" >
+    insert into tbl_lic_srv_log (uuid, sys_uuid, action_status, 
+      action_result, action_time, trial_recharge, 
+      trial_diff, trial_balance, premium_recharge, 
+      premium_diff, premium_balance, sign_type, 
+      srv_mode, srv_magic, max_sim_card, 
+      service_api, hbm_features, hbm_features02, 
+      hbm_features03, valid_days, expired_date, 
+      sign_date, left_days, detail_desc
+      )
+    values (#{uuid,jdbcType=INTEGER}, #{sysUuid,jdbcType=INTEGER}, #{actionStatus,jdbcType=INTEGER}, 
+      #{actionResult,jdbcType=INTEGER}, #{actionTime,jdbcType=TIMESTAMP}, #{trialRecharge,jdbcType=REAL}, 
+      #{trialDiff,jdbcType=REAL}, #{trialBalance,jdbcType=REAL}, #{premiumRecharge,jdbcType=REAL}, 
+      #{premiumDiff,jdbcType=REAL}, #{premiumBalance,jdbcType=REAL}, #{signType,jdbcType=INTEGER}, 
+      #{srvMode,jdbcType=INTEGER}, #{srvMagic,jdbcType=CHAR}, #{maxSimCard,jdbcType=INTEGER}, 
+      #{serviceApi,jdbcType=INTEGER}, #{hbmFeatures,jdbcType=INTEGER}, #{hbmFeatures02,jdbcType=INTEGER}, 
+      #{hbmFeatures03,jdbcType=INTEGER}, #{validDays,jdbcType=INTEGER}, #{expiredDate,jdbcType=TIMESTAMP}, 
+      #{signDate,jdbcType=TIMESTAMP}, #{leftDays,jdbcType=INTEGER}, #{detailDesc,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblLicSrvLog" >
+    insert into tbl_lic_srv_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="sysUuid != null" >
+        sys_uuid,
+      </if>
+      <if test="actionStatus != null" >
+        action_status,
+      </if>
+      <if test="actionResult != null" >
+        action_result,
+      </if>
+      <if test="actionTime != null" >
+        action_time,
+      </if>
+      <if test="trialRecharge != null" >
+        trial_recharge,
+      </if>
+      <if test="trialDiff != null" >
+        trial_diff,
+      </if>
+      <if test="trialBalance != null" >
+        trial_balance,
+      </if>
+      <if test="premiumRecharge != null" >
+        premium_recharge,
+      </if>
+      <if test="premiumDiff != null" >
+        premium_diff,
+      </if>
+      <if test="premiumBalance != null" >
+        premium_balance,
+      </if>
+      <if test="signType != null" >
+        sign_type,
+      </if>
+      <if test="srvMode != null" >
+        srv_mode,
+      </if>
+      <if test="srvMagic != null" >
+        srv_magic,
+      </if>
+      <if test="maxSimCard != null" >
+        max_sim_card,
+      </if>
+      <if test="serviceApi != null" >
+        service_api,
+      </if>
+      <if test="hbmFeatures != null" >
+        hbm_features,
+      </if>
+      <if test="hbmFeatures02 != null" >
+        hbm_features02,
+      </if>
+      <if test="hbmFeatures03 != null" >
+        hbm_features03,
+      </if>
+      <if test="validDays != null" >
+        valid_days,
+      </if>
+      <if test="expiredDate != null" >
+        expired_date,
+      </if>
+      <if test="signDate != null" >
+        sign_date,
+      </if>
+      <if test="leftDays != null" >
+        left_days,
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="sysUuid != null" >
+        #{sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="actionStatus != null" >
+        #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="actionTime != null" >
+        #{actionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trialRecharge != null" >
+        #{trialRecharge,jdbcType=REAL},
+      </if>
+      <if test="trialDiff != null" >
+        #{trialDiff,jdbcType=REAL},
+      </if>
+      <if test="trialBalance != null" >
+        #{trialBalance,jdbcType=REAL},
+      </if>
+      <if test="premiumRecharge != null" >
+        #{premiumRecharge,jdbcType=REAL},
+      </if>
+      <if test="premiumDiff != null" >
+        #{premiumDiff,jdbcType=REAL},
+      </if>
+      <if test="premiumBalance != null" >
+        #{premiumBalance,jdbcType=REAL},
+      </if>
+      <if test="signType != null" >
+        #{signType,jdbcType=INTEGER},
+      </if>
+      <if test="srvMode != null" >
+        #{srvMode,jdbcType=INTEGER},
+      </if>
+      <if test="srvMagic != null" >
+        #{srvMagic,jdbcType=CHAR},
+      </if>
+      <if test="maxSimCard != null" >
+        #{maxSimCard,jdbcType=INTEGER},
+      </if>
+      <if test="serviceApi != null" >
+        #{serviceApi,jdbcType=INTEGER},
+      </if>
+      <if test="hbmFeatures != null" >
+        #{hbmFeatures,jdbcType=INTEGER},
+      </if>
+      <if test="hbmFeatures02 != null" >
+        #{hbmFeatures02,jdbcType=INTEGER},
+      </if>
+      <if test="hbmFeatures03 != null" >
+        #{hbmFeatures03,jdbcType=INTEGER},
+      </if>
+      <if test="validDays != null" >
+        #{validDays,jdbcType=INTEGER},
+      </if>
+      <if test="expiredDate != null" >
+        #{expiredDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signDate != null" >
+        #{signDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leftDays != null" >
+        #{leftDays,jdbcType=INTEGER},
+      </if>
+      <if test="detailDesc != null" >
+        #{detailDesc,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblLicSrvLogCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_lic_srv_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_lic_srv_log
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sysUuid != null" >
+        sys_uuid = #{record.sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionStatus != null" >
+        action_status = #{record.actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionResult != null" >
+        action_result = #{record.actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionTime != null" >
+        action_time = #{record.actionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.trialRecharge != null" >
+        trial_recharge = #{record.trialRecharge,jdbcType=REAL},
+      </if>
+      <if test="record.trialDiff != null" >
+        trial_diff = #{record.trialDiff,jdbcType=REAL},
+      </if>
+      <if test="record.trialBalance != null" >
+        trial_balance = #{record.trialBalance,jdbcType=REAL},
+      </if>
+      <if test="record.premiumRecharge != null" >
+        premium_recharge = #{record.premiumRecharge,jdbcType=REAL},
+      </if>
+      <if test="record.premiumDiff != null" >
+        premium_diff = #{record.premiumDiff,jdbcType=REAL},
+      </if>
+      <if test="record.premiumBalance != null" >
+        premium_balance = #{record.premiumBalance,jdbcType=REAL},
+      </if>
+      <if test="record.signType != null" >
+        sign_type = #{record.signType,jdbcType=INTEGER},
+      </if>
+      <if test="record.srvMode != null" >
+        srv_mode = #{record.srvMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.srvMagic != null" >
+        srv_magic = #{record.srvMagic,jdbcType=CHAR},
+      </if>
+      <if test="record.maxSimCard != null" >
+        max_sim_card = #{record.maxSimCard,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceApi != null" >
+        service_api = #{record.serviceApi,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmFeatures != null" >
+        hbm_features = #{record.hbmFeatures,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmFeatures02 != null" >
+        hbm_features02 = #{record.hbmFeatures02,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmFeatures03 != null" >
+        hbm_features03 = #{record.hbmFeatures03,jdbcType=INTEGER},
+      </if>
+      <if test="record.validDays != null" >
+        valid_days = #{record.validDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.expiredDate != null" >
+        expired_date = #{record.expiredDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.signDate != null" >
+        sign_date = #{record.signDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.leftDays != null" >
+        left_days = #{record.leftDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.detailDesc != null" >
+        detail_desc = #{record.detailDesc,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_lic_srv_log
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      sys_uuid = #{record.sysUuid,jdbcType=INTEGER},
+      action_status = #{record.actionStatus,jdbcType=INTEGER},
+      action_result = #{record.actionResult,jdbcType=INTEGER},
+      action_time = #{record.actionTime,jdbcType=TIMESTAMP},
+      trial_recharge = #{record.trialRecharge,jdbcType=REAL},
+      trial_diff = #{record.trialDiff,jdbcType=REAL},
+      trial_balance = #{record.trialBalance,jdbcType=REAL},
+      premium_recharge = #{record.premiumRecharge,jdbcType=REAL},
+      premium_diff = #{record.premiumDiff,jdbcType=REAL},
+      premium_balance = #{record.premiumBalance,jdbcType=REAL},
+      sign_type = #{record.signType,jdbcType=INTEGER},
+      srv_mode = #{record.srvMode,jdbcType=INTEGER},
+      srv_magic = #{record.srvMagic,jdbcType=CHAR},
+      max_sim_card = #{record.maxSimCard,jdbcType=INTEGER},
+      service_api = #{record.serviceApi,jdbcType=INTEGER},
+      hbm_features = #{record.hbmFeatures,jdbcType=INTEGER},
+      hbm_features02 = #{record.hbmFeatures02,jdbcType=INTEGER},
+      hbm_features03 = #{record.hbmFeatures03,jdbcType=INTEGER},
+      valid_days = #{record.validDays,jdbcType=INTEGER},
+      expired_date = #{record.expiredDate,jdbcType=TIMESTAMP},
+      sign_date = #{record.signDate,jdbcType=TIMESTAMP},
+      left_days = #{record.leftDays,jdbcType=INTEGER},
+      detail_desc = #{record.detailDesc,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblLicSrvLog" >
+    update tbl_lic_srv_log
+    <set >
+      <if test="sysUuid != null" >
+        sys_uuid = #{sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="actionStatus != null" >
+        action_status = #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        action_result = #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="actionTime != null" >
+        action_time = #{actionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trialRecharge != null" >
+        trial_recharge = #{trialRecharge,jdbcType=REAL},
+      </if>
+      <if test="trialDiff != null" >
+        trial_diff = #{trialDiff,jdbcType=REAL},
+      </if>
+      <if test="trialBalance != null" >
+        trial_balance = #{trialBalance,jdbcType=REAL},
+      </if>
+      <if test="premiumRecharge != null" >
+        premium_recharge = #{premiumRecharge,jdbcType=REAL},
+      </if>
+      <if test="premiumDiff != null" >
+        premium_diff = #{premiumDiff,jdbcType=REAL},
+      </if>
+      <if test="premiumBalance != null" >
+        premium_balance = #{premiumBalance,jdbcType=REAL},
+      </if>
+      <if test="signType != null" >
+        sign_type = #{signType,jdbcType=INTEGER},
+      </if>
+      <if test="srvMode != null" >
+        srv_mode = #{srvMode,jdbcType=INTEGER},
+      </if>
+      <if test="srvMagic != null" >
+        srv_magic = #{srvMagic,jdbcType=CHAR},
+      </if>
+      <if test="maxSimCard != null" >
+        max_sim_card = #{maxSimCard,jdbcType=INTEGER},
+      </if>
+      <if test="serviceApi != null" >
+        service_api = #{serviceApi,jdbcType=INTEGER},
+      </if>
+      <if test="hbmFeatures != null" >
+        hbm_features = #{hbmFeatures,jdbcType=INTEGER},
+      </if>
+      <if test="hbmFeatures02 != null" >
+        hbm_features02 = #{hbmFeatures02,jdbcType=INTEGER},
+      </if>
+      <if test="hbmFeatures03 != null" >
+        hbm_features03 = #{hbmFeatures03,jdbcType=INTEGER},
+      </if>
+      <if test="validDays != null" >
+        valid_days = #{validDays,jdbcType=INTEGER},
+      </if>
+      <if test="expiredDate != null" >
+        expired_date = #{expiredDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signDate != null" >
+        sign_date = #{signDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leftDays != null" >
+        left_days = #{leftDays,jdbcType=INTEGER},
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc = #{detailDesc,jdbcType=CHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblLicSrvLog" >
+    update tbl_lic_srv_log
+    set sys_uuid = #{sysUuid,jdbcType=INTEGER},
+      action_status = #{actionStatus,jdbcType=INTEGER},
+      action_result = #{actionResult,jdbcType=INTEGER},
+      action_time = #{actionTime,jdbcType=TIMESTAMP},
+      trial_recharge = #{trialRecharge,jdbcType=REAL},
+      trial_diff = #{trialDiff,jdbcType=REAL},
+      trial_balance = #{trialBalance,jdbcType=REAL},
+      premium_recharge = #{premiumRecharge,jdbcType=REAL},
+      premium_diff = #{premiumDiff,jdbcType=REAL},
+      premium_balance = #{premiumBalance,jdbcType=REAL},
+      sign_type = #{signType,jdbcType=INTEGER},
+      srv_mode = #{srvMode,jdbcType=INTEGER},
+      srv_magic = #{srvMagic,jdbcType=CHAR},
+      max_sim_card = #{maxSimCard,jdbcType=INTEGER},
+      service_api = #{serviceApi,jdbcType=INTEGER},
+      hbm_features = #{hbmFeatures,jdbcType=INTEGER},
+      hbm_features02 = #{hbmFeatures02,jdbcType=INTEGER},
+      hbm_features03 = #{hbmFeatures03,jdbcType=INTEGER},
+      valid_days = #{validDays,jdbcType=INTEGER},
+      expired_date = #{expiredDate,jdbcType=TIMESTAMP},
+      sign_date = #{signDate,jdbcType=TIMESTAMP},
+      left_days = #{leftDays,jdbcType=INTEGER},
+      detail_desc = #{detailDesc,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

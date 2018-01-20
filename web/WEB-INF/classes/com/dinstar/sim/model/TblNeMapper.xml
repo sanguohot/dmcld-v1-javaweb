@@ -1,0 +1,2972 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblNeMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblNe" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="alm_status_bits" property="almStatusBits" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="site_uuid" property="siteUuid" jdbcType="INTEGER" />
+    <result column="policy_uuid" property="policyUuid" jdbcType="INTEGER" />
+    <result column="vendor_id" property="vendorId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="CHAR" />
+    <result column="package_version" property="packageVersion" jdbcType="CHAR" />
+    <result column="package_build_time" property="packageBuildTime" jdbcType="TIMESTAMP" />
+    <result column="detail_ver" property="detailVer" jdbcType="VARCHAR" />
+    <result column="sip_agent" property="sipAgent" jdbcType="CHAR" />
+    <result column="sip_owner" property="sipOwner" jdbcType="CHAR" />
+    <result column="cli_prompt" property="cliPrompt" jdbcType="CHAR" />
+    <result column="dhcp_default" property="dhcpDefault" jdbcType="INTEGER" />
+    <result column="ip_type" property="ipType" jdbcType="INTEGER" />
+    <result column="ip_addr" property="ipAddr" jdbcType="CHAR" />
+    <result column="mac_addr_num" property="macAddrNum" jdbcType="INTEGER" />
+    <result column="made_factory" property="madeFactory" jdbcType="CHAR" />
+    <result column="made_site" property="madeSite" jdbcType="CHAR" />
+    <result column="made_date" property="madeDate" jdbcType="CHAR" />
+    <result column="test_site" property="testSite" jdbcType="CHAR" />
+    <result column="test_date" property="testDate" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="encrypt_type" property="encryptType" jdbcType="INTEGER" />
+    <result column="outer_ip_addr" property="outerIpAddr" jdbcType="CHAR" />
+    <result column="inner_ip_addr" property="innerIpAddr" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="last_reg_time" property="lastRegTime" jdbcType="TIMESTAMP" />
+    <result column="reg_fail_count" property="regFailCount" jdbcType="INTEGER" />
+    <result column="upgrade_type" property="upgradeType" jdbcType="INTEGER" />
+    <result column="upgrade_force_flag" property="upgradeForceFlag" jdbcType="INTEGER" />
+    <result column="target_software_ver" property="targetSoftwareVer" jdbcType="CHAR" />
+    <result column="upgrade_status" property="upgradeStatus" jdbcType="INTEGER" />
+    <result column="last_upgrade_result" property="lastUpgradeResult" jdbcType="INTEGER" />
+    <result column="last_upgrade_time" property="lastUpgradeTime" jdbcType="TIMESTAMP" />
+    <result column="target_cfg_ver" property="targetCfgVer" jdbcType="CHAR" />
+    <result column="cfg_upgrade_status" property="cfgUpgradeStatus" jdbcType="INTEGER" />
+    <result column="last_cfg_upgrade_result" property="lastCfgUpgradeResult" jdbcType="INTEGER" />
+    <result column="last_cfg_upgrade_time" property="lastCfgUpgradeTime" jdbcType="TIMESTAMP" />
+    <result column="port_total_count" property="portTotalCount" jdbcType="INTEGER" />
+    <result column="port_work_count" property="portWorkCount" jdbcType="INTEGER" />
+    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+    <result column="next_ne_alarm_sn" property="nextNeAlarmSn" jdbcType="INTEGER" />
+    <result column="syslog_status" property="syslogStatus" jdbcType="INTEGER" />
+    <result column="log_sys_uuid" property="logSysUuid" jdbcType="INTEGER" />
+    <result column="syslog_begin_date" property="syslogBeginDate" jdbcType="TIMESTAMP" />
+    <result column="syslog_end_date" property="syslogEndDate" jdbcType="TIMESTAMP" />
+    <result column="syslog_debug_level" property="syslogDebugLevel" jdbcType="INTEGER" />
+    <result column="cdr_log_flag" property="cdrLogFlag" jdbcType="INTEGER" />
+    <result column="signal_log_flag" property="signalLogFlag" jdbcType="INTEGER" />
+    <result column="media_log_flag" property="mediaLogFlag" jdbcType="INTEGER" />
+    <result column="system_log_flag" property="systemLogFlag" jdbcType="INTEGER" />
+    <result column="mng_log_flag" property="mngLogFlag" jdbcType="INTEGER" />
+    <result column="cdr_log_falg" property="cdrLogFalg" jdbcType="INTEGER" />
+    <result column="sipsrv_lock_flag" property="sipsrvLockFlag" jdbcType="INTEGER" />
+    <result column="primary_sip_server" property="primarySipServer" jdbcType="CHAR" />
+    <result column="primary_sipsrv_port" property="primarySipsrvPort" jdbcType="INTEGER" />
+    <result column="secondary_sip_server" property="secondarySipServer" jdbcType="CHAR" />
+    <result column="secondary_sipsrv_port" property="secondarySipsrvPort" jdbcType="INTEGER" />
+    <result column="ntp_status" property="ntpStatus" jdbcType="INTEGER" />
+    <result column="auto_reboot_flag" property="autoRebootFlag" jdbcType="INTEGER" />
+    <result column="switch_chip_status" property="switchChipStatus" jdbcType="INTEGER" />
+    <result column="cur_cpu" property="curCpu" jdbcType="INTEGER" />
+    <result column="avg_cpu_5" property="avgCpu5" jdbcType="INTEGER" />
+    <result column="avg_cpu_60" property="avgCpu60" jdbcType="INTEGER" />
+    <result column="avg_cpu_600" property="avgCpu600" jdbcType="INTEGER" />
+    <result column="free_mem" property="freeMem" jdbcType="INTEGER" />
+    <result column="total_mem" property="totalMem" jdbcType="INTEGER" />
+    <result column="mem_usage" property="memUsage" jdbcType="INTEGER" />
+    <result column="dev_time" property="devTime" jdbcType="TIMESTAMP" />
+    <result column="alarm_flag" property="alarmFlag" jdbcType="INTEGER" />
+    <result column="loc_mcc" property="locMcc" jdbcType="INTEGER" />
+    <result column="loc_mnc" property="locMnc" jdbcType="INTEGER" />
+    <result column="loc_lac" property="locLac" jdbcType="INTEGER" />
+    <result column="loc_cell_id" property="locCellId" jdbcType="INTEGER" />
+    <result column="loc_status" property="locStatus" jdbcType="INTEGER" />
+    <result column="loc_lat" property="locLat" jdbcType="REAL" />
+    <result column="loc_lng" property="locLng" jdbcType="REAL" />
+    <result column="upgrade_flag" property="upgradeFlag" jdbcType="INTEGER" />
+    <result column="time_chip_status" property="timeChipStatus" jdbcType="INTEGER" />
+    <result column="alloc_mem" property="allocMem" jdbcType="INTEGER" />
+    <result column="alarm_short_period" property="alarmShortPeriod" jdbcType="INTEGER" />
+    <result column="alarm_long_period" property="alarmLongPeriod" jdbcType="INTEGER" />
+    <result column="status_short_period" property="statusShortPeriod" jdbcType="INTEGER" />
+    <result column="status_long_period" property="statusLongPeriod" jdbcType="INTEGER" />
+    <result column="statics_period" property="staticsPeriod" jdbcType="INTEGER" />
+    <result column="lock_status" property="lockStatus" jdbcType="INTEGER" />
+    <result column="mem_aos_usage" property="memAosUsage" jdbcType="INTEGER" />
+    <result column="mem_linux_usage" property="memLinuxUsage" jdbcType="INTEGER" />
+    <result column="nat_mode" property="natMode" jdbcType="INTEGER" />
+    <result column="nat_status" property="natStatus" jdbcType="INTEGER" />
+    <result column="store_usage" property="storeUsage" jdbcType="INTEGER" />
+    <result column="eth_link_mode" property="ethLinkMode" jdbcType="INTEGER" />
+    <result column="port_type1" property="portType1" jdbcType="INTEGER" />
+    <result column="port_count1" property="portCount1" jdbcType="INTEGER" />
+    <result column="port_type2" property="portType2" jdbcType="INTEGER" />
+    <result column="port_count2" property="portCount2" jdbcType="INTEGER" />
+    <result column="port_type3" property="portType3" jdbcType="INTEGER" />
+    <result column="port_count3" property="portCount3" jdbcType="INTEGER" />
+    <result column="port_type4" property="portType4" jdbcType="INTEGER" />
+    <result column="port_count4" property="portCount4" jdbcType="INTEGER" />
+    <result column="port_type5" property="portType5" jdbcType="INTEGER" />
+    <result column="port_count5" property="portCount5" jdbcType="INTEGER" />
+    <result column="port_type6" property="portType6" jdbcType="INTEGER" />
+    <result column="port_count6" property="portCount6" jdbcType="INTEGER" />
+    <result column="port_type7" property="portType7" jdbcType="INTEGER" />
+    <result column="port_count7" property="portCount7" jdbcType="INTEGER" />
+    <result column="port_type8" property="portType8" jdbcType="INTEGER" />
+    <result column="port_count8" property="portCount8" jdbcType="INTEGER" />
+    <result column="dbo_status" property="dboStatus" jdbcType="INTEGER" />
+    <result column="backup_url" property="backupUrl" jdbcType="CHAR" />
+    <result column="restore_url" property="restoreUrl" jdbcType="CHAR" />
+    <result column="restore_result" property="restoreResult" jdbcType="INTEGER" />
+    <result column="lic_init_valid_days" property="licInitValidDays" jdbcType="INTEGER" />
+    <result column="lic_used_days" property="licUsedDays" jdbcType="INTEGER" />
+    <result column="lic_valid_days" property="licValidDays" jdbcType="INTEGER" />
+    <result column="last_lic_result" property="lastLicResult" jdbcType="VARCHAR" />
+    <result column="last_lock_result" property="lastLockResult" jdbcType="CHAR" />
+    <result column="lic_lock_flag" property="licLockFlag" jdbcType="INTEGER" />
+    <result column="tg_lic" property="tgLic" jdbcType="CHAR" />
+    <result column="json_msg_id" property="jsonMsgId" jdbcType="INTEGER" />
+    <result column="update_lic_flag" property="updateLicFlag" jdbcType="INTEGER" />
+    <result column="lic_status" property="licStatus" jdbcType="INTEGER" />
+    <result column="last_lic_result_code" property="lastLicResultCode" jdbcType="INTEGER" />
+    <result column="salesman" property="salesman" jdbcType="CHAR" />
+    <result column="product_sns" property="productSns" jdbcType="CHAR" />
+    <result column="rm_last_reg_time" property="rmLastRegTime" jdbcType="TIMESTAMP" />
+    <result column="rm_run_status" property="rmRunStatus" jdbcType="INTEGER" />
+    <result column="rm_product_id" property="rmProductId" jdbcType="INTEGER" />
+    <result column="rm_product_name" property="rmProductName" jdbcType="CHAR" />
+    <result column="rm_package_version" property="rmPackageVersion" jdbcType="CHAR" />
+    <result column="rm_ip" property="rmIp" jdbcType="CHAR" />
+    <result column="rm_isp" property="rmIsp" jdbcType="CHAR" />
+    <result column="rm_address" property="rmAddress" jdbcType="CHAR" />
+    <result column="domain_name" property="domainName" jdbcType="CHAR" />
+    <result column="dtr_user" property="dtrUser" jdbcType="INTEGER" />
+    <result column="dtr_force" property="dtrForce" jdbcType="INTEGER" />
+    <result column="reset_reason" property="resetReason" jdbcType="INTEGER" />
+    <result column="report_switch" property="reportSwitch" jdbcType="INTEGER" />
+    <result column="preset_status" property="presetStatus" jdbcType="INTEGER" />
+    <result column="preset_result" property="presetResult" jdbcType="INTEGER" />
+    <result column="redirct_srv_url" property="redirctSrvUrl" jdbcType="CHAR" />
+    <result column="trans_listen_port" property="transListenPort" jdbcType="INTEGER" />
+    <result column="redirect_srv_set_status" property="redirectSrvSetStatus" jdbcType="INTEGER" />
+    <result column="redirect_srv_set_result" property="redirectSrvSetResult" jdbcType="INTEGER" />
+    <result column="sipserver_set_result" property="sipserverSetResult" jdbcType="CHAR" />
+    <result column="product_sn" property="productSn" jdbcType="BINARY" />
+    <result column="mac_addr_begin" property="macAddrBegin" jdbcType="BINARY" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.dinstar.sim.model.TblNeWithBLOBs" extends="BaseResultMap" >
+    <result column="product_sn" property="productSn" jdbcType="BINARY" />
+    <result column="mac_addr_begin" property="macAddrBegin" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    product_sn,mac_addr_begin,uuid, rec_status, alias, admin_status, opr_status, run_status, action_status, action_result, 
+    alm_status_bits, domain_uuid, site_uuid, policy_uuid, vendor_id, product_id, product_name, 
+    package_version, package_build_time, detail_ver, sip_agent, sip_owner, cli_prompt, 
+    dhcp_default, ip_type, ip_addr, mac_addr_num, made_factory, made_site, made_date, 
+    test_site, test_date, password, encrypt_type, outer_ip_addr, inner_ip_addr, create_time, 
+    update_time, last_reg_time, reg_fail_count, upgrade_type, upgrade_force_flag, target_software_ver, 
+    upgrade_status, last_upgrade_result, last_upgrade_time, target_cfg_ver, cfg_upgrade_status, 
+    last_cfg_upgrade_result, last_cfg_upgrade_time, port_total_count, port_work_count, 
+    detail_desc, next_ne_alarm_sn, syslog_status, log_sys_uuid, syslog_begin_date, syslog_end_date, 
+    syslog_debug_level, cdr_log_flag, signal_log_flag, media_log_flag, system_log_flag, 
+    mng_log_flag, cdr_log_falg, sipsrv_lock_flag, primary_sip_server, primary_sipsrv_port, 
+    secondary_sip_server, secondary_sipsrv_port, ntp_status, auto_reboot_flag, switch_chip_status, 
+    cur_cpu, avg_cpu_5, avg_cpu_60, avg_cpu_600, free_mem, total_mem, mem_usage, dev_time, 
+    alarm_flag, loc_mcc, loc_mnc, loc_lac, loc_cell_id, loc_status, loc_lat, loc_lng, 
+    upgrade_flag, time_chip_status, alloc_mem, alarm_short_period, alarm_long_period, 
+    status_short_period, status_long_period, statics_period, lock_status, mem_aos_usage, 
+    mem_linux_usage, nat_mode, nat_status, store_usage, eth_link_mode, port_type1, port_count1, 
+    port_type2, port_count2, port_type3, port_count3, port_type4, port_count4, port_type5, 
+    port_count5, port_type6, port_count6, port_type7, port_count7, port_type8, port_count8, 
+    dbo_status, backup_url, restore_url, restore_result, lic_init_valid_days, lic_used_days, 
+    lic_valid_days, last_lic_result, last_lock_result, lic_lock_flag, tg_lic, json_msg_id, 
+    update_lic_flag, lic_status, last_lic_result_code, salesman, product_sns, rm_last_reg_time, 
+    rm_run_status, rm_product_id, rm_product_name, rm_package_version, rm_ip, rm_isp, 
+    rm_address, domain_name, dtr_user, dtr_force, reset_reason, report_switch, preset_status, 
+    preset_result, redirct_srv_url, trans_listen_port, redirect_srv_set_status, redirect_srv_set_result, 
+    sipserver_set_result
+  </sql>
+  <sql id="Blob_Column_List" >
+    product_sn, mac_addr_begin
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.dinstar.sim.model.TblNeCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tbl_ne
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblNeCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <choose>
+        <when test="myCol!=null"> ${myCol}</when>
+        <otherwise><include refid="Base_Column_List" /></otherwise>
+    </choose>
+    
+    from tbl_ne
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+   <if test="groupBy != null" >
+      group by ${groupBy}
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+   <if test="limitClause != null" >
+      limit ${limitClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tbl_ne
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_ne
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblNeCriteria" >
+    delete from tbl_ne
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblNeWithBLOBs" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_ne (uuid, rec_status, alias, 
+      admin_status, opr_status, run_status, 
+      action_status, action_result, alm_status_bits, 
+      domain_uuid, site_uuid, policy_uuid, 
+      vendor_id, product_id, product_name, 
+      package_version, package_build_time, detail_ver, 
+      sip_agent, sip_owner, cli_prompt, 
+      dhcp_default, ip_type, ip_addr, 
+      mac_addr_num, made_factory, made_site, 
+      made_date, test_site, test_date, 
+      password, encrypt_type, outer_ip_addr, 
+      inner_ip_addr, create_time, update_time, 
+      last_reg_time, reg_fail_count, upgrade_type, 
+      upgrade_force_flag, target_software_ver, upgrade_status, 
+      last_upgrade_result, last_upgrade_time, target_cfg_ver, 
+      cfg_upgrade_status, last_cfg_upgrade_result, 
+      last_cfg_upgrade_time, port_total_count, port_work_count, 
+      detail_desc, next_ne_alarm_sn, syslog_status, 
+      log_sys_uuid, syslog_begin_date, syslog_end_date, 
+      syslog_debug_level, cdr_log_flag, signal_log_flag, 
+      media_log_flag, system_log_flag, mng_log_flag, 
+      cdr_log_falg, sipsrv_lock_flag, primary_sip_server, 
+      primary_sipsrv_port, secondary_sip_server, secondary_sipsrv_port, 
+      ntp_status, auto_reboot_flag, switch_chip_status, 
+      cur_cpu, avg_cpu_5, avg_cpu_60, 
+      avg_cpu_600, free_mem, total_mem, 
+      mem_usage, dev_time, alarm_flag, 
+      loc_mcc, loc_mnc, loc_lac, 
+      loc_cell_id, loc_status, loc_lat, 
+      loc_lng, upgrade_flag, time_chip_status, 
+      alloc_mem, alarm_short_period, alarm_long_period, 
+      status_short_period, status_long_period, statics_period, 
+      lock_status, mem_aos_usage, mem_linux_usage, 
+      nat_mode, nat_status, store_usage, 
+      eth_link_mode, port_type1, port_count1, 
+      port_type2, port_count2, port_type3, 
+      port_count3, port_type4, port_count4, 
+      port_type5, port_count5, port_type6, 
+      port_count6, port_type7, port_count7, 
+      port_type8, port_count8, dbo_status, 
+      backup_url, restore_url, restore_result, 
+      lic_init_valid_days, lic_used_days, lic_valid_days, 
+      last_lic_result, last_lock_result, lic_lock_flag, 
+      tg_lic, json_msg_id, update_lic_flag, 
+      lic_status, last_lic_result_code, salesman, 
+      product_sns, rm_last_reg_time, rm_run_status, 
+      rm_product_id, rm_product_name, rm_package_version, 
+      rm_ip, rm_isp, rm_address, domain_name, 
+      dtr_user, dtr_force, reset_reason, 
+      report_switch, preset_status, preset_result, 
+      redirct_srv_url, trans_listen_port, redirect_srv_set_status, 
+      redirect_srv_set_result, sipserver_set_result, 
+      product_sn, mac_addr_begin)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{alias,jdbcType=CHAR}, 
+      #{adminStatus,jdbcType=INTEGER}, #{oprStatus,jdbcType=INTEGER}, #{runStatus,jdbcType=INTEGER}, 
+      #{actionStatus,jdbcType=INTEGER}, #{actionResult,jdbcType=INTEGER}, #{almStatusBits,jdbcType=INTEGER}, 
+      #{domainUuid,jdbcType=INTEGER}, #{siteUuid,jdbcType=INTEGER}, #{policyUuid,jdbcType=INTEGER}, 
+      #{vendorId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{productName,jdbcType=CHAR}, 
+      #{packageVersion,jdbcType=CHAR}, #{packageBuildTime,jdbcType=TIMESTAMP}, #{detailVer,jdbcType=VARCHAR}, 
+      #{sipAgent,jdbcType=CHAR}, #{sipOwner,jdbcType=CHAR}, #{cliPrompt,jdbcType=CHAR}, 
+      #{dhcpDefault,jdbcType=INTEGER}, #{ipType,jdbcType=INTEGER}, #{ipAddr,jdbcType=CHAR}, 
+      #{macAddrNum,jdbcType=INTEGER}, #{madeFactory,jdbcType=CHAR}, #{madeSite,jdbcType=CHAR}, 
+      #{madeDate,jdbcType=CHAR}, #{testSite,jdbcType=CHAR}, #{testDate,jdbcType=CHAR}, 
+      #{password,jdbcType=CHAR}, #{encryptType,jdbcType=INTEGER}, #{outerIpAddr,jdbcType=CHAR}, 
+      #{innerIpAddr,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{lastRegTime,jdbcType=TIMESTAMP}, #{regFailCount,jdbcType=INTEGER}, #{upgradeType,jdbcType=INTEGER}, 
+      #{upgradeForceFlag,jdbcType=INTEGER}, #{targetSoftwareVer,jdbcType=CHAR}, #{upgradeStatus,jdbcType=INTEGER}, 
+      #{lastUpgradeResult,jdbcType=INTEGER}, #{lastUpgradeTime,jdbcType=TIMESTAMP}, #{targetCfgVer,jdbcType=CHAR}, 
+      #{cfgUpgradeStatus,jdbcType=INTEGER}, #{lastCfgUpgradeResult,jdbcType=INTEGER}, 
+      #{lastCfgUpgradeTime,jdbcType=TIMESTAMP}, #{portTotalCount,jdbcType=INTEGER}, #{portWorkCount,jdbcType=INTEGER}, 
+      #{detailDesc,jdbcType=CHAR}, #{nextNeAlarmSn,jdbcType=INTEGER}, #{syslogStatus,jdbcType=INTEGER}, 
+      #{logSysUuid,jdbcType=INTEGER}, #{syslogBeginDate,jdbcType=TIMESTAMP}, #{syslogEndDate,jdbcType=TIMESTAMP}, 
+      #{syslogDebugLevel,jdbcType=INTEGER}, #{cdrLogFlag,jdbcType=INTEGER}, #{signalLogFlag,jdbcType=INTEGER}, 
+      #{mediaLogFlag,jdbcType=INTEGER}, #{systemLogFlag,jdbcType=INTEGER}, #{mngLogFlag,jdbcType=INTEGER}, 
+      #{cdrLogFalg,jdbcType=INTEGER}, #{sipsrvLockFlag,jdbcType=INTEGER}, #{primarySipServer,jdbcType=CHAR}, 
+      #{primarySipsrvPort,jdbcType=INTEGER}, #{secondarySipServer,jdbcType=CHAR}, #{secondarySipsrvPort,jdbcType=INTEGER}, 
+      #{ntpStatus,jdbcType=INTEGER}, #{autoRebootFlag,jdbcType=INTEGER}, #{switchChipStatus,jdbcType=INTEGER}, 
+      #{curCpu,jdbcType=INTEGER}, #{avgCpu5,jdbcType=INTEGER}, #{avgCpu60,jdbcType=INTEGER}, 
+      #{avgCpu600,jdbcType=INTEGER}, #{freeMem,jdbcType=INTEGER}, #{totalMem,jdbcType=INTEGER}, 
+      #{memUsage,jdbcType=INTEGER}, #{devTime,jdbcType=TIMESTAMP}, #{alarmFlag,jdbcType=INTEGER}, 
+      #{locMcc,jdbcType=INTEGER}, #{locMnc,jdbcType=INTEGER}, #{locLac,jdbcType=INTEGER}, 
+      #{locCellId,jdbcType=INTEGER}, #{locStatus,jdbcType=INTEGER}, #{locLat,jdbcType=REAL}, 
+      #{locLng,jdbcType=REAL}, #{upgradeFlag,jdbcType=INTEGER}, #{timeChipStatus,jdbcType=INTEGER}, 
+      #{allocMem,jdbcType=INTEGER}, #{alarmShortPeriod,jdbcType=INTEGER}, #{alarmLongPeriod,jdbcType=INTEGER}, 
+      #{statusShortPeriod,jdbcType=INTEGER}, #{statusLongPeriod,jdbcType=INTEGER}, #{staticsPeriod,jdbcType=INTEGER}, 
+      #{lockStatus,jdbcType=INTEGER}, #{memAosUsage,jdbcType=INTEGER}, #{memLinuxUsage,jdbcType=INTEGER}, 
+      #{natMode,jdbcType=INTEGER}, #{natStatus,jdbcType=INTEGER}, #{storeUsage,jdbcType=INTEGER}, 
+      #{ethLinkMode,jdbcType=INTEGER}, #{portType1,jdbcType=INTEGER}, #{portCount1,jdbcType=INTEGER}, 
+      #{portType2,jdbcType=INTEGER}, #{portCount2,jdbcType=INTEGER}, #{portType3,jdbcType=INTEGER}, 
+      #{portCount3,jdbcType=INTEGER}, #{portType4,jdbcType=INTEGER}, #{portCount4,jdbcType=INTEGER}, 
+      #{portType5,jdbcType=INTEGER}, #{portCount5,jdbcType=INTEGER}, #{portType6,jdbcType=INTEGER}, 
+      #{portCount6,jdbcType=INTEGER}, #{portType7,jdbcType=INTEGER}, #{portCount7,jdbcType=INTEGER}, 
+      #{portType8,jdbcType=INTEGER}, #{portCount8,jdbcType=INTEGER}, #{dboStatus,jdbcType=INTEGER}, 
+      #{backupUrl,jdbcType=CHAR}, #{restoreUrl,jdbcType=CHAR}, #{restoreResult,jdbcType=INTEGER}, 
+      #{licInitValidDays,jdbcType=INTEGER}, #{licUsedDays,jdbcType=INTEGER}, #{licValidDays,jdbcType=INTEGER}, 
+      #{lastLicResult,jdbcType=VARCHAR}, #{lastLockResult,jdbcType=CHAR}, #{licLockFlag,jdbcType=INTEGER}, 
+      #{tgLic,jdbcType=CHAR}, #{jsonMsgId,jdbcType=INTEGER}, #{updateLicFlag,jdbcType=INTEGER}, 
+      #{licStatus,jdbcType=INTEGER}, #{lastLicResultCode,jdbcType=INTEGER}, #{salesman,jdbcType=CHAR}, 
+      #{productSns,jdbcType=CHAR}, #{rmLastRegTime,jdbcType=TIMESTAMP}, #{rmRunStatus,jdbcType=INTEGER}, 
+      #{rmProductId,jdbcType=INTEGER}, #{rmProductName,jdbcType=CHAR}, #{rmPackageVersion,jdbcType=CHAR}, 
+      #{rmIp,jdbcType=CHAR}, #{rmIsp,jdbcType=CHAR}, #{rmAddress,jdbcType=CHAR}, #{domainName,jdbcType=CHAR}, 
+      #{dtrUser,jdbcType=INTEGER}, #{dtrForce,jdbcType=INTEGER}, #{resetReason,jdbcType=INTEGER}, 
+      #{reportSwitch,jdbcType=INTEGER}, #{presetStatus,jdbcType=INTEGER}, #{presetResult,jdbcType=INTEGER}, 
+      #{redirctSrvUrl,jdbcType=CHAR}, #{transListenPort,jdbcType=INTEGER}, #{redirectSrvSetStatus,jdbcType=INTEGER}, 
+      #{redirectSrvSetResult,jdbcType=INTEGER}, #{sipserverSetResult,jdbcType=CHAR}, 
+      #{productSn,jdbcType=BINARY}, #{macAddrBegin,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblNeWithBLOBs" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_ne
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="adminStatus != null" >
+        admin_status,
+      </if>
+      <if test="oprStatus != null" >
+        opr_status,
+      </if>
+      <if test="runStatus != null" >
+        run_status,
+      </if>
+      <if test="actionStatus != null" >
+        action_status,
+      </if>
+      <if test="actionResult != null" >
+        action_result,
+      </if>
+      <if test="almStatusBits != null" >
+        alm_status_bits,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="siteUuid != null" >
+        site_uuid,
+      </if>
+      <if test="policyUuid != null" >
+        policy_uuid,
+      </if>
+      <if test="vendorId != null" >
+        vendor_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="packageVersion != null" >
+        package_version,
+      </if>
+      <if test="packageBuildTime != null" >
+        package_build_time,
+      </if>
+      <if test="detailVer != null" >
+        detail_ver,
+      </if>
+      <if test="sipAgent != null" >
+        sip_agent,
+      </if>
+      <if test="sipOwner != null" >
+        sip_owner,
+      </if>
+      <if test="cliPrompt != null" >
+        cli_prompt,
+      </if>
+      <if test="dhcpDefault != null" >
+        dhcp_default,
+      </if>
+      <if test="ipType != null" >
+        ip_type,
+      </if>
+      <if test="ipAddr != null" >
+        ip_addr,
+      </if>
+      <if test="macAddrNum != null" >
+        mac_addr_num,
+      </if>
+      <if test="madeFactory != null" >
+        made_factory,
+      </if>
+      <if test="madeSite != null" >
+        made_site,
+      </if>
+      <if test="madeDate != null" >
+        made_date,
+      </if>
+      <if test="testSite != null" >
+        test_site,
+      </if>
+      <if test="testDate != null" >
+        test_date,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="encryptType != null" >
+        encrypt_type,
+      </if>
+      <if test="outerIpAddr != null" >
+        outer_ip_addr,
+      </if>
+      <if test="innerIpAddr != null" >
+        inner_ip_addr,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="lastRegTime != null" >
+        last_reg_time,
+      </if>
+      <if test="regFailCount != null" >
+        reg_fail_count,
+      </if>
+      <if test="upgradeType != null" >
+        upgrade_type,
+      </if>
+      <if test="upgradeForceFlag != null" >
+        upgrade_force_flag,
+      </if>
+      <if test="targetSoftwareVer != null" >
+        target_software_ver,
+      </if>
+      <if test="upgradeStatus != null" >
+        upgrade_status,
+      </if>
+      <if test="lastUpgradeResult != null" >
+        last_upgrade_result,
+      </if>
+      <if test="lastUpgradeTime != null" >
+        last_upgrade_time,
+      </if>
+      <if test="targetCfgVer != null" >
+        target_cfg_ver,
+      </if>
+      <if test="cfgUpgradeStatus != null" >
+        cfg_upgrade_status,
+      </if>
+      <if test="lastCfgUpgradeResult != null" >
+        last_cfg_upgrade_result,
+      </if>
+      <if test="lastCfgUpgradeTime != null" >
+        last_cfg_upgrade_time,
+      </if>
+      <if test="portTotalCount != null" >
+        port_total_count,
+      </if>
+      <if test="portWorkCount != null" >
+        port_work_count,
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc,
+      </if>
+      <if test="nextNeAlarmSn != null" >
+        next_ne_alarm_sn,
+      </if>
+      <if test="syslogStatus != null" >
+        syslog_status,
+      </if>
+      <if test="logSysUuid != null" >
+        log_sys_uuid,
+      </if>
+      <if test="syslogBeginDate != null" >
+        syslog_begin_date,
+      </if>
+      <if test="syslogEndDate != null" >
+        syslog_end_date,
+      </if>
+      <if test="syslogDebugLevel != null" >
+        syslog_debug_level,
+      </if>
+      <if test="cdrLogFlag != null" >
+        cdr_log_flag,
+      </if>
+      <if test="signalLogFlag != null" >
+        signal_log_flag,
+      </if>
+      <if test="mediaLogFlag != null" >
+        media_log_flag,
+      </if>
+      <if test="systemLogFlag != null" >
+        system_log_flag,
+      </if>
+      <if test="mngLogFlag != null" >
+        mng_log_flag,
+      </if>
+      <if test="cdrLogFalg != null" >
+        cdr_log_falg,
+      </if>
+      <if test="sipsrvLockFlag != null" >
+        sipsrv_lock_flag,
+      </if>
+      <if test="primarySipServer != null" >
+        primary_sip_server,
+      </if>
+      <if test="primarySipsrvPort != null" >
+        primary_sipsrv_port,
+      </if>
+      <if test="secondarySipServer != null" >
+        secondary_sip_server,
+      </if>
+      <if test="secondarySipsrvPort != null" >
+        secondary_sipsrv_port,
+      </if>
+      <if test="ntpStatus != null" >
+        ntp_status,
+      </if>
+      <if test="autoRebootFlag != null" >
+        auto_reboot_flag,
+      </if>
+      <if test="switchChipStatus != null" >
+        switch_chip_status,
+      </if>
+      <if test="curCpu != null" >
+        cur_cpu,
+      </if>
+      <if test="avgCpu5 != null" >
+        avg_cpu_5,
+      </if>
+      <if test="avgCpu60 != null" >
+        avg_cpu_60,
+      </if>
+      <if test="avgCpu600 != null" >
+        avg_cpu_600,
+      </if>
+      <if test="freeMem != null" >
+        free_mem,
+      </if>
+      <if test="totalMem != null" >
+        total_mem,
+      </if>
+      <if test="memUsage != null" >
+        mem_usage,
+      </if>
+      <if test="devTime != null" >
+        dev_time,
+      </if>
+      <if test="alarmFlag != null" >
+        alarm_flag,
+      </if>
+      <if test="locMcc != null" >
+        loc_mcc,
+      </if>
+      <if test="locMnc != null" >
+        loc_mnc,
+      </if>
+      <if test="locLac != null" >
+        loc_lac,
+      </if>
+      <if test="locCellId != null" >
+        loc_cell_id,
+      </if>
+      <if test="locStatus != null" >
+        loc_status,
+      </if>
+      <if test="locLat != null" >
+        loc_lat,
+      </if>
+      <if test="locLng != null" >
+        loc_lng,
+      </if>
+      <if test="upgradeFlag != null" >
+        upgrade_flag,
+      </if>
+      <if test="timeChipStatus != null" >
+        time_chip_status,
+      </if>
+      <if test="allocMem != null" >
+        alloc_mem,
+      </if>
+      <if test="alarmShortPeriod != null" >
+        alarm_short_period,
+      </if>
+      <if test="alarmLongPeriod != null" >
+        alarm_long_period,
+      </if>
+      <if test="statusShortPeriod != null" >
+        status_short_period,
+      </if>
+      <if test="statusLongPeriod != null" >
+        status_long_period,
+      </if>
+      <if test="staticsPeriod != null" >
+        statics_period,
+      </if>
+      <if test="lockStatus != null" >
+        lock_status,
+      </if>
+      <if test="memAosUsage != null" >
+        mem_aos_usage,
+      </if>
+      <if test="memLinuxUsage != null" >
+        mem_linux_usage,
+      </if>
+      <if test="natMode != null" >
+        nat_mode,
+      </if>
+      <if test="natStatus != null" >
+        nat_status,
+      </if>
+      <if test="storeUsage != null" >
+        store_usage,
+      </if>
+      <if test="ethLinkMode != null" >
+        eth_link_mode,
+      </if>
+      <if test="portType1 != null" >
+        port_type1,
+      </if>
+      <if test="portCount1 != null" >
+        port_count1,
+      </if>
+      <if test="portType2 != null" >
+        port_type2,
+      </if>
+      <if test="portCount2 != null" >
+        port_count2,
+      </if>
+      <if test="portType3 != null" >
+        port_type3,
+      </if>
+      <if test="portCount3 != null" >
+        port_count3,
+      </if>
+      <if test="portType4 != null" >
+        port_type4,
+      </if>
+      <if test="portCount4 != null" >
+        port_count4,
+      </if>
+      <if test="portType5 != null" >
+        port_type5,
+      </if>
+      <if test="portCount5 != null" >
+        port_count5,
+      </if>
+      <if test="portType6 != null" >
+        port_type6,
+      </if>
+      <if test="portCount6 != null" >
+        port_count6,
+      </if>
+      <if test="portType7 != null" >
+        port_type7,
+      </if>
+      <if test="portCount7 != null" >
+        port_count7,
+      </if>
+      <if test="portType8 != null" >
+        port_type8,
+      </if>
+      <if test="portCount8 != null" >
+        port_count8,
+      </if>
+      <if test="dboStatus != null" >
+        dbo_status,
+      </if>
+      <if test="backupUrl != null" >
+        backup_url,
+      </if>
+      <if test="restoreUrl != null" >
+        restore_url,
+      </if>
+      <if test="restoreResult != null" >
+        restore_result,
+      </if>
+      <if test="licInitValidDays != null" >
+        lic_init_valid_days,
+      </if>
+      <if test="licUsedDays != null" >
+        lic_used_days,
+      </if>
+      <if test="licValidDays != null" >
+        lic_valid_days,
+      </if>
+      <if test="lastLicResult != null" >
+        last_lic_result,
+      </if>
+      <if test="lastLockResult != null" >
+        last_lock_result,
+      </if>
+      <if test="licLockFlag != null" >
+        lic_lock_flag,
+      </if>
+      <if test="tgLic != null" >
+        tg_lic,
+      </if>
+      <if test="jsonMsgId != null" >
+        json_msg_id,
+      </if>
+      <if test="updateLicFlag != null" >
+        update_lic_flag,
+      </if>
+      <if test="licStatus != null" >
+        lic_status,
+      </if>
+      <if test="lastLicResultCode != null" >
+        last_lic_result_code,
+      </if>
+      <if test="salesman != null" >
+        salesman,
+      </if>
+      <if test="productSns != null" >
+        product_sns,
+      </if>
+      <if test="rmLastRegTime != null" >
+        rm_last_reg_time,
+      </if>
+      <if test="rmRunStatus != null" >
+        rm_run_status,
+      </if>
+      <if test="rmProductId != null" >
+        rm_product_id,
+      </if>
+      <if test="rmProductName != null" >
+        rm_product_name,
+      </if>
+      <if test="rmPackageVersion != null" >
+        rm_package_version,
+      </if>
+      <if test="rmIp != null" >
+        rm_ip,
+      </if>
+      <if test="rmIsp != null" >
+        rm_isp,
+      </if>
+      <if test="rmAddress != null" >
+        rm_address,
+      </if>
+      <if test="domainName != null" >
+        domain_name,
+      </if>
+      <if test="dtrUser != null" >
+        dtr_user,
+      </if>
+      <if test="dtrForce != null" >
+        dtr_force,
+      </if>
+      <if test="resetReason != null" >
+        reset_reason,
+      </if>
+      <if test="reportSwitch != null" >
+        report_switch,
+      </if>
+      <if test="presetStatus != null" >
+        preset_status,
+      </if>
+      <if test="presetResult != null" >
+        preset_result,
+      </if>
+      <if test="redirctSrvUrl != null" >
+        redirct_srv_url,
+      </if>
+      <if test="transListenPort != null" >
+        trans_listen_port,
+      </if>
+      <if test="redirectSrvSetStatus != null" >
+        redirect_srv_set_status,
+      </if>
+      <if test="redirectSrvSetResult != null" >
+        redirect_srv_set_result,
+      </if>
+      <if test="sipserverSetResult != null" >
+        sipserver_set_result,
+      </if>
+      <if test="productSn != null" >
+        product_sn,
+      </if>
+      <if test="macAddrBegin != null" >
+        mac_addr_begin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=CHAR},
+      </if>
+      <if test="adminStatus != null" >
+        #{adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oprStatus != null" >
+        #{oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="runStatus != null" >
+        #{runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionStatus != null" >
+        #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="almStatusBits != null" >
+        #{almStatusBits,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="siteUuid != null" >
+        #{siteUuid,jdbcType=INTEGER},
+      </if>
+      <if test="policyUuid != null" >
+        #{policyUuid,jdbcType=INTEGER},
+      </if>
+      <if test="vendorId != null" >
+        #{vendorId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=CHAR},
+      </if>
+      <if test="packageVersion != null" >
+        #{packageVersion,jdbcType=CHAR},
+      </if>
+      <if test="packageBuildTime != null" >
+        #{packageBuildTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailVer != null" >
+        #{detailVer,jdbcType=VARCHAR},
+      </if>
+      <if test="sipAgent != null" >
+        #{sipAgent,jdbcType=CHAR},
+      </if>
+      <if test="sipOwner != null" >
+        #{sipOwner,jdbcType=CHAR},
+      </if>
+      <if test="cliPrompt != null" >
+        #{cliPrompt,jdbcType=CHAR},
+      </if>
+      <if test="dhcpDefault != null" >
+        #{dhcpDefault,jdbcType=INTEGER},
+      </if>
+      <if test="ipType != null" >
+        #{ipType,jdbcType=INTEGER},
+      </if>
+      <if test="ipAddr != null" >
+        #{ipAddr,jdbcType=CHAR},
+      </if>
+      <if test="macAddrNum != null" >
+        #{macAddrNum,jdbcType=INTEGER},
+      </if>
+      <if test="madeFactory != null" >
+        #{madeFactory,jdbcType=CHAR},
+      </if>
+      <if test="madeSite != null" >
+        #{madeSite,jdbcType=CHAR},
+      </if>
+      <if test="madeDate != null" >
+        #{madeDate,jdbcType=CHAR},
+      </if>
+      <if test="testSite != null" >
+        #{testSite,jdbcType=CHAR},
+      </if>
+      <if test="testDate != null" >
+        #{testDate,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="encryptType != null" >
+        #{encryptType,jdbcType=INTEGER},
+      </if>
+      <if test="outerIpAddr != null" >
+        #{outerIpAddr,jdbcType=CHAR},
+      </if>
+      <if test="innerIpAddr != null" >
+        #{innerIpAddr,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastRegTime != null" >
+        #{lastRegTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regFailCount != null" >
+        #{regFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="upgradeType != null" >
+        #{upgradeType,jdbcType=INTEGER},
+      </if>
+      <if test="upgradeForceFlag != null" >
+        #{upgradeForceFlag,jdbcType=INTEGER},
+      </if>
+      <if test="targetSoftwareVer != null" >
+        #{targetSoftwareVer,jdbcType=CHAR},
+      </if>
+      <if test="upgradeStatus != null" >
+        #{upgradeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpgradeResult != null" >
+        #{lastUpgradeResult,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpgradeTime != null" >
+        #{lastUpgradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="targetCfgVer != null" >
+        #{targetCfgVer,jdbcType=CHAR},
+      </if>
+      <if test="cfgUpgradeStatus != null" >
+        #{cfgUpgradeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="lastCfgUpgradeResult != null" >
+        #{lastCfgUpgradeResult,jdbcType=INTEGER},
+      </if>
+      <if test="lastCfgUpgradeTime != null" >
+        #{lastCfgUpgradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="portTotalCount != null" >
+        #{portTotalCount,jdbcType=INTEGER},
+      </if>
+      <if test="portWorkCount != null" >
+        #{portWorkCount,jdbcType=INTEGER},
+      </if>
+      <if test="detailDesc != null" >
+        #{detailDesc,jdbcType=CHAR},
+      </if>
+      <if test="nextNeAlarmSn != null" >
+        #{nextNeAlarmSn,jdbcType=INTEGER},
+      </if>
+      <if test="syslogStatus != null" >
+        #{syslogStatus,jdbcType=INTEGER},
+      </if>
+      <if test="logSysUuid != null" >
+        #{logSysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="syslogBeginDate != null" >
+        #{syslogBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syslogEndDate != null" >
+        #{syslogEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syslogDebugLevel != null" >
+        #{syslogDebugLevel,jdbcType=INTEGER},
+      </if>
+      <if test="cdrLogFlag != null" >
+        #{cdrLogFlag,jdbcType=INTEGER},
+      </if>
+      <if test="signalLogFlag != null" >
+        #{signalLogFlag,jdbcType=INTEGER},
+      </if>
+      <if test="mediaLogFlag != null" >
+        #{mediaLogFlag,jdbcType=INTEGER},
+      </if>
+      <if test="systemLogFlag != null" >
+        #{systemLogFlag,jdbcType=INTEGER},
+      </if>
+      <if test="mngLogFlag != null" >
+        #{mngLogFlag,jdbcType=INTEGER},
+      </if>
+      <if test="cdrLogFalg != null" >
+        #{cdrLogFalg,jdbcType=INTEGER},
+      </if>
+      <if test="sipsrvLockFlag != null" >
+        #{sipsrvLockFlag,jdbcType=INTEGER},
+      </if>
+      <if test="primarySipServer != null" >
+        #{primarySipServer,jdbcType=CHAR},
+      </if>
+      <if test="primarySipsrvPort != null" >
+        #{primarySipsrvPort,jdbcType=INTEGER},
+      </if>
+      <if test="secondarySipServer != null" >
+        #{secondarySipServer,jdbcType=CHAR},
+      </if>
+      <if test="secondarySipsrvPort != null" >
+        #{secondarySipsrvPort,jdbcType=INTEGER},
+      </if>
+      <if test="ntpStatus != null" >
+        #{ntpStatus,jdbcType=INTEGER},
+      </if>
+      <if test="autoRebootFlag != null" >
+        #{autoRebootFlag,jdbcType=INTEGER},
+      </if>
+      <if test="switchChipStatus != null" >
+        #{switchChipStatus,jdbcType=INTEGER},
+      </if>
+      <if test="curCpu != null" >
+        #{curCpu,jdbcType=INTEGER},
+      </if>
+      <if test="avgCpu5 != null" >
+        #{avgCpu5,jdbcType=INTEGER},
+      </if>
+      <if test="avgCpu60 != null" >
+        #{avgCpu60,jdbcType=INTEGER},
+      </if>
+      <if test="avgCpu600 != null" >
+        #{avgCpu600,jdbcType=INTEGER},
+      </if>
+      <if test="freeMem != null" >
+        #{freeMem,jdbcType=INTEGER},
+      </if>
+      <if test="totalMem != null" >
+        #{totalMem,jdbcType=INTEGER},
+      </if>
+      <if test="memUsage != null" >
+        #{memUsage,jdbcType=INTEGER},
+      </if>
+      <if test="devTime != null" >
+        #{devTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmFlag != null" >
+        #{alarmFlag,jdbcType=INTEGER},
+      </if>
+      <if test="locMcc != null" >
+        #{locMcc,jdbcType=INTEGER},
+      </if>
+      <if test="locMnc != null" >
+        #{locMnc,jdbcType=INTEGER},
+      </if>
+      <if test="locLac != null" >
+        #{locLac,jdbcType=INTEGER},
+      </if>
+      <if test="locCellId != null" >
+        #{locCellId,jdbcType=INTEGER},
+      </if>
+      <if test="locStatus != null" >
+        #{locStatus,jdbcType=INTEGER},
+      </if>
+      <if test="locLat != null" >
+        #{locLat,jdbcType=REAL},
+      </if>
+      <if test="locLng != null" >
+        #{locLng,jdbcType=REAL},
+      </if>
+      <if test="upgradeFlag != null" >
+        #{upgradeFlag,jdbcType=INTEGER},
+      </if>
+      <if test="timeChipStatus != null" >
+        #{timeChipStatus,jdbcType=INTEGER},
+      </if>
+      <if test="allocMem != null" >
+        #{allocMem,jdbcType=INTEGER},
+      </if>
+      <if test="alarmShortPeriod != null" >
+        #{alarmShortPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="alarmLongPeriod != null" >
+        #{alarmLongPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="statusShortPeriod != null" >
+        #{statusShortPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="statusLongPeriod != null" >
+        #{statusLongPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="staticsPeriod != null" >
+        #{staticsPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="lockStatus != null" >
+        #{lockStatus,jdbcType=INTEGER},
+      </if>
+      <if test="memAosUsage != null" >
+        #{memAosUsage,jdbcType=INTEGER},
+      </if>
+      <if test="memLinuxUsage != null" >
+        #{memLinuxUsage,jdbcType=INTEGER},
+      </if>
+      <if test="natMode != null" >
+        #{natMode,jdbcType=INTEGER},
+      </if>
+      <if test="natStatus != null" >
+        #{natStatus,jdbcType=INTEGER},
+      </if>
+      <if test="storeUsage != null" >
+        #{storeUsage,jdbcType=INTEGER},
+      </if>
+      <if test="ethLinkMode != null" >
+        #{ethLinkMode,jdbcType=INTEGER},
+      </if>
+      <if test="portType1 != null" >
+        #{portType1,jdbcType=INTEGER},
+      </if>
+      <if test="portCount1 != null" >
+        #{portCount1,jdbcType=INTEGER},
+      </if>
+      <if test="portType2 != null" >
+        #{portType2,jdbcType=INTEGER},
+      </if>
+      <if test="portCount2 != null" >
+        #{portCount2,jdbcType=INTEGER},
+      </if>
+      <if test="portType3 != null" >
+        #{portType3,jdbcType=INTEGER},
+      </if>
+      <if test="portCount3 != null" >
+        #{portCount3,jdbcType=INTEGER},
+      </if>
+      <if test="portType4 != null" >
+        #{portType4,jdbcType=INTEGER},
+      </if>
+      <if test="portCount4 != null" >
+        #{portCount4,jdbcType=INTEGER},
+      </if>
+      <if test="portType5 != null" >
+        #{portType5,jdbcType=INTEGER},
+      </if>
+      <if test="portCount5 != null" >
+        #{portCount5,jdbcType=INTEGER},
+      </if>
+      <if test="portType6 != null" >
+        #{portType6,jdbcType=INTEGER},
+      </if>
+      <if test="portCount6 != null" >
+        #{portCount6,jdbcType=INTEGER},
+      </if>
+      <if test="portType7 != null" >
+        #{portType7,jdbcType=INTEGER},
+      </if>
+      <if test="portCount7 != null" >
+        #{portCount7,jdbcType=INTEGER},
+      </if>
+      <if test="portType8 != null" >
+        #{portType8,jdbcType=INTEGER},
+      </if>
+      <if test="portCount8 != null" >
+        #{portCount8,jdbcType=INTEGER},
+      </if>
+      <if test="dboStatus != null" >
+        #{dboStatus,jdbcType=INTEGER},
+      </if>
+      <if test="backupUrl != null" >
+        #{backupUrl,jdbcType=CHAR},
+      </if>
+      <if test="restoreUrl != null" >
+        #{restoreUrl,jdbcType=CHAR},
+      </if>
+      <if test="restoreResult != null" >
+        #{restoreResult,jdbcType=INTEGER},
+      </if>
+      <if test="licInitValidDays != null" >
+        #{licInitValidDays,jdbcType=INTEGER},
+      </if>
+      <if test="licUsedDays != null" >
+        #{licUsedDays,jdbcType=INTEGER},
+      </if>
+      <if test="licValidDays != null" >
+        #{licValidDays,jdbcType=INTEGER},
+      </if>
+      <if test="lastLicResult != null" >
+        #{lastLicResult,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLockResult != null" >
+        #{lastLockResult,jdbcType=CHAR},
+      </if>
+      <if test="licLockFlag != null" >
+        #{licLockFlag,jdbcType=INTEGER},
+      </if>
+      <if test="tgLic != null" >
+        #{tgLic,jdbcType=CHAR},
+      </if>
+      <if test="jsonMsgId != null" >
+        #{jsonMsgId,jdbcType=INTEGER},
+      </if>
+      <if test="updateLicFlag != null" >
+        #{updateLicFlag,jdbcType=INTEGER},
+      </if>
+      <if test="licStatus != null" >
+        #{licStatus,jdbcType=INTEGER},
+      </if>
+      <if test="lastLicResultCode != null" >
+        #{lastLicResultCode,jdbcType=INTEGER},
+      </if>
+      <if test="salesman != null" >
+        #{salesman,jdbcType=CHAR},
+      </if>
+      <if test="productSns != null" >
+        #{productSns,jdbcType=CHAR},
+      </if>
+      <if test="rmLastRegTime != null" >
+        #{rmLastRegTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rmRunStatus != null" >
+        #{rmRunStatus,jdbcType=INTEGER},
+      </if>
+      <if test="rmProductId != null" >
+        #{rmProductId,jdbcType=INTEGER},
+      </if>
+      <if test="rmProductName != null" >
+        #{rmProductName,jdbcType=CHAR},
+      </if>
+      <if test="rmPackageVersion != null" >
+        #{rmPackageVersion,jdbcType=CHAR},
+      </if>
+      <if test="rmIp != null" >
+        #{rmIp,jdbcType=CHAR},
+      </if>
+      <if test="rmIsp != null" >
+        #{rmIsp,jdbcType=CHAR},
+      </if>
+      <if test="rmAddress != null" >
+        #{rmAddress,jdbcType=CHAR},
+      </if>
+      <if test="domainName != null" >
+        #{domainName,jdbcType=CHAR},
+      </if>
+      <if test="dtrUser != null" >
+        #{dtrUser,jdbcType=INTEGER},
+      </if>
+      <if test="dtrForce != null" >
+        #{dtrForce,jdbcType=INTEGER},
+      </if>
+      <if test="resetReason != null" >
+        #{resetReason,jdbcType=INTEGER},
+      </if>
+      <if test="reportSwitch != null" >
+        #{reportSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="presetStatus != null" >
+        #{presetStatus,jdbcType=INTEGER},
+      </if>
+      <if test="presetResult != null" >
+        #{presetResult,jdbcType=INTEGER},
+      </if>
+      <if test="redirctSrvUrl != null" >
+        #{redirctSrvUrl,jdbcType=CHAR},
+      </if>
+      <if test="transListenPort != null" >
+        #{transListenPort,jdbcType=INTEGER},
+      </if>
+      <if test="redirectSrvSetStatus != null" >
+        #{redirectSrvSetStatus,jdbcType=INTEGER},
+      </if>
+      <if test="redirectSrvSetResult != null" >
+        #{redirectSrvSetResult,jdbcType=INTEGER},
+      </if>
+      <if test="sipserverSetResult != null" >
+        #{sipserverSetResult,jdbcType=CHAR},
+      </if>
+      <if test="productSn != null" >
+        #{productSn,jdbcType=BINARY},
+      </if>
+      <if test="macAddrBegin != null" >
+        #{macAddrBegin,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblNeCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_ne
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_ne
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.alias != null" >
+        alias = #{record.alias,jdbcType=CHAR},
+      </if>
+      <if test="record.adminStatus != null" >
+        admin_status = #{record.adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.oprStatus != null" >
+        opr_status = #{record.oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.runStatus != null" >
+        run_status = #{record.runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionStatus != null" >
+        action_status = #{record.actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionResult != null" >
+        action_result = #{record.actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.almStatusBits != null" >
+        alm_status_bits = #{record.almStatusBits,jdbcType=INTEGER},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.siteUuid != null" >
+        site_uuid = #{record.siteUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.policyUuid != null" >
+        policy_uuid = #{record.policyUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.vendorId != null" >
+        vendor_id = #{record.vendorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.productId != null" >
+        product_id = #{record.productId,jdbcType=INTEGER},
+      </if>
+      <if test="record.productName != null" >
+        product_name = #{record.productName,jdbcType=CHAR},
+      </if>
+      <if test="record.packageVersion != null" >
+        package_version = #{record.packageVersion,jdbcType=CHAR},
+      </if>
+      <if test="record.packageBuildTime != null" >
+        package_build_time = #{record.packageBuildTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.detailVer != null" >
+        detail_ver = #{record.detailVer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sipAgent != null" >
+        sip_agent = #{record.sipAgent,jdbcType=CHAR},
+      </if>
+      <if test="record.sipOwner != null" >
+        sip_owner = #{record.sipOwner,jdbcType=CHAR},
+      </if>
+      <if test="record.cliPrompt != null" >
+        cli_prompt = #{record.cliPrompt,jdbcType=CHAR},
+      </if>
+      <if test="record.dhcpDefault != null" >
+        dhcp_default = #{record.dhcpDefault,jdbcType=INTEGER},
+      </if>
+      <if test="record.ipType != null" >
+        ip_type = #{record.ipType,jdbcType=INTEGER},
+      </if>
+      <if test="record.ipAddr != null" >
+        ip_addr = #{record.ipAddr,jdbcType=CHAR},
+      </if>
+      <if test="record.macAddrNum != null" >
+        mac_addr_num = #{record.macAddrNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.madeFactory != null" >
+        made_factory = #{record.madeFactory,jdbcType=CHAR},
+      </if>
+      <if test="record.madeSite != null" >
+        made_site = #{record.madeSite,jdbcType=CHAR},
+      </if>
+      <if test="record.madeDate != null" >
+        made_date = #{record.madeDate,jdbcType=CHAR},
+      </if>
+      <if test="record.testSite != null" >
+        test_site = #{record.testSite,jdbcType=CHAR},
+      </if>
+      <if test="record.testDate != null" >
+        test_date = #{record.testDate,jdbcType=CHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=CHAR},
+      </if>
+      <if test="record.encryptType != null" >
+        encrypt_type = #{record.encryptType,jdbcType=INTEGER},
+      </if>
+      <if test="record.outerIpAddr != null" >
+        outer_ip_addr = #{record.outerIpAddr,jdbcType=CHAR},
+      </if>
+      <if test="record.innerIpAddr != null" >
+        inner_ip_addr = #{record.innerIpAddr,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastRegTime != null" >
+        last_reg_time = #{record.lastRegTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.regFailCount != null" >
+        reg_fail_count = #{record.regFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.upgradeType != null" >
+        upgrade_type = #{record.upgradeType,jdbcType=INTEGER},
+      </if>
+      <if test="record.upgradeForceFlag != null" >
+        upgrade_force_flag = #{record.upgradeForceFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.targetSoftwareVer != null" >
+        target_software_ver = #{record.targetSoftwareVer,jdbcType=CHAR},
+      </if>
+      <if test="record.upgradeStatus != null" >
+        upgrade_status = #{record.upgradeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastUpgradeResult != null" >
+        last_upgrade_result = #{record.lastUpgradeResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastUpgradeTime != null" >
+        last_upgrade_time = #{record.lastUpgradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.targetCfgVer != null" >
+        target_cfg_ver = #{record.targetCfgVer,jdbcType=CHAR},
+      </if>
+      <if test="record.cfgUpgradeStatus != null" >
+        cfg_upgrade_status = #{record.cfgUpgradeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastCfgUpgradeResult != null" >
+        last_cfg_upgrade_result = #{record.lastCfgUpgradeResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastCfgUpgradeTime != null" >
+        last_cfg_upgrade_time = #{record.lastCfgUpgradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.portTotalCount != null" >
+        port_total_count = #{record.portTotalCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.portWorkCount != null" >
+        port_work_count = #{record.portWorkCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.detailDesc != null" >
+        detail_desc = #{record.detailDesc,jdbcType=CHAR},
+      </if>
+      <if test="record.nextNeAlarmSn != null" >
+        next_ne_alarm_sn = #{record.nextNeAlarmSn,jdbcType=INTEGER},
+      </if>
+      <if test="record.syslogStatus != null" >
+        syslog_status = #{record.syslogStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.logSysUuid != null" >
+        log_sys_uuid = #{record.logSysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.syslogBeginDate != null" >
+        syslog_begin_date = #{record.syslogBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.syslogEndDate != null" >
+        syslog_end_date = #{record.syslogEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.syslogDebugLevel != null" >
+        syslog_debug_level = #{record.syslogDebugLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.cdrLogFlag != null" >
+        cdr_log_flag = #{record.cdrLogFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.signalLogFlag != null" >
+        signal_log_flag = #{record.signalLogFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.mediaLogFlag != null" >
+        media_log_flag = #{record.mediaLogFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.systemLogFlag != null" >
+        system_log_flag = #{record.systemLogFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.mngLogFlag != null" >
+        mng_log_flag = #{record.mngLogFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.cdrLogFalg != null" >
+        cdr_log_falg = #{record.cdrLogFalg,jdbcType=INTEGER},
+      </if>
+      <if test="record.sipsrvLockFlag != null" >
+        sipsrv_lock_flag = #{record.sipsrvLockFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.primarySipServer != null" >
+        primary_sip_server = #{record.primarySipServer,jdbcType=CHAR},
+      </if>
+      <if test="record.primarySipsrvPort != null" >
+        primary_sipsrv_port = #{record.primarySipsrvPort,jdbcType=INTEGER},
+      </if>
+      <if test="record.secondarySipServer != null" >
+        secondary_sip_server = #{record.secondarySipServer,jdbcType=CHAR},
+      </if>
+      <if test="record.secondarySipsrvPort != null" >
+        secondary_sipsrv_port = #{record.secondarySipsrvPort,jdbcType=INTEGER},
+      </if>
+      <if test="record.ntpStatus != null" >
+        ntp_status = #{record.ntpStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.autoRebootFlag != null" >
+        auto_reboot_flag = #{record.autoRebootFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.switchChipStatus != null" >
+        switch_chip_status = #{record.switchChipStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.curCpu != null" >
+        cur_cpu = #{record.curCpu,jdbcType=INTEGER},
+      </if>
+      <if test="record.avgCpu5 != null" >
+        avg_cpu_5 = #{record.avgCpu5,jdbcType=INTEGER},
+      </if>
+      <if test="record.avgCpu60 != null" >
+        avg_cpu_60 = #{record.avgCpu60,jdbcType=INTEGER},
+      </if>
+      <if test="record.avgCpu600 != null" >
+        avg_cpu_600 = #{record.avgCpu600,jdbcType=INTEGER},
+      </if>
+      <if test="record.freeMem != null" >
+        free_mem = #{record.freeMem,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalMem != null" >
+        total_mem = #{record.totalMem,jdbcType=INTEGER},
+      </if>
+      <if test="record.memUsage != null" >
+        mem_usage = #{record.memUsage,jdbcType=INTEGER},
+      </if>
+      <if test="record.devTime != null" >
+        dev_time = #{record.devTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.alarmFlag != null" >
+        alarm_flag = #{record.alarmFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.locMcc != null" >
+        loc_mcc = #{record.locMcc,jdbcType=INTEGER},
+      </if>
+      <if test="record.locMnc != null" >
+        loc_mnc = #{record.locMnc,jdbcType=INTEGER},
+      </if>
+      <if test="record.locLac != null" >
+        loc_lac = #{record.locLac,jdbcType=INTEGER},
+      </if>
+      <if test="record.locCellId != null" >
+        loc_cell_id = #{record.locCellId,jdbcType=INTEGER},
+      </if>
+      <if test="record.locStatus != null" >
+        loc_status = #{record.locStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.locLat != null" >
+        loc_lat = #{record.locLat,jdbcType=REAL},
+      </if>
+      <if test="record.locLng != null" >
+        loc_lng = #{record.locLng,jdbcType=REAL},
+      </if>
+      <if test="record.upgradeFlag != null" >
+        upgrade_flag = #{record.upgradeFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.timeChipStatus != null" >
+        time_chip_status = #{record.timeChipStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.allocMem != null" >
+        alloc_mem = #{record.allocMem,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmShortPeriod != null" >
+        alarm_short_period = #{record.alarmShortPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmLongPeriod != null" >
+        alarm_long_period = #{record.alarmLongPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.statusShortPeriod != null" >
+        status_short_period = #{record.statusShortPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.statusLongPeriod != null" >
+        status_long_period = #{record.statusLongPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.staticsPeriod != null" >
+        statics_period = #{record.staticsPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.lockStatus != null" >
+        lock_status = #{record.lockStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.memAosUsage != null" >
+        mem_aos_usage = #{record.memAosUsage,jdbcType=INTEGER},
+      </if>
+      <if test="record.memLinuxUsage != null" >
+        mem_linux_usage = #{record.memLinuxUsage,jdbcType=INTEGER},
+      </if>
+      <if test="record.natMode != null" >
+        nat_mode = #{record.natMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.natStatus != null" >
+        nat_status = #{record.natStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeUsage != null" >
+        store_usage = #{record.storeUsage,jdbcType=INTEGER},
+      </if>
+      <if test="record.ethLinkMode != null" >
+        eth_link_mode = #{record.ethLinkMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.portType1 != null" >
+        port_type1 = #{record.portType1,jdbcType=INTEGER},
+      </if>
+      <if test="record.portCount1 != null" >
+        port_count1 = #{record.portCount1,jdbcType=INTEGER},
+      </if>
+      <if test="record.portType2 != null" >
+        port_type2 = #{record.portType2,jdbcType=INTEGER},
+      </if>
+      <if test="record.portCount2 != null" >
+        port_count2 = #{record.portCount2,jdbcType=INTEGER},
+      </if>
+      <if test="record.portType3 != null" >
+        port_type3 = #{record.portType3,jdbcType=INTEGER},
+      </if>
+      <if test="record.portCount3 != null" >
+        port_count3 = #{record.portCount3,jdbcType=INTEGER},
+      </if>
+      <if test="record.portType4 != null" >
+        port_type4 = #{record.portType4,jdbcType=INTEGER},
+      </if>
+      <if test="record.portCount4 != null" >
+        port_count4 = #{record.portCount4,jdbcType=INTEGER},
+      </if>
+      <if test="record.portType5 != null" >
+        port_type5 = #{record.portType5,jdbcType=INTEGER},
+      </if>
+      <if test="record.portCount5 != null" >
+        port_count5 = #{record.portCount5,jdbcType=INTEGER},
+      </if>
+      <if test="record.portType6 != null" >
+        port_type6 = #{record.portType6,jdbcType=INTEGER},
+      </if>
+      <if test="record.portCount6 != null" >
+        port_count6 = #{record.portCount6,jdbcType=INTEGER},
+      </if>
+      <if test="record.portType7 != null" >
+        port_type7 = #{record.portType7,jdbcType=INTEGER},
+      </if>
+      <if test="record.portCount7 != null" >
+        port_count7 = #{record.portCount7,jdbcType=INTEGER},
+      </if>
+      <if test="record.portType8 != null" >
+        port_type8 = #{record.portType8,jdbcType=INTEGER},
+      </if>
+      <if test="record.portCount8 != null" >
+        port_count8 = #{record.portCount8,jdbcType=INTEGER},
+      </if>
+      <if test="record.dboStatus != null" >
+        dbo_status = #{record.dboStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.backupUrl != null" >
+        backup_url = #{record.backupUrl,jdbcType=CHAR},
+      </if>
+      <if test="record.restoreUrl != null" >
+        restore_url = #{record.restoreUrl,jdbcType=CHAR},
+      </if>
+      <if test="record.restoreResult != null" >
+        restore_result = #{record.restoreResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.licInitValidDays != null" >
+        lic_init_valid_days = #{record.licInitValidDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.licUsedDays != null" >
+        lic_used_days = #{record.licUsedDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.licValidDays != null" >
+        lic_valid_days = #{record.licValidDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastLicResult != null" >
+        last_lic_result = #{record.lastLicResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastLockResult != null" >
+        last_lock_result = #{record.lastLockResult,jdbcType=CHAR},
+      </if>
+      <if test="record.licLockFlag != null" >
+        lic_lock_flag = #{record.licLockFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.tgLic != null" >
+        tg_lic = #{record.tgLic,jdbcType=CHAR},
+      </if>
+      <if test="record.jsonMsgId != null" >
+        json_msg_id = #{record.jsonMsgId,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateLicFlag != null" >
+        update_lic_flag = #{record.updateLicFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.licStatus != null" >
+        lic_status = #{record.licStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastLicResultCode != null" >
+        last_lic_result_code = #{record.lastLicResultCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.salesman != null" >
+        salesman = #{record.salesman,jdbcType=CHAR},
+      </if>
+      <if test="record.productSns != null" >
+        product_sns = #{record.productSns,jdbcType=CHAR},
+      </if>
+      <if test="record.rmLastRegTime != null" >
+        rm_last_reg_time = #{record.rmLastRegTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rmRunStatus != null" >
+        rm_run_status = #{record.rmRunStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.rmProductId != null" >
+        rm_product_id = #{record.rmProductId,jdbcType=INTEGER},
+      </if>
+      <if test="record.rmProductName != null" >
+        rm_product_name = #{record.rmProductName,jdbcType=CHAR},
+      </if>
+      <if test="record.rmPackageVersion != null" >
+        rm_package_version = #{record.rmPackageVersion,jdbcType=CHAR},
+      </if>
+      <if test="record.rmIp != null" >
+        rm_ip = #{record.rmIp,jdbcType=CHAR},
+      </if>
+      <if test="record.rmIsp != null" >
+        rm_isp = #{record.rmIsp,jdbcType=CHAR},
+      </if>
+      <if test="record.rmAddress != null" >
+        rm_address = #{record.rmAddress,jdbcType=CHAR},
+      </if>
+      <if test="record.domainName != null" >
+        domain_name = #{record.domainName,jdbcType=CHAR},
+      </if>
+      <if test="record.dtrUser != null" >
+        dtr_user = #{record.dtrUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.dtrForce != null" >
+        dtr_force = #{record.dtrForce,jdbcType=INTEGER},
+      </if>
+      <if test="record.resetReason != null" >
+        reset_reason = #{record.resetReason,jdbcType=INTEGER},
+      </if>
+      <if test="record.reportSwitch != null" >
+        report_switch = #{record.reportSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="record.presetStatus != null" >
+        preset_status = #{record.presetStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.presetResult != null" >
+        preset_result = #{record.presetResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.redirctSrvUrl != null" >
+        redirct_srv_url = #{record.redirctSrvUrl,jdbcType=CHAR},
+      </if>
+      <if test="record.transListenPort != null" >
+        trans_listen_port = #{record.transListenPort,jdbcType=INTEGER},
+      </if>
+      <if test="record.redirectSrvSetStatus != null" >
+        redirect_srv_set_status = #{record.redirectSrvSetStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.redirectSrvSetResult != null" >
+        redirect_srv_set_result = #{record.redirectSrvSetResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.sipserverSetResult != null" >
+        sipserver_set_result = #{record.sipserverSetResult,jdbcType=CHAR},
+      </if>
+      <if test="record.productSn != null" >
+        product_sn = #{record.productSn,jdbcType=BINARY},
+      </if>
+      <if test="record.macAddrBegin != null" >
+        mac_addr_begin = #{record.macAddrBegin,jdbcType=BINARY},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update tbl_ne
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      alias = #{record.alias,jdbcType=CHAR},
+      admin_status = #{record.adminStatus,jdbcType=INTEGER},
+      opr_status = #{record.oprStatus,jdbcType=INTEGER},
+      run_status = #{record.runStatus,jdbcType=INTEGER},
+      action_status = #{record.actionStatus,jdbcType=INTEGER},
+      action_result = #{record.actionResult,jdbcType=INTEGER},
+      alm_status_bits = #{record.almStatusBits,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      site_uuid = #{record.siteUuid,jdbcType=INTEGER},
+      policy_uuid = #{record.policyUuid,jdbcType=INTEGER},
+      vendor_id = #{record.vendorId,jdbcType=INTEGER},
+      product_id = #{record.productId,jdbcType=INTEGER},
+      product_name = #{record.productName,jdbcType=CHAR},
+      package_version = #{record.packageVersion,jdbcType=CHAR},
+      package_build_time = #{record.packageBuildTime,jdbcType=TIMESTAMP},
+      detail_ver = #{record.detailVer,jdbcType=VARCHAR},
+      sip_agent = #{record.sipAgent,jdbcType=CHAR},
+      sip_owner = #{record.sipOwner,jdbcType=CHAR},
+      cli_prompt = #{record.cliPrompt,jdbcType=CHAR},
+      dhcp_default = #{record.dhcpDefault,jdbcType=INTEGER},
+      ip_type = #{record.ipType,jdbcType=INTEGER},
+      ip_addr = #{record.ipAddr,jdbcType=CHAR},
+      mac_addr_num = #{record.macAddrNum,jdbcType=INTEGER},
+      made_factory = #{record.madeFactory,jdbcType=CHAR},
+      made_site = #{record.madeSite,jdbcType=CHAR},
+      made_date = #{record.madeDate,jdbcType=CHAR},
+      test_site = #{record.testSite,jdbcType=CHAR},
+      test_date = #{record.testDate,jdbcType=CHAR},
+      password = #{record.password,jdbcType=CHAR},
+      encrypt_type = #{record.encryptType,jdbcType=INTEGER},
+      outer_ip_addr = #{record.outerIpAddr,jdbcType=CHAR},
+      inner_ip_addr = #{record.innerIpAddr,jdbcType=CHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      last_reg_time = #{record.lastRegTime,jdbcType=TIMESTAMP},
+      reg_fail_count = #{record.regFailCount,jdbcType=INTEGER},
+      upgrade_type = #{record.upgradeType,jdbcType=INTEGER},
+      upgrade_force_flag = #{record.upgradeForceFlag,jdbcType=INTEGER},
+      target_software_ver = #{record.targetSoftwareVer,jdbcType=CHAR},
+      upgrade_status = #{record.upgradeStatus,jdbcType=INTEGER},
+      last_upgrade_result = #{record.lastUpgradeResult,jdbcType=INTEGER},
+      last_upgrade_time = #{record.lastUpgradeTime,jdbcType=TIMESTAMP},
+      target_cfg_ver = #{record.targetCfgVer,jdbcType=CHAR},
+      cfg_upgrade_status = #{record.cfgUpgradeStatus,jdbcType=INTEGER},
+      last_cfg_upgrade_result = #{record.lastCfgUpgradeResult,jdbcType=INTEGER},
+      last_cfg_upgrade_time = #{record.lastCfgUpgradeTime,jdbcType=TIMESTAMP},
+      port_total_count = #{record.portTotalCount,jdbcType=INTEGER},
+      port_work_count = #{record.portWorkCount,jdbcType=INTEGER},
+      detail_desc = #{record.detailDesc,jdbcType=CHAR},
+      next_ne_alarm_sn = #{record.nextNeAlarmSn,jdbcType=INTEGER},
+      syslog_status = #{record.syslogStatus,jdbcType=INTEGER},
+      log_sys_uuid = #{record.logSysUuid,jdbcType=INTEGER},
+      syslog_begin_date = #{record.syslogBeginDate,jdbcType=TIMESTAMP},
+      syslog_end_date = #{record.syslogEndDate,jdbcType=TIMESTAMP},
+      syslog_debug_level = #{record.syslogDebugLevel,jdbcType=INTEGER},
+      cdr_log_flag = #{record.cdrLogFlag,jdbcType=INTEGER},
+      signal_log_flag = #{record.signalLogFlag,jdbcType=INTEGER},
+      media_log_flag = #{record.mediaLogFlag,jdbcType=INTEGER},
+      system_log_flag = #{record.systemLogFlag,jdbcType=INTEGER},
+      mng_log_flag = #{record.mngLogFlag,jdbcType=INTEGER},
+      cdr_log_falg = #{record.cdrLogFalg,jdbcType=INTEGER},
+      sipsrv_lock_flag = #{record.sipsrvLockFlag,jdbcType=INTEGER},
+      primary_sip_server = #{record.primarySipServer,jdbcType=CHAR},
+      primary_sipsrv_port = #{record.primarySipsrvPort,jdbcType=INTEGER},
+      secondary_sip_server = #{record.secondarySipServer,jdbcType=CHAR},
+      secondary_sipsrv_port = #{record.secondarySipsrvPort,jdbcType=INTEGER},
+      ntp_status = #{record.ntpStatus,jdbcType=INTEGER},
+      auto_reboot_flag = #{record.autoRebootFlag,jdbcType=INTEGER},
+      switch_chip_status = #{record.switchChipStatus,jdbcType=INTEGER},
+      cur_cpu = #{record.curCpu,jdbcType=INTEGER},
+      avg_cpu_5 = #{record.avgCpu5,jdbcType=INTEGER},
+      avg_cpu_60 = #{record.avgCpu60,jdbcType=INTEGER},
+      avg_cpu_600 = #{record.avgCpu600,jdbcType=INTEGER},
+      free_mem = #{record.freeMem,jdbcType=INTEGER},
+      total_mem = #{record.totalMem,jdbcType=INTEGER},
+      mem_usage = #{record.memUsage,jdbcType=INTEGER},
+      dev_time = #{record.devTime,jdbcType=TIMESTAMP},
+      alarm_flag = #{record.alarmFlag,jdbcType=INTEGER},
+      loc_mcc = #{record.locMcc,jdbcType=INTEGER},
+      loc_mnc = #{record.locMnc,jdbcType=INTEGER},
+      loc_lac = #{record.locLac,jdbcType=INTEGER},
+      loc_cell_id = #{record.locCellId,jdbcType=INTEGER},
+      loc_status = #{record.locStatus,jdbcType=INTEGER},
+      loc_lat = #{record.locLat,jdbcType=REAL},
+      loc_lng = #{record.locLng,jdbcType=REAL},
+      upgrade_flag = #{record.upgradeFlag,jdbcType=INTEGER},
+      time_chip_status = #{record.timeChipStatus,jdbcType=INTEGER},
+      alloc_mem = #{record.allocMem,jdbcType=INTEGER},
+      alarm_short_period = #{record.alarmShortPeriod,jdbcType=INTEGER},
+      alarm_long_period = #{record.alarmLongPeriod,jdbcType=INTEGER},
+      status_short_period = #{record.statusShortPeriod,jdbcType=INTEGER},
+      status_long_period = #{record.statusLongPeriod,jdbcType=INTEGER},
+      statics_period = #{record.staticsPeriod,jdbcType=INTEGER},
+      lock_status = #{record.lockStatus,jdbcType=INTEGER},
+      mem_aos_usage = #{record.memAosUsage,jdbcType=INTEGER},
+      mem_linux_usage = #{record.memLinuxUsage,jdbcType=INTEGER},
+      nat_mode = #{record.natMode,jdbcType=INTEGER},
+      nat_status = #{record.natStatus,jdbcType=INTEGER},
+      store_usage = #{record.storeUsage,jdbcType=INTEGER},
+      eth_link_mode = #{record.ethLinkMode,jdbcType=INTEGER},
+      port_type1 = #{record.portType1,jdbcType=INTEGER},
+      port_count1 = #{record.portCount1,jdbcType=INTEGER},
+      port_type2 = #{record.portType2,jdbcType=INTEGER},
+      port_count2 = #{record.portCount2,jdbcType=INTEGER},
+      port_type3 = #{record.portType3,jdbcType=INTEGER},
+      port_count3 = #{record.portCount3,jdbcType=INTEGER},
+      port_type4 = #{record.portType4,jdbcType=INTEGER},
+      port_count4 = #{record.portCount4,jdbcType=INTEGER},
+      port_type5 = #{record.portType5,jdbcType=INTEGER},
+      port_count5 = #{record.portCount5,jdbcType=INTEGER},
+      port_type6 = #{record.portType6,jdbcType=INTEGER},
+      port_count6 = #{record.portCount6,jdbcType=INTEGER},
+      port_type7 = #{record.portType7,jdbcType=INTEGER},
+      port_count7 = #{record.portCount7,jdbcType=INTEGER},
+      port_type8 = #{record.portType8,jdbcType=INTEGER},
+      port_count8 = #{record.portCount8,jdbcType=INTEGER},
+      dbo_status = #{record.dboStatus,jdbcType=INTEGER},
+      backup_url = #{record.backupUrl,jdbcType=CHAR},
+      restore_url = #{record.restoreUrl,jdbcType=CHAR},
+      restore_result = #{record.restoreResult,jdbcType=INTEGER},
+      lic_init_valid_days = #{record.licInitValidDays,jdbcType=INTEGER},
+      lic_used_days = #{record.licUsedDays,jdbcType=INTEGER},
+      lic_valid_days = #{record.licValidDays,jdbcType=INTEGER},
+      last_lic_result = #{record.lastLicResult,jdbcType=VARCHAR},
+      last_lock_result = #{record.lastLockResult,jdbcType=CHAR},
+      lic_lock_flag = #{record.licLockFlag,jdbcType=INTEGER},
+      tg_lic = #{record.tgLic,jdbcType=CHAR},
+      json_msg_id = #{record.jsonMsgId,jdbcType=INTEGER},
+      update_lic_flag = #{record.updateLicFlag,jdbcType=INTEGER},
+      lic_status = #{record.licStatus,jdbcType=INTEGER},
+      last_lic_result_code = #{record.lastLicResultCode,jdbcType=INTEGER},
+      salesman = #{record.salesman,jdbcType=CHAR},
+      product_sns = #{record.productSns,jdbcType=CHAR},
+      rm_last_reg_time = #{record.rmLastRegTime,jdbcType=TIMESTAMP},
+      rm_run_status = #{record.rmRunStatus,jdbcType=INTEGER},
+      rm_product_id = #{record.rmProductId,jdbcType=INTEGER},
+      rm_product_name = #{record.rmProductName,jdbcType=CHAR},
+      rm_package_version = #{record.rmPackageVersion,jdbcType=CHAR},
+      rm_ip = #{record.rmIp,jdbcType=CHAR},
+      rm_isp = #{record.rmIsp,jdbcType=CHAR},
+      rm_address = #{record.rmAddress,jdbcType=CHAR},
+      domain_name = #{record.domainName,jdbcType=CHAR},
+      dtr_user = #{record.dtrUser,jdbcType=INTEGER},
+      dtr_force = #{record.dtrForce,jdbcType=INTEGER},
+      reset_reason = #{record.resetReason,jdbcType=INTEGER},
+      report_switch = #{record.reportSwitch,jdbcType=INTEGER},
+      preset_status = #{record.presetStatus,jdbcType=INTEGER},
+      preset_result = #{record.presetResult,jdbcType=INTEGER},
+      redirct_srv_url = #{record.redirctSrvUrl,jdbcType=CHAR},
+      trans_listen_port = #{record.transListenPort,jdbcType=INTEGER},
+      redirect_srv_set_status = #{record.redirectSrvSetStatus,jdbcType=INTEGER},
+      redirect_srv_set_result = #{record.redirectSrvSetResult,jdbcType=INTEGER},
+      sipserver_set_result = #{record.sipserverSetResult,jdbcType=CHAR},
+      product_sn = #{record.productSn,jdbcType=BINARY},
+      mac_addr_begin = #{record.macAddrBegin,jdbcType=BINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_ne
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      alias = #{record.alias,jdbcType=CHAR},
+      admin_status = #{record.adminStatus,jdbcType=INTEGER},
+      opr_status = #{record.oprStatus,jdbcType=INTEGER},
+      run_status = #{record.runStatus,jdbcType=INTEGER},
+      action_status = #{record.actionStatus,jdbcType=INTEGER},
+      action_result = #{record.actionResult,jdbcType=INTEGER},
+      alm_status_bits = #{record.almStatusBits,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      site_uuid = #{record.siteUuid,jdbcType=INTEGER},
+      policy_uuid = #{record.policyUuid,jdbcType=INTEGER},
+      vendor_id = #{record.vendorId,jdbcType=INTEGER},
+      product_id = #{record.productId,jdbcType=INTEGER},
+      product_name = #{record.productName,jdbcType=CHAR},
+      package_version = #{record.packageVersion,jdbcType=CHAR},
+      package_build_time = #{record.packageBuildTime,jdbcType=TIMESTAMP},
+      detail_ver = #{record.detailVer,jdbcType=VARCHAR},
+      sip_agent = #{record.sipAgent,jdbcType=CHAR},
+      sip_owner = #{record.sipOwner,jdbcType=CHAR},
+      cli_prompt = #{record.cliPrompt,jdbcType=CHAR},
+      dhcp_default = #{record.dhcpDefault,jdbcType=INTEGER},
+      ip_type = #{record.ipType,jdbcType=INTEGER},
+      ip_addr = #{record.ipAddr,jdbcType=CHAR},
+      mac_addr_num = #{record.macAddrNum,jdbcType=INTEGER},
+      made_factory = #{record.madeFactory,jdbcType=CHAR},
+      made_site = #{record.madeSite,jdbcType=CHAR},
+      made_date = #{record.madeDate,jdbcType=CHAR},
+      test_site = #{record.testSite,jdbcType=CHAR},
+      test_date = #{record.testDate,jdbcType=CHAR},
+      password = #{record.password,jdbcType=CHAR},
+      encrypt_type = #{record.encryptType,jdbcType=INTEGER},
+      outer_ip_addr = #{record.outerIpAddr,jdbcType=CHAR},
+      inner_ip_addr = #{record.innerIpAddr,jdbcType=CHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      last_reg_time = #{record.lastRegTime,jdbcType=TIMESTAMP},
+      reg_fail_count = #{record.regFailCount,jdbcType=INTEGER},
+      upgrade_type = #{record.upgradeType,jdbcType=INTEGER},
+      upgrade_force_flag = #{record.upgradeForceFlag,jdbcType=INTEGER},
+      target_software_ver = #{record.targetSoftwareVer,jdbcType=CHAR},
+      upgrade_status = #{record.upgradeStatus,jdbcType=INTEGER},
+      last_upgrade_result = #{record.lastUpgradeResult,jdbcType=INTEGER},
+      last_upgrade_time = #{record.lastUpgradeTime,jdbcType=TIMESTAMP},
+      target_cfg_ver = #{record.targetCfgVer,jdbcType=CHAR},
+      cfg_upgrade_status = #{record.cfgUpgradeStatus,jdbcType=INTEGER},
+      last_cfg_upgrade_result = #{record.lastCfgUpgradeResult,jdbcType=INTEGER},
+      last_cfg_upgrade_time = #{record.lastCfgUpgradeTime,jdbcType=TIMESTAMP},
+      port_total_count = #{record.portTotalCount,jdbcType=INTEGER},
+      port_work_count = #{record.portWorkCount,jdbcType=INTEGER},
+      detail_desc = #{record.detailDesc,jdbcType=CHAR},
+      next_ne_alarm_sn = #{record.nextNeAlarmSn,jdbcType=INTEGER},
+      syslog_status = #{record.syslogStatus,jdbcType=INTEGER},
+      log_sys_uuid = #{record.logSysUuid,jdbcType=INTEGER},
+      syslog_begin_date = #{record.syslogBeginDate,jdbcType=TIMESTAMP},
+      syslog_end_date = #{record.syslogEndDate,jdbcType=TIMESTAMP},
+      syslog_debug_level = #{record.syslogDebugLevel,jdbcType=INTEGER},
+      cdr_log_flag = #{record.cdrLogFlag,jdbcType=INTEGER},
+      signal_log_flag = #{record.signalLogFlag,jdbcType=INTEGER},
+      media_log_flag = #{record.mediaLogFlag,jdbcType=INTEGER},
+      system_log_flag = #{record.systemLogFlag,jdbcType=INTEGER},
+      mng_log_flag = #{record.mngLogFlag,jdbcType=INTEGER},
+      cdr_log_falg = #{record.cdrLogFalg,jdbcType=INTEGER},
+      sipsrv_lock_flag = #{record.sipsrvLockFlag,jdbcType=INTEGER},
+      primary_sip_server = #{record.primarySipServer,jdbcType=CHAR},
+      primary_sipsrv_port = #{record.primarySipsrvPort,jdbcType=INTEGER},
+      secondary_sip_server = #{record.secondarySipServer,jdbcType=CHAR},
+      secondary_sipsrv_port = #{record.secondarySipsrvPort,jdbcType=INTEGER},
+      ntp_status = #{record.ntpStatus,jdbcType=INTEGER},
+      auto_reboot_flag = #{record.autoRebootFlag,jdbcType=INTEGER},
+      switch_chip_status = #{record.switchChipStatus,jdbcType=INTEGER},
+      cur_cpu = #{record.curCpu,jdbcType=INTEGER},
+      avg_cpu_5 = #{record.avgCpu5,jdbcType=INTEGER},
+      avg_cpu_60 = #{record.avgCpu60,jdbcType=INTEGER},
+      avg_cpu_600 = #{record.avgCpu600,jdbcType=INTEGER},
+      free_mem = #{record.freeMem,jdbcType=INTEGER},
+      total_mem = #{record.totalMem,jdbcType=INTEGER},
+      mem_usage = #{record.memUsage,jdbcType=INTEGER},
+      dev_time = #{record.devTime,jdbcType=TIMESTAMP},
+      alarm_flag = #{record.alarmFlag,jdbcType=INTEGER},
+      loc_mcc = #{record.locMcc,jdbcType=INTEGER},
+      loc_mnc = #{record.locMnc,jdbcType=INTEGER},
+      loc_lac = #{record.locLac,jdbcType=INTEGER},
+      loc_cell_id = #{record.locCellId,jdbcType=INTEGER},
+      loc_status = #{record.locStatus,jdbcType=INTEGER},
+      loc_lat = #{record.locLat,jdbcType=REAL},
+      loc_lng = #{record.locLng,jdbcType=REAL},
+      upgrade_flag = #{record.upgradeFlag,jdbcType=INTEGER},
+      time_chip_status = #{record.timeChipStatus,jdbcType=INTEGER},
+      alloc_mem = #{record.allocMem,jdbcType=INTEGER},
+      alarm_short_period = #{record.alarmShortPeriod,jdbcType=INTEGER},
+      alarm_long_period = #{record.alarmLongPeriod,jdbcType=INTEGER},
+      status_short_period = #{record.statusShortPeriod,jdbcType=INTEGER},
+      status_long_period = #{record.statusLongPeriod,jdbcType=INTEGER},
+      statics_period = #{record.staticsPeriod,jdbcType=INTEGER},
+      lock_status = #{record.lockStatus,jdbcType=INTEGER},
+      mem_aos_usage = #{record.memAosUsage,jdbcType=INTEGER},
+      mem_linux_usage = #{record.memLinuxUsage,jdbcType=INTEGER},
+      nat_mode = #{record.natMode,jdbcType=INTEGER},
+      nat_status = #{record.natStatus,jdbcType=INTEGER},
+      store_usage = #{record.storeUsage,jdbcType=INTEGER},
+      eth_link_mode = #{record.ethLinkMode,jdbcType=INTEGER},
+      port_type1 = #{record.portType1,jdbcType=INTEGER},
+      port_count1 = #{record.portCount1,jdbcType=INTEGER},
+      port_type2 = #{record.portType2,jdbcType=INTEGER},
+      port_count2 = #{record.portCount2,jdbcType=INTEGER},
+      port_type3 = #{record.portType3,jdbcType=INTEGER},
+      port_count3 = #{record.portCount3,jdbcType=INTEGER},
+      port_type4 = #{record.portType4,jdbcType=INTEGER},
+      port_count4 = #{record.portCount4,jdbcType=INTEGER},
+      port_type5 = #{record.portType5,jdbcType=INTEGER},
+      port_count5 = #{record.portCount5,jdbcType=INTEGER},
+      port_type6 = #{record.portType6,jdbcType=INTEGER},
+      port_count6 = #{record.portCount6,jdbcType=INTEGER},
+      port_type7 = #{record.portType7,jdbcType=INTEGER},
+      port_count7 = #{record.portCount7,jdbcType=INTEGER},
+      port_type8 = #{record.portType8,jdbcType=INTEGER},
+      port_count8 = #{record.portCount8,jdbcType=INTEGER},
+      dbo_status = #{record.dboStatus,jdbcType=INTEGER},
+      backup_url = #{record.backupUrl,jdbcType=CHAR},
+      restore_url = #{record.restoreUrl,jdbcType=CHAR},
+      restore_result = #{record.restoreResult,jdbcType=INTEGER},
+      lic_init_valid_days = #{record.licInitValidDays,jdbcType=INTEGER},
+      lic_used_days = #{record.licUsedDays,jdbcType=INTEGER},
+      lic_valid_days = #{record.licValidDays,jdbcType=INTEGER},
+      last_lic_result = #{record.lastLicResult,jdbcType=VARCHAR},
+      last_lock_result = #{record.lastLockResult,jdbcType=CHAR},
+      lic_lock_flag = #{record.licLockFlag,jdbcType=INTEGER},
+      tg_lic = #{record.tgLic,jdbcType=CHAR},
+      json_msg_id = #{record.jsonMsgId,jdbcType=INTEGER},
+      update_lic_flag = #{record.updateLicFlag,jdbcType=INTEGER},
+      lic_status = #{record.licStatus,jdbcType=INTEGER},
+      last_lic_result_code = #{record.lastLicResultCode,jdbcType=INTEGER},
+      salesman = #{record.salesman,jdbcType=CHAR},
+      product_sns = #{record.productSns,jdbcType=CHAR},
+      rm_last_reg_time = #{record.rmLastRegTime,jdbcType=TIMESTAMP},
+      rm_run_status = #{record.rmRunStatus,jdbcType=INTEGER},
+      rm_product_id = #{record.rmProductId,jdbcType=INTEGER},
+      rm_product_name = #{record.rmProductName,jdbcType=CHAR},
+      rm_package_version = #{record.rmPackageVersion,jdbcType=CHAR},
+      rm_ip = #{record.rmIp,jdbcType=CHAR},
+      rm_isp = #{record.rmIsp,jdbcType=CHAR},
+      rm_address = #{record.rmAddress,jdbcType=CHAR},
+      domain_name = #{record.domainName,jdbcType=CHAR},
+      dtr_user = #{record.dtrUser,jdbcType=INTEGER},
+      dtr_force = #{record.dtrForce,jdbcType=INTEGER},
+      reset_reason = #{record.resetReason,jdbcType=INTEGER},
+      report_switch = #{record.reportSwitch,jdbcType=INTEGER},
+      preset_status = #{record.presetStatus,jdbcType=INTEGER},
+      preset_result = #{record.presetResult,jdbcType=INTEGER},
+      redirct_srv_url = #{record.redirctSrvUrl,jdbcType=CHAR},
+      trans_listen_port = #{record.transListenPort,jdbcType=INTEGER},
+      redirect_srv_set_status = #{record.redirectSrvSetStatus,jdbcType=INTEGER},
+      redirect_srv_set_result = #{record.redirectSrvSetResult,jdbcType=INTEGER},
+      sipserver_set_result = #{record.sipserverSetResult,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblNeWithBLOBs" >
+    update tbl_ne
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=CHAR},
+      </if>
+      <if test="adminStatus != null" >
+        admin_status = #{adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oprStatus != null" >
+        opr_status = #{oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="runStatus != null" >
+        run_status = #{runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionStatus != null" >
+        action_status = #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        action_result = #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="almStatusBits != null" >
+        alm_status_bits = #{almStatusBits,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="siteUuid != null" >
+        site_uuid = #{siteUuid,jdbcType=INTEGER},
+      </if>
+      <if test="policyUuid != null" >
+        policy_uuid = #{policyUuid,jdbcType=INTEGER},
+      </if>
+      <if test="vendorId != null" >
+        vendor_id = #{vendorId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=CHAR},
+      </if>
+      <if test="packageVersion != null" >
+        package_version = #{packageVersion,jdbcType=CHAR},
+      </if>
+      <if test="packageBuildTime != null" >
+        package_build_time = #{packageBuildTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailVer != null" >
+        detail_ver = #{detailVer,jdbcType=VARCHAR},
+      </if>
+      <if test="sipAgent != null" >
+        sip_agent = #{sipAgent,jdbcType=CHAR},
+      </if>
+      <if test="sipOwner != null" >
+        sip_owner = #{sipOwner,jdbcType=CHAR},
+      </if>
+      <if test="cliPrompt != null" >
+        cli_prompt = #{cliPrompt,jdbcType=CHAR},
+      </if>
+      <if test="dhcpDefault != null" >
+        dhcp_default = #{dhcpDefault,jdbcType=INTEGER},
+      </if>
+      <if test="ipType != null" >
+        ip_type = #{ipType,jdbcType=INTEGER},
+      </if>
+      <if test="ipAddr != null" >
+        ip_addr = #{ipAddr,jdbcType=CHAR},
+      </if>
+      <if test="macAddrNum != null" >
+        mac_addr_num = #{macAddrNum,jdbcType=INTEGER},
+      </if>
+      <if test="madeFactory != null" >
+        made_factory = #{madeFactory,jdbcType=CHAR},
+      </if>
+      <if test="madeSite != null" >
+        made_site = #{madeSite,jdbcType=CHAR},
+      </if>
+      <if test="madeDate != null" >
+        made_date = #{madeDate,jdbcType=CHAR},
+      </if>
+      <if test="testSite != null" >
+        test_site = #{testSite,jdbcType=CHAR},
+      </if>
+      <if test="testDate != null" >
+        test_date = #{testDate,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="encryptType != null" >
+        encrypt_type = #{encryptType,jdbcType=INTEGER},
+      </if>
+      <if test="outerIpAddr != null" >
+        outer_ip_addr = #{outerIpAddr,jdbcType=CHAR},
+      </if>
+      <if test="innerIpAddr != null" >
+        inner_ip_addr = #{innerIpAddr,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastRegTime != null" >
+        last_reg_time = #{lastRegTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regFailCount != null" >
+        reg_fail_count = #{regFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="upgradeType != null" >
+        upgrade_type = #{upgradeType,jdbcType=INTEGER},
+      </if>
+      <if test="upgradeForceFlag != null" >
+        upgrade_force_flag = #{upgradeForceFlag,jdbcType=INTEGER},
+      </if>
+      <if test="targetSoftwareVer != null" >
+        target_software_ver = #{targetSoftwareVer,jdbcType=CHAR},
+      </if>
+      <if test="upgradeStatus != null" >
+        upgrade_status = #{upgradeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpgradeResult != null" >
+        last_upgrade_result = #{lastUpgradeResult,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpgradeTime != null" >
+        last_upgrade_time = #{lastUpgradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="targetCfgVer != null" >
+        target_cfg_ver = #{targetCfgVer,jdbcType=CHAR},
+      </if>
+      <if test="cfgUpgradeStatus != null" >
+        cfg_upgrade_status = #{cfgUpgradeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="lastCfgUpgradeResult != null" >
+        last_cfg_upgrade_result = #{lastCfgUpgradeResult,jdbcType=INTEGER},
+      </if>
+      <if test="lastCfgUpgradeTime != null" >
+        last_cfg_upgrade_time = #{lastCfgUpgradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="portTotalCount != null" >
+        port_total_count = #{portTotalCount,jdbcType=INTEGER},
+      </if>
+      <if test="portWorkCount != null" >
+        port_work_count = #{portWorkCount,jdbcType=INTEGER},
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc = #{detailDesc,jdbcType=CHAR},
+      </if>
+      <if test="nextNeAlarmSn != null" >
+        next_ne_alarm_sn = #{nextNeAlarmSn,jdbcType=INTEGER},
+      </if>
+      <if test="syslogStatus != null" >
+        syslog_status = #{syslogStatus,jdbcType=INTEGER},
+      </if>
+      <if test="logSysUuid != null" >
+        log_sys_uuid = #{logSysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="syslogBeginDate != null" >
+        syslog_begin_date = #{syslogBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syslogEndDate != null" >
+        syslog_end_date = #{syslogEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syslogDebugLevel != null" >
+        syslog_debug_level = #{syslogDebugLevel,jdbcType=INTEGER},
+      </if>
+      <if test="cdrLogFlag != null" >
+        cdr_log_flag = #{cdrLogFlag,jdbcType=INTEGER},
+      </if>
+      <if test="signalLogFlag != null" >
+        signal_log_flag = #{signalLogFlag,jdbcType=INTEGER},
+      </if>
+      <if test="mediaLogFlag != null" >
+        media_log_flag = #{mediaLogFlag,jdbcType=INTEGER},
+      </if>
+      <if test="systemLogFlag != null" >
+        system_log_flag = #{systemLogFlag,jdbcType=INTEGER},
+      </if>
+      <if test="mngLogFlag != null" >
+        mng_log_flag = #{mngLogFlag,jdbcType=INTEGER},
+      </if>
+      <if test="cdrLogFalg != null" >
+        cdr_log_falg = #{cdrLogFalg,jdbcType=INTEGER},
+      </if>
+      <if test="sipsrvLockFlag != null" >
+        sipsrv_lock_flag = #{sipsrvLockFlag,jdbcType=INTEGER},
+      </if>
+      <if test="primarySipServer != null" >
+        primary_sip_server = #{primarySipServer,jdbcType=CHAR},
+      </if>
+      <if test="primarySipsrvPort != null" >
+        primary_sipsrv_port = #{primarySipsrvPort,jdbcType=INTEGER},
+      </if>
+      <if test="secondarySipServer != null" >
+        secondary_sip_server = #{secondarySipServer,jdbcType=CHAR},
+      </if>
+      <if test="secondarySipsrvPort != null" >
+        secondary_sipsrv_port = #{secondarySipsrvPort,jdbcType=INTEGER},
+      </if>
+      <if test="ntpStatus != null" >
+        ntp_status = #{ntpStatus,jdbcType=INTEGER},
+      </if>
+      <if test="autoRebootFlag != null" >
+        auto_reboot_flag = #{autoRebootFlag,jdbcType=INTEGER},
+      </if>
+      <if test="switchChipStatus != null" >
+        switch_chip_status = #{switchChipStatus,jdbcType=INTEGER},
+      </if>
+      <if test="curCpu != null" >
+        cur_cpu = #{curCpu,jdbcType=INTEGER},
+      </if>
+      <if test="avgCpu5 != null" >
+        avg_cpu_5 = #{avgCpu5,jdbcType=INTEGER},
+      </if>
+      <if test="avgCpu60 != null" >
+        avg_cpu_60 = #{avgCpu60,jdbcType=INTEGER},
+      </if>
+      <if test="avgCpu600 != null" >
+        avg_cpu_600 = #{avgCpu600,jdbcType=INTEGER},
+      </if>
+      <if test="freeMem != null" >
+        free_mem = #{freeMem,jdbcType=INTEGER},
+      </if>
+      <if test="totalMem != null" >
+        total_mem = #{totalMem,jdbcType=INTEGER},
+      </if>
+      <if test="memUsage != null" >
+        mem_usage = #{memUsage,jdbcType=INTEGER},
+      </if>
+      <if test="devTime != null" >
+        dev_time = #{devTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmFlag != null" >
+        alarm_flag = #{alarmFlag,jdbcType=INTEGER},
+      </if>
+      <if test="locMcc != null" >
+        loc_mcc = #{locMcc,jdbcType=INTEGER},
+      </if>
+      <if test="locMnc != null" >
+        loc_mnc = #{locMnc,jdbcType=INTEGER},
+      </if>
+      <if test="locLac != null" >
+        loc_lac = #{locLac,jdbcType=INTEGER},
+      </if>
+      <if test="locCellId != null" >
+        loc_cell_id = #{locCellId,jdbcType=INTEGER},
+      </if>
+      <if test="locStatus != null" >
+        loc_status = #{locStatus,jdbcType=INTEGER},
+      </if>
+      <if test="locLat != null" >
+        loc_lat = #{locLat,jdbcType=REAL},
+      </if>
+      <if test="locLng != null" >
+        loc_lng = #{locLng,jdbcType=REAL},
+      </if>
+      <if test="upgradeFlag != null" >
+        upgrade_flag = #{upgradeFlag,jdbcType=INTEGER},
+      </if>
+      <if test="timeChipStatus != null" >
+        time_chip_status = #{timeChipStatus,jdbcType=INTEGER},
+      </if>
+      <if test="allocMem != null" >
+        alloc_mem = #{allocMem,jdbcType=INTEGER},
+      </if>
+      <if test="alarmShortPeriod != null" >
+        alarm_short_period = #{alarmShortPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="alarmLongPeriod != null" >
+        alarm_long_period = #{alarmLongPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="statusShortPeriod != null" >
+        status_short_period = #{statusShortPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="statusLongPeriod != null" >
+        status_long_period = #{statusLongPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="staticsPeriod != null" >
+        statics_period = #{staticsPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="lockStatus != null" >
+        lock_status = #{lockStatus,jdbcType=INTEGER},
+      </if>
+      <if test="memAosUsage != null" >
+        mem_aos_usage = #{memAosUsage,jdbcType=INTEGER},
+      </if>
+      <if test="memLinuxUsage != null" >
+        mem_linux_usage = #{memLinuxUsage,jdbcType=INTEGER},
+      </if>
+      <if test="natMode != null" >
+        nat_mode = #{natMode,jdbcType=INTEGER},
+      </if>
+      <if test="natStatus != null" >
+        nat_status = #{natStatus,jdbcType=INTEGER},
+      </if>
+      <if test="storeUsage != null" >
+        store_usage = #{storeUsage,jdbcType=INTEGER},
+      </if>
+      <if test="ethLinkMode != null" >
+        eth_link_mode = #{ethLinkMode,jdbcType=INTEGER},
+      </if>
+      <if test="portType1 != null" >
+        port_type1 = #{portType1,jdbcType=INTEGER},
+      </if>
+      <if test="portCount1 != null" >
+        port_count1 = #{portCount1,jdbcType=INTEGER},
+      </if>
+      <if test="portType2 != null" >
+        port_type2 = #{portType2,jdbcType=INTEGER},
+      </if>
+      <if test="portCount2 != null" >
+        port_count2 = #{portCount2,jdbcType=INTEGER},
+      </if>
+      <if test="portType3 != null" >
+        port_type3 = #{portType3,jdbcType=INTEGER},
+      </if>
+      <if test="portCount3 != null" >
+        port_count3 = #{portCount3,jdbcType=INTEGER},
+      </if>
+      <if test="portType4 != null" >
+        port_type4 = #{portType4,jdbcType=INTEGER},
+      </if>
+      <if test="portCount4 != null" >
+        port_count4 = #{portCount4,jdbcType=INTEGER},
+      </if>
+      <if test="portType5 != null" >
+        port_type5 = #{portType5,jdbcType=INTEGER},
+      </if>
+      <if test="portCount5 != null" >
+        port_count5 = #{portCount5,jdbcType=INTEGER},
+      </if>
+      <if test="portType6 != null" >
+        port_type6 = #{portType6,jdbcType=INTEGER},
+      </if>
+      <if test="portCount6 != null" >
+        port_count6 = #{portCount6,jdbcType=INTEGER},
+      </if>
+      <if test="portType7 != null" >
+        port_type7 = #{portType7,jdbcType=INTEGER},
+      </if>
+      <if test="portCount7 != null" >
+        port_count7 = #{portCount7,jdbcType=INTEGER},
+      </if>
+      <if test="portType8 != null" >
+        port_type8 = #{portType8,jdbcType=INTEGER},
+      </if>
+      <if test="portCount8 != null" >
+        port_count8 = #{portCount8,jdbcType=INTEGER},
+      </if>
+      <if test="dboStatus != null" >
+        dbo_status = #{dboStatus,jdbcType=INTEGER},
+      </if>
+      <if test="backupUrl != null" >
+        backup_url = #{backupUrl,jdbcType=CHAR},
+      </if>
+      <if test="restoreUrl != null" >
+        restore_url = #{restoreUrl,jdbcType=CHAR},
+      </if>
+      <if test="restoreResult != null" >
+        restore_result = #{restoreResult,jdbcType=INTEGER},
+      </if>
+      <if test="licInitValidDays != null" >
+        lic_init_valid_days = #{licInitValidDays,jdbcType=INTEGER},
+      </if>
+      <if test="licUsedDays != null" >
+        lic_used_days = #{licUsedDays,jdbcType=INTEGER},
+      </if>
+      <if test="licValidDays != null" >
+        lic_valid_days = #{licValidDays,jdbcType=INTEGER},
+      </if>
+      <if test="lastLicResult != null" >
+        last_lic_result = #{lastLicResult,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLockResult != null" >
+        last_lock_result = #{lastLockResult,jdbcType=CHAR},
+      </if>
+      <if test="licLockFlag != null" >
+        lic_lock_flag = #{licLockFlag,jdbcType=INTEGER},
+      </if>
+      <if test="tgLic != null" >
+        tg_lic = #{tgLic,jdbcType=CHAR},
+      </if>
+      <if test="jsonMsgId != null" >
+        json_msg_id = #{jsonMsgId,jdbcType=INTEGER},
+      </if>
+      <if test="updateLicFlag != null" >
+        update_lic_flag = #{updateLicFlag,jdbcType=INTEGER},
+      </if>
+      <if test="licStatus != null" >
+        lic_status = #{licStatus,jdbcType=INTEGER},
+      </if>
+      <if test="lastLicResultCode != null" >
+        last_lic_result_code = #{lastLicResultCode,jdbcType=INTEGER},
+      </if>
+      <if test="salesman != null" >
+        salesman = #{salesman,jdbcType=CHAR},
+      </if>
+      <if test="productSns != null" >
+        product_sns = #{productSns,jdbcType=CHAR},
+      </if>
+      <if test="rmLastRegTime != null" >
+        rm_last_reg_time = #{rmLastRegTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rmRunStatus != null" >
+        rm_run_status = #{rmRunStatus,jdbcType=INTEGER},
+      </if>
+      <if test="rmProductId != null" >
+        rm_product_id = #{rmProductId,jdbcType=INTEGER},
+      </if>
+      <if test="rmProductName != null" >
+        rm_product_name = #{rmProductName,jdbcType=CHAR},
+      </if>
+      <if test="rmPackageVersion != null" >
+        rm_package_version = #{rmPackageVersion,jdbcType=CHAR},
+      </if>
+      <if test="rmIp != null" >
+        rm_ip = #{rmIp,jdbcType=CHAR},
+      </if>
+      <if test="rmIsp != null" >
+        rm_isp = #{rmIsp,jdbcType=CHAR},
+      </if>
+      <if test="rmAddress != null" >
+        rm_address = #{rmAddress,jdbcType=CHAR},
+      </if>
+      <if test="domainName != null" >
+        domain_name = #{domainName,jdbcType=CHAR},
+      </if>
+      <if test="dtrUser != null" >
+        dtr_user = #{dtrUser,jdbcType=INTEGER},
+      </if>
+      <if test="dtrForce != null" >
+        dtr_force = #{dtrForce,jdbcType=INTEGER},
+      </if>
+      <if test="resetReason != null" >
+        reset_reason = #{resetReason,jdbcType=INTEGER},
+      </if>
+      <if test="reportSwitch != null" >
+        report_switch = #{reportSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="presetStatus != null" >
+        preset_status = #{presetStatus,jdbcType=INTEGER},
+      </if>
+      <if test="presetResult != null" >
+        preset_result = #{presetResult,jdbcType=INTEGER},
+      </if>
+      <if test="redirctSrvUrl != null" >
+        redirct_srv_url = #{redirctSrvUrl,jdbcType=CHAR},
+      </if>
+      <if test="transListenPort != null" >
+        trans_listen_port = #{transListenPort,jdbcType=INTEGER},
+      </if>
+      <if test="redirectSrvSetStatus != null" >
+        redirect_srv_set_status = #{redirectSrvSetStatus,jdbcType=INTEGER},
+      </if>
+      <if test="redirectSrvSetResult != null" >
+        redirect_srv_set_result = #{redirectSrvSetResult,jdbcType=INTEGER},
+      </if>
+      <if test="sipserverSetResult != null" >
+        sipserver_set_result = #{sipserverSetResult,jdbcType=CHAR},
+      </if>
+      <if test="productSn != null" >
+        product_sn = #{productSn,jdbcType=BINARY},
+      </if>
+      <if test="macAddrBegin != null" >
+        mac_addr_begin = #{macAddrBegin,jdbcType=BINARY},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dinstar.sim.model.TblNeWithBLOBs" >
+    update tbl_ne
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      alias = #{alias,jdbcType=CHAR},
+      admin_status = #{adminStatus,jdbcType=INTEGER},
+      opr_status = #{oprStatus,jdbcType=INTEGER},
+      run_status = #{runStatus,jdbcType=INTEGER},
+      action_status = #{actionStatus,jdbcType=INTEGER},
+      action_result = #{actionResult,jdbcType=INTEGER},
+      alm_status_bits = #{almStatusBits,jdbcType=INTEGER},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      site_uuid = #{siteUuid,jdbcType=INTEGER},
+      policy_uuid = #{policyUuid,jdbcType=INTEGER},
+      vendor_id = #{vendorId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=CHAR},
+      package_version = #{packageVersion,jdbcType=CHAR},
+      package_build_time = #{packageBuildTime,jdbcType=TIMESTAMP},
+      detail_ver = #{detailVer,jdbcType=VARCHAR},
+      sip_agent = #{sipAgent,jdbcType=CHAR},
+      sip_owner = #{sipOwner,jdbcType=CHAR},
+      cli_prompt = #{cliPrompt,jdbcType=CHAR},
+      dhcp_default = #{dhcpDefault,jdbcType=INTEGER},
+      ip_type = #{ipType,jdbcType=INTEGER},
+      ip_addr = #{ipAddr,jdbcType=CHAR},
+      mac_addr_num = #{macAddrNum,jdbcType=INTEGER},
+      made_factory = #{madeFactory,jdbcType=CHAR},
+      made_site = #{madeSite,jdbcType=CHAR},
+      made_date = #{madeDate,jdbcType=CHAR},
+      test_site = #{testSite,jdbcType=CHAR},
+      test_date = #{testDate,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      encrypt_type = #{encryptType,jdbcType=INTEGER},
+      outer_ip_addr = #{outerIpAddr,jdbcType=CHAR},
+      inner_ip_addr = #{innerIpAddr,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      last_reg_time = #{lastRegTime,jdbcType=TIMESTAMP},
+      reg_fail_count = #{regFailCount,jdbcType=INTEGER},
+      upgrade_type = #{upgradeType,jdbcType=INTEGER},
+      upgrade_force_flag = #{upgradeForceFlag,jdbcType=INTEGER},
+      target_software_ver = #{targetSoftwareVer,jdbcType=CHAR},
+      upgrade_status = #{upgradeStatus,jdbcType=INTEGER},
+      last_upgrade_result = #{lastUpgradeResult,jdbcType=INTEGER},
+      last_upgrade_time = #{lastUpgradeTime,jdbcType=TIMESTAMP},
+      target_cfg_ver = #{targetCfgVer,jdbcType=CHAR},
+      cfg_upgrade_status = #{cfgUpgradeStatus,jdbcType=INTEGER},
+      last_cfg_upgrade_result = #{lastCfgUpgradeResult,jdbcType=INTEGER},
+      last_cfg_upgrade_time = #{lastCfgUpgradeTime,jdbcType=TIMESTAMP},
+      port_total_count = #{portTotalCount,jdbcType=INTEGER},
+      port_work_count = #{portWorkCount,jdbcType=INTEGER},
+      detail_desc = #{detailDesc,jdbcType=CHAR},
+      next_ne_alarm_sn = #{nextNeAlarmSn,jdbcType=INTEGER},
+      syslog_status = #{syslogStatus,jdbcType=INTEGER},
+      log_sys_uuid = #{logSysUuid,jdbcType=INTEGER},
+      syslog_begin_date = #{syslogBeginDate,jdbcType=TIMESTAMP},
+      syslog_end_date = #{syslogEndDate,jdbcType=TIMESTAMP},
+      syslog_debug_level = #{syslogDebugLevel,jdbcType=INTEGER},
+      cdr_log_flag = #{cdrLogFlag,jdbcType=INTEGER},
+      signal_log_flag = #{signalLogFlag,jdbcType=INTEGER},
+      media_log_flag = #{mediaLogFlag,jdbcType=INTEGER},
+      system_log_flag = #{systemLogFlag,jdbcType=INTEGER},
+      mng_log_flag = #{mngLogFlag,jdbcType=INTEGER},
+      cdr_log_falg = #{cdrLogFalg,jdbcType=INTEGER},
+      sipsrv_lock_flag = #{sipsrvLockFlag,jdbcType=INTEGER},
+      primary_sip_server = #{primarySipServer,jdbcType=CHAR},
+      primary_sipsrv_port = #{primarySipsrvPort,jdbcType=INTEGER},
+      secondary_sip_server = #{secondarySipServer,jdbcType=CHAR},
+      secondary_sipsrv_port = #{secondarySipsrvPort,jdbcType=INTEGER},
+      ntp_status = #{ntpStatus,jdbcType=INTEGER},
+      auto_reboot_flag = #{autoRebootFlag,jdbcType=INTEGER},
+      switch_chip_status = #{switchChipStatus,jdbcType=INTEGER},
+      cur_cpu = #{curCpu,jdbcType=INTEGER},
+      avg_cpu_5 = #{avgCpu5,jdbcType=INTEGER},
+      avg_cpu_60 = #{avgCpu60,jdbcType=INTEGER},
+      avg_cpu_600 = #{avgCpu600,jdbcType=INTEGER},
+      free_mem = #{freeMem,jdbcType=INTEGER},
+      total_mem = #{totalMem,jdbcType=INTEGER},
+      mem_usage = #{memUsage,jdbcType=INTEGER},
+      dev_time = #{devTime,jdbcType=TIMESTAMP},
+      alarm_flag = #{alarmFlag,jdbcType=INTEGER},
+      loc_mcc = #{locMcc,jdbcType=INTEGER},
+      loc_mnc = #{locMnc,jdbcType=INTEGER},
+      loc_lac = #{locLac,jdbcType=INTEGER},
+      loc_cell_id = #{locCellId,jdbcType=INTEGER},
+      loc_status = #{locStatus,jdbcType=INTEGER},
+      loc_lat = #{locLat,jdbcType=REAL},
+      loc_lng = #{locLng,jdbcType=REAL},
+      upgrade_flag = #{upgradeFlag,jdbcType=INTEGER},
+      time_chip_status = #{timeChipStatus,jdbcType=INTEGER},
+      alloc_mem = #{allocMem,jdbcType=INTEGER},
+      alarm_short_period = #{alarmShortPeriod,jdbcType=INTEGER},
+      alarm_long_period = #{alarmLongPeriod,jdbcType=INTEGER},
+      status_short_period = #{statusShortPeriod,jdbcType=INTEGER},
+      status_long_period = #{statusLongPeriod,jdbcType=INTEGER},
+      statics_period = #{staticsPeriod,jdbcType=INTEGER},
+      lock_status = #{lockStatus,jdbcType=INTEGER},
+      mem_aos_usage = #{memAosUsage,jdbcType=INTEGER},
+      mem_linux_usage = #{memLinuxUsage,jdbcType=INTEGER},
+      nat_mode = #{natMode,jdbcType=INTEGER},
+      nat_status = #{natStatus,jdbcType=INTEGER},
+      store_usage = #{storeUsage,jdbcType=INTEGER},
+      eth_link_mode = #{ethLinkMode,jdbcType=INTEGER},
+      port_type1 = #{portType1,jdbcType=INTEGER},
+      port_count1 = #{portCount1,jdbcType=INTEGER},
+      port_type2 = #{portType2,jdbcType=INTEGER},
+      port_count2 = #{portCount2,jdbcType=INTEGER},
+      port_type3 = #{portType3,jdbcType=INTEGER},
+      port_count3 = #{portCount3,jdbcType=INTEGER},
+      port_type4 = #{portType4,jdbcType=INTEGER},
+      port_count4 = #{portCount4,jdbcType=INTEGER},
+      port_type5 = #{portType5,jdbcType=INTEGER},
+      port_count5 = #{portCount5,jdbcType=INTEGER},
+      port_type6 = #{portType6,jdbcType=INTEGER},
+      port_count6 = #{portCount6,jdbcType=INTEGER},
+      port_type7 = #{portType7,jdbcType=INTEGER},
+      port_count7 = #{portCount7,jdbcType=INTEGER},
+      port_type8 = #{portType8,jdbcType=INTEGER},
+      port_count8 = #{portCount8,jdbcType=INTEGER},
+      dbo_status = #{dboStatus,jdbcType=INTEGER},
+      backup_url = #{backupUrl,jdbcType=CHAR},
+      restore_url = #{restoreUrl,jdbcType=CHAR},
+      restore_result = #{restoreResult,jdbcType=INTEGER},
+      lic_init_valid_days = #{licInitValidDays,jdbcType=INTEGER},
+      lic_used_days = #{licUsedDays,jdbcType=INTEGER},
+      lic_valid_days = #{licValidDays,jdbcType=INTEGER},
+      last_lic_result = #{lastLicResult,jdbcType=VARCHAR},
+      last_lock_result = #{lastLockResult,jdbcType=CHAR},
+      lic_lock_flag = #{licLockFlag,jdbcType=INTEGER},
+      tg_lic = #{tgLic,jdbcType=CHAR},
+      json_msg_id = #{jsonMsgId,jdbcType=INTEGER},
+      update_lic_flag = #{updateLicFlag,jdbcType=INTEGER},
+      lic_status = #{licStatus,jdbcType=INTEGER},
+      last_lic_result_code = #{lastLicResultCode,jdbcType=INTEGER},
+      salesman = #{salesman,jdbcType=CHAR},
+      product_sns = #{productSns,jdbcType=CHAR},
+      rm_last_reg_time = #{rmLastRegTime,jdbcType=TIMESTAMP},
+      rm_run_status = #{rmRunStatus,jdbcType=INTEGER},
+      rm_product_id = #{rmProductId,jdbcType=INTEGER},
+      rm_product_name = #{rmProductName,jdbcType=CHAR},
+      rm_package_version = #{rmPackageVersion,jdbcType=CHAR},
+      rm_ip = #{rmIp,jdbcType=CHAR},
+      rm_isp = #{rmIsp,jdbcType=CHAR},
+      rm_address = #{rmAddress,jdbcType=CHAR},
+      domain_name = #{domainName,jdbcType=CHAR},
+      dtr_user = #{dtrUser,jdbcType=INTEGER},
+      dtr_force = #{dtrForce,jdbcType=INTEGER},
+      reset_reason = #{resetReason,jdbcType=INTEGER},
+      report_switch = #{reportSwitch,jdbcType=INTEGER},
+      preset_status = #{presetStatus,jdbcType=INTEGER},
+      preset_result = #{presetResult,jdbcType=INTEGER},
+      redirct_srv_url = #{redirctSrvUrl,jdbcType=CHAR},
+      trans_listen_port = #{transListenPort,jdbcType=INTEGER},
+      redirect_srv_set_status = #{redirectSrvSetStatus,jdbcType=INTEGER},
+      redirect_srv_set_result = #{redirectSrvSetResult,jdbcType=INTEGER},
+      sipserver_set_result = #{sipserverSetResult,jdbcType=CHAR},
+      product_sn = #{productSn,jdbcType=BINARY},
+      mac_addr_begin = #{macAddrBegin,jdbcType=BINARY}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblNe" >
+    update tbl_ne
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      alias = #{alias,jdbcType=CHAR},
+      admin_status = #{adminStatus,jdbcType=INTEGER},
+      opr_status = #{oprStatus,jdbcType=INTEGER},
+      run_status = #{runStatus,jdbcType=INTEGER},
+      action_status = #{actionStatus,jdbcType=INTEGER},
+      action_result = #{actionResult,jdbcType=INTEGER},
+      alm_status_bits = #{almStatusBits,jdbcType=INTEGER},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      site_uuid = #{siteUuid,jdbcType=INTEGER},
+      policy_uuid = #{policyUuid,jdbcType=INTEGER},
+      vendor_id = #{vendorId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=CHAR},
+      package_version = #{packageVersion,jdbcType=CHAR},
+      package_build_time = #{packageBuildTime,jdbcType=TIMESTAMP},
+      detail_ver = #{detailVer,jdbcType=VARCHAR},
+      sip_agent = #{sipAgent,jdbcType=CHAR},
+      sip_owner = #{sipOwner,jdbcType=CHAR},
+      cli_prompt = #{cliPrompt,jdbcType=CHAR},
+      dhcp_default = #{dhcpDefault,jdbcType=INTEGER},
+      ip_type = #{ipType,jdbcType=INTEGER},
+      ip_addr = #{ipAddr,jdbcType=CHAR},
+      mac_addr_num = #{macAddrNum,jdbcType=INTEGER},
+      made_factory = #{madeFactory,jdbcType=CHAR},
+      made_site = #{madeSite,jdbcType=CHAR},
+      made_date = #{madeDate,jdbcType=CHAR},
+      test_site = #{testSite,jdbcType=CHAR},
+      test_date = #{testDate,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      encrypt_type = #{encryptType,jdbcType=INTEGER},
+      outer_ip_addr = #{outerIpAddr,jdbcType=CHAR},
+      inner_ip_addr = #{innerIpAddr,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      last_reg_time = #{lastRegTime,jdbcType=TIMESTAMP},
+      reg_fail_count = #{regFailCount,jdbcType=INTEGER},
+      upgrade_type = #{upgradeType,jdbcType=INTEGER},
+      upgrade_force_flag = #{upgradeForceFlag,jdbcType=INTEGER},
+      target_software_ver = #{targetSoftwareVer,jdbcType=CHAR},
+      upgrade_status = #{upgradeStatus,jdbcType=INTEGER},
+      last_upgrade_result = #{lastUpgradeResult,jdbcType=INTEGER},
+      last_upgrade_time = #{lastUpgradeTime,jdbcType=TIMESTAMP},
+      target_cfg_ver = #{targetCfgVer,jdbcType=CHAR},
+      cfg_upgrade_status = #{cfgUpgradeStatus,jdbcType=INTEGER},
+      last_cfg_upgrade_result = #{lastCfgUpgradeResult,jdbcType=INTEGER},
+      last_cfg_upgrade_time = #{lastCfgUpgradeTime,jdbcType=TIMESTAMP},
+      port_total_count = #{portTotalCount,jdbcType=INTEGER},
+      port_work_count = #{portWorkCount,jdbcType=INTEGER},
+      detail_desc = #{detailDesc,jdbcType=CHAR},
+      next_ne_alarm_sn = #{nextNeAlarmSn,jdbcType=INTEGER},
+      syslog_status = #{syslogStatus,jdbcType=INTEGER},
+      log_sys_uuid = #{logSysUuid,jdbcType=INTEGER},
+      syslog_begin_date = #{syslogBeginDate,jdbcType=TIMESTAMP},
+      syslog_end_date = #{syslogEndDate,jdbcType=TIMESTAMP},
+      syslog_debug_level = #{syslogDebugLevel,jdbcType=INTEGER},
+      cdr_log_flag = #{cdrLogFlag,jdbcType=INTEGER},
+      signal_log_flag = #{signalLogFlag,jdbcType=INTEGER},
+      media_log_flag = #{mediaLogFlag,jdbcType=INTEGER},
+      system_log_flag = #{systemLogFlag,jdbcType=INTEGER},
+      mng_log_flag = #{mngLogFlag,jdbcType=INTEGER},
+      cdr_log_falg = #{cdrLogFalg,jdbcType=INTEGER},
+      sipsrv_lock_flag = #{sipsrvLockFlag,jdbcType=INTEGER},
+      primary_sip_server = #{primarySipServer,jdbcType=CHAR},
+      primary_sipsrv_port = #{primarySipsrvPort,jdbcType=INTEGER},
+      secondary_sip_server = #{secondarySipServer,jdbcType=CHAR},
+      secondary_sipsrv_port = #{secondarySipsrvPort,jdbcType=INTEGER},
+      ntp_status = #{ntpStatus,jdbcType=INTEGER},
+      auto_reboot_flag = #{autoRebootFlag,jdbcType=INTEGER},
+      switch_chip_status = #{switchChipStatus,jdbcType=INTEGER},
+      cur_cpu = #{curCpu,jdbcType=INTEGER},
+      avg_cpu_5 = #{avgCpu5,jdbcType=INTEGER},
+      avg_cpu_60 = #{avgCpu60,jdbcType=INTEGER},
+      avg_cpu_600 = #{avgCpu600,jdbcType=INTEGER},
+      free_mem = #{freeMem,jdbcType=INTEGER},
+      total_mem = #{totalMem,jdbcType=INTEGER},
+      mem_usage = #{memUsage,jdbcType=INTEGER},
+      dev_time = #{devTime,jdbcType=TIMESTAMP},
+      alarm_flag = #{alarmFlag,jdbcType=INTEGER},
+      loc_mcc = #{locMcc,jdbcType=INTEGER},
+      loc_mnc = #{locMnc,jdbcType=INTEGER},
+      loc_lac = #{locLac,jdbcType=INTEGER},
+      loc_cell_id = #{locCellId,jdbcType=INTEGER},
+      loc_status = #{locStatus,jdbcType=INTEGER},
+      loc_lat = #{locLat,jdbcType=REAL},
+      loc_lng = #{locLng,jdbcType=REAL},
+      upgrade_flag = #{upgradeFlag,jdbcType=INTEGER},
+      time_chip_status = #{timeChipStatus,jdbcType=INTEGER},
+      alloc_mem = #{allocMem,jdbcType=INTEGER},
+      alarm_short_period = #{alarmShortPeriod,jdbcType=INTEGER},
+      alarm_long_period = #{alarmLongPeriod,jdbcType=INTEGER},
+      status_short_period = #{statusShortPeriod,jdbcType=INTEGER},
+      status_long_period = #{statusLongPeriod,jdbcType=INTEGER},
+      statics_period = #{staticsPeriod,jdbcType=INTEGER},
+      lock_status = #{lockStatus,jdbcType=INTEGER},
+      mem_aos_usage = #{memAosUsage,jdbcType=INTEGER},
+      mem_linux_usage = #{memLinuxUsage,jdbcType=INTEGER},
+      nat_mode = #{natMode,jdbcType=INTEGER},
+      nat_status = #{natStatus,jdbcType=INTEGER},
+      store_usage = #{storeUsage,jdbcType=INTEGER},
+      eth_link_mode = #{ethLinkMode,jdbcType=INTEGER},
+      port_type1 = #{portType1,jdbcType=INTEGER},
+      port_count1 = #{portCount1,jdbcType=INTEGER},
+      port_type2 = #{portType2,jdbcType=INTEGER},
+      port_count2 = #{portCount2,jdbcType=INTEGER},
+      port_type3 = #{portType3,jdbcType=INTEGER},
+      port_count3 = #{portCount3,jdbcType=INTEGER},
+      port_type4 = #{portType4,jdbcType=INTEGER},
+      port_count4 = #{portCount4,jdbcType=INTEGER},
+      port_type5 = #{portType5,jdbcType=INTEGER},
+      port_count5 = #{portCount5,jdbcType=INTEGER},
+      port_type6 = #{portType6,jdbcType=INTEGER},
+      port_count6 = #{portCount6,jdbcType=INTEGER},
+      port_type7 = #{portType7,jdbcType=INTEGER},
+      port_count7 = #{portCount7,jdbcType=INTEGER},
+      port_type8 = #{portType8,jdbcType=INTEGER},
+      port_count8 = #{portCount8,jdbcType=INTEGER},
+      dbo_status = #{dboStatus,jdbcType=INTEGER},
+      backup_url = #{backupUrl,jdbcType=CHAR},
+      restore_url = #{restoreUrl,jdbcType=CHAR},
+      restore_result = #{restoreResult,jdbcType=INTEGER},
+      lic_init_valid_days = #{licInitValidDays,jdbcType=INTEGER},
+      lic_used_days = #{licUsedDays,jdbcType=INTEGER},
+      lic_valid_days = #{licValidDays,jdbcType=INTEGER},
+      last_lic_result = #{lastLicResult,jdbcType=VARCHAR},
+      last_lock_result = #{lastLockResult,jdbcType=CHAR},
+      lic_lock_flag = #{licLockFlag,jdbcType=INTEGER},
+      tg_lic = #{tgLic,jdbcType=CHAR},
+      json_msg_id = #{jsonMsgId,jdbcType=INTEGER},
+      update_lic_flag = #{updateLicFlag,jdbcType=INTEGER},
+      lic_status = #{licStatus,jdbcType=INTEGER},
+      last_lic_result_code = #{lastLicResultCode,jdbcType=INTEGER},
+      salesman = #{salesman,jdbcType=CHAR},
+      product_sns = #{productSns,jdbcType=CHAR},
+      rm_last_reg_time = #{rmLastRegTime,jdbcType=TIMESTAMP},
+      rm_run_status = #{rmRunStatus,jdbcType=INTEGER},
+      rm_product_id = #{rmProductId,jdbcType=INTEGER},
+      rm_product_name = #{rmProductName,jdbcType=CHAR},
+      rm_package_version = #{rmPackageVersion,jdbcType=CHAR},
+      rm_ip = #{rmIp,jdbcType=CHAR},
+      rm_isp = #{rmIsp,jdbcType=CHAR},
+      rm_address = #{rmAddress,jdbcType=CHAR},
+      domain_name = #{domainName,jdbcType=CHAR},
+      dtr_user = #{dtrUser,jdbcType=INTEGER},
+      dtr_force = #{dtrForce,jdbcType=INTEGER},
+      reset_reason = #{resetReason,jdbcType=INTEGER},
+      report_switch = #{reportSwitch,jdbcType=INTEGER},
+      preset_status = #{presetStatus,jdbcType=INTEGER},
+      preset_result = #{presetResult,jdbcType=INTEGER},
+      redirct_srv_url = #{redirctSrvUrl,jdbcType=CHAR},
+      trans_listen_port = #{transListenPort,jdbcType=INTEGER},
+      redirect_srv_set_status = #{redirectSrvSetStatus,jdbcType=INTEGER},
+      redirect_srv_set_result = #{redirectSrvSetResult,jdbcType=INTEGER},
+      sipserver_set_result = #{sipserverSetResult,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

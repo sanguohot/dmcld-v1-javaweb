@@ -1,0 +1,11 @@
+Ext.define('app.store.GroupPolicyModel',{
+	extend:'Ext.data.Model',
+	fields:[
+	        {name:'id',type:'int'},
+	        {name:'name',type:'string'},
+	        {name:'status',type:'int'},
+	        {name:'createtime',type:'date'},
+	        {name:'updatetime',type:'date'},
+	        {name:'description',type:'string'}
+	        ]
+});

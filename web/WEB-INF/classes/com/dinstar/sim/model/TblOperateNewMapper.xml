@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblOperateNewMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblOperateNew" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <id column="group_uuid" property="groupUuid" jdbcType="INTEGER" />
+    
+    <result column="name_cn" property="nameCn" jdbcType="CHAR" />
+    <result column="name_en" property="nameEn" jdbcType="CHAR" />
+    <result column="detail_desc" property="detailDesc" jdbcType="VARCHAR" />
+    <result column="is_deleted" property="isDeleted" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, name_cn, name_en, detail_desc, is_deleted, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblOperateNewCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_operate_new
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClause != null">
+      limit ${limitClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_operate_new
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_operate_new
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblOperateNewCriteria" >
+    delete from tbl_operate_new
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblOperateNew" >
+    insert into tbl_operate_new (uuid, name_cn, name_en, 
+      detail_desc, is_deleted, create_time, 
+      update_time)
+    values (#{uuid,jdbcType=INTEGER}, #{nameCn,jdbcType=CHAR}, #{nameEn,jdbcType=CHAR}, 
+      #{detailDesc,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblOperateNew" >
+    insert into tbl_operate_new
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="nameCn != null" >
+        name_cn,
+      </if>
+      <if test="nameEn != null" >
+        name_en,
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="nameCn != null" >
+        #{nameCn,jdbcType=CHAR},
+      </if>
+      <if test="nameEn != null" >
+        #{nameEn,jdbcType=CHAR},
+      </if>
+      <if test="detailDesc != null" >
+        #{detailDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblOperateNewCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_operate_new
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_operate_new
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.nameCn != null" >
+        name_cn = #{record.nameCn,jdbcType=CHAR},
+      </if>
+      <if test="record.nameEn != null" >
+        name_en = #{record.nameEn,jdbcType=CHAR},
+      </if>
+      <if test="record.detailDesc != null" >
+        detail_desc = #{record.detailDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDeleted != null" >
+        is_deleted = #{record.isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_operate_new
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      name_cn = #{record.nameCn,jdbcType=CHAR},
+      name_en = #{record.nameEn,jdbcType=CHAR},
+      detail_desc = #{record.detailDesc,jdbcType=VARCHAR},
+      is_deleted = #{record.isDeleted,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblOperateNew" >
+    update tbl_operate_new
+    <set >
+      <if test="nameCn != null" >
+        name_cn = #{nameCn,jdbcType=CHAR},
+      </if>
+      <if test="nameEn != null" >
+        name_en = #{nameEn,jdbcType=CHAR},
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc = #{detailDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblOperateNew" >
+    update tbl_operate_new
+    set name_cn = #{nameCn,jdbcType=CHAR},
+      name_en = #{nameEn,jdbcType=CHAR},
+      detail_desc = #{detailDesc,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+   <select id="selectByMap" parameterType="com.dinstar.sim.model.TblOperateNew" resultMap="BaseResultMap" >
+     SELECT
+	a.*
+FROM
+	tbl_operate_new a
+JOIN tbl_privilege_new b ON a.uuid = b.operate_uuid
+WHERE
+	b.group_uuid =#{groupUuid}
+AND b.domain_uuid = #{domainUuid}
+      <if test="search!=null and search!=''" >
+       and ${search}
+      </if>
+      <if test="limit>0" >
+       limit  #{start},#{limit}
+      </if>
+ 
+  </select>
+  <select id="countByMap"  parameterType="com.dinstar.sim.model.TblOperateNew"  resultType="java.lang.Integer">
+      SELECT
+	count(*)
+FROM
+	tbl_operate_new a
+JOIN tbl_privilege_new b ON a.uuid = b.operate_uuid
+WHERE
+	b.group_uuid =#{groupUuid}
+AND b.domain_uuid = #{domainUuid}
+      <if test="search!=null and search!=''" >
+       and ${search}
+      </if>
+  </select>
+</mapper>

@@ -1,0 +1,251 @@
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="resources/css/ext-all.css">
+	<script type="text/javascript" src="app/lan/BeforeLogin.js"></script>
+	<script type="text/javascript" src="normal_login.js"></script>
+	<script type="text/javascript" src="base64.js"></script>
+	<script type="text/javascript" src="ajax.js"></script>
+	<link rel="stylesheet" type="text/css" href="resources/css/login.css">
+	<link rel="stylesheet" type="text/css" href="app/lan/lan.css">
+	<script type="text/javascript">
+	initLan();
+function enterkey(event){
+	
+	var userName=document.getElementById('userName');
+	var password=document.getElementById('password');
+	if(event.keyCode==13 && userName!="" && password!=""){
+		login();
+    }
+}
+</script>
+	
+</head>
+<body id="ext-gen1003" class="backcolor x-body x-gecko x-reset" onload="initCookie();procLan()" onkeydown="enterkey(event);">
+<form name="loginForm" action="doLogin.action" method="post">
+	<div class="ds_top">
+	    	<div class="inner">
+	            <div class="type"><a name="chinese" target="_self" onmouseover="this.style.cursor='hand'" onclick="changeLan(1)">中文</a>|<a name="english" onmouseover="this.style.cursor='hand'" onclick="changeLan(2)" title="English" target="_self">English</a></div>
+	        </div>
+	    </div>
+	<center id="ext-gen1038">
+		<div style="padding: 5px" id="login-box" class="x-panel">
+			<div name="login" id="ext-gen1039" class="x-panel-header" style="height: 13px;"> 
+				Login 
+			</div>
+			<div class="x-panel-body" id="form-ct">
+				
+				<div id="left-box" class="mydivleft">
+					<img id="logo" src="">
+				</div>
+				<div id="form-box" class="mydivright">
+					<div role="form" style="width: 233px; height: 213px;"
+						class="x-plain x-plain-default" id="form-1014">
+						<div style="left: 0px; top: 0px; border:10px" id="form-1014-body"
+							class="x-plain-body  x-plain-body-default x-plain-body-default">
+							<div style="width: 210px;"
+								class="x-field x-form-item x-field-default x-form-dirty"
+								id="TxtUserName">
+								<label name="domain" id="TxtUserName-labelEl" for="ext-gen1021"
+									class="x-form-item-label x-form-item-label-left"
+									style="margin-right: 5px; width: 70px; text-align: left;">
+									Domain:
+								</label>
+								<div style="width: 135px;" class="x-form-item-body "
+									id="TxtUserName-bodyEl" role="presentation">
+									<input type="hidden" name="vendorId" id="vendorId"/>
+									<input aria-required="true"
+										 role="textbox"
+										style="width: 135px; -moz-user-select: text;background:#E9E9E9;"
+										data-errorqtip="" aria-invalid="false" id="domain"
+										name="domain" size="20" class="x-form-field x-form-text"
+										autocomplete="off" type="text" onclick="this.select()" onblur="changeLogin()">
+								</div>
+								<div id="TxtUserName-errorEl" class="x-form-error-msg"
+									style="display: none"></div>
+								<div class="x-clear" role="presentation">
+									<!-- -->
+								</div>
+							</div>
+							<div style="width: 210px;"
+								class="x-field x-form-item x-field-default x-form-dirty"
+								id="TxtUserName">
+								<label name="userNameAbbr" id="TxtUserName-labelEl" for="ext-gen1021"
+									class="x-form-item-label x-form-item-label-left"
+									style="margin-right: 5px; width: 70px; text-align: left;">
+									Username:
+								</label>
+								<div style="width: 135px;" class="x-form-item-body "
+									id="TxtUserName-bodyEl" role="presentation">
+									<input aria-required="true"
+										aria-describedby="TxtUserName-errorEl" role="textbox"
+										style="width: 135px; -moz-user-select: text;"
+										data-errorqtip="" aria-invalid="false" id="userName"
+										name="userName" size="20" class="x-form-field x-form-text"
+										autocomplete="off" type="text" onclick="this.select()">
+								</div>
+								<div id="TxtUserName-errorEl" class="x-form-error-msg"
+									style="display: none"></div>
+								<div class="x-clear" role="presentation">
+									<!-- -->
+								</div>
+							</div>
+							<div style="width: 210px;"
+								class="x-field x-form-item x-field-default x-form-dirty"
+								id="TxtPassword">
+								<label name="password" id="TxtPassword-labelEl" for="ext-gen1027"
+									class="x-form-item-label x-form-item-label-left"
+									style="margin-right: 5px; width: 70px; text-align: left;">
+									Password:
+								</label>
+								<div style="width: 135px;" class="x-form-item-body "
+									id="TxtPassword-bodyEl" role="presentation">
+									<input aria-required="false"
+										aria-describedby="TxtPassword-errorEl" role="textbox"
+										style="width: 135px; -moz-user-select: text;"
+										data-errorqtip="" aria-invalid="false" id="password"
+										name="password" size="20" class="x-form-field x-form-text"
+										autocomplete="off" type="password" onclick="this.select()" >
+								</div>
+								<div id="TxtPassword-errorEl" class="x-form-error-msg"
+									style="display: none"></div>
+								<div class="x-clear" role="presentation">
+									<!-- -->
+								</div>
+							</div>
+							
+							<div style="width: 210px;"
+								class="x-field x-form-item x-field-default" id="cookies">
+								
+								<label name="cookieTime" id="cookies-labelEl" for="ext-gen1030"
+									class="x-form-item-label x-form-item-label-left"
+									style="margin-right: 5px; width: 70px; text-align: left;">
+									 Login To:
+								</label>
+								
+								<div style="width: 135px;" class="x-form-item-body "
+									id="cookies-bodyEl" role="presentation">
+									
+									<select style="width:135px" class="x-form-item-body " id="loginMode" onchange="changeLogin()">
+										<option name="cloudMode" value="cloud">Cloud Server</option>
+										<option name="accountMode" value="account">Account Center</option>
+										<option name="localMode" value="local">Local Server</option>
+									<!-- <option name="oneYear" value="one year">Local Server</option> -->
+									</select>
+									
+								</div>
+								<div id="cookies-errorEl" class="x-form-error-msg"
+									style="display: none"></div>
+								<div class="x-clear" role="presentation">
+									<!-- -->
+								</div>
+							</div>
+							<div style="width: 211px;"
+								class="x-field x-form-item x-field-default x-form-cb-checked"
+								id="checkboxid">
+								
+								
+								<label id="checkboxid-labelEl" for="ext-gen1011"
+									class="x-form-item-label x-form-item-label-left"
+									style="margin-right: 5px; width: 70px; text-align: left;">
+									
+								</label>
+								<div style="width: 13px;"
+									class="x-form-item-body x-form-cb-wrap" id="checkboxid-bodyEl"
+									role="presentation">
+									<input type="checkbox" id="remeber" onclick="unCheck()">
+								</div>
+								<label name="useCookie" id="checkboxid-labelEl" for="ext-gen1011"
+									class="x-form-item-label x-form-item-label-left"
+									style="margin-right: 5px; width: 80px; text-align: left;">
+									Stay Signed In
+								</label>
+								<div id="checkboxid-errorEl" class="x-form-error-msg"
+									style="display: none"></div>
+								<div class="x-clear" role="presentation">
+									<!-- -->
+								</div>
+							</div>
+							<div style="width: 227px;height: 16px;" id="ext-gen10160"
+								 role="presentation">
+								<div id="ins" style="margin: 0px;left: 0px; top: 0px;"></div>
+							</div>
+							
+							
+							<div id="ext-gen1036" class="x-clear" role="presentation"></div>
+						</div>
+
+						
+						<div style="width: 233px; left: 0px; top: 159px;" tabindex="-1"
+							role="toolbar"
+							class="x-toolbar x-toolbar-footer x-docked x-docked-bottom x-toolbar-docked-bottom x-toolbar-footer-docked-bottom x-box-layout-ct"
+							id="toolbar-1015">
+							<div style="width: 227px; height: 22px;" id="ext-gen1016"
+								class="x-box-inner" role="presentation">
+								<!--<div style="margin: 0px; width: 75px; left: 49px; top: 0px;"
+									class="x-btn x-box-item x-toolbar-item x-btn-default-small x-noicon x-btn-noicon x-btn-default-small-noicon"
+									id="button-1016">
+									<em id="button-1016-btnWrap" class=""><button onclick="login()" 
+											style="width: 69px;" class="x-btn-center"
+											id="button-1016-btnEl" type="button" hidefocus="true"
+											role="button" autocomplete="off">
+											<span id="button-1016-btnInnerEl" class="x-btn-inner"
+												style="width: 69px;">Login</span><span
+												id="button-1016-btnIconEl"
+												class="x-btn-icon  x-hide-display">&nbsp;</span>
+										</button>
+									</em>
+								</div>
+								--><div style="margin: 0px; width: 198px;  top: 0px;"
+									class="x-btn x-box-item x-toolbar-item x-btn-default-small x-noicon x-btn-noicon x-btn-default-small-noicon"
+									id="button-1017">
+									<!--<button onclick="doRegister()"
+											style="width: 69px;" class="x-btn-center"
+											type="button" 
+											role="button" >
+											<span id="button-1017-btnInnerEl" class="x-btn-inner"
+												style="width: 69px;">Register</span>
+										</button>
+								-->
+								<em id="button-1016-btnWrap" class=""><button onclick="login()" 
+											 class="x-btn-center"
+											id="button-1016-btnEl" type="button" hidefocus="true"
+											role="button" autocomplete="off" style="width:198px;">
+											<span name="login" id="button-1016-btnInnerEl" class="x-btn-inner"
+												style="width: 198px;">Login</span><span
+												id="button-1016-btnIconEl"
+												class="x-btn-icon  x-hide-display">&nbsp;</span>
+										</button>
+									</em>
+								</div>
+							</div>
+							
+							<div style=" height: 22px;" id="ext-gen1016"
+								class="x-box-inner" role="presentation">
+								<!--<div style="margin: 0px; width: 75px; left: 49px; top: 0px;"
+									class="x-btn x-box-item x-toolbar-item x-btn-default-small x-noicon x-btn-noicon x-btn-default-small-noicon"
+									id="button-1016">
+									<em id="button-1016-btnWrap" class=""><button onclick="login()" 
+											style="width: 69px;" class="x-btn-center"
+											id="button-1016-btnEl" type="button" hidefocus="true"
+											role="button" autocomplete="off">
+											<span id="button-1016-btnInnerEl" class="x-btn-inner"
+												style="width: 69px;">Login</span><span
+												id="button-1016-btnIconEl"
+												class="x-btn-icon  x-hide-display">&nbsp;</span>
+										</button>
+									</em>
+								</div>
+								-->
+								<div id="registerDiv" style="margin: 0px;top: 0px;">
+									<a name="regIndex" href="javascript:doRegister();" style="text-decoration:none;">Register for new SIM Cloud account >></a>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</center>
+</form>
+</body>

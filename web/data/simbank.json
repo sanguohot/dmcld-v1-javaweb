@@ -1,0 +1,24 @@
+{
+	success: true,
+	simbanks: [
+                {roamzonename:'shenzhen',name:'sz-64',desc:'shenzhen test', bankid: '016E23000201', type: 'bk64',bankmac:'00-1F-6E-00-00-01',status:'online'},
+                {roamzonename:'shenzhen',name:'hk-128',desc:'shenzhen test',bankid: '016E23000202', type: 'bk128',bankmac:'00-1F-6E-00-00-02',status:'offline'},
+				{roamzonename:'shenzhen',name:'sg-128',desc:'shenzhen test',bankid: '016E23000203', type: 'bk128',bankmac:'00-1F-6E-00-00-03',status:'linked'},
+				{roamzonename:'shenzhen',name:'sg1-128',desc:'shenzhen test',bankid:'016E23000204', type: 'bk128',bankmac:'00-1F-6E-00-00-03',status:'linked'},
+				{roamzonename:'shenzhen',name:'sg2-128',desc:'shenzhen test',bankid: '016E23000205', type: 'bk128',bankmac:'00-1F-6E-00-00-03',status:'linked'},
+				{roamzonename:'shenzhen',name:'sg3-128',desc:'shenzhen test',bankid: '016E23000206', type: 'bk128',bankmac:'00-1F-6E-00-00-03',status:'linked'},
+				{roamzonename:'shenzhen',name:'sg4-128',desc:'shenzhen test',bankid: '016E23000207', type: 'bk128',bankmac:'00-1F-6E-00-00-03',status:'linked'},
+				{roamzonename:'shenzhen',name:'sg5-128',desc:'shenzhen test',bankid: '016E23000208', type: 'bk128',bankmac:'00-1F-6E-00-00-03',status:'linked'},
+				{roamzonename:'shenzhen',name:'sg6-128',desc:'shenzhen test',bankid: '016E23000209', type: 'bk128',bankmac:'00-1F-6E-00-00-03',status:'linked'},
+				{roamzonename:'shenzhen',name:'sg7-128',desc:'shenzhen test',bankid: '016E23000210', type: 'bk128',bankmac:'00-1F-6E-00-00-03',status:'linked'},
+				{roamzonename:'shenzhen',name:'sg8-128',desc:'shenzhen test',bankid: '016E23000211', type: 'bk128',bankmac:'00-1F-6E-00-00-03',status:'linked'},
+				{roamzonename:'shenzhen',name:'sg9-128',desc:'shenzhen test',bankid: '016E23000212', type: 'bk128',bankmac:'00-1F-6E-00-00-03',status:'linked'},
+				{roamzonename:'shenzhen',name:'sz10-128',desc:'shenzhen test',bankid: '016E23000213', type: 'bk128',bankmac:'00-1F-6E-00-00-03',status:'linked'},
+				{roamzonename:'hongkong',name:'sg11-64',desc:'shenzhen test',bankid: '016E23000209', type: 'bk128',bankmac:'00-1F-6E-00-00-03',status:'linked'},
+				{roamzonename:'hongkong',name:'sg12-128',desc:'shenzhen test',bankid: '016E23000210', type: 'bk128',bankmac:'00-1F-6E-00-00-03',status:'linked'},
+				{roamzonename:'hongkong',name:'sg13-128',desc:'shenzhen test',bankid: '016E23000211', type: 'bk128',bankmac:'00-1F-6E-00-00-03',status:'linked'},
+				{roamzonename:'hongkong',name:'sg14-128',desc:'shenzhen test',bankid: '016E23000212', type: 'bk128',bankmac:'00-1F-6E-00-00-03',status:'linked'},
+				{roamzonename:'hongkong',name:'sz15-128',desc:'shenzhen test',bankid: '016E23000213', type: 'bk128',bankmac:'00-1F-6E-00-00-03',status:'linked'}
+
+            ]
+}

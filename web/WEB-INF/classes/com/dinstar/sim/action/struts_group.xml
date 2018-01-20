@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">  
+<struts>  
+<!-- 卡组管理配置文件 -->
+	<package name="struts-group" extends="json-default">
+	<interceptors>  
+	    	<interceptor name="timeoutInterceptor" class="com.dinstar.sim.action.SessionTimeoutInterceptor"></interceptor>  
+	    	<interceptor-stack name="timeoutStack">  
+	        	<interceptor-ref name="timeoutInterceptor"/>  
+	        	<interceptor-ref name="defaultStack"/>  
+	    	</interceptor-stack>  
+		</interceptors>
+		<default-interceptor-ref name="timeoutStack"/>  
+		<action name="groupManager" class="groupAction">  
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		
+		<action name="groupInDomainManager" class="groupInDomainAction">  
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+	</package>
+</struts>  

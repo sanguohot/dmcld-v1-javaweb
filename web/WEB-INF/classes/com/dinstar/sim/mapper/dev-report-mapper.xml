@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="com.dinstar.sim.dao.TblDevReportMapper">
+    <resultMap type="com.dinstar.sim.dao.TblDevReportMapper" id="TblDevReport">
+	 <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="dev_num" property="devNum" jdbcType="CHAR" />
+    <result column="dev_register_num" property="devRegisterNum" jdbcType="CHAR" />
+    <result column="drp_register_num" property="drpRegisterNum" jdbcType="CHAR" />
+     <result column="dev_delete_num" property="devDeteleNum" jdbcType="CHAR" />
+     <result column="dev_reboot_num" property="devRebootNum" jdbcType="CHAR" />
+     <result column="del_status" property="delStatus" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+   </resultMap>
+   
+   <select id="selectByExample" resultType="java.lang.Integer"  parameterType="com.dinstar.sim.dao.TblDevReportMapper">
+      select count(*) from tbl_ne where 1=1
+     <if test="fromTime!=null and fromTime!=''" >
+   		 and create_time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>create_time
+     	</if>
+   
+   </select>
+  <select id="selectDevRegisterByExample" resultType="java.lang.Integer"  parameterType="com.dinstar.sim.dao.TblDevReportMapper">
+      select count(*) from tbl_ne where 1=1
+     <if test="fromTime!=null and fromTime!=''" >
+   		 and last_reg_time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>last_reg_time
+     	</if>
+  
+  </select>
+    
+    <select id="selectDrpRegisterNum" resultType="java.lang.Integer"  parameterType="com.dinstar.sim.dao.TblDevReportMapper">
+     select count(*) from tbl_ne where 1=1
+     <if test="fromTime!=null and fromTime!=''" >
+   		 and rm_last_reg_time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>rm_last_reg_time
+     	</if>
+    
+    </select>
+    <select id="selectDevDeteleNum" resultType="java.lang.Integer"  parameterType="com.dinstar.sim.dao.TblDevReportMapper">
+     select count(*) from tbl_ne where 1=1
+    
+     and rec_status=2
+     <if test="fromTime!=null and fromTime!=''" >
+   		 and create_time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>create_time
+     	</if>
+    
+    </select>
+    <select id="selectDevRebootNum" resultType="java.lang.Integer"  parameterType="com.dinstar.sim.dao.TblDevReportMapper">
+      select count(*) from tbl_log_user where 1=1
+     and object_type=41
+     and operate=5
+     <if test="fromTime!=null and fromTime!=''" >
+   		 and generate_time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>generate_time
+     	</if>
+    
+    </select>
+ 
+    <insert id="insetDevReportByExample" parameterType="com.dinstar.sim.dao.TblDevReportMapper" useGeneratedKeys="true" keyProperty="uuid">
+     insert into tbl_dev_report (uuid,dev_num,dev_register_num,drp_register_num,dev_delete_num,dev_reboot_num,del_status,create_time,update_time) 
+     values ( #{uuid,jdbcType=INTEGER}, #{devNum,jdbcType=CHAR},#{devRegisterNum,jdbcType=CHAR},#{drpRegisterNum,jdbcType=CHAR},#{devDeteleNum,jdbcType=CHAR},
+     #{devRebootNum,jdbcType=CHAR},#{delStatus,jdbcType=INTEGER},#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP} )
+  
+  
+   </insert>
+   
+   <select id="countDevReport" resultType="java.lang.Integer"  parameterType="com.dinstar.sim.dao.TblDevReportMapper">
+      select count(*) from (
+      select count(*) from tbl_dev_report where 1=1 
+      <if test="fromTime!=null and fromTime!=''" >
+   		 and create_time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>create_time
+     	</if>
+     	and ${createTime}
+     	GROUP BY create_time 
+     	) as a
+   
+   </select>
+   
+   <select id="selectDevReportByExample" resultMap="TblDevReport"  parameterType="com.dinstar.sim.dao.TblDevReportMapper">
+      select * from tbl_dev_report where 1=1 
+        <if test="fromTime!=null and fromTime!=''" >
+   		 and create_time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>create_time
+     	</if>
+     	and ${createTime}
+     	GROUP BY create_time 
+     	order by create_time desc 
+      limit  #{start},#{limit}
+   
+   </select>
+  </mapper>

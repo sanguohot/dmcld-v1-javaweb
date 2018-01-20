@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<!-- domain 配置文件 -->
+<mapper namespace="com.dinstar.sim.mapper.Domain">
+	<resultMap type="com.dinstar.sim.mapper.DomainMapper" id="domainMapperMap">
+		<id column="uuid" property="uuid" jdbcType="INTEGER" />
+	    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="name" property="name" jdbcType="CHAR" />
+	    <result column="alias" property="alias" jdbcType="CHAR" />
+	    <result column="admin_user_uuid" property="adminUserUuid" jdbcType="INTEGER" />
+	    <result column="cloud_uuid" property="cloudUuid" jdbcType="INTEGER" />
+	    <result column="auth_sys_uuid" property="authSysUuid" jdbcType="INTEGER" />
+	    <result column="sys_uuid" property="sysUuid" jdbcType="INTEGER" />
+	    <result column="proc_uuid" property="procUuid" jdbcType="INTEGER" />
+	    <result column="vendor_id" property="vendorId" jdbcType="INTEGER" />
+	    <result column="product_id" property="productId" jdbcType="INTEGER" />
+	    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+	    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+	    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+	    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+	    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+	    <result column="paid_card_uuid" property="paidCardUuid" jdbcType="INTEGER" />
+	    <result column="paid_card_type" property="paidCardType" jdbcType="INTEGER" />
+	    <result column="paid_card_price" property="paidCardPrice" jdbcType="INTEGER" />
+	    <result column="trial_balance" property="trialBalance" jdbcType="REAL" />
+	    <result column="premium_balance" property="premiumBalance" jdbcType="REAL" />
+	    <result column="lic_new_sign_type" property="licNewSignType" jdbcType="INTEGER" />
+	    <result column="lic_new_sim_num" property="licNewSimNum" jdbcType="INTEGER" />
+	    <result column="lic_new_hbm_flag" property="licNewHbmFlag" jdbcType="INTEGER" />
+	    <result column="lic_renew_days" property="licRenewDays" jdbcType="INTEGER" />
+	    <result column="lic_first_cost" property="licFirstCost" jdbcType="INTEGER" />
+	    <result column="lic_period_cost" property="licPeriodCost" jdbcType="INTEGER" />
+	    <result column="lic_extra_balance" property="licExtraBalance" jdbcType="REAL" />
+	    <result column="idle_time" property="idleTime" jdbcType="INTEGER" />
+	    <result column="spec_cloud_uuid" property="specCloudUuid" jdbcType="INTEGER" />
+	    <result column="spec_sys_uuid" property="specSysUuid" jdbcType="INTEGER" />
+	    <result column="sys_locked_flag" property="sysLockedFlag" jdbcType="INTEGER" />
+	    <result column="node_encrypt_flag" property="nodeEncryptFlag" jdbcType="INTEGER" />
+	    <result column="dev_time_flag" property="devTimeFlag" jdbcType="INTEGER" />
+	    <result column="timezone_flag" property="timezoneFlag" jdbcType="INTEGER" />
+	    <result column="ntp_server1" property="ntpServer1" jdbcType="CHAR" />
+	    <result column="ntp_server2" property="ntpServer2" jdbcType="CHAR" />
+	    <result column="local_time_zone" property="localTimeZone" jdbcType="INTEGER" />
+	    <result column="idle_switch_flag" property="idleSwitchFlag" jdbcType="INTEGER" />
+	    <result column="smooth_switch_flag" property="smoothSwitchFlag" jdbcType="INTEGER" />
+	    <result column="offline_clean_mode" property="offlineCleanMode" jdbcType="INTEGER" />
+	    <result column="switch_timeout" property="switchTimeout" jdbcType="INTEGER" />
+	    <result column="scp_timeout_sec" property="scpTimeoutSec" jdbcType="INTEGER" />
+	    <result column="scp_ping_channel" property="scpPingChannel" jdbcType="INTEGER" />
+	    <result column="hbm_send_retries" property="hbmSendRetries" jdbcType="INTEGER" />
+	    <result column="save_sms_fail" property="saveSmsFail" jdbcType="INTEGER" />
+	    <result column="save_ussd_fail" property="saveUssdFail" jdbcType="INTEGER" />
+	    <result column="save_call_fail" property="saveCallFail" jdbcType="INTEGER" />
+	    <result column="port_stats_flag" property="portStatsFlag" jdbcType="INTEGER" />
+	    <result column="sim_stats_flag" property="simStatsFlag" jdbcType="INTEGER" />
+	    <result column="sms_capacity" property="smsCapacity" jdbcType="INTEGER" />
+	    <result column="sms_sending_cnt" property="smsSendingCnt" jdbcType="INTEGER" />
+	    <result column="total_ne_count" property="totalNeCount" jdbcType="INTEGER" />
+	    <result column="online_ne_count" property="onlineNeCount" jdbcType="INTEGER" />
+	    <result column="total_sim_card" property="totalSimCard" jdbcType="INTEGER" />
+	    <result column="online_sim_card" property="onlineSimCard" jdbcType="INTEGER" />
+	    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+	    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+	    <result column="push_sms_interval" property="pushSmsInterval" jdbcType="INTEGER" />
+	    <result column="push_call_interval" property="pushCallInterval" jdbcType="INTEGER" />
+	    <result column="push_mail_interval" property="pushMailInterval" jdbcType="INTEGER" />
+	    <result column="push_sms_level" property="pushSmsLevel" jdbcType="INTEGER" />
+	    <result column="push_sms_encode" property="pushSmsEncode" jdbcType="INTEGER" />
+	    <result column="push_ne_uuid1" property="pushNeUuid1" jdbcType="INTEGER" />
+	    <result column="push_sms_port1" property="pushSmsPort1" jdbcType="INTEGER" />
+	    <result column="push_ne_uuid2" property="pushNeUuid2" jdbcType="INTEGER" />
+	    <result column="push_sms_port2" property="pushSmsPort2" jdbcType="INTEGER" />
+	    <result column="push_sms_addr" property="pushSmsAddr" jdbcType="VARCHAR" />
+	    <result column="push_sms_retry_max" property="pushSmsRetryMax" jdbcType="INTEGER" />
+	    <result column="push_call_level" property="pushCallLevel" jdbcType="INTEGER" />
+	    <result column="push_call_addr" property="pushCallAddr" jdbcType="VARCHAR" />
+	    <result column="push_call_retry_max" property="pushCallRetryMax" jdbcType="INTEGER" />
+	    <result column="push_mail_level" property="pushMailLevel" jdbcType="INTEGER" />
+	    <result column="push_mail_addr" property="pushMailAddr" jdbcType="VARCHAR" />
+	    <result column="push_mail_retry_max" property="pushMailRetryMax" jdbcType="INTEGER" />
+	    <result column="mail_relay_enable" property="mailRelayEnable" jdbcType="INTEGER" />
+	    <result column="smtp_server" property="smtpServer" jdbcType="VARCHAR" />
+	    <result column="smtp_port" property="smtpPort" jdbcType="INTEGER" />
+	    <result column="start_tls" property="startTls" jdbcType="INTEGER" />
+	    <result column="smtp_user_name" property="smtpUserName" jdbcType="VARCHAR" />
+	    <result column="smtp_pass_word" property="smtpPassWord" jdbcType="VARCHAR" />
+	    <result column="mail_from" property="mailFrom" jdbcType="VARCHAR" />
+	    <result column="alarm_short_period" property="alarmShortPeriod" jdbcType="INTEGER" />
+	    <result column="alarm_long_period" property="alarmLongPeriod" jdbcType="INTEGER" />
+	    <result column="status_short_period" property="statusShortPeriod" jdbcType="INTEGER" />
+	    <result column="status_long_period" property="statusLongPeriod" jdbcType="INTEGER" />
+	    <result column="statics_period" property="staticsPeriod" jdbcType="INTEGER" />
+	    <result column="anti_call_scan_enable" property="antiCallScanEnable" jdbcType="INTEGER" />
+	    <result column="short_call_param" property="shortCallParam" jdbcType="INTEGER" />
+	    <result column="long_call_param1" property="longCallParam1" jdbcType="INTEGER" />
+	    <result column="long_call_param2" property="longCallParam2" jdbcType="INTEGER" />
+	    <result column="long_call_param3" property="longCallParam3" jdbcType="INTEGER" />
+	    <result column="number_expire_time" property="numberExpireTime" jdbcType="INTEGER" />
+	    <result column="caller_gray_flag" property="callerGrayFlag" jdbcType="INTEGER" />
+   	 	<result column="callee_gray_flag" property="calleeGrayFlag" jdbcType="INTEGER" />
+    	<result column="ip_gray_flag" property="ipGrayFlag" jdbcType="INTEGER" />
+    	<result column="dynamic_statics_enable" property="dynamicStaticsEnable" jdbcType="INTEGER" />
+		<result column="snumber_max" property="snumberMax" jdbcType="INTEGER" />
+		<result column="dnumber_max" property="dnumberMax" jdbcType="INTEGER" />
+	<!-- server info -->
+		<result column="user_uuid" property="userUuid" jdbcType="INTEGER" />
+		<result column="user_name" property="userName" jdbcType="CHAR" />
+		<result column="server_uuid" property="serverUuid" jdbcType="INTEGER" />
+		<result column="server_name" property="serverName" jdbcType="CHAR" />
+		<!-- pm head info -->
+		<result column="pmhead_uuid" property="pmHeadUuid" jdbcType="INTEGER" />
+	    <result column="idle_switch_flag" property="idleSwitchFlag" jdbcType="INTEGER" />
+	    <result column="smooth_switch_flag" property="smoothSwitchFlag" jdbcType="INTEGER" />
+	    <result column="switch_timeout" property="switchTimeout" jdbcType="INTEGER" />
+	    <result column="pm_15m_max" property="pm15mMax" jdbcType="INTEGER" />
+	    <result column="pm_15m_sn" property="pm15mSn" jdbcType="INTEGER" />
+	    <result column="pm_15m_count" property="pm15mCount" jdbcType="INTEGER" />
+	    <result column="pm_24h_max" property="pm24hMax" jdbcType="INTEGER" />
+	    <result column="pm_24h_sn" property="pm24hSn" jdbcType="INTEGER" />
+	    <result column="pm_24h_count" property="pm24hCount" jdbcType="INTEGER" />
+	    <result column="pm_call_max" property="pmCallMax" jdbcType="INTEGER" />
+	    <result column="pm_sms_max" property="pmSmsMax" jdbcType="INTEGER" />
+	    <result column="pm_ussd_max" property="pmUssdMax" jdbcType="INTEGER" />
+	    <result column="alarm_max" property="alarmMax" jdbcType="INTEGER" />
+	    <result column="vendor_id" property="vendorId" jdbcType="INTEGER" />
+	  
+	    <!-- license info -->
+	    <result column="sign_type" property="signType" jdbcType="INTEGER" />
+	    <result column="lic_status" property="licStatus" jdbcType="INTEGER" />
+    	<result column="left_days" property="leftDays" jdbcType="INTEGER" />
+	   
+	   <result column="dynamic_caller_enable" property="dynamicCallerEnable" jdbcType="INTEGER" />
+	   <result column="black_infect_flag" property="blackInfectFlag" jdbcType="INTEGER" />
+	   <result column="number_valid_len" property="numberValidLen" jdbcType="INTEGER" />
+	    <result column="fail_call_weight" property="failCallWeight" jdbcType="INTEGER" />
+	</resultMap>
+
+	<select id="getDomainInfo" resultMap="domainMapperMap"
+		parameterType="java.lang.Integer">
+		select
+		td.*,
+		tu.uuid as user_uuid,tu.name as user_name,
+		ts.uuid as server_uuid,ts.name as server_name,
+		tp.uuid as pmhead_uuid,tp.pm_15m_count,tp.pm_15m_max,tp.pm_15m_sn,tp.pm_24h_count,tp.pm_24h_max,tp.pm_24h_sn,
+		tp.pm_sms_max,tp.pm_call_max,tp.pm_ussd_max ,tp.alarm_max,tp.snumber_max,tp.dnumber_max,
+		tld.sign_type,tld.lic_status,tld.left_days
+		from tbl_domain td 
+		left join tbl_user tu on(td.admin_user_uuid=tu.uuid) 
+		left join tbl_sys ts on(td.sys_uuid=ts.uuid)
+		left join tbl_pm_head tp on(td.uuid=tp.domain_uuid)
+		left join tbl_lic_domain tld on (td.uuid=tld.spec_domain_uuid)
+		where td.uuid=#{domainUuid}
+    </select>
+</mapper>

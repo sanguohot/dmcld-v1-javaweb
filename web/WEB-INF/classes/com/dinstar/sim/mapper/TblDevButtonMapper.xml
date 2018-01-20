@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblDevButtonMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblDevButton" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="userUuid" property="userUuid" jdbcType="INTEGER" />
+    <result column="view" property="view" jdbcType="INTEGER" />
+    <result column="sett" property="sett" jdbcType="INTEGER" />
+    <result column="reboot" property="reboot" jdbcType="INTEGER" />
+    <result column="cfg_backup" property="cfgBackup" jdbcType="INTEGER" />
+    <result column="cfg_estore" property="cfgEstore" jdbcType="INTEGER" />
+    <result column="remote" property="remote" jdbcType="INTEGER" />
+    <result column=" port" property=" port" jdbcType="INTEGER" />
+    <result column="restorePwd" property="restorePwd" jdbcType="INTEGER" />
+    <result column="calls" property="calls" jdbcType="INTEGER" />
+    <result column="pmd" property="pmd" jdbcType="INTEGER" />
+    <result column="per" property="per" jdbcType="INTEGER" />
+    <result column="cdr" property="cdr" jdbcType="INTEGER" />
+    <result column="rmw" property="rmw" jdbcType="INTEGER" />
+    <result column="rmt" property="rmt" jdbcType="INTEGER" />
+    <result column="del" property="del" jdbcType="INTEGER" />
+    <result column="sipPortConf" property="sipPortConf" jdbcType="INTEGER" />
+    <result column="ipHistory" property="ipHistory" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+   <sql id="Base_Column_List" >
+    uuid,userUuid,view,sett,reboot,cfg_backup, cfg_estore,remote,port,restorePwd,calls,pmd, time,
+	per,cdr,rmw,rmt,del,sipPortConf,ipHistory
+  </sql>
+    <update id="updateByExample" parameterType="map">
+      update tbl_dev_button set 
+       userUuid=#{userUuid,jdbcType=INTEGER},
+       view=#{view,jdbcType=INTEGER},
+       sett=#{sett,jdbcType=INTEGER},
+       reboot=#{reboot,jdbcType=INTEGER},
+       cfg_backup=#{cfgBackup,jdbcType=INTEGER},
+       cfg_estore=#{cfgEstore,jdbcType=INTEGER},
+       remote=#{remote,jdbcType=INTEGER},
+       port=#{port,jdbcType=INTEGER},
+       restorePwd= #{restorePwd,jdbcType=INTEGER},
+       calls= #{calls,jdbcType=INTEGER},
+       pmd=#{pmd,jdbcType=INTEGER},
+       per= #{per,jdbcType=INTEGER},
+       cdr=#{cdr,jdbcType=INTEGER},
+       rmw= #{rmw,jdbcType=INTEGER},
+       rmt=#{rmt,jdbcType=INTEGER},
+       del= #{del,jdbcType=INTEGER}, 
+       ipHistory= #{ipHistory,jdbcType=INTEGER},
+       sipPortConf= #{sipPortConf,jdbcType=INTEGER}
+       where userUuid= #{userUuid,jdbcType=INTEGER}
+     
+      
+    </update>
+     <select id="countButtonList" resultType="java.lang.Integer">
+        select count(*) from tbl_dev_button where userUuid= #{userUuid,jdbcType=INTEGER}
+    </select>
+    <select id="getButtonList" resultMap="BaseResultMap">
+      select * from tbl_dev_button where userUuid= #{userUuid,jdbcType=INTEGER}
+         
+    </select>
+    <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblDevButton" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_dev_button
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+       <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="userUuid != null" >
+        userUuid,
+      </if>
+      <if test="view != null" >
+        view,
+      </if>
+      <if test="sett != null" >
+        sett,
+      </if>
+      <if test="reboot != null" >
+        reboot,
+      </if>
+       
+      <if test="cfgBackup != null" >
+        cfg_backup,
+      </if>
+      <if test="cfgEstore != null" >
+       cfg_estore,
+      </if>
+      <if test="remote != null" >
+        remote,
+      </if>
+      <if test="port != null" >
+        port,
+      </if>
+      <if test="restorePwd != null" >
+        restorePwd,
+      </if>
+      <if test="calls != null" >
+        calls,
+      </if>
+      <if test="pmd != null" >
+        pmd,
+      </if>
+     
+      <if test="per != null" >
+        per,
+      </if>
+      <if test="cdr != null" >
+        cdr,
+      </if>
+      <if test="rmw != null" >
+        rmw,
+      </if>
+      <if test="rmt != null" >
+        rmt,
+      </if>
+      <if test="del != null" >
+        del,
+      </if>
+      <if test="ipHistory != null" >
+        ipHistory,
+      </if>
+      <if test="sipPortConf != null" >
+         sipPortConf,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="userUuid != null" >
+        #{userUuid,jdbcType=INTEGER},
+      </if>
+      <if test="view != null" >
+        #{view,jdbcType=INTEGER},
+      </if>
+      <if test="sett != null" >
+        #{sett,jdbcType=INTEGER},
+      </if>
+      <if test="reboot != null" >
+        #{reboot,jdbcType=INTEGER},
+      </if>
+      <if test="cfgBackup != null" >
+        #{cfgBackup,jdbcType=INTEGER},
+      </if>
+      <if test="cfgEstore != null" >
+        #{cfgEstore,jdbcType=INTEGER},
+      </if>
+      <if test="remote != null" >
+        #{remote,jdbcType=INTEGER},
+      </if>
+      <if test="port != null" >
+        #{port,jdbcType=INTEGER},
+      </if>
+      <if test="remote != null" >
+        #{remote,jdbcType=INTEGER},
+      </if>
+      <if test="calls != null" >
+        #{calls,jdbcType=INTEGER},
+      </if>
+       <if test="pmd != null" >
+        #{pmd,jdbcType=INTEGER},
+      </if>
+      <if test="per != null" >
+        #{per,jdbcType=INTEGER},
+      </if>
+      <if test="cdr != null" >
+        #{cdr,jdbcType=INTEGER},
+      </if>
+      <if test="rmw != null" >
+        #{rmw,jdbcType=INTEGER},
+      </if>
+      <if test="rmt != null" >
+        #{rmt,jdbcType=INTEGER},
+      </if>
+      <if test="del != null" >
+        #{del,jdbcType=INTEGER},
+      </if>
+      <if test="ipHistory != null" >
+        #{ipHistory,jdbcType=INTEGER},
+      </if>
+       <if test="sipPortConf != null" >
+        #{sipPortConf,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  </mapper>

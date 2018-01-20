@@ -1,0 +1,10 @@
+{
+	success: true,
+	banktypes: [
+				{simbanktype:'bk16'},
+				{simbanktype:'bk32'},
+				{simbanktype:'bk64'},
+				{simbanktype:'bk128'},
+				{simbanktype:'bk256'},				
+            ]
+}

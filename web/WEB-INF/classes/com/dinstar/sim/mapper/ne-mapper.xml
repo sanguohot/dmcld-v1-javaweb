@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- ne port mapper -->
+<mapper namespace="com.dinstar.sim.mapper.Ne">
+	<resultMap type="com.dinstar.sim.model.TblNe" id="neMapperMap">
+		 <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="site_uuid" property="siteUuid" jdbcType="INTEGER" />
+    <result column="policy_uuid" property="policyUuid" jdbcType="INTEGER" />
+    <result column="vendor_id" property="vendorId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="CHAR" />
+    <result column="package_version" property="packageVersion" jdbcType="CHAR" />
+    <result column="package_build_time" property="packageBuildTime" jdbcType="TIMESTAMP" />
+    <result column="sip_agent" property="sipAgent" jdbcType="CHAR" />
+    <result column="sip_owner" property="sipOwner" jdbcType="CHAR" />
+    <result column="cli_prompt" property="cliPrompt" jdbcType="CHAR" />
+    <result column="dhcp_default" property="dhcpDefault" jdbcType="INTEGER" />
+    <result column="ip_type" property="ipType" jdbcType="INTEGER" />
+    <result column="ip_addr" property="ipAddr" jdbcType="CHAR" />
+    <result column="mac_addr_num" property="macAddrNum" jdbcType="INTEGER" />
+    <result column="made_factory" property="madeFactory" jdbcType="CHAR" />
+    <result column="made_site" property="madeSite" jdbcType="CHAR" />
+    <result column="made_date" property="madeDate" jdbcType="CHAR" />
+    <result column="test_site" property="testSite" jdbcType="CHAR" />
+    <result column="test_date" property="testDate" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="encrypt_type" property="encryptType" jdbcType="INTEGER" />
+    <result column="outer_ip_addr" property="outerIpAddr" jdbcType="CHAR" />
+    <result column="inner_ip_addr" property="innerIpAddr" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="last_reg_time" property="lastRegTime" jdbcType="TIMESTAMP" />
+    <result column="reg_fail_count" property="regFailCount" jdbcType="INTEGER" />
+    <result column="upgrade_type" property="upgradeType" jdbcType="INTEGER" />
+    <result column="target_software_ver" property="targetSoftwareVer" jdbcType="CHAR" />
+    <result column="last_upgrade_result" property="lastUpgradeResult" jdbcType="INTEGER" />
+    <result column="last_upgrade_time" property="lastUpgradeTime" jdbcType="TIMESTAMP" />
+    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+     <result column="product_sn" property="productSn" jdbcType="BINARY" />
+    <result column="mac_addr_begin" property="macAddrBegin" jdbcType="BINARY" />
+    <result column="port_uuid" property="portUuid" jdbcType="INTEGER" />
+    <result column="port_num" property="portNum" jdbcType="INTEGER" />
+	</resultMap>
+	    
+    
+    <select id="getNeByPortUuid" resultMap="neMapperMap" parameterType="java.lang.Integer">
+		select tn.uuid,tn.rec_status,tn.product_sn,tn.alias,tn.admin_status,tn.opr_status,tn.run_status,
+		tn.domain_uuid,tn.site_uuid,tn.policy_uuid,tn.vendor_id,tn.product_id,
+		tn.product_name,tn.package_version,tn.package_build_time,tn.sip_agent,tn.sip_owner,tn.cli_prompt,tn.dhcp_default,
+		tn.ip_type,tn.ip_addr,tn.mac_addr_begin,tn.mac_addr_num,tn.made_factory,tn.made_site,tn.made_date,
+		tn.test_date,tn.test_site,tn.`password`,tn.encrypt_type,tn.outer_ip_addr,tn.inner_ip_addr,tn.create_time,tn.update_time,
+		tn.last_reg_time,tn.reg_fail_count,tn.upgrade_type,tn.target_software_ver,tn.last_upgrade_result,
+		tn.last_upgrade_time,tn.detail_desc,
+		tp.uuid as port_uuid from tbl_ne tn, tbl_port tp
+		where  tn.uuid=tp.ne_uuid and tp.uuid=#{portUuid}
+    </select>
+    <select id="getPortNumByNeUuid" resultMap="neMapperMap">
+		SELECT tn.*,tg.gwp_num as port_num
+		FROM tbl_ne tn
+		LEFT JOIN tbl_gw tg ON(tn.uuid=tg.ne_uuid)
+		WHERE tn.uuid = #{neUuid}
+		<if test="domainUuid>0">AND tn.domain_uuid =#{domainUuid}</if>
+    </select>
+    <insert id="updateNeSns" parameterType="map">
+		INSERT into tbl_ne (rec_status,domain_uuid,site_uuid,product_sn,product_sns,domain_name
+		,lic_valid_days,json_msg_id,update_lic_flag,lic_status,last_lic_result_code)
+		values  
+	    <foreach collection="list" item="item" index="index"  
+	        separator=",">  
+	        (#{item.recStatus}, #{zeroVal},#{zeroVal},#{item.productSn}, #{item.productSnStr}, #{item.domainName}
+	        ,#{zeroVal},#{zeroVal},#{zeroVal},#{zeroVal},#{zeroVal})  
+	    </foreach>
+	    ON DUPLICATE key UPDATE product_sns=values(product_sns),domain_name=values(domain_name),rec_status=#{recStatus}  
+  	</insert>
+</mapper>

@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- ne port mapper -->
+<mapper namespace="com.dinstar.sim.mapper.Sys">
+	<resultMap type="com.dinstar.sim.model.TblDomainWithDeviceNum" id="TblDomainWithDeviceNum">
+	<id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+    <result column="vendor_id" property="vendorId" jdbcType="INTEGER" />
+    <result column="spec_cloud_uuid" property="specCloudUuid" jdbcType="INTEGER" />
+    <result column="cloud_uuid" property="cloudUuid" jdbcType="INTEGER" />
+    <result column="spec_sys_uuid" property="specSysUuid" jdbcType="INTEGER" />
+    <result column="sys_uuid" property="sysUuid" jdbcType="INTEGER" />
+    <result column="server_name" property="serverName" jdbcType="CHAR" />
+    <result column="spec_server_name" property="specServerName" jdbcType="CHAR" />
+    <result column="cloud_name" property="cloudName" jdbcType="CHAR" />
+    <result column="spec_cloud_name" property="specCloudName" jdbcType="CHAR" />
+    <result column="alarm_max" property="alarmMax" jdbcType="INTEGER" />
+    <result column="pm_15m_max" property="pm15mMax" jdbcType="INTEGER" />
+    <result column="pm_24h_max" property="pm24hMax" jdbcType="INTEGER" />
+    <result column="pm_call_max" property="pmCallMax" jdbcType="INTEGER" />
+    <result column="pm_sms_max" property="pmSmsMax" jdbcType="INTEGER" />
+    <result column="pm_ussd_max" property="pmUssdMax" jdbcType="INTEGER" />
+    <result column="log_user_max" property="logUserMax" jdbcType="INTEGER" />
+    <result column="node_grp_name" property="nodeGrpName" jdbcType="CHAR" />
+    <result column="sys_locked_flag" property="sysLockedFlag" jdbcType="CHAR" />
+    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    
+	<result column="product_id" property="productId" jdbcType="INTEGER" />
+	<result column="total_ne_count" property="totalNeCount" jdbcType="INTEGER" />
+    <result column="online_ne_count" property="onlineNeCount" jdbcType="INTEGER" />
+    <result column="total_sim_card" property="totalSimCard" jdbcType="INTEGER" />
+    <result column="online_sim_card" property="onlineSimCard" jdbcType="INTEGER" />
+	
+	<result column="port_total_count" property="portTotalCount" jdbcType="INTEGER" />
+    <result column="port_work_count" property="portWorkCount" jdbcType="INTEGER" />
+    <result column="snumber_max" property="snumberMax" jdbcType="INTEGER" />
+    <result column="dnumber_max" property="dnumberMax" jdbcType="INTEGER" />
+	<result column="anti_call_scan_enable" property="antiCallScanEnable" jdbcType="INTEGER" />
+    <result column="short_call_param" property="shortCallParam" jdbcType="INTEGER" />
+    <result column="long_call_param1" property="longCallParam1" jdbcType="INTEGER" />
+    <result column="long_call_param2" property="longCallParam2" jdbcType="INTEGER" />
+    <result column="long_call_param3" property="longCallParam3" jdbcType="INTEGER" />
+    <result column="number_expire_time" property="numberExpireTime" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<resultMap id="TblSys" type="com.dinstar.sim.model.TblSys" >
+     	<id column="uuid" property="uuid" jdbcType="INTEGER" />
+	    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="cloud_uuid" property="cloudUuid" jdbcType="INTEGER" />
+	    <result column="name" property="name" jdbcType="CHAR" />
+	    <result column="alias" property="alias" jdbcType="CHAR" />
+	    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+	    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+	    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+	    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+	    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+	    <result column="auth_sys_uuid" property="authSysUuid" jdbcType="INTEGER" />
+	    <result column="paid_card_uuid" property="paidCardUuid" jdbcType="INTEGER" />
+	    <result column="paid_card_type" property="paidCardType" jdbcType="INTEGER" />
+	    <result column="paid_card_price" property="paidCardPrice" jdbcType="INTEGER" />
+	    <result column="trial_balance" property="trialBalance" jdbcType="REAL" />
+	    <result column="premium_balance" property="premiumBalance" jdbcType="REAL" />
+	    <result column="lic_new_srv_magic" property="licNewSrvMagic" jdbcType="CHAR" />
+	    <result column="lic_new_sign_type" property="licNewSignType" jdbcType="INTEGER" />
+	    <result column="lic_new_sim_num" property="licNewSimNum" jdbcType="INTEGER" />
+	    <result column="lic_new_hbm_flag" property="licNewHbmFlag" jdbcType="INTEGER" />
+	    <result column="lic_renew_days" property="licRenewDays" jdbcType="INTEGER" />
+	    <result column="lic_first_cost" property="licFirstCost" jdbcType="INTEGER" />
+	    <result column="lic_period_cost" property="licPeriodCost" jdbcType="INTEGER" />
+	    <result column="lic_extra_balance" property="licExtraBalance" jdbcType="REAL" />
+	    <result column="sys_ip_addr" property="sysIpAddr" jdbcType="CHAR" />
+	    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+	    <result column="recharge_uuid" property="rechargeUuid" jdbcType="INTEGER" />
+	    <result column="eth_ip_addr" property="ethIpAddr" jdbcType="CHAR" />
+	    <result column="sys_web_port" property="sysWebPort" jdbcType="INTEGER" />
+	    <result column="cur_license_uuid" property="curLicenseUuid" jdbcType="INTEGER" />
+	    <result column="new_license_uuid" property="newLicenseUuid" jdbcType="INTEGER" />
+	    <result column="sys_msg_port" property="sysMsgPort" jdbcType="INTEGER" />
+	    <result column="sys_sms_port" property="sysSmsPort" jdbcType="INTEGER" />
+	    <result column="hb_interval_ms" property="hbIntervalMs" jdbcType="INTEGER" />
+	    <result column="hb_dead_check_ms" property="hbDeadCheckMs" jdbcType="INTEGER" />
+	    <result column="local_time_zone" property="localTimeZone" jdbcType="INTEGER" />
+	    <result column="poll_interval_sec" property="pollIntervalSec" jdbcType="INTEGER" />
+	    <result column="diff_interval_sec" property="diffIntervalSec" jdbcType="INTEGER" />
+	    <result column="update_interval_sec" property="updateIntervalSec" jdbcType="INTEGER" />
+	    <result column="audit_interval_sec" property="auditIntervalSec" jdbcType="INTEGER" />
+	    <result column="create_dev_port" property="createDevPort" jdbcType="INTEGER" />
+	    <result column="demo_port_num" property="demoPortNum" jdbcType="INTEGER" />
+	    <result column="demo_random" property="demoRandom" jdbcType="INTEGER" />
+	    <result column="local_scp_port" property="localScpPort" jdbcType="INTEGER" />
+	    <result column="ice_idle_timelen" property="iceIdleTimelen" jdbcType="INTEGER" />
+	    <result column="srv_check_timelen" property="srvCheckTimelen" jdbcType="INTEGER" />
+	    <result column="prov_xml_url" property="provXmlUrl" jdbcType="CHAR" />
+	    <result column="prov_username" property="provUsername" jdbcType="CHAR" />
+	    <result column="prov_password" property="provPassword" jdbcType="CHAR" />
+	    <result column="proc_num" property="procNum" jdbcType="INTEGER" />
+	    <result column="load_val" property="loadVal" jdbcType="INTEGER" />
+	    <result column="total_ne_count" property="totalNeCount" jdbcType="INTEGER" />
+	    <result column="online_ne_count" property="onlineNeCount" jdbcType="INTEGER" />
+	    <result column="total_sim_card" property="totalSimCard" jdbcType="INTEGER" />
+	    <result column="online_sim_card" property="onlineSimCard" jdbcType="INTEGER" />
+	    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	    <result column="last_reg_time" property="lastRegTime" jdbcType="TIMESTAMP" />
+	    <result column="last_hb_time" property="lastHbTime" jdbcType="TIMESTAMP" />
+	    <result column="last_hb_time02" property="lastHbTime02" jdbcType="TIMESTAMP" />
+	    <result column="software_version" property="softwareVersion" jdbcType="CHAR" />
+	    <result column="software_build_time" property="softwareBuildTime" jdbcType="TIMESTAMP" />
+	    <result column="pm_15m_max" property="pm15mMax" jdbcType="INTEGER" />
+	    <result column="pm_24h_max" property="pm24hMax" jdbcType="INTEGER" />
+	    <result column="pm_15m_sn" property="pm15mSn" jdbcType="INTEGER" />
+	    <result column="pm_15m_count" property="pm15mCount" jdbcType="INTEGER" />
+	    <result column="pm_24h_sn" property="pm24hSn" jdbcType="INTEGER" />
+	    <result column="pm_24h_count" property="pm24hCount" jdbcType="INTEGER" />
+	    <result column="syslog_server_flag" property="syslogServerFlag" jdbcType="INTEGER" />
+	    <result column="syslog_port" property="syslogPort" jdbcType="INTEGER" />
+	    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+	    <result column="manage_domain" property="manageDomain" jdbcType="INTEGER" />
+	    <result column="manage_domain_name" property="manageDomainName" jdbcType="CHAR" />
+	    <result column="smtp_server" property="smtpServer" jdbcType="VARCHAR" />
+	    <result column="smtp_port" property="smtpPort" jdbcType="INTEGER" />
+	    <result column="start_tls" property="startTls" jdbcType="INTEGER" />
+	    <result column="smtp_user_name" property="smtpUserName" jdbcType="VARCHAR" />
+	    <result column="smtp_pass_word" property="smtpPassWord" jdbcType="VARCHAR" />
+	    <result column="mail_from" property="mailFrom" jdbcType="VARCHAR" />
+	    <result column="can_register_flag" property="canRegisterFlag" jdbcType="INTEGER" />
+	     <result column="product_id" property="productId" jdbcType="INTEGER" />
+	    
+  </resultMap> 
+  <resultMap id="TblSysWithDeviceNum" type="com.dinstar.sim.model.TblSysWithDeviceNum" extends="TblSys" >
+    <result column="bk_num" property="bkNum" jdbcType="INTEGER" />
+    <result column="gw_num" property="gwNum" jdbcType="INTEGER" />
+    <result column="cloud_name" property="cloudName" jdbcType="CHAR" />
+    <result column="spec_cloud_name" property="specCloudName" jdbcType="CHAR" />
+  </resultMap>
+   <resultMap id="TblSysList" type="com.dinstar.sim.model.TblSysWithDeviceNum">
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+	<result column="name" property="name" jdbcType="CHAR" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+	<result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+	<result column="sys_ip_addr" property="sysIpAddr" jdbcType="CHAR" />
+	<result column="load_val" property="loadVal" jdbcType="INTEGER" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="software_version" property="softwareVersion" jdbcType="CHAR" />
+	<result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+  </resultMap>
+    <resultMap id="TblNeWithSysInfo" type="com.dinstar.sim.model.TblNeWithSysInfo">
+    <result column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+    <result column="product_sn" property="productSn" jdbcType="BINARY" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="CHAR" />
+    <result column="package_version" property="packageVersion" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="upgrade_type" property="upgradeType" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="domain_name" property="domainName" jdbcType="CHAR" />
+    <result column="sys_name" property="sysName" jdbcType="CHAR" />
+    <result column="sys_uuid" property="sysUuid" jdbcType="INTEGER" />
+     <result column="package_build_time" property="packageBuildTime" jdbcType="TIMESTAMP" />
+<result column="outer_ip_addr" property="outerIpAddr" jdbcType="CHAR" />
+<result column="last_reg_time" property="lastRegTime" jdbcType="TIMESTAMP" />
+
+<result column="port_total_count" property="portTotalCount" jdbcType="INTEGER" />
+    <result column="port_work_count" property="portWorkCount" jdbcType="INTEGER" />
+  </resultMap> 
+  
+  <!-- sys liecense info -->
+   <resultMap id="SysLicenseMapper" type="com.dinstar.sim.mapper.SysLicenseMapper" extends="TblSys" >
+  		<result column="srv_mode" property="srvMode" jdbcType="INTEGER" />
+  		<result column="sign_type" property="signType" jdbcType="INTEGER" />
+	    <result column="lic_status" property="licStatus" jdbcType="INTEGER" />
+    	<result column="left_days" property="leftDays" jdbcType="INTEGER" />
+    	<result column="srv_uuid" property="srvUuid" jdbcType="INTEGER" />
+  </resultMap>
+   <!-- ######################## Device and Lock SIM Card ################################# -->
+  <resultMap id="NeAndLockSimMap" type="com.dinstar.sim.model.TblNe">
+	    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+	    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="alias" property="alias" jdbcType="CHAR" />
+	    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+	    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+	    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+	    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+	    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+	    <result column="alm_status_bits" property="almStatusBits" jdbcType="INTEGER" />
+	    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+	    <result column="site_uuid" property="siteUuid" jdbcType="INTEGER" />
+	    <result column="policy_uuid" property="policyUuid" jdbcType="INTEGER" />
+	    <result column="vendor_id" property="vendorId" jdbcType="INTEGER" />
+	    <result column="product_id" property="productId" jdbcType="INTEGER" />
+	    <result column="product_name" property="productName" jdbcType="CHAR" />
+	    <result column="package_version" property="packageVersion" jdbcType="CHAR" />
+	    <result column="package_build_time" property="packageBuildTime" jdbcType="TIMESTAMP" />
+	    <result column="detail_ver" property="detailVer" jdbcType="VARCHAR" />
+	    <result column="sip_agent" property="sipAgent" jdbcType="CHAR" />
+	    <result column="sip_owner" property="sipOwner" jdbcType="CHAR" />
+	    <result column="cli_prompt" property="cliPrompt" jdbcType="CHAR" />
+	    <result column="dhcp_default" property="dhcpDefault" jdbcType="INTEGER" />
+	    <result column="ip_type" property="ipType" jdbcType="INTEGER" />
+	    <result column="ip_addr" property="ipAddr" jdbcType="CHAR" />
+	    <result column="mac_addr_num" property="macAddrNum" jdbcType="INTEGER" />
+	    <result column="made_factory" property="madeFactory" jdbcType="CHAR" />
+	    <result column="made_site" property="madeSite" jdbcType="CHAR" />
+	    <result column="made_date" property="madeDate" jdbcType="CHAR" />
+	    <result column="test_site" property="testSite" jdbcType="CHAR" />
+	    <result column="test_date" property="testDate" jdbcType="CHAR" />
+	    <result column="password" property="password" jdbcType="CHAR" />
+	    <result column="encrypt_type" property="encryptType" jdbcType="INTEGER" />
+	    <result column="outer_ip_addr" property="outerIpAddr" jdbcType="CHAR" />
+	    <result column="inner_ip_addr" property="innerIpAddr" jdbcType="CHAR" />
+	    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	    <result column="last_reg_time" property="lastRegTime" jdbcType="TIMESTAMP" />
+	    <result column="reg_fail_count" property="regFailCount" jdbcType="INTEGER" />
+	    <result column="upgrade_type" property="upgradeType" jdbcType="INTEGER" />
+	    <result column="upgrade_force_flag" property="upgradeForceFlag" jdbcType="INTEGER" />
+	    <result column="target_software_ver" property="targetSoftwareVer" jdbcType="CHAR" />
+	    <result column="upgrade_status" property="upgradeStatus" jdbcType="INTEGER" />
+	    <result column="last_upgrade_result" property="lastUpgradeResult" jdbcType="INTEGER" />
+	    <result column="last_upgrade_time" property="lastUpgradeTime" jdbcType="TIMESTAMP" />
+	    <result column="port_total_count" property="portTotalCount" jdbcType="INTEGER" />
+	    <result column="port_work_count" property="portWorkCount" jdbcType="INTEGER" />
+	    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+	    <result column="next_ne_alarm_sn" property="nextNeAlarmSn" jdbcType="INTEGER" />
+	    <result column="syslog_status" property="syslogStatus" jdbcType="INTEGER" />
+	    <result column="log_sys_uuid" property="logSysUuid" jdbcType="INTEGER" />
+	    <result column="syslog_begin_date" property="syslogBeginDate" jdbcType="TIMESTAMP" />
+	    <result column="syslog_end_date" property="syslogEndDate" jdbcType="TIMESTAMP" />
+	    <result column="syslog_debug_level" property="syslogDebugLevel" jdbcType="INTEGER" />
+	    <result column="cdr_log_flag" property="cdrLogFlag" jdbcType="INTEGER" />
+	    <result column="signal_log_flag" property="signalLogFlag" jdbcType="INTEGER" />
+	    <result column="media_log_flag" property="mediaLogFlag" jdbcType="INTEGER" />
+	    <result column="system_log_flag" property="systemLogFlag" jdbcType="INTEGER" />
+	    <result column="mng_log_flag" property="mngLogFlag" jdbcType="INTEGER" />
+	    <result column="sipsrv_lock_flag" property="sipsrvLockFlag" jdbcType="INTEGER" />
+	    <result column="primary_sip_server" property="primarySipServer" jdbcType="CHAR" />
+	    <result column="primary_sipsrv_port" property="primarySipsrvPort" jdbcType="INTEGER" />
+	    <result column="secondary_sip_server" property="secondarySipServer" jdbcType="CHAR" />
+	    <result column="secondary_sipsrv_port" property="secondarySipsrvPort" jdbcType="INTEGER" />
+	    <result column="ntp_status" property="ntpStatus" jdbcType="INTEGER" />
+	    <result column="auto_reboot_flag" property="autoRebootFlag" jdbcType="INTEGER" />
+	    <result column="switch_chip_status" property="switchChipStatus" jdbcType="INTEGER" />
+	    <result column="cur_cpu" property="curCpu" jdbcType="INTEGER" />
+	    <result column="avg_cpu_5" property="avgCpu5" jdbcType="INTEGER" />
+	    <result column="avg_cpu_60" property="avgCpu60" jdbcType="INTEGER" />
+	    <result column="avg_cpu_600" property="avgCpu600" jdbcType="INTEGER" />
+	    <result column="dev_time" property="devTime" jdbcType="TIMESTAMP" />
+	    <result column="alarm_flag" property="alarmFlag" jdbcType="INTEGER" />
+	    <result column="loc_mcc" property="locMcc" jdbcType="INTEGER" />
+	    <result column="loc_mnc" property="locMnc" jdbcType="INTEGER" />
+	    <result column="loc_lac" property="locLac" jdbcType="INTEGER" />
+	    <result column="loc_cell_id" property="locCellId" jdbcType="INTEGER" />
+	    <result column="loc_status" property="locStatus" jdbcType="INTEGER" />
+	    <result column="loc_lat" property="locLat" jdbcType="REAL" />
+	    <result column="loc_lng" property="locLng" jdbcType="REAL" />
+	    <result column="lock_status" property="lockStatus" jdbcType="INTEGER" />
+	    <result column="product_sn" property="productSn" jdbcType="BINARY" />
+	    <result column="mac_addr_begin" property="macAddrBegin" jdbcType="BINARY" />
+	    
+		<result column="port_uuid" property="portUuid" jdbcType="INTEGER" />
+		<result column="mod_status" property="modStatus" jdbcType="INTEGER" />
+		<result column="mod_signal_val" property="modSignalVal" jdbcType="INTEGER" />
+		<result column="mod_signal_level" property="modSignalLevel" jdbcType="INTEGER" />
+		<result column="imsi" property="imsi" jdbcType="CHAR" />
+		<result column="operator" property="operator" jdbcType="CHAR" />
+  </resultMap> 
+   <select id="countDomain" resultType="java.lang.Integer" >
+    	select count(*)
+    	FROM tbl_domain td 
+		LEFT JOIN tbl_pm_head tp ON(td.uuid = tp.domain_uuid)
+		LEFT JOIN tbl_sys ts ON(td.sys_uuid=ts.uuid)
+		WHERE td.rec_status!=#{recStatus}
+		<if test="cloudUuid!=null and cloudUuid>-1">AND td.cloud_uuid =#{cloudUuid} </if>
+		<if test="sysUuid!=null and sysUuid>0">AND td.sys_uuid =#{sysUuid}</if>
+		<if test="adminStatus !=null and adminStatus>0">AND td.admin_status =#{adminStatus}</if>
+		<if test="runStatus!=null and runStatus>0">AND td.run_status =#{runStatus}</if>
+		<if test="specSysUuid!=null and specSysUuid>0">AND td.spec_sys_uuid =#{specSysUuid}</if>
+		<if test="like>0 and name!=null and name!=''">
+			<choose>
+				<when test="like=1">
+					AND td.`name` LIKE #{name}
+				</when>
+				<otherwise>
+					AND td.`name` = #{name}
+				</otherwise>
+			</choose>
+		</if>
+		<if test="vendorId>0">AND td.vendor_id=#{vendorId}</if> 
+  </select>
+    <select id="getBTblDomainWithDeviceNum" resultMap="TblDomainWithDeviceNum">
+	SELECT td.*,
+		ts.`name` AS server_name,
+		ts2.name as spec_server_name,
+		tc.name as cloud_name,tc2.name as spec_cloud_name,
+		tp.*
+		
+		FROM tbl_domain td
+		LEFT JOIN tbl_pm_head tp ON(td.uuid = tp.domain_uuid)
+		LEFT JOIN tbl_sys ts ON(td.sys_uuid=ts.uuid)
+		left join tbl_sys ts2 on (td.spec_sys_uuid=ts2.uuid)
+		left join tbl_cloud tc on (td.cloud_uuid=tc.uuid)
+		left join tbl_cloud tc2 on (td.spec_cloud_uuid=tc2.uuid)
+		WHERE td.rec_status!=#{recStatus}
+		<if test="cloudUuid!=null and cloudUuid>-1">AND  td.cloud_uuid =#{cloudUuid} </if>
+		<if test="sysUuid!=null and sysUuid>0">AND td.sys_uuid =#{sysUuid}</if>
+		<if test="adminStatus !=null and adminStatus>0">AND td.admin_status =#{adminStatus}</if>
+		<if test="runStatus!=null and runStatus>0">AND td.run_status =#{runStatus}</if>
+		<if test="specSysUuid!=null and specSysUuid>0">AND td.spec_sys_uuid =#{specSysUuid}</if>
+		<if test="like>0 and name!=null and name!=''">
+			<choose>
+				<when test="like=1">
+					AND td.`name` LIKE #{name}
+				</when>
+				<otherwise>
+					AND td.`name` = #{name}
+				</otherwise>
+			</choose>
+		</if>
+		<if test="vendorId !=null">AND td.vendor_id=#{vendorId}</if> 
+		<if test="orderByClause != null" >
+     		 order by ${orderByClause}
+    	</if>
+		<if test="limit>0">LIMIT #{start},#{limit}</if>		
+    </select>
+    <update id="updateTblDomainPmHead" parameterType="map">
+    UPDATE tbl_domain td
+	LEFT JOIN tbl_pm_head tp ON(td.uuid = tp.domain_uuid)
+    <set >
+		td.rec_status=4,
+      <if test="name!=null and name!=''" >
+        td.name = #{name},
+      </if>
+	  <if test="adminStatus != null and adminStatus>0" >
+        td.admin_status = #{adminStatus},
+      </if>
+      <if test="specCloudUuid!=null and specCloudUuid>-1" >
+        td.spec_cloud_uuid = #{specCloudUuid},
+      </if>
+      <if test="specSysUuid!=null and specSysUuid>-1" >
+        td.spec_sys_uuid = #{specSysUuid},
+      </if>
+	  <if test="vendorId!=null and vendorId>-1" >
+        td.vendor_id = #{vendorId},
+      </if>
+	  <if test="productId!=null and productId>-1" >
+        td.product_id = #{productId},
+      </if>
+	  <if test="pm15mCount != null" >
+        tp.pm_15m_count = #{pm15mCount},
+      </if>
+      <if test="pm15mSn != null" >
+        tp.pm_15m_sn = #{pm15mSn},
+      </if>
+	  <if test="pm15mMax != null" >
+        tp.pm_15m_max = #{pm15mMax},
+      </if>
+      <if test="pm24hCount != null" >
+        tp.pm_24h_count = #{pm24hCount},
+      </if>
+	  <if test="pm24hMax != null" >
+        tp.pm_24h_max = #{pm24hMax},
+      </if>
+      <if test="pm24hSn != null" >
+        tp.pm_24h_sn = #{pm24hSn},
+      </if>
+	  <if test="pmCallMax != null" >
+        tp.pm_call_max = #{pmCallMax},
+      </if>
+	  <if test="pmUssdMax != null" >
+        tp.pm_ussd_max = #{pmUssdMax},
+      </if>	 
+	  <if test="pmSmsMax != null" >
+        tp.pm_sms_max = #{pmSmsMax},
+      </if>
+      <if test="alarmMax != null" >
+        tp.alarm_max = #{alarmMax},
+      </if>
+      <if test="sysLockedFlag != null and sysLockedFlag>-1" >
+        td.sys_locked_flag = #{sysLockedFlag},
+      </if>
+      <if test="logUserMax != null" >
+        tp.log_user_max = #{logUserMax},
+      </if>
+		tp.snumber_max = #{snumberMax},
+		tp.dnumber_max = #{dnumberMax},					 	  
+    </set>
+	where td.uuid in
+	<foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+	#{item}
+	</foreach>
+  </update>
+    <select id="countNe" resultType="java.lang.Integer" >
+    	select count(*)
+    	FROM tbl_ne tn
+		LEFT JOIN tbl_domain td ON(tn.domain_uuid=td.uuid)
+		LEFT JOIN tbl_sys ts ON(td.sys_uuid=ts.uuid)
+		WHERE tn.rec_status!=#{recStatus}
+		<if test="cloudUuid>-1">AND ts.cloud_uuid =#{cloudUuid}</if>
+		<if test="sysUuid>0">AND ts.uuid =#{sysUuid}</if>
+		<if test="domainUuid>0">AND td.domain_uuid =#{domainUuid}</if>
+		<if test="productSnStr!=null and productSnStr!=''">AND tn.product_sn =#{productSn}</if>
+		<if test="like>0 and domainName!=null and domainName!=''">
+			<choose>
+				<when test="like=1">
+					AND td.`name` LIKE #{domainName}
+				</when>
+				<otherwise>
+					AND td.`name` = #{domainName}
+				</otherwise>
+			</choose>
+		</if>
+		<if test="adminStatus!=null and adminStatus>0">AND tn.admin_status =#{adminStatus}</if>
+		<if test="runStatus!=null and runStatus>0">AND tn.run_status =#{runStatus}</if>
+		<if test="productName!=null">AND tn.product_name like #{productName}</if>
+		<if test="version!=null">AND tn.package_version  like #{version}</if>
+		<if test="alias!=null">AND tn.alias  like #{alias}</if>
+  </select>
+    <select id="getTblNeWithSysInfo" resultMap="TblNeWithSysInfo">
+	    SELECT  tn.uuid,tn.alias,tn.admin_status,tn.opr_status,tn.run_status,tn.product_sn,
+		tn.product_id,tn.product_name,tn.package_version,tn.create_time,tn.upgrade_type,
+		tn.domain_uuid,tn.package_build_time,tn.outer_ip_addr,tn.last_reg_time,
+		tn.port_total_count,tn.port_work_count,
+		td.`name` AS domain_name,ts.uuid AS sys_uuid,
+		
+		ts.`name` AS sys_name
+		FROM tbl_ne tn
+		LEFT JOIN tbl_domain td ON(tn.domain_uuid=td.uuid)
+		LEFT JOIN tbl_sys ts ON(td.sys_uuid=ts.uuid)
+		WHERE tn.rec_status!=#{recStatus}
+		<if test="cloudUuid>-1">AND ts.cloud_uuid =#{cloudUuid}</if>
+		<if test="sysUuid>0">AND ts.uuid =#{sysUuid}</if>
+		<if test="productSnStr!=null and productSnStr!=''">AND tn.product_sn =#{productSn}</if>
+		<if test="like>0 and domainName!=null and domainName!=''">
+			<choose>
+				<when test="like=1">
+					AND td.`name` LIKE #{domainName}
+				</when>
+				<otherwise>
+					AND td.`name` = #{domainName}
+				</otherwise>
+			</choose>
+		</if>
+		<if test="adminStatus!=null and adminStatus>0">AND tn.admin_status =#{adminStatus}</if>
+		<if test="runStatus!=null and runStatus>0">AND tn.run_status =#{runStatus}</if>
+		<if test="productName!=null">AND tn.product_name like #{productName}</if>
+		<if test="version!=null">AND tn.package_version  like #{version}</if>
+		<if test="alias!=null">AND tn.alias  like #{alias}</if>
+		<if test="sort != null" >
+     		 order by ${sort}
+    	</if>
+		<if test="limit>0">LIMIT #{start},#{limit}</if>
+    </select>
+    <select id="getTblSysWithDeviceNum" resultMap="TblSysWithDeviceNum">
+		select ts.*,tmp1.ne_num as gw_num,tmp2.ne_num as bk_num
+		from tbl_sys ts left join
+		(select td.sys_uuid as sys_uuid,count(*) as ne_num 
+		from tbl_domain td 
+		RIGHT join tbl_ne tn on (td.uuid=tn.domain_uuid)  where tn.product_id in(20,21,22,23)
+		group by td.sys_uuid)
+		as tmp1 on (ts.uuid=tmp1.sys_uuid)
+		left join 
+		(select td.sys_uuid as sys_uuid,count(*) as ne_num 
+		from tbl_domain td 
+		RIGHT join tbl_ne tn on (td.uuid=tn.domain_uuid) where tn.product_id=31
+		group by td.sys_uuid)
+		as tmp2
+		on (ts.uuid=tmp2.sys_uuid)
+		where ts.uuid=#{uuid}
+		order by td.name,tn.alias
+    </select>
+    <select id="countSys" resultType="java.lang.Integer" >
+   		select count(*)
+   		FROM tbl_sys ts
+   		
+   		<if test="sysMode==1"> left join tbl_domain tc on (ts.cloud_uuid=tc.uuid)</if>
+		<if test="sysMode==2"> left join tbl_cloud tc on(ts.cloud_uuid=tc.uuid)</if>
+		<if test="sysMode==0"> left join tbl_cloud tc on(ts.cloud_uuid=tc.uuid)</if>
+		
+		WHERE ts.rec_status != #{recStatus}
+		<if test="sysMode==1">AND ts.uuid  >= 1000</if>
+		<if test="sysMode==2">AND ts.uuid  >=0 and ts.uuid &lt; 1000</if>
+		<if test="cloudUuid>-1">AND ts.cloud_uuid =#{cloudUuid}</if>
+		<if test="name!=null and name!=''">AND ts.name like #{name}</if>
+		<if test="sysIpAddr!=null and sysIpAddr!=''">AND ts.sys_ip_addr like #{sysIpAddr}</if>
+		<if test="version!=null and version!=''">AND ts.software_version like #{version}</if>
+		<if test="detailDesc!=null and detailDesc!=''">AND ts.detail_desc like #{detailDesc}</if>
+		<if test="cloudName!=null and cloudName!=''">AND tc.name like #{cloudName}</if>
+		<if test="adminStatus>0">AND ts.admin_status =#{adminStatus}</if>
+		<if test="runStatus>0">AND ts.run_status =#{runStatus}</if>
+		<if test="uuid>0">AND ts.uuid =#{uuid}</if>
+    </select>
+     <select id="selectSysByDomain" resultMap="TblSys" parameterType="java.lang.Integer" >
+		select ts.* from tbl_domain td 
+		left join tbl_sys ts on (ts.uuid=td.sys_uuid) 
+		where td.uuid=#{domainUuid};
+    </select>
+    <select id="getTblSysWithDeviceNumByCloud" resultMap="TblSysWithDeviceNum">
+		SELECT ts.*,tc.name as cloud_name, td.name as manage_domain_name
+		FROM tbl_sys ts left join tbl_domain td on (ts.manage_domain=td.uuid)
+		
+		<if test="sysMode==1"> left join tbl_domain tc on (ts.cloud_uuid=tc.uuid)</if>
+		<if test="sysMode==2"> left join tbl_cloud tc on(ts.cloud_uuid=tc.uuid)</if>
+		<if test="sysMode==0"> left join tbl_cloud tc on(ts.cloud_uuid=tc.uuid)</if>
+		
+		WHERE ts.rec_status != #{recStatus}
+		
+		<if test="sysMode==1">AND ts.uuid  >= 1000</if>
+		<if test="sysMode==2">AND ts.uuid  >=0 and ts.uuid &lt; 1000</if>
+		<if test="cloudUuid>-1">AND ts.cloud_uuid =#{cloudUuid}</if>
+		<if test="name!=null and name!=''">AND ts.name like #{name}</if>
+		<if test="sysIpAddr!=null and sysIpAddr!=''">AND ts.sys_ip_addr like #{sysIpAddr}</if>
+		<if test="version!=null and version!=''">AND ts.software_version like #{version}</if>
+		<if test="detailDesc!=null and detailDesc!=''">AND ts.detail_desc like #{detailDesc}</if>
+		<if test="cloudName!=null and cloudName!=''">AND tc.name like #{cloudName}</if>
+		<if test="adminStatus>0">AND ts.admin_status =#{adminStatus}</if>
+		<if test="runStatus>0">AND ts.run_status =#{runStatus}</if>
+		<if test="uuid>0">AND ts.uuid =#{uuid}</if>
+		<if test="sort != null" >order by ${sort}</if>
+		<if test="limit>0">LIMIT #{start},#{limit}</if>
+    </select>
+    
+    <select id="getSysAndLicBySysUuid" resultMap="SysLicenseMapper">
+		select ts.*,
+		tls.srv_mode,tls.sign_type,tls.lic_status,tls.left_days,tls.srv_uuid
+		from tbl_sys ts 
+		left join tbl_lic_srv tls on (ts.uuid=tls.spec_sys_uuid)
+		where ts.uuid=#{sysUuid}
+		<if test="cloudUuid>18">AND ts.cloud_uuid =#{cloudUuid}</if>
+    </select>
+    <select id="findMaxSysUuid" resultType="java.lang.Integer" >
+   		select max(uuid) from tbl_sys where uuid>999
+    </select>
+    
+    
+     <select id="countNeAndLockSim" resultType="java.lang.Integer" >
+		
+		select count(*)
+		from tbl_ne tn left join tbl_port tp on (tn.uuid=tp.ne_uuid and tp.port_no=0) 
+		left join tbl_gwp tgp on (tp.uuid=tgp.port_uuid)
+		left join tbl_bkp tbp on (tgp.bkp_uuid=tbp.uuid)
+		left join tbl_sim ts on (tbp.sim_uuid=ts.uuid)
+		left join tbl_network_code tnc on (tnc.mccmnc=SUBSTR(ts.imsi ,1 ,5)) 
+		WHERE tn.rec_status != #{recStatus}
+		and tn.domain_uuid= #{domainUuid}
+
+		<if test="domainUuid>0">AND tn.domain_uuid = #{domainUuid}</if>
+		<if test="siteUuid>0">AND tn.site_uuid = #{siteUuid}</if>
+		
+		<if test="siteUuids!=null">
+			AND tn.site_uuid in
+			<foreach collection="siteUuids" index="index" item="item" open="(" separator="," close=")">
+			${item}
+			</foreach>	
+		</if>
+		
+		<if test="alias!=null">AND tn.alias like #{alias}</if>
+		<if test="productSn!=null">AND tn.product_sn =#{productSn}</if>
+		<if test="productId>0">AND tn.product_id =#{productId}</if>
+		<if test="detailDesc!=null">AND tn.detailDesc like #{detailDesc}</if>
+		<if test="adminStatus>0">AND tn.admin_status =#{adminStatus}</if>
+		<if test="runStatus>0">AND tn.run_status =#{runStatus}</if>
+		<if test="productName!=null">AND tn.product_name like #{productName}</if>
+		<if test="packageVersion!=null">AND tn.package_version like #{packageVersion}</if>
+		
+		<if test="productIds!=null">
+			AND tn.product_id in
+			<foreach collection="productIds" index="index" item="item" open="(" separator="," close=")">
+			${item}
+			</foreach>	
+		</if>
+		
+		<if test="targetSoftwareVer!=null">AND tn.target_software_ver like #{targetSoftwareVer}</if>
+		<if test="upgradeFlag>0">AND tn.upgrade_flag =#{upgradeFlag}</if>
+    </select>
+     <select id="getNeAndLockSim" resultMap="NeAndLockSimMap">
+		
+		select tn.*,tp.uuid as port_uuid,tgp.mod_status,tgp.mod_signal_val,tgp.mod_signal_level, ts.imsi,tnc.operator
+		from tbl_ne tn left join tbl_port tp on (tn.uuid=tp.ne_uuid and tp.port_no=0) 
+		left join tbl_gwp tgp on (tp.uuid=tgp.port_uuid)
+		left join tbl_bkp tbp on (tgp.bkp_uuid=tbp.uuid)
+		left join tbl_sim ts on (tbp.sim_uuid=ts.uuid)
+		left join tbl_network_code tnc on (tnc.mccmnc=SUBSTR(ts.imsi ,1 ,5)) 
+		WHERE tn.rec_status != #{recStatus}
+		
+		<if test="domainUuid>0">AND tn.domain_uuid = #{domainUuid}</if>
+		<if test="siteUuid>0">AND tn.site_uuid = #{siteUuid}</if>
+		
+		<if test="siteUuids!=null">
+			AND tn.site_uuid in
+			<foreach collection="siteUuids" index="index" item="item" open="(" separator="," close=")">
+			${item}
+			</foreach>	
+		</if>
+		<if test="alias!=null">AND tn.alias like #{alias}</if>
+		<if test="productSn!=null">AND tn.product_sn =#{productSn}</if>
+		<if test="productId>0">AND tn.product_id =#{productId}</if>
+		<if test="detailDesc!=null">AND tn.detailDesc like #{detailDesc}</if>
+		<if test="adminStatus>0">AND tn.admin_status =#{adminStatus}</if>
+		<if test="runStatus>0">AND tn.run_status =#{runStatus}</if>
+		<if test="productName!=null">AND tn.product_name like #{productName}</if>
+		<if test="packageVersion!=null">AND tn.package_version like #{packageVersion}</if>
+		<if test="productIds!=null">
+			AND tn.product_id in
+			<foreach collection="productIds" index="index" item="item" open="(" separator="," close=")">
+			${item}
+			</foreach>	
+		</if>
+		<if test="targetSoftwareVer!=null">AND tn.target_software_ver like #{targetSoftwareVer}</if>
+		<if test="upgradeFlag>0">AND tn.upgrade_flag =#{upgradeFlag}</if>
+		<if test="limit>0">LIMIT #{start},#{limit}</if>
+    </select>
+</mapper>

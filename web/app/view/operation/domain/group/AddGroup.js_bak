@@ -1,0 +1,1092 @@
+var form = Ext.create('Ext.form.Panel', {
+	autoScroll:true,
+//    layout: {
+//        type: 'vbox',
+//        align: 'stretch'
+//    },
+    border: false,
+    bodyPadding: 10,
+
+    fieldDefaults: {
+//        labelAlign: 'top',
+//        labelWidth: 100
+//        labelStyle: 'font-weight:bold'
+		labelAlign: 'left',
+		anchor: '75%'
+    },
+    defaults: {
+        margins: '0 0 10 0'
+    },
+
+    items: [
+			{	xtype: 'fieldset',
+				itemId:'group_info',
+				layout:'anchor', 
+				items:[{
+					xtype:'hiddenfield',
+					name:'selectCond',
+					value:1
+				},{
+					xtype:'hiddenfield',
+					name:'domainUuid'
+				},{
+			    	layout:'hbox',
+			    	xtype:'fieldcontainer',
+			    	itemId:'group_name',
+			    	border:false,
+			    	anchor: '100%',
+			    	items:[{	
+			    		xtype: 'textfield',
+						name : 'name',
+						flex:3,
+						fieldLabel: 'SimGroup',
+			            allowBlank: false,
+			            msgTarget:'none',
+				            listeners:{
+				                render : function(p) {
+				                    p.getEl().on('mouseup', function(p){ 
+				                    	var tip = Ext.getCmp('AddGroup_tip');
+				                    	tip.show();
+				                    });
+			                	},
+				        		focus:function(){
+			        			var textobj = this;
+			        			var gettip = Ext.getCmp('GetTip');
+			        			if(gettip==undefined || gettip==null){
+			        				gettip = Ext.create("app.util.GetTip",{});
+			        			}
+			        			var tip = Ext.getCmp('AddGroup_tip');
+			        			if(tip==undefined || tip==null){
+			        				var tipManage = Ext.getCmp('TipObjManage');
+			        				if(tipManage==undefined || tipManage==null){
+			        					tipManage = Ext.create("app.util.TipObjManage",{});
+			        				}
+			        				tip = tipManage.createObjNameTipObj('AddGroup_tip',textobj.getEl().dom.id, gettip.getObjNameTip(textobj.fieldLabel));
+			        			}			        			
+			        			tip.show();
+			        			tip.clearListeners();
+			        			//alert(tmp.html)
+			        		},
+			    	    	blur:function(field,eOpts){
+			        			var tip = Ext.getCmp('AddGroup_tip');
+			        			tip.hide();
+			        			var textobj = this;
+			        			var prefix = "<div>&nbsp;";
+			        			var suffix  = "</div>"
+			        			var checkobj = Ext.getCmp("DataCheck");
+			        			if(checkobj==undefined || checkobj==null){
+			        				checkobj = Ext.create("app.util.DataCheck",{});
+			        			}
+			        			var str = checkobj.getErrorStr(textobj.getValue());
+			        			var picture = this.up('fieldcontainer').getComponent('picture');
+			        			if(str != ""){
+			        				str = "<font color=#f00>"+str+"</font>"
+			        				picture.update(prefix+str+suffix);
+			        				picture.flag = 0;
+			        			}else{
+				        			var name=textobj.getValue();
+				        			if(name!=null&&name!=""){
+				        				Ext.Ajax.request({
+				                    		url:'groupManager!checkGroup.action',
+				                    		method:'POST',
+				                    		params:{name:name,domainUuid:form.getForm().findField('domainUuid').getValue()},
+				                    		callback: function (options, success, response) {
+				    	                                    	var obj=Ext.JSON.decode(response.responseText);
+				    	                                    	if(obj['success']){
+				    	                                    		str = "<img  src='resources/images/right.png'/>";
+				    	                                    		picture.flag = 1;
+				    	                                    	}else{
+				    	                                    		str = "<font color=#f00>Already in use</font>";
+				    	                                    		picture.flag = 0;
+				    	                                    	}
+				    	                                    	picture.update(prefix+str+suffix);
+				                                        	}
+				                    	});
+				        			}
+			        			}
+			    	    	}
+				        }
+					},{
+		    			html:'', flex:1, border:false,itemId:'picture',flag:2
+		    		}]
+				},{	xtype: 'textfield',
+					name      : 'alias',
+					anchor: '75%',
+					fieldLabel: 'Group Alias',
+				},{	xtype: 'textfield',
+					name      : 'defaultSmsc',
+					anchor: '75%',
+					fieldLabel: 'Default SMSC',
+				},{
+					xtype: 'combo',
+		            name: 'zoneUuid',
+//			            id:'grpZoneUuid',
+		            mode : 'local',
+		            editable:false,
+		            anchor: '75%',
+		            fieldLabel: 'Belong Zone',
+		            displayField : 'name',
+					valueField : 'uuid',
+					queryMode : 'local',
+					store:Ext.create("app.store.util.ComboxStore",{}),
+					
+		        },{	xtype     : 'textfield',
+				    fieldLabel: 'Description',
+					name      : 'detailDesc',
+				},]
+			},		
+			{
+			xtype: 'fieldset',
+			title: 'SIM Card Select Condition',
+			layout: 'anchor',
+			collapsible: true,
+			collapsed: false,
+			defaults: {
+					anchor: '100%',
+			},
+			items: [
+				{
+					xtype     : 'radiogroup',
+					name      : 'orderTypeAll',
+					fieldLabel: 'Card Select Rule',
+					columns: 2,
+					items: [
+							{boxLabel: 'Ascending', name: 'orderType', inputValue: 0},
+							{boxLabel: 'Descending', name: 'orderType', inputValue: 1 },
+							{boxLabel: 'Random', name: 'orderType', inputValue: 2},
+							{boxLabel: 'Max Unused Time', name: 'orderType', inputValue: 7},
+							{boxLabel: 'Min Call Time', name: 'orderType', inputValue: 3},
+							{boxLabel: 'Max Call Time', name: 'orderType', inputValue: 4},
+							{boxLabel: 'Min Call Count', name: 'orderType', inputValue: 5},
+							{boxLabel: 'Max Call Count', name: 'orderType', inputValue: 6},
+					],							
+					allowBlank: false
+				},
+			]},
+			{
+				xtype: 'fieldset',
+				title: 'SIM Card Switch Condition',
+				collapsible: true,
+				collapsed: true,
+				defaults: {
+					anchor: '100%',
+					labelWidth: 180,
+				},
+				fieldLabel: 'Card-switch Rule',
+				items: [
+					{
+					   xtype: 'fieldcontainer',
+					   fieldLabel: 'Max Call Count Card',
+					   layout:'hbox',
+					   
+					   allowBlank: false,
+					   items: [
+							{xtype:'checkbox',boxLabel: 'Enabled',id:'maxCallCountCard2', name: 'maxCallCountCard2', inputValue:1,width:120,
+								listeners:{
+								change:function(field,newValue,oldValue,opts){
+									this.up('form').getForm().findField('maxCallCountCard').setDisabled(oldValue);
+								}
+							}},
+							{xtype:'numberfield',fieldLabel: 'Count', name: 'maxCallCountCard', value: 2000,width:260,minValue:0,maxValue:1000000000 },
+							]
+					},{
+						xtype: 'fieldcontainer',
+						fieldLabel: 'Max Call Count Once',
+						layout:'hbox',
+						
+						allowBlank: false,
+						items: [
+						        {xtype:'checkbox',boxLabel: 'Enabled',id:'maxCallCountOnce2', name: 'maxCallCountOnce2', inputValue:2,width:120,
+						        	listeners:{
+						        	change:function(field,newValue,oldValue,opts){
+						        	this.up('form').getForm().findField('maxCallCountOnce').setDisabled(oldValue);
+						        }
+						        }},
+						        {xtype:'numberfield',fieldLabel: 'Count', name: 'maxCallCountOnce', value: 2000,width:260,minValue:0,maxValue:1000000000 },
+						        ]
+					},
+					{
+					   xtype: 'fieldcontainer',
+					   fieldLabel: 'Max Call Time Card',
+					   layout:'hbox',
+					   allowBlank: false,
+					   items: [
+							{xtype:'checkbox',boxLabel: 'Enabled', name: 'maxCallTimeCard2',id:'maxCallTimeCard2',inputValue:16, width:120,
+								listeners:{
+								change:function(field,newValue,oldValue,opts){
+									this.up('form').getForm().findField('maxCallTimeCard').setDisabled(oldValue);
+								}
+							}},
+							{xtype:'numberfield',fieldLabel: 'Time(minute)', name: 'maxCallTimeCard', value: 200,width:260,minValue:0,maxValue:1000000000 },
+							]
+					},
+					{
+						   xtype: 'fieldcontainer',
+						   fieldLabel: 'Max Call Time Once',
+						   layout:'hbox',
+						   allowBlank: false,
+						   items: [
+								{xtype:'checkbox',boxLabel: 'Enabled', name: 'maxCallTimeOnce2',id:'maxCallTimeOnce2',inputValue:32,width:120,
+									listeners:{
+									change:function(field,newValue,oldValue,opts){
+										this.up('form').getForm().findField('maxCallTimeOnce').setDisabled(oldValue);
+									}
+								}},
+								{xtype:'numberfield',fieldLabel: 'Time(minute)', name: 'maxCallTimeOnce', value: 50,width:260 ,minValue:0,maxValue:1000000000},
+								]
+						},
+					{
+					   xtype: 'fieldcontainer',
+					   fieldLabel: 'Max Call Time Day',
+					   layout:'hbox',
+					   allowBlank: false,
+					   items: [
+							{xtype:'checkbox',boxLabel: 'Enabled', name: 'maxCallTimeDay2',id:'maxCallTimeDay2',inputValue:64, width:120,
+								listeners:{
+								change:function(field,newValue,oldValue,opts){
+									this.up('form').getForm().findField('maxCallTimeDay').setDisabled(oldValue);
+								}
+							}},
+							{xtype:'numberfield',fieldLabel: 'Time(minute)', name: 'maxCallTimeDay',  value: 900,width:260 ,minValue:0,maxValue:1000000000},
+							]
+					},
+					{
+						   xtype: 'fieldcontainer',
+						   fieldLabel: 'Max Call Time Month',
+						   layout:'hbox',
+						   allowBlank: false,
+						   items: [
+								{xtype:'checkbox',boxLabel: 'Enabled', name: 'maxCallTimeMonth2',id:'maxCallTimeMonth2',inputValue:128, width:120,
+									listeners:{
+									change:function(field,newValue,oldValue,opts){
+										this.up('form').getForm().findField('maxCallTimeMonth').setDisabled(oldValue);
+									}
+								}},
+								{xtype:'numberfield',fieldLabel: 'Time(minute)', name: 'maxCallTimeMonth', value: 900,width:260 ,minValue:0,maxValue:1000000000 },
+								]
+					},
+//					{
+//						   xtype: 'fieldcontainer',
+//						   fieldLabel: 'Max Call Fee Card',
+//						   layout:'hbox',
+//						   allowBlank: false,
+//						   items: [
+//								{xtype:'checkbox',boxLabel: 'Enabled', name: 'selectCond',inputValue:32, width:120},
+//								{xtype:'numberfield',fieldLabel: 'Time(minute)', name: 'maxCallFeeCard', value: 900,width:160,disabled:true },
+//								]
+//					},
+//					{
+//						   xtype: 'fieldcontainer',
+//						   fieldLabel: 'Max Call Fee Day',
+//						   layout:'hbox',
+//						   allowBlank: false,
+//						   items: [
+//								{xtype:'checkbox',boxLabel: 'Enabled', name: 'selectCond',inputValue:64, width:120},
+//								{xtype:'numberfield',fieldLabel: 'Time(minute)', name: 'maxCallFeeDay', value: 900,width:160,disabled:true },
+//								]
+//					},
+//					{
+//						   xtype: 'fieldcontainer',
+//						   fieldLabel: 'Max Call Fee Month',
+//						   layout:'hbox',
+//						   allowBlank: false,
+//						   items: [
+//								{xtype:'checkbox',boxLabel: 'Enabled', name: 'selectCond',inputValue:128, width:120},
+//								{xtype:'numberfield',fieldLabel: 'Time(minute)', name: 'maxCallFeeMonth', value: 900,width:160,disabled:true },
+//								]
+//					},
+					{
+						   xtype: 'fieldcontainer',
+						   fieldLabel: 'Max SMS Count Card',
+						   layout:'hbox',
+						   allowBlank: false,
+						   items: [
+								{xtype:'checkbox',boxLabel: 'Enabled', name: 'maxSmsCountCard2',id:'maxSmsCountCard2', inputValue:256,width:120,
+									listeners:{
+									change:function(field,newValue,oldValue,opts){
+										this.up('form').getForm().findField('maxSmsCountCard').setDisabled(oldValue);
+									}
+								}},
+								{xtype:'numberfield',fieldLabel: 'Count', name: 'maxSmsCountCard', value:900,width:260,minValue:0,maxValue:1000000000 },
+								]
+						},{
+							xtype: 'fieldcontainer',
+							fieldLabel: 'Max SMS Count Once',
+							layout:'hbox',
+							allowBlank: false,
+							items: [
+							        {xtype:'checkbox',boxLabel: 'Enabled', name: 'maxSmsCountOnce2',id:'maxSmsCountOnce2', inputValue:512,width:120,
+							        	listeners:{
+							        	change:function(field,newValue,oldValue,opts){
+							        	this.up('form').getForm().findField('maxSmsCountOnce').setDisabled(oldValue);
+							        }
+							        }},
+							        {xtype:'numberfield',fieldLabel: 'Count', name: 'maxSmsCountOnce', value:900,width:260,minValue:0,maxValue:1000000000 },
+							        ]
+						},
+						{
+							   xtype: 'fieldcontainer',
+							   fieldLabel: 'Max SMS Count Day',
+							   layout:'hbox',
+							   allowBlank: false,
+							   items: [
+									{xtype:'checkbox',boxLabel: 'Enabled', name: 'maxSmsCountDay2',id:'maxSmsCountDay2',inputValue:1024, width:120,
+										listeners:{
+										change:function(field,newValue,oldValue,opts){
+											this.up('form').getForm().findField('maxSmsCountDay').setDisabled(oldValue);
+										}
+									}},
+									{xtype:'numberfield',fieldLabel: 'Count', name: 'maxSmsCountDay', value:900,width:260 ,minValue:0,maxValue:1000000000 },
+									]
+						},
+						{
+							   xtype: 'fieldcontainer',
+							   fieldLabel: 'Max SMS Count Month',
+							   layout:'hbox',
+							   allowBlank: false,
+							   items: [
+									{xtype:'checkbox',boxLabel: 'Enabled',id:'maxSmsCountMonth2', name: 'maxSmsCountMonth2',inputValue:2048, width:120,
+									listeners:{
+										change:function(field,newValue,oldValue,opts){
+										this.up('form').getForm().findField('maxSmsCountMonth').setDisabled(oldValue);
+										}
+									}},
+									{xtype:'numberfield',fieldLabel: 'Count', name: 'maxSmsCountMonth', value:900,width:260,minValue:0,maxValue:1000000000},
+									],
+								
+						},{
+							   xtype: 'fieldcontainer',
+							   fieldLabel: 'Max Work Time Once',
+							   layout:'hbox',
+							   allowBlank: false,
+							   items: [
+									{xtype:'checkbox',boxLabel: 'Enabled', name: 'maxWorkTimeOnce2',id:'maxWorkTimeOnce2', inputValue:65536,width:120,
+										listeners:{
+										change:function(field,newValue,oldValue,opts){
+											this.up('form').getForm().findField('maxWorkTimeOnce').setDisabled(oldValue);	
+									}
+								}},
+									{xtype:'numberfield',fieldLabel: 'Time(minute)', name: 'maxWorkTimeOnce',value: 30,width:260,minValue:0,maxValue:1000000000 },
+									]
+						},
+					{
+						   xtype: 'fieldcontainer',
+						   fieldLabel: 'Max Idle Time Once',
+						   layout:'hbox',
+						   allowBlank: false,
+						   items: [
+								{xtype:'checkbox',boxLabel: 'Enabled', name: 'maxIdleTimeOnce2',id:'maxIdleTimeOnce2',inputValue:131072, width:120,
+									listeners:{
+									change:function(field,newValue,oldValue,opts){
+										this.up('form').getForm().findField('maxIdleTimeOnce').setDisabled(oldValue);
+									}
+								}},
+								{xtype:'numberfield',fieldLabel: 'Time(minute)', name: 'maxIdleTimeOnce',value: 30,width:260 ,minValue:0,maxValue:1000000000 },
+								]
+					},{
+						   name : 'callConfig',
+						   xtype: 'fieldcontainer',
+						   layout:'hbox',
+						   labelWidth:100,
+						   allowBlank: false,
+						   fieldLabel: 'Call Parameters', 
+						   items: [
+						           {xtype:'combo',
+						        	   fieldLabel: 'Discard Fail', 
+						        	   name: 'maxCallDiscardFail', 
+						        	   mode: 'local',
+						        	   queryMode: 'local',
+						        	   editable:false,
+						        	   displayField : 'name',
+						        	   valueField : 'statusId',
+						        	   width:220,
+						        	   store : Ext.create('Ext.data.Store', {
+											fields : [ 'name', 'statusId' ],
+											data : [ {
+												name : 'DISABLED',
+												statusId : 0
+											}, {
+												name : 'ENABLED',
+												statusId : 1
+											} ]
+										}),
+									}, 
+									{xtype: 'displayfield',width:80,value:'' },
+									{xtype:'combo',
+										fieldLabel: 'Direction', 
+										name: 'maxCallDirection', 
+										mode: 'local',
+										queryMode: 'local',
+										editable:false,
+										displayField : 'name',
+										valueField : 'statusId',
+										width:220,
+										store : Ext.create('Ext.data.Store', {
+											fields : [ 'name', 'statusId' ],
+											data : [ {
+												name : 'CALL_IN',
+												statusId : 0
+											}, {
+												name : 'CALL_OUT',
+												statusId : 1
+											}, {
+												name : 'CALL_DUAL',
+												statusId : 2
+											} ]
+										}),
+									},
+									{xtype: 'displayfield',width:40,value:'' },
+							    	{xtype:'numberfield',width:180,fieldLabel: 'Time Limit',labelWidth:85, name: 'minCallBillingSec', value: 30,minValue:0,maxValue:999},
+									{xtype: 'displayfield',width:80,value:'(second)',name:'minCallBillingSecDis' },
+										       
+									
+								]
+							
+						},{
+
+						   name : 'smsConfig',
+						   xtype: 'fieldcontainer',
+						   layout:'hbox',
+						   labelWidth:100,
+						   allowBlank: false,
+						   fieldLabel: 'SMS Parameters', 
+						   items: [
+						           {xtype:'combo',
+						        	   fieldLabel: 'Discard Fail', 
+						        	   name: 'maxSmsDiscardFail', 
+						        	   mode: 'local',
+						        	   queryMode: 'local',
+						        	   editable:false,
+						        	   displayField : 'name',
+						        	   valueField : 'statusId',
+						        	   width:220,
+						        	   store : Ext.create('Ext.data.Store', {
+											fields : [ 'name', 'statusId' ],
+											data : [ {
+												name : 'DISABLED',
+												statusId : 0
+											}, {
+												name : 'ENABLED',
+												statusId : 1
+											} ]
+										}),
+									},
+									{xtype: 'displayfield',width:80,value:'' },
+									{xtype:'combo',
+										fieldLabel: 'Direction', 
+										name: 'maxSmsDirection', 
+										mode: 'local',
+										queryMode: 'local',
+										editable:false,
+										displayField : 'name',
+										valueField : 'statusId',
+										width:220,
+										store : Ext.create('Ext.data.Store', {
+											fields : [ 'name', 'statusId' ],
+											data : [ {
+												name : 'SMS_RECV',
+												statusId : 0
+											}, {
+												name : 'SMS_SEND',
+												statusId : 1
+											}, {
+												name : 'SMS_DUAL',
+												statusId : 2
+											} ]
+										}),
+									}, 
+								]
+					}
+					
+				]},	
+
+				{
+					 
+					xtype: 'fieldset',
+					title: 'HumanBeing Behavior Management',
+					layout: 'anchor',							
+					collapsible: true,
+					collapsed: true,
+					defaults: {
+							anchor: '100%',
+							labelWidth:60,
+					},							
+					items: [
+						{
+						   name : 'groupRuleType',
+						   xtype: 'fieldcontainer',
+						   layout:'hbox',
+						   labelWidth:140,
+						   allowBlank: false,
+						   fieldLabel: 'HBM Role Type', 
+						   items: [
+						           {xtype:'combo',
+						        	   name: 'hbmRoleType', 
+						        	   mode: 'local',
+						        	   queryMode: 'local',
+						        	   editable:false,
+						        	   displayField : 'name',
+						        	   valueField : 'statusId',
+						        	   width:120,
+						        	   store : Ext.create('Ext.data.Store', {
+											fields : [ 'name', 'statusId' ],
+											data : [ {
+												name : 'NORMAL',
+												statusId : 0
+											}, {
+												name : 'TESTING',
+												statusId : 1
+											}, {
+												name : 'PROMOTION',
+												statusId : 2
+											} ]
+										}),
+										value:0,
+										listeners:{
+											change:function(field,newValue,oldValue,opts){
+						           				var autoSms1=form.down('fieldcontainer[name=autoSms1]');
+						           				var autoSms2=form.down('fieldcontainer[name=autoSms2]');
+						           				var enableIMEI=form.down('fieldcontainer[name=enableIMEI]');
+						           				var enableRoaming=form.down('fieldcontainer[name=enableRoaming]');
+						           				var acdLimit=form.down('fieldcontainer[name=acdLimit]');
+						           				var smsTest=form.down('fieldcontainer[name=smsTest]');
+						           				var talkTest=form.down('fieldcontainer[name=talkTest]');
+						           				var smsTemplate=form.down('fieldcontainer[name=smsTemplate]');
+						           				var dtmfTemplate=form.down('fieldcontainer[name=dtmfTemplate]');
+						           				var promLimit=form.down('fieldcontainer[name=promLimit]');
+						           				if(newValue==2){
+						           					promLimit.setDisabled(false);
+//						           					autoSms1.setDisabled(true);
+//						           					autoSms2.setDisabled(true);
+//						           					enableIMEI.setDisabled(true);
+//						           					enableRoaming.setDisabled(true);
+//						           					acdLimit.setDisabled(true);
+//						           					smsTest.setDisabled(true);
+//						           					talkTest.setDisabled(true);
+						           				}else{
+						           					promLimit.setDisabled(true);
+//						           					autoSms1.setDisabled(false);
+//						           					autoSms2.setDisabled(false);
+//						           					enableIMEI.setDisabled(false);
+//						           					enableRoaming.setDisabled(false);
+//						           					acdLimit.setDisabled(false);
+//						           					smsTest.setDisabled(false);
+//						           					talkTest.setDisabled(false);
+						           				}
+						           			}
+						           		}
+									}, 
+								]
+							
+						},{
+							   name : 'enableIMEI',
+							   xtype: 'fieldcontainer',
+							   layout:'hbox',
+							   labelWidth:140,
+							   allowBlank: false,
+							   fieldLabel: 'Dynamic IMEI', 
+							   items: [
+							           {xtype:'checkbox',boxLabel: 'Enabled', name: 'hbmImeiFlag',inputValue:1, width:120,checked:false,},
+								      ]
+								
+						},{
+							   name : 'enableRoaming',
+							   xtype: 'fieldcontainer',
+							   layout:'hbox',
+							   labelWidth:140,
+							   allowBlank: false,
+							   fieldLabel: 'Site Roaming', 
+							   items: [
+								       {xtype:'checkbox',boxLabel: 'Enabled', name: 'hbmRoamingFlag',inputValue:1, width:120,checked:false,},
+								      ]
+								
+						},{
+							name : 'offlineClean',
+							xtype: 'fieldcontainer',
+							layout:'hbox',
+							labelWidth:140,
+							allowBlank: false,
+							fieldLabel: 'Clean Offline SIM', 
+							items: [
+							        {xtype:'checkbox',boxLabel: 'Enabled', name: 'hbmOfflineCleanFlag',inputValue:1, width:120,checked:false,},
+							        ]
+							        
+						},{
+							name : 'promLimit',
+							xtype: 'fieldcontainer',
+							fieldLabel: 'Auto SIM Promotion',
+							labelWidth:140,
+							
+							items: [{
+							        	xtype: 'fieldcontainer',
+							        	labelWidth:80,
+							        	name:'promLimitDetail',
+//							        	layout:'column',
+							        	items: [
+										        {xtype:'textfield',width:480,fieldLabel:'Send Number',labelWidth:85,name:'hbmPromNumber',maxLength:24},
+										        {xtype:'textfield',width:480,fieldLabel:'SMS',labelWidth:85,name:'hbmPromSms',maxLength:63},
+										        {xtype:'textfield',width:480,fieldLabel:'Success Keys',labelWidth:85,name:'hbmPromSuccKeys'},
+										      
+												{
+										            xtype: 'combo',
+										            name: 'hbmPromNextGrp',
+										            labelWidth:85,
+										            fieldLabel: 'Next Group',
+										            displayField : 'name',
+													valueField : 'uuid',
+													mode : 'local',
+													queryMode : 'local',
+													store:Ext.create("app.store.util.ComboxStore",{}),
+													valueNotFoundText :""
+										        }
+											]
+							        }
+							        ]
+						},{
+							   name : 'autoSms1',
+							   xtype: 'fieldcontainer',
+							   fieldLabel: 'Auto SMS after Register',
+							  
+							   labelWidth:140,
+//							   layout:'column',
+							   items: [
+							           	{xtype:'checkbox',boxLabel:'Enabled', name: 'hbmSmsAfterReg',inputValue:1, width:120,checked:false,
+							           		listeners:{
+												change:function(field,newValue,oldValue,opts){
+							           				var hbmSmsNumber01=form.down('textfield[name=hbmSmsNumber01]');
+							           				var hbmSmsContent01=form.down('textfield[name=hbmSmsContent01]');
+							           				
+							           				if(newValue){
+							           					hbmSmsNumber01.setDisabled(false);
+							           					hbmSmsContent01.setDisabled(false);
+							           				}else{
+							           					hbmSmsNumber01.setDisabled(true);
+							           					hbmSmsContent01.setDisabled(true);
+							           				}
+							           			}
+						           			}
+							           	},
+										{xtype:'textfield',width:240,fieldLabel:'Send Number',labelWidth:85,name:'hbmSmsNumber01',maxLength:24},
+										{xtype:'textfield',width:480,fieldLabel:'Send Content',labelWidth:85,name:'hbmSmsContent01',maxLength:63},
+									]
+						},{
+							name : 'autoSms2',
+							xtype: 'fieldcontainer',
+							fieldLabel: 'Auto SMS after Call',
+							labelWidth:140,
+//							   layout:'column',
+							items: [
+							        {xtype:'checkbox',boxLabel:'Enabled', name: 'hbmSmsAfterCall',inputValue:1, width:120,checked:false,
+							        	listeners:{
+							        	change:function(field,newValue,oldValue,opts){
+							        	var hbmSmsNumber02=form.down('textfield[name=hbmSmsNumber02]');
+							        	var hbmSmsContent02=form.down('textfield[name=hbmSmsContent02]');
+							        	
+							        	if(newValue){
+							        		hbmSmsNumber02.setDisabled(false);
+							        		hbmSmsContent02.setDisabled(false);
+							        	}else{
+							        		hbmSmsNumber02.setDisabled(true);
+							        		hbmSmsContent02.setDisabled(true);
+							        	}
+							        }
+							        }
+							        },
+							        {xtype:'textfield',width:240,fieldLabel:'Send Number',labelWidth:85,name:'hbmSmsNumber02',maxLength:24},
+							        {xtype:'textfield',width:480,fieldLabel:'Send Content',labelWidth:85,name:'hbmSmsContent02',maxLength:63},
+							        ]
+						},{
+							name : 'keys',
+							xtype: 'fieldcontainer',
+							fieldLabel: 'Last Filter Keys',
+							labelWidth:140,
+							items: [{
+							        	xtype: 'fieldcontainer',
+							        	labelWidth:80,
+							        	name:'lastKeys',
+							        	items: [
+										        {xtype:'textfield',width:480,fieldLabel:'Last SMS',labelWidth:85,name:'hbmLastSmsKeys',maxLength:24},
+										        {xtype:'textfield',width:480,fieldLabel:'Last Ussd',labelWidth:85,name:'hbmLastUssdKeys',maxLength:24},
+											]
+							        }
+							        ]
+						},{
+							   name : 'acdLimit',
+							   xtype: 'fieldcontainer',
+							   fieldLabel: 'ACD Detection',
+							   labelWidth:140,
+							   
+							   items: [
+							           	{xtype:'checkbox',boxLabel:'Enabled', name: 'hbmAcdFlag',inputValue:1, width:80,checked:false,
+							           		listeners:{
+												change:function(field,newValue,oldValue,opts){
+							           				var acdLimitDetail=form.down('fieldcontainer[name=acdLimitDetail]');
+							           				
+							           				if(newValue){
+							           					acdLimitDetail.setDisabled(false);
+							           				}else{
+							           					acdLimitDetail.setDisabled(true);
+							           				}
+							           			}
+					           				}
+							           	},
+							        	{
+											xtype: 'fieldcontainer',
+											labelWidth:80,
+											name:'acdLimitDetail',
+											layout:'column',
+											items: [
+									           	{xtype:'numberfield',width:180,fieldLabel: 'Time Limit',labelWidth:85, name: 'hbmAcdTimeLimit', value: 5,minValue:0,maxValue:999},
+												{xtype: 'displayfield',width:80,value:'(second)',name:'hbmAcdTimeLimitDis' },
+												{xtype:'numberfield', width:180,fieldLabel: 'Count Limit',labelWidth:85,name: 'hbmAcdCountLimit',value:3,minValue:0,maxValue:999 },
+												{xtype: 'displayfield',width:80,value:'(count)',name:'hbmAcdCountLimitDis' },
+												]
+							        	}
+									]
+						},{
+							   name : 'talkTest',
+							   xtype: 'fieldcontainer',
+							   fieldLabel: 'Talk Test',
+							   labelWidth:140,
+//							   layout:'column',
+							   items: [
+
+							           	{xtype:'checkbox',boxLabel:'Enabled', name: 'hbmTalkTestFlag',inputValue:1, width:80,checked:false,
+							           		listeners:{
+												change:function(field,newValue,oldValue,opts){
+							           				var talkTestDetail1=form.down('fieldcontainer[name=talkTestDetail1]');
+							           				var talkTestDetail2=form.down('fieldcontainer[name=talkTestDetail2]');
+							           				var talkTestDetail3=form.down('fieldcontainer[name=talkTestDetail3]');
+							           				
+							           				
+							           				if(newValue){
+							           					talkTestDetail1.setDisabled(false);
+							           					talkTestDetail2.setDisabled(false);
+							           					talkTestDetail3.setDisabled(false);
+							           				}else{
+							           					talkTestDetail1.setDisabled(true);
+							           					talkTestDetail2.setDisabled(true);
+							           					talkTestDetail3.setDisabled(true);
+							           				}
+							           				
+							           			}
+			           						}
+							           	},
+							           	{
+											xtype: 'fieldcontainer',
+											labelWidth:80,
+											name:'talkTestDetail1',
+											layout:'column',
+											items: [
+											        
+													{xtype:'combo',
+														   name: 'hbmTalkDirection', 
+														   mode: 'local',
+														   queryMode: 'local',
+														   displayField : 'name',
+														   editable:false,
+														   valueField : 'statusId',
+														   width:180,
+														   fieldLabel: 'Direction',
+														   labelWidth:85,
+														   store : Ext.create('Ext.data.Store', {
+																fields : [ 'name', 'statusId' ],
+																data : [ {
+																	name : 'CALL_IN',
+																	statusId : 0
+																}, {
+																	name : 'CALL_OUT',
+																	statusId : 1
+																}, {
+																	name : 'CALL_DUAL',
+																	statusId : 2
+																}]
+															})
+													},
+													{xtype: 'displayfield',width:80,value:'' },
+													{xtype:'numberfield', width:180,fieldLabel: 'Random',labelWidth:85,name: 'hbmTalkTestRandom',value:100,minValue:0,maxValue:100 },
+													{xtype: 'displayfield',width:30,value:'%' },
+												]
+										},{
+											xtype: 'fieldcontainer',
+											labelWidth:80,
+											name:'talkTestDetail2',
+											layout:'column',
+											items: [
+										           	{xtype:'numberfield',width:180,fieldLabel: 'Interval',labelWidth:85, name: 'hbmTalkInterval', value: 180,minValue:0,maxValue:999},
+													{xtype: 'displayfield',width:80,value:'(minute)' },
+													{xtype:'numberfield', width:180,fieldLabel: 'Count Limit',labelWidth:85,name: 'hbmTalkCountLimit',value:3,minValue:0,maxValue:999,
+//														listeners:{
+//															change:function(field,newValue,oldValue,opts){
+//										           				
+//										           				var dtmfTemplate=groupTab1.down('fieldcontainer[name=dtmfTemplate]');
+//										           				var hbmRoleType=groupTab1.down('combo[name=hbmRoleType]');
+//										           				var hbmTalkTestFlag=groupTab1.down('checkbox[name=hbmTalkTestFlag]');
+//										           				if(newValue>0&&hbmRoleType.getValue()==0&&hbmTalkTestFlag.checked){
+//										           					dtmfTemplate.setDisabled(false);
+//										           				}else if(hbmRoleType.getValue()==1){
+//										           					dtmfTemplate.setDisabled(false);
+//										           				}else{
+//										           					dtmfTemplate.setDisabled(true);
+//										           				}
+//										           			}
+//					           							}
+													},
+													{xtype: 'displayfield',width:80,value:'(count)' },
+													
+												]
+										},{
+											xtype: 'fieldcontainer',
+											labelWidth:80,
+											name:'talkTestDetail3',
+											layout:'column',
+											items: [
+													{xtype:'numberfield',width:180,fieldLabel: 'Connection',labelWidth:85, name: 'hbmTalkConnection', value: 180,minValue:0,maxValue:999,},
+													{xtype: 'displayfield',width:80,value:'' },
+											        {xtype:'numberfield',width:180,fieldLabel: 'Duration',labelWidth:85, name: 'hbmTalkDuration', value: 180,minValue:0,maxValue:999,
+											        },
+											        {xtype: 'displayfield',width:80,value:'(second)' },
+											        
+											        ]
+										},
+							           	
+									]
+						},{
+							   name : 'dtmfTemplate',
+							   xtype: 'fieldcontainer',
+							   fieldLabel: 'DTMF Test',
+							   labelWidth:140,
+//							   layout:'column',
+							   items: [
+										{xtype:'checkbox',boxLabel:'Enabled', name: 'hbmDtmfTestFlag',inputValue:1, width:80,checked:true,
+											listeners:{
+												change:function(field,newValue,oldValue,opts){
+													var hbmDtmfTest01=form.down('numberfield[name=hbmDtmfTest01]');
+													var hbmDtmfTest02=form.down('numberfield[name=hbmDtmfTest02]');
+													var hbmDtmfTest03=form.down('numberfield[name=hbmDtmfTest03]');
+							           				
+							           				if(newValue){
+							           					hbmDtmfTest01.setDisabled(false);
+							           					hbmDtmfTest02.setDisabled(false);
+							           					hbmDtmfTest03.setDisabled(false);
+							           				}else{
+							           					hbmDtmfTest01.setDisabled(true);
+							           					hbmDtmfTest02.setDisabled(true);
+							           					hbmDtmfTest03.setDisabled(true);
+							           				}
+												}
+											}
+										},
+										{xtype:'numberfield',width:480,fieldLabel:'Template 1',labelWidth:85,name:'hbmDtmfTest01',minValue:0,maxValue:9999999,},
+										{xtype:'numberfield',width:480,fieldLabel:'Template 2',labelWidth:85,name:'hbmDtmfTest02',minValue:0,maxValue:9999999,},
+										{xtype:'numberfield',width:480,fieldLabel:'Template 3',labelWidth:85,name:'hbmDtmfTest03',minValue:0,maxValue:9999999,},
+									]
+						},{
+							   name : 'smsTest',
+							   xtype: 'fieldcontainer',
+							   fieldLabel: 'SMS Test',
+							   labelWidth:140,
+//							   layout:'column',
+							   items: [
+
+							           	{xtype:'checkbox',boxLabel:'Enabled', name: 'hbmSmsTestFlag',inputValue:1, width:80,checked:false,
+							           		listeners:{
+												change:function(field,newValue,oldValue,opts){
+							           				var smsTestDetail1=form.down('fieldcontainer[name=smsTestDetail1]');
+							           				var smsTestDetail2=form.down('fieldcontainer[name=smsTestDetail2]');
+							           				
+							           				if(newValue){
+							           					smsTestDetail1.setDisabled(false);
+							           					smsTestDetail2.setDisabled(false);
+							           				}else{
+							           					smsTestDetail1.setDisabled(true);
+							           					smsTestDetail2.setDisabled(true);
+							           				}
+							           			}
+				           					}
+							           	},
+							           	{
+											xtype: 'fieldcontainer',
+											labelWidth:80,
+											layout:'column',
+											name:'smsTestDetail1',
+											editable:false,
+											items: [
+													{xtype:'combo',
+														   name: 'hbmSmsDirection', 
+														   mode: 'local',
+														   queryMode: 'local',
+														   displayField : 'name',
+														   valueField : 'statusId',
+														   width:180,
+														   fieldLabel: 'Direction',
+														   labelWidth:85,
+														   store : Ext.create('Ext.data.Store', {
+																fields : [ 'name', 'statusId' ],
+																data : [ {
+																	name : 'RECV',
+																	statusId : 0
+																}, {
+																	name : 'SEND',
+																	statusId : 1
+																}, {
+																	name : 'DUAL',
+																	statusId : 2
+																}]
+															}),
+															value:0,
+													},
+													{xtype: 'displayfield',width:80,value:'' },
+													{xtype:'numberfield', width:180,fieldLabel: 'Random',labelWidth:85,name: 'hbmSmsTestRandom',value:100,minValue:0,maxValue:100 },
+													{xtype: 'displayfield',width:30,value:'%' },
+												]
+										},{
+											xtype: 'fieldcontainer',
+											labelWidth:80,
+											name:'smsTestDetail2',
+											layout:'column',
+											items: [
+													
+										           	{xtype:'numberfield',width:180,fieldLabel: 'Interval',labelWidth:85, name: 'hbmSmsInterval', value: 180,minValue:0,maxValue:999},
+													{xtype: 'displayfield',width:80,value:'(minute)' },
+													{xtype:'numberfield', width:180,fieldLabel: 'Count Limit',labelWidth:85,name: 'hbmSmsCountLimit',value:3,minValue:0,maxValue:999 },
+													{xtype: 'displayfield',width:80,value:'(count)' },
+													
+												]
+										},
+							           	
+									]
+						},{
+							   name : 'smsTemplate',
+							   xtype: 'fieldcontainer',
+							   fieldLabel: 'SMS Template',
+							   labelWidth:140,
+//							   layout:'column',
+							   items: [
+										{xtype:'textfield',width:480,fieldLabel:'Template 1',labelWidth:85,name:'hbmSmsTest01'},
+										{xtype:'textfield',width:480,fieldLabel:'Template 2',labelWidth:85,name:'hbmSmsTest02'},
+										{xtype:'textfield',width:480,fieldLabel:'Template 3',labelWidth:85,name:'hbmSmsTest03'},
+										{xtype:'textfield',width:480,fieldLabel:'Template 4',labelWidth:85,name:'hbmSmsTest04'},
+										{xtype:'textfield',width:480,fieldLabel:'Template 5',labelWidth:85,name:'hbmSmsTest05'},
+									]
+						}
+						]	
+					
+				}
+
+		],
+
+    buttons: [{
+        text: 'Cancel',
+        handler: function() {
+            this.up('form').getForm().reset();
+            this.up('window').hide();
+        }
+    }, {
+        text: 'Commit',
+        handler: function() {
+    		var tmp = this.up('form').getComponent('group_info').getComponent('group_name');
+    		if(tmp.getComponent('picture').flag==0)
+    		return;
+            if (this.up('form').getForm().isValid()) {
+               
+	                var form = this.up('form').getForm();
+	                var win=this.up('window');
+	                if (form.isValid()) {
+	                	var sc=0;
+	                	var maxCallCountCard2=form.findField('maxCallCountCard2');
+	                	var maxCallCountOnce2=form.findField('maxCallCountOnce2');
+	                	var maxCallTimeCard2=form.findField('maxCallTimeCard2');
+	                	var maxCallTimeOnce2=form.findField('maxCallTimeOnce2');
+	                	var maxCallTimeDay2=form.findField('maxCallTimeDay2');
+	                	var maxCallTimeMonth2=form.findField('maxCallTimeMonth2');
+	                	var maxIdleTimeOnce2=form.findField('maxIdleTimeOnce2');
+	                	var maxWorkTimeOnce2=form.findField('maxWorkTimeOnce2');
+	                	var maxSmsCountCard2=form.findField('maxSmsCountCard2');
+	                	var maxSmsCountOnce2=form.findField('maxSmsCountOnce2');
+	                	var maxSmsCountDay2=form.findField('maxSmsCountDay2');
+	                	var maxSmsCountMonth2=form.findField('maxSmsCountMonth2');
+	                	
+	                	if(maxCallCountCard2.getValue()){
+	                		sc=sc+maxCallCountCard2.inputValue;
+	                	}
+	                	if(maxCallCountOnce2.getValue()){
+	                		sc=sc+maxCallCountOnce2.inputValue;
+	                	}
+	                	if(maxCallTimeCard2.getValue()){
+	                		sc=sc+maxCallTimeCard2.inputValue;
+	                	}
+	                	if(maxCallTimeOnce2.getValue()){
+	                		sc=sc+maxCallTimeOnce2.inputValue;
+	                	}
+	                	if(maxCallTimeDay2.getValue()){
+	                		sc=sc+maxCallTimeDay2.inputValue;
+	                	}
+	                	if(maxCallTimeMonth2.getValue()){
+	                		sc=sc+maxCallTimeMonth2.inputValue;
+	                	}
+	                	if(maxIdleTimeOnce2.getValue()){
+	                		sc=sc+maxIdleTimeOnce2.inputValue;
+	                	}
+	                	if(maxWorkTimeOnce2.getValue()){
+	                		sc=sc+maxWorkTimeOnce2.inputValue;
+	                	}
+	                	if(maxSmsCountCard2.getValue()){
+	                		sc=sc+maxSmsCountCard2.inputValue;
+	                	}
+	                	if(maxSmsCountOnce2.getValue()){
+	                		sc=sc+maxSmsCountOnce2.inputValue;
+	                	}
+	                	if(maxSmsCountDay2.getValue()){
+	                		sc=sc+maxSmsCountDay2.inputValue;
+	                	}
+	                	if(maxSmsCountMonth2.getValue()){
+	                		sc=sc+maxSmsCountMonth2.inputValue;
+	                	}
+	                	
+//	                	alert(sc);
+	                	this.up('form').getForm().findField('selectCond').setValue(sc);
+	                	Ext.Ajax.request({
+	                		url:'groupManager!addGroup.action',
+	                		method:'POST',
+	                		params:form.getValues(),
+	                		callback: function (options, success, response) {
+	                			var obj=Ext.JSON.decode(response.responseText);
+		                                    	if(obj['success']){
+		                                    		Ext.MessageBox.alert('success','commint success');
+		                                    		Ext.getCmp('fgroupTab').getStore().load();
+		                                    	}else{
+		                                    		Ext.MessageBox.alert('failure','commint failure');
+		                                    	}
+	                                    	}
+	                	});
+	                }
+	                form.reset();
+	                win.hide();
+	            }
+            }
+        
+    }]
+});
+
+Ext.define("app.view.operation.domain.group.AddGroup", {
+	extend : 'Ext.window.Window',
+	alias : 'widget.addGroup',
+	id:'addGroup',
+	title : 'Add Group',
+	closeAction: 'hide',
+	height : 600,
+	autoScroll:true,
+	treeName:'',
+	bodyPadding: 5,
+	bodyStyle: {
+		background: '#DFE9F6',
+	},
+	width:850,
+    layout: 'fit',
+    resizable: true,
+//    modal: true,
+    items: form
+	
+});
+

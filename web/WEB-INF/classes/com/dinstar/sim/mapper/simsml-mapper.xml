@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- ne port mapper -->
+<mapper namespace="com.dinstar.sim.mapper.SIMSml">
+	<resultMap type="com.dinstar.sim.mapper.SIMSml" id="simSml">
+		<id column="uuid" property="uuid" jdbcType="INTEGER" />
+	    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="imsi" property="imsi" jdbcType="CHAR" />
+	    <result column="alias" property="alias" jdbcType="CHAR" />
+	    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+	    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+	    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+	    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+	    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+	    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+	    <result column="grp_uuid" property="grpUuid" jdbcType="INTEGER" />
+	    <result column="orig_zone_uuid" property="origZoneUuid" jdbcType="INTEGER" />
+	    <result column="last_site_uuid" property="lastSiteUuid" jdbcType="INTEGER" />
+	    <result column="bkp_uuid" property="bkpUuid" jdbcType="INTEGER" />
+	    <result column="icc_id" property="iccId" jdbcType="CHAR" />
+	    <result column="bind_imei" property="bindImei" jdbcType="CHAR" />
+	    <result column="pin1_code" property="pin1Code" jdbcType="CHAR" />
+	    <result column="pin2_code" property="pin2Code" jdbcType="CHAR" />
+	    <result column="puk1_code" property="puk1Code" jdbcType="CHAR" />
+	    <result column="puk2_code" property="puk2Code" jdbcType="CHAR" />
+	    <result column="smsc" property="smsc" jdbcType="CHAR" />
+	    <result column="operator" property="operator" jdbcType="CHAR" />
+	    <result column="mobile" property="mobile" jdbcType="CHAR" />
+	    <result column="prepaid_fee" property="prepaidFee" jdbcType="DECIMAL" />
+	    <result column="total_cost" property="totalCost" jdbcType="DECIMAL" />
+	    <result column="cur_balance" property="curBalance" jdbcType="DECIMAL" />
+	    <result column="money_type" property="moneyType" jdbcType="INTEGER" />
+	    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	    <result column="last_load_time" property="lastLoadTime" jdbcType="TIMESTAMP" />
+	    <result column="last_bind_time" property="lastBindTime" jdbcType="TIMESTAMP" />
+	    <result column="last_used_time" property="lastUsedTime" jdbcType="TIMESTAMP" />
+	    <result column="deactive_reason" property="deactiveReason" jdbcType="INTEGER" />
+	    <result column="blocked_flag" property="blockedFlag" jdbcType="INTEGER" />
+	    
+	    <result column="sml_uuid" property="smlUuid" jdbcType="INTEGER" />
+	    <result column="sml_rec_status" property="smlRecStatus" jdbcType="INTEGER" />
+	    <result column="sml_domain_uuid" property="smlDomainUuid" jdbcType="INTEGER" />
+	    <result column="sms_no" property="smsNo" jdbcType="INTEGER" />
+	     <result column="user_task_type" property="userTaskType" jdbcType="INTEGER" />
+   	 <result column="user_task_id" property="userTaskId" jdbcType="INTEGER" />
+   	 <result column="sms_index" property="smsIndex" jdbcType="INTEGER" />
+	    <result column="sms_sn" property="smsSn" jdbcType="INTEGER" />
+	    <result column="sml_alias" property="smlAlias" jdbcType="CHAR" />
+	   <result column="spec_grp_uuid" property="specGrpUuid" jdbcType="INTEGER" />
+    <result column="spec_sim_uuid" property="specSimUuid" jdbcType="INTEGER" />
+    <result column="gwp_uuid" property="gwpUuid" jdbcType="INTEGER" />
+    <result column="sim_uuid" property="simUuid" jdbcType="INTEGER" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="sms_direction" property="smsDirection" jdbcType="INTEGER" />
+    <result column="cur_fail_retries" property="curFailRetries" jdbcType="INTEGER" />
+    <result column="max_fail_retries" property="maxFailRetries" jdbcType="INTEGER" />
+    <result column="sms_number" property="smsNumber" jdbcType="CHAR" />
+    <result column="encode" property="encode" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="CHAR" />
+    <result column="sms_status" property="smsStatus" jdbcType="INTEGER" />
+    <result column="sms_receipt" property="smsReceipt" jdbcType="INTEGER" />
+    <result column="sms_result" property="smsResult" jdbcType="INTEGER" />
+    <result column="split_cnt" property="splitCnt" jdbcType="INTEGER" />
+    <result column="split_succ_cnt" property="splitSuccCnt" jdbcType="INTEGER" />
+    <result column="split_fail_cnt" property="splitFailCnt" jdbcType="INTEGER" />
+    <result column="sms_time" property="smsTime" jdbcType="TIMESTAMP" />
+    <result column="result_time" property="resultTime" jdbcType="TIMESTAMP" />
+    <result column="receipt_time" property="receiptTime" jdbcType="TIMESTAMP" />
+    <result column="bkp_port_no_str" property="bkpPortNoStr" jdbcType="CHAR" />
+ <result column="detail_desc" property="detailDesc" jdbcType="VARCHAR" />
+  </resultMap>	    
+  
+   <select id="getSimUuid" resultType="java.util.List" >
+    	select tl.spec_sim_uuid from tbl_sml tl where tl.spec_sim_uuid in (#{simUuid})
+  </select>
+   <select id="getSimSml" resultMap="simSml" >
+    	select ts.*,
+		tl.uuid as sml_uuid,tl.rec_status as sml_rec_status,tl.domain_uuid as sml_domain_uuid,
+		tl.sms_sn,tl.user_task_id,tl.alias as sml_alias,tl.spec_grp_uuid,tl.spec_sim_uuid,
+		tl.gwp_uuid,tl.sim_uuid,tl.sms_number,tl.encode,tl.content,tl.sms_status,
+		tl.sms_receipt,tl.sms_result,tl.split_cnt,tl.split_succ_cnt,tl.split_fail_cnt,
+		tl.sms_time,tl.result_time,tl.receipt_time,
+		tl.action_result,tl.action_status,tl.cur_fail_retries,
+		tl.max_fail_retries,tl.sms_direction,tl.sms_index,tl.user_task_type ,
+		CASE ts.bkp_uuid
+			WHEN 0
+			THEN NULL
+			WHEN NULL
+			THEN NULL
+			ELSE
+			(		CASE tn.alias 
+					WHEN NULL
+					THEN 
+					CONCAT(tn.product_sn,'[',tp.port_no,']')
+					WHEN ''
+					THEN
+					CONCAT(tn.product_sn,'[',tp.port_no,']')
+					ELSE
+					CONCAT(tn.alias,'[',tp.port_no,']')
+					END)
+		END AS bkp_port_no_str
+		from tbl_sim ts 
+		left join tbl_sml tl on (ts.uuid=tl.spec_sim_uuid)
+		LEFT JOIN tbl_bkp bkp on(ts.bkp_uuid = bkp.uuid)
+		LEFT JOIN tbl_port tp on(bkp.port_uuid=tp.uuid)
+		left JOIN tbl_ne  tn on(tp.ne_uuid = tn.uuid)		
+		where ts.rec_status!=2
+		
+		and ts.domain_uuid=#{domainUuid}
+		 and ts.grp_uuid=#{grpUuid}
+		
+		<if test="adminStatus!=null">
+		 and ts.admin_status=#{adminStatus}
+		</if>
+		<if test="runStatus!=null">
+		 and ts.run_status=#{runStatus}
+		</if>
+		<if test="smsStatus!=null">
+		 and tl.sms_status=#{smsStatus}
+		</if>
+		
+		<if test="smsResult!=null">
+		 and tl.sms_result=#{smsResult}
+		</if>
+		<if test="imsi !=null">
+		 and ts.imsi like #{imsi}
+		</if>
+		<if test="alias !=null">
+		 and ts.alias like #{alias}
+		</if>
+		<if test="number !=null">
+		 and tl.sms_number like #{number}
+		</if>
+		<if test="content !=null">
+		 and tl.content like #{content}
+		</if>
+		<if test="smsTimeB !=null">
+			<![CDATA[ 
+			 and tl.sms_time >= #{smsTimeB}
+			 ]]>
+		</if>
+		<if test="smsTimeE !=null">
+			<![CDATA[
+			 and tl.sms_time <= #{smsTimeE}
+			]]>
+		</if>
+		<if test="resultTimeB !=null">
+			<![CDATA[ 
+			 and tl.result_time >= #{resultTimeB}
+			 ]]>
+		</if>
+		<if test="resultTimeE !=null">
+			<![CDATA[
+			 and tl.result_time <= #{resultTimeE}
+			]]>
+		</if>
+				<if test="sort != null" >
+     		 order by ${sort}
+    	</if>
+		<if test="limit>0">LIMIT #{start},#{limit}</if>
+  </select>
+   <select id="countSimSml" resultType="java.lang.Integer" >
+    	select count(ts.uuid) from tbl_sim ts 
+		left join tbl_sml tl
+		on (ts.uuid=tl.spec_sim_uuid)
+		where ts.rec_status!=2
+		
+		and ts.domain_uuid=#{domainUuid}
+		 and ts.grp_uuid=#{grpUuid}
+		
+		<if test="adminStatus!=null">
+		 and ts.admin_status=#{adminStatus}
+		</if>
+		<if test="runStatus!=null">
+		 and ts.run_status=#{runStatus}
+		</if>
+		<if test="smsStatus!=null">
+		 and tl.sms_status=#{smsStatus}
+		</if>
+		<if test="smsResult!=null">
+		 and tl.sms_result=#{smsResult}
+		</if>
+		<if test="imsi !=null">
+		 and ts.imsi like #{imsi}
+		</if>
+		<if test="alias !=null">
+		 and ts.alias like #{alias}
+		</if>
+		<if test="number !=null">
+		 and tl.sms_number like #{number}
+		</if>
+		<if test="content !=null">
+		 and tl.content like #{content}
+		</if>
+		<if test="smsTimeB !=null">
+			<![CDATA[ 
+			 and tl.sms_time >= #{smsTimeB}
+			 ]]>
+		</if>
+		<if test="smsTimeE !=null">
+			<![CDATA[
+			 and tl.sms_time <= #{smsTimeE}
+			]]>
+		</if>
+		<if test="resultTimeB !=null">
+			<![CDATA[ 
+			 and tl.result_time >= #{resultTimeB}
+			 ]]>
+		</if>
+		<if test="resultTimeE !=null">
+			<![CDATA[
+			 and tl.result_time <= #{resultTimeE}
+			]]>
+		</if>
+		
+  </select>
+   
+    
+</mapper>

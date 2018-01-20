@@ -1,0 +1,11 @@
+<div class="form-group" >
+  <label class="control-label" for="{{=it.name}}">{{=it.label}}</label>
+
+  <div class="col-xs-12 col-sm-9">
+	 <select name="{{=it.name}}" class="chosen-select">
+      {{~it.list :value:index}}
+      <option value="{{=value.uuid}}">{{=value.name}}</option>
+      {{~}}
+	 </select>
+  </div>
+</div>

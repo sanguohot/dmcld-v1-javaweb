@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblDnumMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblDnum" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="number_role" property="numberRole" jdbcType="INTEGER" />
+    <result column="number_type" property="numberType" jdbcType="INTEGER" />
+    <result column="dynamic_weight" property="dynamicWeight" jdbcType="INTEGER" />
+    <result column="call_cnt" property="callCnt" jdbcType="INTEGER" />
+    <result column="last_call_time" property="lastCallTime" jdbcType="TIMESTAMP" />
+    <result column="src_ip" property="srcIp" jdbcType="VARCHAR" />
+    <result column="black_infected_flag" property="blackInfectedFlag" jdbcType="INTEGER" />
+    <result column="invalid_flag" property="invalidFlag" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, domain_uuid, action_status, action_result, number, number_role, 
+    number_type, dynamic_weight, call_cnt, last_call_time, src_ip, black_infected_flag, 
+    invalid_flag, create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblDnumCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_dnum
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_dnum
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_dnum
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblDnumCriteria" >
+    delete from tbl_dnum
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblDnum" >
+    insert into tbl_dnum (uuid, rec_status, domain_uuid, 
+      action_status, action_result, number, 
+      number_role, number_type, dynamic_weight, 
+      call_cnt, last_call_time, src_ip, 
+      black_infected_flag, invalid_flag, create_time
+      )
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{domainUuid,jdbcType=INTEGER}, 
+      #{actionStatus,jdbcType=INTEGER}, #{actionResult,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, 
+      #{numberRole,jdbcType=INTEGER}, #{numberType,jdbcType=INTEGER}, #{dynamicWeight,jdbcType=INTEGER}, 
+      #{callCnt,jdbcType=INTEGER}, #{lastCallTime,jdbcType=TIMESTAMP}, #{srcIp,jdbcType=VARCHAR}, 
+      #{blackInfectedFlag,jdbcType=INTEGER}, #{invalidFlag,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblDnum" >
+    insert into tbl_dnum
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="actionStatus != null" >
+        action_status,
+      </if>
+      <if test="actionResult != null" >
+        action_result,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="numberRole != null" >
+        number_role,
+      </if>
+      <if test="numberType != null" >
+        number_type,
+      </if>
+      <if test="dynamicWeight != null" >
+        dynamic_weight,
+      </if>
+      <if test="callCnt != null" >
+        call_cnt,
+      </if>
+      <if test="lastCallTime != null" >
+        last_call_time,
+      </if>
+      <if test="srcIp != null" >
+        src_ip,
+      </if>
+      <if test="blackInfectedFlag != null" >
+        black_infected_flag,
+      </if>
+      <if test="invalidFlag != null" >
+        invalid_flag,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="actionStatus != null" >
+        #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="numberRole != null" >
+        #{numberRole,jdbcType=INTEGER},
+      </if>
+      <if test="numberType != null" >
+        #{numberType,jdbcType=INTEGER},
+      </if>
+      <if test="dynamicWeight != null" >
+        #{dynamicWeight,jdbcType=INTEGER},
+      </if>
+      <if test="callCnt != null" >
+        #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="lastCallTime != null" >
+        #{lastCallTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="srcIp != null" >
+        #{srcIp,jdbcType=VARCHAR},
+      </if>
+      <if test="blackInfectedFlag != null" >
+        #{blackInfectedFlag,jdbcType=INTEGER},
+      </if>
+      <if test="invalidFlag != null" >
+        #{invalidFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblDnumCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_dnum
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_dnum
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionStatus != null" >
+        action_status = #{record.actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionResult != null" >
+        action_result = #{record.actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numberRole != null" >
+        number_role = #{record.numberRole,jdbcType=INTEGER},
+      </if>
+      <if test="record.numberType != null" >
+        number_type = #{record.numberType,jdbcType=INTEGER},
+      </if>
+      <if test="record.dynamicWeight != null" >
+        dynamic_weight = #{record.dynamicWeight,jdbcType=INTEGER},
+      </if>
+      <if test="record.callCnt != null" >
+        call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastCallTime != null" >
+        last_call_time = #{record.lastCallTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.srcIp != null" >
+        src_ip = #{record.srcIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blackInfectedFlag != null" >
+        black_infected_flag = #{record.blackInfectedFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.invalidFlag != null" >
+        invalid_flag = #{record.invalidFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_dnum
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      action_status = #{record.actionStatus,jdbcType=INTEGER},
+      action_result = #{record.actionResult,jdbcType=INTEGER},
+      number = #{record.number,jdbcType=VARCHAR},
+      number_role = #{record.numberRole,jdbcType=INTEGER},
+      number_type = #{record.numberType,jdbcType=INTEGER},
+      dynamic_weight = #{record.dynamicWeight,jdbcType=INTEGER},
+      call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      last_call_time = #{record.lastCallTime,jdbcType=TIMESTAMP},
+      src_ip = #{record.srcIp,jdbcType=VARCHAR},
+      black_infected_flag = #{record.blackInfectedFlag,jdbcType=INTEGER},
+      invalid_flag = #{record.invalidFlag,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblDnum" >
+    update tbl_dnum
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="actionStatus != null" >
+        action_status = #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        action_result = #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="numberRole != null" >
+        number_role = #{numberRole,jdbcType=INTEGER},
+      </if>
+      <if test="numberType != null" >
+        number_type = #{numberType,jdbcType=INTEGER},
+      </if>
+      <if test="dynamicWeight != null" >
+        dynamic_weight = #{dynamicWeight,jdbcType=INTEGER},
+      </if>
+      <if test="callCnt != null" >
+        call_cnt = #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="lastCallTime != null" >
+        last_call_time = #{lastCallTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="srcIp != null" >
+        src_ip = #{srcIp,jdbcType=VARCHAR},
+      </if>
+      <if test="blackInfectedFlag != null" >
+        black_infected_flag = #{blackInfectedFlag,jdbcType=INTEGER},
+      </if>
+      <if test="invalidFlag != null" >
+        invalid_flag = #{invalidFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblDnum" >
+    update tbl_dnum
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      action_status = #{actionStatus,jdbcType=INTEGER},
+      action_result = #{actionResult,jdbcType=INTEGER},
+      number = #{number,jdbcType=VARCHAR},
+      number_role = #{numberRole,jdbcType=INTEGER},
+      number_type = #{numberType,jdbcType=INTEGER},
+      dynamic_weight = #{dynamicWeight,jdbcType=INTEGER},
+      call_cnt = #{callCnt,jdbcType=INTEGER},
+      last_call_time = #{lastCallTime,jdbcType=TIMESTAMP},
+      src_ip = #{srcIp,jdbcType=VARCHAR},
+      black_infected_flag = #{blackInfectedFlag,jdbcType=INTEGER},
+      invalid_flag = #{invalidFlag,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,486 @@
+<form  name="NetSNMPParam" id="NetSNMPParam" ng-controller="NetSNMPParamCtrl">
+<table width="800px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+	<tbody><tr>
+		<td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+		<td>SNMP</td>
+		<td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+	</tr>
+	</tbody></table>
+<table width="800px" align="center" cellpadding="1" cellspacing="0" class="tblbody">
+<tr>
+<td class="sidebar">&nbsp;</td>
+<td>
+<table width="100%" class="context">
+  <tr>
+    <td width="27%">&nbsp;</td>
+    <td width="25%">&nbsp;</td>
+    <td width="23%">&nbsp;</td>
+    <td width="25%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td class="td_title">Snmp</td>
+    <td>
+      <input id="IsEnableNETSNMP" name="IsEnableNETSNMP" type="checkbox" ng-click="mouse_click();"   alt="config/snmp/general/enable">
+      启用</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan = "4">&nbsp;</td>
+  </tr>
+</table>
+
+<table width="100%" id="SNMPVertionr" class="context">
+  <tr>
+    <td width="23%">&nbsp;</td>
+    <td class="td_title" width="29%">Snmp版本</td>
+    <td width="23%">
+      <select name="SNMPVersion" class="list" style="width:80%;" id="SNMPVersion"  align="center" ng-click="SNMPVersionChange();" alt="config/snmp/group/group{SNMPVertionr}/security_model">
+        <option value="0" >v1</option>
+        <option value="1" >v2c</option>
+        <option value="2" >v3</option>
+      </select>
+    </td>
+    <td width="25%">&nbsp;</td>
+  </tr>
+</table>
+
+<table width="100%" id="usercfg" class="context">
+  <tr>
+    <td width="5%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="6" class="td_title">用户配置</td>
+  </tr>
+  <tr align="center">
+    <td>&nbsp;</td>
+    <td>用户名</td>
+    <td>验证类型</td>
+    <td>验证密码</td>
+    <td>加密类型</td>
+    <td>加密密码</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>
+      <input class="text" id="UserName0" name="UserName0" maxlength="255" value="" alt="config/snmp/user/user0/user">
+    </td>
+    <td>
+      <select name="UserAuthType0" class="list" style="width:85%;" id="UserAuthType0" ng-click="userAuthkeyChange(0);" alt="config/snmp/user/user0/auth_type">
+        <option value="0" ></option>
+        <option value="1" >MD5</option>
+        <option value="2" >SHA</option>
+      </select>
+    </td>
+    <td>
+      <input class="text" id="UserAuthPassword0" name="UserAuthPassword0"   type="password" style="width:80%;" maxlength="255" value="" alt="config/snmp/user/user0/auth_pwd">
+    </td>
+    <td>
+      <select name="UserPrivacyType0" class="list" style="width:85%;" id="UserPrivacyType0" ng-click="userPrivacykeyChange(0);" alt="config/snmp/user/user0/privacy_type">
+        <option value="0" ></option>
+        <option value="1" >DES</option>
+        <option value="2" >AES</option>
+        <option value="3" >AES128</option>
+      </select>
+    </td>
+    <td>
+      <input class="text" id="UserPrivacyPassword0" name="UserPrivacyPassword0" type="password" maxlength="255" value="" alt="config/snmp/user/user0/privacy_password">
+    </td>
+  </tr>
+  <tr>
+    <td colspan="6" class="notes">注意:验证密码和加密密码不能小于8</td>
+  </tr>
+</table>
+
+
+<table width="100%" id="communitycfg" class="context">
+  <tr>
+    <td width="5%">&nbsp;</td>
+    <td width="47%">&nbsp;</td>
+    <td width="48%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="4" class="td_title">共同体配置</td>
+  </tr>
+  <tr align="center">
+    <td>&nbsp;</td>
+    <td>共同体</td>
+    <td>源地址</td>
+  </tr>
+  <tr >
+    <td height="20">1</td>
+    <td>
+      <input class="text" style="width:86%;" id="CommunityName0" name="CommunityName0" maxlength="33"  ng-blur="completeCommunity(0);"  value="" alt="config/snmp/community/community0/community" >
+    </td>
+    <td>
+      <input class="text" style="width:92%;" id="CommunitySource0" name="CommunitySource0" maxlength="269" value="" alt="config/snmp/community/community0/source" >
+    </td>
+  </tr>
+  <tr >
+    <td>2</td>
+    <td>
+      <input class="text" style="width:86%;" id="CommunityName1" name="CommunityName1" maxlength="33" ng-blur="completeCommunity(1);" value="" alt="config/snmp/community/community1/community" >
+    </td>
+    <td>
+      <input class="text" style="width:92%;" id="CommunitySource1" name="CommunitySource1" maxlength="269" value="" alt="config/snmp/community/community1/source" >
+    </td>
+  </tr>
+  <tr >
+    <td>3</td>
+    <td>
+      <input class="text" style="width:86%;" id="CommunityName2" name="CommunityName2" maxlength="33" ng-blur="completeCommunity(2);" value="" alt="config/snmp/community/community2/community" >
+    </td>
+    <td>
+      <input class="text" style="width:92%;" id="CommunitySource2" name="CommunitySource2" maxlength="269" value="" alt="config/snmp/community/community2/source" >
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4" class="notes">注意:源地址的缺省值为default.如果不是,输入IP地址(例如:192.168.1.1)
+    </td>
+  </tr>
+</table>
+
+
+
+<table width="100%"  id="groupcfg" class="context">
+  <tr>
+    <td width="5%">&nbsp;</td>
+    <td width="47%">&nbsp;</td>
+    <td width="48%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="4" class="td_title">共同体加入组</td>
+  </tr>
+  <tr align="center">
+    <td>&nbsp;</td>
+    <td>组名</td>
+    <td>共同体</td>
+  </tr>
+  <tr id="groupcfg1">
+    <td>1</td>
+    <td>
+      <input class="text" style="width:86%;" id="GroupName0" name="GroupName0" maxlength="33"  value="" alt="config/snmp/group/group0/group_name" >
+    </td>
+    <td>
+      <select name="GroupSecurityname0" class="list" style="width:93%;"  id="GroupSecurityname0" ng-focus="GroupSecurityname_focus(0)" alt="config/snmp/group/group0/security_name" >
+        <option value="" ></option>
+      </select>
+    </td>
+  </tr>
+  <tr id="groupcfg2">
+    <td>2</td>
+    <td>
+      <input class="text" style="width:86%;" id="GroupName1" name="GroupName1" maxlength="33" value="" alt="config/snmp/group/group1/group_name" >
+    </td>
+    <td>
+      <select name="GroupSecurityname1" class="list" style="width:93%;" id="GroupSecurityname1" ng-focus="GroupSecurityname_focus(1)" alt="config/snmp/group/group1/security_name" >
+        <option value="" ></option>
+      </select>
+    </td>
+  </tr>
+  <tr id="groupcfg3">
+    <td>3</td>
+    <td>
+      <input class="text" style="width:86%;" id="GroupName2" name="GroupName2" maxlength="33" value="" alt="config/snmp/group/group2/group_name" >
+    </td>
+    <td>
+      <select name="GroupSecurityname2" class="list" style="width:93%;" id="GroupSecurityname2" ng-focus="GroupSecurityname_focus(2)" alt="config/snmp/group/group2/security_name">
+        <option value="" ></option>
+      </select>
+    </td>
+  </tr>
+  <tr id="groupcfg4">
+    <td>1</td>
+    <td>
+      <input class="text" style="width:86%;" id="GroupName3" name="GroupName3" maxlength="33" value="" alt="config/snmp/group/group3/group_name" >
+    </td>
+    <td>
+      <select name="GroupSecurityname3" class="list" style="width:93%;" id="GroupSecurityname3" ng-focus="GroupSecurityname_focus(3);" alt="config/snmp/group/group3/security_name" >
+        <option value="" ></option>
+      </select>
+    </td>
+  </tr>
+</table>
+
+<table width="100%" id="viewcfg" class="context">
+  <tr>
+    <td width="5%">&nbsp;</td>
+    <td width="23%">&nbsp;</td>
+    <td width="24%">&nbsp;</td>
+    <td width="23%">&nbsp;</td>
+    <td width="24%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="5" class="td_title">mib视图配置</td>
+  </tr>
+  <tr align="center">
+    <td>&nbsp;</td>
+    <td>视图名</td>
+    <td>视图类型</td>
+    <td>mib树</td>
+    <td>掩码</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>
+      <input class="text" style="width:79%;" id="ViewName0" name="ViewName0" maxlength="33" value="" alt="config/snmp/view/view0/name" >
+    </td>
+    <td>
+      <select name="ViewType0" class="list" id="ViewType0" style="width:72%;" alt="config/snmp/view/view0/type" >
+        <option value="0" selected></option>
+        <option value="1" >included</option>
+        <option value="2" >excluded</option>
+      </select>
+    </td>
+    <td>
+      <input class="text"  style="width:79%;" id="ViewSubtree0" name="ViewSubtree0" maxlength="255" value="" alt="config/snmp/view/view0/subtree" >
+    </td>
+    <td>
+      <input class="text" style="width:86%;" id="ViewMask0" name="ViewMask0" maxlength="33" value="" alt="config/snmp/view/view0/mask" >
+    </td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>
+      <input class="text" style="width:79%;" id="ViewName1" name="ViewName1" maxlength="33" value="" alt="config/snmp/view/view1/name" >
+    </td>
+    <td>
+      <select name="ViewType1" class="list" id="ViewType1" style="width:72%;" alt="config/snmp/view/view1/type" >
+        <option value="0" selected></option>
+        <option value="1" >included</option>
+        <option value="2" >excluded</option>
+      </select>
+    </td>
+    <td>
+      <input class="text" style="width:79%;" id="ViewSubtree1" name="ViewSubtree1" maxlength="255" value="" alt="config/snmp/view/view1/subtree" >
+    </td>
+    <td>
+      <input class="text" style="width:86%;" id="ViewMask1" name="ViewMask1" maxlength="33" value="" alt="config/snmp/view/view1/mask" >
+    </td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>
+      <input class="text" style="width:79%;" id="ViewName2" name="ViewName2" maxlength="33" value="" alt="config/snmp/view/view2/name" >
+    </td>
+    <td>
+      <select name="ViewType2" class="list" id="ViewType2" style="width:72%;" alt="config/snmp/view/view2/type" >
+        <option value="0" selected></option>
+        <option value="1" >included</option>
+        <option value="2" >excluded</option>
+      </select>
+    </td>
+    <td>
+      <input class="text" style="width:79%;" id="ViewSubtree2" name="ViewSubtree2" maxlength="255" value="" alt="config/snmp/view/view2/subtree" >
+    </td>
+    <td>
+      <input class="text" style="width:86%;" id="ViewMask2" name="ViewMask2" maxlength="33" value="" alt="config/snmp/view/view2/mask" >
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5" class="notes">注意:mib树的格式为:x.x.x.x.x.如果只有一个x，格式为:.x</td>
+  </tr>
+</table>
+
+
+<table width="100%"  id="accesscfg" class="context">
+  <tr>
+    <td width="5%">&nbsp;</td>
+    <td width="23%">&nbsp;</td>
+    <td width="24%">&nbsp;</td>
+    <td width="23%">&nbsp;</td>
+    <td width="24%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="5" class="td_title">访问规则配置(v1/v2c)</td>
+  </tr>
+  <tr align="center">
+    <td>&nbsp;</td>
+    <td>组名;</td>
+    <td>读视图</td>
+    <td>写视图</td>
+    <td>陷阱视图</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>
+      <select  name="AccessGroupName0"  class="list" style="width:82%;" id="AccessGroupName0" ng-focus="accessgroupname_focus(0)" ng-click="accessgroupname_change(0)" alt="config/snmp/access/access0/group">
+        <option value=""> </option>
+      </select>
+    </td>
+    <td>
+      <select name="AccessRead0" class="list" id="AccessRead0"  ng-focus="view_click(0);" style="width:72%;" alt="config/snmp/access/access0/read">
+        <option value=""> </option>
+      </select>
+    </td>
+    <td>
+      <select name="AccessWrite0" class="list" style="width:82%;" id="AccessWrite0" ng-focus="view_click(4);" alt="config/snmp/access/access0/write">
+        <option value=""> </option>
+      </select>
+    </td>
+    <td>
+      <select name="AccessNotify0" class="list" style="width:89%;" id="AccessNotify0" ng-focus="view_click(8);" alt="config/snmp/access/access0/notify">
+        <option value=""> </option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>
+      <select name="AccessGroupName1" class="list" style="width:82%;"  id="AccessGroupName1" ng-focus="accessgroupname_focus(1)" ng-click="accessgroupname_change(1)" alt="config/snmp/access/access1/group">
+        <option value=""> </option>
+      </select>
+    </td>
+    <td>
+      <select name="AccessRead1" class="list" id="AccessRead1" ng-focus="view_click(1);" style="width:72%;" alt="config/snmp/access/access1/read">
+        <option value=""> </option>
+      </select>
+    </td>
+    <td>
+      <select name="AccessWrite1" class="list" style="width:82%;" id="AccessWrite1" ng-focus="view_click(5);" alt="config/snmp/access/access1/write">
+        <option value=""> </option>
+      </select>
+    </td>
+    <td>
+      <select name="AccessNotify1" class="list" style="width:89%;" id="AccessNotify1" ng-focus="view_click(9);" alt="config/snmp/access/access1/notify">
+        <option value=""> </option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>
+      <select name="AccessGroupName2" class="list"  style="width:82%;" id="AccessGroupName2"  ng-focus="accessgroupname_focus(2)"  ng-click="accessgroupname_change(2)" alt="config/snmp/access/access2/group">
+        <option value=""> </option>
+      </select>
+    </td>
+    <td>
+      <select name="AccessRead2" class="list" id="AccessRead2"  ng-focus="view_click(2);" style="width:72%;" alt="config/snmp/access/access2/read">
+        <option value=""> </option>
+      </select>
+    </td>
+    <td>
+      <select name="AccessWrite2" class="list" style="width:82%;" id="AccessWrite2" ng-focus="view_click(6);" alt="config/snmp/access/access2/write">
+        <option value=""> </option>
+      </select>
+    </td>
+    <td>
+      <select name="AccessNotify2" class="list" style="width:89%;" id="AccessNotify2" ng-focus="view_click(10);" alt="config/snmp/access/access2/notify">
+        <option value=""> </option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td height="30" colspan="5" class="notes">注意:读/写/陷阱视图参照视图名.如果读写需要值,对应的组名不能为空.
+    </td>
+  </tr>
+</table>
+
+<table width="100%"  id="accesscfgv3" class="context">
+  <tr>
+    <td width="5%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="5" class="td_title">访问规则(v3)</td>
+  </tr>
+  <tr align="center">
+    <td>&nbsp;</td>
+    <td>组名</td>
+    <td>安全级别</td>
+    <td>读视图</td>
+    <td>写视图</td>
+    <td>陷阱视图</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>
+      <select name="AccessGroupName3" class="list" id="AccessGroupName3" ng-focus="accessgroup_click(3);" style="width:82%;" alt="config/snmp/access/access3/group">
+        <option value=""> </option>
+      </select>
+    </td>
+    <td>
+      <select name="AccessSecleve3" class="list" id="AccessSecleve3" ng-click="AccessSellevelChange(3);" alt="config/snmp/access/access3/security_level">
+        <option value="0" selected></option>
+        <option value="2" >authnopriv</option>
+        <option value="3" >authpriv</option>
+      </select>
+    </td>
+    <td>
+      <select name="AccessRead3" class="list" id="AccessRead3" ng-focus="view_click(3);" alt="config/snmp/access/access3/read">
+        <option value=""> </option>
+      </select>
+    </td>
+    <td>
+      <select name="AccessWrite3" class="list" id="AccessWrite3" ng-focus="view_click(7);" alt="config/snmp/access/access3/write">
+        <option value=""> </option>
+      </select>
+    </td>
+    <td>
+      <select name="AccessNotify3" class="list" style="width:86%;" id="AccessNotify3" ng-focus="view_click(11);" alt="config/snmp/access/access3/notify">
+        <option value=""> </option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="6" class="notes">注意:读/写/陷阱视图参照视图名.如果读写需要值,对应的组名不能为空.</td>
+  </tr>
+</table>
+
+<table width="100%" id="trapcfg" class="context">
+  <tr>
+    <td width="5%">&nbsp;</td>
+    <td width="23%">&nbsp;</td>
+    <td width="24%">&nbsp;</td>
+    <td width="23%">&nbsp;</td>
+    <td width="24%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="5" class="td_title">陷阱配置</td>
+  </tr>
+  <tr align="center">
+    <td>&nbsp;</td>
+    <td>陷阱类型</td>
+    <td>IP地址</td>
+    <td>端口</td>
+    <td>共同体</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>
+      <select name="TrapFlag0" class="list" style="width:82%;" id="TrapFlag0" ng-click="trapflag_click();" alt="config/snmp/trap/trap0/flag">
+        <option value="0" selected></option>
+        <option value="1" >v1</option>
+        <option value="2" >v2c</option>
+        <option value="3" >inform</option>
+      </select>
+    </td>
+    <td>
+      <input class="text" style="width:70%;" id="TrapIP0" name="TrapIP0" maxlength="33" value="" alt="config/snmp/trap/trap0/ip">
+    </td>
+    <td>
+      <input class="text" style="width:80%;" id="TrapPort0" name="TrapPort0" maxlength="33" value="0" alt="config/snmp/trap/trap0/port">
+    </td>
+    <td>
+      <input class="text" style="width:86%;" id="TrapCommunity0" name="TrapCommunity0" maxlength="33" value="" alt="config/snmp/trap/trap0/community">
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">&nbsp;</td>
+  </tr>
+</table>
+
+</td>
+<td class="sidebar">&nbsp;</td>
+</tr>
+</table>
+</form>

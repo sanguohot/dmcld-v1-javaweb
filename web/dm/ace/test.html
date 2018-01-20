@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>用户信息页面 - Bootstrap后台管理系统模版Ace下载</title>
+    <meta name="keywords" content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文" />
+    <meta name="description" content="站长素材提供Bootstrap模版,Bootstrap教程,Bootstrap中文翻译等相关Bootstrap插件下载" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- basic styles -->
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+    <![endif]-->
+
+    <!-- page specific plugin styles -->
+
+    <link rel="stylesheet" href="assets/css/jquery-ui-1.10.3.custom.min.css" />
+    <link rel="stylesheet" href="assets/css/jquery.gritter.css" />
+    <link rel="stylesheet" href="assets/css/select2.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap-editable.css" />
+
+
+    <link rel="stylesheet" href="assets/css/ace.min.css" />
+    <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+
+    <script src="assets/js/ace-extra.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+</script>
+
+<script src="assets/js/select2.min.js"></script>
+<script src="assets/js/x-editable/bootstrap-editable.min.js"></script>
+<script src="assets/js/x-editable/ace-editable.min.js"></script>
+
+
+
+<!-- inline scripts related to this page -->
+<div class="profile-info-value">
+    <i class="icon-map-marker light-orange bigger-110"></i>
+    <span class="editable editable-click" id="country" style="display: inline;">Netherlands</span>
+    <span class="editable editable-click" id="city" style="display: inline;">Amsterdam</span>
+</div>
+<script type="text/javascript">
+    jQuery(function($) {
+
+//        editables on first profile page
+        $.fn.editable.defaults.mode = 'inline';
+        $.fn.editableform.loading = "<div class='editableform-loading'><i class='light-blue icon-2x icon-spinner icon-spin'></i></div>";
+        $.fn.editableform.buttons = '<button type="submit" class="btn btn-info editable-submit"><i class="icon-ok icon-white"></i></button>'+
+        '<button type="button" class="btn editable-cancel"><i class="icon-remove"></i></button>';
+
+        var countries = [];
+        $.each({ "CA": "Canada", "IN": "India", "NL": "Netherlands", "TR": "Turkey", "US": "United States"}, function(k, v) {
+            countries.push({id: k, text: v});
+        });
+
+        var currentValue = "NL";
+        $('#country').editable({
+            type: 'select2',
+            value : 'NL',
+            source: countries,
+            success: function(response, newValue) {
+                if(currentValue == newValue) return;
+
+            }
+        });
+
+        //change profile
+        $('[data-toggle="buttons"] .btn').on('click', function(e){
+            var target = $(this).find('input[type=radio]');
+            var which = parseInt(target.val());
+            $('.user-profile').parent().addClass('hide');
+            $('#user-profile-'+which).parent().removeClass('hide');
+        });
+    });
+
+</script>
+</body>
+</html>

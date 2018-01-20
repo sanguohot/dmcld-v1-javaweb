@@ -1,0 +1,234 @@
+.m-nav {
+margin-top: 5px;
+position: relative;
+font: 12px/1.5 tahoma,arial,\5b8b\4f53;
+}
+.m-nav .bread-crumbs {
+color: #9a9a9a;
+}
+.m-nav .row {
+padding-bottom: 5px;
+}
+.m-nav .bread-crumbs .counts {
+margin-top: 10px;
+float: right;
+}
+.m-nav .bread-crumbs .H {
+color: #9a9a9a!important;
+}
+.m-nav .bread-crumbs .nav-toggle-btn {
+display: inline-block;
+padding: 5px;
+border: 1px solid #e8e8e8;
+line-height: 6px;
+}
+.myicon-btn-arrow-up-3 {
+background-position: -382px -357px;
+width: 9px;
+height: 6px;
+}
+.m-nav .bread-crumbs .crumbs-cont {
+padding-left: 20px;
+line-height: 20px;
+}
+.m-nav .bread-crumbs .cat-name {
+display: inline-block;
+margin-top: 10px;
+color: #666;
+}
+.m-nav .bread-crumbs .cat-divider {
+padding: 0 5px;
+}
+.myicon-btn-vbarrow {
+width: 10px;
+height: 10px;
+display: inline-block;
+font-size: 0;
+background:transparent url(../picture/taobao.png) no-repeat scroll -382px -243px;
+}
+.myicon-btn-arrow-up-3:hover{
+background:transparent url(../picture/taobao.png) no-repeat scroll -141px -103px !important;
+}
+.myicon-btn-arrow-up-3 {
+background:transparent url(../picture/taobao.png) no-repeat scroll -382px -357px;
+width: 9px;
+height: 6px;
+display: inline-block;
+font-size: 0;
+}
+.myicon-btn-arrow-down-3{
+background:transparent url(../picture/taobao.png) no-repeat scroll -160px -103px;
+width: 9px;
+height: 6px;
+display: inline-block;
+font-size: 0;
+}
+.myicon-btn-arrow-down-3:hover{
+background:transparent url(../picture/taobao.png) no-repeat scroll -179px -103px;
+
+}
+.m-nav .nav-panel {
+margin-top: 10px;
+border: 1px solid #e8e8e8;
+}
+.m-nav .nav-block {
+border-bottom: 1px dashed #dedede;
+position: relative;
+}
+.m-nav .nav-block .block-head {
+position: absolute;
+left: 19px;
+top: 0px;
+color: #999;
+}
+.m-nav .nav-block .block-head h4.nav-title {
+display: inline-block;
+max-width: 80px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+vertical-align: middle;
+}
+.m-nav .nav-block .block-head h4 {
+font-weight: 400;
+vertical-align: middle;
+font-size: 100% !important;
+}
+.m-nav .nav-block .block-body {
+height: 36px;
+overflow: hidden;
+padding: 0 100px 0 112px;
+}
+.m-nav .nav-block .params-cont {
+padding: 8px 0;
+}
+.m-nav .nav-block .param-item {
+margin: 0 40px 11px 0;
+max-width: 140px;
+display: inline-block;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+.m-nav a {
+color: #666;
+text-decoration: none;
+}
+.m-nav a:hover {
+color: #ff4400;
+text-decoration: none;
+}
+.myicon-btn-check-small {
+background:transparent url(../picture/taobao.png) no-repeat scroll -382px -112px;
+width: 11px;
+height: 11px;
+}
+.m-nav .nav-block .multi-btn-cont {
+display: none;
+}
+.m-nav .nav-block .block-tail {
+position: absolute;
+right: 19px;
+top: 8px;
+}
+.m-nav .nav-block .block-tail .multi-btn {
+position: absolute;
+border: 1px solid #dad9d9;
+line-height: 15px;
+text-decoration: none;
+padding: 0 3px;
+display: block;
+right: 50px;
+text-align:center;
+width: 60px;
+}
+.m-nav .nav-block .block-tail .more-btn {
+position: absolute;
+display: block;
+right: 0;
+width: 35px;
+}
+.myicon-btn-arrow-down-2 {
+background-position: -215px -103px;
+width: 7px;
+height: 4px;
+}
+
+.m-nav .block-multi .multi-btn-cont .cancel-btn {
+border: 1px solid #e8e8e8;
+}
+.m-nav .block-multi .multi-btn-cont .cancel-btn:hover {
+border: 1px solid #F94700;
+color:#F94700;
+}
+.m-nav .block-multi .multi-btn-cont .submit-btn {
+color: #fff;
+background: #F94700;
+border: 1px solid #F94700;
+}
+.m-nav .block-multi .multi-btn-cont .submit-btn:hover {
+background: #f82800;
+}
+.m-nav .block-multi .multi-btn-cont .submit-btn, .m-nav .block-multi .multi-btn-cont .cancel-btn {
+height: 20px;
+line-height: 20px;
+width: 42px;
+display: inline-block;
+text-align: center;
+text-decoration: none;
+border-radius: 2px;
+margin: 5px;
+cursor: pointer;
+}
+.m-nav .block-multi .multi-btn-cont {
+display: block;
+text-align: center;
+}
+.m-nav .block-multi .param-checkbox {
+display: inline-block !important;
+vertical-align: middle;
+margin: 0 5px 0 0;
+}
+.m-nav .nav-block .param-checkbox {
+display: none;
+}
+.m-nav .block-expand div.block-body {
+height: auto;
+}
+.myicon-tag:hover .myicon-btn-check-small, .myicon-hover .myicon-btn-check-small, .myicon-btn-check-small:hover, .myicon-btn-check-small-hover {
+width: 11px;
+height: 11px;
+border: 1px solid #F94700;
+}
+.myicon-hover .myicon-btn-check-small{
+background:transparent url(../picture/taobao.png) no-repeat scroll -382px -133px;
+}
+.m-nav .bread-crumbs .param-selected {
+display: inline-block;
+border: 1px solid #e8e8e8;
+color: #666;
+margin: 10px 5px 0 0;
+padding: 0 19px 0 4px;
+height: 18px;
+line-height: 18px;
+max-width: 144px;
+vertical-align: top;
+position: relative;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+.m-nav .bread-crumbs .param-selected .close-icon {
+position: absolute;
+right: 6px;
+top: 6px;
+}
+.myicon-btn-x {
+background:transparent url(../picture/taobao.png) no-repeat scroll -56px -374px;
+width: 7px;
+height: 7px;
+}
+#version-sel li:hover{
+  background-color:#E4D3D0;
+  cursor:pointer;
+}

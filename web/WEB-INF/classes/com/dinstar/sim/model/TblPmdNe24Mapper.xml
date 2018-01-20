@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblPmdNe24Mapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblPmdNe24" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="ne_uuid" property="neUuid" jdbcType="INTEGER" />
+    <result column="serial_no" property="serialNo" jdbcType="INTEGER" />
+    <result column="generate_time" property="generateTime" jdbcType="TIMESTAMP" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="ne_reg_fail_cnt" property="neRegFailCnt" jdbcType="INTEGER" />
+    <result column="ne_run_timelen" property="neRunTimelen" jdbcType="INTEGER" />
+    <result column="recv_pkt_cnt" property="recvPktCnt" jdbcType="INTEGER" />
+    <result column="send_pkt_cnt" property="sendPktCnt" jdbcType="INTEGER" />
+    <result column="recv_loss_cnt" property="recvLossCnt" jdbcType="INTEGER" />
+    <result column="send_loss_cnt" property="sendLossCnt" jdbcType="INTEGER" />
+    <result column="recv_timeout_cnt" property="recvTimeoutCnt" jdbcType="INTEGER" />
+    <result column="send_timeout_cnt" property="sendTimeoutCnt" jdbcType="INTEGER" />
+    <result column="cur_ping_delay_ms" property="curPingDelayMs" jdbcType="INTEGER" />
+    <result column="min_ping_delay_ms" property="minPingDelayMs" jdbcType="INTEGER" />
+    <result column="max_ping_delay_ms" property="maxPingDelayMs" jdbcType="INTEGER" />
+    <result column="flash_rd_fail_count" property="flashRdFailCount" jdbcType="INTEGER" />
+    <result column="flash_wt_fail_count" property="flashWtFailCount" jdbcType="INTEGER" />
+    <result column="mem_alloc_fail_count" property="memAllocFailCount" jdbcType="INTEGER" />
+    <result column="total_call_count" property="totalCallCount" jdbcType="INTEGER" />
+    <result column="cur_call_count" property="curCallCount" jdbcType="INTEGER" />
+    <result column="cur_cpu_usage" property="curCpuUsage" jdbcType="INTEGER" />
+    <result column="asr" property="asr" jdbcType="INTEGER" />
+    <result column="acd" property="acd" jdbcType="INTEGER" />
+    <result column="sys_up_timelen" property="sysUpTimelen" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, ne_uuid, serial_no, generate_time, domain_uuid, ne_reg_fail_cnt, 
+    ne_run_timelen, recv_pkt_cnt, send_pkt_cnt, recv_loss_cnt, send_loss_cnt, recv_timeout_cnt, 
+    send_timeout_cnt, cur_ping_delay_ms, min_ping_delay_ms, max_ping_delay_ms, flash_rd_fail_count, 
+    flash_wt_fail_count, mem_alloc_fail_count, total_call_count, cur_call_count, cur_cpu_usage, 
+    asr, acd, sys_up_timelen
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblPmdNe24Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_pmd_ne_24
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClause != null" >
+     	limit ${limitClause} 
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_pmd_ne_24
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_pmd_ne_24
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblPmdNe24Criteria" >
+    delete from tbl_pmd_ne_24
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblPmdNe24" >
+    insert into tbl_pmd_ne_24 (uuid, rec_status, ne_uuid, 
+      serial_no, generate_time, domain_uuid, 
+      ne_reg_fail_cnt, ne_run_timelen, recv_pkt_cnt, 
+      send_pkt_cnt, recv_loss_cnt, send_loss_cnt, 
+      recv_timeout_cnt, send_timeout_cnt, cur_ping_delay_ms, 
+      min_ping_delay_ms, max_ping_delay_ms, flash_rd_fail_count, 
+      flash_wt_fail_count, mem_alloc_fail_count, total_call_count, 
+      cur_call_count, cur_cpu_usage, asr, 
+      acd, sys_up_timelen)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{neUuid,jdbcType=INTEGER}, 
+      #{serialNo,jdbcType=INTEGER}, #{generateTime,jdbcType=TIMESTAMP}, #{domainUuid,jdbcType=INTEGER}, 
+      #{neRegFailCnt,jdbcType=INTEGER}, #{neRunTimelen,jdbcType=INTEGER}, #{recvPktCnt,jdbcType=INTEGER}, 
+      #{sendPktCnt,jdbcType=INTEGER}, #{recvLossCnt,jdbcType=INTEGER}, #{sendLossCnt,jdbcType=INTEGER}, 
+      #{recvTimeoutCnt,jdbcType=INTEGER}, #{sendTimeoutCnt,jdbcType=INTEGER}, #{curPingDelayMs,jdbcType=INTEGER}, 
+      #{minPingDelayMs,jdbcType=INTEGER}, #{maxPingDelayMs,jdbcType=INTEGER}, #{flashRdFailCount,jdbcType=INTEGER}, 
+      #{flashWtFailCount,jdbcType=INTEGER}, #{memAllocFailCount,jdbcType=INTEGER}, #{totalCallCount,jdbcType=INTEGER}, 
+      #{curCallCount,jdbcType=INTEGER}, #{curCpuUsage,jdbcType=INTEGER}, #{asr,jdbcType=INTEGER}, 
+      #{acd,jdbcType=INTEGER}, #{sysUpTimelen,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblPmdNe24" >
+    insert into tbl_pmd_ne_24
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="neUuid != null" >
+        ne_uuid,
+      </if>
+      <if test="serialNo != null" >
+        serial_no,
+      </if>
+      <if test="generateTime != null" >
+        generate_time,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="neRegFailCnt != null" >
+        ne_reg_fail_cnt,
+      </if>
+      <if test="neRunTimelen != null" >
+        ne_run_timelen,
+      </if>
+      <if test="recvPktCnt != null" >
+        recv_pkt_cnt,
+      </if>
+      <if test="sendPktCnt != null" >
+        send_pkt_cnt,
+      </if>
+      <if test="recvLossCnt != null" >
+        recv_loss_cnt,
+      </if>
+      <if test="sendLossCnt != null" >
+        send_loss_cnt,
+      </if>
+      <if test="recvTimeoutCnt != null" >
+        recv_timeout_cnt,
+      </if>
+      <if test="sendTimeoutCnt != null" >
+        send_timeout_cnt,
+      </if>
+      <if test="curPingDelayMs != null" >
+        cur_ping_delay_ms,
+      </if>
+      <if test="minPingDelayMs != null" >
+        min_ping_delay_ms,
+      </if>
+      <if test="maxPingDelayMs != null" >
+        max_ping_delay_ms,
+      </if>
+      <if test="flashRdFailCount != null" >
+        flash_rd_fail_count,
+      </if>
+      <if test="flashWtFailCount != null" >
+        flash_wt_fail_count,
+      </if>
+      <if test="memAllocFailCount != null" >
+        mem_alloc_fail_count,
+      </if>
+      <if test="totalCallCount != null" >
+        total_call_count,
+      </if>
+      <if test="curCallCount != null" >
+        cur_call_count,
+      </if>
+      <if test="curCpuUsage != null" >
+        cur_cpu_usage,
+      </if>
+      <if test="asr != null" >
+        asr,
+      </if>
+      <if test="acd != null" >
+        acd,
+      </if>
+      <if test="sysUpTimelen != null" >
+        sys_up_timelen,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="neUuid != null" >
+        #{neUuid,jdbcType=INTEGER},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="generateTime != null" >
+        #{generateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="neRegFailCnt != null" >
+        #{neRegFailCnt,jdbcType=INTEGER},
+      </if>
+      <if test="neRunTimelen != null" >
+        #{neRunTimelen,jdbcType=INTEGER},
+      </if>
+      <if test="recvPktCnt != null" >
+        #{recvPktCnt,jdbcType=INTEGER},
+      </if>
+      <if test="sendPktCnt != null" >
+        #{sendPktCnt,jdbcType=INTEGER},
+      </if>
+      <if test="recvLossCnt != null" >
+        #{recvLossCnt,jdbcType=INTEGER},
+      </if>
+      <if test="sendLossCnt != null" >
+        #{sendLossCnt,jdbcType=INTEGER},
+      </if>
+      <if test="recvTimeoutCnt != null" >
+        #{recvTimeoutCnt,jdbcType=INTEGER},
+      </if>
+      <if test="sendTimeoutCnt != null" >
+        #{sendTimeoutCnt,jdbcType=INTEGER},
+      </if>
+      <if test="curPingDelayMs != null" >
+        #{curPingDelayMs,jdbcType=INTEGER},
+      </if>
+      <if test="minPingDelayMs != null" >
+        #{minPingDelayMs,jdbcType=INTEGER},
+      </if>
+      <if test="maxPingDelayMs != null" >
+        #{maxPingDelayMs,jdbcType=INTEGER},
+      </if>
+      <if test="flashRdFailCount != null" >
+        #{flashRdFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="flashWtFailCount != null" >
+        #{flashWtFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="memAllocFailCount != null" >
+        #{memAllocFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalCallCount != null" >
+        #{totalCallCount,jdbcType=INTEGER},
+      </if>
+      <if test="curCallCount != null" >
+        #{curCallCount,jdbcType=INTEGER},
+      </if>
+      <if test="curCpuUsage != null" >
+        #{curCpuUsage,jdbcType=INTEGER},
+      </if>
+      <if test="asr != null" >
+        #{asr,jdbcType=INTEGER},
+      </if>
+      <if test="acd != null" >
+        #{acd,jdbcType=INTEGER},
+      </if>
+      <if test="sysUpTimelen != null" >
+        #{sysUpTimelen,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblPmdNe24Criteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_pmd_ne_24
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_pmd_ne_24
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.neUuid != null" >
+        ne_uuid = #{record.neUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.serialNo != null" >
+        serial_no = #{record.serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.generateTime != null" >
+        generate_time = #{record.generateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.neRegFailCnt != null" >
+        ne_reg_fail_cnt = #{record.neRegFailCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.neRunTimelen != null" >
+        ne_run_timelen = #{record.neRunTimelen,jdbcType=INTEGER},
+      </if>
+      <if test="record.recvPktCnt != null" >
+        recv_pkt_cnt = #{record.recvPktCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendPktCnt != null" >
+        send_pkt_cnt = #{record.sendPktCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.recvLossCnt != null" >
+        recv_loss_cnt = #{record.recvLossCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendLossCnt != null" >
+        send_loss_cnt = #{record.sendLossCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.recvTimeoutCnt != null" >
+        recv_timeout_cnt = #{record.recvTimeoutCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendTimeoutCnt != null" >
+        send_timeout_cnt = #{record.sendTimeoutCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.curPingDelayMs != null" >
+        cur_ping_delay_ms = #{record.curPingDelayMs,jdbcType=INTEGER},
+      </if>
+      <if test="record.minPingDelayMs != null" >
+        min_ping_delay_ms = #{record.minPingDelayMs,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxPingDelayMs != null" >
+        max_ping_delay_ms = #{record.maxPingDelayMs,jdbcType=INTEGER},
+      </if>
+      <if test="record.flashRdFailCount != null" >
+        flash_rd_fail_count = #{record.flashRdFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.flashWtFailCount != null" >
+        flash_wt_fail_count = #{record.flashWtFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.memAllocFailCount != null" >
+        mem_alloc_fail_count = #{record.memAllocFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalCallCount != null" >
+        total_call_count = #{record.totalCallCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.curCallCount != null" >
+        cur_call_count = #{record.curCallCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.curCpuUsage != null" >
+        cur_cpu_usage = #{record.curCpuUsage,jdbcType=INTEGER},
+      </if>
+      <if test="record.asr != null" >
+        asr = #{record.asr,jdbcType=INTEGER},
+      </if>
+      <if test="record.acd != null" >
+        acd = #{record.acd,jdbcType=INTEGER},
+      </if>
+      <if test="record.sysUpTimelen != null" >
+        sys_up_timelen = #{record.sysUpTimelen,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_pmd_ne_24
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      ne_uuid = #{record.neUuid,jdbcType=INTEGER},
+      serial_no = #{record.serialNo,jdbcType=INTEGER},
+      generate_time = #{record.generateTime,jdbcType=TIMESTAMP},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      ne_reg_fail_cnt = #{record.neRegFailCnt,jdbcType=INTEGER},
+      ne_run_timelen = #{record.neRunTimelen,jdbcType=INTEGER},
+      recv_pkt_cnt = #{record.recvPktCnt,jdbcType=INTEGER},
+      send_pkt_cnt = #{record.sendPktCnt,jdbcType=INTEGER},
+      recv_loss_cnt = #{record.recvLossCnt,jdbcType=INTEGER},
+      send_loss_cnt = #{record.sendLossCnt,jdbcType=INTEGER},
+      recv_timeout_cnt = #{record.recvTimeoutCnt,jdbcType=INTEGER},
+      send_timeout_cnt = #{record.sendTimeoutCnt,jdbcType=INTEGER},
+      cur_ping_delay_ms = #{record.curPingDelayMs,jdbcType=INTEGER},
+      min_ping_delay_ms = #{record.minPingDelayMs,jdbcType=INTEGER},
+      max_ping_delay_ms = #{record.maxPingDelayMs,jdbcType=INTEGER},
+      flash_rd_fail_count = #{record.flashRdFailCount,jdbcType=INTEGER},
+      flash_wt_fail_count = #{record.flashWtFailCount,jdbcType=INTEGER},
+      mem_alloc_fail_count = #{record.memAllocFailCount,jdbcType=INTEGER},
+      total_call_count = #{record.totalCallCount,jdbcType=INTEGER},
+      cur_call_count = #{record.curCallCount,jdbcType=INTEGER},
+      cur_cpu_usage = #{record.curCpuUsage,jdbcType=INTEGER},
+      asr = #{record.asr,jdbcType=INTEGER},
+      acd = #{record.acd,jdbcType=INTEGER},
+      sys_up_timelen = #{record.sysUpTimelen,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblPmdNe24" >
+    update tbl_pmd_ne_24
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="neUuid != null" >
+        ne_uuid = #{neUuid,jdbcType=INTEGER},
+      </if>
+      <if test="serialNo != null" >
+        serial_no = #{serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="generateTime != null" >
+        generate_time = #{generateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="neRegFailCnt != null" >
+        ne_reg_fail_cnt = #{neRegFailCnt,jdbcType=INTEGER},
+      </if>
+      <if test="neRunTimelen != null" >
+        ne_run_timelen = #{neRunTimelen,jdbcType=INTEGER},
+      </if>
+      <if test="recvPktCnt != null" >
+        recv_pkt_cnt = #{recvPktCnt,jdbcType=INTEGER},
+      </if>
+      <if test="sendPktCnt != null" >
+        send_pkt_cnt = #{sendPktCnt,jdbcType=INTEGER},
+      </if>
+      <if test="recvLossCnt != null" >
+        recv_loss_cnt = #{recvLossCnt,jdbcType=INTEGER},
+      </if>
+      <if test="sendLossCnt != null" >
+        send_loss_cnt = #{sendLossCnt,jdbcType=INTEGER},
+      </if>
+      <if test="recvTimeoutCnt != null" >
+        recv_timeout_cnt = #{recvTimeoutCnt,jdbcType=INTEGER},
+      </if>
+      <if test="sendTimeoutCnt != null" >
+        send_timeout_cnt = #{sendTimeoutCnt,jdbcType=INTEGER},
+      </if>
+      <if test="curPingDelayMs != null" >
+        cur_ping_delay_ms = #{curPingDelayMs,jdbcType=INTEGER},
+      </if>
+      <if test="minPingDelayMs != null" >
+        min_ping_delay_ms = #{minPingDelayMs,jdbcType=INTEGER},
+      </if>
+      <if test="maxPingDelayMs != null" >
+        max_ping_delay_ms = #{maxPingDelayMs,jdbcType=INTEGER},
+      </if>
+      <if test="flashRdFailCount != null" >
+        flash_rd_fail_count = #{flashRdFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="flashWtFailCount != null" >
+        flash_wt_fail_count = #{flashWtFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="memAllocFailCount != null" >
+        mem_alloc_fail_count = #{memAllocFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalCallCount != null" >
+        total_call_count = #{totalCallCount,jdbcType=INTEGER},
+      </if>
+      <if test="curCallCount != null" >
+        cur_call_count = #{curCallCount,jdbcType=INTEGER},
+      </if>
+      <if test="curCpuUsage != null" >
+        cur_cpu_usage = #{curCpuUsage,jdbcType=INTEGER},
+      </if>
+      <if test="asr != null" >
+        asr = #{asr,jdbcType=INTEGER},
+      </if>
+      <if test="acd != null" >
+        acd = #{acd,jdbcType=INTEGER},
+      </if>
+      <if test="sysUpTimelen != null" >
+        sys_up_timelen = #{sysUpTimelen,jdbcType=INTEGER},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblPmdNe24" >
+    update tbl_pmd_ne_24
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      ne_uuid = #{neUuid,jdbcType=INTEGER},
+      serial_no = #{serialNo,jdbcType=INTEGER},
+      generate_time = #{generateTime,jdbcType=TIMESTAMP},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      ne_reg_fail_cnt = #{neRegFailCnt,jdbcType=INTEGER},
+      ne_run_timelen = #{neRunTimelen,jdbcType=INTEGER},
+      recv_pkt_cnt = #{recvPktCnt,jdbcType=INTEGER},
+      send_pkt_cnt = #{sendPktCnt,jdbcType=INTEGER},
+      recv_loss_cnt = #{recvLossCnt,jdbcType=INTEGER},
+      send_loss_cnt = #{sendLossCnt,jdbcType=INTEGER},
+      recv_timeout_cnt = #{recvTimeoutCnt,jdbcType=INTEGER},
+      send_timeout_cnt = #{sendTimeoutCnt,jdbcType=INTEGER},
+      cur_ping_delay_ms = #{curPingDelayMs,jdbcType=INTEGER},
+      min_ping_delay_ms = #{minPingDelayMs,jdbcType=INTEGER},
+      max_ping_delay_ms = #{maxPingDelayMs,jdbcType=INTEGER},
+      flash_rd_fail_count = #{flashRdFailCount,jdbcType=INTEGER},
+      flash_wt_fail_count = #{flashWtFailCount,jdbcType=INTEGER},
+      mem_alloc_fail_count = #{memAllocFailCount,jdbcType=INTEGER},
+      total_call_count = #{totalCallCount,jdbcType=INTEGER},
+      cur_call_count = #{curCallCount,jdbcType=INTEGER},
+      cur_cpu_usage = #{curCpuUsage,jdbcType=INTEGER},
+      asr = #{asr,jdbcType=INTEGER},
+      acd = #{acd,jdbcType=INTEGER},
+      sys_up_timelen = #{sysUpTimelen,jdbcType=INTEGER}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

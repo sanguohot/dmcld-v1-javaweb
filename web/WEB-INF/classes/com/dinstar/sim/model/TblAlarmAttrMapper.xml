@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblAlarmAttrMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblAlarmAttr" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="object_type" property="objectType" jdbcType="INTEGER" />
+    <result column="object_type_str" property="objectTypeStr" jdbcType="CHAR" />
+    <result column="bit_no" property="bitNo" jdbcType="INTEGER" />
+    <result column="alarm_bit_str" property="alarmBitStr" jdbcType="CHAR" />
+    <result column="alarm_name" property="alarmName" jdbcType="CHAR" />
+    <result column="alarm_level" property="alarmLevel" jdbcType="INTEGER" />
+    <result column="alarm_level_str" property="alarmLevelStr" jdbcType="CHAR" />
+    <result column="alarm_class" property="alarmClass" jdbcType="INTEGER" />
+    <result column="alarm_class_str" property="alarmClassStr" jdbcType="CHAR" />
+    <result column="jitter_sec" property="jitterSec" jdbcType="INTEGER" />
+    <result column="alarm_desc" property="alarmDesc" jdbcType="VARCHAR" />
+    <result column="alarm_desc_cn" property="alarmDescCn" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, object_type, object_type_str, bit_no, alarm_bit_str, alarm_name, 
+    alarm_level, alarm_level_str, alarm_class, alarm_class_str, jitter_sec, alarm_desc, 
+    alarm_desc_cn
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblAlarmAttrCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <choose>
+        <when test="myCol!=null"> ${myCol}</when>
+        <otherwise><include refid="Base_Column_List" /></otherwise>
+    </choose>
+    from tbl_alarm_attr
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="groupBy != null" >
+      group by ${groupBy}
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+   <if test="limitClause != null" >
+      limit ${limitClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_alarm_attr
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_alarm_attr
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblAlarmAttrCriteria" >
+    delete from tbl_alarm_attr
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblAlarmAttr" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_alarm_attr (uuid, rec_status, object_type, 
+      object_type_str, bit_no, alarm_bit_str, 
+      alarm_name, alarm_level, alarm_level_str, 
+      alarm_class, alarm_class_str, jitter_sec, 
+      alarm_desc, alarm_desc_cn)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{objectType,jdbcType=INTEGER}, 
+      #{objectTypeStr,jdbcType=CHAR}, #{bitNo,jdbcType=INTEGER}, #{alarmBitStr,jdbcType=CHAR}, 
+      #{alarmName,jdbcType=CHAR}, #{alarmLevel,jdbcType=INTEGER}, #{alarmLevelStr,jdbcType=CHAR}, 
+      #{alarmClass,jdbcType=INTEGER}, #{alarmClassStr,jdbcType=CHAR}, #{jitterSec,jdbcType=INTEGER}, 
+      #{alarmDesc,jdbcType=VARCHAR}, #{alarmDescCn,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblAlarmAttr" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_alarm_attr
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="objectType != null" >
+        object_type,
+      </if>
+      <if test="objectTypeStr != null" >
+        object_type_str,
+      </if>
+      <if test="bitNo != null" >
+        bit_no,
+      </if>
+      <if test="alarmBitStr != null" >
+        alarm_bit_str,
+      </if>
+      <if test="alarmName != null" >
+        alarm_name,
+      </if>
+      <if test="alarmLevel != null" >
+        alarm_level,
+      </if>
+      <if test="alarmLevelStr != null" >
+        alarm_level_str,
+      </if>
+      <if test="alarmClass != null" >
+        alarm_class,
+      </if>
+      <if test="alarmClassStr != null" >
+        alarm_class_str,
+      </if>
+      <if test="jitterSec != null" >
+        jitter_sec,
+      </if>
+      <if test="alarmDesc != null" >
+        alarm_desc,
+      </if>
+      <if test="alarmDescCn != null" >
+        alarm_desc_cn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="objectType != null" >
+        #{objectType,jdbcType=INTEGER},
+      </if>
+      <if test="objectTypeStr != null" >
+        #{objectTypeStr,jdbcType=CHAR},
+      </if>
+      <if test="bitNo != null" >
+        #{bitNo,jdbcType=INTEGER},
+      </if>
+      <if test="alarmBitStr != null" >
+        #{alarmBitStr,jdbcType=CHAR},
+      </if>
+      <if test="alarmName != null" >
+        #{alarmName,jdbcType=CHAR},
+      </if>
+      <if test="alarmLevel != null" >
+        #{alarmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="alarmLevelStr != null" >
+        #{alarmLevelStr,jdbcType=CHAR},
+      </if>
+      <if test="alarmClass != null" >
+        #{alarmClass,jdbcType=INTEGER},
+      </if>
+      <if test="alarmClassStr != null" >
+        #{alarmClassStr,jdbcType=CHAR},
+      </if>
+      <if test="jitterSec != null" >
+        #{jitterSec,jdbcType=INTEGER},
+      </if>
+      <if test="alarmDesc != null" >
+        #{alarmDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmDescCn != null" >
+        #{alarmDescCn,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblAlarmAttrCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_alarm_attr
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_alarm_attr
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.objectType != null" >
+        object_type = #{record.objectType,jdbcType=INTEGER},
+      </if>
+      <if test="record.objectTypeStr != null" >
+        object_type_str = #{record.objectTypeStr,jdbcType=CHAR},
+      </if>
+      <if test="record.bitNo != null" >
+        bit_no = #{record.bitNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmBitStr != null" >
+        alarm_bit_str = #{record.alarmBitStr,jdbcType=CHAR},
+      </if>
+      <if test="record.alarmName != null" >
+        alarm_name = #{record.alarmName,jdbcType=CHAR},
+      </if>
+      <if test="record.alarmLevel != null" >
+        alarm_level = #{record.alarmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmLevelStr != null" >
+        alarm_level_str = #{record.alarmLevelStr,jdbcType=CHAR},
+      </if>
+      <if test="record.alarmClass != null" >
+        alarm_class = #{record.alarmClass,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmClassStr != null" >
+        alarm_class_str = #{record.alarmClassStr,jdbcType=CHAR},
+      </if>
+      <if test="record.jitterSec != null" >
+        jitter_sec = #{record.jitterSec,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmDesc != null" >
+        alarm_desc = #{record.alarmDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alarmDescCn != null" >
+        alarm_desc_cn = #{record.alarmDescCn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_alarm_attr
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      object_type = #{record.objectType,jdbcType=INTEGER},
+      object_type_str = #{record.objectTypeStr,jdbcType=CHAR},
+      bit_no = #{record.bitNo,jdbcType=INTEGER},
+      alarm_bit_str = #{record.alarmBitStr,jdbcType=CHAR},
+      alarm_name = #{record.alarmName,jdbcType=CHAR},
+      alarm_level = #{record.alarmLevel,jdbcType=INTEGER},
+      alarm_level_str = #{record.alarmLevelStr,jdbcType=CHAR},
+      alarm_class = #{record.alarmClass,jdbcType=INTEGER},
+      alarm_class_str = #{record.alarmClassStr,jdbcType=CHAR},
+      jitter_sec = #{record.jitterSec,jdbcType=INTEGER},
+      alarm_desc = #{record.alarmDesc,jdbcType=VARCHAR},
+      alarm_desc_cn = #{record.alarmDescCn,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblAlarmAttr" >
+    update tbl_alarm_attr
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="objectType != null" >
+        object_type = #{objectType,jdbcType=INTEGER},
+      </if>
+      <if test="objectTypeStr != null" >
+        object_type_str = #{objectTypeStr,jdbcType=CHAR},
+      </if>
+      <if test="bitNo != null" >
+        bit_no = #{bitNo,jdbcType=INTEGER},
+      </if>
+      <if test="alarmBitStr != null" >
+        alarm_bit_str = #{alarmBitStr,jdbcType=CHAR},
+      </if>
+      <if test="alarmName != null" >
+        alarm_name = #{alarmName,jdbcType=CHAR},
+      </if>
+      <if test="alarmLevel != null" >
+        alarm_level = #{alarmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="alarmLevelStr != null" >
+        alarm_level_str = #{alarmLevelStr,jdbcType=CHAR},
+      </if>
+      <if test="alarmClass != null" >
+        alarm_class = #{alarmClass,jdbcType=INTEGER},
+      </if>
+      <if test="alarmClassStr != null" >
+        alarm_class_str = #{alarmClassStr,jdbcType=CHAR},
+      </if>
+      <if test="jitterSec != null" >
+        jitter_sec = #{jitterSec,jdbcType=INTEGER},
+      </if>
+      <if test="alarmDesc != null" >
+        alarm_desc = #{alarmDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmDescCn != null" >
+        alarm_desc_cn = #{alarmDescCn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblAlarmAttr" >
+    update tbl_alarm_attr
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      object_type = #{objectType,jdbcType=INTEGER},
+      object_type_str = #{objectTypeStr,jdbcType=CHAR},
+      bit_no = #{bitNo,jdbcType=INTEGER},
+      alarm_bit_str = #{alarmBitStr,jdbcType=CHAR},
+      alarm_name = #{alarmName,jdbcType=CHAR},
+      alarm_level = #{alarmLevel,jdbcType=INTEGER},
+      alarm_level_str = #{alarmLevelStr,jdbcType=CHAR},
+      alarm_class = #{alarmClass,jdbcType=INTEGER},
+      alarm_class_str = #{alarmClassStr,jdbcType=CHAR},
+      jitter_sec = #{jitterSec,jdbcType=INTEGER},
+      alarm_desc = #{alarmDesc,jdbcType=VARCHAR},
+      alarm_desc_cn = #{alarmDescCn,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

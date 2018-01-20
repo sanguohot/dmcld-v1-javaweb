@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- tree mapper
+ #{domainUuid,mode=IN,jdbcType=INTEGER},#{userType,mode=IN,jdbcType=INTEGER},#{userUuid,mode=IN,jdbcType=INTEGER}
+  -->
+<mapper namespace="com.dinstar.sim.mapper.Alarm">
+	<resultMap id="baseResultMap" type="com.dinstar.sim.mapper.AlarmLogMapper" >
+	    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+	    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+	    <result column="sys_uuid" property="sysUuid" jdbcType="INTEGER" />
+	    <result column="alarm_sn" property="alarmSn" jdbcType="INTEGER" />
+	    <result column="alarm_index" property="alarmIndex" jdbcType="INTEGER" />
+	    <result column="ne_uuid" property="neUuid" jdbcType="INTEGER" />
+	    <result column="object_type" property="objectType" jdbcType="INTEGER" />
+	    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+	    <result column="alarm_id" property="alarmId" jdbcType="INTEGER" />
+	    <result column="cause_id" property="causeId" jdbcType="INTEGER" />
+	    <result column="ne_inner_sn" property="neInnerSn" jdbcType="INTEGER" />
+	    <result column="report_time" property="reportTime" jdbcType="TIMESTAMP" />
+	    <result column="recv_time" property="recvTime" jdbcType="TIMESTAMP" />
+	    <result column="clean_time" property="cleanTime" jdbcType="TIMESTAMP" />
+	    <result column="alarm_flag" property="alarmFlag" jdbcType="INTEGER" />
+	    <result column="alarm_type" property="alarmType" jdbcType="INTEGER" />
+	    <result column="clean_flag" property="cleanFlag" jdbcType="INTEGER" />
+	    <result column="object_desc" property="objectDesc" jdbcType="VARCHAR" />
+	    
+	    <result column="alarm_level" property="alarmLevel" jdbcType="INTEGER" />
+	    <result column="ne_alias" property="neAlias" jdbcType="CHAR" />
+	    <result column="alarm_name" property="alarmName" jdbcType="CHAR" />
+	    <result column="cause_name" property="causeName" jdbcType="CHAR" />
+	    <result column="cause_desc" property="causeDesc" jdbcType="VARCHAR" />
+	    <result column="domain_desc_flag" property="domainDescFlag" jdbcType="INTEGER" />
+	    <result column="level_desc_flag" property="levelDescFlag" jdbcType="INTEGER" />
+	    <result column="time_desc_flag" property="timeDescFlag" jdbcType="INTEGER" />
+  </resultMap>
+  	<resultMap id="baseResultMap1" type="com.dinstar.sim.model.TblAlarm" >
+	    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+	    <result column="confirm_flag" property="confirmFlag" jdbcType="INTEGER" />
+	    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+	    <result column="sys_uuid" property="sysUuid" jdbcType="INTEGER" />
+	    <result column="alarm_sn" property="alarmSn" jdbcType="INTEGER" />
+	    <result column="alarm_index" property="alarmIndex" jdbcType="INTEGER" />
+	    <result column="ne_uuid" property="neUuid" jdbcType="INTEGER" />
+	    <result column="object_type" property="objectType" jdbcType="INTEGER" />
+	    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+	    <result column="alarm_id" property="alarmId" jdbcType="INTEGER" />
+	    <result column="cause_id" property="causeId" jdbcType="INTEGER" />
+	    <result column="ne_inner_sn" property="neInnerSn" jdbcType="INTEGER" />
+	    <result column="report_time" property="reportTime" jdbcType="TIMESTAMP" />
+	    <result column="recv_time" property="recvTime" jdbcType="TIMESTAMP" />
+	    <result column="clean_time" property="cleanTime" jdbcType="TIMESTAMP" />
+	    <result column="alarm_flag" property="alarmFlag" jdbcType="INTEGER" />
+	    <result column="alarm_type" property="alarmType" jdbcType="INTEGER" />
+	    <result column="clean_flag" property="cleanFlag" jdbcType="INTEGER" />
+	    <result column="object_desc" property="objectDesc" jdbcType="VARCHAR" />	    
+	    <result column="alarm_level" property="alarmLevel" jdbcType="INTEGER" />
+	    <result column="ne_alias" property="neAlias" jdbcType="CHAR" />
+	    <result column="alarm_name" property="alarmName" jdbcType="CHAR" />
+	    <result column="cause_name" property="causeName" jdbcType="CHAR" />
+	    <result column="cause_desc" property="causeDesc" jdbcType="VARCHAR" />
+	    <result column="alarm_level" property="alarmLevel" jdbcType="INTEGER" />
+	    <result column="domain_desc_flag" property="domainDescFlag" jdbcType="INTEGER" />
+	    <result column="level_desc_flag" property="levelDescFlag" jdbcType="INTEGER" />
+	    <result column="time_desc_flag" property="timeDescFlag" jdbcType="INTEGER" />
+	        <result column="alarm_desc" property="alarmDesc" jdbcType="VARCHAR" />
+    <result column="alarm_desc_cn" property="alarmDescCn" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Alarm_Log_Column_List" >
+    tal.uuid, tal.rec_status, tal.sys_uuid, tal.domain_uuid, tal.alarm_sn
+    , tal.alarm_index, tal.object_type, tal.object_id
+    , tal.alarm_id, tal.ne_uuid, tal.alarm_type, tal.cause_id, tal.object_brief, tal.object_desc, tal.report_time
+    , tal.recv_time, tal.clean_time, tal.clean_flag, tal.alarm_flag, tal.ne_inner_sn
+    , tal.ne_cpu_use, tal.sip_register_interval
+  </sql>
+    <select id="countAlarmLogList" resultType="java.lang.Integer" parameterType="java.util.HashMap">		
+	 	select count(*) from (		
+		SELECT <include refid="Alarm_Log_Column_List" />
+		,tad.alarm_name,tcd.cause_desc,tcd.cause_name,
+		<![CDATA[
+		CASE 
+    	WHEN tadd.alarm_id is NULL THEN 0
+    	WHEN tadd.time_check_max is NULL THEN 0
+		WHEN (tadd.time_check_max<0) THEN 0
+		ELSE 1
+		END as time_desc_flag,
+		
+		CASE 
+    	WHEN tadd.alarm_id is NULL THEN 0
+    	WHEN tadd.alarm_level is NULL THEN 0
+		WHEN (tadd.alarm_level<0) THEN 0
+		ELSE 1
+		END as level_desc_flag,
+		
+		CASE 
+    	WHEN tadd.alarm_id is NULL THEN tad.alarm_level
+    	WHEN tadd.alarm_level is NULL THEN tad.alarm_level
+		WHEN (tadd.alarm_level<0) THEN tad.alarm_level
+		ELSE tadd.alarm_level
+		END as alarm_level,
+		]]>
+		CASE tadd.alarm_id is NULL
+		WHEN true THEN 0
+		ELSE 1
+		END as domain_desc_flag
+		FROM tbl_alarm_log tal
+		LEFT JOIN tbl_alarm_desc tad ON(tad.alarm_id = tal.alarm_id and (tad.rec_status IS NULL OR tad.rec_status!=2))
+		left join tbl_alarm_domain_desc tadd on(tal.alarm_id=tadd.alarm_id and tadd.domain_uuid=tal.domain_uuid)
+		LEFT JOIN tbl_cause_desc tcd ON(tcd.cause_id = tal.cause_id and (tcd.rec_status IS NULL OR tcd.rec_status!=2))
+		) as tmp
+		where (tmp.rec_status IS NULL OR tmp.rec_status!=2)
+		<if test="alarmLevel==null or alarmLevel==-1">AND (tmp.alarm_level IS NULL or tmp.alarm_level!=8)</if>		
+		<if test="cleanFlag!=null">AND tmp.clean_flag =#{cleanFlag}</if>
+		<if test="objectTypeList!=null">
+			and tmp.object_type in
+			<foreach collection="objectTypeList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="objectIdList!=null">
+			and tmp.object_id IN
+			<foreach collection="objectIdList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="domainUuidList!=null">
+			and tmp.domain_uuid IN
+			<foreach collection="domainUuidList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="neUuidList!=null">
+			and tmp.ne_uuid IN
+			<foreach collection="neUuidList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="sysUuidList!=null">
+			and tmp.sys_uuid IN
+			<foreach collection="sysUuidList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="alarmTypeList!=null">
+			and tmp.alarm_type IN
+			<foreach collection="alarmTypeList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="reportTimeB!=null and reportTimeB!=''">
+			<![CDATA[ 
+			 and tmp.report_time >= #{reportTimeB}
+			 ]]>
+		</if>
+		<if test="reportTimeE!=null and reportTimeE!=''">
+			<![CDATA[
+			 and tmp.report_time <= #{reportTimeE}
+			]]>
+		</if>
+		<if test="alarmLevel!=null and alarmLevel>-1">AND tmp.alarm_level &lt;= #{alarmLevel}</if>
+		<if test="alarmName!=null and alarmName!=''">
+		and tmp.alarm_name like #{alarmName}
+		</if>
+		<if test="objectDesc!=null and objectDesc!=''">
+		and tmp.object_desc like #{objectDesc}
+		</if>
+	</select>
+	 <select id="getAlarmLogList" resultMap="baseResultMap" parameterType="java.util.HashMap">
+	 	select * from (		
+		SELECT <include refid="Alarm_Log_Column_List" />
+		,tad.alarm_name,tcd.cause_desc,tcd.cause_name,
+		<![CDATA[
+		CASE 
+    	WHEN tadd.alarm_id is NULL THEN 0
+    	WHEN tadd.time_check_max is NULL THEN 0
+		WHEN (tadd.time_check_max<0) THEN 0
+		ELSE 1
+		END as time_desc_flag,
+		
+		CASE 
+    	WHEN tadd.alarm_id is NULL THEN 0
+    	WHEN tadd.alarm_level is NULL THEN 0
+		WHEN (tadd.alarm_level<0) THEN 0
+		ELSE 1
+		END as level_desc_flag,
+		
+		CASE 
+    	WHEN tadd.alarm_id is NULL THEN tad.alarm_level
+    	WHEN tadd.alarm_level is NULL THEN tad.alarm_level
+		WHEN (tadd.alarm_level<0) THEN tad.alarm_level
+		ELSE tadd.alarm_level
+		END as alarm_level,
+		]]>
+		CASE tadd.alarm_id is NULL
+		WHEN true THEN 0
+		ELSE 1
+		END as domain_desc_flag
+		FROM tbl_alarm_log tal
+		LEFT JOIN tbl_alarm_desc tad ON(tad.alarm_id = tal.alarm_id and (tad.rec_status IS NULL OR tad.rec_status!=2))
+		left join tbl_alarm_domain_desc tadd on(tal.alarm_id=tadd.alarm_id and tadd.domain_uuid=tal.domain_uuid)
+		LEFT JOIN tbl_cause_desc tcd ON(tcd.cause_id = tal.cause_id and (tcd.rec_status IS NULL OR tcd.rec_status!=2))
+		) as tmp
+		where (tmp.rec_status IS NULL OR tmp.rec_status!=2)
+		<if test="alarmLevel==null or alarmLevel==-1">AND (tmp.alarm_level IS NULL or tmp.alarm_level!=8)</if>		
+		<if test="cleanFlag!=null">AND tmp.clean_flag =#{cleanFlag}</if>
+		<if test="objectTypeList!=null">
+			and tmp.object_type in
+			<foreach collection="objectTypeList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="objectIdList!=null">
+			and tmp.object_id IN
+			<foreach collection="objectIdList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="domainUuidList!=null">
+			and tmp.domain_uuid IN
+			<foreach collection="domainUuidList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="neUuidList!=null">
+			and tmp.ne_uuid IN
+			<foreach collection="neUuidList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="sysUuidList!=null">
+			and tmp.sys_uuid IN
+			<foreach collection="sysUuidList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="alarmTypeList!=null">
+			and tmp.alarm_type IN
+			<foreach collection="alarmTypeList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="reportTimeB!=null and reportTimeB!=''">
+			<![CDATA[ 
+			 and tmp.report_time >= #{reportTimeB}
+			 ]]>
+		</if>
+		<if test="reportTimeE!=null and reportTimeE!=''">
+			<![CDATA[
+			 and tmp.report_time <= #{reportTimeE}
+			]]>
+		</if>
+		<if test="alarmLevel!=null and alarmLevel>-1">AND tmp.alarm_level &lt;= #{alarmLevel}</if>
+		<if test="alarmName!=null and alarmName!=''">
+		and tmp.alarm_name like #{alarmName}
+		</if>
+		<if test="objectDesc!=null and objectDesc!=''">
+		and tmp.object_desc like #{objectDesc}
+		</if>
+		<if test="sort != null" >
+     		 order by ${sort}
+    	</if>
+		<if test="limit>0">LIMIT #{start},#{limit}</if>
+	</select>
+	<sql id="Base_Column_List" >
+	    ta.uuid, ta.rec_status, ta.object_type, ta.object_id, ta.ne_uuid, ta.alarm_type, ta.cause_id
+	    , ta.object_brief, ta.object_desc, ta.report_time, ta.recv_time, ta.alarm_id, ta.sys_uuid
+	    , ta.domain_uuid, ta.alarm_sn, ta.alarm_index, ta.clean_time, ta.clean_flag, ta.confirm_flag
+	    , ta.ne_inner_sn, ta.alarm_flag, ta.push_type, ta.push_flag, ta.push_sms_flag, ta.push_mail_flag
+	    , ta.ne_cpu_use, ta.sip_register_interval
+	  </sql>
+	<select id="countAlarmList" resultType="java.lang.Integer" parameterType="java.util.HashMap">		
+		select count(*) from (		
+		SELECT <include refid="Base_Column_List" />
+		,tad.alarm_name,tcd.cause_desc,tcd.cause_name,
+		<![CDATA[
+		CASE 
+    	WHEN tadd.alarm_id is NULL THEN 0
+    	WHEN tadd.time_check_max is NULL THEN 0
+		WHEN (tadd.time_check_max<0) THEN 0
+		ELSE 1
+		END as time_desc_flag,
+		
+		CASE 
+    	WHEN tadd.alarm_id is NULL THEN 0
+    	WHEN tadd.alarm_level is NULL THEN 0
+		WHEN (tadd.alarm_level<0) THEN 0
+		ELSE 1
+		END as level_desc_flag,
+		
+		CASE 
+    	WHEN tadd.alarm_id is NULL THEN tad.alarm_level
+    	WHEN tadd.alarm_level is NULL THEN tad.alarm_level
+		WHEN (tadd.alarm_level<0) THEN tad.alarm_level
+		ELSE tadd.alarm_level
+		END as alarm_level,
+		]]>
+		CASE tadd.alarm_id is NULL
+		WHEN true THEN 0
+		ELSE 1
+		END as domain_desc_flag
+		FROM tbl_alarm ta
+		LEFT JOIN tbl_alarm_desc tad ON(tad.alarm_id = ta.alarm_id and (tad.rec_status IS NULL OR tad.rec_status!=2))
+		left join tbl_alarm_domain_desc tadd on(ta.alarm_id=tadd.alarm_id and tadd.domain_uuid=ta.domain_uuid)
+		LEFT JOIN tbl_cause_desc tcd ON(tcd.cause_id = ta.cause_id and (tcd.rec_status IS NULL OR tcd.rec_status!=2))
+		) as tmp
+		where (tmp.rec_status IS NULL OR tmp.rec_status!=2)
+		<if test="alarmLevel==null or alarmLevel==-1">AND (tmp.alarm_level IS NULL or tmp.alarm_level!=8)</if>
+		<if test="objectTypeList!=null">
+			and tmp.object_type in
+			<foreach collection="objectTypeList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="objectIdList!=null">
+			and tmp.object_id IN
+			<foreach collection="objectIdList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="domainUuidList!=null">
+			and tmp.domain_uuid IN
+			<foreach collection="domainUuidList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="neUuidList!=null">
+			and tmp.ne_uuid IN
+			<foreach collection="neUuidList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="sysUuidList!=null">
+			and tmp.sys_uuid IN
+			<foreach collection="sysUuidList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="alarmTypeList!=null">
+			and tmp.alarm_type IN
+			<foreach collection="alarmTypeList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="cleanFlag!=null">AND tmp.clean_flag =#{cleanFlag}</if>
+		<if test="reportTimeB!=null and reportTimeB!=''">
+			<![CDATA[ 
+			 and tmp.report_time >= #{reportTimeB}
+			 ]]>
+		</if>
+		<if test="reportTimeE!=null and reportTimeE!=''">
+			<![CDATA[
+			 and tmp.report_time <= #{reportTimeE}
+			]]>
+		</if>
+		<if test="alarmLevel!=null and alarmLevel>-1">AND tmp.alarm_level  &lt;= #{alarmLevel}</if>
+		<if test="alarmName!=null and alarmName!=''">
+		and tmp.alarm_name like #{alarmName}
+		</if>
+		<if test="objectDesc!=null and objectDesc!=''">
+		and tmp.object_desc like #{objectDesc}
+		</if>
+	</select>
+	 <select id="getAlarmList" resultMap="baseResultMap1" parameterType="java.util.HashMap">
+	 	select * from (		
+		SELECT <include refid="Base_Column_List" />
+		,tad.alarm_name,tad.alarm_desc_cn,tad.alarm_desc,tcd.cause_desc,tcd.cause_name,
+		<![CDATA[
+		CASE 
+    	WHEN tadd.alarm_id is NULL THEN 0
+    	WHEN tadd.time_check_max is NULL THEN 0
+		WHEN (tadd.time_check_max<0) THEN 0
+		ELSE 1
+		END as time_desc_flag,
+		
+		CASE 
+    	WHEN tadd.alarm_id is NULL THEN 0
+    	WHEN tadd.alarm_level is NULL THEN 0
+		WHEN (tadd.alarm_level<0) THEN 0
+		ELSE 1
+		END as level_desc_flag,
+		
+		CASE 
+    	WHEN tadd.alarm_id is NULL THEN tad.alarm_level
+    	WHEN tadd.alarm_level is NULL THEN tad.alarm_level
+		WHEN (tadd.alarm_level<0) THEN tad.alarm_level
+		ELSE tadd.alarm_level
+		END as alarm_level,
+		]]>
+		CASE tadd.alarm_id is NULL
+		WHEN true THEN 0
+		ELSE 1
+		END as domain_desc_flag
+		FROM tbl_alarm ta
+		LEFT JOIN tbl_alarm_desc tad ON(tad.alarm_id = ta.alarm_id and (tad.rec_status IS NULL OR tad.rec_status!=2))
+		left join tbl_alarm_domain_desc tadd on(ta.alarm_id=tadd.alarm_id and tadd.domain_uuid=ta.domain_uuid)
+		LEFT JOIN tbl_cause_desc tcd ON(tcd.cause_id = ta.cause_id and (tcd.rec_status IS NULL OR tcd.rec_status!=2))
+		) as tmp
+		where (tmp.rec_status IS NULL OR tmp.rec_status!=2)
+		<if test="alarmLevel==null or alarmLevel==-1">AND (tmp.alarm_level IS NULL or tmp.alarm_level!=8)</if>
+		<if test="objectTypeList!=null">
+			and tmp.object_type in
+			<foreach collection="objectTypeList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="objectIdList!=null">
+			and tmp.object_id IN
+			<foreach collection="objectIdList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="domainUuidList!=null">
+			and tmp.domain_uuid IN
+			<foreach collection="domainUuidList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="neUuidList!=null">
+			and tmp.ne_uuid IN
+			<foreach collection="neUuidList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="sysUuidList!=null">
+			and tmp.sys_uuid IN
+			<foreach collection="sysUuidList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="alarmTypeList!=null">
+			and tmp.alarm_type IN
+			<foreach collection="alarmTypeList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="cleanFlag!=null">AND tmp.clean_flag =#{cleanFlag}</if>
+		<if test="reportTimeB!=null and reportTimeB!=''">
+			<![CDATA[ 
+			 and tmp.report_time >= #{reportTimeB}
+			 ]]>
+		</if>
+		<if test="reportTimeE!=null and reportTimeE!=''">
+			<![CDATA[
+			 and tmp.report_time <= #{reportTimeE}
+			]]>
+		</if>
+		<if test="alarmLevel!=null and alarmLevel>-1">AND tmp.alarm_level  &lt;= #{alarmLevel}</if>
+		<if test="alarmName!=null and alarmName!=''">
+		and tmp.alarm_name like #{alarmName}
+		</if>
+		<if test="objectDesc!=null and objectDesc!=''">
+		and tmp.object_desc like #{objectDesc}
+		</if>
+		<if test="sort != null" >
+     		 order by ${sort}
+    	</if>	
+		<if test="limit>0">LIMIT #{start},#{limit}</if>
+	</select>
+	
+</mapper>

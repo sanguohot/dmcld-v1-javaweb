@@ -1,0 +1,30 @@
+
+    {{~it.children:value:index}}
+    <li class="">
+        <a href="#" class="{{? value.children }}dropdown-toggle{{?}}" etype="{{=value.etype}}"  domain_uuid="{{=value.domainUuid}}" nid="{{=value.nid}}" uuid="{{=value.uuid}}" puuid="{{=value.puuid}}"  pname="{{=value.pname}}">
+            <i class="menu-icon fa fa-tag"></i>
+            <span class="menu-text"> {{=value.name}} </span>
+            {{? value.children }}
+            <b class="arrow fa fa-angle-down"></b>
+            {{?}}
+        </a>
+
+        <b class="arrow"></b>
+        {{? value.children }}
+        <ul class="submenu" style="display: none;">
+            {{~value.children:secv:seci}}
+            <li class="">
+            <a href="#" class="{{? secv.children }}dropdown-toggle{{?}}" etype="{{=secv.etype}}" domain_uuid="{{=secv.domainUuid}}" nid="{{=secv.nid}}" uuid="{{=secv.uuid}}" puuid="{{=secv.puuid}}"  pname="{{=secv.pname}}">
+                <i class="menu-icon fa fa-caret-right"></i>
+                
+                {{=secv.name}}
+            </a>           
+            {{? value.children }}
+            <b class="arrow"></b>
+            {{?}}
+            </li>
+            {{~}}
+        </ul>
+        {{?}}
+    </li>
+    {{~}}

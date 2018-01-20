@@ -1,0 +1,3649 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblGrpMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblGrp" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="tariff_uuid" property="tariffUuid" jdbcType="INTEGER" />
+    <result column="zone_uuid" property="zoneUuid" jdbcType="INTEGER" />
+    <result column="default_flag" property="defaultFlag" jdbcType="INTEGER" />
+    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="mod_type" property="modType" jdbcType="INTEGER" />
+    <result column="default_encode" property="defaultEncode" jdbcType="INTEGER" />
+    <result column="default_smsc" property="defaultSmsc" jdbcType="CHAR" />
+    <result column="default_profile" property="defaultProfile" jdbcType="CHAR" />
+    <result column="card_total_count" property="cardTotalCount" jdbcType="INTEGER" />
+    <result column="card_available_count" property="cardAvailableCount" jdbcType="INTEGER" />
+    <result column="card_idle_count" property="cardIdleCount" jdbcType="INTEGER" />
+    <result column="sim_type" property="simType" jdbcType="INTEGER" />
+    <result column="init_balance_val" property="initBalanceVal" jdbcType="REAL" />
+    <result column="low_balance_limit" property="lowBalanceLimit" jdbcType="REAL" />
+    <result column="call_fee_rate" property="callFeeRate" jdbcType="REAL" />
+    <result column="call_billing_rate" property="callBillingRate" jdbcType="REAL" />
+    <result column="hbm_role_type" property="hbmRoleType" jdbcType="INTEGER" />
+    <result column="hbm_prom_next_grp" property="hbmPromNextGrp" jdbcType="INTEGER" />
+    <result column="hbm_next_blocked_grp" property="hbmNextBlockedGrp" jdbcType="INTEGER" />
+    <result column="hbm_next_nobal_grp" property="hbmNextNobalGrp" jdbcType="INTEGER" />
+    <result column="hbm_master_grp_uuid" property="hbmMasterGrpUuid" jdbcType="INTEGER" />
+    <result column="hbm_test_grp_uuid" property="hbmTestGrpUuid" jdbcType="INTEGER" />
+    <result column="paid_grp_uuid" property="paidGrpUuid" jdbcType="INTEGER" />
+    <result column="grp_not_available_switch" property="grpNotAvailableSwitch" jdbcType="INTEGER" />
+    <result column="max_work_sim_count" property="maxWorkSimCount" jdbcType="INTEGER" />
+    <result column="hbm_learn_number" property="hbmLearnNumber" jdbcType="INTEGER" />
+    <result column="hbm_number_prefix" property="hbmNumberPrefix" jdbcType="CHAR" />
+    <result column="new_number_prefix" property="newNumberPrefix" jdbcType="CHAR" />
+    <result column="hbm_prom_flag" property="hbmPromFlag" jdbcType="INTEGER" />
+    <result column="hbm_prom_mode" property="hbmPromMode" jdbcType="INTEGER" />
+    <result column="hbm_prom_number" property="hbmPromNumber" jdbcType="CHAR" />
+    <result column="hbm_prom_sms" property="hbmPromSms" jdbcType="CHAR" />
+    <result column="hbm_prom_cfm01" property="hbmPromCfm01" jdbcType="CHAR" />
+    <result column="hbm_prom_sms01" property="hbmPromSms01" jdbcType="CHAR" />
+    <result column="hbm_prom_reply01" property="hbmPromReply01" jdbcType="INTEGER" />
+    <result column="hbm_prom_cfm02" property="hbmPromCfm02" jdbcType="CHAR" />
+    <result column="hbm_prom_sms02" property="hbmPromSms02" jdbcType="CHAR" />
+    <result column="hbm_prom_reply02" property="hbmPromReply02" jdbcType="INTEGER" />
+    <result column="hbm_prom_cfm03" property="hbmPromCfm03" jdbcType="CHAR" />
+    <result column="hbm_prom_sms03" property="hbmPromSms03" jdbcType="CHAR" />
+    <result column="hbm_prom_reply03" property="hbmPromReply03" jdbcType="INTEGER" />
+    <result column="hbm_prom_cfm04" property="hbmPromCfm04" jdbcType="CHAR" />
+    <result column="hbm_prom_sms04" property="hbmPromSms04" jdbcType="CHAR" />
+    <result column="hbm_prom_reply04" property="hbmPromReply04" jdbcType="INTEGER" />
+    <result column="hbm_prom_cfm05" property="hbmPromCfm05" jdbcType="CHAR" />
+    <result column="hbm_prom_sms05" property="hbmPromSms05" jdbcType="CHAR" />
+    <result column="hbm_prom_reply05" property="hbmPromReply05" jdbcType="INTEGER" />
+    <result column="hbm_prom_cfm06" property="hbmPromCfm06" jdbcType="CHAR" />
+    <result column="hbm_prom_sms06" property="hbmPromSms06" jdbcType="CHAR" />
+    <result column="hbm_prom_reply06" property="hbmPromReply06" jdbcType="INTEGER" />
+    <result column="hbm_prom_succ_keys" property="hbmPromSuccKeys" jdbcType="CHAR" />
+    <result column="hbm_prom_succ_keys2" property="hbmPromSuccKeys2" jdbcType="CHAR" />
+    <result column="hbm_prom_fail_keys" property="hbmPromFailKeys" jdbcType="CHAR" />
+    <result column="hbm_prom_fail_keys2" property="hbmPromFailKeys2" jdbcType="CHAR" />
+    <result column="hbm_prom_fail_keys3" property="hbmPromFailKeys3" jdbcType="CHAR" />
+    <result column="hbm_prom_fail_keys4" property="hbmPromFailKeys4" jdbcType="CHAR" />
+    <result column="hbm_prom_fail_keys5" property="hbmPromFailKeys5" jdbcType="CHAR" />
+    <result column="hbm_prom_wait_balance" property="hbmPromWaitBalance" jdbcType="INTEGER" />
+    <result column="hbm_prom_req_retries" property="hbmPromReqRetries" jdbcType="INTEGER" />
+    <result column="hbm_prom_wait_min" property="hbmPromWaitMin" jdbcType="INTEGER" />
+    <result column="hbm_prom_interval" property="hbmPromInterval" jdbcType="INTEGER" />
+    <result column="hbm_prom_day_max" property="hbmPromDayMax" jdbcType="INTEGER" />
+    <result column="hbm_sms_after_reg" property="hbmSmsAfterReg" jdbcType="INTEGER" />
+    <result column="hbm_mode_after_reg" property="hbmModeAfterReg" jdbcType="INTEGER" />
+    <result column="hbm_sms_number01" property="hbmSmsNumber01" jdbcType="CHAR" />
+    <result column="hbm_sms_content01" property="hbmSmsContent01" jdbcType="CHAR" />
+    <result column="hbm_once_after_reg" property="hbmOnceAfterReg" jdbcType="INTEGER" />
+    <result column="hbm_sms_after_call" property="hbmSmsAfterCall" jdbcType="INTEGER" />
+    <result column="hbm_mode_after_call" property="hbmModeAfterCall" jdbcType="INTEGER" />
+    <result column="hbm_sms_number02" property="hbmSmsNumber02" jdbcType="CHAR" />
+    <result column="hbm_sms_content02" property="hbmSmsContent02" jdbcType="CHAR" />
+    <result column="hbm_balance_check" property="hbmBalanceCheck" jdbcType="INTEGER" />
+    <result column="hbm_inq_flag" property="hbmInqFlag" jdbcType="INTEGER" />
+    <result column="hbm_inq_timeout_min" property="hbmInqTimeoutMin" jdbcType="INTEGER" />
+    <result column="hbm_max_inq_count" property="hbmMaxInqCount" jdbcType="INTEGER" />
+    <result column="hbm_inq_blocked_flag" property="hbmInqBlockedFlag" jdbcType="INTEGER" />
+    <result column="hbm_inq_after_reg" property="hbmInqAfterReg" jdbcType="INTEGER" />
+    <result column="hbm_inq_after_call" property="hbmInqAfterCall" jdbcType="INTEGER" />
+    <result column="hbm_inq_after_acd" property="hbmInqAfterAcd" jdbcType="INTEGER" />
+    <result column="hbm_inq_after_low" property="hbmInqAfterLow" jdbcType="INTEGER" />
+    <result column="hbm_inq_after_recharge" property="hbmInqAfterRecharge" jdbcType="INTEGER" />
+    <result column="hbm_inq_mode" property="hbmInqMode" jdbcType="INTEGER" />
+    <result column="hbm_inq_number" property="hbmInqNumber" jdbcType="CHAR" />
+    <result column="hbm_inq_content" property="hbmInqContent" jdbcType="CHAR" />
+    <result column="hbm_inq_connect" property="hbmInqConnect" jdbcType="INTEGER" />
+    <result column="hbm_inq_duration" property="hbmInqDuration" jdbcType="INTEGER" />
+    <result column="hbm_inq_cfm01" property="hbmInqCfm01" jdbcType="CHAR" />
+    <result column="hbm_inq_sms01" property="hbmInqSms01" jdbcType="CHAR" />
+    <result column="hbm_inq_reply01" property="hbmInqReply01" jdbcType="INTEGER" />
+    <result column="hbm_inq_cfm02" property="hbmInqCfm02" jdbcType="CHAR" />
+    <result column="hbm_inq_sms02" property="hbmInqSms02" jdbcType="CHAR" />
+    <result column="hbm_inq_reply02" property="hbmInqReply02" jdbcType="INTEGER" />
+    <result column="hbm_inq_cfm03" property="hbmInqCfm03" jdbcType="CHAR" />
+    <result column="hbm_inq_sms03" property="hbmInqSms03" jdbcType="CHAR" />
+    <result column="hbm_inq_reply03" property="hbmInqReply03" jdbcType="INTEGER" />
+    <result column="hbm_ussd_quiet_monitor" property="hbmUssdQuietMonitor" jdbcType="INTEGER" />
+    <result column="hbm_ussd_quiet_wait_min" property="hbmUssdQuietWaitMin" jdbcType="INTEGER" />
+    <result column="hbm_ussd_awake_content" property="hbmUssdAwakeContent" jdbcType="CHAR" />
+    <result column="hbm_balance_ussd_flag" property="hbmBalanceUssdFlag" jdbcType="INTEGER" />
+    <result column="hbm_balance_sms_flag" property="hbmBalanceSmsFlag" jdbcType="INTEGER" />
+    <result column="hbm_balance_sms_number" property="hbmBalanceSmsNumber" jdbcType="CHAR" />
+    <result column="hbm_balance_prefix" property="hbmBalancePrefix" jdbcType="CHAR" />
+    <result column="hbm_balance_prefix2" property="hbmBalancePrefix2" jdbcType="CHAR" />
+    <result column="hbm_balance_prefix3" property="hbmBalancePrefix3" jdbcType="CHAR" />
+    <result column="hbm_balance_prefix4" property="hbmBalancePrefix4" jdbcType="CHAR" />
+    <result column="hbm_balance_prefix5" property="hbmBalancePrefix5" jdbcType="CHAR" />
+    <result column="hbm_thousand_symbol" property="hbmThousandSymbol" jdbcType="INTEGER" />
+    <result column="hbm_decimal_symbol" property="hbmDecimalSymbol" jdbcType="INTEGER" />
+    <result column="hbm_balance_recharge" property="hbmBalanceRecharge" jdbcType="INTEGER" />
+    <result column="hbm_balance_retries" property="hbmBalanceRetries" jdbcType="INTEGER" />
+    <result column="hbm_balance_wait_min" property="hbmBalanceWaitMin" jdbcType="INTEGER" />
+    <result column="hbm_balance_interval" property="hbmBalanceInterval" jdbcType="INTEGER" />
+    <result column="hbm_balance_succ" property="hbmBalanceSucc" jdbcType="CHAR" />
+    <result column="hbm_balance_fail" property="hbmBalanceFail" jdbcType="CHAR" />
+    <result column="hbm_sms_spec_number" property="hbmSmsSpecNumber" jdbcType="CHAR" />
+    <result column="hbm_balance_fail2" property="hbmBalanceFail2" jdbcType="CHAR" />
+    <result column="hbm_balance_fail3" property="hbmBalanceFail3" jdbcType="CHAR" />
+    <result column="hbm_balance_fail4" property="hbmBalanceFail4" jdbcType="CHAR" />
+    <result column="hbm_init_sim_flag" property="hbmInitSimFlag" jdbcType="INTEGER" />
+    <result column="hbm_imei_flag" property="hbmImeiFlag" jdbcType="INTEGER" />
+    <result column="hbm_imei_tacs" property="hbmImeiTacs" jdbcType="CHAR" />
+    <result column="hbm_imei_min_sn" property="hbmImeiMinSn" jdbcType="INTEGER" />
+    <result column="hbm_imei_max_sn" property="hbmImeiMaxSn" jdbcType="INTEGER" />
+    <result column="hbm_acd_flag" property="hbmAcdFlag" jdbcType="INTEGER" />
+    <result column="hbm_acd_short_flag" property="hbmAcdShortFlag" jdbcType="INTEGER" />
+    <result column="hbm_acd_time_min" property="hbmAcdTimeMin" jdbcType="INTEGER" />
+    <result column="hbm_roaming_flag" property="hbmRoamingFlag" jdbcType="INTEGER" />
+    <result column="hbm_sms_test01" property="hbmSmsTest01" jdbcType="CHAR" />
+    <result column="hbm_acd_time_max" property="hbmAcdTimeMax" jdbcType="INTEGER" />
+    <result column="hbm_acd_count_limit" property="hbmAcdCountLimit" jdbcType="INTEGER" />
+    <result column="hbm_acd_fail_count" property="hbmAcdFailCount" jdbcType="INTEGER" />
+    <result column="hbm_acd_fail_action" property="hbmAcdFailAction" jdbcType="INTEGER" />
+    <result column="hbm_acd_gsm_code1" property="hbmAcdGsmCode1" jdbcType="CHAR" />
+    <result column="hbm_acd_fail_weight1" property="hbmAcdFailWeight1" jdbcType="INTEGER" />
+    <result column="hbm_acd_gsm_code2" property="hbmAcdGsmCode2" jdbcType="CHAR" />
+    <result column="hbm_acd_fail_weight2" property="hbmAcdFailWeight2" jdbcType="INTEGER" />
+    <result column="hbm_call_direction" property="hbmCallDirection" jdbcType="INTEGER" />
+    <result column="hbm_call_spec_number" property="hbmCallSpecNumber" jdbcType="CHAR" />
+    <result column="hbm_acd_asr_flag" property="hbmAcdAsrFlag" jdbcType="INTEGER" />
+    <result column="hbm_acd_call_count" property="hbmAcdCallCount" jdbcType="INTEGER" />
+    <result column="hbm_acd_asr_limit" property="hbmAcdAsrLimit" jdbcType="INTEGER" />
+    <result column="hbm_acd_asr_action" property="hbmAcdAsrAction" jdbcType="INTEGER" />
+    <result column="hbm_acd_sms_flag" property="hbmAcdSmsFlag" jdbcType="INTEGER" />
+    <result column="hbm_acd_sms_count" property="hbmAcdSmsCount" jdbcType="INTEGER" />
+    <result column="hbm_acd_sms_action" property="hbmAcdSmsAction" jdbcType="INTEGER" />
+    <result column="hbm_sms_test_flag" property="hbmSmsTestFlag" jdbcType="INTEGER" />
+    <result column="hbm_sms_direction" property="hbmSmsDirection" jdbcType="INTEGER" />
+    <result column="hbm_sms_interval" property="hbmSmsInterval" jdbcType="INTEGER" />
+    <result column="hbm_sms_test_random" property="hbmSmsTestRandom" jdbcType="INTEGER" />
+    <result column="hbm_blocked_fail2" property="hbmBlockedFail2" jdbcType="CHAR" />
+    <result column="hbm_sms_count_limit" property="hbmSmsCountLimit" jdbcType="INTEGER" />
+    <result column="hbm_balance_fail5" property="hbmBalanceFail5" jdbcType="CHAR" />
+    <result column="hbm_sms_test02" property="hbmSmsTest02" jdbcType="CHAR" />
+    <result column="hbm_sms_test03" property="hbmSmsTest03" jdbcType="CHAR" />
+    <result column="hbm_sms_test04" property="hbmSmsTest04" jdbcType="CHAR" />
+    <result column="hbm_sms_test05" property="hbmSmsTest05" jdbcType="CHAR" />
+    <result column="hbm_call_test_flag" property="hbmCallTestFlag" jdbcType="INTEGER" />
+    <result column="hbm_acd_short_action" property="hbmAcdShortAction" jdbcType="INTEGER" />
+    <result column="hbm_acd_fail_flag" property="hbmAcdFailFlag" jdbcType="INTEGER" />
+    <result column="hbm_call_interval" property="hbmCallInterval" jdbcType="INTEGER" />
+    <result column="hbm_call_test_random" property="hbmCallTestRandom" jdbcType="INTEGER" />
+    <result column="hbm_call_connection" property="hbmCallConnection" jdbcType="INTEGER" />
+    <result column="hbm_call_duration" property="hbmCallDuration" jdbcType="INTEGER" />
+    <result column="hbm_call_tone_mode" property="hbmCallToneMode" jdbcType="INTEGER" />
+    <result column="max_call_count_month" property="maxCallCountMonth" jdbcType="INTEGER" />
+    <result column="max_call_time_card" property="maxCallTimeCard" jdbcType="INTEGER" />
+    <result column="max_call_count_once" property="maxCallCountOnce" jdbcType="INTEGER" />
+    <result column="max_call_count_day" property="maxCallCountDay" jdbcType="INTEGER" />
+    <result column="max_call_time_once" property="maxCallTimeOnce" jdbcType="INTEGER" />
+    <result column="max_call_time_day" property="maxCallTimeDay" jdbcType="INTEGER" />
+    <result column="max_call_time_month" property="maxCallTimeMonth" jdbcType="INTEGER" />
+    <result column="max_sms_count_card" property="maxSmsCountCard" jdbcType="INTEGER" />
+    <result column="max_sms_count_once" property="maxSmsCountOnce" jdbcType="INTEGER" />
+    <result column="hbm_call_switch_flag" property="hbmCallSwitchFlag" jdbcType="INTEGER" />
+    <result column="hbm_call_count_limit" property="hbmCallCountLimit" jdbcType="INTEGER" />
+    <result column="hbm_blocked_check" property="hbmBlockedCheck" jdbcType="INTEGER" />
+    <result column="hbm_blocked_ussd_flag" property="hbmBlockedUssdFlag" jdbcType="INTEGER" />
+    <result column="hbm_blocked_sms_flag" property="hbmBlockedSmsFlag" jdbcType="INTEGER" />
+    <result column="min_call_billing_02" property="minCallBilling02" jdbcType="INTEGER" />
+    <result column="hbm_blocked_fail" property="hbmBlockedFail" jdbcType="CHAR" />
+    <result column="order_type" property="orderType" jdbcType="INTEGER" />
+    <result column="hbm_blocked_fail3" property="hbmBlockedFail3" jdbcType="CHAR" />
+    <result column="hbm_blocked_sms_number" property="hbmBlockedSmsNumber" jdbcType="CHAR" />
+    <result column="select_cond" property="selectCond" jdbcType="INTEGER" />
+    <result column="max_call_discard_fail" property="maxCallDiscardFail" jdbcType="INTEGER" />
+    <result column="max_call_direction" property="maxCallDirection" jdbcType="INTEGER" />
+    <result column="min_call_billing_sec" property="minCallBillingSec" jdbcType="INTEGER" />
+    <result column="hbm_sms_switch_flag" property="hbmSmsSwitchFlag" jdbcType="INTEGER" />
+    <result column="max_sms_discard_fail" property="maxSmsDiscardFail" jdbcType="INTEGER" />
+    <result column="max_sms_direction" property="maxSmsDirection" jdbcType="INTEGER" />
+    <result column="max_ussd_discard_fail" property="maxUssdDiscardFail" jdbcType="INTEGER" />
+    <result column="max_ussd_direction" property="maxUssdDirection" jdbcType="INTEGER" />
+    <result column="max_call_count_card" property="maxCallCountCard" jdbcType="INTEGER" />
+    <result column="max_sms_count_day" property="maxSmsCountDay" jdbcType="INTEGER" />
+    <result column="max_sms_count_month" property="maxSmsCountMonth" jdbcType="INTEGER" />
+    <result column="max_ussd_count_card" property="maxUssdCountCard" jdbcType="INTEGER" />
+    <result column="max_ussd_count_once" property="maxUssdCountOnce" jdbcType="INTEGER" />
+    <result column="max_ussd_count_day" property="maxUssdCountDay" jdbcType="INTEGER" />
+    <result column="max_ussd_count_month" property="maxUssdCountMonth" jdbcType="INTEGER" />
+    <result column="max_group_time_card" property="maxGroupTimeCard" jdbcType="INTEGER" />
+    <result column="max_work_time_card" property="maxWorkTimeCard" jdbcType="INTEGER" />
+    <result column="max_work_time_once" property="maxWorkTimeOnce" jdbcType="INTEGER" />
+    <result column="max_idle_time_once" property="maxIdleTimeOnce" jdbcType="INTEGER" />
+    <result column="max_prom_time_card" property="maxPromTimeCard" jdbcType="INTEGER" />
+    <result column="max_prom_time_call" property="maxPromTimeCall" jdbcType="INTEGER" />
+    <result column="max_reg_fail_card" property="maxRegFailCard" jdbcType="INTEGER" />
+    <result column="max_no_balance_wait" property="maxNoBalanceWait" jdbcType="INTEGER" />
+    <result column="low_balance_switch_mode" property="lowBalanceSwitchMode" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+    
+    <result column="hbm_prom_next_grp_name" property="hbmPromNextGrpName" jdbcType="CHAR" /> 
+	<result column="hbm_next_blocked_grp_name" property="hbmNextBlockedGrpName" jdbcType="CHAR" /> 
+	<result column="hbm_next_nobal_grp_name" property="hbmNextNobalGrpName" jdbcType="CHAR" />
+  </resultMap>
+  <!-- ############################################################# -->
+  <select id="getGrpList" resultMap="BaseResultMap">
+    select
+   t1.*,t2.name as hbm_prom_next_grp_name,t3.name as hbm_next_blocked_grp_name,
+   t4.name as hbm_next_nobal_grp_name
+    from tbl_grp t1 
+    left join tbl_grp t2 on (t2.uuid=t1.hbm_prom_next_grp)
+    left join tbl_grp t3 on (t3.uuid=t1.hbm_next_blocked_grp)
+    left join tbl_grp t4 on (t4.uuid=t1.hbm_next_nobal_grp)
+	where t1.rec_status!=2
+	and t1.domain_uuid=#{domainUuid} 
+
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <!-- ############################################################# -->
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, domain_uuid, name, alias, tariff_uuid, zone_uuid, default_flag, 
+    admin_status, opr_status, run_status, action_status, action_result, mod_type, default_encode, 
+    default_smsc, default_profile, card_total_count, card_available_count, card_idle_count, 
+    sim_type, init_balance_val, low_balance_limit, call_fee_rate, call_billing_rate, 
+    hbm_role_type, hbm_prom_next_grp, hbm_next_blocked_grp, hbm_next_nobal_grp, hbm_master_grp_uuid, 
+    hbm_test_grp_uuid, paid_grp_uuid, grp_not_available_switch, max_work_sim_count, hbm_learn_number, 
+    hbm_number_prefix, new_number_prefix, hbm_prom_flag, hbm_prom_mode, hbm_prom_number, 
+    hbm_prom_sms, hbm_prom_cfm01, hbm_prom_sms01, hbm_prom_reply01, hbm_prom_cfm02, hbm_prom_sms02, 
+    hbm_prom_reply02, hbm_prom_cfm03, hbm_prom_sms03, hbm_prom_reply03, hbm_prom_cfm04, 
+    hbm_prom_sms04, hbm_prom_reply04, hbm_prom_cfm05, hbm_prom_sms05, hbm_prom_reply05, 
+    hbm_prom_cfm06, hbm_prom_sms06, hbm_prom_reply06, hbm_prom_succ_keys, hbm_prom_succ_keys2, 
+    hbm_prom_fail_keys, hbm_prom_fail_keys2, hbm_prom_fail_keys3, hbm_prom_fail_keys4, 
+    hbm_prom_fail_keys5, hbm_prom_wait_balance, hbm_prom_req_retries, hbm_prom_wait_min, 
+    hbm_prom_interval, hbm_prom_day_max, hbm_sms_after_reg, hbm_mode_after_reg, hbm_sms_number01, 
+    hbm_sms_content01, hbm_once_after_reg, hbm_sms_after_call, hbm_mode_after_call, hbm_sms_number02, 
+    hbm_sms_content02, hbm_balance_check, hbm_inq_flag, hbm_inq_timeout_min, hbm_max_inq_count, 
+    hbm_inq_blocked_flag, hbm_inq_after_reg, hbm_inq_after_call, hbm_inq_after_acd, hbm_inq_after_low, 
+    hbm_inq_after_recharge, hbm_inq_mode, hbm_inq_number, hbm_inq_content, hbm_inq_connect, 
+    hbm_inq_duration, hbm_inq_cfm01, hbm_inq_sms01, hbm_inq_reply01, hbm_inq_cfm02, hbm_inq_sms02, 
+    hbm_inq_reply02, hbm_inq_cfm03, hbm_inq_sms03, hbm_inq_reply03, hbm_ussd_quiet_monitor, 
+    hbm_ussd_quiet_wait_min, hbm_ussd_awake_content, hbm_balance_ussd_flag, hbm_balance_sms_flag, 
+    hbm_balance_sms_number, hbm_balance_prefix, hbm_balance_prefix2, hbm_balance_prefix3, 
+    hbm_balance_prefix4, hbm_balance_prefix5, hbm_thousand_symbol, hbm_decimal_symbol, 
+    hbm_balance_recharge, hbm_balance_retries, hbm_balance_wait_min, hbm_balance_interval, 
+    hbm_balance_succ, hbm_balance_fail, hbm_sms_spec_number, hbm_balance_fail2, hbm_balance_fail3, 
+    hbm_balance_fail4, hbm_init_sim_flag, hbm_imei_flag, hbm_imei_tacs, hbm_imei_min_sn, 
+    hbm_imei_max_sn, hbm_acd_flag, hbm_acd_short_flag, hbm_acd_time_min, hbm_roaming_flag, 
+    hbm_sms_test01, hbm_acd_time_max, hbm_acd_count_limit, hbm_acd_fail_count, hbm_acd_fail_action, 
+    hbm_acd_gsm_code1, hbm_acd_fail_weight1, hbm_acd_gsm_code2, hbm_acd_fail_weight2, 
+    hbm_call_direction, hbm_call_spec_number, hbm_acd_asr_flag, hbm_acd_call_count, hbm_acd_asr_limit, 
+    hbm_acd_asr_action, hbm_acd_sms_flag, hbm_acd_sms_count, hbm_acd_sms_action, hbm_sms_test_flag, 
+    hbm_sms_direction, hbm_sms_interval, hbm_sms_test_random, hbm_blocked_fail2, hbm_sms_count_limit, 
+    hbm_balance_fail5, hbm_sms_test02, hbm_sms_test03, hbm_sms_test04, hbm_sms_test05, 
+    hbm_call_test_flag, hbm_acd_short_action, hbm_acd_fail_flag, hbm_call_interval, hbm_call_test_random, 
+    hbm_call_connection, hbm_call_duration, hbm_call_tone_mode, max_call_count_month, 
+    max_call_time_card, max_call_count_once, max_call_count_day, max_call_time_once, 
+    max_call_time_day, max_call_time_month, max_sms_count_card, max_sms_count_once, hbm_call_switch_flag, 
+    hbm_call_count_limit, hbm_blocked_check, hbm_blocked_ussd_flag, hbm_blocked_sms_flag, 
+    min_call_billing_02, hbm_blocked_fail, order_type, hbm_blocked_fail3, hbm_blocked_sms_number, 
+    select_cond, max_call_discard_fail, max_call_direction, min_call_billing_sec, hbm_sms_switch_flag, 
+    max_sms_discard_fail, max_sms_direction, max_ussd_discard_fail, max_ussd_direction, 
+    max_call_count_card, max_sms_count_day, max_sms_count_month, max_ussd_count_card, 
+    max_ussd_count_once, max_ussd_count_day, max_ussd_count_month, max_group_time_card, 
+    max_work_time_card, max_work_time_once, max_idle_time_once, max_prom_time_card, max_prom_time_call, 
+    max_reg_fail_card, max_no_balance_wait, low_balance_switch_mode, create_time, update_time, 
+    detail_desc
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblGrpCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_grp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_grp
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_grp
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblGrpCriteria" >
+    delete from tbl_grp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblGrp" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_grp (uuid, rec_status, domain_uuid, 
+      name, alias, tariff_uuid, 
+      zone_uuid, default_flag, admin_status, 
+      opr_status, run_status, action_status, 
+      action_result, mod_type, default_encode, 
+      default_smsc, default_profile, card_total_count, 
+      card_available_count, card_idle_count, sim_type, 
+      init_balance_val, low_balance_limit, call_fee_rate, 
+      call_billing_rate, hbm_role_type, hbm_prom_next_grp, 
+      hbm_next_blocked_grp, hbm_next_nobal_grp, hbm_master_grp_uuid, 
+      hbm_test_grp_uuid, paid_grp_uuid, grp_not_available_switch, 
+      max_work_sim_count, hbm_learn_number, hbm_number_prefix, 
+      new_number_prefix, hbm_prom_flag, hbm_prom_mode, 
+      hbm_prom_number, hbm_prom_sms, hbm_prom_cfm01, 
+      hbm_prom_sms01, hbm_prom_reply01, hbm_prom_cfm02, 
+      hbm_prom_sms02, hbm_prom_reply02, hbm_prom_cfm03, 
+      hbm_prom_sms03, hbm_prom_reply03, hbm_prom_cfm04, 
+      hbm_prom_sms04, hbm_prom_reply04, hbm_prom_cfm05, 
+      hbm_prom_sms05, hbm_prom_reply05, hbm_prom_cfm06, 
+      hbm_prom_sms06, hbm_prom_reply06, hbm_prom_succ_keys, 
+      hbm_prom_succ_keys2, hbm_prom_fail_keys, hbm_prom_fail_keys2, 
+      hbm_prom_fail_keys3, hbm_prom_fail_keys4, hbm_prom_fail_keys5, 
+      hbm_prom_wait_balance, hbm_prom_req_retries, 
+      hbm_prom_wait_min, hbm_prom_interval, hbm_prom_day_max, 
+      hbm_sms_after_reg, hbm_mode_after_reg, hbm_sms_number01, 
+      hbm_sms_content01, hbm_once_after_reg, hbm_sms_after_call, 
+      hbm_mode_after_call, hbm_sms_number02, hbm_sms_content02, 
+      hbm_balance_check, hbm_inq_flag, hbm_inq_timeout_min, 
+      hbm_max_inq_count, hbm_inq_blocked_flag, hbm_inq_after_reg, 
+      hbm_inq_after_call, hbm_inq_after_acd, hbm_inq_after_low, 
+      hbm_inq_after_recharge, hbm_inq_mode, hbm_inq_number, 
+      hbm_inq_content, hbm_inq_connect, hbm_inq_duration, 
+      hbm_inq_cfm01, hbm_inq_sms01, hbm_inq_reply01, 
+      hbm_inq_cfm02, hbm_inq_sms02, hbm_inq_reply02, 
+      hbm_inq_cfm03, hbm_inq_sms03, hbm_inq_reply03, 
+      hbm_ussd_quiet_monitor, hbm_ussd_quiet_wait_min, 
+      hbm_ussd_awake_content, hbm_balance_ussd_flag, hbm_balance_sms_flag, 
+      hbm_balance_sms_number, hbm_balance_prefix, hbm_balance_prefix2, 
+      hbm_balance_prefix3, hbm_balance_prefix4, hbm_balance_prefix5, 
+      hbm_thousand_symbol, hbm_decimal_symbol, hbm_balance_recharge, 
+      hbm_balance_retries, hbm_balance_wait_min, hbm_balance_interval, 
+      hbm_balance_succ, hbm_balance_fail, hbm_sms_spec_number, 
+      hbm_balance_fail2, hbm_balance_fail3, hbm_balance_fail4, 
+      hbm_init_sim_flag, hbm_imei_flag, hbm_imei_tacs, 
+      hbm_imei_min_sn, hbm_imei_max_sn, hbm_acd_flag, 
+      hbm_acd_short_flag, hbm_acd_time_min, hbm_roaming_flag, 
+      hbm_sms_test01, hbm_acd_time_max, hbm_acd_count_limit, 
+      hbm_acd_fail_count, hbm_acd_fail_action, hbm_acd_gsm_code1, 
+      hbm_acd_fail_weight1, hbm_acd_gsm_code2, hbm_acd_fail_weight2, 
+      hbm_call_direction, hbm_call_spec_number, hbm_acd_asr_flag, 
+      hbm_acd_call_count, hbm_acd_asr_limit, hbm_acd_asr_action, 
+      hbm_acd_sms_flag, hbm_acd_sms_count, hbm_acd_sms_action, 
+      hbm_sms_test_flag, hbm_sms_direction, hbm_sms_interval, 
+      hbm_sms_test_random, hbm_blocked_fail2, hbm_sms_count_limit, 
+      hbm_balance_fail5, hbm_sms_test02, hbm_sms_test03, 
+      hbm_sms_test04, hbm_sms_test05, hbm_call_test_flag, 
+      hbm_acd_short_action, hbm_acd_fail_flag, hbm_call_interval, 
+      hbm_call_test_random, hbm_call_connection, hbm_call_duration, 
+      hbm_call_tone_mode, max_call_count_month, max_call_time_card, 
+      max_call_count_once, max_call_count_day, max_call_time_once, 
+      max_call_time_day, max_call_time_month, max_sms_count_card, 
+      max_sms_count_once, hbm_call_switch_flag, hbm_call_count_limit, 
+      hbm_blocked_check, hbm_blocked_ussd_flag, hbm_blocked_sms_flag, 
+      min_call_billing_02, hbm_blocked_fail, order_type, 
+      hbm_blocked_fail3, hbm_blocked_sms_number, select_cond, 
+      max_call_discard_fail, max_call_direction, min_call_billing_sec, 
+      hbm_sms_switch_flag, max_sms_discard_fail, max_sms_direction, 
+      max_ussd_discard_fail, max_ussd_direction, max_call_count_card, 
+      max_sms_count_day, max_sms_count_month, max_ussd_count_card, 
+      max_ussd_count_once, max_ussd_count_day, max_ussd_count_month, 
+      max_group_time_card, max_work_time_card, max_work_time_once, 
+      max_idle_time_once, max_prom_time_card, max_prom_time_call, 
+      max_reg_fail_card, max_no_balance_wait, low_balance_switch_mode, 
+      create_time, update_time, detail_desc
+      )
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{domainUuid,jdbcType=INTEGER}, 
+      #{name,jdbcType=CHAR}, #{alias,jdbcType=CHAR}, #{tariffUuid,jdbcType=INTEGER}, 
+      #{zoneUuid,jdbcType=INTEGER}, #{defaultFlag,jdbcType=INTEGER}, #{adminStatus,jdbcType=INTEGER}, 
+      #{oprStatus,jdbcType=INTEGER}, #{runStatus,jdbcType=INTEGER}, #{actionStatus,jdbcType=INTEGER}, 
+      #{actionResult,jdbcType=INTEGER}, #{modType,jdbcType=INTEGER}, #{defaultEncode,jdbcType=INTEGER}, 
+      #{defaultSmsc,jdbcType=CHAR}, #{defaultProfile,jdbcType=CHAR}, #{cardTotalCount,jdbcType=INTEGER}, 
+      #{cardAvailableCount,jdbcType=INTEGER}, #{cardIdleCount,jdbcType=INTEGER}, #{simType,jdbcType=INTEGER}, 
+      #{initBalanceVal,jdbcType=REAL}, #{lowBalanceLimit,jdbcType=REAL}, #{callFeeRate,jdbcType=REAL}, 
+      #{callBillingRate,jdbcType=REAL}, #{hbmRoleType,jdbcType=INTEGER}, #{hbmPromNextGrp,jdbcType=INTEGER}, 
+      #{hbmNextBlockedGrp,jdbcType=INTEGER}, #{hbmNextNobalGrp,jdbcType=INTEGER}, #{hbmMasterGrpUuid,jdbcType=INTEGER}, 
+      #{hbmTestGrpUuid,jdbcType=INTEGER}, #{paidGrpUuid,jdbcType=INTEGER}, #{grpNotAvailableSwitch,jdbcType=INTEGER}, 
+      #{maxWorkSimCount,jdbcType=INTEGER}, #{hbmLearnNumber,jdbcType=INTEGER}, #{hbmNumberPrefix,jdbcType=CHAR}, 
+      #{newNumberPrefix,jdbcType=CHAR}, #{hbmPromFlag,jdbcType=INTEGER}, #{hbmPromMode,jdbcType=INTEGER}, 
+      #{hbmPromNumber,jdbcType=CHAR}, #{hbmPromSms,jdbcType=CHAR}, #{hbmPromCfm01,jdbcType=CHAR}, 
+      #{hbmPromSms01,jdbcType=CHAR}, #{hbmPromReply01,jdbcType=INTEGER}, #{hbmPromCfm02,jdbcType=CHAR}, 
+      #{hbmPromSms02,jdbcType=CHAR}, #{hbmPromReply02,jdbcType=INTEGER}, #{hbmPromCfm03,jdbcType=CHAR}, 
+      #{hbmPromSms03,jdbcType=CHAR}, #{hbmPromReply03,jdbcType=INTEGER}, #{hbmPromCfm04,jdbcType=CHAR}, 
+      #{hbmPromSms04,jdbcType=CHAR}, #{hbmPromReply04,jdbcType=INTEGER}, #{hbmPromCfm05,jdbcType=CHAR}, 
+      #{hbmPromSms05,jdbcType=CHAR}, #{hbmPromReply05,jdbcType=INTEGER}, #{hbmPromCfm06,jdbcType=CHAR}, 
+      #{hbmPromSms06,jdbcType=CHAR}, #{hbmPromReply06,jdbcType=INTEGER}, #{hbmPromSuccKeys,jdbcType=CHAR}, 
+      #{hbmPromSuccKeys2,jdbcType=CHAR}, #{hbmPromFailKeys,jdbcType=CHAR}, #{hbmPromFailKeys2,jdbcType=CHAR}, 
+      #{hbmPromFailKeys3,jdbcType=CHAR}, #{hbmPromFailKeys4,jdbcType=CHAR}, #{hbmPromFailKeys5,jdbcType=CHAR}, 
+      #{hbmPromWaitBalance,jdbcType=INTEGER}, #{hbmPromReqRetries,jdbcType=INTEGER}, 
+      #{hbmPromWaitMin,jdbcType=INTEGER}, #{hbmPromInterval,jdbcType=INTEGER}, #{hbmPromDayMax,jdbcType=INTEGER}, 
+      #{hbmSmsAfterReg,jdbcType=INTEGER}, #{hbmModeAfterReg,jdbcType=INTEGER}, #{hbmSmsNumber01,jdbcType=CHAR}, 
+      #{hbmSmsContent01,jdbcType=CHAR}, #{hbmOnceAfterReg,jdbcType=INTEGER}, #{hbmSmsAfterCall,jdbcType=INTEGER}, 
+      #{hbmModeAfterCall,jdbcType=INTEGER}, #{hbmSmsNumber02,jdbcType=CHAR}, #{hbmSmsContent02,jdbcType=CHAR}, 
+      #{hbmBalanceCheck,jdbcType=INTEGER}, #{hbmInqFlag,jdbcType=INTEGER}, #{hbmInqTimeoutMin,jdbcType=INTEGER}, 
+      #{hbmMaxInqCount,jdbcType=INTEGER}, #{hbmInqBlockedFlag,jdbcType=INTEGER}, #{hbmInqAfterReg,jdbcType=INTEGER}, 
+      #{hbmInqAfterCall,jdbcType=INTEGER}, #{hbmInqAfterAcd,jdbcType=INTEGER}, #{hbmInqAfterLow,jdbcType=INTEGER}, 
+      #{hbmInqAfterRecharge,jdbcType=INTEGER}, #{hbmInqMode,jdbcType=INTEGER}, #{hbmInqNumber,jdbcType=CHAR}, 
+      #{hbmInqContent,jdbcType=CHAR}, #{hbmInqConnect,jdbcType=INTEGER}, #{hbmInqDuration,jdbcType=INTEGER}, 
+      #{hbmInqCfm01,jdbcType=CHAR}, #{hbmInqSms01,jdbcType=CHAR}, #{hbmInqReply01,jdbcType=INTEGER}, 
+      #{hbmInqCfm02,jdbcType=CHAR}, #{hbmInqSms02,jdbcType=CHAR}, #{hbmInqReply02,jdbcType=INTEGER}, 
+      #{hbmInqCfm03,jdbcType=CHAR}, #{hbmInqSms03,jdbcType=CHAR}, #{hbmInqReply03,jdbcType=INTEGER}, 
+      #{hbmUssdQuietMonitor,jdbcType=INTEGER}, #{hbmUssdQuietWaitMin,jdbcType=INTEGER}, 
+      #{hbmUssdAwakeContent,jdbcType=CHAR}, #{hbmBalanceUssdFlag,jdbcType=INTEGER}, #{hbmBalanceSmsFlag,jdbcType=INTEGER}, 
+      #{hbmBalanceSmsNumber,jdbcType=CHAR}, #{hbmBalancePrefix,jdbcType=CHAR}, #{hbmBalancePrefix2,jdbcType=CHAR}, 
+      #{hbmBalancePrefix3,jdbcType=CHAR}, #{hbmBalancePrefix4,jdbcType=CHAR}, #{hbmBalancePrefix5,jdbcType=CHAR}, 
+      #{hbmThousandSymbol,jdbcType=INTEGER}, #{hbmDecimalSymbol,jdbcType=INTEGER}, #{hbmBalanceRecharge,jdbcType=INTEGER}, 
+      #{hbmBalanceRetries,jdbcType=INTEGER}, #{hbmBalanceWaitMin,jdbcType=INTEGER}, #{hbmBalanceInterval,jdbcType=INTEGER}, 
+      #{hbmBalanceSucc,jdbcType=CHAR}, #{hbmBalanceFail,jdbcType=CHAR}, #{hbmSmsSpecNumber,jdbcType=CHAR}, 
+      #{hbmBalanceFail2,jdbcType=CHAR}, #{hbmBalanceFail3,jdbcType=CHAR}, #{hbmBalanceFail4,jdbcType=CHAR}, 
+      #{hbmInitSimFlag,jdbcType=INTEGER}, #{hbmImeiFlag,jdbcType=INTEGER}, #{hbmImeiTacs,jdbcType=CHAR}, 
+      #{hbmImeiMinSn,jdbcType=INTEGER}, #{hbmImeiMaxSn,jdbcType=INTEGER}, #{hbmAcdFlag,jdbcType=INTEGER}, 
+      #{hbmAcdShortFlag,jdbcType=INTEGER}, #{hbmAcdTimeMin,jdbcType=INTEGER}, #{hbmRoamingFlag,jdbcType=INTEGER}, 
+      #{hbmSmsTest01,jdbcType=CHAR}, #{hbmAcdTimeMax,jdbcType=INTEGER}, #{hbmAcdCountLimit,jdbcType=INTEGER}, 
+      #{hbmAcdFailCount,jdbcType=INTEGER}, #{hbmAcdFailAction,jdbcType=INTEGER}, #{hbmAcdGsmCode1,jdbcType=CHAR}, 
+      #{hbmAcdFailWeight1,jdbcType=INTEGER}, #{hbmAcdGsmCode2,jdbcType=CHAR}, #{hbmAcdFailWeight2,jdbcType=INTEGER}, 
+      #{hbmCallDirection,jdbcType=INTEGER}, #{hbmCallSpecNumber,jdbcType=CHAR}, #{hbmAcdAsrFlag,jdbcType=INTEGER}, 
+      #{hbmAcdCallCount,jdbcType=INTEGER}, #{hbmAcdAsrLimit,jdbcType=INTEGER}, #{hbmAcdAsrAction,jdbcType=INTEGER}, 
+      #{hbmAcdSmsFlag,jdbcType=INTEGER}, #{hbmAcdSmsCount,jdbcType=INTEGER}, #{hbmAcdSmsAction,jdbcType=INTEGER}, 
+      #{hbmSmsTestFlag,jdbcType=INTEGER}, #{hbmSmsDirection,jdbcType=INTEGER}, #{hbmSmsInterval,jdbcType=INTEGER}, 
+      #{hbmSmsTestRandom,jdbcType=INTEGER}, #{hbmBlockedFail2,jdbcType=CHAR}, #{hbmSmsCountLimit,jdbcType=INTEGER}, 
+      #{hbmBalanceFail5,jdbcType=CHAR}, #{hbmSmsTest02,jdbcType=CHAR}, #{hbmSmsTest03,jdbcType=CHAR}, 
+      #{hbmSmsTest04,jdbcType=CHAR}, #{hbmSmsTest05,jdbcType=CHAR}, #{hbmCallTestFlag,jdbcType=INTEGER}, 
+      #{hbmAcdShortAction,jdbcType=INTEGER}, #{hbmAcdFailFlag,jdbcType=INTEGER}, #{hbmCallInterval,jdbcType=INTEGER}, 
+      #{hbmCallTestRandom,jdbcType=INTEGER}, #{hbmCallConnection,jdbcType=INTEGER}, #{hbmCallDuration,jdbcType=INTEGER}, 
+      #{hbmCallToneMode,jdbcType=INTEGER}, #{maxCallCountMonth,jdbcType=INTEGER}, #{maxCallTimeCard,jdbcType=INTEGER}, 
+      #{maxCallCountOnce,jdbcType=INTEGER}, #{maxCallCountDay,jdbcType=INTEGER}, #{maxCallTimeOnce,jdbcType=INTEGER}, 
+      #{maxCallTimeDay,jdbcType=INTEGER}, #{maxCallTimeMonth,jdbcType=INTEGER}, #{maxSmsCountCard,jdbcType=INTEGER}, 
+      #{maxSmsCountOnce,jdbcType=INTEGER}, #{hbmCallSwitchFlag,jdbcType=INTEGER}, #{hbmCallCountLimit,jdbcType=INTEGER}, 
+      #{hbmBlockedCheck,jdbcType=INTEGER}, #{hbmBlockedUssdFlag,jdbcType=INTEGER}, #{hbmBlockedSmsFlag,jdbcType=INTEGER}, 
+      #{minCallBilling02,jdbcType=INTEGER}, #{hbmBlockedFail,jdbcType=CHAR}, #{orderType,jdbcType=INTEGER}, 
+      #{hbmBlockedFail3,jdbcType=CHAR}, #{hbmBlockedSmsNumber,jdbcType=CHAR}, #{selectCond,jdbcType=INTEGER}, 
+      #{maxCallDiscardFail,jdbcType=INTEGER}, #{maxCallDirection,jdbcType=INTEGER}, #{minCallBillingSec,jdbcType=INTEGER}, 
+      #{hbmSmsSwitchFlag,jdbcType=INTEGER}, #{maxSmsDiscardFail,jdbcType=INTEGER}, #{maxSmsDirection,jdbcType=INTEGER}, 
+      #{maxUssdDiscardFail,jdbcType=INTEGER}, #{maxUssdDirection,jdbcType=INTEGER}, #{maxCallCountCard,jdbcType=INTEGER}, 
+      #{maxSmsCountDay,jdbcType=INTEGER}, #{maxSmsCountMonth,jdbcType=INTEGER}, #{maxUssdCountCard,jdbcType=INTEGER}, 
+      #{maxUssdCountOnce,jdbcType=INTEGER}, #{maxUssdCountDay,jdbcType=INTEGER}, #{maxUssdCountMonth,jdbcType=INTEGER}, 
+      #{maxGroupTimeCard,jdbcType=INTEGER}, #{maxWorkTimeCard,jdbcType=INTEGER}, #{maxWorkTimeOnce,jdbcType=INTEGER}, 
+      #{maxIdleTimeOnce,jdbcType=INTEGER}, #{maxPromTimeCard,jdbcType=INTEGER}, #{maxPromTimeCall,jdbcType=INTEGER}, 
+      #{maxRegFailCard,jdbcType=INTEGER}, #{maxNoBalanceWait,jdbcType=INTEGER}, #{lowBalanceSwitchMode,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{detailDesc,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblGrp" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_grp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="tariffUuid != null" >
+        tariff_uuid,
+      </if>
+      <if test="zoneUuid != null" >
+        zone_uuid,
+      </if>
+      <if test="defaultFlag != null" >
+        default_flag,
+      </if>
+      <if test="adminStatus != null" >
+        admin_status,
+      </if>
+      <if test="oprStatus != null" >
+        opr_status,
+      </if>
+      <if test="runStatus != null" >
+        run_status,
+      </if>
+      <if test="actionStatus != null" >
+        action_status,
+      </if>
+      <if test="actionResult != null" >
+        action_result,
+      </if>
+      <if test="modType != null" >
+        mod_type,
+      </if>
+      <if test="defaultEncode != null" >
+        default_encode,
+      </if>
+      <if test="defaultSmsc != null" >
+        default_smsc,
+      </if>
+      <if test="defaultProfile != null" >
+        default_profile,
+      </if>
+      <if test="cardTotalCount != null" >
+        card_total_count,
+      </if>
+      <if test="cardAvailableCount != null" >
+        card_available_count,
+      </if>
+      <if test="cardIdleCount != null" >
+        card_idle_count,
+      </if>
+      <if test="simType != null" >
+        sim_type,
+      </if>
+      <if test="initBalanceVal != null" >
+        init_balance_val,
+      </if>
+      <if test="lowBalanceLimit != null" >
+        low_balance_limit,
+      </if>
+      <if test="callFeeRate != null" >
+        call_fee_rate,
+      </if>
+      <if test="callBillingRate != null" >
+        call_billing_rate,
+      </if>
+      <if test="hbmRoleType != null" >
+        hbm_role_type,
+      </if>
+      <if test="hbmPromNextGrp != null" >
+        hbm_prom_next_grp,
+      </if>
+      <if test="hbmNextBlockedGrp != null" >
+        hbm_next_blocked_grp,
+      </if>
+      <if test="hbmNextNobalGrp != null" >
+        hbm_next_nobal_grp,
+      </if>
+      <if test="hbmMasterGrpUuid != null" >
+        hbm_master_grp_uuid,
+      </if>
+      <if test="hbmTestGrpUuid != null" >
+        hbm_test_grp_uuid,
+      </if>
+      <if test="paidGrpUuid != null" >
+        paid_grp_uuid,
+      </if>
+      <if test="grpNotAvailableSwitch != null" >
+        grp_not_available_switch,
+      </if>
+      <if test="maxWorkSimCount != null" >
+        max_work_sim_count,
+      </if>
+      <if test="hbmLearnNumber != null" >
+        hbm_learn_number,
+      </if>
+      <if test="hbmNumberPrefix != null" >
+        hbm_number_prefix,
+      </if>
+      <if test="newNumberPrefix != null" >
+        new_number_prefix,
+      </if>
+      <if test="hbmPromFlag != null" >
+        hbm_prom_flag,
+      </if>
+      <if test="hbmPromMode != null" >
+        hbm_prom_mode,
+      </if>
+      <if test="hbmPromNumber != null" >
+        hbm_prom_number,
+      </if>
+      <if test="hbmPromSms != null" >
+        hbm_prom_sms,
+      </if>
+      <if test="hbmPromCfm01 != null" >
+        hbm_prom_cfm01,
+      </if>
+      <if test="hbmPromSms01 != null" >
+        hbm_prom_sms01,
+      </if>
+      <if test="hbmPromReply01 != null" >
+        hbm_prom_reply01,
+      </if>
+      <if test="hbmPromCfm02 != null" >
+        hbm_prom_cfm02,
+      </if>
+      <if test="hbmPromSms02 != null" >
+        hbm_prom_sms02,
+      </if>
+      <if test="hbmPromReply02 != null" >
+        hbm_prom_reply02,
+      </if>
+      <if test="hbmPromCfm03 != null" >
+        hbm_prom_cfm03,
+      </if>
+      <if test="hbmPromSms03 != null" >
+        hbm_prom_sms03,
+      </if>
+      <if test="hbmPromReply03 != null" >
+        hbm_prom_reply03,
+      </if>
+      <if test="hbmPromCfm04 != null" >
+        hbm_prom_cfm04,
+      </if>
+      <if test="hbmPromSms04 != null" >
+        hbm_prom_sms04,
+      </if>
+      <if test="hbmPromReply04 != null" >
+        hbm_prom_reply04,
+      </if>
+      <if test="hbmPromCfm05 != null" >
+        hbm_prom_cfm05,
+      </if>
+      <if test="hbmPromSms05 != null" >
+        hbm_prom_sms05,
+      </if>
+      <if test="hbmPromReply05 != null" >
+        hbm_prom_reply05,
+      </if>
+      <if test="hbmPromCfm06 != null" >
+        hbm_prom_cfm06,
+      </if>
+      <if test="hbmPromSms06 != null" >
+        hbm_prom_sms06,
+      </if>
+      <if test="hbmPromReply06 != null" >
+        hbm_prom_reply06,
+      </if>
+      <if test="hbmPromSuccKeys != null" >
+        hbm_prom_succ_keys,
+      </if>
+      <if test="hbmPromSuccKeys2 != null" >
+        hbm_prom_succ_keys2,
+      </if>
+      <if test="hbmPromFailKeys != null" >
+        hbm_prom_fail_keys,
+      </if>
+      <if test="hbmPromFailKeys2 != null" >
+        hbm_prom_fail_keys2,
+      </if>
+      <if test="hbmPromFailKeys3 != null" >
+        hbm_prom_fail_keys3,
+      </if>
+      <if test="hbmPromFailKeys4 != null" >
+        hbm_prom_fail_keys4,
+      </if>
+      <if test="hbmPromFailKeys5 != null" >
+        hbm_prom_fail_keys5,
+      </if>
+      <if test="hbmPromWaitBalance != null" >
+        hbm_prom_wait_balance,
+      </if>
+      <if test="hbmPromReqRetries != null" >
+        hbm_prom_req_retries,
+      </if>
+      <if test="hbmPromWaitMin != null" >
+        hbm_prom_wait_min,
+      </if>
+      <if test="hbmPromInterval != null" >
+        hbm_prom_interval,
+      </if>
+      <if test="hbmPromDayMax != null" >
+        hbm_prom_day_max,
+      </if>
+      <if test="hbmSmsAfterReg != null" >
+        hbm_sms_after_reg,
+      </if>
+      <if test="hbmModeAfterReg != null" >
+        hbm_mode_after_reg,
+      </if>
+      <if test="hbmSmsNumber01 != null" >
+        hbm_sms_number01,
+      </if>
+      <if test="hbmSmsContent01 != null" >
+        hbm_sms_content01,
+      </if>
+      <if test="hbmOnceAfterReg != null" >
+        hbm_once_after_reg,
+      </if>
+      <if test="hbmSmsAfterCall != null" >
+        hbm_sms_after_call,
+      </if>
+      <if test="hbmModeAfterCall != null" >
+        hbm_mode_after_call,
+      </if>
+      <if test="hbmSmsNumber02 != null" >
+        hbm_sms_number02,
+      </if>
+      <if test="hbmSmsContent02 != null" >
+        hbm_sms_content02,
+      </if>
+      <if test="hbmBalanceCheck != null" >
+        hbm_balance_check,
+      </if>
+      <if test="hbmInqFlag != null" >
+        hbm_inq_flag,
+      </if>
+      <if test="hbmInqTimeoutMin != null" >
+        hbm_inq_timeout_min,
+      </if>
+      <if test="hbmMaxInqCount != null" >
+        hbm_max_inq_count,
+      </if>
+      <if test="hbmInqBlockedFlag != null" >
+        hbm_inq_blocked_flag,
+      </if>
+      <if test="hbmInqAfterReg != null" >
+        hbm_inq_after_reg,
+      </if>
+      <if test="hbmInqAfterCall != null" >
+        hbm_inq_after_call,
+      </if>
+      <if test="hbmInqAfterAcd != null" >
+        hbm_inq_after_acd,
+      </if>
+      <if test="hbmInqAfterLow != null" >
+        hbm_inq_after_low,
+      </if>
+      <if test="hbmInqAfterRecharge != null" >
+        hbm_inq_after_recharge,
+      </if>
+      <if test="hbmInqMode != null" >
+        hbm_inq_mode,
+      </if>
+      <if test="hbmInqNumber != null" >
+        hbm_inq_number,
+      </if>
+      <if test="hbmInqContent != null" >
+        hbm_inq_content,
+      </if>
+      <if test="hbmInqConnect != null" >
+        hbm_inq_connect,
+      </if>
+      <if test="hbmInqDuration != null" >
+        hbm_inq_duration,
+      </if>
+      <if test="hbmInqCfm01 != null" >
+        hbm_inq_cfm01,
+      </if>
+      <if test="hbmInqSms01 != null" >
+        hbm_inq_sms01,
+      </if>
+      <if test="hbmInqReply01 != null" >
+        hbm_inq_reply01,
+      </if>
+      <if test="hbmInqCfm02 != null" >
+        hbm_inq_cfm02,
+      </if>
+      <if test="hbmInqSms02 != null" >
+        hbm_inq_sms02,
+      </if>
+      <if test="hbmInqReply02 != null" >
+        hbm_inq_reply02,
+      </if>
+      <if test="hbmInqCfm03 != null" >
+        hbm_inq_cfm03,
+      </if>
+      <if test="hbmInqSms03 != null" >
+        hbm_inq_sms03,
+      </if>
+      <if test="hbmInqReply03 != null" >
+        hbm_inq_reply03,
+      </if>
+      <if test="hbmUssdQuietMonitor != null" >
+        hbm_ussd_quiet_monitor,
+      </if>
+      <if test="hbmUssdQuietWaitMin != null" >
+        hbm_ussd_quiet_wait_min,
+      </if>
+      <if test="hbmUssdAwakeContent != null" >
+        hbm_ussd_awake_content,
+      </if>
+      <if test="hbmBalanceUssdFlag != null" >
+        hbm_balance_ussd_flag,
+      </if>
+      <if test="hbmBalanceSmsFlag != null" >
+        hbm_balance_sms_flag,
+      </if>
+      <if test="hbmBalanceSmsNumber != null" >
+        hbm_balance_sms_number,
+      </if>
+      <if test="hbmBalancePrefix != null" >
+        hbm_balance_prefix,
+      </if>
+      <if test="hbmBalancePrefix2 != null" >
+        hbm_balance_prefix2,
+      </if>
+      <if test="hbmBalancePrefix3 != null" >
+        hbm_balance_prefix3,
+      </if>
+      <if test="hbmBalancePrefix4 != null" >
+        hbm_balance_prefix4,
+      </if>
+      <if test="hbmBalancePrefix5 != null" >
+        hbm_balance_prefix5,
+      </if>
+      <if test="hbmThousandSymbol != null" >
+        hbm_thousand_symbol,
+      </if>
+      <if test="hbmDecimalSymbol != null" >
+        hbm_decimal_symbol,
+      </if>
+      <if test="hbmBalanceRecharge != null" >
+        hbm_balance_recharge,
+      </if>
+      <if test="hbmBalanceRetries != null" >
+        hbm_balance_retries,
+      </if>
+      <if test="hbmBalanceWaitMin != null" >
+        hbm_balance_wait_min,
+      </if>
+      <if test="hbmBalanceInterval != null" >
+        hbm_balance_interval,
+      </if>
+      <if test="hbmBalanceSucc != null" >
+        hbm_balance_succ,
+      </if>
+      <if test="hbmBalanceFail != null" >
+        hbm_balance_fail,
+      </if>
+      <if test="hbmSmsSpecNumber != null" >
+        hbm_sms_spec_number,
+      </if>
+      <if test="hbmBalanceFail2 != null" >
+        hbm_balance_fail2,
+      </if>
+      <if test="hbmBalanceFail3 != null" >
+        hbm_balance_fail3,
+      </if>
+      <if test="hbmBalanceFail4 != null" >
+        hbm_balance_fail4,
+      </if>
+      <if test="hbmInitSimFlag != null" >
+        hbm_init_sim_flag,
+      </if>
+      <if test="hbmImeiFlag != null" >
+        hbm_imei_flag,
+      </if>
+      <if test="hbmImeiTacs != null" >
+        hbm_imei_tacs,
+      </if>
+      <if test="hbmImeiMinSn != null" >
+        hbm_imei_min_sn,
+      </if>
+      <if test="hbmImeiMaxSn != null" >
+        hbm_imei_max_sn,
+      </if>
+      <if test="hbmAcdFlag != null" >
+        hbm_acd_flag,
+      </if>
+      <if test="hbmAcdShortFlag != null" >
+        hbm_acd_short_flag,
+      </if>
+      <if test="hbmAcdTimeMin != null" >
+        hbm_acd_time_min,
+      </if>
+      <if test="hbmRoamingFlag != null" >
+        hbm_roaming_flag,
+      </if>
+      <if test="hbmSmsTest01 != null" >
+        hbm_sms_test01,
+      </if>
+      <if test="hbmAcdTimeMax != null" >
+        hbm_acd_time_max,
+      </if>
+      <if test="hbmAcdCountLimit != null" >
+        hbm_acd_count_limit,
+      </if>
+      <if test="hbmAcdFailCount != null" >
+        hbm_acd_fail_count,
+      </if>
+      <if test="hbmAcdFailAction != null" >
+        hbm_acd_fail_action,
+      </if>
+      <if test="hbmAcdGsmCode1 != null" >
+        hbm_acd_gsm_code1,
+      </if>
+      <if test="hbmAcdFailWeight1 != null" >
+        hbm_acd_fail_weight1,
+      </if>
+      <if test="hbmAcdGsmCode2 != null" >
+        hbm_acd_gsm_code2,
+      </if>
+      <if test="hbmAcdFailWeight2 != null" >
+        hbm_acd_fail_weight2,
+      </if>
+      <if test="hbmCallDirection != null" >
+        hbm_call_direction,
+      </if>
+      <if test="hbmCallSpecNumber != null" >
+        hbm_call_spec_number,
+      </if>
+      <if test="hbmAcdAsrFlag != null" >
+        hbm_acd_asr_flag,
+      </if>
+      <if test="hbmAcdCallCount != null" >
+        hbm_acd_call_count,
+      </if>
+      <if test="hbmAcdAsrLimit != null" >
+        hbm_acd_asr_limit,
+      </if>
+      <if test="hbmAcdAsrAction != null" >
+        hbm_acd_asr_action,
+      </if>
+      <if test="hbmAcdSmsFlag != null" >
+        hbm_acd_sms_flag,
+      </if>
+      <if test="hbmAcdSmsCount != null" >
+        hbm_acd_sms_count,
+      </if>
+      <if test="hbmAcdSmsAction != null" >
+        hbm_acd_sms_action,
+      </if>
+      <if test="hbmSmsTestFlag != null" >
+        hbm_sms_test_flag,
+      </if>
+      <if test="hbmSmsDirection != null" >
+        hbm_sms_direction,
+      </if>
+      <if test="hbmSmsInterval != null" >
+        hbm_sms_interval,
+      </if>
+      <if test="hbmSmsTestRandom != null" >
+        hbm_sms_test_random,
+      </if>
+      <if test="hbmBlockedFail2 != null" >
+        hbm_blocked_fail2,
+      </if>
+      <if test="hbmSmsCountLimit != null" >
+        hbm_sms_count_limit,
+      </if>
+      <if test="hbmBalanceFail5 != null" >
+        hbm_balance_fail5,
+      </if>
+      <if test="hbmSmsTest02 != null" >
+        hbm_sms_test02,
+      </if>
+      <if test="hbmSmsTest03 != null" >
+        hbm_sms_test03,
+      </if>
+      <if test="hbmSmsTest04 != null" >
+        hbm_sms_test04,
+      </if>
+      <if test="hbmSmsTest05 != null" >
+        hbm_sms_test05,
+      </if>
+      <if test="hbmCallTestFlag != null" >
+        hbm_call_test_flag,
+      </if>
+      <if test="hbmAcdShortAction != null" >
+        hbm_acd_short_action,
+      </if>
+      <if test="hbmAcdFailFlag != null" >
+        hbm_acd_fail_flag,
+      </if>
+      <if test="hbmCallInterval != null" >
+        hbm_call_interval,
+      </if>
+      <if test="hbmCallTestRandom != null" >
+        hbm_call_test_random,
+      </if>
+      <if test="hbmCallConnection != null" >
+        hbm_call_connection,
+      </if>
+      <if test="hbmCallDuration != null" >
+        hbm_call_duration,
+      </if>
+      <if test="hbmCallToneMode != null" >
+        hbm_call_tone_mode,
+      </if>
+      <if test="maxCallCountMonth != null" >
+        max_call_count_month,
+      </if>
+      <if test="maxCallTimeCard != null" >
+        max_call_time_card,
+      </if>
+      <if test="maxCallCountOnce != null" >
+        max_call_count_once,
+      </if>
+      <if test="maxCallCountDay != null" >
+        max_call_count_day,
+      </if>
+      <if test="maxCallTimeOnce != null" >
+        max_call_time_once,
+      </if>
+      <if test="maxCallTimeDay != null" >
+        max_call_time_day,
+      </if>
+      <if test="maxCallTimeMonth != null" >
+        max_call_time_month,
+      </if>
+      <if test="maxSmsCountCard != null" >
+        max_sms_count_card,
+      </if>
+      <if test="maxSmsCountOnce != null" >
+        max_sms_count_once,
+      </if>
+      <if test="hbmCallSwitchFlag != null" >
+        hbm_call_switch_flag,
+      </if>
+      <if test="hbmCallCountLimit != null" >
+        hbm_call_count_limit,
+      </if>
+      <if test="hbmBlockedCheck != null" >
+        hbm_blocked_check,
+      </if>
+      <if test="hbmBlockedUssdFlag != null" >
+        hbm_blocked_ussd_flag,
+      </if>
+      <if test="hbmBlockedSmsFlag != null" >
+        hbm_blocked_sms_flag,
+      </if>
+      <if test="minCallBilling02 != null" >
+        min_call_billing_02,
+      </if>
+      <if test="hbmBlockedFail != null" >
+        hbm_blocked_fail,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="hbmBlockedFail3 != null" >
+        hbm_blocked_fail3,
+      </if>
+      <if test="hbmBlockedSmsNumber != null" >
+        hbm_blocked_sms_number,
+      </if>
+      <if test="selectCond != null" >
+        select_cond,
+      </if>
+      <if test="maxCallDiscardFail != null" >
+        max_call_discard_fail,
+      </if>
+      <if test="maxCallDirection != null" >
+        max_call_direction,
+      </if>
+      <if test="minCallBillingSec != null" >
+        min_call_billing_sec,
+      </if>
+      <if test="hbmSmsSwitchFlag != null" >
+        hbm_sms_switch_flag,
+      </if>
+      <if test="maxSmsDiscardFail != null" >
+        max_sms_discard_fail,
+      </if>
+      <if test="maxSmsDirection != null" >
+        max_sms_direction,
+      </if>
+      <if test="maxUssdDiscardFail != null" >
+        max_ussd_discard_fail,
+      </if>
+      <if test="maxUssdDirection != null" >
+        max_ussd_direction,
+      </if>
+      <if test="maxCallCountCard != null" >
+        max_call_count_card,
+      </if>
+      <if test="maxSmsCountDay != null" >
+        max_sms_count_day,
+      </if>
+      <if test="maxSmsCountMonth != null" >
+        max_sms_count_month,
+      </if>
+      <if test="maxUssdCountCard != null" >
+        max_ussd_count_card,
+      </if>
+      <if test="maxUssdCountOnce != null" >
+        max_ussd_count_once,
+      </if>
+      <if test="maxUssdCountDay != null" >
+        max_ussd_count_day,
+      </if>
+      <if test="maxUssdCountMonth != null" >
+        max_ussd_count_month,
+      </if>
+      <if test="maxGroupTimeCard != null" >
+        max_group_time_card,
+      </if>
+      <if test="maxWorkTimeCard != null" >
+        max_work_time_card,
+      </if>
+      <if test="maxWorkTimeOnce != null" >
+        max_work_time_once,
+      </if>
+      <if test="maxIdleTimeOnce != null" >
+        max_idle_time_once,
+      </if>
+      <if test="maxPromTimeCard != null" >
+        max_prom_time_card,
+      </if>
+      <if test="maxPromTimeCall != null" >
+        max_prom_time_call,
+      </if>
+      <if test="maxRegFailCard != null" >
+        max_reg_fail_card,
+      </if>
+      <if test="maxNoBalanceWait != null" >
+        max_no_balance_wait,
+      </if>
+      <if test="lowBalanceSwitchMode != null" >
+        low_balance_switch_mode,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=CHAR},
+      </if>
+      <if test="tariffUuid != null" >
+        #{tariffUuid,jdbcType=INTEGER},
+      </if>
+      <if test="zoneUuid != null" >
+        #{zoneUuid,jdbcType=INTEGER},
+      </if>
+      <if test="defaultFlag != null" >
+        #{defaultFlag,jdbcType=INTEGER},
+      </if>
+      <if test="adminStatus != null" >
+        #{adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oprStatus != null" >
+        #{oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="runStatus != null" >
+        #{runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionStatus != null" >
+        #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="modType != null" >
+        #{modType,jdbcType=INTEGER},
+      </if>
+      <if test="defaultEncode != null" >
+        #{defaultEncode,jdbcType=INTEGER},
+      </if>
+      <if test="defaultSmsc != null" >
+        #{defaultSmsc,jdbcType=CHAR},
+      </if>
+      <if test="defaultProfile != null" >
+        #{defaultProfile,jdbcType=CHAR},
+      </if>
+      <if test="cardTotalCount != null" >
+        #{cardTotalCount,jdbcType=INTEGER},
+      </if>
+      <if test="cardAvailableCount != null" >
+        #{cardAvailableCount,jdbcType=INTEGER},
+      </if>
+      <if test="cardIdleCount != null" >
+        #{cardIdleCount,jdbcType=INTEGER},
+      </if>
+      <if test="simType != null" >
+        #{simType,jdbcType=INTEGER},
+      </if>
+      <if test="initBalanceVal != null" >
+        #{initBalanceVal,jdbcType=REAL},
+      </if>
+      <if test="lowBalanceLimit != null" >
+        #{lowBalanceLimit,jdbcType=REAL},
+      </if>
+      <if test="callFeeRate != null" >
+        #{callFeeRate,jdbcType=REAL},
+      </if>
+      <if test="callBillingRate != null" >
+        #{callBillingRate,jdbcType=REAL},
+      </if>
+      <if test="hbmRoleType != null" >
+        #{hbmRoleType,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromNextGrp != null" >
+        #{hbmPromNextGrp,jdbcType=INTEGER},
+      </if>
+      <if test="hbmNextBlockedGrp != null" >
+        #{hbmNextBlockedGrp,jdbcType=INTEGER},
+      </if>
+      <if test="hbmNextNobalGrp != null" >
+        #{hbmNextNobalGrp,jdbcType=INTEGER},
+      </if>
+      <if test="hbmMasterGrpUuid != null" >
+        #{hbmMasterGrpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="hbmTestGrpUuid != null" >
+        #{hbmTestGrpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="paidGrpUuid != null" >
+        #{paidGrpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="grpNotAvailableSwitch != null" >
+        #{grpNotAvailableSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="maxWorkSimCount != null" >
+        #{maxWorkSimCount,jdbcType=INTEGER},
+      </if>
+      <if test="hbmLearnNumber != null" >
+        #{hbmLearnNumber,jdbcType=INTEGER},
+      </if>
+      <if test="hbmNumberPrefix != null" >
+        #{hbmNumberPrefix,jdbcType=CHAR},
+      </if>
+      <if test="newNumberPrefix != null" >
+        #{newNumberPrefix,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromFlag != null" >
+        #{hbmPromFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromMode != null" >
+        #{hbmPromMode,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromNumber != null" >
+        #{hbmPromNumber,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromSms != null" >
+        #{hbmPromSms,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromCfm01 != null" >
+        #{hbmPromCfm01,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromSms01 != null" >
+        #{hbmPromSms01,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromReply01 != null" >
+        #{hbmPromReply01,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromCfm02 != null" >
+        #{hbmPromCfm02,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromSms02 != null" >
+        #{hbmPromSms02,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromReply02 != null" >
+        #{hbmPromReply02,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromCfm03 != null" >
+        #{hbmPromCfm03,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromSms03 != null" >
+        #{hbmPromSms03,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromReply03 != null" >
+        #{hbmPromReply03,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromCfm04 != null" >
+        #{hbmPromCfm04,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromSms04 != null" >
+        #{hbmPromSms04,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromReply04 != null" >
+        #{hbmPromReply04,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromCfm05 != null" >
+        #{hbmPromCfm05,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromSms05 != null" >
+        #{hbmPromSms05,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromReply05 != null" >
+        #{hbmPromReply05,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromCfm06 != null" >
+        #{hbmPromCfm06,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromSms06 != null" >
+        #{hbmPromSms06,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromReply06 != null" >
+        #{hbmPromReply06,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromSuccKeys != null" >
+        #{hbmPromSuccKeys,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromSuccKeys2 != null" >
+        #{hbmPromSuccKeys2,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromFailKeys != null" >
+        #{hbmPromFailKeys,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromFailKeys2 != null" >
+        #{hbmPromFailKeys2,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromFailKeys3 != null" >
+        #{hbmPromFailKeys3,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromFailKeys4 != null" >
+        #{hbmPromFailKeys4,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromFailKeys5 != null" >
+        #{hbmPromFailKeys5,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromWaitBalance != null" >
+        #{hbmPromWaitBalance,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromReqRetries != null" >
+        #{hbmPromReqRetries,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromWaitMin != null" >
+        #{hbmPromWaitMin,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromInterval != null" >
+        #{hbmPromInterval,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromDayMax != null" >
+        #{hbmPromDayMax,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsAfterReg != null" >
+        #{hbmSmsAfterReg,jdbcType=INTEGER},
+      </if>
+      <if test="hbmModeAfterReg != null" >
+        #{hbmModeAfterReg,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsNumber01 != null" >
+        #{hbmSmsNumber01,jdbcType=CHAR},
+      </if>
+      <if test="hbmSmsContent01 != null" >
+        #{hbmSmsContent01,jdbcType=CHAR},
+      </if>
+      <if test="hbmOnceAfterReg != null" >
+        #{hbmOnceAfterReg,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsAfterCall != null" >
+        #{hbmSmsAfterCall,jdbcType=INTEGER},
+      </if>
+      <if test="hbmModeAfterCall != null" >
+        #{hbmModeAfterCall,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsNumber02 != null" >
+        #{hbmSmsNumber02,jdbcType=CHAR},
+      </if>
+      <if test="hbmSmsContent02 != null" >
+        #{hbmSmsContent02,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalanceCheck != null" >
+        #{hbmBalanceCheck,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqFlag != null" >
+        #{hbmInqFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqTimeoutMin != null" >
+        #{hbmInqTimeoutMin,jdbcType=INTEGER},
+      </if>
+      <if test="hbmMaxInqCount != null" >
+        #{hbmMaxInqCount,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqBlockedFlag != null" >
+        #{hbmInqBlockedFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqAfterReg != null" >
+        #{hbmInqAfterReg,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqAfterCall != null" >
+        #{hbmInqAfterCall,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqAfterAcd != null" >
+        #{hbmInqAfterAcd,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqAfterLow != null" >
+        #{hbmInqAfterLow,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqAfterRecharge != null" >
+        #{hbmInqAfterRecharge,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqMode != null" >
+        #{hbmInqMode,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqNumber != null" >
+        #{hbmInqNumber,jdbcType=CHAR},
+      </if>
+      <if test="hbmInqContent != null" >
+        #{hbmInqContent,jdbcType=CHAR},
+      </if>
+      <if test="hbmInqConnect != null" >
+        #{hbmInqConnect,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqDuration != null" >
+        #{hbmInqDuration,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqCfm01 != null" >
+        #{hbmInqCfm01,jdbcType=CHAR},
+      </if>
+      <if test="hbmInqSms01 != null" >
+        #{hbmInqSms01,jdbcType=CHAR},
+      </if>
+      <if test="hbmInqReply01 != null" >
+        #{hbmInqReply01,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqCfm02 != null" >
+        #{hbmInqCfm02,jdbcType=CHAR},
+      </if>
+      <if test="hbmInqSms02 != null" >
+        #{hbmInqSms02,jdbcType=CHAR},
+      </if>
+      <if test="hbmInqReply02 != null" >
+        #{hbmInqReply02,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqCfm03 != null" >
+        #{hbmInqCfm03,jdbcType=CHAR},
+      </if>
+      <if test="hbmInqSms03 != null" >
+        #{hbmInqSms03,jdbcType=CHAR},
+      </if>
+      <if test="hbmInqReply03 != null" >
+        #{hbmInqReply03,jdbcType=INTEGER},
+      </if>
+      <if test="hbmUssdQuietMonitor != null" >
+        #{hbmUssdQuietMonitor,jdbcType=INTEGER},
+      </if>
+      <if test="hbmUssdQuietWaitMin != null" >
+        #{hbmUssdQuietWaitMin,jdbcType=INTEGER},
+      </if>
+      <if test="hbmUssdAwakeContent != null" >
+        #{hbmUssdAwakeContent,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalanceUssdFlag != null" >
+        #{hbmBalanceUssdFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBalanceSmsFlag != null" >
+        #{hbmBalanceSmsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBalanceSmsNumber != null" >
+        #{hbmBalanceSmsNumber,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalancePrefix != null" >
+        #{hbmBalancePrefix,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalancePrefix2 != null" >
+        #{hbmBalancePrefix2,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalancePrefix3 != null" >
+        #{hbmBalancePrefix3,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalancePrefix4 != null" >
+        #{hbmBalancePrefix4,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalancePrefix5 != null" >
+        #{hbmBalancePrefix5,jdbcType=CHAR},
+      </if>
+      <if test="hbmThousandSymbol != null" >
+        #{hbmThousandSymbol,jdbcType=INTEGER},
+      </if>
+      <if test="hbmDecimalSymbol != null" >
+        #{hbmDecimalSymbol,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBalanceRecharge != null" >
+        #{hbmBalanceRecharge,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBalanceRetries != null" >
+        #{hbmBalanceRetries,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBalanceWaitMin != null" >
+        #{hbmBalanceWaitMin,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBalanceInterval != null" >
+        #{hbmBalanceInterval,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBalanceSucc != null" >
+        #{hbmBalanceSucc,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalanceFail != null" >
+        #{hbmBalanceFail,jdbcType=CHAR},
+      </if>
+      <if test="hbmSmsSpecNumber != null" >
+        #{hbmSmsSpecNumber,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalanceFail2 != null" >
+        #{hbmBalanceFail2,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalanceFail3 != null" >
+        #{hbmBalanceFail3,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalanceFail4 != null" >
+        #{hbmBalanceFail4,jdbcType=CHAR},
+      </if>
+      <if test="hbmInitSimFlag != null" >
+        #{hbmInitSimFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmImeiFlag != null" >
+        #{hbmImeiFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmImeiTacs != null" >
+        #{hbmImeiTacs,jdbcType=CHAR},
+      </if>
+      <if test="hbmImeiMinSn != null" >
+        #{hbmImeiMinSn,jdbcType=INTEGER},
+      </if>
+      <if test="hbmImeiMaxSn != null" >
+        #{hbmImeiMaxSn,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdFlag != null" >
+        #{hbmAcdFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdShortFlag != null" >
+        #{hbmAcdShortFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdTimeMin != null" >
+        #{hbmAcdTimeMin,jdbcType=INTEGER},
+      </if>
+      <if test="hbmRoamingFlag != null" >
+        #{hbmRoamingFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsTest01 != null" >
+        #{hbmSmsTest01,jdbcType=CHAR},
+      </if>
+      <if test="hbmAcdTimeMax != null" >
+        #{hbmAcdTimeMax,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdCountLimit != null" >
+        #{hbmAcdCountLimit,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdFailCount != null" >
+        #{hbmAcdFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdFailAction != null" >
+        #{hbmAcdFailAction,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdGsmCode1 != null" >
+        #{hbmAcdGsmCode1,jdbcType=CHAR},
+      </if>
+      <if test="hbmAcdFailWeight1 != null" >
+        #{hbmAcdFailWeight1,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdGsmCode2 != null" >
+        #{hbmAcdGsmCode2,jdbcType=CHAR},
+      </if>
+      <if test="hbmAcdFailWeight2 != null" >
+        #{hbmAcdFailWeight2,jdbcType=INTEGER},
+      </if>
+      <if test="hbmCallDirection != null" >
+        #{hbmCallDirection,jdbcType=INTEGER},
+      </if>
+      <if test="hbmCallSpecNumber != null" >
+        #{hbmCallSpecNumber,jdbcType=CHAR},
+      </if>
+      <if test="hbmAcdAsrFlag != null" >
+        #{hbmAcdAsrFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdCallCount != null" >
+        #{hbmAcdCallCount,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdAsrLimit != null" >
+        #{hbmAcdAsrLimit,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdAsrAction != null" >
+        #{hbmAcdAsrAction,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdSmsFlag != null" >
+        #{hbmAcdSmsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdSmsCount != null" >
+        #{hbmAcdSmsCount,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdSmsAction != null" >
+        #{hbmAcdSmsAction,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsTestFlag != null" >
+        #{hbmSmsTestFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsDirection != null" >
+        #{hbmSmsDirection,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsInterval != null" >
+        #{hbmSmsInterval,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsTestRandom != null" >
+        #{hbmSmsTestRandom,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBlockedFail2 != null" >
+        #{hbmBlockedFail2,jdbcType=CHAR},
+      </if>
+      <if test="hbmSmsCountLimit != null" >
+        #{hbmSmsCountLimit,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBalanceFail5 != null" >
+        #{hbmBalanceFail5,jdbcType=CHAR},
+      </if>
+      <if test="hbmSmsTest02 != null" >
+        #{hbmSmsTest02,jdbcType=CHAR},
+      </if>
+      <if test="hbmSmsTest03 != null" >
+        #{hbmSmsTest03,jdbcType=CHAR},
+      </if>
+      <if test="hbmSmsTest04 != null" >
+        #{hbmSmsTest04,jdbcType=CHAR},
+      </if>
+      <if test="hbmSmsTest05 != null" >
+        #{hbmSmsTest05,jdbcType=CHAR},
+      </if>
+      <if test="hbmCallTestFlag != null" >
+        #{hbmCallTestFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdShortAction != null" >
+        #{hbmAcdShortAction,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdFailFlag != null" >
+        #{hbmAcdFailFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmCallInterval != null" >
+        #{hbmCallInterval,jdbcType=INTEGER},
+      </if>
+      <if test="hbmCallTestRandom != null" >
+        #{hbmCallTestRandom,jdbcType=INTEGER},
+      </if>
+      <if test="hbmCallConnection != null" >
+        #{hbmCallConnection,jdbcType=INTEGER},
+      </if>
+      <if test="hbmCallDuration != null" >
+        #{hbmCallDuration,jdbcType=INTEGER},
+      </if>
+      <if test="hbmCallToneMode != null" >
+        #{hbmCallToneMode,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallCountMonth != null" >
+        #{maxCallCountMonth,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallTimeCard != null" >
+        #{maxCallTimeCard,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallCountOnce != null" >
+        #{maxCallCountOnce,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallCountDay != null" >
+        #{maxCallCountDay,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallTimeOnce != null" >
+        #{maxCallTimeOnce,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallTimeDay != null" >
+        #{maxCallTimeDay,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallTimeMonth != null" >
+        #{maxCallTimeMonth,jdbcType=INTEGER},
+      </if>
+      <if test="maxSmsCountCard != null" >
+        #{maxSmsCountCard,jdbcType=INTEGER},
+      </if>
+      <if test="maxSmsCountOnce != null" >
+        #{maxSmsCountOnce,jdbcType=INTEGER},
+      </if>
+      <if test="hbmCallSwitchFlag != null" >
+        #{hbmCallSwitchFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmCallCountLimit != null" >
+        #{hbmCallCountLimit,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBlockedCheck != null" >
+        #{hbmBlockedCheck,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBlockedUssdFlag != null" >
+        #{hbmBlockedUssdFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBlockedSmsFlag != null" >
+        #{hbmBlockedSmsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="minCallBilling02 != null" >
+        #{minCallBilling02,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBlockedFail != null" >
+        #{hbmBlockedFail,jdbcType=CHAR},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBlockedFail3 != null" >
+        #{hbmBlockedFail3,jdbcType=CHAR},
+      </if>
+      <if test="hbmBlockedSmsNumber != null" >
+        #{hbmBlockedSmsNumber,jdbcType=CHAR},
+      </if>
+      <if test="selectCond != null" >
+        #{selectCond,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallDiscardFail != null" >
+        #{maxCallDiscardFail,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallDirection != null" >
+        #{maxCallDirection,jdbcType=INTEGER},
+      </if>
+      <if test="minCallBillingSec != null" >
+        #{minCallBillingSec,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsSwitchFlag != null" >
+        #{hbmSmsSwitchFlag,jdbcType=INTEGER},
+      </if>
+      <if test="maxSmsDiscardFail != null" >
+        #{maxSmsDiscardFail,jdbcType=INTEGER},
+      </if>
+      <if test="maxSmsDirection != null" >
+        #{maxSmsDirection,jdbcType=INTEGER},
+      </if>
+      <if test="maxUssdDiscardFail != null" >
+        #{maxUssdDiscardFail,jdbcType=INTEGER},
+      </if>
+      <if test="maxUssdDirection != null" >
+        #{maxUssdDirection,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallCountCard != null" >
+        #{maxCallCountCard,jdbcType=INTEGER},
+      </if>
+      <if test="maxSmsCountDay != null" >
+        #{maxSmsCountDay,jdbcType=INTEGER},
+      </if>
+      <if test="maxSmsCountMonth != null" >
+        #{maxSmsCountMonth,jdbcType=INTEGER},
+      </if>
+      <if test="maxUssdCountCard != null" >
+        #{maxUssdCountCard,jdbcType=INTEGER},
+      </if>
+      <if test="maxUssdCountOnce != null" >
+        #{maxUssdCountOnce,jdbcType=INTEGER},
+      </if>
+      <if test="maxUssdCountDay != null" >
+        #{maxUssdCountDay,jdbcType=INTEGER},
+      </if>
+      <if test="maxUssdCountMonth != null" >
+        #{maxUssdCountMonth,jdbcType=INTEGER},
+      </if>
+      <if test="maxGroupTimeCard != null" >
+        #{maxGroupTimeCard,jdbcType=INTEGER},
+      </if>
+      <if test="maxWorkTimeCard != null" >
+        #{maxWorkTimeCard,jdbcType=INTEGER},
+      </if>
+      <if test="maxWorkTimeOnce != null" >
+        #{maxWorkTimeOnce,jdbcType=INTEGER},
+      </if>
+      <if test="maxIdleTimeOnce != null" >
+        #{maxIdleTimeOnce,jdbcType=INTEGER},
+      </if>
+      <if test="maxPromTimeCard != null" >
+        #{maxPromTimeCard,jdbcType=INTEGER},
+      </if>
+      <if test="maxPromTimeCall != null" >
+        #{maxPromTimeCall,jdbcType=INTEGER},
+      </if>
+      <if test="maxRegFailCard != null" >
+        #{maxRegFailCard,jdbcType=INTEGER},
+      </if>
+      <if test="maxNoBalanceWait != null" >
+        #{maxNoBalanceWait,jdbcType=INTEGER},
+      </if>
+      <if test="lowBalanceSwitchMode != null" >
+        #{lowBalanceSwitchMode,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailDesc != null" >
+        #{detailDesc,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblGrpCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_grp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_grp
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=CHAR},
+      </if>
+      <if test="record.alias != null" >
+        alias = #{record.alias,jdbcType=CHAR},
+      </if>
+      <if test="record.tariffUuid != null" >
+        tariff_uuid = #{record.tariffUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.zoneUuid != null" >
+        zone_uuid = #{record.zoneUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.defaultFlag != null" >
+        default_flag = #{record.defaultFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.adminStatus != null" >
+        admin_status = #{record.adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.oprStatus != null" >
+        opr_status = #{record.oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.runStatus != null" >
+        run_status = #{record.runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionStatus != null" >
+        action_status = #{record.actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionResult != null" >
+        action_result = #{record.actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.modType != null" >
+        mod_type = #{record.modType,jdbcType=INTEGER},
+      </if>
+      <if test="record.defaultEncode != null" >
+        default_encode = #{record.defaultEncode,jdbcType=INTEGER},
+      </if>
+      <if test="record.defaultSmsc != null" >
+        default_smsc = #{record.defaultSmsc,jdbcType=CHAR},
+      </if>
+      <if test="record.defaultProfile != null" >
+        default_profile = #{record.defaultProfile,jdbcType=CHAR},
+      </if>
+      <if test="record.cardTotalCount != null" >
+        card_total_count = #{record.cardTotalCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardAvailableCount != null" >
+        card_available_count = #{record.cardAvailableCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardIdleCount != null" >
+        card_idle_count = #{record.cardIdleCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.simType != null" >
+        sim_type = #{record.simType,jdbcType=INTEGER},
+      </if>
+      <if test="record.initBalanceVal != null" >
+        init_balance_val = #{record.initBalanceVal,jdbcType=REAL},
+      </if>
+      <if test="record.lowBalanceLimit != null" >
+        low_balance_limit = #{record.lowBalanceLimit,jdbcType=REAL},
+      </if>
+      <if test="record.callFeeRate != null" >
+        call_fee_rate = #{record.callFeeRate,jdbcType=REAL},
+      </if>
+      <if test="record.callBillingRate != null" >
+        call_billing_rate = #{record.callBillingRate,jdbcType=REAL},
+      </if>
+      <if test="record.hbmRoleType != null" >
+        hbm_role_type = #{record.hbmRoleType,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmPromNextGrp != null" >
+        hbm_prom_next_grp = #{record.hbmPromNextGrp,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmNextBlockedGrp != null" >
+        hbm_next_blocked_grp = #{record.hbmNextBlockedGrp,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmNextNobalGrp != null" >
+        hbm_next_nobal_grp = #{record.hbmNextNobalGrp,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmMasterGrpUuid != null" >
+        hbm_master_grp_uuid = #{record.hbmMasterGrpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmTestGrpUuid != null" >
+        hbm_test_grp_uuid = #{record.hbmTestGrpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.paidGrpUuid != null" >
+        paid_grp_uuid = #{record.paidGrpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.grpNotAvailableSwitch != null" >
+        grp_not_available_switch = #{record.grpNotAvailableSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxWorkSimCount != null" >
+        max_work_sim_count = #{record.maxWorkSimCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmLearnNumber != null" >
+        hbm_learn_number = #{record.hbmLearnNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmNumberPrefix != null" >
+        hbm_number_prefix = #{record.hbmNumberPrefix,jdbcType=CHAR},
+      </if>
+      <if test="record.newNumberPrefix != null" >
+        new_number_prefix = #{record.newNumberPrefix,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromFlag != null" >
+        hbm_prom_flag = #{record.hbmPromFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmPromMode != null" >
+        hbm_prom_mode = #{record.hbmPromMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmPromNumber != null" >
+        hbm_prom_number = #{record.hbmPromNumber,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromSms != null" >
+        hbm_prom_sms = #{record.hbmPromSms,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromCfm01 != null" >
+        hbm_prom_cfm01 = #{record.hbmPromCfm01,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromSms01 != null" >
+        hbm_prom_sms01 = #{record.hbmPromSms01,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromReply01 != null" >
+        hbm_prom_reply01 = #{record.hbmPromReply01,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmPromCfm02 != null" >
+        hbm_prom_cfm02 = #{record.hbmPromCfm02,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromSms02 != null" >
+        hbm_prom_sms02 = #{record.hbmPromSms02,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromReply02 != null" >
+        hbm_prom_reply02 = #{record.hbmPromReply02,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmPromCfm03 != null" >
+        hbm_prom_cfm03 = #{record.hbmPromCfm03,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromSms03 != null" >
+        hbm_prom_sms03 = #{record.hbmPromSms03,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromReply03 != null" >
+        hbm_prom_reply03 = #{record.hbmPromReply03,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmPromCfm04 != null" >
+        hbm_prom_cfm04 = #{record.hbmPromCfm04,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromSms04 != null" >
+        hbm_prom_sms04 = #{record.hbmPromSms04,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromReply04 != null" >
+        hbm_prom_reply04 = #{record.hbmPromReply04,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmPromCfm05 != null" >
+        hbm_prom_cfm05 = #{record.hbmPromCfm05,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromSms05 != null" >
+        hbm_prom_sms05 = #{record.hbmPromSms05,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromReply05 != null" >
+        hbm_prom_reply05 = #{record.hbmPromReply05,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmPromCfm06 != null" >
+        hbm_prom_cfm06 = #{record.hbmPromCfm06,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromSms06 != null" >
+        hbm_prom_sms06 = #{record.hbmPromSms06,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromReply06 != null" >
+        hbm_prom_reply06 = #{record.hbmPromReply06,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmPromSuccKeys != null" >
+        hbm_prom_succ_keys = #{record.hbmPromSuccKeys,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromSuccKeys2 != null" >
+        hbm_prom_succ_keys2 = #{record.hbmPromSuccKeys2,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromFailKeys != null" >
+        hbm_prom_fail_keys = #{record.hbmPromFailKeys,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromFailKeys2 != null" >
+        hbm_prom_fail_keys2 = #{record.hbmPromFailKeys2,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromFailKeys3 != null" >
+        hbm_prom_fail_keys3 = #{record.hbmPromFailKeys3,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromFailKeys4 != null" >
+        hbm_prom_fail_keys4 = #{record.hbmPromFailKeys4,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromFailKeys5 != null" >
+        hbm_prom_fail_keys5 = #{record.hbmPromFailKeys5,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmPromWaitBalance != null" >
+        hbm_prom_wait_balance = #{record.hbmPromWaitBalance,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmPromReqRetries != null" >
+        hbm_prom_req_retries = #{record.hbmPromReqRetries,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmPromWaitMin != null" >
+        hbm_prom_wait_min = #{record.hbmPromWaitMin,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmPromInterval != null" >
+        hbm_prom_interval = #{record.hbmPromInterval,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmPromDayMax != null" >
+        hbm_prom_day_max = #{record.hbmPromDayMax,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmSmsAfterReg != null" >
+        hbm_sms_after_reg = #{record.hbmSmsAfterReg,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmModeAfterReg != null" >
+        hbm_mode_after_reg = #{record.hbmModeAfterReg,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmSmsNumber01 != null" >
+        hbm_sms_number01 = #{record.hbmSmsNumber01,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmSmsContent01 != null" >
+        hbm_sms_content01 = #{record.hbmSmsContent01,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmOnceAfterReg != null" >
+        hbm_once_after_reg = #{record.hbmOnceAfterReg,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmSmsAfterCall != null" >
+        hbm_sms_after_call = #{record.hbmSmsAfterCall,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmModeAfterCall != null" >
+        hbm_mode_after_call = #{record.hbmModeAfterCall,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmSmsNumber02 != null" >
+        hbm_sms_number02 = #{record.hbmSmsNumber02,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmSmsContent02 != null" >
+        hbm_sms_content02 = #{record.hbmSmsContent02,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmBalanceCheck != null" >
+        hbm_balance_check = #{record.hbmBalanceCheck,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmInqFlag != null" >
+        hbm_inq_flag = #{record.hbmInqFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmInqTimeoutMin != null" >
+        hbm_inq_timeout_min = #{record.hbmInqTimeoutMin,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmMaxInqCount != null" >
+        hbm_max_inq_count = #{record.hbmMaxInqCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmInqBlockedFlag != null" >
+        hbm_inq_blocked_flag = #{record.hbmInqBlockedFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmInqAfterReg != null" >
+        hbm_inq_after_reg = #{record.hbmInqAfterReg,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmInqAfterCall != null" >
+        hbm_inq_after_call = #{record.hbmInqAfterCall,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmInqAfterAcd != null" >
+        hbm_inq_after_acd = #{record.hbmInqAfterAcd,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmInqAfterLow != null" >
+        hbm_inq_after_low = #{record.hbmInqAfterLow,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmInqAfterRecharge != null" >
+        hbm_inq_after_recharge = #{record.hbmInqAfterRecharge,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmInqMode != null" >
+        hbm_inq_mode = #{record.hbmInqMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmInqNumber != null" >
+        hbm_inq_number = #{record.hbmInqNumber,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmInqContent != null" >
+        hbm_inq_content = #{record.hbmInqContent,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmInqConnect != null" >
+        hbm_inq_connect = #{record.hbmInqConnect,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmInqDuration != null" >
+        hbm_inq_duration = #{record.hbmInqDuration,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmInqCfm01 != null" >
+        hbm_inq_cfm01 = #{record.hbmInqCfm01,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmInqSms01 != null" >
+        hbm_inq_sms01 = #{record.hbmInqSms01,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmInqReply01 != null" >
+        hbm_inq_reply01 = #{record.hbmInqReply01,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmInqCfm02 != null" >
+        hbm_inq_cfm02 = #{record.hbmInqCfm02,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmInqSms02 != null" >
+        hbm_inq_sms02 = #{record.hbmInqSms02,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmInqReply02 != null" >
+        hbm_inq_reply02 = #{record.hbmInqReply02,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmInqCfm03 != null" >
+        hbm_inq_cfm03 = #{record.hbmInqCfm03,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmInqSms03 != null" >
+        hbm_inq_sms03 = #{record.hbmInqSms03,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmInqReply03 != null" >
+        hbm_inq_reply03 = #{record.hbmInqReply03,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmUssdQuietMonitor != null" >
+        hbm_ussd_quiet_monitor = #{record.hbmUssdQuietMonitor,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmUssdQuietWaitMin != null" >
+        hbm_ussd_quiet_wait_min = #{record.hbmUssdQuietWaitMin,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmUssdAwakeContent != null" >
+        hbm_ussd_awake_content = #{record.hbmUssdAwakeContent,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmBalanceUssdFlag != null" >
+        hbm_balance_ussd_flag = #{record.hbmBalanceUssdFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmBalanceSmsFlag != null" >
+        hbm_balance_sms_flag = #{record.hbmBalanceSmsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmBalanceSmsNumber != null" >
+        hbm_balance_sms_number = #{record.hbmBalanceSmsNumber,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmBalancePrefix != null" >
+        hbm_balance_prefix = #{record.hbmBalancePrefix,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmBalancePrefix2 != null" >
+        hbm_balance_prefix2 = #{record.hbmBalancePrefix2,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmBalancePrefix3 != null" >
+        hbm_balance_prefix3 = #{record.hbmBalancePrefix3,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmBalancePrefix4 != null" >
+        hbm_balance_prefix4 = #{record.hbmBalancePrefix4,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmBalancePrefix5 != null" >
+        hbm_balance_prefix5 = #{record.hbmBalancePrefix5,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmThousandSymbol != null" >
+        hbm_thousand_symbol = #{record.hbmThousandSymbol,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmDecimalSymbol != null" >
+        hbm_decimal_symbol = #{record.hbmDecimalSymbol,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmBalanceRecharge != null" >
+        hbm_balance_recharge = #{record.hbmBalanceRecharge,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmBalanceRetries != null" >
+        hbm_balance_retries = #{record.hbmBalanceRetries,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmBalanceWaitMin != null" >
+        hbm_balance_wait_min = #{record.hbmBalanceWaitMin,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmBalanceInterval != null" >
+        hbm_balance_interval = #{record.hbmBalanceInterval,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmBalanceSucc != null" >
+        hbm_balance_succ = #{record.hbmBalanceSucc,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmBalanceFail != null" >
+        hbm_balance_fail = #{record.hbmBalanceFail,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmSmsSpecNumber != null" >
+        hbm_sms_spec_number = #{record.hbmSmsSpecNumber,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmBalanceFail2 != null" >
+        hbm_balance_fail2 = #{record.hbmBalanceFail2,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmBalanceFail3 != null" >
+        hbm_balance_fail3 = #{record.hbmBalanceFail3,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmBalanceFail4 != null" >
+        hbm_balance_fail4 = #{record.hbmBalanceFail4,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmInitSimFlag != null" >
+        hbm_init_sim_flag = #{record.hbmInitSimFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmImeiFlag != null" >
+        hbm_imei_flag = #{record.hbmImeiFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmImeiTacs != null" >
+        hbm_imei_tacs = #{record.hbmImeiTacs,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmImeiMinSn != null" >
+        hbm_imei_min_sn = #{record.hbmImeiMinSn,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmImeiMaxSn != null" >
+        hbm_imei_max_sn = #{record.hbmImeiMaxSn,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmAcdFlag != null" >
+        hbm_acd_flag = #{record.hbmAcdFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmAcdShortFlag != null" >
+        hbm_acd_short_flag = #{record.hbmAcdShortFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmAcdTimeMin != null" >
+        hbm_acd_time_min = #{record.hbmAcdTimeMin,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmRoamingFlag != null" >
+        hbm_roaming_flag = #{record.hbmRoamingFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmSmsTest01 != null" >
+        hbm_sms_test01 = #{record.hbmSmsTest01,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmAcdTimeMax != null" >
+        hbm_acd_time_max = #{record.hbmAcdTimeMax,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmAcdCountLimit != null" >
+        hbm_acd_count_limit = #{record.hbmAcdCountLimit,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmAcdFailCount != null" >
+        hbm_acd_fail_count = #{record.hbmAcdFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmAcdFailAction != null" >
+        hbm_acd_fail_action = #{record.hbmAcdFailAction,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmAcdGsmCode1 != null" >
+        hbm_acd_gsm_code1 = #{record.hbmAcdGsmCode1,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmAcdFailWeight1 != null" >
+        hbm_acd_fail_weight1 = #{record.hbmAcdFailWeight1,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmAcdGsmCode2 != null" >
+        hbm_acd_gsm_code2 = #{record.hbmAcdGsmCode2,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmAcdFailWeight2 != null" >
+        hbm_acd_fail_weight2 = #{record.hbmAcdFailWeight2,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmCallDirection != null" >
+        hbm_call_direction = #{record.hbmCallDirection,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmCallSpecNumber != null" >
+        hbm_call_spec_number = #{record.hbmCallSpecNumber,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmAcdAsrFlag != null" >
+        hbm_acd_asr_flag = #{record.hbmAcdAsrFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmAcdCallCount != null" >
+        hbm_acd_call_count = #{record.hbmAcdCallCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmAcdAsrLimit != null" >
+        hbm_acd_asr_limit = #{record.hbmAcdAsrLimit,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmAcdAsrAction != null" >
+        hbm_acd_asr_action = #{record.hbmAcdAsrAction,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmAcdSmsFlag != null" >
+        hbm_acd_sms_flag = #{record.hbmAcdSmsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmAcdSmsCount != null" >
+        hbm_acd_sms_count = #{record.hbmAcdSmsCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmAcdSmsAction != null" >
+        hbm_acd_sms_action = #{record.hbmAcdSmsAction,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmSmsTestFlag != null" >
+        hbm_sms_test_flag = #{record.hbmSmsTestFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmSmsDirection != null" >
+        hbm_sms_direction = #{record.hbmSmsDirection,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmSmsInterval != null" >
+        hbm_sms_interval = #{record.hbmSmsInterval,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmSmsTestRandom != null" >
+        hbm_sms_test_random = #{record.hbmSmsTestRandom,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmBlockedFail2 != null" >
+        hbm_blocked_fail2 = #{record.hbmBlockedFail2,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmSmsCountLimit != null" >
+        hbm_sms_count_limit = #{record.hbmSmsCountLimit,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmBalanceFail5 != null" >
+        hbm_balance_fail5 = #{record.hbmBalanceFail5,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmSmsTest02 != null" >
+        hbm_sms_test02 = #{record.hbmSmsTest02,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmSmsTest03 != null" >
+        hbm_sms_test03 = #{record.hbmSmsTest03,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmSmsTest04 != null" >
+        hbm_sms_test04 = #{record.hbmSmsTest04,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmSmsTest05 != null" >
+        hbm_sms_test05 = #{record.hbmSmsTest05,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmCallTestFlag != null" >
+        hbm_call_test_flag = #{record.hbmCallTestFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmAcdShortAction != null" >
+        hbm_acd_short_action = #{record.hbmAcdShortAction,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmAcdFailFlag != null" >
+        hbm_acd_fail_flag = #{record.hbmAcdFailFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmCallInterval != null" >
+        hbm_call_interval = #{record.hbmCallInterval,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmCallTestRandom != null" >
+        hbm_call_test_random = #{record.hbmCallTestRandom,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmCallConnection != null" >
+        hbm_call_connection = #{record.hbmCallConnection,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmCallDuration != null" >
+        hbm_call_duration = #{record.hbmCallDuration,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmCallToneMode != null" >
+        hbm_call_tone_mode = #{record.hbmCallToneMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxCallCountMonth != null" >
+        max_call_count_month = #{record.maxCallCountMonth,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxCallTimeCard != null" >
+        max_call_time_card = #{record.maxCallTimeCard,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxCallCountOnce != null" >
+        max_call_count_once = #{record.maxCallCountOnce,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxCallCountDay != null" >
+        max_call_count_day = #{record.maxCallCountDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxCallTimeOnce != null" >
+        max_call_time_once = #{record.maxCallTimeOnce,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxCallTimeDay != null" >
+        max_call_time_day = #{record.maxCallTimeDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxCallTimeMonth != null" >
+        max_call_time_month = #{record.maxCallTimeMonth,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxSmsCountCard != null" >
+        max_sms_count_card = #{record.maxSmsCountCard,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxSmsCountOnce != null" >
+        max_sms_count_once = #{record.maxSmsCountOnce,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmCallSwitchFlag != null" >
+        hbm_call_switch_flag = #{record.hbmCallSwitchFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmCallCountLimit != null" >
+        hbm_call_count_limit = #{record.hbmCallCountLimit,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmBlockedCheck != null" >
+        hbm_blocked_check = #{record.hbmBlockedCheck,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmBlockedUssdFlag != null" >
+        hbm_blocked_ussd_flag = #{record.hbmBlockedUssdFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmBlockedSmsFlag != null" >
+        hbm_blocked_sms_flag = #{record.hbmBlockedSmsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.minCallBilling02 != null" >
+        min_call_billing_02 = #{record.minCallBilling02,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmBlockedFail != null" >
+        hbm_blocked_fail = #{record.hbmBlockedFail,jdbcType=CHAR},
+      </if>
+      <if test="record.orderType != null" >
+        order_type = #{record.orderType,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmBlockedFail3 != null" >
+        hbm_blocked_fail3 = #{record.hbmBlockedFail3,jdbcType=CHAR},
+      </if>
+      <if test="record.hbmBlockedSmsNumber != null" >
+        hbm_blocked_sms_number = #{record.hbmBlockedSmsNumber,jdbcType=CHAR},
+      </if>
+      <if test="record.selectCond != null" >
+        select_cond = #{record.selectCond,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxCallDiscardFail != null" >
+        max_call_discard_fail = #{record.maxCallDiscardFail,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxCallDirection != null" >
+        max_call_direction = #{record.maxCallDirection,jdbcType=INTEGER},
+      </if>
+      <if test="record.minCallBillingSec != null" >
+        min_call_billing_sec = #{record.minCallBillingSec,jdbcType=INTEGER},
+      </if>
+      <if test="record.hbmSmsSwitchFlag != null" >
+        hbm_sms_switch_flag = #{record.hbmSmsSwitchFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxSmsDiscardFail != null" >
+        max_sms_discard_fail = #{record.maxSmsDiscardFail,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxSmsDirection != null" >
+        max_sms_direction = #{record.maxSmsDirection,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxUssdDiscardFail != null" >
+        max_ussd_discard_fail = #{record.maxUssdDiscardFail,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxUssdDirection != null" >
+        max_ussd_direction = #{record.maxUssdDirection,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxCallCountCard != null" >
+        max_call_count_card = #{record.maxCallCountCard,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxSmsCountDay != null" >
+        max_sms_count_day = #{record.maxSmsCountDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxSmsCountMonth != null" >
+        max_sms_count_month = #{record.maxSmsCountMonth,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxUssdCountCard != null" >
+        max_ussd_count_card = #{record.maxUssdCountCard,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxUssdCountOnce != null" >
+        max_ussd_count_once = #{record.maxUssdCountOnce,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxUssdCountDay != null" >
+        max_ussd_count_day = #{record.maxUssdCountDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxUssdCountMonth != null" >
+        max_ussd_count_month = #{record.maxUssdCountMonth,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxGroupTimeCard != null" >
+        max_group_time_card = #{record.maxGroupTimeCard,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxWorkTimeCard != null" >
+        max_work_time_card = #{record.maxWorkTimeCard,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxWorkTimeOnce != null" >
+        max_work_time_once = #{record.maxWorkTimeOnce,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxIdleTimeOnce != null" >
+        max_idle_time_once = #{record.maxIdleTimeOnce,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxPromTimeCard != null" >
+        max_prom_time_card = #{record.maxPromTimeCard,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxPromTimeCall != null" >
+        max_prom_time_call = #{record.maxPromTimeCall,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxRegFailCard != null" >
+        max_reg_fail_card = #{record.maxRegFailCard,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxNoBalanceWait != null" >
+        max_no_balance_wait = #{record.maxNoBalanceWait,jdbcType=INTEGER},
+      </if>
+      <if test="record.lowBalanceSwitchMode != null" >
+        low_balance_switch_mode = #{record.lowBalanceSwitchMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.detailDesc != null" >
+        detail_desc = #{record.detailDesc,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_grp
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=CHAR},
+      alias = #{record.alias,jdbcType=CHAR},
+      tariff_uuid = #{record.tariffUuid,jdbcType=INTEGER},
+      zone_uuid = #{record.zoneUuid,jdbcType=INTEGER},
+      default_flag = #{record.defaultFlag,jdbcType=INTEGER},
+      admin_status = #{record.adminStatus,jdbcType=INTEGER},
+      opr_status = #{record.oprStatus,jdbcType=INTEGER},
+      run_status = #{record.runStatus,jdbcType=INTEGER},
+      action_status = #{record.actionStatus,jdbcType=INTEGER},
+      action_result = #{record.actionResult,jdbcType=INTEGER},
+      mod_type = #{record.modType,jdbcType=INTEGER},
+      default_encode = #{record.defaultEncode,jdbcType=INTEGER},
+      default_smsc = #{record.defaultSmsc,jdbcType=CHAR},
+      default_profile = #{record.defaultProfile,jdbcType=CHAR},
+      card_total_count = #{record.cardTotalCount,jdbcType=INTEGER},
+      card_available_count = #{record.cardAvailableCount,jdbcType=INTEGER},
+      card_idle_count = #{record.cardIdleCount,jdbcType=INTEGER},
+      sim_type = #{record.simType,jdbcType=INTEGER},
+      init_balance_val = #{record.initBalanceVal,jdbcType=REAL},
+      low_balance_limit = #{record.lowBalanceLimit,jdbcType=REAL},
+      call_fee_rate = #{record.callFeeRate,jdbcType=REAL},
+      call_billing_rate = #{record.callBillingRate,jdbcType=REAL},
+      hbm_role_type = #{record.hbmRoleType,jdbcType=INTEGER},
+      hbm_prom_next_grp = #{record.hbmPromNextGrp,jdbcType=INTEGER},
+      hbm_next_blocked_grp = #{record.hbmNextBlockedGrp,jdbcType=INTEGER},
+      hbm_next_nobal_grp = #{record.hbmNextNobalGrp,jdbcType=INTEGER},
+      hbm_master_grp_uuid = #{record.hbmMasterGrpUuid,jdbcType=INTEGER},
+      hbm_test_grp_uuid = #{record.hbmTestGrpUuid,jdbcType=INTEGER},
+      paid_grp_uuid = #{record.paidGrpUuid,jdbcType=INTEGER},
+      grp_not_available_switch = #{record.grpNotAvailableSwitch,jdbcType=INTEGER},
+      max_work_sim_count = #{record.maxWorkSimCount,jdbcType=INTEGER},
+      hbm_learn_number = #{record.hbmLearnNumber,jdbcType=INTEGER},
+      hbm_number_prefix = #{record.hbmNumberPrefix,jdbcType=CHAR},
+      new_number_prefix = #{record.newNumberPrefix,jdbcType=CHAR},
+      hbm_prom_flag = #{record.hbmPromFlag,jdbcType=INTEGER},
+      hbm_prom_mode = #{record.hbmPromMode,jdbcType=INTEGER},
+      hbm_prom_number = #{record.hbmPromNumber,jdbcType=CHAR},
+      hbm_prom_sms = #{record.hbmPromSms,jdbcType=CHAR},
+      hbm_prom_cfm01 = #{record.hbmPromCfm01,jdbcType=CHAR},
+      hbm_prom_sms01 = #{record.hbmPromSms01,jdbcType=CHAR},
+      hbm_prom_reply01 = #{record.hbmPromReply01,jdbcType=INTEGER},
+      hbm_prom_cfm02 = #{record.hbmPromCfm02,jdbcType=CHAR},
+      hbm_prom_sms02 = #{record.hbmPromSms02,jdbcType=CHAR},
+      hbm_prom_reply02 = #{record.hbmPromReply02,jdbcType=INTEGER},
+      hbm_prom_cfm03 = #{record.hbmPromCfm03,jdbcType=CHAR},
+      hbm_prom_sms03 = #{record.hbmPromSms03,jdbcType=CHAR},
+      hbm_prom_reply03 = #{record.hbmPromReply03,jdbcType=INTEGER},
+      hbm_prom_cfm04 = #{record.hbmPromCfm04,jdbcType=CHAR},
+      hbm_prom_sms04 = #{record.hbmPromSms04,jdbcType=CHAR},
+      hbm_prom_reply04 = #{record.hbmPromReply04,jdbcType=INTEGER},
+      hbm_prom_cfm05 = #{record.hbmPromCfm05,jdbcType=CHAR},
+      hbm_prom_sms05 = #{record.hbmPromSms05,jdbcType=CHAR},
+      hbm_prom_reply05 = #{record.hbmPromReply05,jdbcType=INTEGER},
+      hbm_prom_cfm06 = #{record.hbmPromCfm06,jdbcType=CHAR},
+      hbm_prom_sms06 = #{record.hbmPromSms06,jdbcType=CHAR},
+      hbm_prom_reply06 = #{record.hbmPromReply06,jdbcType=INTEGER},
+      hbm_prom_succ_keys = #{record.hbmPromSuccKeys,jdbcType=CHAR},
+      hbm_prom_succ_keys2 = #{record.hbmPromSuccKeys2,jdbcType=CHAR},
+      hbm_prom_fail_keys = #{record.hbmPromFailKeys,jdbcType=CHAR},
+      hbm_prom_fail_keys2 = #{record.hbmPromFailKeys2,jdbcType=CHAR},
+      hbm_prom_fail_keys3 = #{record.hbmPromFailKeys3,jdbcType=CHAR},
+      hbm_prom_fail_keys4 = #{record.hbmPromFailKeys4,jdbcType=CHAR},
+      hbm_prom_fail_keys5 = #{record.hbmPromFailKeys5,jdbcType=CHAR},
+      hbm_prom_wait_balance = #{record.hbmPromWaitBalance,jdbcType=INTEGER},
+      hbm_prom_req_retries = #{record.hbmPromReqRetries,jdbcType=INTEGER},
+      hbm_prom_wait_min = #{record.hbmPromWaitMin,jdbcType=INTEGER},
+      hbm_prom_interval = #{record.hbmPromInterval,jdbcType=INTEGER},
+      hbm_prom_day_max = #{record.hbmPromDayMax,jdbcType=INTEGER},
+      hbm_sms_after_reg = #{record.hbmSmsAfterReg,jdbcType=INTEGER},
+      hbm_mode_after_reg = #{record.hbmModeAfterReg,jdbcType=INTEGER},
+      hbm_sms_number01 = #{record.hbmSmsNumber01,jdbcType=CHAR},
+      hbm_sms_content01 = #{record.hbmSmsContent01,jdbcType=CHAR},
+      hbm_once_after_reg = #{record.hbmOnceAfterReg,jdbcType=INTEGER},
+      hbm_sms_after_call = #{record.hbmSmsAfterCall,jdbcType=INTEGER},
+      hbm_mode_after_call = #{record.hbmModeAfterCall,jdbcType=INTEGER},
+      hbm_sms_number02 = #{record.hbmSmsNumber02,jdbcType=CHAR},
+      hbm_sms_content02 = #{record.hbmSmsContent02,jdbcType=CHAR},
+      hbm_balance_check = #{record.hbmBalanceCheck,jdbcType=INTEGER},
+      hbm_inq_flag = #{record.hbmInqFlag,jdbcType=INTEGER},
+      hbm_inq_timeout_min = #{record.hbmInqTimeoutMin,jdbcType=INTEGER},
+      hbm_max_inq_count = #{record.hbmMaxInqCount,jdbcType=INTEGER},
+      hbm_inq_blocked_flag = #{record.hbmInqBlockedFlag,jdbcType=INTEGER},
+      hbm_inq_after_reg = #{record.hbmInqAfterReg,jdbcType=INTEGER},
+      hbm_inq_after_call = #{record.hbmInqAfterCall,jdbcType=INTEGER},
+      hbm_inq_after_acd = #{record.hbmInqAfterAcd,jdbcType=INTEGER},
+      hbm_inq_after_low = #{record.hbmInqAfterLow,jdbcType=INTEGER},
+      hbm_inq_after_recharge = #{record.hbmInqAfterRecharge,jdbcType=INTEGER},
+      hbm_inq_mode = #{record.hbmInqMode,jdbcType=INTEGER},
+      hbm_inq_number = #{record.hbmInqNumber,jdbcType=CHAR},
+      hbm_inq_content = #{record.hbmInqContent,jdbcType=CHAR},
+      hbm_inq_connect = #{record.hbmInqConnect,jdbcType=INTEGER},
+      hbm_inq_duration = #{record.hbmInqDuration,jdbcType=INTEGER},
+      hbm_inq_cfm01 = #{record.hbmInqCfm01,jdbcType=CHAR},
+      hbm_inq_sms01 = #{record.hbmInqSms01,jdbcType=CHAR},
+      hbm_inq_reply01 = #{record.hbmInqReply01,jdbcType=INTEGER},
+      hbm_inq_cfm02 = #{record.hbmInqCfm02,jdbcType=CHAR},
+      hbm_inq_sms02 = #{record.hbmInqSms02,jdbcType=CHAR},
+      hbm_inq_reply02 = #{record.hbmInqReply02,jdbcType=INTEGER},
+      hbm_inq_cfm03 = #{record.hbmInqCfm03,jdbcType=CHAR},
+      hbm_inq_sms03 = #{record.hbmInqSms03,jdbcType=CHAR},
+      hbm_inq_reply03 = #{record.hbmInqReply03,jdbcType=INTEGER},
+      hbm_ussd_quiet_monitor = #{record.hbmUssdQuietMonitor,jdbcType=INTEGER},
+      hbm_ussd_quiet_wait_min = #{record.hbmUssdQuietWaitMin,jdbcType=INTEGER},
+      hbm_ussd_awake_content = #{record.hbmUssdAwakeContent,jdbcType=CHAR},
+      hbm_balance_ussd_flag = #{record.hbmBalanceUssdFlag,jdbcType=INTEGER},
+      hbm_balance_sms_flag = #{record.hbmBalanceSmsFlag,jdbcType=INTEGER},
+      hbm_balance_sms_number = #{record.hbmBalanceSmsNumber,jdbcType=CHAR},
+      hbm_balance_prefix = #{record.hbmBalancePrefix,jdbcType=CHAR},
+      hbm_balance_prefix2 = #{record.hbmBalancePrefix2,jdbcType=CHAR},
+      hbm_balance_prefix3 = #{record.hbmBalancePrefix3,jdbcType=CHAR},
+      hbm_balance_prefix4 = #{record.hbmBalancePrefix4,jdbcType=CHAR},
+      hbm_balance_prefix5 = #{record.hbmBalancePrefix5,jdbcType=CHAR},
+      hbm_thousand_symbol = #{record.hbmThousandSymbol,jdbcType=INTEGER},
+      hbm_decimal_symbol = #{record.hbmDecimalSymbol,jdbcType=INTEGER},
+      hbm_balance_recharge = #{record.hbmBalanceRecharge,jdbcType=INTEGER},
+      hbm_balance_retries = #{record.hbmBalanceRetries,jdbcType=INTEGER},
+      hbm_balance_wait_min = #{record.hbmBalanceWaitMin,jdbcType=INTEGER},
+      hbm_balance_interval = #{record.hbmBalanceInterval,jdbcType=INTEGER},
+      hbm_balance_succ = #{record.hbmBalanceSucc,jdbcType=CHAR},
+      hbm_balance_fail = #{record.hbmBalanceFail,jdbcType=CHAR},
+      hbm_sms_spec_number = #{record.hbmSmsSpecNumber,jdbcType=CHAR},
+      hbm_balance_fail2 = #{record.hbmBalanceFail2,jdbcType=CHAR},
+      hbm_balance_fail3 = #{record.hbmBalanceFail3,jdbcType=CHAR},
+      hbm_balance_fail4 = #{record.hbmBalanceFail4,jdbcType=CHAR},
+      hbm_init_sim_flag = #{record.hbmInitSimFlag,jdbcType=INTEGER},
+      hbm_imei_flag = #{record.hbmImeiFlag,jdbcType=INTEGER},
+      hbm_imei_tacs = #{record.hbmImeiTacs,jdbcType=CHAR},
+      hbm_imei_min_sn = #{record.hbmImeiMinSn,jdbcType=INTEGER},
+      hbm_imei_max_sn = #{record.hbmImeiMaxSn,jdbcType=INTEGER},
+      hbm_acd_flag = #{record.hbmAcdFlag,jdbcType=INTEGER},
+      hbm_acd_short_flag = #{record.hbmAcdShortFlag,jdbcType=INTEGER},
+      hbm_acd_time_min = #{record.hbmAcdTimeMin,jdbcType=INTEGER},
+      hbm_roaming_flag = #{record.hbmRoamingFlag,jdbcType=INTEGER},
+      hbm_sms_test01 = #{record.hbmSmsTest01,jdbcType=CHAR},
+      hbm_acd_time_max = #{record.hbmAcdTimeMax,jdbcType=INTEGER},
+      hbm_acd_count_limit = #{record.hbmAcdCountLimit,jdbcType=INTEGER},
+      hbm_acd_fail_count = #{record.hbmAcdFailCount,jdbcType=INTEGER},
+      hbm_acd_fail_action = #{record.hbmAcdFailAction,jdbcType=INTEGER},
+      hbm_acd_gsm_code1 = #{record.hbmAcdGsmCode1,jdbcType=CHAR},
+      hbm_acd_fail_weight1 = #{record.hbmAcdFailWeight1,jdbcType=INTEGER},
+      hbm_acd_gsm_code2 = #{record.hbmAcdGsmCode2,jdbcType=CHAR},
+      hbm_acd_fail_weight2 = #{record.hbmAcdFailWeight2,jdbcType=INTEGER},
+      hbm_call_direction = #{record.hbmCallDirection,jdbcType=INTEGER},
+      hbm_call_spec_number = #{record.hbmCallSpecNumber,jdbcType=CHAR},
+      hbm_acd_asr_flag = #{record.hbmAcdAsrFlag,jdbcType=INTEGER},
+      hbm_acd_call_count = #{record.hbmAcdCallCount,jdbcType=INTEGER},
+      hbm_acd_asr_limit = #{record.hbmAcdAsrLimit,jdbcType=INTEGER},
+      hbm_acd_asr_action = #{record.hbmAcdAsrAction,jdbcType=INTEGER},
+      hbm_acd_sms_flag = #{record.hbmAcdSmsFlag,jdbcType=INTEGER},
+      hbm_acd_sms_count = #{record.hbmAcdSmsCount,jdbcType=INTEGER},
+      hbm_acd_sms_action = #{record.hbmAcdSmsAction,jdbcType=INTEGER},
+      hbm_sms_test_flag = #{record.hbmSmsTestFlag,jdbcType=INTEGER},
+      hbm_sms_direction = #{record.hbmSmsDirection,jdbcType=INTEGER},
+      hbm_sms_interval = #{record.hbmSmsInterval,jdbcType=INTEGER},
+      hbm_sms_test_random = #{record.hbmSmsTestRandom,jdbcType=INTEGER},
+      hbm_blocked_fail2 = #{record.hbmBlockedFail2,jdbcType=CHAR},
+      hbm_sms_count_limit = #{record.hbmSmsCountLimit,jdbcType=INTEGER},
+      hbm_balance_fail5 = #{record.hbmBalanceFail5,jdbcType=CHAR},
+      hbm_sms_test02 = #{record.hbmSmsTest02,jdbcType=CHAR},
+      hbm_sms_test03 = #{record.hbmSmsTest03,jdbcType=CHAR},
+      hbm_sms_test04 = #{record.hbmSmsTest04,jdbcType=CHAR},
+      hbm_sms_test05 = #{record.hbmSmsTest05,jdbcType=CHAR},
+      hbm_call_test_flag = #{record.hbmCallTestFlag,jdbcType=INTEGER},
+      hbm_acd_short_action = #{record.hbmAcdShortAction,jdbcType=INTEGER},
+      hbm_acd_fail_flag = #{record.hbmAcdFailFlag,jdbcType=INTEGER},
+      hbm_call_interval = #{record.hbmCallInterval,jdbcType=INTEGER},
+      hbm_call_test_random = #{record.hbmCallTestRandom,jdbcType=INTEGER},
+      hbm_call_connection = #{record.hbmCallConnection,jdbcType=INTEGER},
+      hbm_call_duration = #{record.hbmCallDuration,jdbcType=INTEGER},
+      hbm_call_tone_mode = #{record.hbmCallToneMode,jdbcType=INTEGER},
+      max_call_count_month = #{record.maxCallCountMonth,jdbcType=INTEGER},
+      max_call_time_card = #{record.maxCallTimeCard,jdbcType=INTEGER},
+      max_call_count_once = #{record.maxCallCountOnce,jdbcType=INTEGER},
+      max_call_count_day = #{record.maxCallCountDay,jdbcType=INTEGER},
+      max_call_time_once = #{record.maxCallTimeOnce,jdbcType=INTEGER},
+      max_call_time_day = #{record.maxCallTimeDay,jdbcType=INTEGER},
+      max_call_time_month = #{record.maxCallTimeMonth,jdbcType=INTEGER},
+      max_sms_count_card = #{record.maxSmsCountCard,jdbcType=INTEGER},
+      max_sms_count_once = #{record.maxSmsCountOnce,jdbcType=INTEGER},
+      hbm_call_switch_flag = #{record.hbmCallSwitchFlag,jdbcType=INTEGER},
+      hbm_call_count_limit = #{record.hbmCallCountLimit,jdbcType=INTEGER},
+      hbm_blocked_check = #{record.hbmBlockedCheck,jdbcType=INTEGER},
+      hbm_blocked_ussd_flag = #{record.hbmBlockedUssdFlag,jdbcType=INTEGER},
+      hbm_blocked_sms_flag = #{record.hbmBlockedSmsFlag,jdbcType=INTEGER},
+      min_call_billing_02 = #{record.minCallBilling02,jdbcType=INTEGER},
+      hbm_blocked_fail = #{record.hbmBlockedFail,jdbcType=CHAR},
+      order_type = #{record.orderType,jdbcType=INTEGER},
+      hbm_blocked_fail3 = #{record.hbmBlockedFail3,jdbcType=CHAR},
+      hbm_blocked_sms_number = #{record.hbmBlockedSmsNumber,jdbcType=CHAR},
+      select_cond = #{record.selectCond,jdbcType=INTEGER},
+      max_call_discard_fail = #{record.maxCallDiscardFail,jdbcType=INTEGER},
+      max_call_direction = #{record.maxCallDirection,jdbcType=INTEGER},
+      min_call_billing_sec = #{record.minCallBillingSec,jdbcType=INTEGER},
+      hbm_sms_switch_flag = #{record.hbmSmsSwitchFlag,jdbcType=INTEGER},
+      max_sms_discard_fail = #{record.maxSmsDiscardFail,jdbcType=INTEGER},
+      max_sms_direction = #{record.maxSmsDirection,jdbcType=INTEGER},
+      max_ussd_discard_fail = #{record.maxUssdDiscardFail,jdbcType=INTEGER},
+      max_ussd_direction = #{record.maxUssdDirection,jdbcType=INTEGER},
+      max_call_count_card = #{record.maxCallCountCard,jdbcType=INTEGER},
+      max_sms_count_day = #{record.maxSmsCountDay,jdbcType=INTEGER},
+      max_sms_count_month = #{record.maxSmsCountMonth,jdbcType=INTEGER},
+      max_ussd_count_card = #{record.maxUssdCountCard,jdbcType=INTEGER},
+      max_ussd_count_once = #{record.maxUssdCountOnce,jdbcType=INTEGER},
+      max_ussd_count_day = #{record.maxUssdCountDay,jdbcType=INTEGER},
+      max_ussd_count_month = #{record.maxUssdCountMonth,jdbcType=INTEGER},
+      max_group_time_card = #{record.maxGroupTimeCard,jdbcType=INTEGER},
+      max_work_time_card = #{record.maxWorkTimeCard,jdbcType=INTEGER},
+      max_work_time_once = #{record.maxWorkTimeOnce,jdbcType=INTEGER},
+      max_idle_time_once = #{record.maxIdleTimeOnce,jdbcType=INTEGER},
+      max_prom_time_card = #{record.maxPromTimeCard,jdbcType=INTEGER},
+      max_prom_time_call = #{record.maxPromTimeCall,jdbcType=INTEGER},
+      max_reg_fail_card = #{record.maxRegFailCard,jdbcType=INTEGER},
+      max_no_balance_wait = #{record.maxNoBalanceWait,jdbcType=INTEGER},
+      low_balance_switch_mode = #{record.lowBalanceSwitchMode,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      detail_desc = #{record.detailDesc,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblGrp" >
+    update tbl_grp
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=CHAR},
+      </if>
+      <if test="tariffUuid != null" >
+        tariff_uuid = #{tariffUuid,jdbcType=INTEGER},
+      </if>
+      <if test="zoneUuid != null" >
+        zone_uuid = #{zoneUuid,jdbcType=INTEGER},
+      </if>
+      <if test="defaultFlag != null" >
+        default_flag = #{defaultFlag,jdbcType=INTEGER},
+      </if>
+      <if test="adminStatus != null" >
+        admin_status = #{adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oprStatus != null" >
+        opr_status = #{oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="runStatus != null" >
+        run_status = #{runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionStatus != null" >
+        action_status = #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        action_result = #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="modType != null" >
+        mod_type = #{modType,jdbcType=INTEGER},
+      </if>
+      <if test="defaultEncode != null" >
+        default_encode = #{defaultEncode,jdbcType=INTEGER},
+      </if>
+      <if test="defaultSmsc != null" >
+        default_smsc = #{defaultSmsc,jdbcType=CHAR},
+      </if>
+      <if test="defaultProfile != null" >
+        default_profile = #{defaultProfile,jdbcType=CHAR},
+      </if>
+      <if test="cardTotalCount != null" >
+        card_total_count = #{cardTotalCount,jdbcType=INTEGER},
+      </if>
+      <if test="cardAvailableCount != null" >
+        card_available_count = #{cardAvailableCount,jdbcType=INTEGER},
+      </if>
+      <if test="cardIdleCount != null" >
+        card_idle_count = #{cardIdleCount,jdbcType=INTEGER},
+      </if>
+      <if test="simType != null" >
+        sim_type = #{simType,jdbcType=INTEGER},
+      </if>
+      <if test="initBalanceVal != null" >
+        init_balance_val = #{initBalanceVal,jdbcType=REAL},
+      </if>
+      <if test="lowBalanceLimit != null" >
+        low_balance_limit = #{lowBalanceLimit,jdbcType=REAL},
+      </if>
+      <if test="callFeeRate != null" >
+        call_fee_rate = #{callFeeRate,jdbcType=REAL},
+      </if>
+      <if test="callBillingRate != null" >
+        call_billing_rate = #{callBillingRate,jdbcType=REAL},
+      </if>
+      <if test="hbmRoleType != null" >
+        hbm_role_type = #{hbmRoleType,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromNextGrp != null" >
+        hbm_prom_next_grp = #{hbmPromNextGrp,jdbcType=INTEGER},
+      </if>
+      <if test="hbmNextBlockedGrp != null" >
+        hbm_next_blocked_grp = #{hbmNextBlockedGrp,jdbcType=INTEGER},
+      </if>
+      <if test="hbmNextNobalGrp != null" >
+        hbm_next_nobal_grp = #{hbmNextNobalGrp,jdbcType=INTEGER},
+      </if>
+      <if test="hbmMasterGrpUuid != null" >
+        hbm_master_grp_uuid = #{hbmMasterGrpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="hbmTestGrpUuid != null" >
+        hbm_test_grp_uuid = #{hbmTestGrpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="paidGrpUuid != null" >
+        paid_grp_uuid = #{paidGrpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="grpNotAvailableSwitch != null" >
+        grp_not_available_switch = #{grpNotAvailableSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="maxWorkSimCount != null" >
+        max_work_sim_count = #{maxWorkSimCount,jdbcType=INTEGER},
+      </if>
+      <if test="hbmLearnNumber != null" >
+        hbm_learn_number = #{hbmLearnNumber,jdbcType=INTEGER},
+      </if>
+      <if test="hbmNumberPrefix != null" >
+        hbm_number_prefix = #{hbmNumberPrefix,jdbcType=CHAR},
+      </if>
+      <if test="newNumberPrefix != null" >
+        new_number_prefix = #{newNumberPrefix,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromFlag != null" >
+        hbm_prom_flag = #{hbmPromFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromMode != null" >
+        hbm_prom_mode = #{hbmPromMode,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromNumber != null" >
+        hbm_prom_number = #{hbmPromNumber,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromSms != null" >
+        hbm_prom_sms = #{hbmPromSms,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromCfm01 != null" >
+        hbm_prom_cfm01 = #{hbmPromCfm01,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromSms01 != null" >
+        hbm_prom_sms01 = #{hbmPromSms01,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromReply01 != null" >
+        hbm_prom_reply01 = #{hbmPromReply01,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromCfm02 != null" >
+        hbm_prom_cfm02 = #{hbmPromCfm02,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromSms02 != null" >
+        hbm_prom_sms02 = #{hbmPromSms02,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromReply02 != null" >
+        hbm_prom_reply02 = #{hbmPromReply02,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromCfm03 != null" >
+        hbm_prom_cfm03 = #{hbmPromCfm03,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromSms03 != null" >
+        hbm_prom_sms03 = #{hbmPromSms03,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromReply03 != null" >
+        hbm_prom_reply03 = #{hbmPromReply03,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromCfm04 != null" >
+        hbm_prom_cfm04 = #{hbmPromCfm04,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromSms04 != null" >
+        hbm_prom_sms04 = #{hbmPromSms04,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromReply04 != null" >
+        hbm_prom_reply04 = #{hbmPromReply04,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromCfm05 != null" >
+        hbm_prom_cfm05 = #{hbmPromCfm05,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromSms05 != null" >
+        hbm_prom_sms05 = #{hbmPromSms05,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromReply05 != null" >
+        hbm_prom_reply05 = #{hbmPromReply05,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromCfm06 != null" >
+        hbm_prom_cfm06 = #{hbmPromCfm06,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromSms06 != null" >
+        hbm_prom_sms06 = #{hbmPromSms06,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromReply06 != null" >
+        hbm_prom_reply06 = #{hbmPromReply06,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromSuccKeys != null" >
+        hbm_prom_succ_keys = #{hbmPromSuccKeys,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromSuccKeys2 != null" >
+        hbm_prom_succ_keys2 = #{hbmPromSuccKeys2,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromFailKeys != null" >
+        hbm_prom_fail_keys = #{hbmPromFailKeys,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromFailKeys2 != null" >
+        hbm_prom_fail_keys2 = #{hbmPromFailKeys2,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromFailKeys3 != null" >
+        hbm_prom_fail_keys3 = #{hbmPromFailKeys3,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromFailKeys4 != null" >
+        hbm_prom_fail_keys4 = #{hbmPromFailKeys4,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromFailKeys5 != null" >
+        hbm_prom_fail_keys5 = #{hbmPromFailKeys5,jdbcType=CHAR},
+      </if>
+      <if test="hbmPromWaitBalance != null" >
+        hbm_prom_wait_balance = #{hbmPromWaitBalance,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromReqRetries != null" >
+        hbm_prom_req_retries = #{hbmPromReqRetries,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromWaitMin != null" >
+        hbm_prom_wait_min = #{hbmPromWaitMin,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromInterval != null" >
+        hbm_prom_interval = #{hbmPromInterval,jdbcType=INTEGER},
+      </if>
+      <if test="hbmPromDayMax != null" >
+        hbm_prom_day_max = #{hbmPromDayMax,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsAfterReg != null" >
+        hbm_sms_after_reg = #{hbmSmsAfterReg,jdbcType=INTEGER},
+      </if>
+      <if test="hbmModeAfterReg != null" >
+        hbm_mode_after_reg = #{hbmModeAfterReg,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsNumber01 != null" >
+        hbm_sms_number01 = #{hbmSmsNumber01,jdbcType=CHAR},
+      </if>
+      <if test="hbmSmsContent01 != null" >
+        hbm_sms_content01 = #{hbmSmsContent01,jdbcType=CHAR},
+      </if>
+      <if test="hbmOnceAfterReg != null" >
+        hbm_once_after_reg = #{hbmOnceAfterReg,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsAfterCall != null" >
+        hbm_sms_after_call = #{hbmSmsAfterCall,jdbcType=INTEGER},
+      </if>
+      <if test="hbmModeAfterCall != null" >
+        hbm_mode_after_call = #{hbmModeAfterCall,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsNumber02 != null" >
+        hbm_sms_number02 = #{hbmSmsNumber02,jdbcType=CHAR},
+      </if>
+      <if test="hbmSmsContent02 != null" >
+        hbm_sms_content02 = #{hbmSmsContent02,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalanceCheck != null" >
+        hbm_balance_check = #{hbmBalanceCheck,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqFlag != null" >
+        hbm_inq_flag = #{hbmInqFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqTimeoutMin != null" >
+        hbm_inq_timeout_min = #{hbmInqTimeoutMin,jdbcType=INTEGER},
+      </if>
+      <if test="hbmMaxInqCount != null" >
+        hbm_max_inq_count = #{hbmMaxInqCount,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqBlockedFlag != null" >
+        hbm_inq_blocked_flag = #{hbmInqBlockedFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqAfterReg != null" >
+        hbm_inq_after_reg = #{hbmInqAfterReg,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqAfterCall != null" >
+        hbm_inq_after_call = #{hbmInqAfterCall,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqAfterAcd != null" >
+        hbm_inq_after_acd = #{hbmInqAfterAcd,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqAfterLow != null" >
+        hbm_inq_after_low = #{hbmInqAfterLow,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqAfterRecharge != null" >
+        hbm_inq_after_recharge = #{hbmInqAfterRecharge,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqMode != null" >
+        hbm_inq_mode = #{hbmInqMode,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqNumber != null" >
+        hbm_inq_number = #{hbmInqNumber,jdbcType=CHAR},
+      </if>
+      <if test="hbmInqContent != null" >
+        hbm_inq_content = #{hbmInqContent,jdbcType=CHAR},
+      </if>
+      <if test="hbmInqConnect != null" >
+        hbm_inq_connect = #{hbmInqConnect,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqDuration != null" >
+        hbm_inq_duration = #{hbmInqDuration,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqCfm01 != null" >
+        hbm_inq_cfm01 = #{hbmInqCfm01,jdbcType=CHAR},
+      </if>
+      <if test="hbmInqSms01 != null" >
+        hbm_inq_sms01 = #{hbmInqSms01,jdbcType=CHAR},
+      </if>
+      <if test="hbmInqReply01 != null" >
+        hbm_inq_reply01 = #{hbmInqReply01,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqCfm02 != null" >
+        hbm_inq_cfm02 = #{hbmInqCfm02,jdbcType=CHAR},
+      </if>
+      <if test="hbmInqSms02 != null" >
+        hbm_inq_sms02 = #{hbmInqSms02,jdbcType=CHAR},
+      </if>
+      <if test="hbmInqReply02 != null" >
+        hbm_inq_reply02 = #{hbmInqReply02,jdbcType=INTEGER},
+      </if>
+      <if test="hbmInqCfm03 != null" >
+        hbm_inq_cfm03 = #{hbmInqCfm03,jdbcType=CHAR},
+      </if>
+      <if test="hbmInqSms03 != null" >
+        hbm_inq_sms03 = #{hbmInqSms03,jdbcType=CHAR},
+      </if>
+      <if test="hbmInqReply03 != null" >
+        hbm_inq_reply03 = #{hbmInqReply03,jdbcType=INTEGER},
+      </if>
+      <if test="hbmUssdQuietMonitor != null" >
+        hbm_ussd_quiet_monitor = #{hbmUssdQuietMonitor,jdbcType=INTEGER},
+      </if>
+      <if test="hbmUssdQuietWaitMin != null" >
+        hbm_ussd_quiet_wait_min = #{hbmUssdQuietWaitMin,jdbcType=INTEGER},
+      </if>
+      <if test="hbmUssdAwakeContent != null" >
+        hbm_ussd_awake_content = #{hbmUssdAwakeContent,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalanceUssdFlag != null" >
+        hbm_balance_ussd_flag = #{hbmBalanceUssdFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBalanceSmsFlag != null" >
+        hbm_balance_sms_flag = #{hbmBalanceSmsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBalanceSmsNumber != null" >
+        hbm_balance_sms_number = #{hbmBalanceSmsNumber,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalancePrefix != null" >
+        hbm_balance_prefix = #{hbmBalancePrefix,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalancePrefix2 != null" >
+        hbm_balance_prefix2 = #{hbmBalancePrefix2,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalancePrefix3 != null" >
+        hbm_balance_prefix3 = #{hbmBalancePrefix3,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalancePrefix4 != null" >
+        hbm_balance_prefix4 = #{hbmBalancePrefix4,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalancePrefix5 != null" >
+        hbm_balance_prefix5 = #{hbmBalancePrefix5,jdbcType=CHAR},
+      </if>
+      <if test="hbmThousandSymbol != null" >
+        hbm_thousand_symbol = #{hbmThousandSymbol,jdbcType=INTEGER},
+      </if>
+      <if test="hbmDecimalSymbol != null" >
+        hbm_decimal_symbol = #{hbmDecimalSymbol,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBalanceRecharge != null" >
+        hbm_balance_recharge = #{hbmBalanceRecharge,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBalanceRetries != null" >
+        hbm_balance_retries = #{hbmBalanceRetries,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBalanceWaitMin != null" >
+        hbm_balance_wait_min = #{hbmBalanceWaitMin,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBalanceInterval != null" >
+        hbm_balance_interval = #{hbmBalanceInterval,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBalanceSucc != null" >
+        hbm_balance_succ = #{hbmBalanceSucc,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalanceFail != null" >
+        hbm_balance_fail = #{hbmBalanceFail,jdbcType=CHAR},
+      </if>
+      <if test="hbmSmsSpecNumber != null" >
+        hbm_sms_spec_number = #{hbmSmsSpecNumber,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalanceFail2 != null" >
+        hbm_balance_fail2 = #{hbmBalanceFail2,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalanceFail3 != null" >
+        hbm_balance_fail3 = #{hbmBalanceFail3,jdbcType=CHAR},
+      </if>
+      <if test="hbmBalanceFail4 != null" >
+        hbm_balance_fail4 = #{hbmBalanceFail4,jdbcType=CHAR},
+      </if>
+      <if test="hbmInitSimFlag != null" >
+        hbm_init_sim_flag = #{hbmInitSimFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmImeiFlag != null" >
+        hbm_imei_flag = #{hbmImeiFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmImeiTacs != null" >
+        hbm_imei_tacs = #{hbmImeiTacs,jdbcType=CHAR},
+      </if>
+      <if test="hbmImeiMinSn != null" >
+        hbm_imei_min_sn = #{hbmImeiMinSn,jdbcType=INTEGER},
+      </if>
+      <if test="hbmImeiMaxSn != null" >
+        hbm_imei_max_sn = #{hbmImeiMaxSn,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdFlag != null" >
+        hbm_acd_flag = #{hbmAcdFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdShortFlag != null" >
+        hbm_acd_short_flag = #{hbmAcdShortFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdTimeMin != null" >
+        hbm_acd_time_min = #{hbmAcdTimeMin,jdbcType=INTEGER},
+      </if>
+      <if test="hbmRoamingFlag != null" >
+        hbm_roaming_flag = #{hbmRoamingFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsTest01 != null" >
+        hbm_sms_test01 = #{hbmSmsTest01,jdbcType=CHAR},
+      </if>
+      <if test="hbmAcdTimeMax != null" >
+        hbm_acd_time_max = #{hbmAcdTimeMax,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdCountLimit != null" >
+        hbm_acd_count_limit = #{hbmAcdCountLimit,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdFailCount != null" >
+        hbm_acd_fail_count = #{hbmAcdFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdFailAction != null" >
+        hbm_acd_fail_action = #{hbmAcdFailAction,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdGsmCode1 != null" >
+        hbm_acd_gsm_code1 = #{hbmAcdGsmCode1,jdbcType=CHAR},
+      </if>
+      <if test="hbmAcdFailWeight1 != null" >
+        hbm_acd_fail_weight1 = #{hbmAcdFailWeight1,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdGsmCode2 != null" >
+        hbm_acd_gsm_code2 = #{hbmAcdGsmCode2,jdbcType=CHAR},
+      </if>
+      <if test="hbmAcdFailWeight2 != null" >
+        hbm_acd_fail_weight2 = #{hbmAcdFailWeight2,jdbcType=INTEGER},
+      </if>
+      <if test="hbmCallDirection != null" >
+        hbm_call_direction = #{hbmCallDirection,jdbcType=INTEGER},
+      </if>
+      <if test="hbmCallSpecNumber != null" >
+        hbm_call_spec_number = #{hbmCallSpecNumber,jdbcType=CHAR},
+      </if>
+      <if test="hbmAcdAsrFlag != null" >
+        hbm_acd_asr_flag = #{hbmAcdAsrFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdCallCount != null" >
+        hbm_acd_call_count = #{hbmAcdCallCount,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdAsrLimit != null" >
+        hbm_acd_asr_limit = #{hbmAcdAsrLimit,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdAsrAction != null" >
+        hbm_acd_asr_action = #{hbmAcdAsrAction,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdSmsFlag != null" >
+        hbm_acd_sms_flag = #{hbmAcdSmsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdSmsCount != null" >
+        hbm_acd_sms_count = #{hbmAcdSmsCount,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdSmsAction != null" >
+        hbm_acd_sms_action = #{hbmAcdSmsAction,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsTestFlag != null" >
+        hbm_sms_test_flag = #{hbmSmsTestFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsDirection != null" >
+        hbm_sms_direction = #{hbmSmsDirection,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsInterval != null" >
+        hbm_sms_interval = #{hbmSmsInterval,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsTestRandom != null" >
+        hbm_sms_test_random = #{hbmSmsTestRandom,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBlockedFail2 != null" >
+        hbm_blocked_fail2 = #{hbmBlockedFail2,jdbcType=CHAR},
+      </if>
+      <if test="hbmSmsCountLimit != null" >
+        hbm_sms_count_limit = #{hbmSmsCountLimit,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBalanceFail5 != null" >
+        hbm_balance_fail5 = #{hbmBalanceFail5,jdbcType=CHAR},
+      </if>
+      <if test="hbmSmsTest02 != null" >
+        hbm_sms_test02 = #{hbmSmsTest02,jdbcType=CHAR},
+      </if>
+      <if test="hbmSmsTest03 != null" >
+        hbm_sms_test03 = #{hbmSmsTest03,jdbcType=CHAR},
+      </if>
+      <if test="hbmSmsTest04 != null" >
+        hbm_sms_test04 = #{hbmSmsTest04,jdbcType=CHAR},
+      </if>
+      <if test="hbmSmsTest05 != null" >
+        hbm_sms_test05 = #{hbmSmsTest05,jdbcType=CHAR},
+      </if>
+      <if test="hbmCallTestFlag != null" >
+        hbm_call_test_flag = #{hbmCallTestFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdShortAction != null" >
+        hbm_acd_short_action = #{hbmAcdShortAction,jdbcType=INTEGER},
+      </if>
+      <if test="hbmAcdFailFlag != null" >
+        hbm_acd_fail_flag = #{hbmAcdFailFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmCallInterval != null" >
+        hbm_call_interval = #{hbmCallInterval,jdbcType=INTEGER},
+      </if>
+      <if test="hbmCallTestRandom != null" >
+        hbm_call_test_random = #{hbmCallTestRandom,jdbcType=INTEGER},
+      </if>
+      <if test="hbmCallConnection != null" >
+        hbm_call_connection = #{hbmCallConnection,jdbcType=INTEGER},
+      </if>
+      <if test="hbmCallDuration != null" >
+        hbm_call_duration = #{hbmCallDuration,jdbcType=INTEGER},
+      </if>
+      <if test="hbmCallToneMode != null" >
+        hbm_call_tone_mode = #{hbmCallToneMode,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallCountMonth != null" >
+        max_call_count_month = #{maxCallCountMonth,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallTimeCard != null" >
+        max_call_time_card = #{maxCallTimeCard,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallCountOnce != null" >
+        max_call_count_once = #{maxCallCountOnce,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallCountDay != null" >
+        max_call_count_day = #{maxCallCountDay,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallTimeOnce != null" >
+        max_call_time_once = #{maxCallTimeOnce,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallTimeDay != null" >
+        max_call_time_day = #{maxCallTimeDay,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallTimeMonth != null" >
+        max_call_time_month = #{maxCallTimeMonth,jdbcType=INTEGER},
+      </if>
+      <if test="maxSmsCountCard != null" >
+        max_sms_count_card = #{maxSmsCountCard,jdbcType=INTEGER},
+      </if>
+      <if test="maxSmsCountOnce != null" >
+        max_sms_count_once = #{maxSmsCountOnce,jdbcType=INTEGER},
+      </if>
+      <if test="hbmCallSwitchFlag != null" >
+        hbm_call_switch_flag = #{hbmCallSwitchFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmCallCountLimit != null" >
+        hbm_call_count_limit = #{hbmCallCountLimit,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBlockedCheck != null" >
+        hbm_blocked_check = #{hbmBlockedCheck,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBlockedUssdFlag != null" >
+        hbm_blocked_ussd_flag = #{hbmBlockedUssdFlag,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBlockedSmsFlag != null" >
+        hbm_blocked_sms_flag = #{hbmBlockedSmsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="minCallBilling02 != null" >
+        min_call_billing_02 = #{minCallBilling02,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBlockedFail != null" >
+        hbm_blocked_fail = #{hbmBlockedFail,jdbcType=CHAR},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="hbmBlockedFail3 != null" >
+        hbm_blocked_fail3 = #{hbmBlockedFail3,jdbcType=CHAR},
+      </if>
+      <if test="hbmBlockedSmsNumber != null" >
+        hbm_blocked_sms_number = #{hbmBlockedSmsNumber,jdbcType=CHAR},
+      </if>
+      <if test="selectCond != null" >
+        select_cond = #{selectCond,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallDiscardFail != null" >
+        max_call_discard_fail = #{maxCallDiscardFail,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallDirection != null" >
+        max_call_direction = #{maxCallDirection,jdbcType=INTEGER},
+      </if>
+      <if test="minCallBillingSec != null" >
+        min_call_billing_sec = #{minCallBillingSec,jdbcType=INTEGER},
+      </if>
+      <if test="hbmSmsSwitchFlag != null" >
+        hbm_sms_switch_flag = #{hbmSmsSwitchFlag,jdbcType=INTEGER},
+      </if>
+      <if test="maxSmsDiscardFail != null" >
+        max_sms_discard_fail = #{maxSmsDiscardFail,jdbcType=INTEGER},
+      </if>
+      <if test="maxSmsDirection != null" >
+        max_sms_direction = #{maxSmsDirection,jdbcType=INTEGER},
+      </if>
+      <if test="maxUssdDiscardFail != null" >
+        max_ussd_discard_fail = #{maxUssdDiscardFail,jdbcType=INTEGER},
+      </if>
+      <if test="maxUssdDirection != null" >
+        max_ussd_direction = #{maxUssdDirection,jdbcType=INTEGER},
+      </if>
+      <if test="maxCallCountCard != null" >
+        max_call_count_card = #{maxCallCountCard,jdbcType=INTEGER},
+      </if>
+      <if test="maxSmsCountDay != null" >
+        max_sms_count_day = #{maxSmsCountDay,jdbcType=INTEGER},
+      </if>
+      <if test="maxSmsCountMonth != null" >
+        max_sms_count_month = #{maxSmsCountMonth,jdbcType=INTEGER},
+      </if>
+      <if test="maxUssdCountCard != null" >
+        max_ussd_count_card = #{maxUssdCountCard,jdbcType=INTEGER},
+      </if>
+      <if test="maxUssdCountOnce != null" >
+        max_ussd_count_once = #{maxUssdCountOnce,jdbcType=INTEGER},
+      </if>
+      <if test="maxUssdCountDay != null" >
+        max_ussd_count_day = #{maxUssdCountDay,jdbcType=INTEGER},
+      </if>
+      <if test="maxUssdCountMonth != null" >
+        max_ussd_count_month = #{maxUssdCountMonth,jdbcType=INTEGER},
+      </if>
+      <if test="maxGroupTimeCard != null" >
+        max_group_time_card = #{maxGroupTimeCard,jdbcType=INTEGER},
+      </if>
+      <if test="maxWorkTimeCard != null" >
+        max_work_time_card = #{maxWorkTimeCard,jdbcType=INTEGER},
+      </if>
+      <if test="maxWorkTimeOnce != null" >
+        max_work_time_once = #{maxWorkTimeOnce,jdbcType=INTEGER},
+      </if>
+      <if test="maxIdleTimeOnce != null" >
+        max_idle_time_once = #{maxIdleTimeOnce,jdbcType=INTEGER},
+      </if>
+      <if test="maxPromTimeCard != null" >
+        max_prom_time_card = #{maxPromTimeCard,jdbcType=INTEGER},
+      </if>
+      <if test="maxPromTimeCall != null" >
+        max_prom_time_call = #{maxPromTimeCall,jdbcType=INTEGER},
+      </if>
+      <if test="maxRegFailCard != null" >
+        max_reg_fail_card = #{maxRegFailCard,jdbcType=INTEGER},
+      </if>
+      <if test="maxNoBalanceWait != null" >
+        max_no_balance_wait = #{maxNoBalanceWait,jdbcType=INTEGER},
+      </if>
+      <if test="lowBalanceSwitchMode != null" >
+        low_balance_switch_mode = #{lowBalanceSwitchMode,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc = #{detailDesc,jdbcType=CHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblGrp" >
+    update tbl_grp
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      name = #{name,jdbcType=CHAR},
+      alias = #{alias,jdbcType=CHAR},
+      tariff_uuid = #{tariffUuid,jdbcType=INTEGER},
+      zone_uuid = #{zoneUuid,jdbcType=INTEGER},
+      default_flag = #{defaultFlag,jdbcType=INTEGER},
+      admin_status = #{adminStatus,jdbcType=INTEGER},
+      opr_status = #{oprStatus,jdbcType=INTEGER},
+      run_status = #{runStatus,jdbcType=INTEGER},
+      action_status = #{actionStatus,jdbcType=INTEGER},
+      action_result = #{actionResult,jdbcType=INTEGER},
+      mod_type = #{modType,jdbcType=INTEGER},
+      default_encode = #{defaultEncode,jdbcType=INTEGER},
+      default_smsc = #{defaultSmsc,jdbcType=CHAR},
+      default_profile = #{defaultProfile,jdbcType=CHAR},
+      card_total_count = #{cardTotalCount,jdbcType=INTEGER},
+      card_available_count = #{cardAvailableCount,jdbcType=INTEGER},
+      card_idle_count = #{cardIdleCount,jdbcType=INTEGER},
+      sim_type = #{simType,jdbcType=INTEGER},
+      init_balance_val = #{initBalanceVal,jdbcType=REAL},
+      low_balance_limit = #{lowBalanceLimit,jdbcType=REAL},
+      call_fee_rate = #{callFeeRate,jdbcType=REAL},
+      call_billing_rate = #{callBillingRate,jdbcType=REAL},
+      hbm_role_type = #{hbmRoleType,jdbcType=INTEGER},
+      hbm_prom_next_grp = #{hbmPromNextGrp,jdbcType=INTEGER},
+      hbm_next_blocked_grp = #{hbmNextBlockedGrp,jdbcType=INTEGER},
+      hbm_next_nobal_grp = #{hbmNextNobalGrp,jdbcType=INTEGER},
+      hbm_master_grp_uuid = #{hbmMasterGrpUuid,jdbcType=INTEGER},
+      hbm_test_grp_uuid = #{hbmTestGrpUuid,jdbcType=INTEGER},
+      paid_grp_uuid = #{paidGrpUuid,jdbcType=INTEGER},
+      grp_not_available_switch = #{grpNotAvailableSwitch,jdbcType=INTEGER},
+      max_work_sim_count = #{maxWorkSimCount,jdbcType=INTEGER},
+      hbm_learn_number = #{hbmLearnNumber,jdbcType=INTEGER},
+      hbm_number_prefix = #{hbmNumberPrefix,jdbcType=CHAR},
+      new_number_prefix = #{newNumberPrefix,jdbcType=CHAR},
+      hbm_prom_flag = #{hbmPromFlag,jdbcType=INTEGER},
+      hbm_prom_mode = #{hbmPromMode,jdbcType=INTEGER},
+      hbm_prom_number = #{hbmPromNumber,jdbcType=CHAR},
+      hbm_prom_sms = #{hbmPromSms,jdbcType=CHAR},
+      hbm_prom_cfm01 = #{hbmPromCfm01,jdbcType=CHAR},
+      hbm_prom_sms01 = #{hbmPromSms01,jdbcType=CHAR},
+      hbm_prom_reply01 = #{hbmPromReply01,jdbcType=INTEGER},
+      hbm_prom_cfm02 = #{hbmPromCfm02,jdbcType=CHAR},
+      hbm_prom_sms02 = #{hbmPromSms02,jdbcType=CHAR},
+      hbm_prom_reply02 = #{hbmPromReply02,jdbcType=INTEGER},
+      hbm_prom_cfm03 = #{hbmPromCfm03,jdbcType=CHAR},
+      hbm_prom_sms03 = #{hbmPromSms03,jdbcType=CHAR},
+      hbm_prom_reply03 = #{hbmPromReply03,jdbcType=INTEGER},
+      hbm_prom_cfm04 = #{hbmPromCfm04,jdbcType=CHAR},
+      hbm_prom_sms04 = #{hbmPromSms04,jdbcType=CHAR},
+      hbm_prom_reply04 = #{hbmPromReply04,jdbcType=INTEGER},
+      hbm_prom_cfm05 = #{hbmPromCfm05,jdbcType=CHAR},
+      hbm_prom_sms05 = #{hbmPromSms05,jdbcType=CHAR},
+      hbm_prom_reply05 = #{hbmPromReply05,jdbcType=INTEGER},
+      hbm_prom_cfm06 = #{hbmPromCfm06,jdbcType=CHAR},
+      hbm_prom_sms06 = #{hbmPromSms06,jdbcType=CHAR},
+      hbm_prom_reply06 = #{hbmPromReply06,jdbcType=INTEGER},
+      hbm_prom_succ_keys = #{hbmPromSuccKeys,jdbcType=CHAR},
+      hbm_prom_succ_keys2 = #{hbmPromSuccKeys2,jdbcType=CHAR},
+      hbm_prom_fail_keys = #{hbmPromFailKeys,jdbcType=CHAR},
+      hbm_prom_fail_keys2 = #{hbmPromFailKeys2,jdbcType=CHAR},
+      hbm_prom_fail_keys3 = #{hbmPromFailKeys3,jdbcType=CHAR},
+      hbm_prom_fail_keys4 = #{hbmPromFailKeys4,jdbcType=CHAR},
+      hbm_prom_fail_keys5 = #{hbmPromFailKeys5,jdbcType=CHAR},
+      hbm_prom_wait_balance = #{hbmPromWaitBalance,jdbcType=INTEGER},
+      hbm_prom_req_retries = #{hbmPromReqRetries,jdbcType=INTEGER},
+      hbm_prom_wait_min = #{hbmPromWaitMin,jdbcType=INTEGER},
+      hbm_prom_interval = #{hbmPromInterval,jdbcType=INTEGER},
+      hbm_prom_day_max = #{hbmPromDayMax,jdbcType=INTEGER},
+      hbm_sms_after_reg = #{hbmSmsAfterReg,jdbcType=INTEGER},
+      hbm_mode_after_reg = #{hbmModeAfterReg,jdbcType=INTEGER},
+      hbm_sms_number01 = #{hbmSmsNumber01,jdbcType=CHAR},
+      hbm_sms_content01 = #{hbmSmsContent01,jdbcType=CHAR},
+      hbm_once_after_reg = #{hbmOnceAfterReg,jdbcType=INTEGER},
+      hbm_sms_after_call = #{hbmSmsAfterCall,jdbcType=INTEGER},
+      hbm_mode_after_call = #{hbmModeAfterCall,jdbcType=INTEGER},
+      hbm_sms_number02 = #{hbmSmsNumber02,jdbcType=CHAR},
+      hbm_sms_content02 = #{hbmSmsContent02,jdbcType=CHAR},
+      hbm_balance_check = #{hbmBalanceCheck,jdbcType=INTEGER},
+      hbm_inq_flag = #{hbmInqFlag,jdbcType=INTEGER},
+      hbm_inq_timeout_min = #{hbmInqTimeoutMin,jdbcType=INTEGER},
+      hbm_max_inq_count = #{hbmMaxInqCount,jdbcType=INTEGER},
+      hbm_inq_blocked_flag = #{hbmInqBlockedFlag,jdbcType=INTEGER},
+      hbm_inq_after_reg = #{hbmInqAfterReg,jdbcType=INTEGER},
+      hbm_inq_after_call = #{hbmInqAfterCall,jdbcType=INTEGER},
+      hbm_inq_after_acd = #{hbmInqAfterAcd,jdbcType=INTEGER},
+      hbm_inq_after_low = #{hbmInqAfterLow,jdbcType=INTEGER},
+      hbm_inq_after_recharge = #{hbmInqAfterRecharge,jdbcType=INTEGER},
+      hbm_inq_mode = #{hbmInqMode,jdbcType=INTEGER},
+      hbm_inq_number = #{hbmInqNumber,jdbcType=CHAR},
+      hbm_inq_content = #{hbmInqContent,jdbcType=CHAR},
+      hbm_inq_connect = #{hbmInqConnect,jdbcType=INTEGER},
+      hbm_inq_duration = #{hbmInqDuration,jdbcType=INTEGER},
+      hbm_inq_cfm01 = #{hbmInqCfm01,jdbcType=CHAR},
+      hbm_inq_sms01 = #{hbmInqSms01,jdbcType=CHAR},
+      hbm_inq_reply01 = #{hbmInqReply01,jdbcType=INTEGER},
+      hbm_inq_cfm02 = #{hbmInqCfm02,jdbcType=CHAR},
+      hbm_inq_sms02 = #{hbmInqSms02,jdbcType=CHAR},
+      hbm_inq_reply02 = #{hbmInqReply02,jdbcType=INTEGER},
+      hbm_inq_cfm03 = #{hbmInqCfm03,jdbcType=CHAR},
+      hbm_inq_sms03 = #{hbmInqSms03,jdbcType=CHAR},
+      hbm_inq_reply03 = #{hbmInqReply03,jdbcType=INTEGER},
+      hbm_ussd_quiet_monitor = #{hbmUssdQuietMonitor,jdbcType=INTEGER},
+      hbm_ussd_quiet_wait_min = #{hbmUssdQuietWaitMin,jdbcType=INTEGER},
+      hbm_ussd_awake_content = #{hbmUssdAwakeContent,jdbcType=CHAR},
+      hbm_balance_ussd_flag = #{hbmBalanceUssdFlag,jdbcType=INTEGER},
+      hbm_balance_sms_flag = #{hbmBalanceSmsFlag,jdbcType=INTEGER},
+      hbm_balance_sms_number = #{hbmBalanceSmsNumber,jdbcType=CHAR},
+      hbm_balance_prefix = #{hbmBalancePrefix,jdbcType=CHAR},
+      hbm_balance_prefix2 = #{hbmBalancePrefix2,jdbcType=CHAR},
+      hbm_balance_prefix3 = #{hbmBalancePrefix3,jdbcType=CHAR},
+      hbm_balance_prefix4 = #{hbmBalancePrefix4,jdbcType=CHAR},
+      hbm_balance_prefix5 = #{hbmBalancePrefix5,jdbcType=CHAR},
+      hbm_thousand_symbol = #{hbmThousandSymbol,jdbcType=INTEGER},
+      hbm_decimal_symbol = #{hbmDecimalSymbol,jdbcType=INTEGER},
+      hbm_balance_recharge = #{hbmBalanceRecharge,jdbcType=INTEGER},
+      hbm_balance_retries = #{hbmBalanceRetries,jdbcType=INTEGER},
+      hbm_balance_wait_min = #{hbmBalanceWaitMin,jdbcType=INTEGER},
+      hbm_balance_interval = #{hbmBalanceInterval,jdbcType=INTEGER},
+      hbm_balance_succ = #{hbmBalanceSucc,jdbcType=CHAR},
+      hbm_balance_fail = #{hbmBalanceFail,jdbcType=CHAR},
+      hbm_sms_spec_number = #{hbmSmsSpecNumber,jdbcType=CHAR},
+      hbm_balance_fail2 = #{hbmBalanceFail2,jdbcType=CHAR},
+      hbm_balance_fail3 = #{hbmBalanceFail3,jdbcType=CHAR},
+      hbm_balance_fail4 = #{hbmBalanceFail4,jdbcType=CHAR},
+      hbm_init_sim_flag = #{hbmInitSimFlag,jdbcType=INTEGER},
+      hbm_imei_flag = #{hbmImeiFlag,jdbcType=INTEGER},
+      hbm_imei_tacs = #{hbmImeiTacs,jdbcType=CHAR},
+      hbm_imei_min_sn = #{hbmImeiMinSn,jdbcType=INTEGER},
+      hbm_imei_max_sn = #{hbmImeiMaxSn,jdbcType=INTEGER},
+      hbm_acd_flag = #{hbmAcdFlag,jdbcType=INTEGER},
+      hbm_acd_short_flag = #{hbmAcdShortFlag,jdbcType=INTEGER},
+      hbm_acd_time_min = #{hbmAcdTimeMin,jdbcType=INTEGER},
+      hbm_roaming_flag = #{hbmRoamingFlag,jdbcType=INTEGER},
+      hbm_sms_test01 = #{hbmSmsTest01,jdbcType=CHAR},
+      hbm_acd_time_max = #{hbmAcdTimeMax,jdbcType=INTEGER},
+      hbm_acd_count_limit = #{hbmAcdCountLimit,jdbcType=INTEGER},
+      hbm_acd_fail_count = #{hbmAcdFailCount,jdbcType=INTEGER},
+      hbm_acd_fail_action = #{hbmAcdFailAction,jdbcType=INTEGER},
+      hbm_acd_gsm_code1 = #{hbmAcdGsmCode1,jdbcType=CHAR},
+      hbm_acd_fail_weight1 = #{hbmAcdFailWeight1,jdbcType=INTEGER},
+      hbm_acd_gsm_code2 = #{hbmAcdGsmCode2,jdbcType=CHAR},
+      hbm_acd_fail_weight2 = #{hbmAcdFailWeight2,jdbcType=INTEGER},
+      hbm_call_direction = #{hbmCallDirection,jdbcType=INTEGER},
+      hbm_call_spec_number = #{hbmCallSpecNumber,jdbcType=CHAR},
+      hbm_acd_asr_flag = #{hbmAcdAsrFlag,jdbcType=INTEGER},
+      hbm_acd_call_count = #{hbmAcdCallCount,jdbcType=INTEGER},
+      hbm_acd_asr_limit = #{hbmAcdAsrLimit,jdbcType=INTEGER},
+      hbm_acd_asr_action = #{hbmAcdAsrAction,jdbcType=INTEGER},
+      hbm_acd_sms_flag = #{hbmAcdSmsFlag,jdbcType=INTEGER},
+      hbm_acd_sms_count = #{hbmAcdSmsCount,jdbcType=INTEGER},
+      hbm_acd_sms_action = #{hbmAcdSmsAction,jdbcType=INTEGER},
+      hbm_sms_test_flag = #{hbmSmsTestFlag,jdbcType=INTEGER},
+      hbm_sms_direction = #{hbmSmsDirection,jdbcType=INTEGER},
+      hbm_sms_interval = #{hbmSmsInterval,jdbcType=INTEGER},
+      hbm_sms_test_random = #{hbmSmsTestRandom,jdbcType=INTEGER},
+      hbm_blocked_fail2 = #{hbmBlockedFail2,jdbcType=CHAR},
+      hbm_sms_count_limit = #{hbmSmsCountLimit,jdbcType=INTEGER},
+      hbm_balance_fail5 = #{hbmBalanceFail5,jdbcType=CHAR},
+      hbm_sms_test02 = #{hbmSmsTest02,jdbcType=CHAR},
+      hbm_sms_test03 = #{hbmSmsTest03,jdbcType=CHAR},
+      hbm_sms_test04 = #{hbmSmsTest04,jdbcType=CHAR},
+      hbm_sms_test05 = #{hbmSmsTest05,jdbcType=CHAR},
+      hbm_call_test_flag = #{hbmCallTestFlag,jdbcType=INTEGER},
+      hbm_acd_short_action = #{hbmAcdShortAction,jdbcType=INTEGER},
+      hbm_acd_fail_flag = #{hbmAcdFailFlag,jdbcType=INTEGER},
+      hbm_call_interval = #{hbmCallInterval,jdbcType=INTEGER},
+      hbm_call_test_random = #{hbmCallTestRandom,jdbcType=INTEGER},
+      hbm_call_connection = #{hbmCallConnection,jdbcType=INTEGER},
+      hbm_call_duration = #{hbmCallDuration,jdbcType=INTEGER},
+      hbm_call_tone_mode = #{hbmCallToneMode,jdbcType=INTEGER},
+      max_call_count_month = #{maxCallCountMonth,jdbcType=INTEGER},
+      max_call_time_card = #{maxCallTimeCard,jdbcType=INTEGER},
+      max_call_count_once = #{maxCallCountOnce,jdbcType=INTEGER},
+      max_call_count_day = #{maxCallCountDay,jdbcType=INTEGER},
+      max_call_time_once = #{maxCallTimeOnce,jdbcType=INTEGER},
+      max_call_time_day = #{maxCallTimeDay,jdbcType=INTEGER},
+      max_call_time_month = #{maxCallTimeMonth,jdbcType=INTEGER},
+      max_sms_count_card = #{maxSmsCountCard,jdbcType=INTEGER},
+      max_sms_count_once = #{maxSmsCountOnce,jdbcType=INTEGER},
+      hbm_call_switch_flag = #{hbmCallSwitchFlag,jdbcType=INTEGER},
+      hbm_call_count_limit = #{hbmCallCountLimit,jdbcType=INTEGER},
+      hbm_blocked_check = #{hbmBlockedCheck,jdbcType=INTEGER},
+      hbm_blocked_ussd_flag = #{hbmBlockedUssdFlag,jdbcType=INTEGER},
+      hbm_blocked_sms_flag = #{hbmBlockedSmsFlag,jdbcType=INTEGER},
+      min_call_billing_02 = #{minCallBilling02,jdbcType=INTEGER},
+      hbm_blocked_fail = #{hbmBlockedFail,jdbcType=CHAR},
+      order_type = #{orderType,jdbcType=INTEGER},
+      hbm_blocked_fail3 = #{hbmBlockedFail3,jdbcType=CHAR},
+      hbm_blocked_sms_number = #{hbmBlockedSmsNumber,jdbcType=CHAR},
+      select_cond = #{selectCond,jdbcType=INTEGER},
+      max_call_discard_fail = #{maxCallDiscardFail,jdbcType=INTEGER},
+      max_call_direction = #{maxCallDirection,jdbcType=INTEGER},
+      min_call_billing_sec = #{minCallBillingSec,jdbcType=INTEGER},
+      hbm_sms_switch_flag = #{hbmSmsSwitchFlag,jdbcType=INTEGER},
+      max_sms_discard_fail = #{maxSmsDiscardFail,jdbcType=INTEGER},
+      max_sms_direction = #{maxSmsDirection,jdbcType=INTEGER},
+      max_ussd_discard_fail = #{maxUssdDiscardFail,jdbcType=INTEGER},
+      max_ussd_direction = #{maxUssdDirection,jdbcType=INTEGER},
+      max_call_count_card = #{maxCallCountCard,jdbcType=INTEGER},
+      max_sms_count_day = #{maxSmsCountDay,jdbcType=INTEGER},
+      max_sms_count_month = #{maxSmsCountMonth,jdbcType=INTEGER},
+      max_ussd_count_card = #{maxUssdCountCard,jdbcType=INTEGER},
+      max_ussd_count_once = #{maxUssdCountOnce,jdbcType=INTEGER},
+      max_ussd_count_day = #{maxUssdCountDay,jdbcType=INTEGER},
+      max_ussd_count_month = #{maxUssdCountMonth,jdbcType=INTEGER},
+      max_group_time_card = #{maxGroupTimeCard,jdbcType=INTEGER},
+      max_work_time_card = #{maxWorkTimeCard,jdbcType=INTEGER},
+      max_work_time_once = #{maxWorkTimeOnce,jdbcType=INTEGER},
+      max_idle_time_once = #{maxIdleTimeOnce,jdbcType=INTEGER},
+      max_prom_time_card = #{maxPromTimeCard,jdbcType=INTEGER},
+      max_prom_time_call = #{maxPromTimeCall,jdbcType=INTEGER},
+      max_reg_fail_card = #{maxRegFailCard,jdbcType=INTEGER},
+      max_no_balance_wait = #{maxNoBalanceWait,jdbcType=INTEGER},
+      low_balance_switch_mode = #{lowBalanceSwitchMode,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      detail_desc = #{detailDesc,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

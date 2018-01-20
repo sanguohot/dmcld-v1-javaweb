@@ -1,0 +1,9 @@
+{
+	success: true,
+	versionList: [
+				{versionName:'v1.1.100',versionType:'sbk-32',status:'1',createTime:'2012-05-01 10:20:30',desc:'simbank-32 v1.1.100'},
+				{versionName:'v1.1.200',versionType:'sbk-32',status:'0',createTime:'2012-05-02 11:20:30',desc:'simbank-32 v1.1.200'},
+				{versionName:'v1.2.100',versionType:'sbk-32',status:'1',createTime:'2012-05-04 14:20:30',desc:'simbank-32 v1.2.100'},
+				{versionName:'v1.2.200',versionType:'sbk-32',status:'0',createTime:'2012-05-06 16:20:30',desc:'simbank-32 v1.2.200'},
+            ]
+}

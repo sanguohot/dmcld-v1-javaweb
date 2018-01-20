@@ -1,0 +1,206 @@
+<form name="RelayServerCfg" id="RelayServerCfg" ng-controller="RelayServerCtrl">
+<input style="display:none" type="text" name="fakeusernameremembered"/>
+<input style="display:none" type="password" name="fakepasswordremembered"/>
+<table width="600px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+  <tbody><tr>
+    <td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+    <td>动态带宽优化配置</td>
+    <td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+  </tr>
+  </tbody></table>
+<table width="600px" align="center" class="tblbody" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="4%">&nbsp;</td>
+    <td>
+      <table cellpadding="0" cellspacing="1" width="100%" class="context">
+        <tr>
+          <td width="50%">&nbsp;</td>
+          <td width="50%">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>启用动态带宽优化</td>
+          <td>
+            <input id="MuxRelayEnable" name="MuxRelayEnable" type="checkbox" ng-click="mouse_click();" alt="config/relayserver/flag"></td>
+        </tr>
+        <tr id='idDboMuxPort'>
+          <td width="50%">本地DBO端口(0表示使用随机端口)</td>
+          <td width="50%">
+            <input class="text" id="LocalPort" name="LocalPort" style="width:87%;" maxlength="5" value="" alt="config/relayserver/local_port">
+          </td>
+        </tr>
+        <tr id='idRelayServerAddr'>
+          <td width="50%">主代理URL/IP</td>
+          <td width="50%">
+            <input class="text" id="RelayServerAddr" name="RelayServerAddr" style="width:87%;" maxlength="127" value="" alt="config/relayserver/domain">
+          </td>
+        </tr>
+        <tr id='idRelayServerPort0'>
+          <td width="50%">主代理端口 0</td>
+          <td width="50%">
+            <input class="text" id="RelayServerPort0" name="RelayServerPort0" style="width:87%;" maxlength="5" value="" alt="config/relayserver/port">
+          </td>
+        </tr>
+        <tr id='idRelayServerPort1'>
+          <td width="50%">主代理端口 1</td>
+          <td width="50%">
+            <input class="text" id="RelayServerPort1" name="RelayServerPort1" style="width:87%;" maxlength="5" value="" alt="config/relayserver/port1">
+          </td>
+        </tr>
+        <tr id='idRelayServerPort2'>
+          <td width="50%">主代理端口 2</td>
+          <td width="50%">
+            <input class="text" id="RelayServerPort2" name="RelayServerPort2" style="width:87%;" maxlength="5" value="" alt="config/relayserver/port2">
+          </td>
+        </tr>
+        <tr id='idRelayServerPort3'>
+          <td width="50%">主代理端口 3</td>
+          <td width="50%">
+            <input class="text" id="RelayServerPort3" name="RelayServerPort3" style="width:87%;" maxlength="5" value="" alt="config/relayserver/port3">
+          </td>
+        </tr>
+        <tr id='idRelayUsername'>
+          <td width="50%">主代理用户ID</td>
+          <td width="50%">
+            <input class="text" id="RelayUsername" name="RelayUsername" style="width:87%;" maxlength="127" value="" alt="config/relayserver/userid">
+          </td>
+        </tr>
+        <tr id='idRelayServerPwd'>
+          <td width="50%">主代理密码</td>
+          <td width="50%">
+            <input class="text" id="RelayServerPwd" name="RelayServerPwd" type="password" style="width:87%;" maxlength="31" value="" alt="config/relayserver/password">
+          </td>
+        </tr>
+        <tr id='idRelayServSecAddr'>
+          <td width="50%">备代理URL/IP</td>
+          <td width="50%">
+            <input class="text" id="RelayServSecAddr" name="RelayServSecAddr" style="width:87%;" maxlength="127" value="" alt="config/relayserver/secdomain">
+          </td>
+        </tr>
+        <tr id='idRelayServSecPort0'>
+          <td width="50%">备代理端口 0</td>
+          <td width="50%">
+            <input class="text" id="RelayServSecPort0" name="RelayServSecPort0" style="width:87%;" maxlength="5" value="" alt="config/relayserver/secport">
+          </td>
+        </tr>
+        <tr id='idRelayServSecPort1'>
+          <td width="50%">备代理端口 1</td>
+          <td width="50%">
+            <input class="text" id="RelayServSecPort1" name="RelayServSecPort1" style="width:87%;" maxlength="5" value="" alt="config/relayserver/secport1">
+          </td>
+        </tr>
+        <tr id='idRelayServSecPort2'>
+          <td width="50%">备代理端口 2</td>
+          <td width="50%">
+            <input class="text" id="RelayServSecPort2" name="RelayServSecPort2" style="width:87%;" maxlength="5" value="" alt="config/relayserver/secport2">
+          </td>
+        </tr>
+        <tr id='idRelayServSecPort3'>
+          <td width="50%">备代理端口 3</td>
+          <td width="50%">
+            <input class="text" id="RelayServSecPort3" name="RelayServSecPort3" style="width:87%;" maxlength="5" value="" alt="config/relayserver/secport3">
+          </td>
+        </tr>
+        <tr id='idRelaySecUsername'>
+          <td width="50%">备代理用户ID</td>
+          <td width="50%">
+            <input class="text" id="RelaySecUsername" name="RelaySecUsername" style="width:87%;" maxlength="127" value="" alt="config/relayserver/secuserid">
+          </td>
+        </tr>
+        <tr id='idRelayServSecPwd'>
+          <td width="50%">备代理密码</td>
+          <td width="50%">
+            <input class="text" id="RelayServSecPwd" name="RelayServSecPwd" type="password" style="width:87%;" maxlength="31" value="" alt="config/relayserver/secpassword">
+          </td>
+        </tr>
+        <tr id='idSipRelayEnable'>
+          <td width="50%">启用SIP转发</td>
+          <td width="50%">
+            <input id="SipRelayEnable" name="SipRelayEnable" type="checkbox" ng-click="mouse_click();" alt="config/relayserver/sip"></td>
+        </tr>
+        <tr id='idRtpRelayEnable'>
+          <td width="50%">启用RTP转发</td>
+          <td width="50%">
+            <input id="RtpRelayEnable" name="RtpRelayEnable" type="checkbox" ng-click="mouse_click();" alt="config/relayserver/rtp"></td>
+        </tr>
+        <tr id='idRtpHeadCompress' style="display:none">
+          <td width="50%">启用RTP头压缩</td>
+          <td width="50%">
+            <input id="RtpHeadCompress" name="RtpHeadCompress" type="checkbox" ng-click="mouse_click();" alt="config/relayserver/rtphead"></td>
+        </tr>
+        <tr id='idRtpUdpCheck' style="display:none">
+          <td width="50%">启用UDP校验</td>
+          <td width="50%">
+            <input id="RtpUdpCheck" name="RtpUdpCheck" type="checkbox" ng-click="mouse_click();" alt="config/relayserver/rtpcheck"></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+    <td class="swidth">&nbsp;</td>
+  </tr>
+</table>
+<tr>&nbsp;</tr>
+<table width="600px" border=0 align="center" cellpadding=0 cellspacing=0 id='idDboAdvanced' class="tbltitle">
+  <tr class="title">
+    <td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+    <td>动态带宽优化高级功能</td>
+    <td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+  </tr>
+</table>
+<table width="600px" align="center" class="tblbody" cellpadding=0 cellspacing=0 id='idDboAdvancedParam'>
+  <tr>
+    <td width="4%">&nbsp;</td>
+    <td>
+      <table width="100%" cellpadding=1 cellspacing=0>
+        <tr>
+          <td width="50%">&nbsp;</td>
+          <td width="50%">&nbsp;</td>
+        </tr>
+        <tr id='idRtpCompress'>
+          <td width="50%">启用带宽压缩功能</td>
+          <td width="50%">
+            <input id="RtpCompress" name="RtpCompress" type="checkbox" ng-click="mouse_click();" alt="config/relayserver/rtpcompress"></td>
+        </tr>
+        <tr id='idRtpQuality' style="display:none">
+          <td width="50%">启用音质提升功能</td>
+          <td width="50%">
+            <input id="RtpQuality" name="RtpQuality" type="checkbox" ng-click="mouse_click();" alt="config/relayserver/voicequality"></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+    <td class="swidth">&nbsp;</td>
+  </tr>
+</table>
+<table width="600px" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="35%"> </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="right" class="notes">注意:&nbsp;</td>
+    <td class="notes">1.DBO功能与STUN或VOS加密互斥，目前只支持UDP传输</td>
+  </tr>
+  <tr>
+    <td align="right">&nbsp;</td>
+    <td class="notes">2.更改dbo server配置，需关闭重启dbo功能才能立刻生效！ </td>
+  </tr>
+  <tr>
+    <td align="right">&nbsp;</td>
+    <td class="notes">3.DBO功能只能应用于32S或以下设备</td>
+  </tr>
+  <tr>
+    <td align="right">&nbsp;</td>
+    <td class="notes">4.端口配置小于30000为加密模式, 大于或等于30000是非加密模式。</td>
+  </tr>
+  <tr>
+    <td align="right">&nbsp;</td>
+    <td class="notes">5.只有独立端口模式的DBO服务器时可以使用独立转发RTP模式，由服务器决定</td>
+  </tr>
+</table>
+</form>

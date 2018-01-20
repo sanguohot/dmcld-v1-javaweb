@@ -1,0 +1,184 @@
+Ext.define('app.view.operation.domain.roamzone.site.nes.BkpInNe', {
+    extend: 'Ext.form.Panel',
+	id:'bkpInNe',
+    requires: [
+        'Ext.util.Format',
+        'Ext.grid.Panel',
+    ],
+    
+	title:'',
+//	layout:'fit',
+	layout:'fit',
+	autoScroll:true,
+	border:true,
+    initComponent: function() {
+		var bkpStore=Ext.create('app.store.operation.domain.roamzone.site.nes.BkpStore',{});
+		var rs=Ext.create('app.util.Status',{});
+		var bkpGrid = Ext.create('Ext.grid.Panel', {
+				columnLines:true,
+				id:'bkpGrid',
+				border:true,
+//				layout:'fit',
+//				autoScroll:true,
+				store:bkpStore,
+				columns: [
+				         
+						{header: 'Port',dataIndex: 'portNo',width:30 },
+						{header: 'Alias',dataIndex: 'alias',hidden:true},
+						{header: 'Admin Status', dataIndex: 'adminStatus',flex:1,
+							renderer:function(val){  
+								return rs.adminStatus(val);
+							} 
+						},
+						{header: 'Operation Status', dataIndex: 'oprStatus',flex:1,
+							renderer:function(val){  
+								return rs.oprStatus(val);
+							} 
+						},
+						{header: 'Run Status', dataIndex: 'runStatus',flex:1,
+							renderer:function(val){  
+								return rs.runStatus(val);
+							} 
+						},
+						{header: 'IMSI',  dataIndex: 'imsi',flex:1 },
+						{header: 'Work Status', dataIndex: 'status',flex:1,hidden:true},
+						{header: 'LastBindTime', xtype: 'datecolumn',flex:1,dataIndex: 'lastBindTime', format:'y-m-d H:i:s'},
+						{header: 'LastUsedTime', xtype: 'datecolumn',flex:1,dataIndex: 'lastUsedTime', format:'y-m-d H:i:s',hidden:true },
+						{header: 'Device Uuid',dataIndex: 'neUuid',hidden:true},
+						{header: 'Port Uuid',dataIndex: 'portUuid',hidden:true},
+						{header: 'BKP Uuid',dataIndex: 'uuid',hidden:true},
+						{header: 'SIM Uuid',dataIndex: 'simUuid',hidden:true},
+				        {header: 'GWP Uuid', dataIndex: 'gwpUuid',flex:1,hidden:true},
+						],
+				listeners:{
+					itemdblclick: function(grid, row, columnindex,e){
+					
+						var rs=Ext.create('app.util.Status',{});
+			 			var uuid=row.get('uuid');
+			 			var simUuid=row.get('simUuid');
+			 			var alias=row.get('alias');
+			 			var bkpInfoTab=bkpGrid.up('panel').up('panel').items.get(3);
+			 			
+			 			if(!bkpInfoTab){
+			 				
+			 				var bkpInfoPanel=Ext.getCmp('linkBkpPanel');
+			 				
+			 				if(bkpInfoPanel==undefined || bkpInfoPanel=='undefined'){
+			 					
+			 					bkpInfoPanel=Ext.create('app.view.operation.domain.roamzone.site.nes.LinkBkpPanel',{});
+			 				}
+			 				
+			 				var bkpStore=Ext.create('app.store.operation.domain.roamzone.site.nes.BkpStore',{});
+			    			bkpStore.on('beforeload', function (bkpStore, options) {
+			    		        var params = { uuid:uuid};
+			    		        Ext.apply(bkpStore.proxy.extraParams, params);
+			    		    });
+			    			
+			    			bkpStore.on('load',function(bkpStore, options,successful){
+								var r=bkpStore.getAt(0);
+								bkpInfoPanel.down('form').loadRecord(r);
+							
+								var oprStatus=parseInt(r.get('oprStatus'));
+								var runStatus=parseInt(r.get('runStatus'));
+			  				  	var opr=bkpInfoPanel.down('form').getForm().findField('oprStatus');
+			  				  	var run=bkpInfoPanel.down('form').getForm().findField('runStatus');
+			  				  	var workStatus=parseInt(r.get('status'));
+			  				  	var sta=bkpInfoPanel.down('form').getForm().findField('status');
+			  				  
+			  				  
+			  				  	var toDwgPort=Ext.getCmp('linkDwgPort');
+			    				var toSimCard=Ext.getCmp('linkSimCard');
+			    				var simUuid=parseInt(r.get('simUuid'));
+			    				var gwpUuid=parseInt(r.get('gwpUuid'));
+			    				
+			    				if(simUuid<1){
+			    					toSimCard.setDisabled(true);
+			    				}else{
+			    					toSimCard.setDisabled(false);
+			    				}
+			    				if(gwpUuid<1){
+			    					toDwgPort.setDisabled(true);
+			    				}else{
+			    					toDwgPort.setDisabled(false);
+			    				}
+			      				  
+			      				sta.setValue(rs.workStatus(workStatus));
+			      				  
+			      				opr.setValue(rs.oprStatus(oprStatus));
+			    				  
+			      				run.setValue(rs.runStatus(runStatus));
+			    			});
+			    			
+			    			bkpStore.load();
+			 				
+			    			bkpInfoTab=bkpGrid.up('panel').up('panel').add({
+			        			title: alias,
+			 		            iconCls: 'tabs',
+			 		            layout:'fit',
+			 		            name:'linkBkp',
+			 		            items:[bkpInfoPanel],
+			 		            closable: false
+			        	        });
+			 				
+			    			bkpInfoTab.show();
+			 			}else{
+			 					var bkpInfoPanel=Ext.getCmp('linkBkpPanel');
+			 					if(bkpInfoPanel){
+			 						bkpInfoPanel.setVisible(true);
+			 					}
+			        			var bkpStore=Ext.create('app.store.operation.domain.roamzone.site.nes.BkpStore',{});
+			        			bkpStore.on('beforeload', function (bkpStore, options) {
+			        		        var params = { uuid:uuid};
+			        		      
+			        		        Ext.apply(bkpStore.proxy.extraParams, params);
+			        		    });
+			        			
+			        			bkpStore.on('load',function(bkpStore, options){
+			        				var r=bkpStore.getAt(0);
+			        				bkpInfoPanel.down('form').loadRecord(r);
+			        				bkpInfoTab.setTitle(r.get('alias'));
+			        				var oprStatus=parseInt(r.get('oprStatus'));
+									var runStatus=parseInt(r.get('runStatus'));
+				  				  	var opr=bkpInfoPanel.down('form').getForm().findField('oprStatus');
+				  				  	var run=bkpInfoPanel.down('form').getForm().findField('runStatus');
+				  				  	var workStatus=parseInt(r.get('status'));
+				  				  	var sta=bkpInfoPanel.down('form').getForm().findField('status');
+				  				  
+				  				  
+				  				  	var toDwgPort=Ext.getCmp('linkDwgPort');
+				    				var toSimCard=Ext.getCmp('linkSimCard');
+				    				var simUuid=parseInt(r.get('simUuid'));
+				    				var gwpUuid=parseInt(r.get('gwpUuid'));
+				    				
+				    				if(simUuid<1){
+				    					toSimCard.setDisabled(true);
+				    				}else{
+				    					toSimCard.setDisabled(false);
+				    				}
+				    				if(gwpUuid<1){
+				    					toDwgPort.setDisabled(true);
+				    				}else{
+				    					toDwgPort.setDisabled(false);
+				    				}
+				      				  
+				      				sta.setValue(rs.workStatus(workStatus));
+				      				  
+				      				opr.setValue(rs.oprStatus(oprStatus));
+				    				  
+				      				run.setValue(rs.runStatus(runStatus));
+			        			});
+			        			bkpStore.load();
+			        			bkpInfoTab.setTitle(alias);
+			        			bkpInfoTab.show();
+			 			}
+					}
+				}
+			
+		} );
+		
+		this.items = [ bkpGrid ];
+				
+		this.callParent(arguments);		
+	}		
+
+});

@@ -1,0 +1,169 @@
+<form  name="SyslogCfg" id="SyslogCfg" ng-controller="SyslogParamCtrl">
+	<table width="600px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+		<tbody><tr>
+			<td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left" width="7" height="24"> </td>
+			<td>Syslog</td>
+			<td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+		</tr>
+		</tbody></table>
+  <table width="600px" align="center" class="tblbody">
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td>
+        <table cellpadding="0" cellspacing="0" width="100%" class="context">
+          <tr>
+            <td width="5%">&nbsp;</td>
+            <td width="3%">&nbsp;</td>
+            <td width="57%">&nbsp;</td>
+            <td width="35%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td class="td_title" colspan="2">本地Syslog</td>
+            <td>
+              <input id="SyslogEnable" name="SyslogEnable" type="checkbox" ng-click="mouse_click();" alt="config/syslog/flag">启用
+            </td>
+          </tr>
+          <tr id="idSyslogAddr" style="display:none">
+            <td colspan="2">&nbsp;</td>
+            <td>Syslog服务器地址</td>
+            <td>
+              <input class="text" id="SyslogServer" maxlength="127" name="SyslogServer" size="18" value="" alt="config/syslog/ip">
+            </td>
+          </tr>
+          <tr id="idSyslogPort" style="display:none">
+            <td colspan="2">&nbsp;</td>
+            <td>服务器端口</td>
+            <td>
+              <input class="text" id="SyslogPort" maxlength="5" name="SyslogPort"  size="18" value="" alt="config/syslog/port">
+            </td>
+          </tr>
+          <tr id="idSyslogLevel" style="display:none">
+            <td colspan="2">&nbsp;</td>
+            <td>Syslog类别</td>
+            <td>
+              <select name="SyslogLevel" class="list" id="SyslogLevel" alt="config/syslog/level">
+                <option value="0" >EMERG</option>
+                <option value="1" >ALERT</option>
+                <option value="2" >CRIT</option>
+                <option value="3" >ERROR</option>
+                <option value="4" >WARNING</option>
+                <option value="5" >NOTICE</option>
+                <option value="6" >INFO</option>
+                <option value="7" >DEBUG</option>
+              </select>
+            </td>
+          </tr>
+          <tr id="idSignal" style="display:none">
+            <td colspan="2">&nbsp;</td>
+            <td>信令日志</td>
+            <td><input type="checkbox" id="signal" name="signal" alt="config/syslog/signal">启用</td>
+          </tr>
+          <tr id="idMedia" style="display:none">
+            <td colspan="2">&nbsp;</td>
+            <td>媒体日志</td>
+            <td><input type="checkbox" id="media" name="media" alt="config/syslog/media">启用</td>
+          </tr>
+          <tr id="idSystem" style="display:none">
+            <td colspan="2">&nbsp;</td>
+            <td>系统日志</td>
+            <td><input type="checkbox" id="system" name="system" alt="config/syslog/system">启用</td>
+          </tr>
+          <tr id="idManagement" style="display:none">
+            <td colspan="2">&nbsp;</td>
+            <td>管理日志</td>
+            <td><input type="checkbox" id="management" name="management" alt="config/syslog/management">启用</td>
+          </tr>
+          <tr id="idSendCDR" style="display:none">
+            <td colspan="2">&nbsp;</td>
+            <td>CDR</td>
+            <td>
+              <input type="checkbox" id="SendCDR" name="SendCDR" alt="config/syslog/cdr">启用</td>
+          </tr>
+          <tr>
+            <td colspan="4">&nbsp;</td>
+          </tr>
+        </table>
+      <td width="5%">&nbsp;</td>
+    </tr>
+    <tr id="idServerLogTbl" style="display:none">
+      <td width="5%">&nbsp;</td>
+      <td>
+        <table cellpadding="0" cellspacing="0" width="100%" class="context">
+          <tr>
+            <td width="5%">&nbsp;</td>
+            <td width="3%">&nbsp;</td>
+            <td width="57%">&nbsp;</td>
+            <td width="35%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td class="td_title" colspan="2">服务器Syslog</td>
+            <td>
+              <input id="ServerLogEnable" name="ServerLogEnable" type="checkbox" disabled="true" alt="config/serverlog/flag">Enable
+            </td>
+          </tr>
+          <tr id="idServerLogAddr" style="display:none">
+            <td colspan="2">&nbsp;</td>
+            <td>Server Address</td>
+            <td>
+              <input class="text" id="ServerLogServer" maxlength="31" name="ServerLogServer" size="18" value="" disabled="true" alt="config/serverlog/ip">
+            </td>
+          </tr>
+          <tr id="idServerLogPort" style="display:none">
+            <td colspan="2">&nbsp;</td>
+            <td>Server Port</td>
+            <td>
+              <input class="text" id="ServerLogPort" maxlength="5" name="ServerLogPort"  size="18" value="" disabled="true" alt="config/serverlog/port">
+            </td>
+          </tr>
+          <tr id="idServerLogLevel" style="display:none">
+            <td colspan="2">&nbsp;</td>
+            <td>Syslog Level</td>
+            <td>
+              <select name="ServerLogLevel" class="list" id="ServerLogLevel" disabled="true" alt="config/serverlog/level">
+                <option value="0" >EMERG</option>
+                <option value="1" >ALERT</option>
+                <option value="2" >CRIT</option>
+                <option value="3" >ERROR</option>
+                <option value="4" >WARNING</option>
+                <option value="5" >NOTICE</option>
+                <option value="6" >INFO</option>
+                <option value="7" >DEBUG</option>
+              </select>
+            </td>
+          </tr>
+          <tr id="idServerLogSignal" style="display:none">
+            <td colspan="2">&nbsp;</td>
+            <td>信令日志</td>
+            <td><input type="checkbox" id="ServerLogSignal" name="ServerLogSignal" disabled="true" alt="config/serverlog/signal">启用</td>
+          </tr>
+          <tr id="idServerLogMedia" style="display:none">
+            <td colspan="2">&nbsp;</td>
+            <td>媒体日志</td>
+            <td><input type="checkbox" id="ServerLogMedia" name="ServerLogMedia" disabled="true" alt="config/serverlog/media">启用</td>
+          </tr>
+          <tr id="idServerLogSystem" style="display:none">
+            <td colspan="2">&nbsp;</td>
+            <td>系统日志</td>
+            <td><input type="checkbox" id="ServerLogSystem" name="ServerLogSystem" disabled="true" alt="config/serverlog/system">启用</td>
+          </tr>
+          <tr id="idServerLogManagement" style="display:none">
+            <td colspan="2">&nbsp;</td>
+            <td>管理日志</td>
+            <td><input type="checkbox" id="ServerLogManagement" name="ServerLogManagement" disabled="true" alt="config/serverlog/management">启用</td>
+          </tr>
+          <tr id="idServerLogSendCDR" style="display:none">
+            <td colspan="2">&nbsp;</td>
+            <td>CDR</td>
+            <td>
+              <input type="checkbox" id="ServerLogSendCDR" name="ServerLogSendCDR" disabled="true" alt="config/serverlog/cdr">启用</td>
+          </tr>
+          <tr>
+            <td colspan="4">&nbsp;</td>
+          </tr>
+        </table>
+      <td width="5%">&nbsp;</td>
+    </tr>
+  </table>
+</form>

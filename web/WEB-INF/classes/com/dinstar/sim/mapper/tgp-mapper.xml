@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- tgp 端口映射配置文件 -->
+<mapper namespace="com.dinstar.sim.mapper.Tgp">
+	<resultMap type="com.dinstar.sim.mapper.TgpMapper" id="tgpMapperMap">
+	<id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="ne_uuid" property="neUuid" jdbcType="INTEGER" />
+    <result column="shelf_no" property="shelfNo" jdbcType="INTEGER" />
+    <result column="slot_no" property="slotNo" jdbcType="INTEGER" />
+    <result column="port_no" property="portNo" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="lock_sim_uuid" property="lockSimUuid" jdbcType="INTEGER" />
+    
+    <result column="tgp_uuid" property="tgpUuid" jdbcType="INTEGER" />
+    <result column="mod_type" property="modType" jdbcType="INTEGER" />
+    <result column="work_state" property="workState" jdbcType="INTEGER" />
+    <result column="signal_type" property="signalType" jdbcType="INTEGER" />
+    <result column="pcm_mode" property="pcmMode" jdbcType="INTEGER" />
+    <result column="frame_mode" property="frameMode" jdbcType="INTEGER" />
+    <result column="line_code" property="lineCode" jdbcType="INTEGER" />
+    <result column="line_built_out" property="lineBuiltOut" jdbcType="INTEGER" />
+    <result column="clock_src" property="clockSrc" jdbcType="INTEGER" />
+    <result column="slave_type" property="slaveType" jdbcType="INTEGER" />
+    <result column="slave_tg_no" property="slaveTgNo" jdbcType="INTEGER" />
+    <result column="slave_e1_count" property="slaveE1Count" jdbcType="INTEGER" />
+    <result column="slave_start_no" property="slaveStartNo" jdbcType="INTEGER" />
+    <result column="slave_e1_no" property="slaveE1No" jdbcType="INTEGER" />
+    <result column="slave_ip" property="slaveIp" jdbcType="VARCHAR" />
+    <result column="ts_status0" property="tsStatus0" jdbcType="INTEGER" />
+    <result column="ts_status1" property="tsStatus1" jdbcType="INTEGER" />
+    <result column="ts_status2" property="tsStatus2" jdbcType="INTEGER" />
+    <result column="ts_status3" property="tsStatus3" jdbcType="INTEGER" />
+    
+    
+
+    <result column="ne_sn" property="neSn" jdbcType="BINARY" />
+    <result column="ne_alias" property="neAlias" jdbcType="INTEGER" />
+    
+    <!-- eth info -->
+    <result column="eth_uuid" property="ethUuid" jdbcType="INTEGER" />
+    <result column="eth_rec_status" property="ethRecStatus" jdbcType="INTEGER" />
+    <result column="eth_port_uuid" property="ethPortUuid" jdbcType="INTEGER" />
+    <result column="eth_alias" property="ethAlias" jdbcType="CHAR" />
+    <result column="eth_domain_uuid" property="ethDomainUuid" jdbcType="INTEGER" />
+    <result column="eth_work_state" property="ethWorkState" jdbcType="INTEGER" />
+    <result column="eth_mode" property="ethMode" jdbcType="INTEGER" />
+    
+    <!-- dsp info -->
+    <result column="dsp_uuid" property="dspUuid" jdbcType="INTEGER" />
+    <result column="dsp_rec_status" property="dspRecStatus" jdbcType="INTEGER" />
+    <result column="dsp_port_uuid" property="dspPortUuid" jdbcType="INTEGER" />
+    <result column="dsp_domain_uuid" property="dspDomainUuid" jdbcType="INTEGER" />
+    <result column="dsp_alias" property="dspAlias" jdbcType="CHAR" />
+    <result column="dsp_work_status" property="dspWorkStatus" jdbcType="INTEGER" />
+    <result column="dsp_pcm_law" property="dspPcmLaw" jdbcType="INTEGER" />
+    <result column="dsp_work_time" property="dspWorkTime" jdbcType="INTEGER" />
+    <result column="dsp_calcu_alo" property="dspCalcuAlo" jdbcType="INTEGER" />
+    <result column="dsp_channel_num" property="dspChannelNum" jdbcType="INTEGER" />
+    <result column="dsp_channel_fail" property="dspChannelFail" jdbcType="INTEGER" />
+    <result column="dsp_rtp_delay" property="dspRtpDelay" jdbcType="INTEGER" />
+    <result column="dsp_rtp_delay_max" property="dspRtpDelayMax" jdbcType="INTEGER" />
+    <result column="dsp_rtp_dbm" property="dspRtpDbm" jdbcType="INTEGER" />
+    <!-- ss7 info -->
+    <result column="ss7_uuid" property="ss7Uuid" jdbcType="INTEGER" />
+    <result column="ss7_rec_status" property="ss7RecStatus" jdbcType="INTEGER" />
+    <result column="ss7_port_uuid" property="ss7PortUuid" jdbcType="INTEGER" />
+    <result column="ss7_domain_uuid" property="ss7DomainUuid" jdbcType="INTEGER" />
+    <result column="ss7_alias" property="ss7Alias" jdbcType="CHAR" />
+    <result column="ss7_work_status" property="ss7WorkStatus" jdbcType="INTEGER" />
+    <result column="ss7_mode" property="ss7Mode" jdbcType="INTEGER" />
+    <result column="ss7_type" property="ss7Type" jdbcType="INTEGER" />
+    <result column="ss7_grp_id" property="ss7GrpId" jdbcType="INTEGER" />
+    <result column="ss7_cur_calls" property="ss7CurCalls" jdbcType="INTEGER" />
+    <result column="ss7_cur_calls_max" property="ss7CurCallsMax" jdbcType="INTEGER" />
+    <result column="ss7_acd" property="ss7Acd" jdbcType="INTEGER" />
+    
+    <result column="ss7_proto" property="ss7Proto" jdbcType="INTEGER" />
+    <result column="ss7_net_indi" property="ss7NetIndi" jdbcType="INTEGER" />
+    <result column="ss7_opc" property="ss7Opc" jdbcType="VARCHAR" />
+    <result column="ss7_dpc" property="ss7Dpc" jdbcType="VARCHAR" />
+    <result column="ss7_link0_slc" property="ss7Link0Slc" jdbcType="INTEGER" />
+    <result column="ss7_link0_port" property="ss7Link0Port" jdbcType="INTEGER" />
+    <result column="ss7_link0_ts" property="ss7Link0Ts" jdbcType="INTEGER" />
+    <result column="ss7_link1_slc" property="ss7Link1Slc" jdbcType="INTEGER" />
+    <result column="ss7_link1_port" property="ss7Link1Port" jdbcType="INTEGER" />
+    <result column="ss7_link1_ts" property="ss7Link1Ts" jdbcType="INTEGER" />
+    <result column="ss7_link1_status" property="ss7Link1Status" jdbcType="INTEGER" />
+    <result column="ss7_link0_status" property="ss7Link0Status" jdbcType="INTEGER" />
+    <result column="ss7_send_sltm" property="ss7SendSltm" jdbcType="INTEGER" />
+    
+     <result column="ss7_asr" property="ss7Asr" jdbcType="INTEGER" />
+    
+    <!-- pri info -->
+    <result column="pri_uuid" property="priUuid" jdbcType="INTEGER" />
+    <result column="pri_rec_status" property="priRecStatus" jdbcType="INTEGER" />
+    <result column="pri_port_uuid" property="priPortUuid" jdbcType="INTEGER" />
+    <result column="pri_domain_uuid" property="priDomainUuid" jdbcType="INTEGER" />
+    <result column="pri_alias" property="priAlias" jdbcType="CHAR" />
+    <result column="pri_work_status" property="priWorkStatus" jdbcType="INTEGER" />
+    <result column="pri_cur_calls" property="priCurCalls" jdbcType="INTEGER" />
+    <result column="pri_cur_calls_max" property="priCurCallsMax" jdbcType="INTEGER" />
+    <result column="pri_acd" property="priAcd" jdbcType="INTEGER" />
+    
+    <result column="pri_proto" property="priProto" jdbcType="INTEGER" />
+    <result column="pri_swside" property="priSwside" jdbcType="INTEGER" />
+    <result column="pri_alert_indi" property="priAlertIndi" jdbcType="INTEGER" />
+    <result column="pri_asr" property="priAsr" jdbcType="INTEGER" />
+    
+    <!-- sip info -->
+    <result column="sip_uuid" property="sipUuid" jdbcType="INTEGER" />
+    <result column="sip_rec_status" property="sipRecStatus" jdbcType="INTEGER" />
+    <result column="sip_port_uuid" property="sipPortUuid" jdbcType="INTEGER" />
+    <result column="sip_domain_uuid" property="sipDomainUuid" jdbcType="INTEGER" />
+    <result column="sip_alias" property="sipAlias" jdbcType="CHAR" />
+    <result column="sip_work_status" property="sipWorkStatus" jdbcType="INTEGER" />
+    <result column="sip_reg_flag" property="sipRegFlag" jdbcType="INTEGER" />
+    <result column="sip_call_mode" property="sipCallMode" jdbcType="INTEGER" />
+    <result column="sip_remote_addr" property="sipRemoteAddr" jdbcType="VARCHAR" />
+    <result column="sip_remote_port" property="sipRemotePort" jdbcType="INTEGER" />
+    <result column="sip_asr" property="sipAsr" jdbcType="INTEGER" />
+    <result column="sip_cur_calls" property="sipCurCalls" jdbcType="INTEGER" />
+    
+    <result column="sip_trans_proto" property="sipTransProto" jdbcType="INTEGER" />
+    <result column="sip_auth_type" property="sipAuthType" jdbcType="INTEGER" />
+    <result column="sip_sip_t" property="sipSipT" jdbcType="INTEGER" />
+    <result column="sip_link_status" property="sipLinkStatus" jdbcType="INTEGER" />
+    <result column="sip_detect_trunk" property="sipDetectTrunk" jdbcType="INTEGER" />
+    <result column="sip_bind_grp" property="sipBindGrp" jdbcType="INTEGER" />
+    <result column="sip_expire_time" property="sipExpireTime" jdbcType="INTEGER" />
+    <result column="sip_acct_name" property="sipAcctName" jdbcType="VARCHAR" />
+    <result column="sip_proto_ver" property="sipProtoVer" jdbcType="VARCHAR" />
+    <result column="sip_acd" property="sipAcd" jdbcType="INTEGER" />
+
+	<!-- pmd  -->
+
+    <result column="value0" property="value0" jdbcType="INTEGER" />
+    <result column="value1" property="value1" jdbcType="INTEGER" />
+    <result column="value2" property="value2" jdbcType="INTEGER" />
+    <result column="value3" property="value3" jdbcType="INTEGER" />
+    <result column="value4" property="value4" jdbcType="INTEGER" />
+    <result column="value5" property="value5" jdbcType="INTEGER" />
+    <result column="value6" property="value6" jdbcType="INTEGER" />
+    <result column="value7" property="value7" jdbcType="INTEGER" />
+    <result column="value8" property="value8" jdbcType="INTEGER" />
+    <result column="value9" property="value9" jdbcType="INTEGER" />
+    
+	</resultMap>
+	
+	<select id="getAllListByNe" resultMap="tgpMapperMap">
+		select p.*
+		FROM tbl_port p
+		WHERE (p.rec_status IS NULL OR p.rec_status!=2)
+		and p.ne_uuid=#{neUuid}
+		<if test="domainUuid>0">AND p.domain_uuid =#{domainUuid}</if>
+		and p.run_status!=0 
+		order by p.type,p.port_no
+    </select>    
+
+    <select id="getTgpListByNe" resultMap="tgpMapperMap">
+		select p.*,tgp.uuid as tgp_uuid,tgp.work_state
+		,tgp.mod_type,tgp.pcm_mode,tgp.frame_mode,tgp.line_code,tgp.line_built_out,tgp.clock_src,
+		tgp.slave_type,tgp.slave_tg_no,tgp.slave_e1_count,tgp.slave_start_no,tgp.slave_e1_no,
+		tgp.slave_ip,tgp.ts_status0,tgp.ts_status1,tgp.ts_status2,tgp.ts_status3,
+		
+		pmd.value0,pmd.value1,pmd.value2,pmd.value3,pmd.value4,pmd.value5,pmd.value6,pmd.value7,pmd.value8,pmd.value9
+		
+		FROM tbl_port p
+		INNER JOIN tbl_tgp tgp ON(p.uuid = tgp.port_uuid)
+		left join tbl_pmd_tgp_cur pmd on(tgp.port_uuid=pmd.port_uuid)
+		WHERE (p.rec_status IS NULL OR p.rec_status!=2)
+		<if test="neUuid>0">and p.ne_uuid=#{neUuid}</if>
+		<if test="idl!=null">
+      and p.ne_uuid in
+      <foreach collection="idl" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+    </if>
+		<if test="domainUuid>0">AND p.domain_uuid =#{domainUuid}</if>
+		order by p.port_no
+    </select>
+    
+    <select id="getTgpList" resultMap="tgpMapperMap">
+    select ${col}
+    FROM tbl_port p
+    INNER JOIN tbl_tgp tgp ON(p.uuid = tgp.port_uuid)
+    WHERE (p.rec_status IS NULL OR p.rec_status!=2)
+    <if test="neUuid>0">and p.ne_uuid=#{neUuid}</if>
+    <if test="idl!=null">
+      and p.ne_uuid in
+      <foreach collection="idl" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+    </if>
+    <if test="domainUuid>0">AND p.domain_uuid =#{domainUuid}</if>
+    </select>
+    
+    <select id="getEthListByNe" resultMap="tgpMapperMap" >
+		select p.*,tgp.uuid as eth_uuid, tgp.rec_status as eth_rec_status, tgp.port_uuid as eth_port_uuid, tgp.alias as eth_alias, 
+		tgp.domain_uuid as eth_domain_uuid, tgp.work_state as eth_work_state, tgp.mode as eth_mode,
+		
+		pmd.value0,pmd.value1,pmd.value2,pmd.value3,pmd.value4,pmd.value5,pmd.value6,pmd.value7,pmd.value8,pmd.value9
+		
+		FROM tbl_port p
+		INNER JOIN tbl_eth tgp ON(p.uuid = tgp.port_uuid)
+		left join tbl_pmd_eth_cur pmd on(tgp.port_uuid=pmd.port_uuid)
+		WHERE (p.rec_status IS NULL OR p.rec_status!=2)
+		and p.ne_uuid=#{neUuid}
+		<if test="domainUuid>0">AND p.domain_uuid =#{domainUuid}</if>
+		order by p.port_no
+    </select>
+    
+    <select id="getDspListByNe" resultMap="tgpMapperMap" >
+		select p.*,
+		tgp.uuid as dsp_uuid, tgp.rec_status as dsp_rec_status, tgp.port_uuid as dsp_port_uuid, 
+		tgp.domain_uuid as dsp_domain_uuid, tgp.alias as dsp_alias, tgp.work_status as dsp_work_status, 
+		tgp.pcm_law as dsp_pcm_law, tgp.dsp_work_time, 
+   	 	tgp.dsp_calcu_alo, tgp.channel_num as dsp_channel_num, tgp.channel_fail as dsp_channel_fail, tgp.rtp_delay as dsp_rtp_delay, 
+   	 	tgp.rtp_delay_max as dsp_rtp_delay_max, tgp.rtp_dbm as dsp_rtp_dbm,
+   	 	
+   	 	pmd.value0,pmd.value1,pmd.value2,pmd.value3,pmd.value4,pmd.value5,pmd.value6,pmd.value7,pmd.value8,pmd.value9
+		
+		FROM tbl_port p
+		INNER JOIN tbl_dsp tgp ON(p.uuid = tgp.port_uuid)
+		left join tbl_pmd_dsp_cur pmd on(tgp.port_uuid=pmd.port_uuid)
+		WHERE (p.rec_status IS NULL OR p.rec_status!=2)
+		and p.ne_uuid=#{neUuid}
+		<if test="domainUuid>0">AND p.domain_uuid =#{domainUuid}</if>
+		order by p.port_no
+    </select>
+    
+    <select id="getSs7ListByNe" resultMap="tgpMapperMap">
+		select p.*,
+		tgp.uuid as ss7_uuid, tgp.rec_status as ss7_rec_status, tgp.port_uuid as ss7_port_uuid, tgp.domain_uuid as ss7_domain_uuid, 
+		tgp.alias as ss7_alias, tgp.work_status as ss7_work_status, tgp.mode as ss7_mode, tgp.ss7_type, tgp.grp_id as ss7_grp_id, 
+    	tgp.cur_calls as ss7_cur_calls, tgp.cur_calls_max as ss7_cur_calls_max, tgp.acd as ss7_acd,
+    	
+    	tgp.proto as ss7_proto,
+    	tgp.net_indi as ss7_net_indi,
+    	tgp.opc as ss7_opc,
+    	tgp.dpc as ss7_dpc,
+    	tgp.link0_slc as ss7_link0_slc,
+    	tgp.link0_port as ss7_link0_port,
+    	tgp.link0_ts as ss7_link0_ts,
+    	tgp.link1_slc as ss7_link1_slc,
+    	tgp.link1_port as ss7_link1_port,
+    	tgp.link1_ts as ss7_link1_ts,
+    	tgp.link1_status as ss7_link1_status,
+    	tgp.link0_status as ss7_link0_status,
+    	tgp.send_sltm as ss7_send_sltm,
+    	tgp.asr as ss7_asr
+		FROM tbl_port p
+		INNER JOIN tbl_ss7 tgp ON(p.uuid = tgp.port_uuid)
+		WHERE (p.rec_status IS NULL OR p.rec_status!=2)
+		and p.ne_uuid=#{neUuid}
+		<if test="domainUuid>0">AND p.domain_uuid =#{domainUuid}</if>
+		and p.run_status!=0 
+		order by p.port_no
+    </select>
+    
+    <select id="getPriListByNe" resultMap="tgpMapperMap">
+		select p.*,
+		tgp.uuid as pri_uuid, tgp.rec_status as pri_rec_status, tgp.port_uuid as pri_port_uuid, 
+		tgp.domain_uuid as pri_domain_uuid, tgp.alias as pri_alias, tgp.work_status as pri_work_status, 
+		tgp.cur_calls as pri_cur_calls, tgp.cur_calls_max as pri_cur_calls_max, 
+   		tgp.acd as pri_acd,tgp.proto as pri_proto,tgp.swside as pri_swside,tgp.alert_indi as pri_alert_indi,
+   		tgp.asr as pri_asr
+		FROM tbl_port p
+		INNER JOIN tbl_pri tgp ON(p.uuid = tgp.port_uuid)
+		WHERE (p.rec_status IS NULL OR p.rec_status!=2)
+		and p.ne_uuid=#{neUuid}
+		<if test="domainUuid>0">AND p.domain_uuid =#{domainUuid}</if>
+		and p.run_status!=0 
+		order by p.port_no
+    </select>
+    
+   	<select id="getSipListByNe" resultMap="tgpMapperMap">
+		select p.*,
+		tgp.uuid as sip_uuid, tgp.rec_status as sip_rec_status, tgp.port_uuid as sip_port_uuid, tgp.domain_uuid as sip_domain_uuid, 
+		tgp.alias as sip_alias, tgp.work_status as sip_work_status, tgp.reg_flag as sip_reg_flag, tgp.call_mode as sip_call_mode, 
+   	 	tgp.remote_addr as sip_remote_addr, tgp.remote_port as sip_remote_port, tgp.asr as sip_asr, tgp.cur_calls as sip_cur_calls,
+   	 	
+   	 	tgp.trans_proto as sip_trans_proto,
+   	 	tgp.auth_type as sip_auth_type,
+   	 	tgp.sip_t as sip_sip_t,
+   	 	tgp.link_status as sip_link_status,
+   	 	tgp.detect_trunk as sip_detect_trunk,
+   	 	tgp.bind_grp as sip_bind_grp,
+   	 	tgp.expire_time as sip_expire_time,
+   	 	tgp.acct_name as sip_acct_name,
+   	 	tgp.proto_ver as sip_proto_ver,
+   	 	tgp.acd as sip_acd
+   	 	
+		FROM tbl_port p
+		INNER JOIN tbl_sip tgp ON(p.uuid = tgp.port_uuid)
+		WHERE (p.rec_status IS NULL OR p.rec_status!=2)
+		and p.ne_uuid=#{neUuid}
+		<if test="domainUuid>0">AND p.domain_uuid =#{domainUuid}</if>
+		and p.run_status!=0 
+		order by p.port_no
+    </select>
+	
+	
+    
+    <select id="getTgpByPortUuid" resultMap="tgpMapperMap">
+    	select p.*,tgp.uuid as tgp_uuid,tgp.work_state
+		,tgp.mod_type,tgp.signal_type,n.product_sn AS ne_sn
+		,n.alias AS ne_alias
+		FROM tbl_port p
+		LEFT JOIN tbl_tgp tgp ON(p.uuid = tgp.port_uuid)
+		LEFT JOIN tbl_ne n ON(n.uuid=p.ne_uuid)
+		WHERE (p.rec_status IS NULL OR p.rec_status!=2)
+		and p.uuid=#{uuid}
+		<if test="domainUuid>0">AND p.domain_uuid =#{domainUuid}</if>
+		order by p.port_no
+    </select>
+    
+    <select id="getTgpByUuid" resultMap="tgpMapperMap">
+		select p.*,tgp.uuid as tgp_uuid,tgp.work_state
+		,tgp.mod_type,tgp.signal_type,n.product_sn AS ne_sn
+		,n.alias AS ne_alias
+		FROM tbl_port p
+		LEFT JOIN tbl_tgp tgp ON(p.uuid = tgp.port_uuid)
+		LEFT JOIN tbl_ne n ON(n.uuid=p.ne_uuid)
+		WHERE (p.rec_status IS NULL OR p.rec_status!=2)
+		and tgp.uuid=#{tgpUuid}
+		<if test="domainUuid>0">AND p.domain_uuid =#{domainUuid}</if>
+		order by p.port_no
+    </select>
+    <select id="getListAll" resultMap="tgpMapperMap">
+    select tgp.uuid,tgp.domain_uuid
+    from ${tbn} tgp
+    </select>
+    
+    
+     <select id="selPortList" resultMap="tgpMapperMap" >
+    select ${col} from ${tbn} p
+    <if test="join>0">inner join tbl_port tp on(tp.uuid=p.port_uuid)</if>
+    WHERE 1=1
+    <if test="join>0">and tp.run_status!=0 </if>
+    
+     <if test="neUuid>0">and p.ne_uuid=#{neUuid}</if>
+    <if test="idl!=null">
+      and p.ne_uuid in
+      <foreach collection="idl" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+    </if>
+    <if test="domainUuid>0">AND p.domain_uuid =#{domainUuid}</if>
+    </select>
+    <select id="countPortList" resultType="java.lang.Integer" >
+    select count(*) from ${tbn} p
+    <if test="join>0">inner join tbl_port tp on(tp.uuid=p.port_uuid)</if>
+    WHERE 1=1
+    <if test="join>0">and tp.run_status!=0 </if>
+     <if test="neUuid>0">and p.ne_uuid=#{neUuid}</if>
+     <if test="etgp>0">and p.work_state=2</if>
+    <if test="idl!=null">
+      and p.ne_uuid in
+      <foreach collection="idl" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+    </if>
+    <if test="domainUuid>0">AND p.domain_uuid =#{domainUuid}</if>
+    </select>
+    
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- 模块映射配置文件 -->
+<mapper namespace="com.dinstar.sim.mapper.SimPortMapper">
+	<resultMap type="simPortMapper" id="simPortMapperMap">
+		<result property="balance" column="balance" />
+		<result property="bankid" column="bankid" />
+		<result property="callTime" column="call_time" />
+		<result property="domain" column="domain"/>
+		<result property="gwid" column="gwid"/>
+		<result property="gwportno" column="gwportno"/>
+		<result property="imsi" column="imsi"/>
+		<result property="lastLoad" column="last_load"/>
+		<result property="lastUse" column="last_use"/>
+		<result property="loadUnload" column="load_unload"/>
+		<result property="portno" column="portno"/>
+		<result property="simgrpid" column="simgrpid"/>
+		<result property="simgrpname" column="simgrpname"/>
+		<result property="smsCnt" column="sms_cnt"/>
+		<result property="status" column="status"/>
+	</resultMap>
+	    
+    <select id="getDeskTopModule" parameterType="User" resultMap="moduleMapperMap">
+    	select module,modulename,icon from tbl_module m, tbl_user_right  u 
+    	where m.moduleid=u.moduleid and u.userid=#{userid} and u.read=1
+    </select>
+</mapper>

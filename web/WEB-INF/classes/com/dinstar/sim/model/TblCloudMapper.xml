@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblCloudMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblCloud" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="vendor_name" property="vendorName" jdbcType="CHAR" />
+    <result column="product_name" property="productName" jdbcType="CHAR" />
+    <result column="cli_prompt" property="cliPrompt" jdbcType="CHAR" />
+    <result column="password_md5" property="passwordMd5" jdbcType="CHAR" />
+    <result column="software_version" property="softwareVersion" jdbcType="CHAR" />
+    <result column="software_build_time" property="softwareBuildTime" jdbcType="TIMESTAMP" />
+    <result column="default_timezone_flag" property="defaultTimezoneFlag" jdbcType="INTEGER" />
+    <result column="default_ntp_server1" property="defaultNtpServer1" jdbcType="CHAR" />
+    <result column="default_ntp_server2" property="defaultNtpServer2" jdbcType="CHAR" />
+    <result column="provision_url" property="provisionUrl" jdbcType="CHAR" />
+    <result column="provision_username" property="provisionUsername" jdbcType="CHAR" />
+    <result column="provision_password" property="provisionPassword" jdbcType="CHAR" />
+    <result column="man_domain_uuid" property="manDomainUuid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, name, alias, domain_uuid, admin_status, opr_status, run_status, 
+    action_status, action_result, vendor_name, product_name, cli_prompt, password_md5, 
+    software_version, software_build_time, default_timezone_flag, default_ntp_server1, 
+    default_ntp_server2, provision_url, provision_username, provision_password, man_domain_uuid, 
+    create_time, update_time, detail_desc
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblCloudCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_cloud
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClause != null" >
+      limit ${limitClause}
+    </if>
+    
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_cloud
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_cloud
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblCloudCriteria" >
+    delete from tbl_cloud
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblCloud" >
+    insert into tbl_cloud (uuid, rec_status, name, 
+      alias, domain_uuid, admin_status, 
+      opr_status, run_status, action_status, 
+      action_result, vendor_name, product_name, 
+      cli_prompt, password_md5, software_version, 
+      software_build_time, default_timezone_flag, 
+      default_ntp_server1, default_ntp_server2, provision_url, 
+      provision_username, provision_password, man_domain_uuid, 
+      create_time, update_time, detail_desc
+      )
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, 
+      #{alias,jdbcType=CHAR}, #{domainUuid,jdbcType=INTEGER}, #{adminStatus,jdbcType=INTEGER}, 
+      #{oprStatus,jdbcType=INTEGER}, #{runStatus,jdbcType=INTEGER}, #{actionStatus,jdbcType=INTEGER}, 
+      #{actionResult,jdbcType=INTEGER}, #{vendorName,jdbcType=CHAR}, #{productName,jdbcType=CHAR}, 
+      #{cliPrompt,jdbcType=CHAR}, #{passwordMd5,jdbcType=CHAR}, #{softwareVersion,jdbcType=CHAR}, 
+      #{softwareBuildTime,jdbcType=TIMESTAMP}, #{defaultTimezoneFlag,jdbcType=INTEGER}, 
+      #{defaultNtpServer1,jdbcType=CHAR}, #{defaultNtpServer2,jdbcType=CHAR}, #{provisionUrl,jdbcType=CHAR}, 
+      #{provisionUsername,jdbcType=CHAR}, #{provisionPassword,jdbcType=CHAR}, #{manDomainUuid,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{detailDesc,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblCloud" >
+    insert into tbl_cloud
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="adminStatus != null" >
+        admin_status,
+      </if>
+      <if test="oprStatus != null" >
+        opr_status,
+      </if>
+      <if test="runStatus != null" >
+        run_status,
+      </if>
+      <if test="actionStatus != null" >
+        action_status,
+      </if>
+      <if test="actionResult != null" >
+        action_result,
+      </if>
+      <if test="vendorName != null" >
+        vendor_name,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="cliPrompt != null" >
+        cli_prompt,
+      </if>
+      <if test="passwordMd5 != null" >
+        password_md5,
+      </if>
+      <if test="softwareVersion != null" >
+        software_version,
+      </if>
+      <if test="softwareBuildTime != null" >
+        software_build_time,
+      </if>
+      <if test="defaultTimezoneFlag != null" >
+        default_timezone_flag,
+      </if>
+      <if test="defaultNtpServer1 != null" >
+        default_ntp_server1,
+      </if>
+      <if test="defaultNtpServer2 != null" >
+        default_ntp_server2,
+      </if>
+      <if test="provisionUrl != null" >
+        provision_url,
+      </if>
+      <if test="provisionUsername != null" >
+        provision_username,
+      </if>
+      <if test="provisionPassword != null" >
+        provision_password,
+      </if>
+      <if test="manDomainUuid != null" >
+        man_domain_uuid,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=CHAR},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="adminStatus != null" >
+        #{adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oprStatus != null" >
+        #{oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="runStatus != null" >
+        #{runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionStatus != null" >
+        #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="vendorName != null" >
+        #{vendorName,jdbcType=CHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=CHAR},
+      </if>
+      <if test="cliPrompt != null" >
+        #{cliPrompt,jdbcType=CHAR},
+      </if>
+      <if test="passwordMd5 != null" >
+        #{passwordMd5,jdbcType=CHAR},
+      </if>
+      <if test="softwareVersion != null" >
+        #{softwareVersion,jdbcType=CHAR},
+      </if>
+      <if test="softwareBuildTime != null" >
+        #{softwareBuildTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="defaultTimezoneFlag != null" >
+        #{defaultTimezoneFlag,jdbcType=INTEGER},
+      </if>
+      <if test="defaultNtpServer1 != null" >
+        #{defaultNtpServer1,jdbcType=CHAR},
+      </if>
+      <if test="defaultNtpServer2 != null" >
+        #{defaultNtpServer2,jdbcType=CHAR},
+      </if>
+      <if test="provisionUrl != null" >
+        #{provisionUrl,jdbcType=CHAR},
+      </if>
+      <if test="provisionUsername != null" >
+        #{provisionUsername,jdbcType=CHAR},
+      </if>
+      <if test="provisionPassword != null" >
+        #{provisionPassword,jdbcType=CHAR},
+      </if>
+      <if test="manDomainUuid != null" >
+        #{manDomainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailDesc != null" >
+        #{detailDesc,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblCloudCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_cloud
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_cloud
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=CHAR},
+      </if>
+      <if test="record.alias != null" >
+        alias = #{record.alias,jdbcType=CHAR},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.adminStatus != null" >
+        admin_status = #{record.adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.oprStatus != null" >
+        opr_status = #{record.oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.runStatus != null" >
+        run_status = #{record.runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionStatus != null" >
+        action_status = #{record.actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionResult != null" >
+        action_result = #{record.actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.vendorName != null" >
+        vendor_name = #{record.vendorName,jdbcType=CHAR},
+      </if>
+      <if test="record.productName != null" >
+        product_name = #{record.productName,jdbcType=CHAR},
+      </if>
+      <if test="record.cliPrompt != null" >
+        cli_prompt = #{record.cliPrompt,jdbcType=CHAR},
+      </if>
+      <if test="record.passwordMd5 != null" >
+        password_md5 = #{record.passwordMd5,jdbcType=CHAR},
+      </if>
+      <if test="record.softwareVersion != null" >
+        software_version = #{record.softwareVersion,jdbcType=CHAR},
+      </if>
+      <if test="record.softwareBuildTime != null" >
+        software_build_time = #{record.softwareBuildTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.defaultTimezoneFlag != null" >
+        default_timezone_flag = #{record.defaultTimezoneFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.defaultNtpServer1 != null" >
+        default_ntp_server1 = #{record.defaultNtpServer1,jdbcType=CHAR},
+      </if>
+      <if test="record.defaultNtpServer2 != null" >
+        default_ntp_server2 = #{record.defaultNtpServer2,jdbcType=CHAR},
+      </if>
+      <if test="record.provisionUrl != null" >
+        provision_url = #{record.provisionUrl,jdbcType=CHAR},
+      </if>
+      <if test="record.provisionUsername != null" >
+        provision_username = #{record.provisionUsername,jdbcType=CHAR},
+      </if>
+      <if test="record.provisionPassword != null" >
+        provision_password = #{record.provisionPassword,jdbcType=CHAR},
+      </if>
+      <if test="record.manDomainUuid != null" >
+        man_domain_uuid = #{record.manDomainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.detailDesc != null" >
+        detail_desc = #{record.detailDesc,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_cloud
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=CHAR},
+      alias = #{record.alias,jdbcType=CHAR},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      admin_status = #{record.adminStatus,jdbcType=INTEGER},
+      opr_status = #{record.oprStatus,jdbcType=INTEGER},
+      run_status = #{record.runStatus,jdbcType=INTEGER},
+      action_status = #{record.actionStatus,jdbcType=INTEGER},
+      action_result = #{record.actionResult,jdbcType=INTEGER},
+      vendor_name = #{record.vendorName,jdbcType=CHAR},
+      product_name = #{record.productName,jdbcType=CHAR},
+      cli_prompt = #{record.cliPrompt,jdbcType=CHAR},
+      password_md5 = #{record.passwordMd5,jdbcType=CHAR},
+      software_version = #{record.softwareVersion,jdbcType=CHAR},
+      software_build_time = #{record.softwareBuildTime,jdbcType=TIMESTAMP},
+      default_timezone_flag = #{record.defaultTimezoneFlag,jdbcType=INTEGER},
+      default_ntp_server1 = #{record.defaultNtpServer1,jdbcType=CHAR},
+      default_ntp_server2 = #{record.defaultNtpServer2,jdbcType=CHAR},
+      provision_url = #{record.provisionUrl,jdbcType=CHAR},
+      provision_username = #{record.provisionUsername,jdbcType=CHAR},
+      provision_password = #{record.provisionPassword,jdbcType=CHAR},
+      man_domain_uuid = #{record.manDomainUuid,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      detail_desc = #{record.detailDesc,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblCloud" >
+    update tbl_cloud
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=CHAR},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="adminStatus != null" >
+        admin_status = #{adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oprStatus != null" >
+        opr_status = #{oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="runStatus != null" >
+        run_status = #{runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionStatus != null" >
+        action_status = #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        action_result = #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="vendorName != null" >
+        vendor_name = #{vendorName,jdbcType=CHAR},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=CHAR},
+      </if>
+      <if test="cliPrompt != null" >
+        cli_prompt = #{cliPrompt,jdbcType=CHAR},
+      </if>
+      <if test="passwordMd5 != null" >
+        password_md5 = #{passwordMd5,jdbcType=CHAR},
+      </if>
+      <if test="softwareVersion != null" >
+        software_version = #{softwareVersion,jdbcType=CHAR},
+      </if>
+      <if test="softwareBuildTime != null" >
+        software_build_time = #{softwareBuildTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="defaultTimezoneFlag != null" >
+        default_timezone_flag = #{defaultTimezoneFlag,jdbcType=INTEGER},
+      </if>
+      <if test="defaultNtpServer1 != null" >
+        default_ntp_server1 = #{defaultNtpServer1,jdbcType=CHAR},
+      </if>
+      <if test="defaultNtpServer2 != null" >
+        default_ntp_server2 = #{defaultNtpServer2,jdbcType=CHAR},
+      </if>
+      <if test="provisionUrl != null" >
+        provision_url = #{provisionUrl,jdbcType=CHAR},
+      </if>
+      <if test="provisionUsername != null" >
+        provision_username = #{provisionUsername,jdbcType=CHAR},
+      </if>
+      <if test="provisionPassword != null" >
+        provision_password = #{provisionPassword,jdbcType=CHAR},
+      </if>
+      <if test="manDomainUuid != null" >
+        man_domain_uuid = #{manDomainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc = #{detailDesc,jdbcType=CHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblCloud" >
+    update tbl_cloud
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      name = #{name,jdbcType=CHAR},
+      alias = #{alias,jdbcType=CHAR},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      admin_status = #{adminStatus,jdbcType=INTEGER},
+      opr_status = #{oprStatus,jdbcType=INTEGER},
+      run_status = #{runStatus,jdbcType=INTEGER},
+      action_status = #{actionStatus,jdbcType=INTEGER},
+      action_result = #{actionResult,jdbcType=INTEGER},
+      vendor_name = #{vendorName,jdbcType=CHAR},
+      product_name = #{productName,jdbcType=CHAR},
+      cli_prompt = #{cliPrompt,jdbcType=CHAR},
+      password_md5 = #{passwordMd5,jdbcType=CHAR},
+      software_version = #{softwareVersion,jdbcType=CHAR},
+      software_build_time = #{softwareBuildTime,jdbcType=TIMESTAMP},
+      default_timezone_flag = #{defaultTimezoneFlag,jdbcType=INTEGER},
+      default_ntp_server1 = #{defaultNtpServer1,jdbcType=CHAR},
+      default_ntp_server2 = #{defaultNtpServer2,jdbcType=CHAR},
+      provision_url = #{provisionUrl,jdbcType=CHAR},
+      provision_username = #{provisionUsername,jdbcType=CHAR},
+      provision_password = #{provisionPassword,jdbcType=CHAR},
+      man_domain_uuid = #{manDomainUuid,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      detail_desc = #{detailDesc,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

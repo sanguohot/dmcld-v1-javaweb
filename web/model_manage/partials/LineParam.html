@@ -1,0 +1,646 @@
+<form  name="LineParam" id="LineParam" ng-controller = "LineParamCtrl">
+<table width="700px" border=0 align="center" cellpadding=0 cellspacing=0 class="tbltitle">
+  <tr>
+    <td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left" width="7" height="24"> </td>
+    <td>FXS / FXO</td>
+    <td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+  </tr>
+</table>
+<table width="700px" align="center" class="tblbody" cellpadding="0" cellspacing="0">
+<tr>
+<td width="4%">&nbsp;</td>
+<td width="91%">
+<table cellpadding="0" cellspacing="1" width="100%" class="context">
+  <tr>
+    <td width="5%">&nbsp;</td>
+    <td width="45%">&nbsp;</td>
+    <td width="50%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">位间拨号超时时间</td>
+    <td>
+      <input class="text" id="NoDialTimeout" maxlength="2" name="NoDialTimeout" size="18" value="4" alt="config/fxs_fxo/dial_timeout">
+      秒 </td>
+  </tr>
+  <tr>
+    <td colspan="2">应答超时时间(呼出)</td>
+    <td>
+      <input class="text" id="NoAnswerTimeout" maxlength="3" name="NoAnswerTimeout" size="18" value="55" alt="config/fxs_fxo/answer_timeout_outgoing">
+      秒 </td>
+  </tr>
+  <tr>
+    <td colspan="2">应答超时时间(呼入)</td>
+    <td>
+      <input class="text" id="RingTimeout" maxlength="3" name="RingTimeout" size="18" value="55" alt="config/fxs_fxo/answer_timeout_incoming">
+      秒 </td>
+  </tr>
+  <tr id="idOfflineEscape" style="display:none">
+    <td  colspan="2">断网逃生</td>
+    <td>
+      <input id="OfflineEscape" name="OfflineEscape" type="checkbox" >启用
+  </tr>
+  <tr>
+    <td colspan="2">语音中断保护</td>
+    <td>
+      <input id="RTPDetectedEnable" name="RTPDetectedEnable" type="checkbox" ng-click="mouse_click();"  alt="config/fxs_fxo/no_rtp_detect">启用
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>RTP报文中断最大时长</td>
+    <td>
+      <input class="text" id="SilenceTimeout" maxlength="3" name="SilenceTimeout" size="18" value="60" alt="config/fxs_fxo/no_rtp_period">秒
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">信号音标准</td>
+    <td>
+      <select name="CallProgressTone" class="list" id="CallProgressTone" ng-click="mouse_click()" alt="config/fxs_fxo/call_process_tone">
+        <option value="13" >澳大利亚</option>
+        <option value="1" >奥地利 </option>
+        <option value="2" >比利时 </option>
+        <option value="14" >中国</option>
+        <option value="16" >丹麦</option>
+        <option value="21" >荷兰</option>
+        <option value="3" >芬兰</option>
+        <option value="4" >法兰西</option>
+        <option value="5" >德国</option>
+        <option value="6" >希腊</option>
+        <option value="15" >香港</option>
+        <option value="7" >意大利</option>
+        <option value="8" >日本</option>
+        <option value="9" >挪威</option>
+        <option value="18" >波兰</option>
+        <option value="19" >葡萄牙</option>
+        <option value="17" >俄罗斯</option>
+        <option value="10" >西班牙</option>
+        <option value="11" >瑞典</option>
+        <option value="20" >土耳其</option>
+        <option value="12" >英国</option>
+        <option value="22" >波斯尼亚</option>
+        <option value="0" selected>美国</option>
+        <option value="23" >朝鲜</option>
+        <option value="255" >用户定义</option>
+      </select>
+    </td>
+  </tr>
+  <tr id="idToneRingBack">
+    <td>&nbsp;</td>
+    <td>回铃音</td>
+    <td><input type="text" class="text" name="ToneRingBack" id="ToneRingBack" alt="config/fxs_fxo/ring_tone" /></td>
+  </tr>
+  <tr id="idToneBusy">
+    <td>&nbsp;</td>
+    <td>忙音</td>
+    <td><input type="text" class="text" name="ToneBusy" id="ToneBusy" alt="config/fxs_fxo/busy_tone" /></td>
+  </tr>
+  <tr id="idToneDial">
+    <td>&nbsp;</td>
+    <td>拨号音</td>
+    <td><input type="text" class="text" name="ToneDial" id="ToneDial" alt="config/fxs_fxo/dial_tone" /></td>
+  </tr>
+  <tr id="idAgeEnable" style="display:none;">
+    <td colspan="2">自动增益控制</td>
+    <td>
+      <input type="checkbox" name="AGCEnable"  alt="config/fxs_fxo/auto_gain_ctrl" > 启用
+    </td>
+  </tr>
+  <tr id="idSPIBLProtectedTime" style="display:none;">
+    <td colspan="2">SPI断链保护时间</td>
+    <td>
+      <input class="text" id="SPIBLProtectedTime" maxlength="2" name="SPIBLProtectedTime" size="18" value="15" alt="config/fxs_fxo/spi_protect_time" >秒
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+</table>
+<table cellpadding="0" cellspacing="1" width="100%" class="context">
+  <tr>
+    <td colspan="3" class="td_title">线路参数</td>
+  </tr>
+  <tr>
+    <td colspan="2">端口</td>
+    <td colspan="2">
+      <select name="LinePort" id="LinePort" ng-click="lineport_click()" class="list" alt="config/fxs_fxo/lines">
+      </select>
+    </td>
+  </tr>
+  <tr id="idPortWorkMode">
+    <td>&nbsp;</td>
+    <td>工作模式</td>
+    <td colspan="2">
+      <select name="LineWorkMode" class="list" id="LineWorkMode">
+        <option value="255" selected></option>
+        <option value="0">语音</option>
+        <option value="1">传真</option>
+        <option value="2">语音和传真</option>
+        <option value="3">POS</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td width="5%">&nbsp;</td>
+    <td width="45%">接听模式</td>
+    <td width="10%">
+      <input name="AnswerMode" type="radio" value="0">
+      听筒</td>
+    <td  width="40%">
+      <input name="AnswerMode" type="radio" value="1">
+      耳机</td>
+  </tr>
+  <tr>
+    <td width="5%">&nbsp;</td>
+    <td width="45%">配置模式(增益)</td>
+    <td width="10%">
+      <input name="SetMode" type="radio" value="0" ng-click="mouse_click();">
+      基本</td>
+    <td  width="40%">
+      <input name="SetMode" type="radio" value="1" ng-click="mouse_click();">
+      高级</td>
+  </tr>
+
+  <tr id="idTinySetLGT" style="display:none">
+    <td>&nbsp;</td>
+    <td>发送增益</td>
+    <td colspan="2">
+      <select name="TSLineGainTx" id="TSLineGainTx" class="list">
+        <option value="255" selected></option>
+        <option value="-8">低</option>
+        <option value="2">中</option>
+        <option value="8">高</option>
+      </select>
+    </td>
+  </tr>
+  <tr id="idTinySetLGR" style="display:none">
+    <td>&nbsp;</td>
+    <td>接收增益</td>
+    <td colspan="2">
+      <select name="TSLineGainRx" id="TSLineGainRx" class="list">
+        <option value="255" selected></option>
+        <option value="-8">低</option>
+        <option value="2">中</option>
+        <option value="8">高</option>
+      </select>
+    </td>
+  </tr>
+  <tr id="idUserSetLGT" style="display:none">
+    <td>&nbsp;</td>
+    <td>发送增益</td>
+    <td colspan="2">
+      <select name="USLineGainTx" id="USLineGainTx" class="list">
+        <option value="255" selected></option>
+        <option value="-10">-10dB</option>
+        <option value="-9">-9dB</option>
+        <option value="-8">-8dB</option>
+        <option value="-7">-7dB</option>
+        <option value="-6">-6dB</option>
+        <option value="-5">-5dB</option>
+        <option value="-4">-4dB</option>
+        <option value="-3">-3dB</option>
+        <option value="-2">-2dB</option>
+        <option value="-1">-1dB</option>
+        <option value="0">0dB</option>
+        <option value="1">+1dB</option>
+        <option value="2">+2dB</option>
+        <option value="3">+3dB</option>
+        <option value="4">+4dB</option>
+        <option value="5">+5dB</option>
+        <option value="6">+6dB</option>
+        <option value="7">+7dB</option>
+        <option value="8">+8dB</option>
+        <option value="9">+9dB</option>
+        <option value="10">+10dB</option>
+      </select>
+    </td>
+  </tr>
+  <tr id="idUserSetLGR" style="display:none">
+    <td>&nbsp;</td>
+    <td>接收增益</td>
+    <td colspan="2">
+      <select name="USLineGainRx" id="USLineGainRx" class="list">
+        <option value="255" selected></option>
+        <option value="-10">-10dB</option>
+        <option value="-9">-9dB</option>
+        <option value="-8">-8dB</option>
+        <option value="-7">-7dB</option>
+        <option value="-6">-6dB</option>
+        <option value="-5">-5dB</option>
+        <option value="-4">-4dB</option>
+        <option value="-3">-3dB</option>
+        <option value="-2">-2dB</option>
+        <option value="-1">-1dB</option>
+        <option value="0">0dB</option>
+        <option value="1">+1dB</option>
+        <option value="2">+2dB</option>
+        <option value="3">+3dB</option>
+        <option value="4">+4dB</option>
+        <option value="5">+5dB</option>
+        <option value="6">+6dB</option>
+        <option value="7">+7dB</option>
+        <option value="8">+8dB</option>
+        <option value="9">+9dB</option>
+        <option value="10">+10dB</option>
+      </select>
+    </td>
+  </tr>
+</table>
+<table id="tbFXS" cellpadding="0" cellspacing="1" width="100%" class="context" style="display:none">
+  <tr>
+    <td width="5%">&nbsp;</td>
+    <td width="45%">&nbsp;</td>
+    <td width="50%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="td_title">FXS参数</td>
+  </tr>
+  <tr>
+    <td colspan="2">发送反极信号</td>
+    <td>
+      <input id="SendPolaReversalEnable" name="SendPolaReversalEnable" type="checkbox"  alt="config/fxs_fxo/fxs/send_rolarity_reversal">启用
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">拍叉检测</td>
+    <td>
+      <input id="DetectHookFlash" name="DetectHookFlash" type="checkbox" ng-click="mouse_click();" checked alt="config/fxs_fxo/fxs/flashhook_detect">启用
+    </td>
+  </tr>
+  <tr id="idFlashLowerLimit">
+    <td>&nbsp;</td>
+    <td>最小时长</td>
+    <td>
+      <input class="text" id="HookFlashMinTime" maxlength="4" name="HookFlashMinTime" size="18" value="100" alt="config/fxs_fxo/fxs/flashhook_min_time">
+      毫秒 </td>
+  </tr>
+  <tr id="idFlashLimit">
+    <td>&nbsp;</td>
+    <td>最大时长</td>
+    <td>
+      <input class="text" id="HookFlashMaxTime" maxlength="4" name="HookFlashMaxTime" size="18" value="400" alt="config/fxs_fxo/fxs/flashhook_max_time">
+      毫秒 </td>
+  </tr>
+  <tr>
+    <td colspan="2">CID发送方式</td>
+    <td>
+      <select id="CIDTransMode" name="CIDTransMode" class="list" ng-click="mouse_click();" alt="config/fxs_fxo/fxs/cid_type">
+        <option value="0" selected>FSK</option>
+        <option value="1" >DTMF</option>
+      </select>
+    </td>
+  </tr>
+  <tr id="idCIDMsgType">
+    <td colspan="2">消息类型</td>
+    <td>
+      <select id="CIDMsgType" name="CIDMsgType" class="list" alt="config/fxs_fxo/fxs/msg_type">
+        <option value="0" selected>MDMF</option>
+        <option value="1" >SDMF</option>
+      </select>
+    </td>
+  </tr>
+  <tr id="idCIDMsgFormat">
+    <td colspan="2">消息格式</td>
+    <td>
+      <select id="CIDMsgFormat" name="CIDMsgFormat" class="list" alt="config/fxs_fxo/fxs/msg_format">
+        <option value="0" selected>Display Name和CID</option>
+        <option value="1" >只发送CID</option>
+        <option value="2" >只发送Display Name Only</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">振铃前发送CID</td>
+    <td>
+      <input type="checkbox" name="CIDSendBeforeRing" id="CIDSendBeforeRing" ng-click="mouse_click();"  alt="config/fxs_fxo/fxs/send_cid_brfore_ring" >启用
+    </td>
+  </tr>
+  <tr id="idCIDSendDelay" style="display:none">
+    <td colspan="2">振铃后延迟发送CID时间</td>
+    <td>
+      <input type="text" id="CIDSendDelay" name="CIDSendDelay" class="text" value="500" alt="config/fxs_fxo/fxs/send_cid_after_ring_delay" />
+      毫秒 </td>
+  </tr>
+  <tr>
+    <td colspan="2">无应答呼转等待时间</td>
+    <td>
+      <input class="text" id="NoReplyTimeout" maxlength="3" name="NoReplyTimeout" size="18" value="33" alt="config/fxs_fxo/fxs/cfnry_timeout">
+      秒 </td>
+  </tr>
+</table>
+<table id="idSlic" width="100%" cellpadding="0" cellspacing="0" class="context" style="display:none">
+  <tr>
+    <td width="50%">SLIC设置</td>
+    <td width="50%">
+      <select name="SLICSetting" class="list" id="SLICSetting" alt="config/fxs_fxo/fxs/slic">
+        <option value="0" selected>600 Ohm</option>
+        <option value="1" >900 Ohm</option>
+        <option value="2" >600 Ohm + 1uF</option>
+        <option value="3" >900 Ohm + 2.16 uF</option>
+        <option value="4" >270 Ohm + (750 Ohm || 150nF)</option>
+        <option value="5" >220 Ohm + (820 Ohm || 120nF)</option>
+        <option value="6" >220 Ohm + (820 Ohm || 115nF)</option>
+        <option value="7" >200 Ohm + (680 Ohm || 100nF)</option>
+      </select>
+    </td>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0" class="context" id="idLongLineSupport" style="display:none">
+  <tr>
+    <td width="50%">长线支持</td>
+    <td width="50%" id="idLongLineItem"><input type="checkbox" name="LongLineSupport" id="LongLineSupport"  alt="config/fxs_fxo/fxs/longlinesupport"/> 启用</td>
+  </tr>
+  <tr id="idLongLineDag3000Item" style="display:none">
+    <td colspan="2">
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="%5">&nbsp;</td>
+          <td>槽位</td>
+          <td>0</td>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>4</td>
+          <td>5</td>
+          <td>6</td>
+          <td>7</td>
+          <td>8</td>
+          <td>9</td>
+          <td>10</td>
+          <td>11</td>
+          <td>12</td>
+          <td>13</td>
+          <td>14</td>
+        </tr>
+        <tr>
+          <td width="%5">&nbsp;</td>
+          <td>启用</td>
+          <td><input type="checkbox" name="LongLineDag3000Value0" ></td>
+          <td><input type="checkbox" name="LongLineDag3000Value1" ></td>
+          <td><input type="checkbox" name="LongLineDag3000Value2" ></td>
+          <td><input type="checkbox" name="LongLineDag3000Value3" ></td>
+          <td><input type="checkbox" name="LongLineDag3000Value4" ></td>
+          <td><input type="checkbox" name="LongLineDag3000Value5" ></td>
+          <td><input type="checkbox" name="LongLineDag3000Value6" ></td>
+          <td><input type="checkbox" name="LongLineDag3000Value7" ></td>
+          <td><input type="checkbox" name="LongLineDag3000Value8" ></td>
+          <td><input type="checkbox" name="LongLineDag3000Value9" ></td>
+          <td><input type="checkbox" name="LongLineDag3000Value10" ></td>
+          <td><input type="checkbox" name="LongLineDag3000Value11" ></td>
+          <td><input type="checkbox" name="LongLineDag3000Value12" ></td>
+          <td><input type="checkbox" name="LongLineDag3000Value13" ></td>
+          <td><input type="checkbox" name="LongLineDag3000Value14" ></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table id="idFxsConnectPhoneCount" width="100%" cellpadding="0" cellspacing="0" class="context">
+  <tr>
+    <td width="50%">REN</td>
+    <td width="50%">
+      <input class="text" id="FxsConnectPhoneCount" maxlength="1" name="FxsConnectPhoneCount" size="18" value="4" alt="config/fxs_fxo/fxs/connect_phone_count">
+    </td>
+  </tr>
+</table>
+<table id="tbFXO" width="100%" cellpadding="0"  cellspacing="1" class="context" style="display:none">
+  <tr>
+    <td width="5%">&nbsp;</td>
+    <td width="5%">&nbsp;</td>
+    <td width="5%">&nbsp;</td>
+    <td width="35%">&nbsp;</td>
+    <td width="50%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="5" class="td_title">FXO参数</td>
+  </tr>
+  <tr>
+    <td colspan="5">PSTN呼入</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="3">FXO配置功能</td>
+    <td>
+      <input id="FxoConfigEnable" name="FxoConfigEnable" type="checkbox" checked>启用
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="3">检测CID</td>
+    <td>
+      <select id="NumandRingCheckMode" name="NumandRingCheckMode" class="list">
+        <option value="1" >振铃前</option>
+        <option value="0" selected>振铃后</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="3">发送原始CID</td>
+    <td>
+      <input id="SendCallerIDEnable" name="SendCallerIDEnable" type="checkbox" ng-click="mouse_click();" >启用
+    </td>
+  </tr>
+  <tr id="idFormatValid" style="display:none">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="2">检测到CID时，“from”字段格式</td>
+    <td>
+      <select id="FromFormatCIDValid" name="FromFormatCIDValid" class="list">
+        <option value="0" selected>Display/CID</option>
+        <option value="1" >User ID/CID</option>
+        <option value="2" >CID/CID</option>
+        <option value="3" >CID/User ID</option>
+        <option value="4" >CID/Display</option>
+      </select>
+    </td>
+  </tr>
+  <tr id="idFormatInvalid" style="display:none">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="2">没有检测到CID时，“from”字段格式</td>
+    <td>
+      <select id="FromFormatCIDInvalid" name="FromFormatCIDInvalid" class="list">
+        <option value="0" selected>Display/User ID</option>
+        <option value="1" >Display/Anonymous</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="3">被叫应答后FXO再摘机</td>
+    <td>
+      <input id="FxoKeepOnhook" name="FxoKeepOnhook" type="checkbox" ng-click="mouse_click();" >启用
+    </td>
+  </tr>
+  <tr id="idFxoRejectOffhookDelay" style="display:none">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="2">呼叫被拒绝FXO摘挂机间隔</td>
+    <td>
+      <input type="text" class="text" id="FxoRejectOffhookDelay" name="FxoRejectOffhookDelay" value="600" >
+      毫秒 </td>
+  </tr>
+  <tr id="idPlayHintToOPort" style="display:none">
+    <td>&nbsp;</td>
+    <td colspan="3">播放提示语音</td>
+    <td>
+      <input id="PlayHintToOPort" name="PlayHintToOPort" type="checkbox" checked>启用
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="3">允许未注册状态呼叫Sip Server</td>
+    <td>
+      <input id="DirectToServer" name="DirectToServer" type="checkbox" >启用
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">PSTN呼出</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="3">一次性拨号</td>
+    <td>
+      <input id="OPort1StageCalling" name="OPort1StageCalling" type="checkbox" ng-click="mouse_click();" checked>启用
+    </td>
+  </tr>
+  <tr id="idFXODialDelay">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="2">FXO摘机拨号延迟时间</td>
+    <td>
+      <input type="text" class="text" id="FXODialDelay" name="FXODialDelay" value="400">
+      毫秒 </td>
+  </tr>
+  <tr id="idAnswerToCallerWhen" style="display:none">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="3">应答主叫条件</td>
+  </tr>
+  <tr id="idFxoDetectPolarity">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>检测到反极信号</td>
+    <td>
+      <input id="FxoOutRPolarityOffhook" name="FxoOutRPolarityOffhook" type="checkbox" ng-click="mouse_click();" >启用
+    </td>
+  </tr>
+  <tr id="idOffhookTimeout" style="display:none">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>应答时限超时</td>
+    <td>
+      <input class="text" id="OffhookTimeout" maxlength="3" name="OffhookTimeout" size="18" value="2">
+      秒 </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="3">拨号方式</td>
+    <td>
+      <select class="list" name="DialMode" id="DialMode" ng-click="mouse_click()">
+        <option value="0" selected>DTMF</option>
+        <option value="1" >脉冲</option>
+        <option value="2" >先脉冲，后DTMF</option>
+      </select>
+    </td>
+  </tr>
+  <tr id="idPulseMode" style="display:none">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="2">脉冲拨号模式</td>
+    <td>
+      <select class="list" name="PulseMode">
+        <option value="0" selected>DP10</option>
+        <option value="1" >DP20</option>
+      </select>
+  </tr>
+  <tr>
+    <td colspan="5">FXO挂机条件</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="3">忙音检测</td>
+    <td>
+      <input id="ToneDisconnectEnable" name="ToneDisconnectEnable" type="checkbox" checked>启用
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="3">电流检测</td>
+    <td>
+      <input id="CurrentDisconnectEnable" name="CurrentDisconnectEnable" type="checkbox" ng-click="mouse_click();" >启用
+    </td>
+  </tr>
+  <tr id="idCurrentDiscThreshold">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="2">无电流最大时长</td>
+    <td>
+      <input class="text" id="CurrentDisconnectThreshold" maxlength="4" name="CurrentDisconnectThreshold" size="18" value="200">
+      毫秒 </td>
+  </tr>
+  <tr>
+    <td colspan="4">直流阻抗</td>
+    <td>
+      <select id="DCImpedance" name="DCImpedance" class="list">
+        <option value="0" selected>50 Ohm</option>
+        <option value="1" >800 Ohm</option>
+      </select>
+    </td>
+  </tr>
+</table>
+<table id="ACImpTbl" width="100%"  cellspacing="1" cellpadding="0" class="context" style="display:none">
+  <tr>
+    <td width="32%">交流阻抗</td>
+    <td width="68%" align="right">
+      <select name="ACImpedance" class="list" style="margin-right:11%" id="ACImpedance" >
+        <option value="0" selected>600 Ohm</option>
+        <option value="1" >900 Ohm</option>
+        <option value="2" >270 Ohm+(750 Ohm||150 nF) and 275 Ohm+(780 Ohm||150 nF)</option>
+        <option value="3" >220 Ohm+(820 Ohm||120 nF) and 220 Ohm+(820 Ohm||115 nF)</option>
+        <option value="4" >370 Ohm+(620 Ohm||310 nF)</option>
+        <option value="5" >320 Ohm+(1050 Ohm||230 nF)</option>
+        <option value="6" >370 Ohm+(820 Ohm||110 nF)</option>
+        <option value="7" >275 Ohm+(780 Ohm||115 nF)</option>
+        <option value="8" >120 Ohm+(820 Ohm||110 nF)</option>
+        <option value="9" >350 Ohm+(1000 Ohm||210 nF)</option>
+        <option value="10" >200 Ohm+(680 Ohm||100 nF)</option>
+        <option value="11" >600 Ohm+2.16 uF</option>
+        <option value="12" >900 Ohm+1 uF</option>
+        <option value="13" >900 Ohm+2.16 uF</option>
+        <option value="14" >600 Ohm+1 uF</option>
+        <option value="15" >全球通用阻抗</option>
+      </select>
+    </td>
+  </tr>
+</table>
+<table id="AutoImpTbl" width="100%" cellspacing="1" cellpadding="0" class="context"  style="display:none;">
+  <tr>
+    <td width="5%">&nbsp;</td>
+    <td width="30%">阻抗自动匹配</td>
+    <td width="30%">
+      <select name="TestPort" id="TestPort" class="list" ng-click="mouse_click();"></select>
+    </td>
+    <td class="buttonbox" style="text-align:left;">
+      <input id="StartFXOTest" name="StartFXOTest" type="button" value="开始" ng-click="startfxotest_onclick();">
+    </td>
+  </tr>
+</table>
+<td width="5%">&nbsp;</td>
+</tr>
+<tr><td colspan="3">&nbsp;</td></tr>
+</table>
+
+<table width="700px" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="100%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center" class="notes">
+      <div id="idNote">注意:&nbsp;接听模式,REN将在设备重启后生效。</div>
+    </td>
+  </tr>
+</table>
+</form>

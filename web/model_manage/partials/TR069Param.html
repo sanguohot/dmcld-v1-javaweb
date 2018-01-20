@@ -1,0 +1,111 @@
+<form name="TR069Config" id="TR069Config" ng-controller="TR069ConfigCtrl">
+  <input style="display:none" type="text" name="fakeusernameremembered"/>
+  <input style="display:none" type="password" name="fakepasswordremembered"/>
+	<table width="600px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+		<tbody><tr>
+			<td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+			<td>TR069</td>
+			<td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+		</tr>
+		</tbody></table>
+  <table width="600px" align="center" cellpadding="0" cellspacing="0" class="tblbody">
+    <tr>
+      <td class="sidebar">&nbsp;</td>
+      <td>
+        <table width="100%"  cellspacing="0" cellpadding="0" class="context">
+          <tr>
+            <td colspan="3">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="5%">&nbsp;</td>
+            <td width="45%">TR069</td>
+            <td width="50%">
+              <input id="TR069Enable" name="TR069Enable" type="checkbox" ng-click="mouse_click();"   alt="config/tr069/Enable">
+              启用</td>
+          </tr>
+          <tr id="TR069BLANK">
+            <td colspan="3">&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr id="trBlank">
+      <td class="sidebar">&nbsp;</td>
+      <td>
+        <table id="TR069"  width="100%"  cellspacing="0" cellpadding="0" class="context">
+          <tr id="idtitle1">
+            <td colspan="3" class="td_title">ACS配置</td>
+          </tr>
+          <tr id="idline0">
+            <td width="5%">&nbsp;</td>
+            <td width="45%">ACS URL</td>
+            <td width="50%">
+              <input class="text" id="ACSURL" maxlength="255" name="ACSURL" size="30" value="" alt="config/tr069/agent/acs/url">
+            </td>
+          </tr>
+          <tr id="idline1">
+            <td>&nbsp;</td>
+            <td>用户名</td>
+            <td>
+              <input class="text" id="ACSUserName" maxlength="255" name="ACSUserName" size="30" value="" alt="config/tr069/agent/acs/username">
+            </td>
+          </tr>
+          <tr id="idline2">
+            <td>&nbsp;</td>
+            <td>密码</td>
+            <td>
+              <input class="text" id="ACSPassword" maxlength="255" name="ACSPassword" size="30" type="password" value="" alt="config/tr069/agent/acs/password">
+            </td>
+          </tr>
+          <tr id="idline3">
+            <td>&nbsp;</td>
+            <td>周期连接</td>
+            <td>
+              <input id="PeriodicEnable" name="PeriodicEnable" type="checkbox" ng-click="mouse_click();"  checked alt="config/tr069/agent/periodic/enable">
+              开启</td>
+          </tr>
+          <tr id="idline4">
+            <td>&nbsp;</td>
+            <td>周期连接间隔</td>
+            <td>
+              <input class="text" id="PeriodicInterval" maxlength="5" name="PeriodicInterval" size="15" value="30" alt="config/tr069/agent/periodic/interval">
+              s
+            </td>
+          </tr>
+          <tr id="idblank0">
+            <td colspan="3">&nbsp;</td>
+          </tr>
+
+
+          <tr id="idtitle2">
+            <td colspan="3" class="td_title">连接CPE参数</td>
+          </tr>
+          <tr id="idline5">
+            <td>&nbsp;</td>
+            <td>用户名</td>
+            <td>
+              <input class="text" id="CPEUserName" maxlength="255" name="CPEUserName" size="30" value="" alt="config/tr069/agent/connreq/username">
+            </td>
+          </tr>
+          <tr id="idline6">
+            <td>&nbsp;</td>
+            <td>密码</td>
+            <td>
+              <input class="text" id="CPEPassword" maxlength="255" name="CPEPassword" size="30" type="password" value="" alt="config/tr069/agent/connreq/password">
+            </td>
+          </tr>
+          <tr id="idline7">
+            <td>&nbsp;</td>
+            <td>端口</td>
+            <td>
+              <input class="text" type="number" min="0" max="65535" id="ConReqPort" maxlength="5" name="ConReqPort" size="15" value="8099" alt="config/tr069/agent/connreq/port">
+            </td>
+          </tr>
+          <tr id="idblank1">
+            <td colspan="3">&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>

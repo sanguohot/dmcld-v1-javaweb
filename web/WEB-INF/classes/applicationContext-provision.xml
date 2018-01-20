@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<!-- 注解探测器 -->
+	<context:component-scan base-package="com.dinstar.sim" />
+	
+	<bean id="productTypeMapperDao" class="com.dinstar.sim.dao.provision.impl.ProductTypeMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="productTypeServiceDao" class="com.dinstar.sim.service.provision.impl.ProductTypeServiceImpl">
+		<property name="productTypeMapperDao" ref="productTypeMapperDao" />
+	</bean>
+	
+	<bean id="versionMapperDao" class="com.dinstar.sim.dao.provision.impl.VersionMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="versionServiceDao" class="com.dinstar.sim.service.provision.impl.VersionServiceImpl">
+		<property name="versionMapperDao" ref="versionMapperDao" />
+	</bean>
+	
+	<bean id="vendorMapperDao" class="com.dinstar.sim.dao.impl.VendorMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="vendorServiceDao" class="com.dinstar.sim.service.impl.VendorServiceImpl">
+		<property name="vendorMapperDao" ref="vendorMapperDao" />
+	</bean>
+	
+	<bean id="provisionTreeServiceDao" class="com.dinstar.sim.service.provision.impl.ProvisionTreeServiceImpl">
+		<property name="productTypeServiceDao" ref="productTypeServiceDao"/>
+		<property name="versionServiceDao" ref="versionServiceDao"/>
+	</bean>
+	
+	<bean id="timingTaskMapperDao" class="com.dinstar.sim.dao.impl.TimingTaskMapperImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="timingTaskServiceDao" class="com.dinstar.sim.service.impl.TimingTaskServiceImpl">
+		<property name="timingTaskMapperDao" ref="timingTaskMapperDao" />
+	</bean>
+	
+</beans>

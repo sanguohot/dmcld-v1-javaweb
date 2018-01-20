@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CLOUD v1.6</title>
+  <link rel="stylesheet" href="dm/lib/scojs/css/sco.message.css">
+  <!--<link rel="stylesheet" href="dm/lib/scojs/css/scojs.css">-->
+  <!-- Bootstrap -->
+  <link href="dm/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link rel="stylesheet" href="dm/ace-1.33/assets/font-awesome/4.2.0/css/font-awesome.min.css" />-->
+  <!--<link rel="stylesheet" type="text/css" href="dm/css/tree.css" />-->
+  <link rel="stylesheet" type="text/css" href="dm/css/tab-menu.css" />
+  
+  <link rel="stylesheet" type="text/css" href="dm/css/dev-sch.css" />
+  <link rel="stylesheet" type="text/css" href="dm/css/headroom.css" />
+  <link href="dm/bootstrap-3.3.2-dist/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="dm/bootstrap-3.3.2-dist/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="dm/ace-1.33/assets/css/select2.min.css" />
+  <link rel="stylesheet" href="dm/ace-1.33/assets/css/bootstrap-editable.min.css" />
+  <link rel="stylesheet" href="dm/ace-1.33/assets/css/chosen.min.css" />
+  <link rel="stylesheet" href="dm/ace-1.33/assets/css/ace.min.css" />
+  	<link rel="stylesheet" href="dm/ace-1.33/assets/css/bootstrap-duallistbox.min.css">
+	<link rel="stylesheet" href="dm/ace-1.33/assets/css/bootstrap-multiselect.min.css">
+<link rel="stylesheet" type="text/css" href="dm/css/util.css" />  
+  <link rel="stylesheet" href="dm/bootstrap-table/bootstrap-table.min.css">
+  <link href="dm/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+  <!--<link rel="stylesheet" href="dm/lib/jquery-tree/css/navigation.css">-->
+  <link rel="stylesheet" href="dm/car/css/car.css">
+ 
+		<link rel="stylesheet" href="dm/ace-1.33/assets/css/ace-rtl.min.css" />
+		<!--<link rel="stylesheet" href="dm/ace-1.33/assets/css/ace-skins.min.css" />-->
+		
+  <script src="dm/js/proto.js"></script>
+  <script src="dm/ace-1.33/assets/js/ace-extra.min.js"></script>
+  <script src="dm/lib/echarts.min.js"></script>
+
+ 
+</head>
+<body data-spy="scroll" data-target=".navbar" class="no-skin">
+<div id="navbar" class="navbar ">
+    <script type="text/javascript">
+        try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+    </script>
+    <div class="navbar-container" id="navbar-container">
+  <div class="navbar-header">
+  	<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+		<span class="sr-only">Toggle sidebar</span>
+<i class="ace-icon fa fa-tree fa-2x white"></i>
+
+	</button>
+    <button type="button" class="navbar-toggle menu-toggler pull-right collapsed" id="menu-toggler" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+
+		<span class="icon-bar"></span>
+
+		<span class="icon-bar"></span>      
+    </button>
+    <a class="navbar-brand" id="logo" href="#"><i class="fa fa-cloud"></i>&nbsp;云管理中心</a>
+  </div>
+  
+  <div class="navbar-buttons navbar-header pull-right " id="bs-example-navbar-collapse-1" >
+    <ul class="nav navbar-nav" id="bs-example-navbar-collapse">
+      <li class="blue"><a id="service_manage" href="#"><i class="fa fa-server bigger-160" ></i></a></li><!--服务管理-->
+      <li><a id="dev_manage" href="#"><i class="fa fa-mobile bigger-160" ></i></a></li><!--设备管理-->
+      <li><a id="user_manage" href="#"><i class="fa fa-user bigger-160" ></i></a></li><!--用户管理-->
+       <li class="blue" ><a id="service_version" style="display:none;" href="#" title="版本管理"><i class="fa fa-windows bigger-160"></i></a></li><!--版本管理-->
+      <li><a id="alarm_log" href="#" title="告警日志"><i class="fa fa-warning bigger-160"></i></a></li><!--告警日志-->
+      <li><a id="dev_model_store" href="#" title="设备模板库"><i class="fa fa-file-o bigger-160"></i></a></li><!--设备模板库-->
+      <li><a id="mes_description" href="#" title="消息公告"><i class="fa fa-commenting bigger-160" ></i></a></li><!--消息公告-->
+      <li><a id="common_report" href="#" title="常用报表" style="display:none;"><i class="fa fa-bars bigger-160" ></i></a></li><!--常用报表-->
+      <li style="display:none;"><a id="pay_manage" href="#"><i class="fa fa-cny bigger-160"></i></a></li><!--充值-->
+      <li id="lancon" class="dropdown">
+        <a id="lant" href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <i class="fa fa-language"></i>中文 <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu dropdown-yellow">
+          <li><a id="lancn" val="cn" href="#">中文</a></li>
+          <li><a id="lanen" val="en" href="#">English</a></li>
+        </ul>
+      </li>
+      
+      <li class="dropdown">
+        <a id="cur_user" data-toggle="dropdown" href="#" class="dropdown-toggle">
+          <span class="user-info">
+            <small>Welcome,</small>
+            Root
+          </span>
+
+          <i class="caret"></i>
+        </a>
+        
+        <ul class="dropdown-menu dropdown-yellow">
+          <li ><a id="change_pwd" href="#">修改密码</a></li>
+          <li class="divider"></li>
+          <li ><a id="logout"  href="#">退出</a></li>
+        </ul>
+      </li>
+      
+      <li >
+        <a id="transToOld" onclick="window.location='/index.html';" href="#"><i class="fa fa-share"></i>&nbsp;转至旧版</a>
+      </li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</div>
+</div>
+<div id="page_message" >
+
+</div>
+<!--<div class="container-fluid" id="tooltips"  style="margin-top: 60px;z-index:9999;">-->
+ <!--&nbsp;-->
+<!--</div>-->
+<div id="sidebar" class="sidebar  responsive" data-sidebar="true" data-sidebar-scroll="true" data-sidebar-hover="true">
+    <script type="text/javascript">
+        try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+    </script>
+    <div class="sidebar-shortcuts" id="sidebar-shortcuts" style="overflow:inherit;">
+        <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large" style="background-color:rgb(242, 242, 242)">
+            <select style="display: none;" class="chosen-select width-85" id="domain-sel" data-placeholder="请选择域">
+                <option value=""></option>
+            </select>
+        </div>
+
+        <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini" style="font-size: 18px;padding-top: 6px;">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-search"></i>
+            </a>
+        </div>
+    </div><!-- /.sidebar-shortcuts -->
+
+    <ul id="nav-list" class="nav nav-list" style="top: 0px;">
+        
+    </ul><!-- /.nav-list -->
+
+    <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+        <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+    </div>
+    <script type="text/javascript">
+        //try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+    </script>
+    
+</div>
+<div class="main-content">
+<div class="main-content-inner">
+<div class="breadcrumbs" id="breadcrumbs">
+	<ul class="breadcrumb">
+
+	</ul><!-- /.breadcrumb -->
+
+	<div class="nav-search" id="nav-search">
+		<!--<form class="form-search">
+			<span class="input-icon">
+				<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off">
+				<i class="ace-icon fa fa-search nav-search-icon"></i>
+			</span>
+		</form>-->
+	</div><!-- /.nav-search -->
+</div>
+<div class="page-content">
+        <div class="row">
+      <div class="col-md-10">
+		<div id="main_search"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10">
+        <div class="m-nav">
+
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top:4px;">
+      <div class="col-md-10" id="my-tab-position">
+        <!-- 标签页 -->
+      </div>
+    </div>
+</div>    
+</div>
+<!-- 模态框（Modal） -->
+<span id="strSize" style="visibility:hidden;"></span>
+<div class="modal fade " id="myModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true"></div><!-- /.modal -->
+<div id="modal-wizard" class="modal in" aria-hidden="false" style="display: none; padding-right: 17px;"></div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    
+    <!--<script src="dm/ace-1.33/assets/js/jquery.2.1.1.min.js"></script>-->
+    <!--<script src="dm/ace-1.33/assets/js/bootstrap.min.js"></script>-->
+    <!--<script src="dm/ace-1.33/assets/js/ace.min.js"></script>-->
+<script type="text/javascript">
+var d=new Date();
+var vd=new Date(d.getFullYear(),d.getMonth(),d.getDate(),0,0,0);
+var ver="0x60xxxx";
+var self="xxxxxxxx";
+var require = {
+ baseUrl: "dm",
+ //waitSeconds: 15,
+ urlArgs: "ver="+vd.getTime()+"&ver="+ver+"&self="+self,
+};
+  function changeValidateCode1(obj) {  
+           //获取当前的时间作为参数，无具体意义  
+        var timenow = new Date().getTime();  
+           //每次请求需要一个不同的参数，否则可能会返回同样的验证码  
+        //这和浏览器的缓存机制有关系，也可以把页面设置为不缓存，这样就不用这个参数了。  
+        obj.src="rand.action?d="+timenow;  
+    }
+</script>
+<script data-main='js/main' src="dm/lib/requirejs/require.js"></script>
+</script>
+</body>
+</html>

@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblPmdSys15Mapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblPmdSys15" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="sys_uuid" property="sysUuid" jdbcType="INTEGER" />
+    <result column="serial_no" property="serialNo" jdbcType="INTEGER" />
+    <result column="generate_time" property="generateTime" jdbcType="TIMESTAMP" />
+    <result column="sys_run_timelen" property="sysRunTimelen" jdbcType="INTEGER" />
+    <result column="sys_load_val" property="sysLoadVal" jdbcType="INTEGER" />
+    <result column="db_req_cnt" property="dbReqCnt" jdbcType="INTEGER" />
+    <result column="db_fail_cnt" property="dbFailCnt" jdbcType="INTEGER" />
+    <result column="cur_cpu_idle" property="curCpuIdle" jdbcType="INTEGER" />
+    <result column="min_cpu_idle" property="minCpuIdle" jdbcType="INTEGER" />
+    <result column="max_cpu_idle" property="maxCpuIdle" jdbcType="INTEGER" />
+    <result column="cur_mem_free" property="curMemFree" jdbcType="INTEGER" />
+    <result column="min_mem_free" property="minMemFree" jdbcType="INTEGER" />
+    <result column="max_mem_free" property="maxMemFree" jdbcType="INTEGER" />
+    <result column="recv_pkt_cnt" property="recvPktCnt" jdbcType="INTEGER" />
+    <result column="send_pkt_cnt" property="sendPktCnt" jdbcType="INTEGER" />
+    <result column="recv_bytes_cnt" property="recvBytesCnt" jdbcType="BIGINT" />
+    <result column="send_bytes_cnt" property="sendBytesCnt" jdbcType="BIGINT" />
+    <result column="cur_disk_free" property="curDiskFree" jdbcType="INTEGER" />
+    <result column="unknown_tg_count" property="unknownTgCount" jdbcType="INTEGER" />
+    <result column="total_tg_count" property="totalTgCount" jdbcType="INTEGER" />
+    <result column="online_tg_count" property="onlineTgCount" jdbcType="INTEGER" />
+    <result column="new_tg_count" property="newTgCount" jdbcType="INTEGER" />
+    <result column="unknown_ag_count" property="unknownAgCount" jdbcType="INTEGER" />
+    <result column="total_ag_count" property="totalAgCount" jdbcType="INTEGER" />
+    <result column="online_ag_count" property="onlineAgCount" jdbcType="INTEGER" />
+    <result column="new_ag_count" property="newAgCount" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, sys_uuid, serial_no, generate_time, sys_run_timelen, sys_load_val, 
+    db_req_cnt, db_fail_cnt, cur_cpu_idle, min_cpu_idle, max_cpu_idle, cur_mem_free, 
+    min_mem_free, max_mem_free, recv_pkt_cnt, send_pkt_cnt, recv_bytes_cnt, send_bytes_cnt, 
+    cur_disk_free, unknown_tg_count, total_tg_count, online_tg_count, new_tg_count, unknown_ag_count, 
+    total_ag_count, online_ag_count, new_ag_count
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblPmdSys15Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_pmd_sys_15
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+        <if test="limitClause != null" >
+      limit ${limitClause} 
+    </if>    
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_pmd_sys_15
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_pmd_sys_15
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblPmdSys15Criteria" >
+    delete from tbl_pmd_sys_15
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblPmdSys15" >
+    insert into tbl_pmd_sys_15 (uuid, rec_status, sys_uuid, 
+      serial_no, generate_time, sys_run_timelen, 
+      sys_load_val, db_req_cnt, db_fail_cnt, 
+      cur_cpu_idle, min_cpu_idle, max_cpu_idle, 
+      cur_mem_free, min_mem_free, max_mem_free, 
+      recv_pkt_cnt, send_pkt_cnt, recv_bytes_cnt, 
+      send_bytes_cnt, cur_disk_free, unknown_tg_count, 
+      total_tg_count, online_tg_count, new_tg_count, 
+      unknown_ag_count, total_ag_count, online_ag_count, 
+      new_ag_count)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{sysUuid,jdbcType=INTEGER}, 
+      #{serialNo,jdbcType=INTEGER}, #{generateTime,jdbcType=TIMESTAMP}, #{sysRunTimelen,jdbcType=INTEGER}, 
+      #{sysLoadVal,jdbcType=INTEGER}, #{dbReqCnt,jdbcType=INTEGER}, #{dbFailCnt,jdbcType=INTEGER}, 
+      #{curCpuIdle,jdbcType=INTEGER}, #{minCpuIdle,jdbcType=INTEGER}, #{maxCpuIdle,jdbcType=INTEGER}, 
+      #{curMemFree,jdbcType=INTEGER}, #{minMemFree,jdbcType=INTEGER}, #{maxMemFree,jdbcType=INTEGER}, 
+      #{recvPktCnt,jdbcType=INTEGER}, #{sendPktCnt,jdbcType=INTEGER}, #{recvBytesCnt,jdbcType=BIGINT}, 
+      #{sendBytesCnt,jdbcType=BIGINT}, #{curDiskFree,jdbcType=INTEGER}, #{unknownTgCount,jdbcType=INTEGER}, 
+      #{totalTgCount,jdbcType=INTEGER}, #{onlineTgCount,jdbcType=INTEGER}, #{newTgCount,jdbcType=INTEGER}, 
+      #{unknownAgCount,jdbcType=INTEGER}, #{totalAgCount,jdbcType=INTEGER}, #{onlineAgCount,jdbcType=INTEGER}, 
+      #{newAgCount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblPmdSys15" >
+    insert into tbl_pmd_sys_15
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="sysUuid != null" >
+        sys_uuid,
+      </if>
+      <if test="serialNo != null" >
+        serial_no,
+      </if>
+      <if test="generateTime != null" >
+        generate_time,
+      </if>
+      <if test="sysRunTimelen != null" >
+        sys_run_timelen,
+      </if>
+      <if test="sysLoadVal != null" >
+        sys_load_val,
+      </if>
+      <if test="dbReqCnt != null" >
+        db_req_cnt,
+      </if>
+      <if test="dbFailCnt != null" >
+        db_fail_cnt,
+      </if>
+      <if test="curCpuIdle != null" >
+        cur_cpu_idle,
+      </if>
+      <if test="minCpuIdle != null" >
+        min_cpu_idle,
+      </if>
+      <if test="maxCpuIdle != null" >
+        max_cpu_idle,
+      </if>
+      <if test="curMemFree != null" >
+        cur_mem_free,
+      </if>
+      <if test="minMemFree != null" >
+        min_mem_free,
+      </if>
+      <if test="maxMemFree != null" >
+        max_mem_free,
+      </if>
+      <if test="recvPktCnt != null" >
+        recv_pkt_cnt,
+      </if>
+      <if test="sendPktCnt != null" >
+        send_pkt_cnt,
+      </if>
+      <if test="recvBytesCnt != null" >
+        recv_bytes_cnt,
+      </if>
+      <if test="sendBytesCnt != null" >
+        send_bytes_cnt,
+      </if>
+      <if test="curDiskFree != null" >
+        cur_disk_free,
+      </if>
+      <if test="unknownTgCount != null" >
+        unknown_tg_count,
+      </if>
+      <if test="totalTgCount != null" >
+        total_tg_count,
+      </if>
+      <if test="onlineTgCount != null" >
+        online_tg_count,
+      </if>
+      <if test="newTgCount != null" >
+        new_tg_count,
+      </if>
+      <if test="unknownAgCount != null" >
+        unknown_ag_count,
+      </if>
+      <if test="totalAgCount != null" >
+        total_ag_count,
+      </if>
+      <if test="onlineAgCount != null" >
+        online_ag_count,
+      </if>
+      <if test="newAgCount != null" >
+        new_ag_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="sysUuid != null" >
+        #{sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="generateTime != null" >
+        #{generateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysRunTimelen != null" >
+        #{sysRunTimelen,jdbcType=INTEGER},
+      </if>
+      <if test="sysLoadVal != null" >
+        #{sysLoadVal,jdbcType=INTEGER},
+      </if>
+      <if test="dbReqCnt != null" >
+        #{dbReqCnt,jdbcType=INTEGER},
+      </if>
+      <if test="dbFailCnt != null" >
+        #{dbFailCnt,jdbcType=INTEGER},
+      </if>
+      <if test="curCpuIdle != null" >
+        #{curCpuIdle,jdbcType=INTEGER},
+      </if>
+      <if test="minCpuIdle != null" >
+        #{minCpuIdle,jdbcType=INTEGER},
+      </if>
+      <if test="maxCpuIdle != null" >
+        #{maxCpuIdle,jdbcType=INTEGER},
+      </if>
+      <if test="curMemFree != null" >
+        #{curMemFree,jdbcType=INTEGER},
+      </if>
+      <if test="minMemFree != null" >
+        #{minMemFree,jdbcType=INTEGER},
+      </if>
+      <if test="maxMemFree != null" >
+        #{maxMemFree,jdbcType=INTEGER},
+      </if>
+      <if test="recvPktCnt != null" >
+        #{recvPktCnt,jdbcType=INTEGER},
+      </if>
+      <if test="sendPktCnt != null" >
+        #{sendPktCnt,jdbcType=INTEGER},
+      </if>
+      <if test="recvBytesCnt != null" >
+        #{recvBytesCnt,jdbcType=BIGINT},
+      </if>
+      <if test="sendBytesCnt != null" >
+        #{sendBytesCnt,jdbcType=BIGINT},
+      </if>
+      <if test="curDiskFree != null" >
+        #{curDiskFree,jdbcType=INTEGER},
+      </if>
+      <if test="unknownTgCount != null" >
+        #{unknownTgCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalTgCount != null" >
+        #{totalTgCount,jdbcType=INTEGER},
+      </if>
+      <if test="onlineTgCount != null" >
+        #{onlineTgCount,jdbcType=INTEGER},
+      </if>
+      <if test="newTgCount != null" >
+        #{newTgCount,jdbcType=INTEGER},
+      </if>
+      <if test="unknownAgCount != null" >
+        #{unknownAgCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalAgCount != null" >
+        #{totalAgCount,jdbcType=INTEGER},
+      </if>
+      <if test="onlineAgCount != null" >
+        #{onlineAgCount,jdbcType=INTEGER},
+      </if>
+      <if test="newAgCount != null" >
+        #{newAgCount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblPmdSys15Criteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_pmd_sys_15
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_pmd_sys_15
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.sysUuid != null" >
+        sys_uuid = #{record.sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.serialNo != null" >
+        serial_no = #{record.serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.generateTime != null" >
+        generate_time = #{record.generateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sysRunTimelen != null" >
+        sys_run_timelen = #{record.sysRunTimelen,jdbcType=INTEGER},
+      </if>
+      <if test="record.sysLoadVal != null" >
+        sys_load_val = #{record.sysLoadVal,jdbcType=INTEGER},
+      </if>
+      <if test="record.dbReqCnt != null" >
+        db_req_cnt = #{record.dbReqCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.dbFailCnt != null" >
+        db_fail_cnt = #{record.dbFailCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.curCpuIdle != null" >
+        cur_cpu_idle = #{record.curCpuIdle,jdbcType=INTEGER},
+      </if>
+      <if test="record.minCpuIdle != null" >
+        min_cpu_idle = #{record.minCpuIdle,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxCpuIdle != null" >
+        max_cpu_idle = #{record.maxCpuIdle,jdbcType=INTEGER},
+      </if>
+      <if test="record.curMemFree != null" >
+        cur_mem_free = #{record.curMemFree,jdbcType=INTEGER},
+      </if>
+      <if test="record.minMemFree != null" >
+        min_mem_free = #{record.minMemFree,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxMemFree != null" >
+        max_mem_free = #{record.maxMemFree,jdbcType=INTEGER},
+      </if>
+      <if test="record.recvPktCnt != null" >
+        recv_pkt_cnt = #{record.recvPktCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendPktCnt != null" >
+        send_pkt_cnt = #{record.sendPktCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.recvBytesCnt != null" >
+        recv_bytes_cnt = #{record.recvBytesCnt,jdbcType=BIGINT},
+      </if>
+      <if test="record.sendBytesCnt != null" >
+        send_bytes_cnt = #{record.sendBytesCnt,jdbcType=BIGINT},
+      </if>
+      <if test="record.curDiskFree != null" >
+        cur_disk_free = #{record.curDiskFree,jdbcType=INTEGER},
+      </if>
+      <if test="record.unknownTgCount != null" >
+        unknown_tg_count = #{record.unknownTgCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalTgCount != null" >
+        total_tg_count = #{record.totalTgCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.onlineTgCount != null" >
+        online_tg_count = #{record.onlineTgCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.newTgCount != null" >
+        new_tg_count = #{record.newTgCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.unknownAgCount != null" >
+        unknown_ag_count = #{record.unknownAgCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalAgCount != null" >
+        total_ag_count = #{record.totalAgCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.onlineAgCount != null" >
+        online_ag_count = #{record.onlineAgCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.newAgCount != null" >
+        new_ag_count = #{record.newAgCount,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_pmd_sys_15
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      sys_uuid = #{record.sysUuid,jdbcType=INTEGER},
+      serial_no = #{record.serialNo,jdbcType=INTEGER},
+      generate_time = #{record.generateTime,jdbcType=TIMESTAMP},
+      sys_run_timelen = #{record.sysRunTimelen,jdbcType=INTEGER},
+      sys_load_val = #{record.sysLoadVal,jdbcType=INTEGER},
+      db_req_cnt = #{record.dbReqCnt,jdbcType=INTEGER},
+      db_fail_cnt = #{record.dbFailCnt,jdbcType=INTEGER},
+      cur_cpu_idle = #{record.curCpuIdle,jdbcType=INTEGER},
+      min_cpu_idle = #{record.minCpuIdle,jdbcType=INTEGER},
+      max_cpu_idle = #{record.maxCpuIdle,jdbcType=INTEGER},
+      cur_mem_free = #{record.curMemFree,jdbcType=INTEGER},
+      min_mem_free = #{record.minMemFree,jdbcType=INTEGER},
+      max_mem_free = #{record.maxMemFree,jdbcType=INTEGER},
+      recv_pkt_cnt = #{record.recvPktCnt,jdbcType=INTEGER},
+      send_pkt_cnt = #{record.sendPktCnt,jdbcType=INTEGER},
+      recv_bytes_cnt = #{record.recvBytesCnt,jdbcType=BIGINT},
+      send_bytes_cnt = #{record.sendBytesCnt,jdbcType=BIGINT},
+      cur_disk_free = #{record.curDiskFree,jdbcType=INTEGER},
+      unknown_tg_count = #{record.unknownTgCount,jdbcType=INTEGER},
+      total_tg_count = #{record.totalTgCount,jdbcType=INTEGER},
+      online_tg_count = #{record.onlineTgCount,jdbcType=INTEGER},
+      new_tg_count = #{record.newTgCount,jdbcType=INTEGER},
+      unknown_ag_count = #{record.unknownAgCount,jdbcType=INTEGER},
+      total_ag_count = #{record.totalAgCount,jdbcType=INTEGER},
+      online_ag_count = #{record.onlineAgCount,jdbcType=INTEGER},
+      new_ag_count = #{record.newAgCount,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblPmdSys15" >
+    update tbl_pmd_sys_15
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="sysUuid != null" >
+        sys_uuid = #{sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="serialNo != null" >
+        serial_no = #{serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="generateTime != null" >
+        generate_time = #{generateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysRunTimelen != null" >
+        sys_run_timelen = #{sysRunTimelen,jdbcType=INTEGER},
+      </if>
+      <if test="sysLoadVal != null" >
+        sys_load_val = #{sysLoadVal,jdbcType=INTEGER},
+      </if>
+      <if test="dbReqCnt != null" >
+        db_req_cnt = #{dbReqCnt,jdbcType=INTEGER},
+      </if>
+      <if test="dbFailCnt != null" >
+        db_fail_cnt = #{dbFailCnt,jdbcType=INTEGER},
+      </if>
+      <if test="curCpuIdle != null" >
+        cur_cpu_idle = #{curCpuIdle,jdbcType=INTEGER},
+      </if>
+      <if test="minCpuIdle != null" >
+        min_cpu_idle = #{minCpuIdle,jdbcType=INTEGER},
+      </if>
+      <if test="maxCpuIdle != null" >
+        max_cpu_idle = #{maxCpuIdle,jdbcType=INTEGER},
+      </if>
+      <if test="curMemFree != null" >
+        cur_mem_free = #{curMemFree,jdbcType=INTEGER},
+      </if>
+      <if test="minMemFree != null" >
+        min_mem_free = #{minMemFree,jdbcType=INTEGER},
+      </if>
+      <if test="maxMemFree != null" >
+        max_mem_free = #{maxMemFree,jdbcType=INTEGER},
+      </if>
+      <if test="recvPktCnt != null" >
+        recv_pkt_cnt = #{recvPktCnt,jdbcType=INTEGER},
+      </if>
+      <if test="sendPktCnt != null" >
+        send_pkt_cnt = #{sendPktCnt,jdbcType=INTEGER},
+      </if>
+      <if test="recvBytesCnt != null" >
+        recv_bytes_cnt = #{recvBytesCnt,jdbcType=BIGINT},
+      </if>
+      <if test="sendBytesCnt != null" >
+        send_bytes_cnt = #{sendBytesCnt,jdbcType=BIGINT},
+      </if>
+      <if test="curDiskFree != null" >
+        cur_disk_free = #{curDiskFree,jdbcType=INTEGER},
+      </if>
+      <if test="unknownTgCount != null" >
+        unknown_tg_count = #{unknownTgCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalTgCount != null" >
+        total_tg_count = #{totalTgCount,jdbcType=INTEGER},
+      </if>
+      <if test="onlineTgCount != null" >
+        online_tg_count = #{onlineTgCount,jdbcType=INTEGER},
+      </if>
+      <if test="newTgCount != null" >
+        new_tg_count = #{newTgCount,jdbcType=INTEGER},
+      </if>
+      <if test="unknownAgCount != null" >
+        unknown_ag_count = #{unknownAgCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalAgCount != null" >
+        total_ag_count = #{totalAgCount,jdbcType=INTEGER},
+      </if>
+      <if test="onlineAgCount != null" >
+        online_ag_count = #{onlineAgCount,jdbcType=INTEGER},
+      </if>
+      <if test="newAgCount != null" >
+        new_ag_count = #{newAgCount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblPmdSys15" >
+    update tbl_pmd_sys_15
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      sys_uuid = #{sysUuid,jdbcType=INTEGER},
+      serial_no = #{serialNo,jdbcType=INTEGER},
+      generate_time = #{generateTime,jdbcType=TIMESTAMP},
+      sys_run_timelen = #{sysRunTimelen,jdbcType=INTEGER},
+      sys_load_val = #{sysLoadVal,jdbcType=INTEGER},
+      db_req_cnt = #{dbReqCnt,jdbcType=INTEGER},
+      db_fail_cnt = #{dbFailCnt,jdbcType=INTEGER},
+      cur_cpu_idle = #{curCpuIdle,jdbcType=INTEGER},
+      min_cpu_idle = #{minCpuIdle,jdbcType=INTEGER},
+      max_cpu_idle = #{maxCpuIdle,jdbcType=INTEGER},
+      cur_mem_free = #{curMemFree,jdbcType=INTEGER},
+      min_mem_free = #{minMemFree,jdbcType=INTEGER},
+      max_mem_free = #{maxMemFree,jdbcType=INTEGER},
+      recv_pkt_cnt = #{recvPktCnt,jdbcType=INTEGER},
+      send_pkt_cnt = #{sendPktCnt,jdbcType=INTEGER},
+      recv_bytes_cnt = #{recvBytesCnt,jdbcType=BIGINT},
+      send_bytes_cnt = #{sendBytesCnt,jdbcType=BIGINT},
+      cur_disk_free = #{curDiskFree,jdbcType=INTEGER},
+      unknown_tg_count = #{unknownTgCount,jdbcType=INTEGER},
+      total_tg_count = #{totalTgCount,jdbcType=INTEGER},
+      online_tg_count = #{onlineTgCount,jdbcType=INTEGER},
+      new_tg_count = #{newTgCount,jdbcType=INTEGER},
+      unknown_ag_count = #{unknownAgCount,jdbcType=INTEGER},
+      total_ag_count = #{totalAgCount,jdbcType=INTEGER},
+      online_ag_count = #{onlineAgCount,jdbcType=INTEGER},
+      new_ag_count = #{newAgCount,jdbcType=INTEGER}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

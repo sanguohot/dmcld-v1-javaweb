@@ -1,0 +1,42 @@
+<div class="modal-backdrop  in" style="height: 775px;"></div>
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div id="modal-wizard-container" class="">
+            <div class="modal-header">
+                <ul class="steps">
+                    {{~it.list:value:index}}
+                    <li data-step="{{=value.step}}" class="active">
+                        <span class="step">{{=value.step}}</span>
+                        <span class="title">{{=value.name}}</span>
+                    </li>
+                    {{~}}
+                </ul>
+            </div>
+
+            <div class="modal-body step-content">
+                {{~it.list:value:index}}
+                <div class="step-pane active" data-step="{{=value.step}}">
+                    {{=value.content}}
+                </div>
+                {{~}}
+            </div>
+        </div>
+
+        <div class="modal-footer wizard-actions">
+            <button class="btn btn-sm btn-prev" disabled="disabled">
+                <i class="ace-icon fa fa-arrow-left"></i>
+                {{=it.lan.prev}}
+            </button>
+
+            <button class="btn btn-success btn-sm btn-next" data-last="Finish">
+                {{=it.lan.next}}
+
+                <i class="ace-icon fa fa-arrow-right icon-on-right"></i></button>
+
+            <button class="btn btn-danger btn-sm pull-left" data-dismiss="modal">
+                <i class="ace-icon fa fa-times"></i>
+                {{=it.lan.cancel}}
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+{
+	success: true,
+	userrights: [
+				{model:'0',read:'yes',update:'yes',create:'yes',del:'yes'},
+				{model:'1',read:'yes',update:'yes',create:'no',del:'yes'},
+				{model:'2',read:'yes',update:'yes',create:'yes',del:'yes'},
+				{model:'3',read:'yes',update:'yes',create:'yes',del:'yes'},
+				{model:'4',read:'yes',update:'yes',create:'yes',del:'yes'},
+				{model:'5',read:'yes',update:'yes',create:'yes',del:'yes'},
+				{model:'6',read:'yes',update:'yes',create:'yes',del:'yes'},
+            ]
+}

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- ne port mapper -->
+<mapper namespace="com.dinstar.sim.mapper.Msg">
+	<resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblMsg" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="user_uuid" property="userUuid" jdbcType="INTEGER" />
+    <result column="theme" property="theme" jdbcType="CHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="send_to_role" property="sendToRole" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="checked_status" property="checkedStatus" jdbcType="INTEGER" />
+    <result column="checked_result" property="checkedResult" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="msg_uuid" property="msgUuid" jdbcType="INTEGER" />
+    <result column="read_status" property="readStatus" jdbcType="INTEGER" />
+    <result column="src_domain_uuid" property="srcDomainUuid" jdbcType="INTEGER" />
+    <result column="src_role_id" property="srcRoleId" jdbcType="INTEGER" />
+    <result column="src_user_uuid" property="srcUserUuid" jdbcType="INTEGER" />
+    <result column="src_user_name" property="srcUserName" jdbcType="CHAR" />
+    <result column="send_status" property="sendStatus" jdbcType="INTEGER" />
+    <result column="cancel_status" property="cancelStatus" jdbcType="INTEGER" />
+    
+  </resultMap>
+      <select id="countSendList" resultType="java.lang.Integer">
+		select count(*) from
+		(
+		SELECT tms.*,tm.theme,tm.send_to_role,tm.content
+		FROM tbl_msg_send tms
+		LEFT JOIN tbl_msg tm ON(tm.uuid=tms.msg_uuid)
+		) as B
+		WHERE B.rec_status!=2
+		<if test="theme!=null and theme!=''" >
+   		 and B.theme like #{theme}
+     	</if>
+     	<if test="content!=null and content!=''" >
+   		 and B.content like #{content}
+     	</if>
+     	<if test="fs!=null and fs!=''" >
+   		 and (B.theme like #{fs} or B.content like #{fs})
+     	</if>
+		<if test="domainUuid>0" >
+   		 and B.domain_uuid=#{domainUuid}
+     	</if>
+		<if test="userUuid>0" >
+   		 and B.user_uuid=#{userUuid}
+     	</if>
+     	<if test="fromTime!=null and fromTime!=''" >
+   		 and B.time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>B.time
+     	</if>
+     	<if test="msgUuid>0" >
+   		 and B.msg_uuid=#{msgUuid}
+     	</if>     	
+     	<if test="sendStatus>=0" >
+   		 and B.send_status=#{sendStatus}
+     	</if>
+    </select>
+    <select id="getSendList" resultMap="BaseResultMap">
+		select * from
+		(
+		SELECT tms.*,tm.theme,tm.send_to_role,tm.content
+		FROM tbl_msg_send tms
+		LEFT JOIN tbl_msg tm ON(tm.uuid=tms.msg_uuid)
+		) as B
+		WHERE B.rec_status!=2
+		<if test="theme!=null and theme!=''" >
+   		 and B.theme like #{theme}
+     	</if>
+     	<if test="content!=null and content!=''" >
+   		 and B.content like #{content}
+     	</if>
+     	<if test="fs!=null and fs!=''" >
+   		 and (B.theme like #{fs} or B.content like #{fs})
+     	</if>
+		<if test="domainUuid>0" >
+   		 and B.domain_uuid=#{domainUuid}
+     	</if>
+		<if test="userUuid>0" >
+   		 and B.user_uuid=#{userUuid}
+     	</if>
+     	<if test="fromTime!=null and fromTime!=''" >
+   		 and B.time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>B.time
+     	</if>
+     	<if test="msgUuid>0" >
+   		 and B.msg_uuid=#{msgUuid}
+     	</if>      	
+     	<if test="sendStatus>=0" >
+   		 and B.send_status=#{sendStatus}
+     	</if>
+      	<if test="sort != null" >
+   		 order by ${sort}
+     	</if>
+      	<if test="limit>0">LIMIT ${start},${limit}</if>
+    </select>	    
+    <select id="getRecList" resultMap="BaseResultMap">
+		select B.* from
+		(
+		SELECT A.*,tm.theme,tm.send_to_role,tm.content,tm.domain_uuid as src_domain_uuid,
+		tm.role_id as src_role_id,tm.user_uuid as src_user_uuid,tu.name as src_user_name,tms.cancel_status from
+		((
+		SELECT *,2 as read_status from tbl_msg_rec_read
+		)
+		UNION
+		(
+		SELECT *,1 as read_status from tbl_msg_rec_unread
+		)) as A
+		left JOIN tbl_msg tm on (tm.uuid=A.msg_uuid)
+		left JOIN tbl_user tu on (tm.user_uuid=tu.uuid)
+		 LEFT JOIN tbl_msg_send tms on (tms.msg_uuid=tm.uuid)
+		) as B
+		WHERE B.rec_status!=2
+		<if test="theme!=null and theme!=''" >
+   		 and B.theme like #{theme}
+     	</if>
+     	<if test="content!=null and content!=''" >
+   		 and B.content like #{content}
+     	</if>
+     	<if test="fs!=null and fs!=''" >
+   		 and (B.theme like #{fs} or B.content like #{fs})
+     	</if>
+		<if test="domainUuid>0" >
+   		 and B.domain_uuid=#{domainUuid}
+     	</if>
+		<if test="userUuid>0" >
+   		 and B.user_uuid=#{userUuid}
+     	</if>
+     	<if test="fromTime!=null and fromTime!=''" >
+   		 and B.time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>B.time
+     	</if>
+     	<if test="msgUuid>0" >
+   		 and B.msg_uuid=#{msgUuid}
+     	</if>     	
+     	<if test="readStatus>0" >
+   		 and B.read_status=#{readStatus}
+     	</if>
+      	<if test="sort != null" >
+   		 order by ${sort}
+     	</if>
+      	<if test="limit>0">LIMIT ${start},${limit}</if>
+    </select>
+    <select id="countRecList" resultType="java.lang.Integer">
+		select count(*) from
+		(
+		SELECT A.*,tm.theme,tm.send_to_role,tm.content from 
+		((
+		SELECT *,2 as read_status from tbl_msg_rec_read
+		)
+		UNION
+		(
+		SELECT *,1 as read_status from tbl_msg_rec_unread
+		)) as A
+		left JOIN tbl_msg tm on (tm.uuid=A.msg_uuid)
+		) as B
+		WHERE B.rec_status!=2
+		<if test="theme!=null and theme!=''" >
+   		 and B.theme like #{theme}
+     	</if>
+     	<if test="content!=null and content!=''" >
+   		 and B.content like #{content}
+     	</if>
+     	<if test="fs!=null and fs!=''" >
+   		 and (B.theme like #{fs} or B.content like #{fs})
+     	</if>
+		<if test="domainUuid>0" >
+   		 and B.domain_uuid=#{domainUuid}
+     	</if>
+		<if test="userUuid>0" >
+   		 and B.user_uuid=#{userUuid}
+     	</if>
+     	<if test="fromTime!=null and fromTime!=''" >
+   		 and B.time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>B.time
+     	</if>
+     	<if test="msgUuid>0" >
+   		 and B.msg_uuid=#{msgUuid}
+     	</if>
+     	<if test="readStatus>0" >
+   		 and B.read_status=#{readStatus}
+     	</if>
+    </select>
+    <insert id="batchInsert" parameterType="java.util.List">
+		insert into tbl_msg_rec_unread (rec_status,domain_uuid,role_id,user_uuid,msg_uuid,time)
+		values  
+	    <foreach collection="list" item="item" index="index"  
+	        separator=",">  
+	        (#{item.recStatus}, #{item.domainUuid}, #{item.roleId},  
+	        #{item.userUuid}, #{item.msgUuid}, #{item.time})  
+	    </foreach>
+	    ON DUPLICATE key UPDATE time=VALUES(time),rec_status=values(rec_status)  
+  	</insert>
+</mapper>

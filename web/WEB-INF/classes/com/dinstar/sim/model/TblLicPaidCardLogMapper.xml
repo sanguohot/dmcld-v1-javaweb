@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblLicPaidCardLogMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblLicPaidCardLog" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="card_sn" property="cardSn" jdbcType="CHAR" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="action_time" property="actionTime" jdbcType="TIMESTAMP" />
+    <result column="card_status" property="cardStatus" jdbcType="INTEGER" />
+    <result column="card_type" property="cardType" jdbcType="INTEGER" />
+    <result column="card_price" property="cardPrice" jdbcType="INTEGER" />
+    <result column="used_sys_uuid" property="usedSysUuid" jdbcType="INTEGER" />
+    <result column="used_domain_uuid" property="usedDomainUuid" jdbcType="INTEGER" />
+    <result column="used_time" property="usedTime" jdbcType="TIMESTAMP" />
+    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+  	<!--########### add used_sys_name and used_domain_name #######-->
+    <result column="used_sys_name" property="usedSysName" jdbcType="CHAR" />
+    <result column="used_domain_name" property="usedDomainName" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, card_sn, action_status, action_result, action_time, card_status, card_type, 
+    card_price, used_sys_uuid, used_domain_uuid, used_time, detail_desc
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblLicPaidCardLogCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    t1.*,
+    t2.name as used_domain_name, t3.name as used_sys_name
+    from tbl_lic_paid_card_log t1 left join tbl_domain t2 on (t1.used_domain_uuid=t2.uuid)  left join tbl_sys t3 on (t1.used_sys_uuid=t3.uuid)
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClause != null">limit ${limitClause}</if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_lic_paid_card_log
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_lic_paid_card_log
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblLicPaidCardLogCriteria" >
+    delete from tbl_lic_paid_card_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblLicPaidCardLog" >
+    insert into tbl_lic_paid_card_log (uuid, card_sn, action_status, 
+      action_result, action_time, card_status, 
+      card_type, card_price, used_sys_uuid, 
+      used_domain_uuid, used_time, detail_desc
+      )
+    values (#{uuid,jdbcType=INTEGER}, #{cardSn,jdbcType=CHAR}, #{actionStatus,jdbcType=INTEGER}, 
+      #{actionResult,jdbcType=INTEGER}, #{actionTime,jdbcType=TIMESTAMP}, #{cardStatus,jdbcType=INTEGER}, 
+      #{cardType,jdbcType=INTEGER}, #{cardPrice,jdbcType=INTEGER}, #{usedSysUuid,jdbcType=INTEGER}, 
+      #{usedDomainUuid,jdbcType=INTEGER}, #{usedTime,jdbcType=TIMESTAMP}, #{detailDesc,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblLicPaidCardLog" >
+    insert into tbl_lic_paid_card_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="cardSn != null" >
+        card_sn,
+      </if>
+      <if test="actionStatus != null" >
+        action_status,
+      </if>
+      <if test="actionResult != null" >
+        action_result,
+      </if>
+      <if test="actionTime != null" >
+        action_time,
+      </if>
+      <if test="cardStatus != null" >
+        card_status,
+      </if>
+      <if test="cardType != null" >
+        card_type,
+      </if>
+      <if test="cardPrice != null" >
+        card_price,
+      </if>
+      <if test="usedSysUuid != null" >
+        used_sys_uuid,
+      </if>
+      <if test="usedDomainUuid != null" >
+        used_domain_uuid,
+      </if>
+      <if test="usedTime != null" >
+        used_time,
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="cardSn != null" >
+        #{cardSn,jdbcType=CHAR},
+      </if>
+      <if test="actionStatus != null" >
+        #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="actionTime != null" >
+        #{actionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cardStatus != null" >
+        #{cardStatus,jdbcType=INTEGER},
+      </if>
+      <if test="cardType != null" >
+        #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="cardPrice != null" >
+        #{cardPrice,jdbcType=INTEGER},
+      </if>
+      <if test="usedSysUuid != null" >
+        #{usedSysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="usedDomainUuid != null" >
+        #{usedDomainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="usedTime != null" >
+        #{usedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailDesc != null" >
+        #{detailDesc,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblLicPaidCardLogCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_lic_paid_card_log t1 left join tbl_domain t2 on (t1.used_domain_uuid=t2.uuid)
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_lic_paid_card_log
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardSn != null" >
+        card_sn = #{record.cardSn,jdbcType=CHAR},
+      </if>
+      <if test="record.actionStatus != null" >
+        action_status = #{record.actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionResult != null" >
+        action_result = #{record.actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionTime != null" >
+        action_time = #{record.actionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cardStatus != null" >
+        card_status = #{record.cardStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardType != null" >
+        card_type = #{record.cardType,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardPrice != null" >
+        card_price = #{record.cardPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.usedSysUuid != null" >
+        used_sys_uuid = #{record.usedSysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.usedDomainUuid != null" >
+        used_domain_uuid = #{record.usedDomainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.usedTime != null" >
+        used_time = #{record.usedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.detailDesc != null" >
+        detail_desc = #{record.detailDesc,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_lic_paid_card_log
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      card_sn = #{record.cardSn,jdbcType=CHAR},
+      action_status = #{record.actionStatus,jdbcType=INTEGER},
+      action_result = #{record.actionResult,jdbcType=INTEGER},
+      action_time = #{record.actionTime,jdbcType=TIMESTAMP},
+      card_status = #{record.cardStatus,jdbcType=INTEGER},
+      card_type = #{record.cardType,jdbcType=INTEGER},
+      card_price = #{record.cardPrice,jdbcType=INTEGER},
+      used_sys_uuid = #{record.usedSysUuid,jdbcType=INTEGER},
+      used_domain_uuid = #{record.usedDomainUuid,jdbcType=INTEGER},
+      used_time = #{record.usedTime,jdbcType=TIMESTAMP},
+      detail_desc = #{record.detailDesc,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblLicPaidCardLog" >
+    update tbl_lic_paid_card_log
+    <set >
+      <if test="cardSn != null" >
+        card_sn = #{cardSn,jdbcType=CHAR},
+      </if>
+      <if test="actionStatus != null" >
+        action_status = #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        action_result = #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="actionTime != null" >
+        action_time = #{actionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cardStatus != null" >
+        card_status = #{cardStatus,jdbcType=INTEGER},
+      </if>
+      <if test="cardType != null" >
+        card_type = #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="cardPrice != null" >
+        card_price = #{cardPrice,jdbcType=INTEGER},
+      </if>
+      <if test="usedSysUuid != null" >
+        used_sys_uuid = #{usedSysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="usedDomainUuid != null" >
+        used_domain_uuid = #{usedDomainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="usedTime != null" >
+        used_time = #{usedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc = #{detailDesc,jdbcType=CHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblLicPaidCardLog" >
+    update tbl_lic_paid_card_log
+    set card_sn = #{cardSn,jdbcType=CHAR},
+      action_status = #{actionStatus,jdbcType=INTEGER},
+      action_result = #{actionResult,jdbcType=INTEGER},
+      action_time = #{actionTime,jdbcType=TIMESTAMP},
+      card_status = #{cardStatus,jdbcType=INTEGER},
+      card_type = #{cardType,jdbcType=INTEGER},
+      card_price = #{cardPrice,jdbcType=INTEGER},
+      used_sys_uuid = #{usedSysUuid,jdbcType=INTEGER},
+      used_domain_uuid = #{usedDomainUuid,jdbcType=INTEGER},
+      used_time = #{usedTime,jdbcType=TIMESTAMP},
+      detail_desc = #{detailDesc,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

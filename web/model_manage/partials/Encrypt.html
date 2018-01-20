@@ -1,0 +1,72 @@
+<form name="Encryption" id="Encryption" ng-controller="EncryptCtrl">
+	<table width="600px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+		<tbody><tr class="title">
+			<td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+			<td>加密配置</td>
+			<td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+		</tr>
+		</tbody></table>
+  <table width="600px" align="center" class="tblbody">
+    <tr>
+      <td class="swidth">&nbsp;</td>
+      <td>
+        <table width="100%"  cellspacing="" cellpadding="1">
+          <tr>
+            <td width="50%">&nbsp;</td>
+            <td width="50%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>SIP加密</td>
+            <td>
+              <!--<input id="AddSipEncrypt" name="AddSipEncrypt" type="checkbox" onChange="mouse_click();" selected>启用-->
+              <select name='AddSipEncrypt' class='list' id='AddSipEncrypt' style='width:70%;' alt="config/system/entrypt_param/sip_encrypt">
+                <option value="0" >启用</option>
+                <option value="1" selected>禁用</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>RTP加密</td>
+            <td>
+              <select name='AddRtpEncrypt' class='list' id='AddRtpEncrypt' style='width:70%;' alt="config/system/entrypt_param/rtp_encrypt">
+                <option value='0' selected>禁用</option><option value='1' >RTP</option><option value='2' >RTP 头</option><option value='3' >RTP 载体</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>加密方式</td>
+            <td>
+              <select name='AddEncryptMode' class='list' id='AddEncryptMode' style='width:70%;' alt="config/system/entrypt_param/encrypt_mode">
+                <option value='0' selected>VOS RC4</option>
+              </select>
+            </td>
+          </tr>
+          <tr id="idEncryptkey" style="display:none">
+            <td>密钥</td>
+            <td>
+              <input class="text" type="password" id="Encryptkey" name="Encryptkey" maxlength="255" size="32" value="5@�">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+      <td class="swidth">&nbsp;</td>
+    </tr>
+  </table>
+  <table width="600px" align="center" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td width="30%"></td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td align="right" class="notes">注意:&nbsp;</td>
+		<td class="notes">1. 使用了认证密码的帐户才可进行SIP加密.</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td class="notes">2. 启用SIP加密将禁用心跳和匿名呼叫.</td>
+	</tr>
+	</tbody></table>
+</form>

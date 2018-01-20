@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- pmd all
+  -->
+<mapper namespace="com.dinstar.sim.mapper.PmdAll">
+	<resultMap type="com.dinstar.sim.mapper.PmdAllMapper" id="baseResultMap">
+		<id column="uuid" property="uuid" jdbcType="INTEGER" />
+	    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="alias" property="alias" jdbcType="CHAR" />
+	    <result column="port_uuid" property="portUuid" jdbcType="INTEGER" />
+	    <result column="serial_no" property="serialNo" jdbcType="INTEGER" />
+	    <result column="generate_time" property="generateTime" jdbcType="TIMESTAMP" />
+	    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+	    <result column="ne_uuid" property="neUuid" jdbcType="INTEGER" />
+	    <result column="product_sn" property="productSn" jdbcType="VARCHAR" />
+	    <result column="port_alias" property="portAlias" jdbcType="CHAR" />
+	    <result column="value0" property="value0" jdbcType="INTEGER" />
+	    <result column="value1" property="value1" jdbcType="INTEGER" />
+	    <result column="value2" property="value2" jdbcType="INTEGER" />
+	    <result column="value3" property="value3" jdbcType="INTEGER" />
+	    <result column="value4" property="value4" jdbcType="INTEGER" />
+	    <result column="value5" property="value5" jdbcType="INTEGER" />
+	    <result column="value6" property="value6" jdbcType="INTEGER" />
+	    <result column="value7" property="value7" jdbcType="INTEGER" />
+	    <result column="value8" property="value8" jdbcType="INTEGER" />
+	    <result column="value9" property="value9" jdbcType="INTEGER" />
+	    <result column="value10" property="value10" jdbcType="INTEGER" />
+	    <result column="value11" property="value11" jdbcType="INTEGER" />
+	    <result column="value12" property="value12" jdbcType="INTEGER" />
+	    <result column="value13" property="value13" jdbcType="INTEGER" />
+	    <result column="value14" property="value14" jdbcType="INTEGER" />
+	    <result column="value15" property="value15" jdbcType="INTEGER" />
+	    <result column="value16" property="value16" jdbcType="INTEGER" />
+	    <result column="value17" property="value17" jdbcType="INTEGER" />
+	    <result column="value18" property="value18" jdbcType="INTEGER" />
+	    <result column="value19" property="value19" jdbcType="INTEGER" />
+	    <result column="value20" property="value20" jdbcType="INTEGER" />
+	    <result column="value21" property="value21" jdbcType="INTEGER" />
+	    <result column="value22" property="value22" jdbcType="INTEGER" />
+	    <result column="value23" property="value23" jdbcType="INTEGER" />
+	    <result column="value24" property="value24" jdbcType="INTEGER" />
+	    <result column="value25" property="value25" jdbcType="INTEGER" />
+	    <result column="value26" property="value26" jdbcType="INTEGER" />
+	    <result column="value27" property="value27" jdbcType="INTEGER" />
+	    <result column="value28" property="value28" jdbcType="INTEGER" />
+	    <result column="value29" property="value29" jdbcType="INTEGER" />
+	    <result column="value30" property="value30" jdbcType="INTEGER" />
+	    <result column="value31" property="value31" jdbcType="INTEGER" />
+    </resultMap>
+    
+	<select id="getPmdData" resultMap="baseResultMap" parameterType="java.util.HashMap" statementType="STATEMENT">
+		select * from ${tableName} tl where 1=1
+		<if test="neUuid!=null and neUuid>0">AND tl.ne_uuid =${neUuid} </if>
+		<if test="portUuid!=null and portUuid>0">
+		and port_uuid=${portUuid}
+		</if>		
+		order by generate_time desc 
+   		 <if test="limitClause != null" >
+     		limit ${limitClause} 
+    	</if>
+	</select>
+	
+	<select id="getPmdCurData" resultMap="baseResultMap" parameterType="java.util.HashMap" statementType="STATEMENT">
+		select t1.*,tl.port_alias as alias from ${tableName} t1
+		where 1=1
+		<if test="neUuid!=null and neUuid>0">AND tl.ne_uuid =${neUuid} </if>
+		<if test="portUuids!=null">
+		and t1.port_uuid in 
+		<foreach collection="portUuids" index="index" item="item" open="(" separator="," close=")">
+		${item}
+		</foreach>
+		</if>		
+    	order by t1.generate_time desc
+   		 <if test="limitClause != null" >
+     		limit ${limitClause} 
+    	</if>
+	</select>
+	
+	<select id="countPmdData" resultType="java.lang.Integer" parameterType="java.util.HashMap" statementType="STATEMENT">
+		select count(*) from ${tableName} tl
+		where 1=1
+		<if test="neUuid!=null and neUuid>0">AND tl.ne_uuid =${neUuid} </if>
+		<if test="portUuid!=null and portUuid>0">
+		and port_uuid =${portUuid}
+		</if>
+	</select>
+	
+	<select id="countPmdCurData" resultType="java.lang.Integer" parameterType="java.util.HashMap" statementType="STATEMENT">
+		select count(*) from ${tableName} t1
+		where 1=1
+		<if test="neUuid!=null and neUuid>0">AND tl.ne_uuid =${neUuid} </if>
+		<if test="portUuids!=null">
+		and t1.port_uuid in 
+		<foreach collection="portUuids" index="index" item="item" open="(" separator="," close=")">
+		${item}
+		</foreach>
+		</if>	
+	</select>
+	
+</mapper>

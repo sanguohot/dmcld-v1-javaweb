@@ -1,0 +1,45 @@
+<form ng-controller="WhiteListForWEBCtrl">
+  <input type="hidden" id="values" name="values" value="">
+  <table width="600px" align="center" class="tblbody">
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td>
+        <table width="100%" cellpadding="0" cellspacing="0" class="context">
+          <tr>
+            <td width="5%">&nbsp;</td>
+            <td width="55%">&nbsp;</td>
+            <td width="40%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>WEB访问控制列表:</td>
+            <td>
+              <label><input type="checkbox" name="WhiteListEnable" id="WhiteListEnable" ng-click="onElementClicked()" alt="config/system/white_list_for_web/enable" /> 启用</label>
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>
+              <select name="WhiteList" id="WhiteList" size="9" class="list" style="width:96%;" disabled>
+              </select>
+            </td>
+            <td  style="vertical-align:bottom;">
+              <input type="button" name="BtnDelete" id="BtnDelete" value="删除" class="button" ng-click="onItemDelete()" disabled />
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><input type="text" name="Item" id="Item" class="text" style="width:96%" disabled /></td>
+            <td><input type="button" name="BtnAdd" id="BtnAdd" value="添加" class="button" ng-click="onItemAdd()" disabled /></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+      <td width="5%">&nbsp;</td>
+    </tr>
+  </table>
+</form>

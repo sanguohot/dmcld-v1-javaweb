@@ -1,0 +1,11 @@
+<div class="form-group-sm">
+    <label class="margin-bottom-0">{{=it.label}}</label>
+    <div>
+        {{~it.list:value:index}}
+        <label class="checkbox-inline margin-bottom-0">
+            <input class="ace ace-checkbox-2" type="checkbox" name="{{=it.name}}" value="{{=value.value}}" data-toggle="checkbox"><span class="lbl">&nbsp;{{=value.text}}</span>
+        </label>
+        {{~}}
+
+    </div>
+</div>

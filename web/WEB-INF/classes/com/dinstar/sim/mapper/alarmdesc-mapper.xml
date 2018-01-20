@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dinstar.sim.mapper.DomainAlarm">
+	<resultMap type="com.dinstar.sim.mapper.DomainAlarm" id="domainAlarm">
+		<id column="uuid" property="uuid" jdbcType="INTEGER" />
+	    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="alarm_id" property="alarmId" jdbcType="INTEGER" />
+	    <result column="alarm_level" property="alarmLevel" jdbcType="INTEGER" />
+	    <result column="alarm_name" property="alarmName" jdbcType="CHAR" />
+	    <result column="alarm_desc" property="alarmDesc" jdbcType="VARCHAR" />
+	    
+	   	 <result column="tadd_uuid" property="taddUuid" jdbcType="INTEGER" />
+	  	<result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+	    <result column="tadd_alarm_id" property="taddAlarmId" jdbcType="INTEGER" />
+	    <result column="tadd_alarm_level" property="taddAlarmLevel" jdbcType="INTEGER" />
+	    <result column="tadd_alarm_name" property="taddAlarmName" jdbcType="CHAR" />
+	    <result column="tadd_alarm_desc" property="taddAlarmDesc" jdbcType="VARCHAR" />
+	    <result column="tadd_alarm_type" property="taddAlarmType" jdbcType="INTEGER" />
+	    <result column="tadd_time_check_max" property="taddTimeCheckMax" jdbcType="INTEGER" />
+	    <result column="alarm_type" property="alarmType" jdbcType="INTEGER" />
+	    <result column="domain_desc_flag" property="domainDescFlag" jdbcType="INTEGER" />
+	    <result column="time_check_max" property="timeCheckMax" jdbcType="INTEGER" />
+	    <result column="time_desc_flag" property="timeDescFlag" jdbcType="INTEGER" />
+	    <result column="level_desc_flag" property="levelDescFlag" jdbcType="INTEGER" />
+	    <result column="alarm_desc_cn" property="alarmDescCn" jdbcType="VARCHAR" />
+  </resultMap>	    
+
+   <select id="getDomainAlarm" resultMap="domainAlarm" >
+    	select tadd.alarm_type as tadd_alarm_type,tadd.time_check_max as tadd_time_check_max,
+    	tad.*,
+    	tadd.uuid as tadd_uuid,tadd.domain_uuid,tadd.alarm_id as tadd_alarm_id,
+		tadd.alarm_name as tadd_alarm_name,tadd.alarm_level as tadd_alarm_level,
+		tadd.alarm_desc as tadd_alarm_desc 
+		from tbl_alarm_desc tad 
+		left join tbl_alarm_domain_desc tadd on (tad.alarm_id=tadd.alarm_id and tadd.domain_uuid=#{domainUuid})
+		where 1=1
+		<if test="alarmId!=null">
+		 and tad.alarm_id=#{alarmId}
+		</if>
+	
+		<if test="alarmName!=null">
+		 and tad.alarm_name like #{alarmName}
+		</if>
+		<if test="taddAlarmName!=null">
+		 and tadd.alarm_name like #{taddAlarmName}
+		</if>
+		<if test="alarmLevel!=null">
+		 and tad.alarm_level=#{alarmLevel}
+		</if>
+		<if test="taddAlarmLevel!=null">
+		 and tadd.alarm_level=#{taddAlarmLevel}
+		</if>
+		<if test="limit>0">LIMIT #{start},#{limit}</if>
+  </select>
+   <select id="countDomainAlarm" resultType="java.lang.Integer" >
+    	select count(*)
+		from tbl_alarm_desc tad 
+		left join tbl_alarm_domain_desc tadd on (tad.alarm_id=tadd.alarm_id and tadd.domain_uuid=#{domainUuid})
+		where 1=1
+		<if test="alarmId!=null">
+		 and tad.alarm_id=#{alarmId}
+		</if>
+		
+		<if test="alarmName!=null">
+		 and tad.alarm_name like #{alarmName}
+		</if>
+		<if test="taddAlarmName!=null">
+		 and tadd.alarm_name like #{taddAlarmName}
+		</if>
+		<if test="alarmLevel!=null">
+		 and tad.alarm_level=#{alarmLevel}
+		</if>
+		<if test="taddAlarmLevel!=null">
+		 and tadd.alarm_level=#{taddAlarmLevel}
+		</if>
+  </select>
+   
+    <select id="countDomainDesc" resultType="java.lang.Integer" >
+    <![CDATA[
+    	select count(*) from (
+    	select 
+    	CASE 
+    	WHEN t1.alarm_id is NULL THEN t2.time_check_max
+    	WHEN t1.time_check_max is NULL THEN t2.time_check_max
+		WHEN (t1.time_check_max<0) THEN t2.time_check_max
+		ELSE t1.time_check_max
+		END as time_check_max,
+		
+		CASE 
+    	WHEN t1.alarm_id is NULL THEN 0
+    	WHEN t1.time_check_max is NULL THEN 0
+		WHEN (t1.time_check_max<0) THEN 0
+		ELSE 1
+		END as time_desc_flag,
+		
+		CASE 
+    	WHEN t1.alarm_id is NULL THEN 0
+    	WHEN t1.alarm_level is NULL THEN 0
+		WHEN (t1.alarm_level<0) THEN 0
+		ELSE 1
+		END as level_desc_flag,
+		
+		CASE 
+    	WHEN t1.alarm_id is NULL THEN t2.alarm_level
+    	WHEN t1.alarm_level is NULL THEN t2.alarm_level
+		WHEN (t1.alarm_level<0) THEN t2.alarm_level
+		ELSE t1.alarm_level
+		END as alarm_level,
+		]]>
+		CASE t1.alarm_id is NULL
+		WHEN true THEN 0
+		ELSE 1
+		END as domain_desc_flag,
+		CASE t1.domain_uuid is null
+		WHEN true THEN #{domainUuid}
+		ELSE t1.domain_uuid
+		END as domain_uuid,
+		t2.alarm_id,t2.alarm_name,
+		t2.alarm_desc
+		from tbl_alarm_domain_desc t1 
+		RIGHT join tbl_alarm_desc t2 on(t1.alarm_id=t2.alarm_id)
+		<if test="domainUuid>0">
+		 and t1.domain_uuid=#{domainUuid}
+		</if>
+		)as tmp
+		where 1=1
+		<if test="alarmLevel>-1">
+		 and tmp.alarm_level=#{alarmLevel}
+		</if>
+		<if test="alarmId!=null">
+		 and tmp.alarm_id=#{alarmId}
+		</if>
+		
+		<if test="alarmName!=null and alarmName!=''">
+		 and tmp.alarm_name like #{alarmName}
+		</if>
+		<if test="alarmDesc!=null and alarmDesc!=''">
+		 and tmp.alarm_desc like #{alarmDesc}
+		</if>
+  </select>
+   <select id="getDomainDesc" resultMap="domainAlarm" >
+   <![CDATA[
+    	select * from (
+    	select 
+    	t1.uuid,
+    	CASE 
+    	WHEN t1.alarm_id is NULL THEN t2.time_check_max
+    	WHEN t1.time_check_max is NULL THEN t2.time_check_max
+		WHEN (t1.time_check_max<0) THEN t2.time_check_max
+		ELSE t1.time_check_max
+		END as time_check_max,
+		
+		CASE 
+    	WHEN t1.alarm_id is NULL THEN 0
+    	WHEN t1.time_check_max is NULL THEN 0
+		WHEN (t1.time_check_max<0) THEN 0
+		ELSE 1
+		END as time_desc_flag,
+		
+		CASE 
+    	WHEN t1.alarm_id is NULL THEN 0
+    	WHEN t1.alarm_level is NULL THEN 0
+		WHEN (t1.alarm_level<0) THEN 0
+		ELSE 1
+		END as level_desc_flag,
+		
+		CASE 
+    	WHEN t1.alarm_id is NULL THEN t2.alarm_level
+    	WHEN t1.alarm_level is NULL THEN t2.alarm_level
+		WHEN (t1.alarm_level<0) THEN t2.alarm_level
+		ELSE t1.alarm_level
+		END as alarm_level,
+		]]>
+		CASE t1.alarm_id is NULL
+		WHEN true THEN 0
+		ELSE 1
+		END as domain_desc_flag,
+		
+		CASE t1.domain_uuid is null
+		WHEN true THEN #{domainUuid}
+		ELSE t1.domain_uuid
+		END as domain_uuid,
+		
+		t2.alarm_id,t2.alarm_name,
+		t2.alarm_desc,t2.alarm_desc_cn
+		from tbl_alarm_domain_desc t1 
+		RIGHT join tbl_alarm_desc t2 on(t1.alarm_id=t2.alarm_id and  t1.rec_status!=2 )
+		<if test="domainUuid>0">
+		 and t1.domain_uuid=#{domainUuid}
+		</if>
+		)as tmp
+		where 1=1
+		<if test="alarmLevel>-1">
+		 and tmp.alarm_level=#{alarmLevel}
+		</if>
+		<if test="alarmId!=null">
+		 and tmp.alarm_id=#{alarmId}
+		</if>		
+		<if test="alarmName!=null and alarmName!=''">
+		 and tmp.alarm_name like #{alarmName}
+		</if>
+		<if test="alarmDesc!=null and alarmDesc!=''">
+		 and tmp.alarm_desc like #{alarmDesc}
+		</if>
+		<if test="sort != null" >
+     		 order by ${sort}
+    	</if>
+		<if test="limit>0">LIMIT #{start},#{limit}</if>
+	
+  </select>
+   <insert id="batchInsert" parameterType="java.util.List">
+		INSERT into tbl_alarm_domain_desc(rec_status,alarm_id,domain_uuid
+		<if test="alarmLevel>-1">,alarm_level</if>
+		<if test="timeCheckMax!=null">,time_check_max</if>)
+		values  
+	    <foreach collection="list" item="item" index="index"  
+	        separator=",">  
+	        (#{item.recStatus}, #{item.alarmId}, #{item.domainUuid} 
+		<if test="alarmLevel>-1">,#{alarmLevel}</if>
+		<if test="timeCheckMax!=null">,#{timeCheckMax}</if>)  
+	    </foreach>
+	    ON DUPLICATE key UPDATE rec_status=values(rec_status)
+	    <if test="alarmLevel>-1">,alarm_level=values(alarm_level)</if>
+	    <if test="timeCheckMax!=null">,time_check_max=values(time_check_max)</if>	    
+  	</insert>
+  	<delete id="deleteDomainDesc" >		
+    DELETE FROM tbl_alarm_domain_desc
+	WHERE 1=1
+	and domain_uuid=#{domainUuid}
+	<if test="idList != null" >
+	and alarm_id in
+	<foreach collection="idList" index="index" item="item" open="(" separator="," close=")">
+	${item}
+	</foreach>
+	</if>
+  </delete>
+  <delete id="deleteDomainDesc1">
+	delete from tbl_alarm_domain_desc where
+	domain_uuid=#{domainUuid}
+	and alarm_id in(
+	select 0 UNION
+	select alarm_id from (
+   	select 
+	CASE t1.alarm_id is NULL
+	WHEN true THEN t2.alarm_level
+	ELSE t1.alarm_level
+	END as alarm_level,
+	CASE t1.alarm_id is NULL
+	WHEN true THEN 0
+	ELSE 1
+	END as domain_desc_flag,
+	CASE t1.domain_uuid is null
+	WHEN true THEN #{domainUuid}
+	ELSE t1.domain_uuid
+	END as domain_uuid,
+	t2.alarm_id,t2.alarm_name,
+	t2.alarm_desc
+	from tbl_alarm_domain_desc t1 
+	RIGHT join tbl_alarm_desc t2 on(t1.alarm_id=t2.alarm_id)
+	<if test="domainUuid>0">
+	 and t1.domain_uuid=#{domainUuid}
+	</if>
+	)as tmp)
+	where 1=1
+	<if test="alarmLevel>-1">
+	 and tmp.alarm_level=#{alarmLevel}
+	</if>
+	<if test="alarmId!=null">
+	 and tmp.alarm_id=#{alarmId}
+	</if>		
+	<if test="alarmName!=null and alarmName!=''">
+	 and tmp.alarm_name like #{alarmName}
+	</if>
+	<if test="alarmDesc!=null and alarmDesc!=''">
+	 and tmp.alarm_desc like #{alarmDesc}
+	</if>
+	</delete>
+</mapper>

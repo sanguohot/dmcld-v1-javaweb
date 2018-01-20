@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dinstar.sim.mapper.LicDomain">
+	<resultMap type="com.dinstar.sim.mapper.LicDomainMapper" id="licDomainMapperMap">
+	    <result column="uuid" property="uuid" jdbcType="INTEGER" />
+	    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="spec_domain_uuid" property="specDomainUuid" jdbcType="INTEGER" />
+	    <result column="alias" property="alias" jdbcType="CHAR" />
+	    <result column="srv_domain" property="srvDomain" jdbcType="CHAR" />
+	    <result column="serial_no" property="serialNo" jdbcType="INTEGER" />
+	    <result column="sign_type" property="signType" jdbcType="INTEGER" />
+	    <result column="version" property="version" jdbcType="CHAR" />
+	    <result column="max_sim_card" property="maxSimCard" jdbcType="INTEGER" />
+	    <result column="service_api" property="serviceApi" jdbcType="INTEGER" />
+	    <result column="hbm_features" property="hbmFeatures" jdbcType="INTEGER" />
+	    <result column="hbm_features02" property="hbmFeatures02" jdbcType="INTEGER" />
+	    <result column="hbm_features03" property="hbmFeatures03" jdbcType="INTEGER" />
+	    <result column="valid_days" property="validDays" jdbcType="INTEGER" />
+	    <result column="expired_date" property="expiredDate" jdbcType="TIMESTAMP" />
+	    <result column="sign_date" property="signDate" jdbcType="TIMESTAMP" />
+	    <result column="sign_author" property="signAuthor" jdbcType="CHAR" />
+	    <result column="dns_url" property="dnsUrl" jdbcType="CHAR" />
+	    <result column="dns_url02" property="dnsUrl02" jdbcType="CHAR" />
+	    <result column="auth_info" property="authInfo" jdbcType="CHAR" />
+	    <result column="lic_status" property="licStatus" jdbcType="INTEGER" />
+	    <result column="left_days" property="leftDays" jdbcType="INTEGER" />
+	    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+	    
+	    <!-- domain info -->
+	    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+	    <result column="domain_name" property="domainName" jdbcType="CHAR" />
+	    <result column="domain_alias" property="domainAlias" jdbcType="CHAR" />
+	    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+	    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+	    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+	    <result column="total_ne_count" property="totalNeCount" jdbcType="INTEGER" />
+	    <result column="total_sim_card" property="totalSimCard" jdbcType="INTEGER" />
+    	<result column="trial_balance" property="trialBalance" jdbcType="CHAR" />
+    	<result column="premium_balance" property="premiumBalance" jdbcType="CHAR" />
+    	<result column="domain_detail_desc" property="domainDetailDesc" jdbcType="CHAR" />
+	    <result column="lic_first_cost" property="licFirstCost" jdbcType="INTEGER" />
+    	<result column="lic_period_cost" property="licPeriodCost" jdbcType="INTEGER" />
+	</resultMap>
+
+	 <select id="countLicDomainInfo" resultType="java.lang.Integer">
+			select
+				count(*)
+			from tbl_domain td
+			left join tbl_lic_domain tls on (td.uuid=tls.spec_domain_uuid)
+			where td.rec_status!=2
+			<if test="domainUuid!=null and domainUuid>0">
+				and td.uuid = #{domainUuid}
+			</if>
+			<if test="cloudUuid!=null and cloudUuid!=0">
+				and td.cloud_uuid=#{cloudUuid}
+			</if>
+			<if test="domainName!=null">
+				and td.name like #{domainName}
+			</if>
+			<if test="licStatus!=null and  licStatus>-1">
+				and tls.lic_status=#{licStatus}
+			</if>
+			<if test="leftDays!=null and leftDays>-1">
+				and tls.left_days &lt;=#{leftDays}
+			</if>
+			<if test="hbmFeatures!=null and hbmFeatures>-1">
+				and tls.hbm_features=#{hbmFeatures}
+			</if>
+	    </select>
+	<select id="getLicDomainInfo" resultMap="licDomainMapperMap">
+		select
+		tls.*,
+		td.uuid as domain_uuid,td.`name` as domain_name,td.alias as
+		domain_alias,td.admin_status,td.opr_status,td.run_status,
+		td.detail_desc as
+		domain_detail_desc,td.total_ne_count,td.total_sim_card,td.trial_balance,td.premium_balance,td.lic_first_cost,td.lic_period_cost
+		from tbl_domain td
+		left join tbl_lic_domain tls on (td.uuid=tls.spec_domain_uuid)
+		where td.rec_status!=2
+		<if test="domainUuid!=null and domainUuid>0">
+			and td.uuid = #{domainUuid}
+		</if>
+		<if test="cloudUuid!=null and cloudUuid!=0">
+			and td.cloud_uuid=#{cloudUuid}
+		</if>
+		<if test="domainName!=null">
+			and td.name like #{domainName}
+		</if>
+		<if test="licStatus!=null and  licStatus>-1">
+			and tls.lic_status=#{licStatus}
+		</if>
+		<if test="leftDays!=null and leftDays>-1">
+			and tls.left_days &lt;=#{leftDays}
+		</if>
+		<if test="hbmFeatures!=null and hbmFeatures>-1">
+			and tls.hbm_features=#{hbmFeatures}
+		</if>
+		<if test="sort != null" >
+     		 order by ${sort}
+    	</if>
+		<if test="limitClause != null">limit ${limitClause}</if>
+    </select>
+    
+</mapper>

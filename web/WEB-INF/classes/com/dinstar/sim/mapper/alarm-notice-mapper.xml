@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.mapper.AlarmNoticeMapper" >
+
+  <resultMap id="AlarmNoticeMap" type="com.dinstar.sim.mapper.AlarmNoticeMapper" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="sys_uuid" property="sysUuid" jdbcType="INTEGER" />
+    <result column="alarm_sn" property="alarmSn" jdbcType="INTEGER" />
+    <result column="alarm_index" property="alarmIndex" jdbcType="INTEGER" />
+    <result column="ne_uuid" property="neUuid" jdbcType="INTEGER" />
+    <result column="object_type" property="objectType" jdbcType="INTEGER" />
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="alarm_id" property="alarmId" jdbcType="INTEGER" />
+    <result column="alarm_type" property="alarmType" jdbcType="INTEGER" />
+    <result column="cause_id" property="causeId" jdbcType="INTEGER" />
+    <result column="report_time" property="reportTime" jdbcType="TIMESTAMP" />
+    <result column="recv_time" property="recvTime" jdbcType="TIMESTAMP" />
+    <result column="clean_time" property="cleanTime" jdbcType="TIMESTAMP" />
+    <result column="clean_flag" property="cleanFlag" jdbcType="INTEGER" />
+    <result column="object_brief" property="objectBrief" jdbcType="VARCHAR" />
+    <result column="object_desc" property="objectDesc" jdbcType="VARCHAR" />
+    <result column="confirm_flag" property="confirmFlag" jdbcType="INTEGER" />
+    
+    <result column="alarm_level" property="alarmLevel" jdbcType="INTEGER" />
+    <result column="time_check_max" property="timeCheckMax" jdbcType="INTEGER" />
+    <result column="alarm_name" property="alarmName" jdbcType="CHAR" />
+    <result column="alarm_desc" property="alarmDesc" jdbcType="VARCHAR" />
+    <result column="alarm_desc_cn" property="alarmDescCn" jdbcType="VARCHAR" />
+    
+    <result column="cause_name" property="causeName" jdbcType="CHAR" />
+    <result column="cause_desc" property="causeDesc" jdbcType="VARCHAR" />
+    <result column="cause_desc_cn" property="causeDescCn" jdbcType="VARCHAR" />
+    
+  </resultMap>
+
+<select id="selectByPrimary" resultMap="AlarmNoticeMap" parameterType="java.lang.Integer" >
+	select 
+		tba.uuid,tba.rec_status,tba.domain_uuid,tba.sys_uuid,tba.alarm_sn,tba.alarm_index,
+		tba.ne_uuid,tba.object_type,tba.object_id,tba.alarm_id,tba.alarm_type,tba.cause_id,
+		tba.report_time,tba.recv_time,tba.clean_time,tba.clean_flag,tba.object_brief,
+		tba.object_desc,tba.confirm_flag,
+		tbd.alarm_level,tbd.jitter_sec as time_check_max,tbd.alarm_name,tbd.alarm_desc,
+		tbd.alarm_desc_cn,
+		tcd.cause_name,tcd.cause_desc,tcd.cause_desc_cn
+		from tbl_alarm tba left join tbl_alarm_attr tbd on (tba.alarm_id=tbd.uuid)
+		left join tbl_cause_desc tcd on (tba.cause_id = tcd.cause_id)
+		where tba.uuid = #{uuid}
+</select>
+
+
+
+ 
+
+
+
+
+
+
+
+
+</mapper>

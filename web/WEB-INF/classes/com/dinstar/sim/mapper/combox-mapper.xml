@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- tree mapper
+ #{domainUuid,mode=IN,jdbcType=INTEGER},#{userType,mode=IN,jdbcType=INTEGER},#{userUuid,mode=IN,jdbcType=INTEGER}
+  -->
+<mapper namespace="com.dinstar.sim.mapper.Combox">
+	<resultMap type="com.dinstar.sim.model.Combox" id="comboxResultMap">
+       <result column="uuid" property="uuid" jdbcType="INTEGER"/>
+       <result column="name" property="name" jdbcType="VARCHAR"/>
+       <result column="type" property="type" jdbcType="VARCHAR"/>
+    </resultMap>
+    
+    <resultMap type="com.dinstar.sim.model.TimeBean" id="timeResultMap">
+       <result column="generate_time" property="generateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+	 <select id="getCombox" statementType="CALLABLE" resultMap="comboxResultMap" parameterType="java.util.HashMap">
+		
+		<![CDATA[
+		
+		  {call PROC_GET_COMBOX (
+		  			#{domainUuid,mode=IN,jdbcType=INTEGER},
+		  			#{types,mode=IN,jdbcType=INTEGER},
+		  			#{grpUuid,mode=IN,jdbcType=INTEGER},
+		  			#{bkUuid,mode=IN,jdbcType=INTEGER},
+		  			#{bkpUuid,mode=IN,jdbcType=INTEGER},
+		  			#{simUuid,mode=IN,jdbcType=INTEGER},
+		  			#{portUuid,mode=IN,jdbcType=INTEGER},
+		  			#{cloudUuid,mode=IN,jdbcType=INTEGER},
+		  			#{productIds,mode=IN,jdbcType=CHAR}
+		  		)
+		  }
+		
+		]]>
+		
+	</select>
+
+	 <select id="getMinMaxPMDate" statementType="CALLABLE" resultMap="timeResultMap" parameterType="java.util.HashMap">
+		<![CDATA[
+		  {call PROC_GET_MIN_MAX_PM_DATA (
+		  			#{table_name,mode=IN,jdbcType=CHAR},
+		  			#{param_name,mode=IN,jdbcType=CHAR},
+		  			#{param_uuid,mode=IN,jdbcType=INTEGER}
+		  		)
+		  }
+		]]>
+	</select>
+
+	 <select id="getCurPMSn" statementType="CALLABLE" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+		
+		<![CDATA[
+		
+		  {call PROC_GET_CUR_PM_SN (
+		  			#{domainUuid,mode=IN,jdbcType=INTEGER}
+		  		)
+		  }
+		
+		]]>
+		
+	</select>
+	 <select id="clearDomainData" statementType="CALLABLE" >
+		
+		<![CDATA[
+		
+		  {call PROC_CLEAR_DOMAIN_DATA ()
+		  }
+		
+		]]>
+		
+	</select>
+</mapper>

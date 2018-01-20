@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- ne port mapper -->
+<mapper namespace="com.dinstar.sim.mapper.Number">
+	<resultMap type="com.dinstar.sim.mapper.NumMapper" id="numMapperMap">
+		<id column="uuid" property="uuid" jdbcType="INTEGER" />
+	    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+	    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+	    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+	    <result column="number" property="number" jdbcType="VARCHAR" />
+	    <result column="type" property="type" jdbcType="INTEGER" />
+	    <result column="call_cnt" property="callCnt" jdbcType="INTEGER" />
+	    <result column="last_call_time" property="lastCallTime" jdbcType="TIMESTAMP" />
+	    <result column="src_ip" property="srcIp" jdbcType="VARCHAR" />
+	    <result column="number_role" property="numberRole" jdbcType="INTEGER" />
+	    <result column="dynamic_weight" property="dynamicWeight" jdbcType="INTEGER" />
+	    <result column="snumber_max" property="snumberMax" jdbcType="INTEGER" />
+	    <result column="dnumber_max" property="dnumberMax" jdbcType="INTEGER" />
+	     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	     
+	    	    <result column="invalid_flag" property="invalidFlag" jdbcType="INTEGER" />
+	    <result column="black_infected_flag" property="blackInfectedFlag" jdbcType="INTEGER" />
+	</resultMap>
+	    
+    <select id="countNumList" resultType="java.lang.Integer" statementType="STATEMENT" >
+		SELECT count(*) FROM ${table} n
+		WHERE (n.rec_status IS NULL OR n.rec_status!=2)
+		<if test="num!=null and num!=''" >
+         and n.number like ${num}
+      </if>
+      <if test="type > 0" >
+        and n.number_type = ${type}
+      </if>
+      <if test="numberRole > 0" >
+        and n.number_role = ${numberRole}
+      </if>
+      <if test="domainUuid > 0" >
+        and n.domain_uuid = ${domainUuid}
+      </if>
+  	</select>
+    <select id="getNumList" resultMap="numMapperMap" statementType="STATEMENT"  parameterType="java.util.HashMap">
+		SELECT p.snumber_max,p.dnumber_max,n.number_type as type,n.* FROM ${table} n
+		left join tbl_pm_head p on(n.domain_uuid=p.domain_uuid)
+		WHERE (n.rec_status IS NULL OR n.rec_status!=2)
+		<if test="num!=null and num!=''" >
+        and n.number like ${num}
+      </if>
+      <if test="type > 0" >
+        and n.number_type = ${type}
+      </if>
+      <if test="numberRole > 0" >
+        and n.number_role = ${numberRole}
+      </if>
+      <if test="domainUuid > 0" >
+        and n.domain_uuid = ${domainUuid}
+      </if>
+      <if test="sort != null" >
+   		 order by ${sort}
+      </if>
+      <if test="limit>0">LIMIT ${start},${limit}</if>
+    </select>
+    
+     <select id="getNumList2" resultMap="numMapperMap" statementType="STATEMENT"  parameterType="java.util.HashMap">
+		SELECT n.number_type as type,n.* FROM ${table} n
+		WHERE (n.rec_status IS NULL OR n.rec_status!=2)
+		<if test="num!=null and num!=''" >
+		  and n.number like ${num}
+		</if>
+		<if test="type > 0" >
+		  and n.number_type = ${type}
+		</if>
+		<if test="numberRole > 0" >
+        and n.number_role = ${numberRole}
+      </if>
+		<if test="domainUuid > 0" >
+		  and n.domain_uuid = ${domainUuid}
+		</if>
+		<if test="idList != null" >
+		and n.uuid in
+		<foreach collection="idList" index="index" item="item" open="(" separator="," close=")">
+		${item}
+		</foreach>
+		</if>
+    </select>
+       <insert id="batchInsert" parameterType="map">
+		INSERT into tbl_snum (rec_status,domain_uuid,number,src_ip,last_call_time,number_type,call_cnt,number_role)
+		values  
+	    <foreach collection="list" item="item" index="index"  
+	        separator=",">  
+	        (#{item.recStatus}, #{item.domainUuid}, #{item.number},  
+	        #{item.srcIp}, #{item.lastCallTime}
+	        , #{item.numberType}, #{item.callCnt}, #{item.numberRole})  
+	    </foreach>
+	    ON DUPLICATE key UPDATE number_type=values(number_type),rec_status=#{recStatus}  
+  	</insert>
+    <update id="updateNum" parameterType="map">
+    
+  </update>
+    <insert id="addNum" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_snum (rec_status, domain_uuid, 
+      number, number_type,number_role)
+    values (#{recStatus,jdbcType=INTEGER}, #{domainUuid,jdbcType=INTEGER}, 
+     #{number,jdbcType=VARCHAR},#{type,jdbcType=INTEGER},#{numberRole,jdbcType=INTEGER})
+  </insert>
+</mapper>

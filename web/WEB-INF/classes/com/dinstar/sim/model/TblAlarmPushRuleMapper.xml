@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblAlarmPushRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblAlarmPushRule" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="rule_type" property="ruleType" jdbcType="INTEGER" />
+    <result column="rule_condition" property="ruleCondition" jdbcType="CHAR" />
+    <result column="alarm_level" property="alarmLevel" jdbcType="INTEGER" />
+    <result column="alarm_name" property="alarmName" jdbcType="CHAR" />
+    <result column="alarm_id" property="alarmId" jdbcType="CHAR" />
+    <result column="push_type" property="pushType" jdbcType="INTEGER" />
+    <result column="push_uuid" property="pushUuid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, domain_uuid, rule_type, rule_condition, alarm_level, alarm_name, 
+    alarm_id, push_type, push_uuid, create_time, update_time, detail_desc
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblAlarmPushRuleCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <choose>
+        <when test="myCol!=null"> ${myCol}</when>
+        <otherwise><include refid="Base_Column_List" /></otherwise>
+    </choose>
+    from tbl_alarm_push_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="groupBy != null" >
+      group by ${groupBy}
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+   	<if test="limitClause != null" >
+      limit ${limitClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_alarm_push_rule
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_alarm_push_rule
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblAlarmPushRuleCriteria" >
+    delete from tbl_alarm_push_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblAlarmPushRule" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_alarm_push_rule (uuid, rec_status, domain_uuid, 
+      rule_type, rule_condition, alarm_level, 
+      alarm_name, alarm_id, push_type, 
+      push_uuid, create_time, update_time, 
+      detail_desc)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{domainUuid,jdbcType=INTEGER}, 
+      #{ruleType,jdbcType=INTEGER}, #{ruleCondition,jdbcType=CHAR}, #{alarmLevel,jdbcType=INTEGER}, 
+      #{alarmName,jdbcType=CHAR}, #{alarmId,jdbcType=CHAR}, #{pushType,jdbcType=INTEGER}, 
+      #{pushUuid,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{detailDesc,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblAlarmPushRule" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_alarm_push_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="ruleType != null" >
+        rule_type,
+      </if>
+      <if test="ruleCondition != null" >
+        rule_condition,
+      </if>
+      <if test="alarmLevel != null" >
+        alarm_level,
+      </if>
+      <if test="alarmName != null" >
+        alarm_name,
+      </if>
+      <if test="alarmId != null" >
+        alarm_id,
+      </if>
+      <if test="pushType != null" >
+        push_type,
+      </if>
+      <if test="pushUuid != null" >
+        push_uuid,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="ruleType != null" >
+        #{ruleType,jdbcType=INTEGER},
+      </if>
+      <if test="ruleCondition != null" >
+        #{ruleCondition,jdbcType=CHAR},
+      </if>
+      <if test="alarmLevel != null" >
+        #{alarmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="alarmName != null" >
+        #{alarmName,jdbcType=CHAR},
+      </if>
+      <if test="alarmId != null" >
+        #{alarmId,jdbcType=CHAR},
+      </if>
+      <if test="pushType != null" >
+        #{pushType,jdbcType=INTEGER},
+      </if>
+      <if test="pushUuid != null" >
+        #{pushUuid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailDesc != null" >
+        #{detailDesc,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblAlarmPushRuleCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_alarm_push_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_alarm_push_rule
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ruleType != null" >
+        rule_type = #{record.ruleType,jdbcType=INTEGER},
+      </if>
+      <if test="record.ruleCondition != null" >
+        rule_condition = #{record.ruleCondition,jdbcType=CHAR},
+      </if>
+      <if test="record.alarmLevel != null" >
+        alarm_level = #{record.alarmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmName != null" >
+        alarm_name = #{record.alarmName,jdbcType=CHAR},
+      </if>
+      <if test="record.alarmId != null" >
+        alarm_id = #{record.alarmId,jdbcType=CHAR},
+      </if>
+      <if test="record.pushType != null" >
+        push_type = #{record.pushType,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushUuid != null" >
+        push_uuid = #{record.pushUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.detailDesc != null" >
+        detail_desc = #{record.detailDesc,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_alarm_push_rule
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      rule_type = #{record.ruleType,jdbcType=INTEGER},
+      rule_condition = #{record.ruleCondition,jdbcType=CHAR},
+      alarm_level = #{record.alarmLevel,jdbcType=INTEGER},
+      alarm_name = #{record.alarmName,jdbcType=CHAR},
+      alarm_id = #{record.alarmId,jdbcType=CHAR},
+      push_type = #{record.pushType,jdbcType=INTEGER},
+      push_uuid = #{record.pushUuid,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      detail_desc = #{record.detailDesc,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblAlarmPushRule" >
+    update tbl_alarm_push_rule
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="ruleType != null" >
+        rule_type = #{ruleType,jdbcType=INTEGER},
+      </if>
+      <if test="ruleCondition != null" >
+        rule_condition = #{ruleCondition,jdbcType=CHAR},
+      </if>
+      <if test="alarmLevel != null" >
+        alarm_level = #{alarmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="alarmName != null" >
+        alarm_name = #{alarmName,jdbcType=CHAR},
+      </if>
+      <if test="alarmId != null" >
+        alarm_id = #{alarmId,jdbcType=CHAR},
+      </if>
+      <if test="pushType != null" >
+        push_type = #{pushType,jdbcType=INTEGER},
+      </if>
+      <if test="pushUuid != null" >
+        push_uuid = #{pushUuid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc = #{detailDesc,jdbcType=CHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblAlarmPushRule" >
+    update tbl_alarm_push_rule
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      rule_type = #{ruleType,jdbcType=INTEGER},
+      rule_condition = #{ruleCondition,jdbcType=CHAR},
+      alarm_level = #{alarmLevel,jdbcType=INTEGER},
+      alarm_name = #{alarmName,jdbcType=CHAR},
+      alarm_id = #{alarmId,jdbcType=CHAR},
+      push_type = #{pushType,jdbcType=INTEGER},
+      push_uuid = #{pushUuid,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      detail_desc = #{detailDesc,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

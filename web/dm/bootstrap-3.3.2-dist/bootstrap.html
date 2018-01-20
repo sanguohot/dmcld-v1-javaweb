@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+		<link rel="stylesheet" type="text/css" href="../css/easy.css" />
+	<link rel="stylesheet" type="text/css" href="../css/tab_menu.css" />
+	
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../css/dev_sch.css" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+ 
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">CLOUD</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">工作台 <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">设备管理</a></li>
+		<li><a href="#">服务管理</a></li>
+		<li><a href="#">用户管理</a></li>
+		<li><a href="#">工单</a></li>
+		<li><a href="#">版本库</a></li>
+		<li><a href="#">设备模板库</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-2 visible-lg-block">
+	  <div class="row">
+	  <div class="col-md-12">
+		<div id="ur_here">
+		<a name=my_position>首页</a>
+		</div>
+	  </div>
+	  </div>
+	  <div class="row">
+	  <div class="col-md-12">
+		<div class="category_tree_root">
+
+		 </div>
+	  </div>
+	  </div>	  
+  </div>
+  <div class="col-md-8">
+  	  <div class="row">
+	  <div class="col-md-12">
+		<div class="m-nav">
+
+		</div>
+	  </div>
+	  </div>
+	  <div class="row" style="margin-top:20px;">
+	  <div class="col-md-12">
+	  <!-- 标签页 -->
+		<ul id="myTab" class="nav nav-tabs">
+			<li role="presentation" class="active"><a href="#dev_call">话务分析</a></li>
+			<li role="presentation"><a href="#dev_list">设备列表</a></li>
+			<li role="presentation"><a href="#dev_per">性能分析</a></li>
+			<li role="presentation"><a href="#alarm_log">告警日志</a></li>
+			<li role="presentation"><a href="#dev_extend">设备拓扑</a></li>
+		</ul>
+
+		<div  class="tab-content">
+		 <div class="my-content tab-pane fade in active" id="dev_call">
+		  <div class="row">
+			<div class="col-md-6">发送短信：110 短信</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-6">发送短信：110 短信</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-6">接收短信：88 短信</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-6">未接来电通话量：32 通话</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-6">已接来电通话量：130 通话</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-6">已接来电时间：32 分钟</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-6">去电通话量：32 通话</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-6">去电通话计费时间：32 分钟</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-6">去电通话时间：40 分钟</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		 </div>
+		 <div class="my-content tab-pane fade" id="dev_list">
+		  <p>Nothing now!</p>
+		 </div>
+		 <div class="my-content tab-pane fade" id="dev_per">
+		  <div class="row">
+			<div class="col-md-6">内存占用率：60%</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-6">cpu占用率：10%</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-6">注册成功率：80%</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		 </div>
+		 <div class="my-content tab-pane fade" id="alarm_log">
+			<h5><b>设备告警</b></h5>
+		  <div class="row">
+			<div class="col-md-6">设备注册失败：10次</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-6">设备故障：5次</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>	
+			<h5><b>性能告警</b></h5>
+		  <div class="row">
+			<div class="col-md-6">cpu繁忙：10次</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-6">内存不足：5次</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-6">注册成功率过低：5次</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div> 
+			<h5><b>话务告警</b></h5>
+		  <div class="row">
+			<div class="col-md-6">流量过高：10次</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-6">流量过低：10次</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-6">通话时间过长：100次</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-6">通话时间过短：100次</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-6">通话成功率过低：33次</div>
+			<div class="col-md-6"><a href="#">查看</a></div>
+		  </div>  
+		 </div>
+		  <div class="my-content tab-pane fade" id="dev_extend">
+		  <p>Nothing now!</p>
+		 </div>
+		</div>
+	  </div>
+	  </div>	  
+  </div>
+  <div class="col-md-2">.col-md-2</div>
+</div>
+</div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	<!--<script type="text/javascript" src="../lib/jquery-1.2.6.pack.js"></script>-->
+    <script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../js/map.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../js/my.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../js/tab_menu.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../js/dev_sch.js"></script>
+	<script>
+
+function load(){
+Array.prototype.remove = function(s) {     
+    for (var i = 0; i < this.length; i++) {     
+        if (s == this[i])     
+            this.splice(i, 1);     
+    }     
+}
+loadTree();
+window.searchCol=false;
+loadSearch();
+$('#menu').tabify();
+$('#myTab a').click(function (e) {
+ e.preventDefault()
+ $(this).tab('show')
+})
+}
+load();
+	</script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- tree mapper
+ #{domainUuid,mode=IN,jdbcType=INTEGER},#{userType,mode=IN,jdbcType=INTEGER},#{userUuid,mode=IN,jdbcType=INTEGER}
+  -->
+<mapper namespace="com.dinstar.sim.mapper.Zone">
+	  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblZone" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="policy_uuid" property="policyUuid" jdbcType="INTEGER" />
+    <result column="default_flag" property="defaultFlag" jdbcType="INTEGER" />
+    <result column="local_time_zone" property="localTimeZone" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+  </resultMap>
+    <select id="getUserZoneList" resultMap="BaseResultMap" parameterType="java.util.HashMap">		
+		SELECT z.* from tbl_zone z 
+		INNER JOIN tbl_site s on(s.zone_uuid=z.uuid) 
+		INNER JOIN tbl_user_site u on(u.site_uuid=s.uuid)
+		WHERE 1=1
+     	<if test="domainUuid>0" >
+          and u.domain_uuid=#{domainUuid}
+        </if>
+     	<if test="userUuid>0" >
+          and u.user_uuid=#{userUuid}
+        </if>
+		GROUP BY z.uuid
+	</select>
+</mapper>

@@ -1,0 +1,1268 @@
+/*!
+* Ext JS Library 4.0
+* Copyright(c) 2006-2011 Sencha Inc.
+* licensing@sencha.com
+* http://www.sencha.com/license
+@media screen and (max-device-width: 80px) {}
+*/
+.tdCls{
+	text-align:center;line-height:50px;vertical-align:middle
+}
+.loadmaskcss {
+	z-index: 100;
+	position: absolute;
+	top: 0;
+	left: 0;
+	filter: progid :   DXImageTransform.Microsoft.Alpha (   Opacity =   50 )
+		;
+	opacity: 0.5;
+	width: 100%;
+	height: 100%;
+	zoom: 1;
+	background: #DAE6F3;
+	color: #DAE6F3
+}
+
+.loadmasktest {
+	z-index: 20001;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 2px;
+	border: 1px solid;
+	border-color: #FFF;
+	background-image: none;
+	background-color: #dfe9f6;
+	padding: 5px 10px 5px 25px;
+	background-image:
+		url('../../resources/themes/images/default/grid/loading.gif');
+	background-repeat: no-repeat;
+	background-position: 5px center;
+	cursor: wait;
+	border: 1px solid #a3bad9;
+	background-color: #eee;
+	color: #222;
+	font: normal 11px tahoma, arial, verdana, sans-serif
+}
+
+.loadmaskcss2 {
+	z-index: 20001;
+	position: absolute;
+	top: 100;
+	left: 100;
+	padding: 2px;
+	border: 1px solid;
+	border-color: #99bce8;
+	background-image: none;
+}
+
+#poweredby {
+	position: absolute;
+	bottom: 40px;
+	right: 20px;
+	z-index: 15000;
+	color: #d3d3d3;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+	/* IE 5-7 */
+	filter: alpha(opacity =   70);
+	/* Netscape */
+	-moz-opacity: 0.7;
+	/* Safari 1.x */
+	-khtml-opacity: 0.7;
+	/* Good browsers */
+	opacity: 0.7;
+}
+
+#poweredby div {
+	position: relative;
+	width: 150px;
+	height: 25px;
+	/* background-image: url(../images/powered-by-dinstar.png);
+    */
+	background-image: none;
+	background-repeat: no-repeat;
+}
+
+/* The simple background image PNG does not work in IE6-8, but does in IE9 */
+.x-ie6 #poweredby div,.x-ie7 #poweredby div,.x-ie8 #poweredby div {
+	background-image: none;
+	filter: progid :   DXImageTransform.Microsoft.AlphaImageLoader (   src =
+		
+		 'images/powered-by-dinstar.png', sizingMethod =   'scale' );
+}
+
+/* the tips label css  text-decoration:underline; */
+.tips_label {
+	border-bottom: #333 dashed 1px;
+	width: 80px display :   block
+}
+
+.box_label {
+	font-size: 14px;
+	margin-left: 5px;
+}
+
+/*----------------------------------------------------
+    Start Button
+*/
+.ux-start-button-icon {
+	background-image: url(../images/taskbar/dinstar.gif) !important;
+	background-color: transparent;
+}
+.ux-start-button {
+    background-color: #FF9CAE !important;
+}
+
+.ux-start-button .x-btn-arrow {
+	background-image: none;
+}
+
+.ux-start-button .x-btn-arrow-right {
+	padding-left: 10px;
+}
+
+.ux-taskbar {
+	padding-left: 4px !important;
+}
+
+/*
+    Start Button (Black)
+*/
+.ux-desktop-black .ux-start-button {
+	height: 28px;
+	padding: 0px;
+	display: block;
+}
+
+.ux-desktop-black .ux-start-button em {
+	margin-top: 5px;
+}
+
+.ux-desktop-black .ux-start-button .x-btn-inner {
+	color: black;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.ux-desktop-black .ux-start-button {
+	background-image: -moz-linear-gradient(center top, #E4F3FF, #D9EDFF 48%, #C2D8F2 52%,
+		#C6DCF6);
+	border-radius: 8px 8px 8px 8px;
+	border-color: #81A4D0;
+}
+
+/*----------------------------------------------------
+    Start Menu
+*/
+.ux-start-menu-toolbar .x-btn-inner {
+	text-align: left;
+}
+
+.ux-start-menu-toolbar {
+	padding: 4px !important;
+}
+
+/*----------------------------------------------------
+    TaskBar
+*/
+.ux-taskbar .x-toolbar {
+	background: transparent none;
+	border-color: transparent;
+}
+
+.x-ie6 .ux-taskbar .x-toolbar {
+	border-color: #d3e1f1;
+}
+
+.ux-desktop-windowbar .x-btn-inner,.x-nbr .ux-desktop-windowbar .x-btn-icon-text-left button
+	{
+	text-align: left !important;
+}
+
+.ux-taskbar .x-toolbar {
+	height: 28px;
+}
+
+.ux-taskbar {
+	height: 28px;
+	padding: 0;
+}
+
+.x-toolbar .x-toolbar {
+	padding: 0;
+}
+
+/*
+    TaskBar (Black)
+*/
+.ux-desktop-black .ux-taskbar {
+	background: transparent
+		url('../images/taskbar/black/taskbar-start-panel-bg.gif') repeat-x
+		left top;
+	border-color: transparent;
+	/*height: 30px;*/
+}
+
+.ux-desktop-black .ux-taskbar .x-splitter {
+	background: transparent url(../images/taskbar/black/taskbar-split-h.gif)
+		no-repeat scroll 0 -2px;
+}
+
+.ux-desktop-black .ux-taskbar .x-toolbar-text {
+	color: white !important;
+}
+
+.ux-desktop-black .ux-taskbar .x-btn-default-toolbar-small-over {
+	background-color: yellow;
+}
+
+.ux-desktop-black .ux-taskbar .x-btn-inner {
+	color: white;
+}
+
+.ux-desktop-black .ux-taskbar .x-btn-pressed .x-btn-inner,.ux-taskbar .x-btn-over .x-btn-inner
+	{
+	color: black;
+}
+
+/*----------------------------------------------------
+    Tray Clock
+*/
+.ux-desktop-trayclock {
+	text-align: center;
+	vertical-align: middle;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+/*----------------------------------------------------
+    Desktop DataView
+*/
+.ux-wallpaper {
+	background-color: #3d71b8;
+}
+
+.ux-wallpaper-tiled {
+	background-repeat: repeat;
+}
+
+.ux-desktop-shortcut {
+	cursor: pointer;
+	text-align: center;
+	padding: 8px;
+	margin: 8px;
+	width: 64px;
+}
+
+.ux-desktop-shortcut-icon {
+	width: 48px;
+	height: 48px;
+	background-color: transparent;
+	background-repeat: no-repeat;
+}
+
+.ux-desktop-shortcut-text {
+	font: normal 10px tahoma, arial, verdana, sans-serif;
+	text-decoration: none;
+	padding-top: 5px;
+	color: white;
+}
+
+.x-view-over .ux-desktop-shortcut-text {
+	text-decoration: underline;
+}
+
+/*----------------------------------------------------
+    Various icon classes
+*/
+.accordion-shortcut {
+	background-image: url(../images/im48x48.png);
+}
+
+.cpu-shortcut {
+	background-image: url(../images/statusLarge.png);
+}
+
+.monitor-shortcut {
+	background-image: url(../images/chart_35.png);
+}
+
+.monitor-small {
+	background-image: url(../images/chart_small.png);
+}
+
+.systemconfig-shortcut {
+	background-image: url(../images/systemConfig_35.png);
+}
+
+.systemconfig-small {
+	background-image: url(../images/systemConfig_small.png);
+}
+
+.table {
+	background-image: url(../images/table.png);
+}
+
+.database_root {
+	background-image: url(../images/database.png);
+}
+
+.grid-shortcut {
+	background-image: url(../images/provision_35.png);
+}
+
+.provision-small {
+	background-image: url(../images/provision_small.png);
+}
+
+.gateway-shortcut {
+	background-image: url(../images/maintain_35.png);
+}
+
+.maintain-small {
+	background-image: url(../images/maintain_small2.png);
+}
+
+.dispatch-shortcut {
+	background-image: url(../images/set_35.png);
+}
+
+.operation-small {
+	background-image: url(../images/set_small2.png);
+}
+
+.license-shortcut {
+	background-image: url(../images/license_35.png);
+}
+
+.license-small {
+	background-image: url(../images/license_small.png);
+}
+
+.config-shortcut {
+	background-image: url(../images/global48x48.png);
+}
+
+.notepad-shortcut {
+	background-image: url(../images/notepadLarge_35.png);
+}
+
+.x-ie6 .accordion-shortcut {
+	background-image: none;
+	filter: progid :   DXImageTransform.Microsoft.AlphaImageLoader (   src =
+		
+		 'images/im48x48.png', sizingMethod =   'scale' );
+}
+
+.x-ie6 .cpu-shortcut {
+	background-image: none;
+	filter: progid :   DXImageTransform.Microsoft.AlphaImageLoader (   src =
+		
+		 'images/statusLarge.png', sizingMethod =   'scale' );
+}
+
+.x-ie6 .grid-shortcut {
+	background-image: none;
+	filter: progid :   DXImageTransform.Microsoft.AlphaImageLoader (   src =
+		
+		 'images/grid48x48.png', sizingMethod =   'scale' );
+}
+
+.x-ie6 .notepad-shortcut {
+	background-image: none;
+	filter: progid :   DXImageTransform.Microsoft.AlphaImageLoader (   src =
+		
+		 'images/notepadLarge.png', sizingMethod =   'scale' );
+}
+
+.video {
+	background-image: url(../images/gears.gif);
+}
+
+.bogus {
+	background-image: url( ../images/bogus.png ) !important;
+}
+
+.notepad {
+	background-image: url( ../images/bogus.png ) !important;
+}
+
+.logout {
+	background-image: url( ../images/logout.gif ) !important;
+}
+
+.settings {
+	background-image: url( ../images/gears.gif ) !important;
+}
+
+.icon-switch {
+	background-image: url( ../icons/fam/arrow_switch.png ) !important;
+}
+
+.icon-basket {
+	background-image: url( ../icons/fam/basket.png ) !important;
+}
+
+.icon-global {
+	background-image: url( ../icons/fam/global.png ) !important;
+}
+
+.icon-chart {
+	background-image: url( ../icons/fam/chart.png ) !important;
+}
+
+.icon-gateway {
+	background-image: url( ../icons/fam/gateway.png ) !important;
+}
+
+.icon-gateway_a {
+	background-image: url( ../icons/fam/gateway_alarm.png ) !important;
+}
+
+.icon-grid {
+	background-image: url( ../images/grid.png ) !important;
+}
+
+.add {
+	background-image: url(../icons/fam/add.gif) !important;
+}
+
+.option {
+	background-image: url(../icons/fam/plugin.gif) !important;
+}
+
+.remove {
+	background-image: url(../icons/fam/delete.gif) !important;
+}
+
+.save {
+	background-image: url(../icons/fam/database_save.png) !important;
+}
+
+.edit {
+	background-image: url(../icons/fam/database_edit.png) !important;
+}
+
+.cancel {
+	background-image: url(../icons/fam/database_cancel.png) !important;
+}
+
+.stop {
+	background-image: url(../icons/fam/stop.png) !important;
+}
+
+.accordion {
+	background-image: url(../images/accordian.gif) !important;
+}
+
+.tabs {
+	background-image: url(../images/tabs.gif) !important;
+}
+
+.refresh {
+	background-image: url(../icons/fam/database_refresh.png) !important;
+}
+
+.refresh2 {
+	background-image: url(../icons/fam/arrow_refresh.png) !important;
+}
+
+.synchro {
+	background-image: url(../icons/fam/synchro.png) !important;
+}
+
+.cross {
+	background-image: url(../icons/fam/cross.gif) !important;
+}
+
+.info {
+	background-image: url(../icons/fam/information.png) !important;
+}
+
+.control_start {
+	background-image: url(../icons/control_start.png) !important;
+}
+
+.control_stop {
+	background-image: url(../icons/control_stop.png) !important;
+}
+
+.money {
+	background-image: url(../icons/fam/money.png) !important;
+}
+
+.monitor_edit {
+	background-image: url(../icons/fam/monitor_edit.png) !important;
+}
+
+.world {
+	background-image: url(../icons/fam/world.png) !important;
+}
+
+.query {
+	background-image: url(../icons/fam/magnifier.png) !important;
+}
+
+.upgrade {
+	background-image: url(../icons/fam/arrow_up.png) !important;
+}
+
+.export {
+	background-image: url(../icons/fam/arrow_down.png) !important;
+}
+
+.selectAll {
+	background-image: url(../icons/fam/arrow_inout.png) !important;
+}
+
+.selectIn {
+	background-image: url(../icons/fam/arrow_in.png) !important;
+}
+
+.selectOut {
+	background-image: url(../icons/fam/arrow_out.png) !important;
+}
+
+.search {
+	background-image: url(../icons/fam/zoom.png) !important;
+}
+
+.flag-green {
+	background-image: url(../icons/fam/flag_green.png) !important;
+}
+
+.flag-blue {
+	background-image: url(../icons/fam/flag_blue.png) !important;
+}
+
+.flag-orange {
+	background-image: url(../icons/fam/flag_orange.png) !important;
+}
+
+.flag-pink {
+	background-image: url(../icons/fam/flag_pink.png) !important;
+}
+
+.flag-purple {
+	background-image: url(../icons/fam/flag_purple.png) !important;
+}
+
+.flag-red {
+	background-image: url(../icons/fam/flag_red.png) !important;
+}
+
+.flag-yellow {
+	background-image: url(../icons/fam/flag_yellow.png) !important;
+}
+
+/***************SIMCARD status *******************/
+.sim_empty {
+	background-image: url(../icons/sim_empty.png) !important;
+}
+
+.sim_idle {
+	background-image: url(../icons/sim_idle.png) !important;
+}
+
+.sim_pending {
+	background-image: url(../icons/sim_pending.png) !important;
+}
+
+.sim_loading {
+	background-image: url(../icons/sim_loading.png) !important;
+}
+
+.sim_linked {
+	background-image: url(../icons/sim_linked.png) !important;
+}
+
+.sim_incall {
+	background-image: url(../icons/sim_incall.png) !important;
+}
+
+.sim_stop {
+	background-image: url(../icons/sim_stop.png) !important;
+}
+
+/*----------------------------------------------------
+    IM window icons
+*/
+.user {
+	background-image: url( ../icons/fam/user.gif ) !important;
+}
+
+.user-add {
+	background-image: url(../icons/fam/user_add.gif) !important;
+}
+
+.user-delete {
+	background-image: url(../icons/fam/user_delete.gif) !important;
+}
+
+.connect {
+	background-image: url(../icons/fam/connect.gif) !important;
+}
+
+.icon-connect {
+	background-image: url(../icons/fam/connect.png) !important;
+}
+
+.icon-disconnect {
+	background-image: url(../icons/fam/disconnect.png) !important;
+}
+
+.icon-error {
+	background-image: url(../icons/fam/error.png) !important;
+}
+
+.icon-site {
+	background-image: url(../icons/fam/sitemap_color.png) !important;
+}
+
+.icon-cloud {
+	background-image: url(../icons/fam/weather_cloudy.png) !important;
+}
+
+.icon-server-conn {
+	background-image: url(../icons/fam/server_connect.png) !important;
+}
+
+.icon-server {
+	background-image: url(../icons/fam/server.png) !important;
+}
+
+.icon-door {
+	background-image: url(../icons/fam/door.png) !important;
+}
+
+.icon-door-open {
+	background-image: url(../icons/fam/door_open.png) !important;
+}
+
+.icon-user-group {
+	background-image: url(../icons/fam/group.png) !important;
+}
+
+.icon-user {
+	background-image: url(../icons/fam/user.png) !important;
+}
+
+.icon-user-red {
+	background-image: url(../icons/fam/user_red.png) !important;
+}
+
+.icon-user-green {
+	background-image: url(../icons/fam/user_green.png) !important;
+}
+
+.icon-package {
+	background-image: url(../icons/fam/package.png) !important;
+}
+
+.icon-roamzone {
+	background-image: url(../icons/fam/application_double.png) !important;
+}
+
+.icon-port-type {
+	background-image: url(../icons/fam/port_type.png) !important;
+}
+
+.icon-bullet-green {
+	background-image: url(../icons/fam/bullet_green.png) !important;
+}
+
+.icon-bullet-red {
+	background-image: url(../icons/fam/bullet_red.png) !important;
+}
+
+.icon-bullet-orange {
+	background-image: url(../icons/fam/bullet_orange.png) !important;
+}
+
+.icon-bullet-black {
+	background-image: url(../icons/fam/bullet_black.png) !important;
+}
+
+.reboot {
+	background-image: url(../icons/domain/lightning_go.png) !important;
+}
+
+.elegant_stop {
+	background-image: url(../icons/domain/hourglass_delete.png) !important;
+}
+
+.reset {
+	background-image: url(../icons/domain/lightning.png) !important;
+}
+
+.restore_pwd {
+	background-image: url(../icons/domain/key_delete.png) !important;
+}
+
+.user-girl {
+	background-image: url(../icons/fam/user_female.gif) !important;
+}
+
+.user-suit {
+	background-image: url(../icons/fam/user_suit.gif) !important;
+}
+
+.sim-empty {
+	background-image: url(../icons/sim_empty.png) !important;
+}
+
+.sim-idle {
+	background-image: url(../icons/sim_idle.png) !important;
+}
+
+.sim-incall {
+	background-image: url(../icons/sim_incall.png) !important;
+}
+
+.sim-linked {
+	background-image: url(../icons/sim_linked.png) !important;
+}
+
+.sim-loading {
+	background-image: url(../icons/sim_loading.png) !important;
+}
+
+.sim-pending {
+	background-image: url(../icons/sim_pending.png) !important;
+}
+
+.sim-stop {
+	background-image: url(../icons/sim_stop.png) !important;
+}
+
+.sim-card {
+	background-image: url(../icons/simcard.png) !important;
+}
+
+.view_group {
+	background-image: url(../icons/view_btn.png) !important;
+}
+
+.tree_back {
+	background-image: url(../icons/tree_back.png) !important;
+}
+
+.tree_forward {
+	background-image: url(../icons/tree_forward.png) !important;
+}
+
+.tree_back_no {
+	background-image: url(../icons/tree_back_no.png) !important;
+}
+
+.tree_forward_no {
+	background-image: url(../icons/tree_forward_no.png) !important;
+}
+
+/* cloud */
+.cloud-clouds {
+	background-image: url(../icons/cloud/weather_clouds.png) !important;
+}
+
+.cloud-cloudy {
+	background-image: url(../icons/cloud/weather_cloudy.png) !important;
+}
+
+.cloud-lightning {
+	background-image: url(../icons/cloud/weather_lightning.png) !important;
+}
+
+.cloud-rain {
+	background-image: url(../icons/cloud/weather_rain.png) !important;
+}
+
+.cloud-snow {
+	background-image: url(../icons/cloud/weather_snow.png) !important;
+}
+
+.cloud-sun {
+	background-image: url(../icons/cloud/weather_sun.png) !important;
+}
+
+/* domain */
+.domain-add {
+	background-image: url(../icons/domain/world_add.png) !important;
+}
+
+.domain-delete {
+	background-image: url(../icons/domain/world_delete.png) !important;
+}
+
+.domain-edit {
+	background-image: url(../icons/domain/world_edit.png) !important;
+}
+
+.domain-go {
+	background-image: url(../icons/domain/world_go.png) !important;
+}
+
+.domain-link {
+	background-image: url(../icons/domain/world_link.png) !important;
+}
+
+.domain {
+	background-image: url(../icons/domain/worlds.png) !important;
+}
+
+.domain-group {
+	background-image: url(../icons/domain/world.png) !important;
+}
+
+.sysconfig {
+	background-image: url(../icons/sysconfig.png) !important;
+}
+
+/* group */
+.group-add {
+	background-image: url(../icons/group/layout_add.png) !important;
+}
+
+.group-content {
+	background-image: url(../icons/group/layout_content.png) !important;
+}
+
+.group-delete {
+	background-image: url(../icons/group/layout_delete.png) !important;
+}
+
+.group-edit {
+	background-image: url(../icons/group/layout_edit.png) !important;
+}
+
+.group-error {
+	background-image: url(../icons/group/layout_error.png) !important;
+}
+
+.group-header {
+	background-image: url(../icons/group/layout_header.png) !important;
+}
+
+.group-link {
+	background-image: url(../icons/group/layout_link.png) !important;
+}
+
+.group-sidebar {
+	background-image: url(../icons/group/layout_sidebar.png) !important;
+}
+
+.group {
+	background-image: url(../icons/group/layout.png) !important;
+}
+
+.group-group {
+	background-image: url(../icons/group/groups.png) !important;
+}
+
+/* paid group */
+.paid {
+	background-image: url(../icons/paidgroup/paid.png) !important;
+}
+
+.paid-group {
+	background-image: url(../icons/paidgroup/paidgroup.png) !important;
+}
+
+/* policy */
+.policy-add {
+	background-image: url(../icons/policy/package_add.png) !important;
+}
+
+.policy-delete {
+	background-image: url(../icons/policy/package_delete.png) !important;
+}
+
+.policy-go {
+	background-image: url(../icons/policy/package_go.png) !important;
+}
+
+.policy-green {
+	background-image: url(../icons/policy/package_green.png) !important;
+}
+
+.policy-link {
+	background-image: url(../icons/policy/package_link.png) !important;
+}
+
+.policy {
+	background-image: url(../icons/policy/package.png) !important;
+}
+
+.policy-group {
+	background-image: url(../icons/policy/policys.png) !important;
+}
+
+/* process*/
+.process-add {
+	background-image: url(../icons/process/lightbulb_add.png) !important;
+}
+
+.process-delete {
+	background-image: url(../icons/process/lightbulb_delete.png) !important;
+}
+
+.process-off {
+	background-image: url(../icons/process/lightbulb_off.png) !important;
+}
+
+.process {
+	background-image: url(../icons/process/lightbulb.png) !important;
+}
+
+/* rule */
+.rule-add {
+	background-image: url(../icons/rule/note_add.png) !important;
+}
+
+.rule-delete {
+	background-image: url(../icons/rule/note_delete.png) !important;
+}
+
+.rule-edit {
+	background-image: url(../icons/rule/note_edit.png) !important;
+}
+
+.rule-error {
+	background-image: url(../icons/rule/note_error.png) !important;
+}
+
+.rule-go {
+	background-image: url(../icons/rule/note_go.png) !important;
+}
+
+.rule {
+	background-image: url(../icons/rule/note.png) !important;
+}
+
+/* simcard */
+.simcard-add {
+	background-image: url(../icons/simcard/calendar_add.png) !important;
+}
+
+.simcard-delete {
+	background-image: url(../icons/simcard/calendar_delete.png) !important;
+}
+
+.simcard-edit {
+	background-image: url(../icons/simcard/calendar_edit.png) !important;
+}
+
+.simcard-link {
+	background-image: url(../icons/simcard/calendar_link.png) !important;
+}
+
+.simcard-view-day {
+	background-image: url(../icons/simcard/calendar_view_day.png) !important
+		;
+}
+
+.simcard-view-month {
+	background-image: url(../icons/simcard/calendar_view_month.png)
+		!important;
+}
+
+.simcard-view-week {
+	background-image: url(../icons/simcard/calendar_view_week.png)
+		!important;
+}
+
+.simcard {
+	background-image: url(../icons/simcard/calendar.png) !important;
+}
+
+/* site */
+.site-add {
+	background-image: url(../icons/site/building_add.png) !important;
+}
+
+.site-delete {
+	background-image: url(../icons/site/building_delete.png) !important;
+}
+
+.site-edit {
+	background-image: url(../icons/site/building_edit.png) !important;
+}
+
+.site-error {
+	background-image: url(../icons/site/building_error.png) !important;
+}
+
+.site-go {
+	background-image: url(../icons/site/building_go.png) !important;
+}
+
+.site-key {
+	background-image: url(../icons/site/building_key.png) !important;
+}
+
+.site {
+	background-image: url(../icons/site/building.png) !important;
+}
+
+.site_a {
+	background-image: url(../icons/site/building.png) !important;
+}
+
+/* system */
+.system-add {
+	background-image: url(../icons/system/monitor_add.png) !important;
+}
+
+.system-delete {
+	background-image: url(../icons/system/monitor_delete.png) !important;
+}
+
+.system-edit {
+	background-image: url(../icons/system/monitor_edit.png) !important;
+}
+
+.system-error {
+	background-image: url(../icons/system/monitor_error.png) !important;
+}
+
+.system-go {
+	background-image: url(../icons/system/monitor_go.png) !important;
+}
+
+.system-lightning {
+	background-image: url(../icons/system/monitor_lightning.png) !important;
+}
+
+.system-link {
+	background-image: url(../icons/system/monitor_link.png) !important;
+}
+
+.system {
+	background-image: url(../icons/system/monitor.png) !important;
+}
+
+.system-group {
+	background-image: url(../icons/system/system_group.png) !important;
+}
+
+/* zone */
+.zone-go {
+	background-image: url(../icons/zone/house_go.png) !important;
+}
+
+.zone-link {
+	background-image: url(../icons/zone/house_link.png) !important;
+}
+
+.zone {
+	background-image: url(../icons/zone/house.png) !important;
+}
+
+.zone_a {
+	background-image: url(../icons/zone/house.png) !important;
+}
+
+.zone-group {
+	background-image: url(../icons/zone/zones.png) !important;
+}
+
+.zone-group_a {
+	background-image: url(../icons/zone/zones.png) !important;
+}
+/* node */
+.node-group {
+	background-image: url(../icons/node/brick2.png) !important;
+}
+
+.node-groups {
+	background-image: url(../icons/node/bricks2.png) !important;
+}
+
+/* node_list */
+.node {
+	background-image: url(../icons/nodelist/shape_handles.png) !important;
+}
+
+.node-list {
+	background-image: url(../icons/nodelist/shape_group.png) !important;
+}
+
+/*upgrade,reboot*/
+.row-upgrade-result-success {
+	color: green;
+}
+
+.row-upgrade-result-fail {
+	color: red;
+}
+
+/*alarm*/
+.row-red {
+	color: red;
+}
+
+.row-orange {
+	color: #FE6400;
+}
+
+.row-black {
+	color: #0A0A0A;
+}
+
+.row-blue {
+	color: blue;
+}
+
+.row-gray {
+	color: #BDBDBD;
+}
+.row-green{
+	color:#006400;
+}
+/*privilege*/
+.privilege-shortcut {
+	background-image: url(../images/im_35.png);
+}
+.privilege-small {
+	background-image: url(../images/im_15.png);
+}
+
+/*batch*/
+.batch-shortcut {
+    background-image: url(../images/batch32x32.png);
+}
+.batch-small {
+    background-image: url(../images/batch16x16.png);
+}
+
+/*loguser*/
+.log-shortcut {
+	background-image: url(../images/log_user_35.png);
+}
+.log-small {
+	background-image: url(../images/log_user_15.png);
+}
+
+/*performance chart forward backword*/
+.forward {
+	background-image: url(../images/taskbar/forward.png) !important;
+}
+
+.backward {
+	background-image: url(../images/taskbar/backward.png) !important;
+}
+
+.abcd {
+	width: 100%;
+	height: 16px;
+	position: relative;
+	font: 10px/ 20px "����";
+	text-align: left;
+}
+
+.abcd:after {
+	position: absolute;
+	width: 20px;
+	height: 16px;
+	content: "58%";
+	line-height: 16px;
+	text-align: center;
+	border-radius: 50%;
+	border: 2px solid #43a547;
+	box-shadow: 0 0 2px 0 #e8e5df inset;
+	background: linear-gradient(#f4f4f4 42%, #b6e48f 40%, #9cd87a);
+	background: -webkit-linear-gradient(#f4f4f4 42%, #b6e48f 40%, #9cd87a);
+	background: -moz-linear-gradient(#f4f4f4 42%, #b6e48f 40%, #9cd87a);
+}
+
+.ux-notification-window .x-window-body {
+	text-align: center;
+	padding: 15px 5px 15px 5px;
+	width: 200px;
+}
+
+.ux-notification-light .x-window-header {
+	background-color: transparent;
+}
+
+.ux-notification-light .x-window-body {
+	text-align: center;
+	padding: 15px 5px 18px 5px;
+	width: 200px;
+	background-color: transparent;
+	border: 0px solid white;
+}
+
+.right-accept {
+	background-image: url(../images/accept.png) !important;
+}
+
+.right-cancel {
+    background-image: url(../images/cancel.png) !important;
+}
+.refresh-1s {
+    background-image: url(../icons/1s.png) !important;
+}
+.refresh-3s {
+    background-image: url(../icons/3s.png) !important;
+}
+.refresh-5s {
+    background-image: url(../icons/5s.png) !important;
+}
+.refresh-10s {
+    background-image: url(../icons/10s.png) !important;
+}
+.refresh-stop {
+    background-image: url(../icons/stop.png) !important;
+}
+
+.tgp_actived {
+	background-color: #0F0;
+	width: 21px;
+	height: 21px;
+}
+.tgp_disabled {
+	background-color: #999;
+	width: 21px;
+	height: 21px;
+}
+.tgp_los {
+	background-color: #F00;
+	width: 21px;
+	height: 21px;
+}
+.tgp_rai {
+	background-color: #FF0;
+	width: 21px;
+	height: 21px;
+}
+.tgp_ais {
+	background-color: #00F;
+	width: 21px;
+	height: 21px;
+}
+.tgp_idsn_ss7 {
+	background-color: #F90;
+	width: 21px;
+	height: 21px;
+}
+
+.view_base {
+	background-image: url(../icons/view_base.png) !important;
+}
+
+.view_advance {
+	background-image: url(../icons/view_advance2.png) !important;
+}
+
+.btn_click{
+	background: #F90 !important;
+}
+.btn_un_click{
+	background: #CED9E7 !important;
+}
+
+.mail_small {
+	background-image: url(../images/mail.png) !important;
+}

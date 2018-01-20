@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">  
+<struts>  
+<!--  短信USSD模块配置文件 -->
+	<package name="struts-sms" extends="json-default">
+	<interceptors>  
+	    	<interceptor name="timeoutInterceptor" class="com.dinstar.sim.action.SessionTimeoutInterceptor"></interceptor>  
+	    	<interceptor-stack name="timeoutStack">  
+	        	<interceptor-ref name="timeoutInterceptor"/>  
+	        	<interceptor-ref name="defaultStack"/>  
+	    	</interceptor-stack>  
+		</interceptors> 
+		<default-interceptor-ref name="timeoutStack"/>
+		<action name="smlManager" class="smlAction">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="usslManager" class="usslAction">  
+			<result name="success" type="json"/>
+		</action>
+		<action name="callManager" class="callAction">  
+			<result name="success" type="json"/>
+		</action>
+
+		<action name="smsInGroupManager" class="smsInGroupAction">  
+			<result name="success" type="json"/>
+		</action>
+
+		<action name="ussdInGroupManager" class="ussdInGroupAction">  
+			<result name="success" type="json"/>
+		</action>
+
+		<action name="callInGroupManager" class="callInGroupAction">  
+			<result name="success" type="json"/>
+		</action>
+
+		<action name="testManager" class="testAction">  
+			<result name="success" type="json"/>
+		</action>
+	</package>
+</struts>  

@@ -1,0 +1,346 @@
+<table width="130px" >
+<tbody><tr>
+	<td width="2%">&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<div style="font-size:2.5em;color: #f5f5f5;">配置</div>
+</tr>
+<tr style="display: none">
+	<td><img id="plus_minus0" src="image/plus.gif"></td>
+	<td><span id="BoldHref0"  ng-click="menu_click('plus_minus0','id_Statistics')" class="menu_click">状态与统计</span></td>
+</tr>
+<tr id="id_Statistics" style="display: none;">
+	<td>&nbsp;</td>
+	<td>
+		<table width="100%" >
+			<tbody><tr>
+				<td><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu0_0" ng-click="href_click('HerfMenu0_0');" href="SysInfo.htm" target="mainframe" class="href_click">系统信息</a></td>
+			</tr>
+			<tr>
+				<td><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu0_1" ng-click="href_click('HerfMenu0_1');" href="RegisterInfo.htm" target="mainframe" class="href_click">注册信息</a></td>
+			</tr>
+			<tr id="idDataGramStat" style="">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu0_2" ng-click="href_click('HerfMenu0_2');" href="ProtocolStat.htm" target="mainframe" class="href_click">TCP/UDP统计</a></td>
+			</tr>
+			<tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu0_3" ng-click="href_click('HerfMenu0_3');" href="RTPStat.htm" target="mainframe" class="href_click">RTP会话</a></td>
+			</tr>
+			<tr style="display:none">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu0_4" ng-click="href_click('HerfMenu0_4');" href="CallStat.htm" target="mainframe" class="href_click">呼叫统计</a></td>
+			</tr>
+			</tbody></table>
+	</td>
+</tr>
+<tr id="id_QuickWizard" style="display: none">
+	<td><img src="image/pw.gif"></td>
+	<td><a id="BoldHref1" ng-click="href_click('BoldHref1');" href="GotoQuickWizardPage.htm" target="mainframe" class="href_click">快速配置向导</a></td>
+</tr>
+<tr style="display:none">
+	<td><img id="plus_minus2" src="image/plus.gif"></td>
+	<td><span id="BoldHref2"  ng-click="menu_click('plus_minus2','id_NetworkConfig')" class="menu_click">网络</span></td>
+</tr>
+<tr id="id_NetworkConfig" style="display: none;">
+	<td>&nbsp;</td>
+	<td>
+		<table width="100%">
+			<tbody><tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu2_0" ng-click="href_click('HerfMenu2_0');" href="LocalNetwork.htm" target="mainframe" style="font-style: normal; font-variant: normal; font-weight: bold; font-size: 12px; line-height: normal; font-family: Arial; text-decoration: none;">本地网络</a></td>
+			</tr>
+			<tr id="idVlanCfg">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu2_1" ng-click="href_click('HerfMenu2_1');" href="VLANCfg.htm" target="mainframe" class="href_click">VLAN</a></td>
+			</tr>
+			<tr id="idQosCfg">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu2_2" ng-click="href_click('HerfMenu2_2');" href="QosCfg.htm" target="mainframe" class="href_click">Qos</a></td>
+			</tr>
+			<tr id="idLANQos">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu2_20" ng-click="href_click('HerfMenu2_20');" href="LANQos.htm" target="mainframe" class="href_click">LAN Qos</a></td>
+			</tr>
+			<!--<tr id="idMacClone" style="display:none">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu2_3" onClick="href_click('HerfMenu2_3');" href="MacClone.htm" target="mainframe">MAC克隆</a></td>
+			</tr>-->
+			<tr id="ComplexCfg2_4" style="display: none;">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu2_4" ng-click="href_click('HerfMenu2_4');" href="DHCPServerCfg.htm" target="mainframe" class="href_click">DHCP服务</a></td>
+			</tr>
+			<tr id="ComplexCfg2_5" style="display: none;">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu2_5" ng-click="href_click('HerfMenu2_5');" href="DMZHostCfg.htm" target="mainframe" class="href_click">DMZ主机</a></td>
+			</tr>
+			<tr id="ComplexCfg2_6" style="display: none;">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu2_6" ng-click="href_click('HerfMenu2_6');" href="ForwardRuleCfg.htm" target="mainframe" class="href_click">转发规则</a></td>
+			</tr>
+			<tr id="ComplexCfg2_7" style="display: none;">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu2_7" ng-click="href_click('HerfMenu2_7');" href="StaticRtCfg.htm" target="mainframe" class="href_click">静态路由</a></td>
+			</tr>
+			<tr id="ComplexCfg2_9" style="display: none;">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu2_9" ng-click="href_click('HerfMenu2_9');" href="FirewallInfo.htm" target="mainframe" class="href_click">防火墙</a></td>
+			</tr>
+			<tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu2_8" ng-click="href_click('HerfMenu2_8');" href="ARPCfg.htm" target="mainframe" class="href_click">地址解析</a></td>
+			</tr>
+			</tbody></table>
+	</td>
+</tr>
+<tr>
+	<td><img src="image/pw.gif"></td>
+	<td><a id="BoldHref3" ng-click="href_click('SipServer');" href="" class="href_click" style="font-weight: bold">SIP服务器</a></td>
+</tr>
+<tr style="display: none">
+	<td width="2%"><img src="image/pw.gif"></td>
+	<td><a id="BoldHref4" ng-click="href_click('BoldHref4');" href="Port.htm" target="mainframe" style="font-style: normal; font-variant: normal; font-weight: bold; font-size: 13px; line-height: normal; font-family: Arial; text-decoration: none;">端口</a></td>
+</tr>
+<tr>
+	<td><img id="plus_minus5" src="image/plus.gif"></td>
+	<td><a id="BoldHref5"  ng-click="menu_click('plus_minus5','id_Advanced')" href="" class="menu_click">高级配置</a></td>
+</tr>
+<tr id="id_Advanced" style="display: none;">
+	<td>&nbsp;</td>
+	<td>
+		<table width="100%">
+			<tbody><tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu5_0" ng-click="href_click('LineParam');" href=""  class="href_click">FXS / FXO</a></td>
+			</tr>
+			<tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu5_1" ng-click="href_click('MediaStream');" href="" class="href_click">媒体参数</a></td>
+			</tr>
+			<tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu5_2" ng-click="href_click('SipParam');" href="" class="href_click">SIP参数</a></td>
+			</tr>
+			<tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu5_3" ng-click="href_click('FaxCfg');" href="" class="href_click">传真参数</a></td>
+			</tr>
+			<tr id="id_Digit">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu5_4" ng-click="href_click('DigitMap');" href=""  class="href_click">拨号规则</a></td>
+			</tr>
+			<tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu5_5" ng-click="href_click('FeatureCodes');" href="" class="href_click">功能键</a></td>
+			</tr>
+			<tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu5_6" ng-click="href_click('SystemCfg');" href=""  class="href_click">系统参数</a></td>
+			</tr>
+			<tr id="idActionURL">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu5_7" ng-click="href_click('ActionUrl');" href="" class="href_click">Action URL</a></td>
+			</tr>
+			</tbody></table>
+	</td>
+</tr>
+<tr id="RoutingMenuBar" style="display: none">
+	<td><img id="plus_minus6" src="image/plus.gif"></td>
+	<td><span id="BoldHref6"  ng-click="menu_click('plus_minus6','id_RouteConfig')" class="menu_click">呼叫和路由</span></td>
+</tr>
+<tr id="id_RouteConfig" style="display: none;">
+	<td>&nbsp;</td>
+	<td>
+		<table width="100%">
+			<tbody><tr id="idWildcardReg">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu6_0" ng-click="href_click('WildProxyReg');" class="href_click">通配组</a></td>
+			</tr>
+			<tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<!--<td><a id="HerfMenu6_1" ng-click="href_click('PortGroup');" class="href_click">端口组</a></td>-->
+        <td><a id="HerfMenu6_1" ng-click="" class="href_click">端口组</a></td>
+			</tr>
+			<tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<!--<td><a id="HerfMenu6_2" ng-click="href_click('IPTrunk');" class="href_click">IP中继</a></td>-->
+				<td><a id="HerfMenu6_2" ng-click="" class="href_click">IP中继</a></td>
+			</tr>
+			<tr id="RouteIP2PSTNParam">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<!--<td><a id="HerfMenu6_3" ng-click="href_click('RouteIP2PSTNParam');" class="href_click">路由参数</a></td>-->
+				<td><a id="HerfMenu6_3" ng-click="" class="href_click">路由参数</a></td>
+			</tr>
+			<tr id="RouteIP2PSTN">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<!--<td><a id="HerfMenu6_4" ng-click="href_click('RouteIP2PSTN');" class="href_click">IP-&gt;Tel路由</a></td>-->
+				<td><a id="HerfMenu6_4" ng-click="" class="href_click">IP-&gt;Tel路由</a></td>
+			</tr>
+			<tr id="RoutePSTN2IP">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<!--<td><a id="HerfMenu6_5" ng-click="href_click('RoutePSTN2IP');" class="href_click">Tel-&gt;IP/Tel路由</a></td>-->
+				<td><a id="HerfMenu6_5" ng-click="" class="href_click">Tel-&gt;IP/Tel路由</a></td>
+			</tr>
+			<tr id="RouteIP2IP">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<!--<td><a id="HerfMenu6_6" ng-click="href_click('RouteIP2IP');" class="href_click">IP-&gt;IP路由</a></td>-->
+				<td><a id="HerfMenu6_6" ng-click="" class="href_click">IP-&gt;IP路由</a></td>
+			</tr>
+			</tbody></table>
+	</td>
+</tr>
+<tr id="ManipulationMenuBar" style="display: none">
+	<td><img id="plus_minus7" src="image/plus.gif"></td>
+	<td><span id="BoldHref7"  ng-click="menu_click('plus_minus7','id_ManipulationConfig')" class="menu_click">号码变换</span></td>
+</tr>
+<tr id="id_ManipulationConfig" style="display: none;">
+	<td>&nbsp;</td>
+	<td>
+		<table width="100%">
+			<tbody><tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu7_0" ng-click="href_click('HerfMenu7_0');" href="CalledIP2Tel.htm" target="mainframe" class="href_click">IP-&gt;Tel被叫号码</a></td>
+			</tr>
+			<tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu7_1" ng-click="href_click('HerfMenu7_1');" href="CallerTel2IP.htm" target="mainframe" class="href_click">Tel-&gt;IP/Tel主叫号码</a></td>
+			</tr>
+			<tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu7_2" ng-click="href_click('HerfMenu7_2');" href="CalledTel2IP.htm" target="mainframe" class="href_click">Tel-&gt;IP/Tel被叫号码</a></td>
+			</tr>
+			</tbody></table>
+	</td>
+</tr>
+<tr>
+	<td><img id="plus_minus8" src="image/plus.gif" width="10"></td>
+	<td><a id="BoldHref8"  ng-click="menu_click('plus_minus8','id_Management')" href="" class="menu_click">管理</a></td>
+</tr>
+<tr id="id_Management" style="display: none;">
+	<td>&nbsp;</td>
+	<td>
+		<table width="100%">
+			<tbody><tr id="idTR069">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu8_0" ng-click="href_click('TR069Param');" href="" class="href_click">TR069</a></td>
+			</tr>
+			<tr id="idSNMPParam" style="display: none">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu8_1" ng-click="href_click('SNMPParam');" href="" class="href_click">SNMP</a></td>
+			</tr>
+			<tr id="idNetSNMP" style="display: none">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu8_2" ng-click="href_click('NetSNMPParam');" href=""  class="href_click">SNMP</a></td>
+			</tr>
+			<tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu8_3" ng-click="href_click('SyslogParam');" href=""  class="href_click">Syslog</a></td>
+			</tr>
+			<tr id="idProvision">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu8_4" ng-click="href_click('Provision');" href="" class="href_click">Provision</a></td>
+			</tr>
+			<tr id="idCloudServer">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu8_5" ng-click="href_click('CloudServerCfg');" href="" class="href_click">云服务器</a></td>
+			</tr>
+			<tr id="idEiaRecordCfg">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu8_6" ng-click="href_click('EiaRecordCfg');" href="" class="href_click">录音配置</a></td>
+			</tr>
+			<tr id="idUserManage" style="display: none">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<!--<td><a id="HerfMenu8_6" ng-click="href_click('UserManage');"  class="href_click">用户管理</a></td>-->
+				<td><a id="HerfMenu8_6" ng-click="" href=""  class="href_click">用户管理</a></td>
+			</tr>
+      <tr id="idMuxCfg" style="display: none">
+        <td width="2%"><img src="image/pw.gif"></td>
+        <td><a id="HerfMenu8_7" ng-click="href_click('RelayServerCfg');" href=""  class="href_click">动态带宽优化配置</a></td>
+      </tr>
+      <tr id="idRemoteServ">
+        <td width="2%"><img src="image/pw.gif"></td>
+        <td><a id="HerfMenu8_8" ng-click="href_click('RemoteServerCfg');" href="" class="href_click">远程连接配置</a></td>
+      </tr>
+			</tbody></table>
+	</td>
+</tr>
+<tr>
+	<td><img id="plus_minus9" src="image/plus.gif" width="10"></td>
+	<td><a id="BoldHref9"  ng-click="menu_click('plus_minus9','id_Security')" href="" class="menu_click">安全设置</a></td>
+</tr>
+<tr id="id_Security" style="display: none;" >
+	<td>&nbsp;</td>
+	<td>
+		<table width="100%">
+			<tbody><tr id="idWhiteListForWEB">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu9_0" ng-click="href_click('WhiteListForWEB');" href="" class="href_click">WEB访问控制列表</a></td>
+			</tr>
+			<tr id="idWhiteListForTEL">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu9_1" ng-click="href_click('WhiteListForTEL');" href="" class="href_click">Telnet访问控制列表</a></td>
+			</tr>
+			<tr style="display: none">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu9_2" ng-click="href_click('Password');" href="" class="href_click">密码修改</a></td>
+			</tr>
+			<tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu9_3" ng-click="href_click('Encrypt');" href=""  class="href_click">加密配置</a></td>
+			</tr>
+			</tbody></table>
+	</td>
+</tr>
+<tr style="display: none">
+	<td><img id="plus_minus10" src="image/plus.gif" width="10"></td>
+	<td><span id="BoldHref10"  ng-click="menu_click('plus_minus10','id_Tools')" class="menu_click">工具</span></td>
+</tr>
+<tr id="id_Tools" style="display: none;">
+	<td>&nbsp;</td>
+	<td>
+		<table width="100%">
+			<tbody><tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu10_0" ng-click="href_click('HerfMenu10_0');" href="FirmwareUpload.htm" target="mainframe" class="href_click">固件升级</a></td>
+			</tr>
+			<tr id="id_DataBackup">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu10_1" ng-click="href_click('HerfMenu10_1');" href="DataBackup.htm" target="mainframe" class="href_click">数据备份</a></td>
+			</tr>
+			<tr id="id_DataRestore">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu10_2" ng-click="href_click('HerfMenu10_2');" href="DataRestore.htm" target="mainframe" class="href_click">数据恢复</a></td>
+			</tr>
+			<tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu10_3" ng-click="href_click('HerfMenu10_3');" href="PingTest.htm" target="mainframe" class="href_click">Ping测试</a></td>
+			</tr>
+			<tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu10_4" ng-click="href_click('HerfMenu10_4');" href="TracertTest.htm" target="mainframe" class="href_click">Tracert测试</a></td>
+			</tr>
+			<tr id="idOutwardTest">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu10_5" ng-click="href_click('HerfMenu10_5');" href="OutwardTest.htm" target="mainframe" class="href_click">Outward测试</a></td>
+			</tr>
+			<tr id="idNetworkCapture">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu10_6" ng-click="href_click('HerfMenu10_6');" href="NetworkCapture.htm" target="mainframe" class="href_click">网络抓包</a></td>
+			</tr>
+			<tr id="id_FactoryReset">
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu10_7" ng-click="href_click('HerfMenu10_7');" href="DefaultSet.htm" target="mainframe" class="href_click">恢复出厂设置</a></td>
+			</tr>
+			<tr>
+				<td width="2%"><img src="image/pw.gif"></td>
+				<td><a id="HerfMenu10_8" ng-click="href_click('HerfMenu10_8');" href="Restart.htm" target="mainframe" class="href_click">设备重启</a></td>
+			</tr>alue="保存" id="toSaveWhole" ng-click="toSaveWhole()"/>-->
+			</tbody></table>
+	</td>
+</tr>
+</tbody></table>
+<!--<hr/>-->
+<!--<input type="button" v

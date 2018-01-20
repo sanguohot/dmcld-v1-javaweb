@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<!-- 注解探测器 -->
+	<context:component-scan base-package="com.dinstar.sim" />
+	
+	<!-- 要调用的工作类 -->
+  <bean id="reportTask" class="com.dinstar.sim.action.TimingTaskAction"/>
+  
+ <!-- 定义调用对象和调用对象的方法 -->
+   <bean id="reportTsk" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+     <!-- 调用的类 -->
+     <property name="targetObject" ref="reportTask" />
+      <!-- 调用类中的方法 -->
+     <property name="targetMethod" value="getReport" />
+  </bean>
+  
+    <!-- 定义触发时间 -->
+  <bean id="getReportTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+    <property name="jobDetail" ref="reportTsk" />
+      <!-- cron表达式 此处定义为一直触发执行任务 -->
+    <!--<property name="cronExpression" value="10,15,20,25,30,35,40,45,50,55 * * * * ?" /> -->
+    <!-- run every morning at 0 AM -->
+    <!-- 10 0/1 * * * ? every minute -->
+     <property name="cronExpression" value="0 0 23 * * ?" /> 
+  </bean>
+  
+  <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序   -->
+  <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+    <property name="triggers">
+      <list>
+        <ref bean="getReportTrigger" /> 
+      </list>
+    </property>
+     <property name="autoStartup" value="true"></property>
+  </bean>
+
+</beans>

@@ -1,0 +1,20 @@
+<form id="{{=it.pid}}_form" role="form">
+    <div class="container-fluid my-tab">
+        <h4 class="header smaller lighter red">
+            {{=it.lan.searchCondition}}
+        </h4>
+
+        <div class="row alert alert-success">
+			{{=it.searchRowField}} 
+ 			{{=it.datetimeField}} 			
+ 			{{=it.alarmAlarmTypeField}}
+ 			{{=it.alarmTypeField}}
+ 			{{=it.alarmLevelField}}
+        </div>
+        <h4 class="header smaller lighter red">
+            {{=it.lan.searchResult}}
+        </h4>
+        <table id="{{=it.pid}}_list"></table>
+    </div>
+
+</form>

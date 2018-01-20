@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblOrderItemMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblOrderItem" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="domain_name" property="domainName" jdbcType="CHAR" />
+    <result column="user_domain_uuid" property="userDomainUuid" jdbcType="INTEGER" />
+    <result column="user_domain_name" property="userDomainName" jdbcType="CHAR" />
+    <result column="user_uuid" property="userUuid" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="CHAR" />
+    <result column="order_number" property="orderNumber" jdbcType="CHAR" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="CHAR" />
+    <result column="product_sn" property="productSn" jdbcType="CHAR" />
+    <result column="product_mac" property="productMac" jdbcType="CHAR" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="unit_cost" property="unitCost" jdbcType="REAL" />
+    <result column="cnt" property="cnt" jdbcType="INTEGER" />
+    <result column="days" property="days" jdbcType="INTEGER" />
+    <result column="expire_day" property="expireDay" jdbcType="TIMESTAMP" />
+    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, domain_uuid, domain_name, user_domain_uuid, user_domain_name, user_uuid, 
+    user_name, order_number, product_id, product_name, product_sn, product_mac, order_status, 
+    status, unit_cost, cnt, days, expire_day, detail_desc
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblOrderItemCriteria" >
+	select
+    <if test="distinct" >
+      distinct
+    </if>
+    <choose>
+        <when test="myCol!=null"> ${myCol}</when>
+        <otherwise><include refid="Base_Column_List" /></otherwise>
+    </choose>
+    from tbl_order_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="groupBy != null" >
+      group by ${groupBy}
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+   <if test="limitClause != null" >
+      limit ${limitClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_order_item
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_order_item
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblOrderItemCriteria" >
+    delete from tbl_order_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblOrderItem" >
+    insert into tbl_order_item (uuid, rec_status, domain_uuid, 
+      domain_name, user_domain_uuid, user_domain_name, 
+      user_uuid, user_name, order_number, 
+      product_id, product_name, product_sn, 
+      product_mac, order_status, status, 
+      unit_cost, cnt, days, expire_day, 
+      detail_desc)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{domainUuid,jdbcType=INTEGER}, 
+      #{domainName,jdbcType=CHAR}, #{userDomainUuid,jdbcType=INTEGER}, #{userDomainName,jdbcType=CHAR}, 
+      #{userUuid,jdbcType=INTEGER}, #{userName,jdbcType=CHAR}, #{orderNumber,jdbcType=CHAR}, 
+      #{productId,jdbcType=INTEGER}, #{productName,jdbcType=CHAR}, #{productSn,jdbcType=CHAR}, 
+      #{productMac,jdbcType=CHAR}, #{orderStatus,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{unitCost,jdbcType=REAL}, #{cnt,jdbcType=INTEGER}, #{days,jdbcType=INTEGER}, #{expireDay,jdbcType=TIMESTAMP}, 
+      #{detailDesc,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblOrderItem" >
+    insert into tbl_order_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="domainName != null" >
+        domain_name,
+      </if>
+      <if test="userDomainUuid != null" >
+        user_domain_uuid,
+      </if>
+      <if test="userDomainName != null" >
+        user_domain_name,
+      </if>
+      <if test="userUuid != null" >
+        user_uuid,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="orderNumber != null" >
+        order_number,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="productSn != null" >
+        product_sn,
+      </if>
+      <if test="productMac != null" >
+        product_mac,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="unitCost != null" >
+        unit_cost,
+      </if>
+      <if test="cnt != null" >
+        cnt,
+      </if>
+      <if test="days != null" >
+        days,
+      </if>
+      <if test="expireDay != null" >
+        expire_day,
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="domainName != null" >
+        #{domainName,jdbcType=CHAR},
+      </if>
+      <if test="userDomainUuid != null" >
+        #{userDomainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="userDomainName != null" >
+        #{userDomainName,jdbcType=CHAR},
+      </if>
+      <if test="userUuid != null" >
+        #{userUuid,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=CHAR},
+      </if>
+      <if test="orderNumber != null" >
+        #{orderNumber,jdbcType=CHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=CHAR},
+      </if>
+      <if test="productSn != null" >
+        #{productSn,jdbcType=CHAR},
+      </if>
+      <if test="productMac != null" >
+        #{productMac,jdbcType=CHAR},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="unitCost != null" >
+        #{unitCost,jdbcType=REAL},
+      </if>
+      <if test="cnt != null" >
+        #{cnt,jdbcType=INTEGER},
+      </if>
+      <if test="days != null" >
+        #{days,jdbcType=INTEGER},
+      </if>
+      <if test="expireDay != null" >
+        #{expireDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailDesc != null" >
+        #{detailDesc,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblOrderItemCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_order_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_order_item
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.domainName != null" >
+        domain_name = #{record.domainName,jdbcType=CHAR},
+      </if>
+      <if test="record.userDomainUuid != null" >
+        user_domain_uuid = #{record.userDomainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userDomainName != null" >
+        user_domain_name = #{record.userDomainName,jdbcType=CHAR},
+      </if>
+      <if test="record.userUuid != null" >
+        user_uuid = #{record.userUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=CHAR},
+      </if>
+      <if test="record.orderNumber != null" >
+        order_number = #{record.orderNumber,jdbcType=CHAR},
+      </if>
+      <if test="record.productId != null" >
+        product_id = #{record.productId,jdbcType=INTEGER},
+      </if>
+      <if test="record.productName != null" >
+        product_name = #{record.productName,jdbcType=CHAR},
+      </if>
+      <if test="record.productSn != null" >
+        product_sn = #{record.productSn,jdbcType=CHAR},
+      </if>
+      <if test="record.productMac != null" >
+        product_mac = #{record.productMac,jdbcType=CHAR},
+      </if>
+      <if test="record.orderStatus != null" >
+        order_status = #{record.orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.unitCost != null" >
+        unit_cost = #{record.unitCost,jdbcType=REAL},
+      </if>
+      <if test="record.cnt != null" >
+        cnt = #{record.cnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.days != null" >
+        days = #{record.days,jdbcType=INTEGER},
+      </if>
+      <if test="record.expireDay != null" >
+        expire_day = #{record.expireDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.detailDesc != null" >
+        detail_desc = #{record.detailDesc,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_order_item
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      domain_name = #{record.domainName,jdbcType=CHAR},
+      user_domain_uuid = #{record.userDomainUuid,jdbcType=INTEGER},
+      user_domain_name = #{record.userDomainName,jdbcType=CHAR},
+      user_uuid = #{record.userUuid,jdbcType=INTEGER},
+      user_name = #{record.userName,jdbcType=CHAR},
+      order_number = #{record.orderNumber,jdbcType=CHAR},
+      product_id = #{record.productId,jdbcType=INTEGER},
+      product_name = #{record.productName,jdbcType=CHAR},
+      product_sn = #{record.productSn,jdbcType=CHAR},
+      product_mac = #{record.productMac,jdbcType=CHAR},
+      order_status = #{record.orderStatus,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      unit_cost = #{record.unitCost,jdbcType=REAL},
+      cnt = #{record.cnt,jdbcType=INTEGER},
+      days = #{record.days,jdbcType=INTEGER},
+      expire_day = #{record.expireDay,jdbcType=TIMESTAMP},
+      detail_desc = #{record.detailDesc,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblOrderItem" >
+    update tbl_order_item
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="domainName != null" >
+        domain_name = #{domainName,jdbcType=CHAR},
+      </if>
+      <if test="userDomainUuid != null" >
+        user_domain_uuid = #{userDomainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="userDomainName != null" >
+        user_domain_name = #{userDomainName,jdbcType=CHAR},
+      </if>
+      <if test="userUuid != null" >
+        user_uuid = #{userUuid,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=CHAR},
+      </if>
+      <if test="orderNumber != null" >
+        order_number = #{orderNumber,jdbcType=CHAR},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=CHAR},
+      </if>
+      <if test="productSn != null" >
+        product_sn = #{productSn,jdbcType=CHAR},
+      </if>
+      <if test="productMac != null" >
+        product_mac = #{productMac,jdbcType=CHAR},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="unitCost != null" >
+        unit_cost = #{unitCost,jdbcType=REAL},
+      </if>
+      <if test="cnt != null" >
+        cnt = #{cnt,jdbcType=INTEGER},
+      </if>
+      <if test="days != null" >
+        days = #{days,jdbcType=INTEGER},
+      </if>
+      <if test="expireDay != null" >
+        expire_day = #{expireDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailDesc != null" >
+        detail_desc = #{detailDesc,jdbcType=CHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblOrderItem" >
+    update tbl_order_item
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      domain_name = #{domainName,jdbcType=CHAR},
+      user_domain_uuid = #{userDomainUuid,jdbcType=INTEGER},
+      user_domain_name = #{userDomainName,jdbcType=CHAR},
+      user_uuid = #{userUuid,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=CHAR},
+      order_number = #{orderNumber,jdbcType=CHAR},
+      product_id = #{productId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=CHAR},
+      product_sn = #{productSn,jdbcType=CHAR},
+      product_mac = #{productMac,jdbcType=CHAR},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      unit_cost = #{unitCost,jdbcType=REAL},
+      cnt = #{cnt,jdbcType=INTEGER},
+      days = #{days,jdbcType=INTEGER},
+      expire_day = #{expireDay,jdbcType=TIMESTAMP},
+      detail_desc = #{detailDesc,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

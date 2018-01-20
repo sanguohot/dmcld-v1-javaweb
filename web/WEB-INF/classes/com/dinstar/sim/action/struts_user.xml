@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">  
+<struts>  
+<!-- 用户功能模块配置文件 -->
+	<package name="struts-user" extends="json-default">
+		<interceptors>  
+	    	<interceptor name="timeoutInterceptor" class="com.dinstar.sim.action.SessionTimeoutInterceptor"></interceptor>  
+	    	<interceptor-stack name="timeoutStack">  
+	        	<interceptor-ref name="timeoutInterceptor"/>  
+	        	<interceptor-ref name="defaultStack"/>  
+	    	</interceptor-stack>  
+		</interceptors>  
+		<default-interceptor-ref name="timeoutStack"/>  
+		<!-- check login -->
+		<action name="doLogin" class="loginAction">
+			<result name="success" type="redirect">
+				<param name="location">bootstrap.html</param>
+			</result>
+			<result name="error" type="redirect">login.html?error</result>
+			<result name="view_alarm" type="redirect">bootstrap.html?alarmUuid=${alarmUuid}&amp;domainUuid=${domainUuid}&amp;alarmId=${alarmId}</result>
+			<result name="app_success" type="json"></result>
+			<result name="app_error" type="json"></result>
+			<result name="success2" type="json"></result>
+		</action>
+		<!-- get desktop function points 
+			<result name="login" type="dispatcher">/login.html</result>
+			<interceptor-ref name="timeoutStack"/>
+            <interceptor-ref name="checkLogin"/>
+		-->
+		<action name="getUserDesktop" class="userDeskTopAction">
+			<result name="success" type="json"/>
+			<!--<interceptor-ref name="defaultStack"/>
+            <interceptor-ref name="mydefault"/>-->
+		</action>
+
+		<action name="userManager" class="userAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		<action name="userListManager" class="userListAction">
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		
+		<action name="rand" class="randomAction">  
+	      	<result type="stream">  
+	               <param name="contentType">image/jpeg</param>  
+	               <param name="inputName">inputStream</param>  
+	        </result>  
+ 		</action>
+ 		<action name="validationRandom" class="validationRandomAction">
+			<result name="success" type="json"/>
+		</action>
+ 		<action name="remoteManager" class="remoteAction">
+			<result name="success" type="json"/>
+		</action>
+ 		<action name="test" class="testAction">
+			<result name="success" type="json"/>
+		</action>
+ 		
+		<action name="getOperationRootTree" class="rootTreeAction">  
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		<!--<action name="getLogRootTree" class="rootTreeAction">  
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		--><action name="refreshRootTree" class="refreshTreeAction">  
+			<result name="success" type="json"/>
+			<result name="error" type="json"/>
+		</action>
+		
+		<action name="getMonitorTree" class="monitorTreeAction">  
+			<result name="error" type="json"/>
+			<result name="success" type="json"/>
+		</action>
+
+		<action name="getLicenseTree" class="licenseTreeAction">  
+			<result name="error" type="json"/>
+			<result name="success" type="json"/>
+		</action>
+		
+		<action name="mailqManager" class="mailqAction">  
+			<result name="error" type="json"/>
+			<result name="success" type="json"/>
+		</action>
+		<action name="operateNewManager" class="operateNewAction">  
+			<result name="error" type="json"/>
+			<result name="success" type="json"/>
+		</action>
+			<action name="privilegeNewManager" class="privilegeNewAction">  
+			<result name="error" type="json"/>
+			<result name="success" type="json"/>
+		</action>
+	</package>
+</struts>  

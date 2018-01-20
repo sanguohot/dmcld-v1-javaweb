@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- gateway 端口映射配置文件 -->
+<mapper namespace="com.dinstar.sim.mapper.Gwp">
+	<resultMap type="com.dinstar.sim.model.TblGwp" id="gwpMapperMap">
+	 <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="port_uuid" property="portUuid" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="bkp_uuid" property="bkpUuid" jdbcType="INTEGER" />
+    <result column="local_sim_uuid" property="localSimUuid" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="local_imei" property="localImei" jdbcType="CHAR" />
+    <result column="current_imei" property="currentImei" jdbcType="CHAR" />
+    <result column="local_imsi" property="localImsi" jdbcType="CHAR" />
+    <result column="work_mode" property="workMode" jdbcType="INTEGER" />
+    <result column="mod_type" property="modType" jdbcType="INTEGER" />
+    <result column="mod_status" property="modStatus" jdbcType="INTEGER" />
+    <result column="mod_signal_val" property="modSignalVal" jdbcType="INTEGER" />
+    <result column="mod_signal_level" property="modSignalLevel" jdbcType="INTEGER" />
+    <result column="mod_ber_val" property="modBerVal" jdbcType="INTEGER" />
+    <result column="mod_error_count" property="modErrorCount" jdbcType="INTEGER" />
+    <result column="last_bind_time" property="lastBindTime" jdbcType="TIMESTAMP" />
+    <result column="last_used_time" property="lastUsedTime" jdbcType="TIMESTAMP" />
+    <result column="cur_call_status" property="curCallStatus" jdbcType="INTEGER" />
+    <result column="cur_sms_status" property="curSmsStatus" jdbcType="INTEGER" />
+    <result column="cur_ussd_status" property="curUssdStatus" jdbcType="INTEGER" />
+    <result column="cur_call_sn" property="curCallSn" jdbcType="INTEGER" />
+    <result column="cur_sms_sn" property="curSmsSn" jdbcType="INTEGER" />
+    <result column="cur_ussd_sn" property="curUssdSn" jdbcType="INTEGER" />
+    <result column="round_trip_delay" property="roundTripDelay" jdbcType="INTEGER" />
+    <result column="packet_all" property="packetAll" jdbcType="INTEGER" />
+    <result column="packet_retries" property="packetRetries" jdbcType="INTEGER" />
+    <result column="packet_timeout" property="packetTimeout" jdbcType="INTEGER" />
+	   
+	    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="ne_uuid" property="neUuid" jdbcType="INTEGER" />
+	    <result column="shelf_no" property="shelfNo" jdbcType="INTEGER" />
+	    <result column="slot_no" property="slotNo" jdbcType="INTEGER" />
+	    <result column="port_no" property="portNo" jdbcType="INTEGER" />
+	    <result column="type" property="type" jdbcType="INTEGER" />
+	    <result column="alias" property="alias" jdbcType="CHAR" />
+	    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+	    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+	    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+	    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+	    
+	    <result column="ne_alias" property="neAlias" jdbcType="CHAR" />
+	    <result column="ne_sn" property="neSn" jdbcType="BINARY" />
+	    <result column="operator" property="operator" jdbcType="CHAR" />
+	    <result column="bkp_alias" property="bkpAlias" jdbcType="CHAR" />
+	    <result column="sim_uuid" property="simUuid" jdbcType="INTEGER" />
+	    <result column="sim_imsi" property="simImsi" jdbcType="CHAR" />
+	    <result column="sim_alias" property="simAlias" jdbcType="CHAR" />
+	    <result column="bind_imei" property="bindImei" jdbcType="CHAR" />
+	    <result column="mobile" property="mobile" jdbcType="CHAR" />
+	    <result column="bkp_port_no_str" property="bkpPortNoStr" jdbcType="CHAR" />	    
+	   	
+	   	<result column="port_grp_uuid" property="portGrpUuid" jdbcType="INTEGER" />
+	   	<result column="port_policy_uuid" property="portPolicyUuid" jdbcType="INTEGER" />
+    	<result column="lock_port_uuid" property="lockPortUuid" jdbcType="INTEGER" />
+    	<result column="lock_sim_uuid" property="lockSimUuid" jdbcType="INTEGER" />
+    
+	    <result column="cur_call_status" property="curCallStatus" jdbcType="INTEGER" />
+	    <result column="cur_sms_status" property="curSmsStatus" jdbcType="INTEGER" />
+	    <result column="cur_ussd_status" property="curUssdStatus" jdbcType="INTEGER" />
+	    <result column="cur_call_sn" property="curCallSn" jdbcType="INTEGER" />
+	    <result column="cur_sms_sn" property="curSmsSn" jdbcType="INTEGER" />
+	    <result column="cur_ussd_sn" property="curUssdSn" jdbcType="INTEGER" />
+	    <result column="current_imei" property="currentImei" jdbcType="CHAR" />
+	    
+	    <result column="local_sim_uuid" property="localSimUuid" jdbcType="INTEGER" />
+	    <result column="local_imsi" property="localImsi" jdbcType="CHAR" />
+		<result column="port_alias" property="portAlias" jdbcType="CHAR" />
+
+		<result column="port_policy_name" property="portPolicyName" jdbcType="CHAR" />
+		<result column="port_grp_name" property="portGrpName" jdbcType="CHAR" />
+	</resultMap>
+	    
+    <select id="getGwpByNe" resultMap="gwpMapperMap">
+select gwp.*,p.alias as port_alias,
+		p.rec_status,p.ne_uuid,p.shelf_no,p.slot_no,p.port_no,p.type,p.admin_status,p.opr_status,p.run_status,p.domain_uuid ,
+		p.lock_sim_uuid,p.port_policy_uuid,p.lock_port_uuid,
+		CASE tpolicy.name IS NULL WHEN true THEN p.port_policy_uuid ELSE tpolicy.name END as port_policy_name,
+		CASE tgrp.name IS NULL WHEN true THEN p.port_grp_uuid ELSE tgrp.name END as port_grp_name,
+		tbl_sim.operator,
+		CASE gwp.bkp_uuid 
+		WHEN 0 
+		THEN NULL
+		WHEN NULL
+		THEN NULL
+		ELSE
+		(select
+			CASE tn.alias 
+			WHEN NULL
+			THEN 
+			CONCAT(tn.product_sn,'[',tp.port_no,']')
+			WHEN ''
+			THEN
+			CONCAT(tn.product_sn,'[',tp.port_no,']')
+			ELSE
+			CONCAT(tn.alias,'[',tp.port_no,']')
+			END
+			from tbl_ne tn ,tbl_port tp, tbl_bkp bkp 
+			where tn.uuid=tp.ne_uuid and tp.uuid=bkp.port_uuid and bkp.uuid=gwp.bkp_uuid )
+		END as bkp_port_no_str,
+		tbl_sim.imsi AS sim_imsi,
+		tbl_sim.alias AS sim_alias,
+		tbl_sim.uuid AS sim_uuid,
+		tbl_sim.bind_imei AS bind_imei,
+		tbl_sim.mobile as mobile
+		from tbl_port p left join tbl_gwp gwp on (p.uuid=gwp.port_uuid)
+		LEFT JOIN tbl_bkp ON(tbl_bkp.uuid = gwp.bkp_uuid)
+		LEFT JOIN tbl_sim ON ((tbl_sim.uuid = tbl_bkp.sim_uuid and gwp.work_mode=2) or (tbl_sim.uuid = gwp.local_sim_uuid  and gwp.work_mode!=2))
+		left join tbl_policy tpolicy on(tpolicy.uuid=p.port_policy_uuid)
+		left join tbl_grp tgrp on (tgrp.uuid=p.port_grp_uuid)
+		
+		where  p.ne_uuid=#{neUuid}
+		<if test="domainUuid>0">AND p.domain_uuid =#{domainUuid}</if>
+		order by p.port_no
+    </select>
+    <select id="getGwpByPortUuid" resultMap="gwpMapperMap">
+		select gwp.*,p.alias as port_alias,
+		p.rec_status,p.ne_uuid,p.shelf_no,p.slot_no,p.port_no,p.type,p.admin_status,p.opr_status,p.run_status,p.domain_uuid,
+		p.lock_sim_uuid,p.port_policy_uuid,p.lock_port_uuid,p.port_grp_uuid,
+		tn.alias as ne_alias,tn.product_sn as ne_sn,
+		ts.bind_imei,ts.uuid as sim_uuid,ts.imsi as sim_imsi
+		from tbl_gwp gwp
+		LEFT JOIN tbl_port p ON(gwp.port_uuid = p.uuid)
+		LEFT JOIN tbl_ne tn ON(tn.uuid = p.ne_uuid)
+		LEFT JOIN tbl_bkp bkp ON(gwp.bkp_uuid = bkp.uuid)
+		LEFT JOIN tbl_sim ts ON(bkp.sim_uuid = ts.uuid)
+		LEFT JOIN tbl_grp grp ON(grp.uuid = ts.grp_uuid)  
+		where gwp.uuid=#{uuid}
+		<if test="domainUuid>0">AND gwp.domain_uuid =#{domainUuid}</if> 
+		order by p.port_no
+    </select>
+    <select id="getGwpByUuid" resultMap="gwpMapperMap">
+		select gwp.*, 
+		p.rec_status,p.ne_uuid,p.shelf_no,p.slot_no,p.port_no,p.type,p.alias,p.admin_status,p.opr_status,p.run_status,p.domain_uuid,
+		p.port_policy_uuid,p.lock_port_uuid,p.port_grp_uuid,
+		 tbl_sim.operator,
+		CASE gwp.bkp_uuid 
+		WHEN 0 
+		THEN NULL
+		WHEN NULL
+		THEN NULL
+		ELSE
+		(select
+			CASE tn.alias 
+			WHEN NULL
+			THEN 
+			CONCAT(tn.product_sn,'[',tp.port_no,']')
+			WHEN ''
+			THEN
+			CONCAT(tn.product_sn,'[',tp.port_no,']')
+			ELSE
+			CONCAT(tn.alias,'[',tp.port_no,']')
+			END
+			from tbl_ne tn ,tbl_port tp, tbl_bkp bkp 
+			where tn.uuid=tp.ne_uuid and tp.uuid=bkp.port_uuid and bkp.uuid=gwp.bkp_uuid )
+		END as bkp_port_no_str,
+		tbl_sim.imsi AS sim_imsi,
+		tbl_sim.alias AS sim_alias,
+		tbl_sim.uuid AS sim_uuid,
+	  	tn.product_sn AS ne_sn,
+	  	tn.alias AS ne_alias
+		from tbl_port p left join tbl_gwp gwp on (p.uuid=gwp.port_uuid)
+		LEFT JOIN tbl_ne tn ON(p.ne_uuid = tn.uuid)
+		LEFT JOIN tbl_bkp ON(tbl_bkp.uuid = gwp.bkp_uuid)
+		LEFT JOIN tbl_sim ON ((tbl_sim.uuid = tbl_bkp.sim_uuid and gwp.work_mode=2) or (tbl_sim.uuid = gwp.local_sim_uuid  and gwp.work_mode!=2))
+		
+		where  gwp.uuid=#{uuid}
+		<if test="domainUuid>0">AND gwp.domain_uuid =#{domainUuid}</if>
+    </select>
+</mapper>

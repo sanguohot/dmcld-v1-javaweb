@@ -1,0 +1,13 @@
+{
+	success: true,
+	gateways: [
+				{name:'dwg2008c',desc:'shenzhen-1', gwid: '016E13000201', type: '8GSM',sitename:'sz_futian_guoxin',roamzonename:"shenzhen",status:'online'},
+				{name:'dwg2016-1',desc:'shenzhen-2',gwid: '016E13000202', type: '16GSM',sitename:'sz_futian_guoxin',roamzonename:"shenzhen",status:'offline'},
+				{name:'dwg2016-2',desc:'shenzhen-3',gwid: '016E13000203', type: '16CDMA',sitename:'sz_futian_zhongshan',roamzonename:"shenzhen",status:'linked'},
+				{name:'dwg2032',desc:'hongkong-1',gwid: '016E13000204', type: '32GSM',sitename:'hk_harbour',roamzonename:"hongkong",status:'linked'},
+				{name:'dwg2008c',desc:'shenzhen-4', gwid: '016E13000205', type: '8GSM',sitename:'sz_futian_zhongshan',roamzonename:"shenzhen",status:'online'},
+				{name:'dwg2016-3',desc:'hongkong-2',gwid: '016E13000206', type: '16GSM',sitename:'hk_harbour',roamzonename:"hongkong",status:'offline'},
+				{name:'dwg2016-4',desc:'hongkong-3',gwid: '016E13000207', type: '16CDMA',sitename:'hk_harbour',roamzonename:"hongkong",status:'linked'},
+				{name:'dwg2032-2',desc:'hongkong-4',gwid: '016E13000208', type: '32GSM',sitename:'hk_harbour',roamzonename:"hongkong",status:'linked'},				
+            ]
+}

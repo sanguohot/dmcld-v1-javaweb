@@ -1,0 +1,31 @@
+   dm1.5新功能内网测试包
+   1、增加配置项copy.path=/provision/provision/backup/
+   2、增加文件夹/provision/provision/backup，并且该文件夹对所有用户有write权限
+   3、数据库结构和存储过程需要更新 
+   4、更新web包和simserver包
+   5、prov url默认为172.16.0.20
+   6、数据库可以同步我本地的表结构和存储过程172.16.221.100 simserver dinstar 123456
+   
+   
+   simcloud.properties还缺乏两个路径
+batch.path=/provisoin/batch
+copy.path=/provision/provision/backup/
+
+
+sudo  /dinstar/bin/install-from-prov.sh 121.41.119.101 01600002 123456 [auto]
+
+sudo rm -f install-from-prov.sh
+
+sudo wget --no-cache 121.41.119.101/provision/version/patch/install-from-prov.sh
+
+
+bootstrap  admin template
+http://wrapbootstrap.com/preview/WB0B30DGR  ace bootstrap
+
+http://ironsummitmedia.github.io/startbootstrap-sb-admin-2/pages/index.html sb bootstrap
+中英文测试
+ag端口不能返回
+
+设备管理	设备统计的正在升级数和正在批配数处理机制存在问题，每秒都会重新这两个数值为0
+设备管理	性能统计注册失败数MTG设备无法统计
+设备管理	TG设备缩略图的E1口状态更改太慢，需要20分钟才刷新  

@@ -1,0 +1,127 @@
+<form  name="EiaRecordCfg" id="EiaRecordCfg" ng-controller="EiaRecordConfigCtrl">
+	<table width="600px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+		 <tbody><tr class="title">
+		  <td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+		  <td>录音配置</td>
+		   <td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+		  </tr>
+		 </tbody>
+	</table>
+	<table width="600px" align="center" cellpadding="0" cellspacing="0" class="tblbody">
+		  <tbody><tr>
+		    <td width="5%">&nbsp;</td>
+		    <td>
+		      <table width="100%" cellspacing="0" cellpadding="0" class="context">
+		        <tbody><tr>
+		          <td colspan="3">&nbsp;</td>
+		        </tr>
+		      <tr>
+		      <td width="5%">&nbsp;</td>
+			  <td width="45%" class="td_title">录音</td>
+			  <td width="50%">
+			    <input id="RecordEnable" name="RecordEnable" type="checkbox" ng-click="mouse_click()" alt="config/record/enable">
+			  </td>
+		     </tr>
+			 
+			 <tr id="idRcdIPAddress" style="">	
+			 <td>&nbsp;</td>
+			 <td>服务器地址</td>
+			 <td>
+			     <input class="text" id="RcdIPAddress" name="RcdIPAddress" maxlength="31" size="31" alt="config/record/domain">
+			 </td>
+			</tr>
+			<tr id="idRcdPort" style="">	
+			 <td>&nbsp;</td>
+			 <td>录音端口</td>
+			 <td><input class="text" id="RcdPort" name="RcdPort" maxlength="5" size="14" alt="config/record/port"></td>
+			</tr>
+			<tr id="idFilterNo" style="display:none">
+			  <td>&nbsp;</td>
+			  <td>过滤规则编号</td>
+		        <td>
+		            <select id="RcdNumFilterID" name="RcdNumFilterID" class="list" ng-click="mouse_click()">
+		              <option value="255" 255="">255</option>
+		            </select>
+		        </td>
+		    </tr> 
+			<tr id="idRcdMax" style="">	
+			 <td>&nbsp;</td>
+			 <td>最大路数</td>
+			 <td>
+			     <input class="text" id="RcdMax" name="RcdMax" maxlength="31" size="31" alt="config/record/max_num">
+			 </td>
+			</tr>
+			<tr id="idRcdPeriodEnable" style="">
+			  <td>&nbsp;</td>
+			  <td>录音时间段数选择</td>
+			  <td>
+			    <select id="RcdPeriodMode" name="RcdPeriodMode" class="list" ng-click="mouse_click()" alt="config/record/period_mode">
+			      <option value="0" selected="">禁用</option>
+			      <option value="1">启用-1段</option>
+			      <option value="2">启用-2段</option>
+			      <option value="3">启用-3段</option>
+			    </select>
+			  </td>
+			</tr>
+		    <tr id="idPeriodTime0" style="display:none">	
+			 <td>&nbsp;</td>
+			 <td>录音时间段</td>
+			 <td>
+			   <input type="time" id="from_time0" name="from_time0" alt="config/record/start_time0">
+			   ~
+		       <input type="time" id="end_time0" name="end_time0" alt="config/record/end_time0">
+			 </td>
+			</tr>
+		    <tr id="idPeriodTime1" style="display:none">	
+			 <td>&nbsp;</td>
+			 <td></td>
+			 <td>
+			   <input type="time" id="from_time1" name="from_time1" alt="config/record/start_time1">
+			   ~
+		       <input type="time" id="end_time1" name="end_time1" alt="config/record/end_time1">
+			 </td>
+			</tr>
+		    <tr id="idPeriodTime2" style="display:none">	
+			 <td>&nbsp;</td>
+			 <td></td>
+			 <td>
+			   <input type="time" id="from_time2" name="from_time2" alt="config/record/start_time2">
+			   ~
+		       <input type="time" id="end_time2" name="end_time2" alt="config/record/end_time2">
+			 </td>
+			</tr>
+		    <tr id="idRcdForkMode" style="display:none">
+			  <td>&nbsp;</td>
+			  <td>录音模式</td>
+			  <td>
+			    <select name="RcdForkMode" class="list" id="RcdForkMode" alt="config/record/fork_mode">
+			      <!-- <option value="0" >禁用</option> -->
+			      <option value="1">IP呼入</option>
+			      <option value="2">IP呼出</option>
+			      <option value="3" selected="">双向</option>
+			    </select>
+			  </td>
+			</tr>
+			<tr id="idRcdForkLevel" style="display:none">
+			  <td>&nbsp;</td>
+			  <td>录音等级</td>
+			  <td>
+			    <select name="RcdForkLevel" class="list" id="RcdForkLevel" alt="config/record/fork_level">
+			      <option value="0">IP</option>
+			      <option value="1" selected="">RTP</option>
+			    </select>
+			  </td>
+			</tr>
+		     <tr>
+		      <td width="5%">&nbsp;</td>
+		      <td width="50%">&nbsp;</td>
+		      <td width="45%">&nbsp;</td>
+		     </tr>
+		    </tbody></table>
+		   </td>
+		   <td width="5%">&nbsp;</td>
+		 </tr>
+	   </tbody>
+	 </table>
+ 
+</form>

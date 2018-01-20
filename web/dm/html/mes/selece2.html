@@ -1,0 +1,37 @@
+<from class="form-horizontal" role="from">
+		   <div class="from-group">
+		         <label for="firstname" class=" control-label text-right">{{=it.lan.sendToRole}}</label>
+		         <div >
+		            <select multiple="" style="" class=" chosen-select form-control " id="{{=it.lan.id}}">
+		              <option value="1">super_admin</option>
+	                   <option value="2">super_support</option>
+	                   <option value="3">domain_admin</option>
+	                   <option value="4">domain_editor</option>
+	                   <option value="5">domain_operator</option>
+	                   <option value="6">domain_viewer</option>
+	                   <option value="7">super_finance</option>
+	                   <option value="8">super_viewer</option><!--
+	                   <option value="9">domain_user01</option>
+	                   <option value="10">domain_user02</option>
+	                  <option value="11">domain_user03</option>
+		           --></select>
+		       </div>
+		      
+		  </div>
+		<div class="form-group">
+		    
+		    <label for="lastname" style="margin-left: 1.5%" class="control-label text-right">{{=it.lan.theme}}</label>
+		  
+		   
+		       <textarea style="width: 97%;margin-left: 1.5%;" id="theme" class="form-control" rows="1" placeholder="请输入主题">{{=it.lan.theme1}}</textarea>
+		    
+		</div>
+		<div class="form-group">
+		
+		   <label for="name" style="margin-left: 1.5%" class="control-label text-right">{{=it.lan.content}}</label>
+		   
+		  
+		      <textarea style="width: 97%;margin-left: 1.5%;" name="textarea" id="textarea2" class="form-control" rows="20" placeholder="请输入文本">{{=it.lan.content1}}</textarea>
+		   
+		 </div>
+</form>

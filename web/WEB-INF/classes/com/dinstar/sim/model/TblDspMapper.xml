@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblDspMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblDsp" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="port_uuid" property="portUuid" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="work_status" property="workStatus" jdbcType="INTEGER" />
+    <result column="pcm_law" property="pcmLaw" jdbcType="INTEGER" />
+    <result column="dsp_work_time" property="dspWorkTime" jdbcType="INTEGER" />
+    <result column="dsp_calcu_alo" property="dspCalcuAlo" jdbcType="INTEGER" />
+    <result column="channel_num" property="channelNum" jdbcType="INTEGER" />
+    <result column="channel_fail" property="channelFail" jdbcType="INTEGER" />
+    <result column="rtp_delay" property="rtpDelay" jdbcType="INTEGER" />
+    <result column="rtp_delay_max" property="rtpDelayMax" jdbcType="INTEGER" />
+    <result column="rtp_dbm" property="rtpDbm" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, port_uuid, domain_uuid, alias, work_status, pcm_law, dsp_work_time, 
+    dsp_calcu_alo, channel_num, channel_fail, rtp_delay, rtp_delay_max, rtp_dbm
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblDspCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_dsp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_dsp
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_dsp
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblDspCriteria" >
+    delete from tbl_dsp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblDsp" >
+    insert into tbl_dsp (uuid, rec_status, port_uuid, 
+      domain_uuid, alias, work_status, 
+      pcm_law, dsp_work_time, dsp_calcu_alo, 
+      channel_num, channel_fail, rtp_delay, 
+      rtp_delay_max, rtp_dbm)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{portUuid,jdbcType=INTEGER}, 
+      #{domainUuid,jdbcType=INTEGER}, #{alias,jdbcType=CHAR}, #{workStatus,jdbcType=INTEGER}, 
+      #{pcmLaw,jdbcType=INTEGER}, #{dspWorkTime,jdbcType=INTEGER}, #{dspCalcuAlo,jdbcType=INTEGER}, 
+      #{channelNum,jdbcType=INTEGER}, #{channelFail,jdbcType=INTEGER}, #{rtpDelay,jdbcType=INTEGER}, 
+      #{rtpDelayMax,jdbcType=INTEGER}, #{rtpDbm,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblDsp" >
+    insert into tbl_dsp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="portUuid != null" >
+        port_uuid,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="workStatus != null" >
+        work_status,
+      </if>
+      <if test="pcmLaw != null" >
+        pcm_law,
+      </if>
+      <if test="dspWorkTime != null" >
+        dsp_work_time,
+      </if>
+      <if test="dspCalcuAlo != null" >
+        dsp_calcu_alo,
+      </if>
+      <if test="channelNum != null" >
+        channel_num,
+      </if>
+      <if test="channelFail != null" >
+        channel_fail,
+      </if>
+      <if test="rtpDelay != null" >
+        rtp_delay,
+      </if>
+      <if test="rtpDelayMax != null" >
+        rtp_delay_max,
+      </if>
+      <if test="rtpDbm != null" >
+        rtp_dbm,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="portUuid != null" >
+        #{portUuid,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=CHAR},
+      </if>
+      <if test="workStatus != null" >
+        #{workStatus,jdbcType=INTEGER},
+      </if>
+      <if test="pcmLaw != null" >
+        #{pcmLaw,jdbcType=INTEGER},
+      </if>
+      <if test="dspWorkTime != null" >
+        #{dspWorkTime,jdbcType=INTEGER},
+      </if>
+      <if test="dspCalcuAlo != null" >
+        #{dspCalcuAlo,jdbcType=INTEGER},
+      </if>
+      <if test="channelNum != null" >
+        #{channelNum,jdbcType=INTEGER},
+      </if>
+      <if test="channelFail != null" >
+        #{channelFail,jdbcType=INTEGER},
+      </if>
+      <if test="rtpDelay != null" >
+        #{rtpDelay,jdbcType=INTEGER},
+      </if>
+      <if test="rtpDelayMax != null" >
+        #{rtpDelayMax,jdbcType=INTEGER},
+      </if>
+      <if test="rtpDbm != null" >
+        #{rtpDbm,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblDspCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_dsp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_dsp
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.portUuid != null" >
+        port_uuid = #{record.portUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.alias != null" >
+        alias = #{record.alias,jdbcType=CHAR},
+      </if>
+      <if test="record.workStatus != null" >
+        work_status = #{record.workStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.pcmLaw != null" >
+        pcm_law = #{record.pcmLaw,jdbcType=INTEGER},
+      </if>
+      <if test="record.dspWorkTime != null" >
+        dsp_work_time = #{record.dspWorkTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.dspCalcuAlo != null" >
+        dsp_calcu_alo = #{record.dspCalcuAlo,jdbcType=INTEGER},
+      </if>
+      <if test="record.channelNum != null" >
+        channel_num = #{record.channelNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.channelFail != null" >
+        channel_fail = #{record.channelFail,jdbcType=INTEGER},
+      </if>
+      <if test="record.rtpDelay != null" >
+        rtp_delay = #{record.rtpDelay,jdbcType=INTEGER},
+      </if>
+      <if test="record.rtpDelayMax != null" >
+        rtp_delay_max = #{record.rtpDelayMax,jdbcType=INTEGER},
+      </if>
+      <if test="record.rtpDbm != null" >
+        rtp_dbm = #{record.rtpDbm,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_dsp
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      port_uuid = #{record.portUuid,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      alias = #{record.alias,jdbcType=CHAR},
+      work_status = #{record.workStatus,jdbcType=INTEGER},
+      pcm_law = #{record.pcmLaw,jdbcType=INTEGER},
+      dsp_work_time = #{record.dspWorkTime,jdbcType=INTEGER},
+      dsp_calcu_alo = #{record.dspCalcuAlo,jdbcType=INTEGER},
+      channel_num = #{record.channelNum,jdbcType=INTEGER},
+      channel_fail = #{record.channelFail,jdbcType=INTEGER},
+      rtp_delay = #{record.rtpDelay,jdbcType=INTEGER},
+      rtp_delay_max = #{record.rtpDelayMax,jdbcType=INTEGER},
+      rtp_dbm = #{record.rtpDbm,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblDsp" >
+    update tbl_dsp
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="portUuid != null" >
+        port_uuid = #{portUuid,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=CHAR},
+      </if>
+      <if test="workStatus != null" >
+        work_status = #{workStatus,jdbcType=INTEGER},
+      </if>
+      <if test="pcmLaw != null" >
+        pcm_law = #{pcmLaw,jdbcType=INTEGER},
+      </if>
+      <if test="dspWorkTime != null" >
+        dsp_work_time = #{dspWorkTime,jdbcType=INTEGER},
+      </if>
+      <if test="dspCalcuAlo != null" >
+        dsp_calcu_alo = #{dspCalcuAlo,jdbcType=INTEGER},
+      </if>
+      <if test="channelNum != null" >
+        channel_num = #{channelNum,jdbcType=INTEGER},
+      </if>
+      <if test="channelFail != null" >
+        channel_fail = #{channelFail,jdbcType=INTEGER},
+      </if>
+      <if test="rtpDelay != null" >
+        rtp_delay = #{rtpDelay,jdbcType=INTEGER},
+      </if>
+      <if test="rtpDelayMax != null" >
+        rtp_delay_max = #{rtpDelayMax,jdbcType=INTEGER},
+      </if>
+      <if test="rtpDbm != null" >
+        rtp_dbm = #{rtpDbm,jdbcType=INTEGER},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblDsp" >
+    update tbl_dsp
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      port_uuid = #{portUuid,jdbcType=INTEGER},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      alias = #{alias,jdbcType=CHAR},
+      work_status = #{workStatus,jdbcType=INTEGER},
+      pcm_law = #{pcmLaw,jdbcType=INTEGER},
+      dsp_work_time = #{dspWorkTime,jdbcType=INTEGER},
+      dsp_calcu_alo = #{dspCalcuAlo,jdbcType=INTEGER},
+      channel_num = #{channelNum,jdbcType=INTEGER},
+      channel_fail = #{channelFail,jdbcType=INTEGER},
+      rtp_delay = #{rtpDelay,jdbcType=INTEGER},
+      rtp_delay_max = #{rtpDelayMax,jdbcType=INTEGER},
+      rtp_dbm = #{rtpDbm,jdbcType=INTEGER}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

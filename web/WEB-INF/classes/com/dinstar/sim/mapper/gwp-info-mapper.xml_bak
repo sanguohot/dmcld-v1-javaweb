@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<!-- gwp bkp sim mapper file -->
+<mapper namespace="com.dinstar.sim.mapper.GwpBkpSimMapper">
+	<resultMap type="com.dinstar.sim.mapper.operation.GwpBkpSimMapper" id="gwpBkpSimMapperMap">
+	<!-- gwp -->
+	 <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="port_uuid" property="portUuid" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="bkp_uuid" property="bkpUuid" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="local_imei" property="localImei" jdbcType="CHAR" />
+    <result column="work_mode" property="workMode" jdbcType="INTEGER" />
+    <result column="mod_type" property="modType" jdbcType="INTEGER" />
+    <result column="mod_status" property="modStatus" jdbcType="INTEGER" />
+    <result column="mod_signal_val" property="modSignalVal" jdbcType="INTEGER" />
+    <result column="mod_ber_val" property="modBerVal" jdbcType="INTEGER" />
+    <result column="mod_error_count" property="modErrorCount" jdbcType="INTEGER" />
+    <result column="last_bind_time" property="lastBindTime" jdbcType="TIMESTAMP" />
+    <result column="last_used_time" property="lastUsedTime" jdbcType="TIMESTAMP" />
+    <result column="cur_call_status" property="curCallStatus" jdbcType="INTEGER" />
+    <result column="cur_sms_status" property="curSmsStatus" jdbcType="INTEGER" />
+    <result column="round_trip_delay" property="roundTripDelay" jdbcType="INTEGER" />
+    <result column="packet_all" property="packetAll" jdbcType="INTEGER" />
+    <result column="packet_retries" property="packetRetries" jdbcType="INTEGER" />
+    <result column="packet_timeout" property="packetTimeout" jdbcType="INTEGER" />
+    
+    	<result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="ne_uuid" property="neUuid" jdbcType="INTEGER" />
+	    <result column="shelf_no" property="shelfNo" jdbcType="INTEGER" />
+	    <result column="slot_no" property="slotNo" jdbcType="INTEGER" />
+	    <result column="port_no" property="portNo" jdbcType="INTEGER" />
+	    <result column="type" property="type" jdbcType="INTEGER" />
+	    <result column="alias" property="alias" jdbcType="CHAR" />
+	    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+	    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+	    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+	    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+	
+	<!-- bkp -->
+	<result column="bkp_uuid" property="bkpUuid" jdbcType="INTEGER" />
+    <result column="bkp_rec_status" property="bkpRecStatus" jdbcType="INTEGER" />
+    <result column="bkp_port_uuid" property="bkpPortUuid" jdbcType="INTEGER" />
+    <result column="bkp_alias" property="bkpAlias" jdbcType="CHAR" />
+    <result column="gwp_uuid" property="gwpUuid" jdbcType="INTEGER" />
+    <result column="bkp_sim_uuid" property="bkpSimUuid" jdbcType="INTEGER" />
+    <result column="bkp_domain_uuid" property="bkpDomainUuid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="imsi" property="imsi" jdbcType="CHAR" />
+    <result column="last_error_count" property="lastErrorCount" jdbcType="INTEGER" />
+    <result column="bkp_last_bind_time" property="bkpLastBindTime" jdbcType="TIMESTAMP" />
+    <result column="bkp_last_used_time" property="bkpLastUsedTime" jdbcType="TIMESTAMP" />
+    <result column="cur_call_status" property="curCallStatus" jdbcType="INTEGER" />
+    <result column="cur_sms_status" property="curSmsStatus" jdbcType="INTEGER" />
+    <result column="bkp_Round_trip_delay" property="bkpRoundTripDelay" jdbcType="INTEGER" />
+    <result column="bkp_packet_all" property="bkpPacketAll" jdbcType="INTEGER" />
+    <result column="bkp_packet_retries" property="bkpPacketRetries" jdbcType="INTEGER" />
+    <result column="bkp_packet_timeout" property="bkpPacketTimeout" jdbcType="INTEGER" />
+    
+   <!-- sim -->
+	<result column="sim_uuid" property="simUuid" jdbcType="INTEGER" />
+    <result column="sim_rec_status" property="simRecStatus" jdbcType="INTEGER" />
+    <result column="sim_imsi" property="simImsi" jdbcType="CHAR" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="grp_uuid" property="grpUuid" jdbcType="INTEGER" />
+    <result column="orig_zone_uuid" property="origZoneUuid" jdbcType="INTEGER" />
+    <result column="last_site_uuid" property="lastSiteUuid" jdbcType="INTEGER" />
+    <result column="bkpUuid" property="bkpUuid" jdbcType="INTEGER" />
+    <result column="icc_id" property="iccId" jdbcType="CHAR" />
+    <result column="bind_imei" property="bindImei" jdbcType="CHAR" />
+    <result column="pin1_code" property="pin1Code" jdbcType="CHAR" />
+    <result column="pin2_code" property="pin2Code" jdbcType="CHAR" />
+    <result column="puk1_code" property="puk1Code" jdbcType="CHAR" />
+    <result column="puk2_code" property="puk2Code" jdbcType="CHAR" />
+    <result column="smsc" property="smsc" jdbcType="CHAR" />
+    <result column="operator" property="operator" jdbcType="CHAR" />
+    <result column="mobile" property="mobile" jdbcType="CHAR" />
+    <result column="prepaid_fee" property="prepaidFee" jdbcType="DECIMAL" />
+    <result column="total_cost" property="totalCost" jdbcType="DECIMAL" />
+    <result column="cur_balance" property="curBalance" jdbcType="DECIMAL" />
+    <result column="money_type" property="moneyType" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_load_time" property="lastLoadTime" jdbcType="TIMESTAMP" />
+    <result column="sim_last_bind_time" property="simLastBindTime" jdbcType="TIMESTAMP" />
+    <result column="sim_last_used_time" property="simLastUsedTime" jdbcType="TIMESTAMP" />
+    <result column="balance_low_flag" property="balanceLowFlag" jdbcType="INTEGER" />
+    <result column="blocked_flag" property="blockedFlag" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<select id="getGwpBkpSim" resultMap="gwpBkpSimMapperMap" parameterType="java.lang.Integer">
+
+		select
+		gwp.uuid,gwp.rec_status,gwp.port_uuid,gwp.alias,gwp.bkp_uuid,gwp.domain_uuid,gwp.local_imei,gwp.work_mode,
+		gwp.mod_type,gwp.mod_status,gwp.mod_signal_val,gwp.mod_ber_val,gwp.mod_error_count,gwp.last_bind_time,
+		gwp.last_used_time,gwp.round_trip_delay,gwp.packet_all,gwp.packet_retries,gwp.packet_timeout,
+
+		bkp.uuid as bkp_uuid,bkp.port_uuid as bkp_port_uuid,bkp.alias as
+		bkp_alias,bkp.gwp_uuid,bkp.sim_uuid as bkp_sim_uuid,bkp.domain_uuid as
+		bkp_domain_uuid,
+		bkp.`status`,bkp.imsi,bkp.atr,bkp.last_error_count,bkp.last_bind_time
+		as bkp_last_bind_time,
+		bkp.last_used_time as
+		bkp_last_used_time,bkp.round_trip_delay as
+		bkp_round_trip_delay,bkp.packet_all as
+		bkp_packet_all,bkp.packet_retries as bkp_packet_retries
+		,bkp.packet_timeout as bkp_packet_timeout,
+
+		ts.uuid as sim_uuid, ts.rec_status as sim_rec_status, ts.imsi as sim_imsi,
+		ts.alias as sim_alias, ts.admin_status, ts.opr_status,
+		ts.run_status, ts.domain_uuid as sim_domain_uuid, ts.grp_uuid,
+		ts.orig_zone_uuid, ts.last_site_uuid, ts.bkport_uuid,
+		ts.icc_id, ts.bind_imei, ts.pin1_code, ts.pin2_code,
+		ts.puk1_code, ts.puk2_code, ts.smsc, ts.operator,
+		ts.mobile, ts.prepaid_fee, ts.total_cost,
+		ts.cur_balance, ts.money_type, ts.create_time,
+		ts.last_load_time, ts.last_bind_time as sim_last_bind_time, ts.last_used_time as
+		sim_last_used_time,
+		ts.balance_low_flag, ts.blocked_flag,p.rec_status,p.ne_uuid,p.shelf_no,p.slot_no,p.port_no,p.type,p.alias,p.admin_status,p.opr_status,p.run_status,p.domain_uuid 
+		
+
+		from tbl_gwp gwp,tbl_port p, tbl_bkp bkp, tbl_sim ts
+		where gwp.bkp_uuid=bkp.uuid and gwp.port_uuid=p.uuid and bkp.sim_uuid=ts.uuid
+		and gwp.uuid=#{uuid}
+    </select>
+
+	<select id="getRelevanceDetailInfo" resultMap="gwpBkpSimMapperMap" parameterType="java.lang.Integer">
+		select ts.bind_imei from tbl_gwp gwp,tbl_bkp bkp, tbl_sim ts
+		where gwp.bkp_uuid=bkp.uuid  and bkp.sim_uuid=ts.uuid
+		and gwp.uuid=#{uuid};
+	</select>
+</mapper>

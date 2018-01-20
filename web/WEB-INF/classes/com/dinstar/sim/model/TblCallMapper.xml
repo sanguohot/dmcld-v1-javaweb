@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblCallMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblCall" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="spec_sim_uuid" property="specSimUuid" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="call_index" property="callIndex" jdbcType="INTEGER" />
+    <result column="call_sn" property="callSn" jdbcType="INTEGER" />
+    <result column="gwp_uuid" property="gwpUuid" jdbcType="INTEGER" />
+    <result column="sim_uuid" property="simUuid" jdbcType="INTEGER" />
+    <result column="call_direction" property="callDirection" jdbcType="INTEGER" />
+    <result column="call_number" property="callNumber" jdbcType="CHAR" />
+    <result column="caller_number" property="callerNumber" jdbcType="VARCHAR" />
+    <result column="src_ip" property="srcIp" jdbcType="VARCHAR" />
+    <result column="user_task_type" property="userTaskType" jdbcType="INTEGER" />
+    <result column="user_task_id" property="userTaskId" jdbcType="INTEGER" />
+    <result column="connect_flag" property="connectFlag" jdbcType="INTEGER" />
+    <result column="call_duration" property="callDuration" jdbcType="INTEGER" />
+    <result column="test_tone_mode" property="testToneMode" jdbcType="INTEGER" />
+    <result column="dtmf_number" property="dtmfNumber" jdbcType="CHAR" />
+    <result column="max_fail_retries" property="maxFailRetries" jdbcType="INTEGER" />
+    <result column="call_status" property="callStatus" jdbcType="INTEGER" />
+    <result column="cur_fail_retries" property="curFailRetries" jdbcType="INTEGER" />
+    <result column="gsm_code" property="gsmCode" jdbcType="INTEGER" />
+    <result column="call_result" property="callResult" jdbcType="INTEGER" />
+    <result column="call_time" property="callTime" jdbcType="TIMESTAMP" />
+    <result column="result_time" property="resultTime" jdbcType="TIMESTAMP" />
+    <result column="hangup_side" property="hangupSide" jdbcType="INTEGER" />
+    <result column="end_reason" property="endReason" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, domain_uuid, spec_sim_uuid, alias, action_status, action_result, 
+    call_index, call_sn, gwp_uuid, sim_uuid, call_direction, call_number, caller_number, 
+    src_ip, user_task_type, user_task_id, connect_flag, call_duration, test_tone_mode, 
+    dtmf_number, max_fail_retries, call_status, cur_fail_retries, gsm_code, call_result, 
+    call_time, result_time, hangup_side, end_reason
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblCallCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_call
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_call
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_call
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblCallCriteria" >
+    delete from tbl_call
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblCall" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_call (uuid, rec_status, domain_uuid, 
+      spec_sim_uuid, alias, action_status, 
+      action_result, call_index, call_sn, 
+      gwp_uuid, sim_uuid, call_direction, 
+      call_number, caller_number, src_ip, 
+      user_task_type, user_task_id, connect_flag, 
+      call_duration, test_tone_mode, dtmf_number, 
+      max_fail_retries, call_status, cur_fail_retries, 
+      gsm_code, call_result, call_time, 
+      result_time, hangup_side, end_reason
+      )
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{domainUuid,jdbcType=INTEGER}, 
+      #{specSimUuid,jdbcType=INTEGER}, #{alias,jdbcType=CHAR}, #{actionStatus,jdbcType=INTEGER}, 
+      #{actionResult,jdbcType=INTEGER}, #{callIndex,jdbcType=INTEGER}, #{callSn,jdbcType=INTEGER}, 
+      #{gwpUuid,jdbcType=INTEGER}, #{simUuid,jdbcType=INTEGER}, #{callDirection,jdbcType=INTEGER}, 
+      #{callNumber,jdbcType=CHAR}, #{callerNumber,jdbcType=VARCHAR}, #{srcIp,jdbcType=VARCHAR}, 
+      #{userTaskType,jdbcType=INTEGER}, #{userTaskId,jdbcType=INTEGER}, #{connectFlag,jdbcType=INTEGER}, 
+      #{callDuration,jdbcType=INTEGER}, #{testToneMode,jdbcType=INTEGER}, #{dtmfNumber,jdbcType=CHAR}, 
+      #{maxFailRetries,jdbcType=INTEGER}, #{callStatus,jdbcType=INTEGER}, #{curFailRetries,jdbcType=INTEGER}, 
+      #{gsmCode,jdbcType=INTEGER}, #{callResult,jdbcType=INTEGER}, #{callTime,jdbcType=TIMESTAMP}, 
+      #{resultTime,jdbcType=TIMESTAMP}, #{hangupSide,jdbcType=INTEGER}, #{endReason,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblCall" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_call
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="specSimUuid != null" >
+        spec_sim_uuid,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="actionStatus != null" >
+        action_status,
+      </if>
+      <if test="actionResult != null" >
+        action_result,
+      </if>
+      <if test="callIndex != null" >
+        call_index,
+      </if>
+      <if test="callSn != null" >
+        call_sn,
+      </if>
+      <if test="gwpUuid != null" >
+        gwp_uuid,
+      </if>
+      <if test="simUuid != null" >
+        sim_uuid,
+      </if>
+      <if test="callDirection != null" >
+        call_direction,
+      </if>
+      <if test="callNumber != null" >
+        call_number,
+      </if>
+      <if test="callerNumber != null" >
+        caller_number,
+      </if>
+      <if test="srcIp != null" >
+        src_ip,
+      </if>
+      <if test="userTaskType != null" >
+        user_task_type,
+      </if>
+      <if test="userTaskId != null" >
+        user_task_id,
+      </if>
+      <if test="connectFlag != null" >
+        connect_flag,
+      </if>
+      <if test="callDuration != null" >
+        call_duration,
+      </if>
+      <if test="testToneMode != null" >
+        test_tone_mode,
+      </if>
+      <if test="dtmfNumber != null" >
+        dtmf_number,
+      </if>
+      <if test="maxFailRetries != null" >
+        max_fail_retries,
+      </if>
+      <if test="callStatus != null" >
+        call_status,
+      </if>
+      <if test="curFailRetries != null" >
+        cur_fail_retries,
+      </if>
+      <if test="gsmCode != null" >
+        gsm_code,
+      </if>
+      <if test="callResult != null" >
+        call_result,
+      </if>
+      <if test="callTime != null" >
+        call_time,
+      </if>
+      <if test="resultTime != null" >
+        result_time,
+      </if>
+      <if test="hangupSide != null" >
+        hangup_side,
+      </if>
+      <if test="endReason != null" >
+        end_reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="specSimUuid != null" >
+        #{specSimUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=CHAR},
+      </if>
+      <if test="actionStatus != null" >
+        #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="callIndex != null" >
+        #{callIndex,jdbcType=INTEGER},
+      </if>
+      <if test="callSn != null" >
+        #{callSn,jdbcType=INTEGER},
+      </if>
+      <if test="gwpUuid != null" >
+        #{gwpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="simUuid != null" >
+        #{simUuid,jdbcType=INTEGER},
+      </if>
+      <if test="callDirection != null" >
+        #{callDirection,jdbcType=INTEGER},
+      </if>
+      <if test="callNumber != null" >
+        #{callNumber,jdbcType=CHAR},
+      </if>
+      <if test="callerNumber != null" >
+        #{callerNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="srcIp != null" >
+        #{srcIp,jdbcType=VARCHAR},
+      </if>
+      <if test="userTaskType != null" >
+        #{userTaskType,jdbcType=INTEGER},
+      </if>
+      <if test="userTaskId != null" >
+        #{userTaskId,jdbcType=INTEGER},
+      </if>
+      <if test="connectFlag != null" >
+        #{connectFlag,jdbcType=INTEGER},
+      </if>
+      <if test="callDuration != null" >
+        #{callDuration,jdbcType=INTEGER},
+      </if>
+      <if test="testToneMode != null" >
+        #{testToneMode,jdbcType=INTEGER},
+      </if>
+      <if test="dtmfNumber != null" >
+        #{dtmfNumber,jdbcType=CHAR},
+      </if>
+      <if test="maxFailRetries != null" >
+        #{maxFailRetries,jdbcType=INTEGER},
+      </if>
+      <if test="callStatus != null" >
+        #{callStatus,jdbcType=INTEGER},
+      </if>
+      <if test="curFailRetries != null" >
+        #{curFailRetries,jdbcType=INTEGER},
+      </if>
+      <if test="gsmCode != null" >
+        #{gsmCode,jdbcType=INTEGER},
+      </if>
+      <if test="callResult != null" >
+        #{callResult,jdbcType=INTEGER},
+      </if>
+      <if test="callTime != null" >
+        #{callTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resultTime != null" >
+        #{resultTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hangupSide != null" >
+        #{hangupSide,jdbcType=INTEGER},
+      </if>
+      <if test="endReason != null" >
+        #{endReason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblCallCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_call
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_call
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.specSimUuid != null" >
+        spec_sim_uuid = #{record.specSimUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.alias != null" >
+        alias = #{record.alias,jdbcType=CHAR},
+      </if>
+      <if test="record.actionStatus != null" >
+        action_status = #{record.actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionResult != null" >
+        action_result = #{record.actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.callIndex != null" >
+        call_index = #{record.callIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.callSn != null" >
+        call_sn = #{record.callSn,jdbcType=INTEGER},
+      </if>
+      <if test="record.gwpUuid != null" >
+        gwp_uuid = #{record.gwpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.simUuid != null" >
+        sim_uuid = #{record.simUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.callDirection != null" >
+        call_direction = #{record.callDirection,jdbcType=INTEGER},
+      </if>
+      <if test="record.callNumber != null" >
+        call_number = #{record.callNumber,jdbcType=CHAR},
+      </if>
+      <if test="record.callerNumber != null" >
+        caller_number = #{record.callerNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srcIp != null" >
+        src_ip = #{record.srcIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userTaskType != null" >
+        user_task_type = #{record.userTaskType,jdbcType=INTEGER},
+      </if>
+      <if test="record.userTaskId != null" >
+        user_task_id = #{record.userTaskId,jdbcType=INTEGER},
+      </if>
+      <if test="record.connectFlag != null" >
+        connect_flag = #{record.connectFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.callDuration != null" >
+        call_duration = #{record.callDuration,jdbcType=INTEGER},
+      </if>
+      <if test="record.testToneMode != null" >
+        test_tone_mode = #{record.testToneMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.dtmfNumber != null" >
+        dtmf_number = #{record.dtmfNumber,jdbcType=CHAR},
+      </if>
+      <if test="record.maxFailRetries != null" >
+        max_fail_retries = #{record.maxFailRetries,jdbcType=INTEGER},
+      </if>
+      <if test="record.callStatus != null" >
+        call_status = #{record.callStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.curFailRetries != null" >
+        cur_fail_retries = #{record.curFailRetries,jdbcType=INTEGER},
+      </if>
+      <if test="record.gsmCode != null" >
+        gsm_code = #{record.gsmCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.callResult != null" >
+        call_result = #{record.callResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.callTime != null" >
+        call_time = #{record.callTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.resultTime != null" >
+        result_time = #{record.resultTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.hangupSide != null" >
+        hangup_side = #{record.hangupSide,jdbcType=INTEGER},
+      </if>
+      <if test="record.endReason != null" >
+        end_reason = #{record.endReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_call
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      spec_sim_uuid = #{record.specSimUuid,jdbcType=INTEGER},
+      alias = #{record.alias,jdbcType=CHAR},
+      action_status = #{record.actionStatus,jdbcType=INTEGER},
+      action_result = #{record.actionResult,jdbcType=INTEGER},
+      call_index = #{record.callIndex,jdbcType=INTEGER},
+      call_sn = #{record.callSn,jdbcType=INTEGER},
+      gwp_uuid = #{record.gwpUuid,jdbcType=INTEGER},
+      sim_uuid = #{record.simUuid,jdbcType=INTEGER},
+      call_direction = #{record.callDirection,jdbcType=INTEGER},
+      call_number = #{record.callNumber,jdbcType=CHAR},
+      caller_number = #{record.callerNumber,jdbcType=VARCHAR},
+      src_ip = #{record.srcIp,jdbcType=VARCHAR},
+      user_task_type = #{record.userTaskType,jdbcType=INTEGER},
+      user_task_id = #{record.userTaskId,jdbcType=INTEGER},
+      connect_flag = #{record.connectFlag,jdbcType=INTEGER},
+      call_duration = #{record.callDuration,jdbcType=INTEGER},
+      test_tone_mode = #{record.testToneMode,jdbcType=INTEGER},
+      dtmf_number = #{record.dtmfNumber,jdbcType=CHAR},
+      max_fail_retries = #{record.maxFailRetries,jdbcType=INTEGER},
+      call_status = #{record.callStatus,jdbcType=INTEGER},
+      cur_fail_retries = #{record.curFailRetries,jdbcType=INTEGER},
+      gsm_code = #{record.gsmCode,jdbcType=INTEGER},
+      call_result = #{record.callResult,jdbcType=INTEGER},
+      call_time = #{record.callTime,jdbcType=TIMESTAMP},
+      result_time = #{record.resultTime,jdbcType=TIMESTAMP},
+      hangup_side = #{record.hangupSide,jdbcType=INTEGER},
+      end_reason = #{record.endReason,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblCall" >
+    update tbl_call
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="specSimUuid != null" >
+        spec_sim_uuid = #{specSimUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=CHAR},
+      </if>
+      <if test="actionStatus != null" >
+        action_status = #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        action_result = #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="callIndex != null" >
+        call_index = #{callIndex,jdbcType=INTEGER},
+      </if>
+      <if test="callSn != null" >
+        call_sn = #{callSn,jdbcType=INTEGER},
+      </if>
+      <if test="gwpUuid != null" >
+        gwp_uuid = #{gwpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="simUuid != null" >
+        sim_uuid = #{simUuid,jdbcType=INTEGER},
+      </if>
+      <if test="callDirection != null" >
+        call_direction = #{callDirection,jdbcType=INTEGER},
+      </if>
+      <if test="callNumber != null" >
+        call_number = #{callNumber,jdbcType=CHAR},
+      </if>
+      <if test="callerNumber != null" >
+        caller_number = #{callerNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="srcIp != null" >
+        src_ip = #{srcIp,jdbcType=VARCHAR},
+      </if>
+      <if test="userTaskType != null" >
+        user_task_type = #{userTaskType,jdbcType=INTEGER},
+      </if>
+      <if test="userTaskId != null" >
+        user_task_id = #{userTaskId,jdbcType=INTEGER},
+      </if>
+      <if test="connectFlag != null" >
+        connect_flag = #{connectFlag,jdbcType=INTEGER},
+      </if>
+      <if test="callDuration != null" >
+        call_duration = #{callDuration,jdbcType=INTEGER},
+      </if>
+      <if test="testToneMode != null" >
+        test_tone_mode = #{testToneMode,jdbcType=INTEGER},
+      </if>
+      <if test="dtmfNumber != null" >
+        dtmf_number = #{dtmfNumber,jdbcType=CHAR},
+      </if>
+      <if test="maxFailRetries != null" >
+        max_fail_retries = #{maxFailRetries,jdbcType=INTEGER},
+      </if>
+      <if test="callStatus != null" >
+        call_status = #{callStatus,jdbcType=INTEGER},
+      </if>
+      <if test="curFailRetries != null" >
+        cur_fail_retries = #{curFailRetries,jdbcType=INTEGER},
+      </if>
+      <if test="gsmCode != null" >
+        gsm_code = #{gsmCode,jdbcType=INTEGER},
+      </if>
+      <if test="callResult != null" >
+        call_result = #{callResult,jdbcType=INTEGER},
+      </if>
+      <if test="callTime != null" >
+        call_time = #{callTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resultTime != null" >
+        result_time = #{resultTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hangupSide != null" >
+        hangup_side = #{hangupSide,jdbcType=INTEGER},
+      </if>
+      <if test="endReason != null" >
+        end_reason = #{endReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblCall" >
+    update tbl_call
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      spec_sim_uuid = #{specSimUuid,jdbcType=INTEGER},
+      alias = #{alias,jdbcType=CHAR},
+      action_status = #{actionStatus,jdbcType=INTEGER},
+      action_result = #{actionResult,jdbcType=INTEGER},
+      call_index = #{callIndex,jdbcType=INTEGER},
+      call_sn = #{callSn,jdbcType=INTEGER},
+      gwp_uuid = #{gwpUuid,jdbcType=INTEGER},
+      sim_uuid = #{simUuid,jdbcType=INTEGER},
+      call_direction = #{callDirection,jdbcType=INTEGER},
+      call_number = #{callNumber,jdbcType=CHAR},
+      caller_number = #{callerNumber,jdbcType=VARCHAR},
+      src_ip = #{srcIp,jdbcType=VARCHAR},
+      user_task_type = #{userTaskType,jdbcType=INTEGER},
+      user_task_id = #{userTaskId,jdbcType=INTEGER},
+      connect_flag = #{connectFlag,jdbcType=INTEGER},
+      call_duration = #{callDuration,jdbcType=INTEGER},
+      test_tone_mode = #{testToneMode,jdbcType=INTEGER},
+      dtmf_number = #{dtmfNumber,jdbcType=CHAR},
+      max_fail_retries = #{maxFailRetries,jdbcType=INTEGER},
+      call_status = #{callStatus,jdbcType=INTEGER},
+      cur_fail_retries = #{curFailRetries,jdbcType=INTEGER},
+      gsm_code = #{gsmCode,jdbcType=INTEGER},
+      call_result = #{callResult,jdbcType=INTEGER},
+      call_time = #{callTime,jdbcType=TIMESTAMP},
+      result_time = #{resultTime,jdbcType=TIMESTAMP},
+      hangup_side = #{hangupSide,jdbcType=INTEGER},
+      end_reason = #{endReason,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

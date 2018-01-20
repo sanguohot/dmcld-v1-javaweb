@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblModuleMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblModule" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="domain" property="domain" jdbcType="INTEGER" />
+    <result column="moduleid" property="moduleid" jdbcType="INTEGER" />
+    <result column="modulename" property="modulename" jdbcType="CHAR" />
+    <result column="parentid" property="parentid" jdbcType="INTEGER" />
+    <result column="desc" property="desc" jdbcType="CHAR" />
+    <result column="module" property="module" jdbcType="CHAR" />
+    <result column="icon" property="icon" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, domain, moduleid, modulename, parentid, desc, module, icon
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblModuleCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_module
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_module
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_module
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblModuleCriteria" >
+    delete from tbl_module
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblModule" >
+    insert into tbl_module (uuid, rec_status, domain, 
+      moduleid, modulename, parentid, 
+      desc, module, icon)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{domain,jdbcType=INTEGER}, 
+      #{moduleid,jdbcType=INTEGER}, #{modulename,jdbcType=CHAR}, #{parentid,jdbcType=INTEGER}, 
+      #{desc,jdbcType=CHAR}, #{module,jdbcType=CHAR}, #{icon,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblModule" >
+    insert into tbl_module
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="domain != null" >
+        domain,
+      </if>
+      <if test="moduleid != null" >
+        moduleid,
+      </if>
+      <if test="modulename != null" >
+        modulename,
+      </if>
+      <if test="parentid != null" >
+        parentid,
+      </if>
+      <if test="desc != null" >
+        desc,
+      </if>
+      <if test="module != null" >
+        module,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="domain != null" >
+        #{domain,jdbcType=INTEGER},
+      </if>
+      <if test="moduleid != null" >
+        #{moduleid,jdbcType=INTEGER},
+      </if>
+      <if test="modulename != null" >
+        #{modulename,jdbcType=CHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=CHAR},
+      </if>
+      <if test="module != null" >
+        #{module,jdbcType=CHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblModuleCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_module
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_module
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.domain != null" >
+        domain = #{record.domain,jdbcType=INTEGER},
+      </if>
+      <if test="record.moduleid != null" >
+        moduleid = #{record.moduleid,jdbcType=INTEGER},
+      </if>
+      <if test="record.modulename != null" >
+        modulename = #{record.modulename,jdbcType=CHAR},
+      </if>
+      <if test="record.parentid != null" >
+        parentid = #{record.parentid,jdbcType=INTEGER},
+      </if>
+      <if test="record.desc != null" >
+        desc = #{record.desc,jdbcType=CHAR},
+      </if>
+      <if test="record.module != null" >
+        module = #{record.module,jdbcType=CHAR},
+      </if>
+      <if test="record.icon != null" >
+        icon = #{record.icon,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_module
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      domain = #{record.domain,jdbcType=INTEGER},
+      moduleid = #{record.moduleid,jdbcType=INTEGER},
+      modulename = #{record.modulename,jdbcType=CHAR},
+      parentid = #{record.parentid,jdbcType=INTEGER},
+      desc = #{record.desc,jdbcType=CHAR},
+      module = #{record.module,jdbcType=CHAR},
+      icon = #{record.icon,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblModule" >
+    update tbl_module
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="domain != null" >
+        domain = #{domain,jdbcType=INTEGER},
+      </if>
+      <if test="moduleid != null" >
+        moduleid = #{moduleid,jdbcType=INTEGER},
+      </if>
+      <if test="modulename != null" >
+        modulename = #{modulename,jdbcType=CHAR},
+      </if>
+      <if test="parentid != null" >
+        parentid = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="desc != null" >
+        desc = #{desc,jdbcType=CHAR},
+      </if>
+      <if test="module != null" >
+        module = #{module,jdbcType=CHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=CHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblModule" >
+    update tbl_module
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      domain = #{domain,jdbcType=INTEGER},
+      moduleid = #{moduleid,jdbcType=INTEGER},
+      modulename = #{modulename,jdbcType=CHAR},
+      parentid = #{parentid,jdbcType=INTEGER},
+      desc = #{desc,jdbcType=CHAR},
+      module = #{module,jdbcType=CHAR},
+      icon = #{icon,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

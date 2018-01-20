@@ -1,0 +1,17 @@
+<div class="alert alert-block alert-info">
+  <i class="icon-ok green"></i>
+  {{=it.lan.welcomeUse}}
+  <strong class="green">
+  {{=it.lan.serviceManage}}
+  <small></small>
+  </strong>
+  {{=it.lan.plSelServUnderDomain}}
+</div>
+{{? it.isSuper }}
+<ul id="myTab" class="nav nav-tabs">
+	<li role="presentation"><a href="#service_domain"><i class="fa fa-global"></i>{{=it.lan.domainList}}</a></li>
+</ul>
+<div  class="tab-content">
+	<div class="tab-pane fade in"  id="service_domain" ></div>
+</div>
+{{?}}

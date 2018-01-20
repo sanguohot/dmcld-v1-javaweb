@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblAuthNumMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblAuthNum" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="server_uuid" property="serverUuid" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="cloud_uuid" property="cloudUuid" jdbcType="INTEGER" />
+    <result column="avg_process_time" property="avgProcessTime" jdbcType="INTEGER" />
+    <result column="max_process_time" property="maxProcessTime" jdbcType="INTEGER" />
+    <result column="cur_pending_cnt" property="curPendingCnt" jdbcType="INTEGER" />
+    <result column="total_process" property="totalProcess" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="cur_deal_cnt" property="curDealCnt" jdbcType="INTEGER" />
+    <result column="cur_deal_status1" property="curDealStatus1" jdbcType="INTEGER" />
+    <result column="cur_deal_status2" property="curDealStatus2" jdbcType="INTEGER" />
+    <result column="cur_deal_status3" property="curDealStatus3" jdbcType="INTEGER" />
+    <result column="cur_deal_status4" property="curDealStatus4" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, server_uuid, alias, cloud_uuid, avg_process_time, max_process_time, 
+    cur_pending_cnt, total_process, start_time, cur_deal_cnt, cur_deal_status1, cur_deal_status2, 
+    cur_deal_status3, cur_deal_status4
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblAuthNumCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_auth_num
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_auth_num
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_auth_num
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblAuthNumCriteria" >
+    delete from tbl_auth_num
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblAuthNum" >
+    insert into tbl_auth_num (uuid, rec_status, server_uuid, 
+      alias, cloud_uuid, avg_process_time, 
+      max_process_time, cur_pending_cnt, total_process, 
+      start_time, cur_deal_cnt, cur_deal_status1, 
+      cur_deal_status2, cur_deal_status3, cur_deal_status4
+      )
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{serverUuid,jdbcType=INTEGER}, 
+      #{alias,jdbcType=CHAR}, #{cloudUuid,jdbcType=INTEGER}, #{avgProcessTime,jdbcType=INTEGER}, 
+      #{maxProcessTime,jdbcType=INTEGER}, #{curPendingCnt,jdbcType=INTEGER}, #{totalProcess,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{curDealCnt,jdbcType=INTEGER}, #{curDealStatus1,jdbcType=INTEGER}, 
+      #{curDealStatus2,jdbcType=INTEGER}, #{curDealStatus3,jdbcType=INTEGER}, #{curDealStatus4,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblAuthNum" >
+    insert into tbl_auth_num
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="serverUuid != null" >
+        server_uuid,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="cloudUuid != null" >
+        cloud_uuid,
+      </if>
+      <if test="avgProcessTime != null" >
+        avg_process_time,
+      </if>
+      <if test="maxProcessTime != null" >
+        max_process_time,
+      </if>
+      <if test="curPendingCnt != null" >
+        cur_pending_cnt,
+      </if>
+      <if test="totalProcess != null" >
+        total_process,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="curDealCnt != null" >
+        cur_deal_cnt,
+      </if>
+      <if test="curDealStatus1 != null" >
+        cur_deal_status1,
+      </if>
+      <if test="curDealStatus2 != null" >
+        cur_deal_status2,
+      </if>
+      <if test="curDealStatus3 != null" >
+        cur_deal_status3,
+      </if>
+      <if test="curDealStatus4 != null" >
+        cur_deal_status4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="serverUuid != null" >
+        #{serverUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=CHAR},
+      </if>
+      <if test="cloudUuid != null" >
+        #{cloudUuid,jdbcType=INTEGER},
+      </if>
+      <if test="avgProcessTime != null" >
+        #{avgProcessTime,jdbcType=INTEGER},
+      </if>
+      <if test="maxProcessTime != null" >
+        #{maxProcessTime,jdbcType=INTEGER},
+      </if>
+      <if test="curPendingCnt != null" >
+        #{curPendingCnt,jdbcType=INTEGER},
+      </if>
+      <if test="totalProcess != null" >
+        #{totalProcess,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="curDealCnt != null" >
+        #{curDealCnt,jdbcType=INTEGER},
+      </if>
+      <if test="curDealStatus1 != null" >
+        #{curDealStatus1,jdbcType=INTEGER},
+      </if>
+      <if test="curDealStatus2 != null" >
+        #{curDealStatus2,jdbcType=INTEGER},
+      </if>
+      <if test="curDealStatus3 != null" >
+        #{curDealStatus3,jdbcType=INTEGER},
+      </if>
+      <if test="curDealStatus4 != null" >
+        #{curDealStatus4,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblAuthNumCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_auth_num
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_auth_num
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.serverUuid != null" >
+        server_uuid = #{record.serverUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.alias != null" >
+        alias = #{record.alias,jdbcType=CHAR},
+      </if>
+      <if test="record.cloudUuid != null" >
+        cloud_uuid = #{record.cloudUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.avgProcessTime != null" >
+        avg_process_time = #{record.avgProcessTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxProcessTime != null" >
+        max_process_time = #{record.maxProcessTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.curPendingCnt != null" >
+        cur_pending_cnt = #{record.curPendingCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalProcess != null" >
+        total_process = #{record.totalProcess,jdbcType=INTEGER},
+      </if>
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.curDealCnt != null" >
+        cur_deal_cnt = #{record.curDealCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.curDealStatus1 != null" >
+        cur_deal_status1 = #{record.curDealStatus1,jdbcType=INTEGER},
+      </if>
+      <if test="record.curDealStatus2 != null" >
+        cur_deal_status2 = #{record.curDealStatus2,jdbcType=INTEGER},
+      </if>
+      <if test="record.curDealStatus3 != null" >
+        cur_deal_status3 = #{record.curDealStatus3,jdbcType=INTEGER},
+      </if>
+      <if test="record.curDealStatus4 != null" >
+        cur_deal_status4 = #{record.curDealStatus4,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_auth_num
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      server_uuid = #{record.serverUuid,jdbcType=INTEGER},
+      alias = #{record.alias,jdbcType=CHAR},
+      cloud_uuid = #{record.cloudUuid,jdbcType=INTEGER},
+      avg_process_time = #{record.avgProcessTime,jdbcType=INTEGER},
+      max_process_time = #{record.maxProcessTime,jdbcType=INTEGER},
+      cur_pending_cnt = #{record.curPendingCnt,jdbcType=INTEGER},
+      total_process = #{record.totalProcess,jdbcType=INTEGER},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      cur_deal_cnt = #{record.curDealCnt,jdbcType=INTEGER},
+      cur_deal_status1 = #{record.curDealStatus1,jdbcType=INTEGER},
+      cur_deal_status2 = #{record.curDealStatus2,jdbcType=INTEGER},
+      cur_deal_status3 = #{record.curDealStatus3,jdbcType=INTEGER},
+      cur_deal_status4 = #{record.curDealStatus4,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblAuthNum" >
+    update tbl_auth_num
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="serverUuid != null" >
+        server_uuid = #{serverUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=CHAR},
+      </if>
+      <if test="cloudUuid != null" >
+        cloud_uuid = #{cloudUuid,jdbcType=INTEGER},
+      </if>
+      <if test="avgProcessTime != null" >
+        avg_process_time = #{avgProcessTime,jdbcType=INTEGER},
+      </if>
+      <if test="maxProcessTime != null" >
+        max_process_time = #{maxProcessTime,jdbcType=INTEGER},
+      </if>
+      <if test="curPendingCnt != null" >
+        cur_pending_cnt = #{curPendingCnt,jdbcType=INTEGER},
+      </if>
+      <if test="totalProcess != null" >
+        total_process = #{totalProcess,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="curDealCnt != null" >
+        cur_deal_cnt = #{curDealCnt,jdbcType=INTEGER},
+      </if>
+      <if test="curDealStatus1 != null" >
+        cur_deal_status1 = #{curDealStatus1,jdbcType=INTEGER},
+      </if>
+      <if test="curDealStatus2 != null" >
+        cur_deal_status2 = #{curDealStatus2,jdbcType=INTEGER},
+      </if>
+      <if test="curDealStatus3 != null" >
+        cur_deal_status3 = #{curDealStatus3,jdbcType=INTEGER},
+      </if>
+      <if test="curDealStatus4 != null" >
+        cur_deal_status4 = #{curDealStatus4,jdbcType=INTEGER},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblAuthNum" >
+    update tbl_auth_num
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      server_uuid = #{serverUuid,jdbcType=INTEGER},
+      alias = #{alias,jdbcType=CHAR},
+      cloud_uuid = #{cloudUuid,jdbcType=INTEGER},
+      avg_process_time = #{avgProcessTime,jdbcType=INTEGER},
+      max_process_time = #{maxProcessTime,jdbcType=INTEGER},
+      cur_pending_cnt = #{curPendingCnt,jdbcType=INTEGER},
+      total_process = #{totalProcess,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      cur_deal_cnt = #{curDealCnt,jdbcType=INTEGER},
+      cur_deal_status1 = #{curDealStatus1,jdbcType=INTEGER},
+      cur_deal_status2 = #{curDealStatus2,jdbcType=INTEGER},
+      cur_deal_status3 = #{curDealStatus3,jdbcType=INTEGER},
+      cur_deal_status4 = #{curDealStatus4,jdbcType=INTEGER}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

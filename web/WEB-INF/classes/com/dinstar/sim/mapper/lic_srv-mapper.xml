@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dinstar.sim.mapper.LicSrv">
+	<resultMap type="com.dinstar.sim.mapper.LicSrvMapper" id="licSrvMapperMap">
+	    <result column="uuid" property="uuid" jdbcType="INTEGER" />
+	    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="spec_sys_uuid" property="specSysUuid" jdbcType="INTEGER" />
+	    <result column="alias" property="alias" jdbcType="CHAR" />
+	    <result column="srv_uuid" property="srvUuid" jdbcType="INTEGER" />
+	    <result column="srv_domain" property="srvDomain" jdbcType="CHAR" />
+	    <result column="serial_no" property="serialNo" jdbcType="INTEGER" />
+	    <result column="sign_type" property="signType" jdbcType="INTEGER" />
+	    <result column="version" property="version" jdbcType="CHAR" />
+	    <result column="srv_mode" property="srvMode" jdbcType="INTEGER" />
+	    <result column="srv_magic" property="srvMagic" jdbcType="CHAR" />
+	    <result column="max_sim_card" property="maxSimCard" jdbcType="INTEGER" />
+	    <result column="service_api" property="serviceApi" jdbcType="INTEGER" />
+	    <result column="hbm_features" property="hbmFeatures" jdbcType="INTEGER" />
+	    <result column="hbm_features02" property="hbmFeatures02" jdbcType="INTEGER" />
+	    <result column="hbm_features03" property="hbmFeatures03" jdbcType="INTEGER" />
+	    <result column="valid_days" property="validDays" jdbcType="INTEGER" />
+	    <result column="expired_date" property="expiredDate" jdbcType="TIMESTAMP" />
+	    <result column="sign_date" property="signDate" jdbcType="TIMESTAMP" />
+	    <result column="sign_author" property="signAuthor" jdbcType="CHAR" />
+	    <result column="dns_url" property="dnsUrl" jdbcType="CHAR" />
+	    <result column="dns_url02" property="dnsUrl02" jdbcType="CHAR" />
+	    <result column="auth_info" property="authInfo" jdbcType="CHAR" />
+	    <result column="lic_status" property="licStatus" jdbcType="INTEGER" />
+	    <result column="left_days" property="leftDays" jdbcType="INTEGER" />
+	    <result column="total_sim_card" property="totalSimCard" jdbcType="INTEGER" />
+	    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+	    <result column="status" property="status" jdbcType="INTEGER" />
+	    
+	    <!-- system info -->
+	    <result column="sys_uuid" property="sysUuid" jdbcType="INTEGER" />
+	    <result column="sys_name" property="sysName" jdbcType="CHAR" />
+	    <result column="sys_alias" property="sysAlias" jdbcType="CHAR" />
+	    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+	    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+	    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+	    <result column="total_ne_count" property="totalNeCount" jdbcType="INTEGER" />
+	    <result column="sys_total_sim_card" property="sysTotalSimCard" jdbcType="INTEGER" />
+    	<result column="trial_balance" property="trialBalance" jdbcType="CHAR" />
+    	<result column="premium_balance" property="premiumBalance" jdbcType="CHAR" />
+    	<result column="sys_detail_desc" property="sysDetailDesc" jdbcType="CHAR" />
+	    <result column="sys_ip_addr" property="sysIpAddr" jdbcType="CHAR" />
+		<result column="lic_first_cost" property="licFirstCost" jdbcType="INTEGER" />
+    	<result column="lic_period_cost" property="licPeriodCost" jdbcType="INTEGER" />
+	</resultMap>
+    
+    <select id="countLicSrvInfo" resultType="java.lang.Integer">
+		select 
+			count(*)
+		from tbl_sys ts 
+		left join tbl_lic_srv tls on (ts.uuid=tls.spec_sys_uuid) 
+		where ts.rec_status!=2
+		<if test=" sysUuid!=null and sysUuid>0">
+			and ts.uuid= #{sysUuid}
+		</if>
+		<if test="cloudUuid!=null and  cloudUuid>0">
+			and ts.cloud_uuid=#{cloudUuid}
+		</if>
+		<if test="sysName!=null">
+			and ts.name like #{sysName}
+		</if>
+		<if test="licStatus!=null and  licStatus>-1">
+			and tls.lic_status=#{licStatus}
+		</if>
+		<if test="leftDays!=null and leftDays>-1">
+			and tls.left_days &lt;=#{leftDays}
+		</if>
+		<if test="hbmFeatures!=null and hbmFeatures>-1">
+			and tls.hbm_features=#{hbmFeatures}
+		</if>
+    </select>
+    <select id="getLicSrvInfo" resultMap="licSrvMapperMap">
+		select 
+		tls.*,
+		ts.uuid as sys_uuid,ts.`name` as sys_name,ts.alias as  sys_alias,ts.admin_status,ts.opr_status,ts.run_status,ts.detail_desc as sys_detail_desc,
+		ts.total_ne_count,ts.total_sim_card as sys_total_sim_card,ts.trial_balance,ts.premium_balance,ts.sys_ip_addr,ts.lic_first_cost,ts.lic_period_cost
+		from tbl_sys ts 
+		left join tbl_lic_srv tls on (ts.uuid=tls.spec_sys_uuid) 
+		where ts.rec_status!=2
+		<if test="sysUuid!=null and  sysUuid>0">
+			and ts.uuid= #{sysUuid}
+		</if>
+		<if test="cloudUuid!=null and cloudUuid!=0">
+			and ts.cloud_uuid=#{cloudUuid}
+		</if>
+		<if test="sysName!=null">
+			and ts.name like #{sysName}
+		</if>
+		<if test="licStatus!=null and  licStatus>-1">
+			and tls.lic_status=#{licStatus}
+		</if>
+		<if test="leftDays!=null and leftDays>-1">
+			and tls.left_days &lt;= #{leftDays}
+		</if>
+		<if test="hbmFeatures!=null and hbmFeatures>-1">
+			and tls.hbm_features=#{hbmFeatures}
+		</if>
+				<if test="sort != null" >
+     		 order by ${sort}
+    	</if> 
+		 <if test="limitClause != null">limit ${limitClause}</if>
+    </select>
+</mapper>

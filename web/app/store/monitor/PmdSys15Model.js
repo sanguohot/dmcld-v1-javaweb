@@ -1,0 +1,27 @@
+Ext.define('app.store.monitor.PmdSys15Model', {
+        extend: 'Ext.data.Model',
+        fields: [
+                 {name: 'uuid',type:'int'},
+                 {name: 'recStatus',type:'int'},
+                 {name: 'sysUuid',type:'int'},
+                 {name: 'serialNo',type:'int'},
+                 {name:'generateTime',type:'string'},
+                 {name:'generateTime1',type:'date'},
+                 {name: 'sysRunTimelen',type:'int'},
+                 {name: 'sysLoadVal',type:'int'},
+                 {name: 'dbReqCnt',type:'int'},
+                 {name: 'dbFailCnt',type:'int'},
+                 {name: 'curCpuIdle',type:'int'},
+                 {name: 'minCpuIdle',type:'int'},
+                 {name: 'maxCpuIdle',type:'int'},
+                 {name: 'curMemFree',type:'int'},
+                 {name: 'minMemFree',type:'int'},
+                 {name: 'maxMemFree',type:'int'},
+                 {name: 'recvPktCnt',type:'int'},
+                 {name: 'sendPktCnt',type:'int'},
+                 {name: 'recvBytesCnt',type:'string'},
+                 {name: 'curDiskFree',type:'int'},
+                 {name: 'sendBytesCnt',type:'string'},
+                 {name: 'sysName',type:'string'},
+             ]
+});

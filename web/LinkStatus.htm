@@ -1,0 +1,654 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0035)http://172.16.101.34/LinkStatus.htm -->
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+
+
+		<title>TrunkState</title>
+		<link href="main.css" rel="stylesheet" type="text/css">
+		<style type="text/css">
+INPUT.button1 {
+	BACKGROUND-COLOR: #ddddff;
+	COLOR: #000000;
+	FONT-SIZE: 12px;
+	FONT-WEIGHT: lighter;
+	border: 1px solid #183ead;
+}
+</style>
+		<script language="JavaScript" type="text/JavaScript" src="func.htm"></script>
+		<script language="JavaScript" type="text/JavaScript">
+
+function MM_callJS()
+{
+	document.getElementById("idleSta").style.color = "#003399";
+	document.getElementById("idleSta").style.fontSize = "12px";
+	document.getElementById("idleSta").style.height = "12px";
+	document.getElementById("idleSta").style.textAlign = "center";
+	document.getElementById("idleSta").style.width = "50%";
+	document.getElementById("busySta").style.color = "#003399";
+	document.getElementById("busySta").style.fontSize = "12px";
+	document.getElementById("busySta").style.height = "12px";
+	document.getElementById("busySta").style.textAlign = "center";
+	document.getElementById("busySta").style.width = "50%";
+	document.getElementById("faultSta").style.color = "#003399";
+	document.getElementById("faultSta").style.fontSize = "12px";
+	document.getElementById("faultSta").style.height = "12px";
+	document.getElementById("faultSta").style.textAlign = "center";
+	document.getElementById("faultSta").style.width = "50%";
+	document.getElementById("localBlockedSta").style.color = "#003399";
+	document.getElementById("localBlockedSta").style.fontSize = "12px";
+	document.getElementById("localBlockedSta").style.height = "12px";
+	document.getElementById("localBlockedSta").style.textAlign = "center";
+	document.getElementById("localBlockedSta").style.width = "50%";
+	document.getElementById("remoteBlockedSta").style.color = "#003399";
+	document.getElementById("remoteBlockedSta").style.fontSize = "12px";
+	document.getElementById("remoteBlockedSta").style.height = "12px";
+	document.getElementById("remoteBlockedSta").style.textAlign = "center";
+	document.getElementById("remoteBlockedSta").style.width = "50%";
+	document.getElementById("BothBlockedSta").style.color = "#003399";
+	document.getElementById("BothBlockedSta").style.fontSize = "12px";
+	document.getElementById("BothBlockedSta").style.height = "12px";
+	document.getElementById("BothBlockedSta").style.textAlign = "center";
+	document.getElementById("BothBlockedSta").style.width = "50%";
+}
+</script>
+	</head>
+	<body onload="MM_callJS()">
+		<table width="800px" border="0" align="center" cellpadding="0"
+			cellspacing="0">
+			<tbody>
+				<tr class="title">
+					<td width="1%">
+						<img src="subarc_l.gif" alt="subarc_left" align="left">
+					</td>
+					<td>
+						E1/T1 端口状态
+					</td>
+					<td width="1%">
+						<img src="subarc_r.gif" alt="subarc_right" align="right">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="content" width="800px" align="center">
+			<tbody>
+				<tr class="thead" align="center">
+					<td width="160px">
+						端口编号
+					</td>
+					<script language="JavaScript" type="text/JavaScript">
+    for (var i=0; i<'4'; i++)
+	{
+		document.write("<td>"+i+"</td>");
+	}  
+  </script>
+					<td>
+						0
+					</td>
+					<td>
+						1
+					</td>
+					<td>
+						2
+					</td>
+					<td>
+						3
+					</td>
+				</tr>
+				<script language="JavaScript" type="text/JavaScript">
+  document.write("<tr align='center'><td>端口状态</td><td><div id = 'port0' style='background-color:#999; width:21px; height:21px'><img src='image/portstatus.gif' alt='Disable' /></div></td><td><div id = 'port1' style='background-color:#999; width:21px; height:21px'><img src='image/portstatus.gif' alt='Disable' /></div></td><td><div id = 'port2' style='background-color:#999; width:21px; height:21px'><img src='image/portstatus.gif' alt='Disable' /></div></td><td><div id = 'port3' style='background-color:#999; width:21px; height:21px'><img src='image/portstatus.gif' alt='Disable' /></div></td>");
+ </script>
+				<tr align="center">
+					<td>
+						端口状态
+					</td>
+					<td>
+						<div id="port0"
+							style="background-color: rgb(153, 153, 153); width: 21px; height: 21px;">
+							<img src="portstatus.gif" alt="Disable">
+						</div>
+					</td>
+					<td>
+						<div id="port1"
+							style="background-color: rgb(153, 153, 153); width: 21px; height: 21px;">
+							<img src="portstatus.gif" alt="Disable">
+						</div>
+					</td>
+					<td>
+						<div id="port2"
+							style="background-color: rgb(153, 153, 153); width: 21px; height: 21px;">
+							<img src="portstatus.gif" alt="Disable">
+						</div>
+					</td>
+					<td>
+						<div id="port3"
+							style="background-color: rgb(153, 153, 153); width: 21px; height: 21px;">
+							<img src="portstatus.gif" alt="Disable">
+						</div>
+					</td>
+					<script language="JavaScript" type="text/JavaScript">
+ document.write("");
+ </script>
+				</tr>
+			</tbody>
+		</table>
+		<table width="500px" align="center" cellpadding="0" cellspacing="0">
+			<tbody>
+				<tr>
+					<td colspan="9" height="8px">
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						示例: &nbsp;&nbsp;&nbsp;
+					</td>
+					<script language="JavaScript" type="text/JavaScript">
+  	document.write("<td width='16px'><div style='background-color:#0F0; width:18px; height:18px'><img src='image/portstatus.gif' alt='Actived' width='18px' height='18px' /></div></td><td colspan='2'>&nbsp;Actived</td><td width='16px'><div style='background-color:#999; width:18px; height:18px'><img src='image/portstatus.gif' alt='Disable' width='18px' height='18px' /></div></td><td colspan='2'>&nbsp;Disable</td><td width='16px'><div style='background-color:#F00; width:18px; height:18px'><img src='image/portstatus.gif' alt='LOS Alarm' width='18px' height='18px' /></div></td><td colspan='2'>&nbsp;LOS Alarm</td>");		
+	</script>
+					<td width="16px">
+						<div style="background-color: #0F0; width: 18px; height: 18px">
+							<img src="portstatus.gif" alt="Actived" width="18px"
+								height="18px">
+						</div>
+					</td>
+					<td colspan="2">
+						&nbsp;Actived
+					</td>
+					<td width="16px">
+						<div style="background-color: #999; width: 18px; height: 18px">
+							<img src="portstatus.gif" alt="Disable" width="18px"
+								height="18px">
+						</div>
+					</td>
+					<td colspan="2">
+						&nbsp;Disable
+					</td>
+					<td width="16px">
+						<div style="background-color: #F00; width: 18px; height: 18px">
+							<img src="portstatus.gif" alt="LOS Alarm" width="18px"
+								height="18px">
+						</div>
+					</td>
+					<td colspan="2">
+						&nbsp;LOS Alarm
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&nbsp;
+					</td>
+					<script language="JavaScript" type="text/JavaScript">
+    document.write("<td width='16px'><div style='background-color:#FF0; width:18px; height:18px'><img src='image/portstatus.gif' alt='RAI Alarm' width='18px' height='18px' /></div></td><td colspan='2'>&nbsp;RAI Alarm</td><td width='16px'><div style='background-color:#00F; width:18px; height:18px'><img src='image/portstatus.gif' alt='AIS Alarm' width='18px' height='18px' /></div></td><td colspan='2'>&nbsp;AIS Alarm</td><td width='16px'><div style='background-color:#F90; width:18px; height:18px'><img src='image/portstatus.gif' alt='ISDN/SS7 Signal Alarm' width='18px' height='18px' /></div></td><td colspan='2'>&nbsp;ISDN/SS7 Signal Alarm</td>");
+	</script>
+					<td width="16px">
+						<div style="background-color: #FF0; width: 18px; height: 18px">
+							<img src="portstatus.gif" alt="RAI Alarm" width="18px"
+								height="18px">
+						</div>
+					</td>
+					<td colspan="2">
+						&nbsp;RAI Alarm
+					</td>
+					<td width="16px">
+						<div style="background-color: #00F; width: 18px; height: 18px">
+							<img src="portstatus.gif" alt="AIS Alarm" width="18px"
+								height="18px">
+						</div>
+					</td>
+					<td colspan="2">
+						&nbsp;AIS Alarm
+					</td>
+					<td width="16px">
+						<div style="background-color: #F90; width: 18px; height: 18px">
+							<img src="portstatus.gif" alt="ISDN/SS7 Signal Alarm"
+								width="18px" height="18px">
+						</div>
+					</td>
+					<td colspan="2">
+						&nbsp;ISDN/SS7 Signal Alarm
+					</td>
+				</tr>
+				<tr>
+					<td colspan="9" height="16px">
+						&nbsp;
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<table width="800px" border="0" align="center" cellpadding="0"
+			cellspacing="0">
+			<tbody>
+				<tr class="title">
+					<td width="1%">
+						<img src="subarc_l.gif" alt="subarc_left" align="left">
+					</td>
+					<td>
+						E1/T1 通道状态
+					</td>
+					<td width="1%">
+						<img src="subarc_r.gif" alt="subarc_right" align="right">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="content ts" width="800px" align="center">
+			<tbody>
+				<tr class="thead" align="center">
+					<script language="JavaScript" type="text/JavaScript"> 
+  document.write("<td width='80px'>通道编号</td>");
+  var maxChannel;
+  if ("E1" == "E1")
+  {
+      maxChannel = 32; 
+	  for (var i=0; i<maxChannel; i++)
+	  {
+		  document.write("<td>"+i+"</td>");
+	  }	  
+  }
+  else
+  {
+      maxChannel = 24;
+	  for (var i=0; i<=maxChannel; i++)
+	  {
+		  document.write("<td>"+i+"</td>");
+	  }	  
+  }
+ 
+ </script>
+					<td width="80px">
+						通道编号
+					</td>
+					<td>
+						0
+					</td>
+					<td>
+						1
+					</td>
+					<td>
+						2
+					</td>
+					<td>
+						3
+					</td>
+					<td>
+						4
+					</td>
+					<td>
+						5
+					</td>
+					<td>
+						6
+					</td>
+					<td>
+						7
+					</td>
+					<td>
+						8
+					</td>
+					<td>
+						9
+					</td>
+					<td>
+						10
+					</td>
+					<td>
+						11
+					</td>
+					<td>
+						12
+					</td>
+					<td>
+						13
+					</td>
+					<td>
+						14
+					</td>
+					<td>
+						15
+					</td>
+					<td>
+						16
+					</td>
+					<td>
+						17
+					</td>
+					<td>
+						18
+					</td>
+					<td>
+						19
+					</td>
+					<td>
+						20
+					</td>
+					<td>
+						21
+					</td>
+					<td>
+						22
+					</td>
+					<td>
+						23
+					</td>
+					<td>
+						24
+					</td>
+					<td>
+						25
+					</td>
+					<td>
+						26
+					</td>
+					<td>
+						27
+					</td>
+					<td>
+						28
+					</td>
+					<td>
+						29
+					</td>
+					<td>
+						30
+					</td>
+					<td>
+						31
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="content ts" border="1" width="800px" align="center">
+			<script language="JavaScript" type="text/JavaScript">
+	document
+			.write("__tag_365$18_<td width='80px'>端口 0__tag_365$58_<td id='channel0-0' style='background-color:#CCC'>__tag_365$113_<td id='channel0-1' style='background-color:#CCC'>__tag_365$168_<td id='channel0-2' style='background-color:#CCC'>__tag_365$223_<td id='channel0-3' style='background-color:#CCC'>__tag_365$278_<td id='channel0-4' style='background-color:#CCC'>__tag_365$333_<td id='channel0-5' style='background-color:#CCC'>__tag_365$388_<td id='channel0-6' style='background-color:#CCC'>__tag_365$443_<td id='channel0-7' style='background-color:#CCC'>__tag_365$498_<td id='channel0-8' style='background-color:#CCC'>__tag_365$553_<td id='channel0-9' style='background-color:#CCC'>__tag_365$608_<td id='channel0-10' style='background-color:#CCC'>__tag_365$664_<td id='channel0-11' style='background-color:#CCC'>__tag_365$720_<td id='channel0-12' style='background-color:#CCC'>__tag_365$776_<td id='channel0-13' style='background-color:#CCC'>__tag_365$832_<td id='channel0-14' style='background-color:#CCC'>__tag_365$888_<td id='channel0-15' style='background-color:#CCC'>__tag_365$944_<td id='channel0-16' style='background-color:#CCC'>__tag_365$1000_<td id='channel0-17' style='background-color:#CCC'>__tag_365$1056_<td id='channel0-18' style='background-color:#CCC'>__tag_365$1112_<td id='channel0-19' style='background-color:#CCC'>__tag_365$1168_<td id='channel0-20' style='background-color:#CCC'>__tag_365$1224_<td id='channel0-21' style='background-color:#CCC'>__tag_365$1280_<td id='channel0-22' style='background-color:#CCC'>__tag_365$1336_<td id='channel0-23' style='background-color:#CCC'>__tag_365$1392_<td id='channel0-24' style='background-color:#CCC'>__tag_365$1448_<td id='channel0-25' style='background-color:#CCC'>__tag_365$1504_<td id='channel0-26' style='background-color:#CCC'>__tag_365$1560_<td id='channel0-27' style='background-color:#CCC'>__tag_365$1616_<td id='channel0-28' style='background-color:#CCC'>__tag_365$1672_<td id='channel0-29' style='background-color:#CCC'>__tag_365$1728_<td id='channel0-30' style='background-color:#CCC'>__tag_365$1784_<td id='channel0-31' style='background-color:#CCC'>__tag_365$1840_</tr>__tag_365$1850_<td width='80px'>端口 1__tag_365$1890_<td id='channel1-0' style='background-color:#CCC'>__tag_365$1945_<td id='channel1-1' style='background-color:#CCC'>__tag_365$2000_<td id='channel1-2' style='background-color:#CCC'>__tag_365$2055_<td id='channel1-3' style='background-color:#CCC'>__tag_365$2110_<td id='channel1-4' style='background-color:#CCC'>__tag_365$2165_<td id='channel1-5' style='background-color:#CCC'>__tag_365$2220_<td id='channel1-6' style='background-color:#CCC'>__tag_365$2275_<td id='channel1-7' style='background-color:#CCC'>__tag_365$2330_<td id='channel1-8' style='background-color:#CCC'>__tag_365$2385_<td id='channel1-9' style='background-color:#CCC'>__tag_365$2440_<td id='channel1-10' style='background-color:#CCC'>__tag_365$2496_<td id='channel1-11' style='background-color:#CCC'>__tag_365$2552_<td id='channel1-12' style='background-color:#CCC'>__tag_365$2608_<td id='channel1-13' style='background-color:#CCC'>__tag_365$2664_<td id='channel1-14' style='background-color:#CCC'>__tag_365$2720_<td id='channel1-15' style='background-color:#CCC'>__tag_365$2776_<td id='channel1-16' style='background-color:#CCC'>__tag_365$2832_<td id='channel1-17' style='background-color:#CCC'>__tag_365$2888_<td id='channel1-18' style='background-color:#CCC'>__tag_365$2944_<td id='channel1-19' style='background-color:#CCC'>__tag_365$3000_<td id='channel1-20' style='background-color:#CCC'>__tag_365$3056_<td id='channel1-21' style='background-color:#CCC'>__tag_365$3112_<td id='channel1-22' style='background-color:#CCC'>__tag_365$3168_<td id='channel1-23' style='background-color:#CCC'>__tag_365$3224_<td id='channel1-24' style='background-color:#CCC'>__tag_365$3280_<td id='channel1-25' style='background-color:#CCC'>__tag_365$3336_<td id='channel1-26' style='background-color:#CCC'>__tag_365$3392_<td id='channel1-27' style='background-color:#CCC'>__tag_365$3448_<td id='channel1-28' style='background-color:#CCC'>__tag_365$3504_<td id='channel1-29' style='background-color:#CCC'>__tag_365$3560_<td id='channel1-30' style='background-color:#CCC'>__tag_365$3616_<td id='channel1-31' style='background-color:#CCC'>__tag_365$3672_</tr>__tag_365$3682_<td width='80px'>端口 2__tag_365$3722_<td id='channel2-0' style='background-color:#CCC'>__tag_365$3777_<td id='channel2-1' style='background-color:#CCC'>__tag_365$3832_<td id='channel2-2' style='background-color:#CCC'>__tag_365$3887_<td id='channel2-3' style='background-color:#CCC'>__tag_365$3942_<td id='channel2-4' style='background-color:#CCC'>__tag_365$3997_<td id='channel2-5' style='background-color:#CCC'>__tag_365$4052_<td id='channel2-6' style='background-color:#CCC'>__tag_365$4107_<td id='channel2-7' style='background-color:#CCC'>__tag_365$4162_<td id='channel2-8' style='background-color:#CCC'>__tag_365$4217_<td id='channel2-9' style='background-color:#CCC'>__tag_365$4272_<td id='channel2-10' style='background-color:#CCC'>__tag_365$4328_<td id='channel2-11' style='background-color:#CCC'>__tag_365$4384_<td id='channel2-12' style='background-color:#CCC'>__tag_365$4440_<td id='channel2-13' style='background-color:#CCC'>__tag_365$4496_<td id='channel2-14' style='background-color:#CCC'>__tag_365$4552_<td id='channel2-15' style='background-color:#CCC'>__tag_365$4608_<td id='channel2-16' style='background-color:#CCC'>__tag_365$4664_<td id='channel2-17' style='background-color:#CCC'>__tag_365$4720_<td id='channel2-18' style='background-color:#CCC'>__tag_365$4776_<td id='channel2-19' style='background-color:#CCC'>__tag_365$4832_<td id='channel2-20' style='background-color:#CCC'>__tag_365$4888_<td id='channel2-21' style='background-color:#CCC'>__tag_365$4944_<td id='channel2-22' style='background-color:#CCC'>__tag_365$5000_<td id='channel2-23' style='background-color:#CCC'>__tag_365$5056_<td id='channel2-24' style='background-color:#CCC'>__tag_365$5112_<td id='channel2-25' style='background-color:#CCC'>__tag_365$5168_<td id='channel2-26' style='background-color:#CCC'>__tag_365$5224_<td id='channel2-27' style='background-color:#CCC'>__tag_365$5280_<td id='channel2-28' style='background-color:#CCC'>__tag_365$5336_<td id='channel2-29' style='background-color:#CCC'>__tag_365$5392_<td id='channel2-30' style='background-color:#CCC'>__tag_365$5448_<td id='channel2-31' style='background-color:#CCC'>__tag_365$5504_</tr>__tag_365$5514_<td width='80px'>端口 3__tag_365$5554_<td id='channel3-0' style='background-color:#CCC'>__tag_365$5609_<td id='channel3-1' style='background-color:#CCC'>__tag_365$5664_<td id='channel3-2' style='background-color:#CCC'>__tag_365$5719_<td id='channel3-3' style='background-color:#CCC'>__tag_365$5774_<td id='channel3-4' style='background-color:#CCC'>__tag_365$5829_<td id='channel3-5' style='background-color:#CCC'>__tag_365$5884_<td id='channel3-6' style='background-color:#CCC'>__tag_365$5939_<td id='channel3-7' style='background-color:#CCC'>__tag_365$5994_<td id='channel3-8' style='background-color:#CCC'>__tag_365$6049_<td id='channel3-9' style='background-color:#CCC'>__tag_365$6104_<td id='channel3-10' style='background-color:#CCC'>__tag_365$6160_<td id='channel3-11' style='background-color:#CCC'>__tag_365$6216_<td id='channel3-12' style='background-color:#C
+</script>
+			<tbody>
+				<tr align="center">
+					<td width="80px">
+						端口 0
+					</td>
+					<td id="channel0-0" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-1" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-2" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-3" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-4" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-5" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-6" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-7" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-8" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-9" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-10" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-11" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-12" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-13" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-14" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-15" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-16" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-17" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-18" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-19" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-20" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-21" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-22" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-23" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-24" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-25" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-26" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-27" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-28" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-29" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-30" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel0-31" style="background-color: rgb(204, 204, 204);"></td>
+				</tr>
+				<tr align="center">
+					<td width="80px">
+						端口 1
+					</td>
+					<td id="channel1-0" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-1" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-2" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-3" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-4" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-5" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-6" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-7" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-8" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-9" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-10" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-11" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-12" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-13" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-14" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-15" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-16" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-17" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-18" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-19" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-20" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-21" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-22" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-23" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-24" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-25" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-26" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-27" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-28" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-29" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-30" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel1-31" style="background-color: rgb(204, 204, 204);"></td>
+				</tr>
+				<tr align="center">
+					<td width="80px">
+						端口 2
+					</td>
+					<td id="channel2-0" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-1" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-2" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-3" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-4" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-5" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-6" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-7" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-8" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-9" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-10" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-11" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-12" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-13" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-14" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-15" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-16" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-17" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-18" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-19" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-20" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-21" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-22" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-23" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-24" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-25" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-26" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-27" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-28" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-29" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-30" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel2-31" style="background-color: rgb(204, 204, 204);"></td>
+				</tr>
+				<tr align="center">
+					<td width="80px">
+						端口 3
+					</td>
+					<td id="channel3-0" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-1" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-2" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-3" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-4" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-5" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-6" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-7" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-8" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-9" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-10" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-11" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-12" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-13" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-14" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-15" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-16" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-17" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-18" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-19" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-20" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-21" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-22" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-23" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-24" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-25" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-26" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-27" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-28" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-29" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-30" style="background-color: rgb(204, 204, 204);"></td>
+					<td id="channel3-31" style="background-color: rgb(204, 204, 204);"></td>
+				</tr>
+				<script language="JavaScript" type="text/JavaScript">
+	document.write("");
+</script>
+			</tbody>
+		</table>
+		<p>
+			&nbsp;
+		</p>
+		<table class="content" width="800px" align="center">
+			<tbody>
+				<tr align="center">
+					<td width="10%">
+						状态
+					</td>
+					<td width="10%">
+						帧同步
+					</td>
+					<td width="10%">
+						空闲
+					</td>
+					<td width="10%">
+						信道
+					</td>
+					<td width="10%">
+						占用
+					</td>
+					<td width="10%">
+						故障
+					</td>
+					<td width="10%">
+						未启用
+					</td>
+					<td width="10%">
+						本端闭塞
+					</td>
+					<td width="10%">
+						远端闭塞
+					</td>
+					<td width="10%">
+						两端闭塞
+					</td>
+				</tr>
+				<tr align="center">
+					<td>
+						颜色
+					</td>
+					<td>
+						<div style="background-color: #333; width: 18px; height: 18px"></div>
+					</td>
+					<td>
+						<div style="background-color: #0CF; width: 18px; height: 18px"></div>
+					</td>
+					<td>
+						<div style="background-color: #069; width: 18px; height: 18px"></div>
+					</td>
+					<td>
+						<div style="background-color: #093; width: 18px; height: 18px"></div>
+					</td>
+					<td>
+						<div style="background-color: #F33; width: 18px; height: 18px"></div>
+					</td>
+					<td>
+						<div style="background-color: #CCC; width: 18px; height: 18px"></div>
+					</td>
+					<td>
+						<div style="background-color: #758; width: 18px; height: 18px"></div>
+					</td>
+					<td>
+						<div style="background-color: #a76; width: 18px; height: 18px"></div>
+					</td>
+					<td>
+						<div style="background-color: #640; width: 18px; height: 18px"></div>
+					</td>
+				</tr>
+				<tr align="center">
+					<td>
+						统计
+					</td>
+					<td>
+						0
+					</td>
+					<td>
+						<input type="text" id="idleSta"
+							style="background-color: transparent; border: none; color: rgb(0, 51, 153); font-size: 12px; height: 12px; text-align: center; width: 50%; background-position: initial initial; background-repeat: initial initial;"
+							readonly="" align="center">
+					</td>
+					<td>
+						0
+					</td>
+					<td>
+						<input type="text" id="busySta"
+							style="background-color: transparent; border: none; color: rgb(0, 51, 153); font-size: 12px; height: 12px; text-align: center; width: 50%; background-position: initial initial; background-repeat: initial initial;"
+							readonly="" align="center">
+					</td>
+					<td>
+						<input type="text" id="faultSta"
+							style="background-color: transparent; border: none; color: rgb(0, 51, 153); font-size: 12px; height: 12px; text-align: center; width: 50%; background-position: initial initial; background-repeat: initial initial;"
+							readonly="" align="center">
+					</td>
+					<td>
+						128
+					</td>
+					<td>
+						<input type="text" id="localBlockedSta"
+							style="background-color: transparent; border: none; color: rgb(0, 51, 153); font-size: 12px; height: 12px; text-align: center; width: 50%; background-position: initial initial; background-repeat: initial initial;"
+							readonly="" align="center">
+					</td>
+					<td>
+						<input type="text" id="remoteBlockedSta"
+							style="background-color: transparent; border: none; color: rgb(0, 51, 153); font-size: 12px; height: 12px; text-align: center; width: 50%; background-position: initial initial; background-repeat: initial initial;"
+							readonly="" align="center">
+					</td>
+					<td>
+						<input type="text" id="BothBlockedSta"
+							style="background-color: transparent; border: none; color: rgb(0, 51, 153); font-size: 12px; height: 12px; text-align: center; width: 50%; background-position: initial initial; background-repeat: initial initial;"
+							readonly="" align="center">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table style="display: none">
+			<tbody>
+				<tr>
+					<td>
+						<iframe src="LinkStatusRefresh.htm" scrolling="no" frameborder="0"
+							hspace="0" vspace="0" id="LinkStatusRefresh"
+							style="display: block; margin: 0 auto; visibility: hidden"></iframe>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>
+			&nbsp;
+		</p>
+
+
+	</body>
+</html>

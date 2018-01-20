@@ -1,0 +1,16 @@
+#menu { padding: 0; margin-top:20px;}
+#menu li { display: inline; }
+#menu li a { background: #ccf; padding: 10px; float:left; border-right: 1px solid #ccf; border-bottom: none; text-decoration: none; color: #000; font-weight: bold;}
+#menu li.active a { background: #eef; }
+.content,.content2,.my-content { float: left; clear: both; border: 1px solid #ccf; border-top: none; border-left: none; background: #eef; padding: 10px; width: 100%; }
+.content2 { 
+padding:0px !important;
+}
+.my-content{
+background-color:#f8f8f8 !important;
+border:0px !important;
+}
+.content span,.my-content span{
+display:inline-block;
+width:250px;
+}

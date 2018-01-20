@@ -1,0 +1,108 @@
+<form  name="provision" id="provision" ng-controller="provisionCtrl" AUTOCOMPLETE="OFF">
+<input style="display:none" type="text" name="fakeusernameremembered"/>
+<input style="display:none" type="password" name="fakepasswordremembered"/>
+	<table width="600px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+		<tbody><tr class="title">
+			<td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+			<td>Provision</td>
+			<td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+		</tr>
+		</tbody></table>
+  <table width="600px" align="center" cellpadding="0" cellspacing="0" class="tblbody">
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td>
+        <table cellpadding="0" cellspacing="0" width="100%" class="context">
+          <tr>
+            <td width="5%">&nbsp;</td>
+            <td width="45%">&nbsp;</td>
+            <td width="50%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td id="bx0"><div  class="dash" ng-mouseenter="display(0)" ng-mouseleave="hide(0)">URL</div></td>
+            <td>
+              <input class="text" id="ProvisonURL" style="width:75%" maxlength="127" name="ProvisonURL" ng-blur="ProChange()" value="" alt="config/provision/url">
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>查询周期</td>
+            <td>
+              <input class="text" id="ProvisonInterval" maxlength="10" name="ProvisonInterval" style="width:75%" value="" alt="config/provision/interval">s
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>账户</td>
+            <td>
+              <input autocomplete="off" class="text" id="ProvisonAcc" maxlength="63" name="ProvisonAcc" style="width:75%" value="" alt="config/provision/provison_account">
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>密码</td>
+            <td>
+              <input autocomplete="off" class="text" id="ProvisonPwd" maxlength="31" type="password" ng-blur="key_up()" name="ProvisonPwd" style="width:75%" value="" alt="config/provision/provison_password">
+            </td>
+          </tr>
+          <tr id="Proxy_0" style="display:none">
+            <td>&nbsp;</td>
+            <td>代理域名</td>
+            <td>
+              <input class="text" id="ProxyDomain" maxlength="127" name="ProxyDomain" style="width:75%" value="" alt="config/provision/proxy_domain">
+            </td>
+          </tr>
+          <tr id="Proxy_1" style="display:none">
+            <td>&nbsp;</td>
+            <td>代理端口</td>
+            <td>
+              <input class="text" id="ProxyPort" maxlength="5" name="ProxyPort" style="width:75%" value="" alt="config/provision/proxy_port">
+            </td>
+          </tr>
+          <tr id="Proxy_2" style="display:none">
+            <td>&nbsp;</td>
+            <td>代理账户</td>
+            <td>
+              <input class="text" id="ProxyAcc" maxlength="63" name="ProxyAcc" style="width:75%" value="" alt="config/provision/proxy_account">
+            </td>
+          </tr>
+          <tr id="Proxy_3" style="display:none">
+            <td>&nbsp;</td>
+            <td>代理密码</td>
+            <td>
+              <input class="text" id="ProxyPwd" maxlength="31" type="password" name="ProxyPwd" ng-blur="proxy_key_up()" style="width:75%" value="" alt="config/provision/proxy_password">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">&nbsp;</td>
+          </tr>
+          <tr id='idDefaultProvEnable'>
+            <td>&nbsp;</td>
+            <td>自动安装更新(推荐)</td>
+            <td>
+              <input id="DefaultProvEnable" name="DefaultProvEnable" type="checkbox"   ng-click="mouse_click();"   alt="config/provision/default_configuration_enable">开启
+            </td>
+          </tr>
+          <tr>
+            <td width="5%">&nbsp;</td>
+            <td width="40%">&nbsp;</td>
+            <td width="50%">&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+      <td width="5%">&nbsp;</td>
+    </tr>
+  </table>
+  <div class="ex" id="ax0" style="display:none;">
+    <p style="font-weight:bolder;">URL"的开头必须是"http://","ftp://",或者"tftp://"'.</p>
+    <p style="font-weight:bolder;">&nbsp;&nbsp;举例如下:</p>
+    <div class="note_body">
+      <p>1.http://www.google.com/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+      <p>2.ftp://www.google.com/</p>
+      <p>3.tftp://www.google.com/</p>
+    </div>
+  </div>
+	<p>&nbsp;</p>
+	<input name="ModFlag" id="ModFlag" type="hidden" value="0"><input name="ProxyModFlag" id="ProxyModFlag" type="hidden" value="0">
+</form>

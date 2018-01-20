@@ -1,0 +1,114 @@
+<form  name="FaxCfg" id="FaxCfg" ng-controller = "FaxCfgCtrl">
+	<table width="600px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+		<tbody><tr>
+			<td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+			<td>传真参数</td>
+			<td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+		</tr>
+		</tbody></table>
+  <table width="600px" align="center" class="tblbody">
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td>
+        <table width="100%" cellpadding="0" cellspacing="0" class="context">
+          <tr>
+            <td width="5%">&nbsp;</td>
+            <td width="55%">&nbsp;</td>
+            <td width="40%">&nbsp;</td>
+          </tr>
+          <tr id="idFaxMode">
+            <td colspan="2">传真模式</td>
+            <td>
+              <select name="FaxMode" class="list" id="FaxMode" ng-click="mouse_click()" alt="config/fax/mode">
+                <option value="0" >T.38</option>
+                <option value="4" >透传(VBD)</option>
+                <option value="3" selected>自适应</option>
+              </select>
+            </td>
+          </tr>
+          <tr id="idXFax" style="display:none">
+            <td>&nbsp;</td>
+            <td>SDP中携带"a=X-fax"属性</td>
+            <td>
+              <input id="XFaxEnable" name="XFaxEnable" type="checkbox"  alt="config/fax/x_fax">启用
+            </td>
+          </tr>
+          <tr id="idFax" style="display:none">
+            <td>&nbsp;</td>
+            <td>SDP中携带"a=fax"属性</td>
+            <td>
+              <input id="FaxEnable" name="FaxEnable" type="checkbox"  alt="config/fax/fax">启用
+            </td>
+          </tr>
+          <tr id="idXModem" style="display:none">
+            <td>&nbsp;</td>
+            <td>SDP中携带"a=X-modem"属性</td>
+            <td>
+              <input id="XModemEnable" name="XModemEnable" type="checkbox"  alt="config/fax/x_modem">启用
+            </td>
+          </tr>
+          <tr id="idModem" style="display:none">
+            <td>&nbsp;</td>
+            <td>SDP中携带"a=modem"属性</td>
+            <td>
+              <input id="ModemEnable" name="ModemEnable" type="checkbox"  alt="config/fax/modem">启用
+            </td>
+          </tr>
+          <tr id="idVBD" style="display:none">
+            <td>&nbsp;</td>
+            <td>SDP中携带"vbd"参数</td>
+            <td>
+              <input id="VBDEnable" name="VBDEnable" type="checkbox" checked alt="config/fax/vbd">启用
+            </td>
+          </tr>
+          <tr id="idSilenceSupp" style="display:none">
+            <td>&nbsp;</td>
+            <td>SDP中携带"silenceSupp"参数</td>
+            <td>
+              <input id="SilenceSuppEnable" name="SilenceSuppEnable" type="checkbox" checked alt="config/fax/silencesupp">启用
+            </td>
+          </tr>
+          <tr id="idECM" style="display:none">
+            <td>&nbsp;</td>
+            <td>ECM</td>
+            <td>
+              <input id="ECMEnable" name="ECMEnable" type="checkbox"  alt="config/fax/ecm">启用
+            </td>
+          </tr>
+          <tr id="idRate" style="display:none">
+            <td>&nbsp;</td>
+            <td>比特率</td>
+            <td>
+              <select name="FaxRate" class="list" id="FaxRate" alt="config/fax/rate" >
+                <option value="2400" >2400 bps</option>
+                <option value="4800" >4800 bps</option>
+                <option value="7200" >7200 bps</option>
+                <option value="9600" >9600 bps</option>
+                <option value="12000" >12000 bps</option>
+                <option value="14400" selected>14400 bps</option>
+              </select>
+            </td>
+          </tr>
+          <tr id="idFaxToneDetect">
+            <td colspan="2">传真音检测方</td>
+            <td>
+              <select name="FaxToneDetectionMode" class="list" id="FaxToneDetectionMode"  ng-click="mouse_click()" alt="config/fax/tone_detect_by">
+                <option value="0" selected>本地</option>
+                <option value="1" >远端</option>
+              </select>
+            </td>
+          </tr>
+          <tr id="idCNGDetectFlag">
+            <td colspan="2">当检测到CNG或者CED时切入传真</td>
+            <td><input type="checkbox" name="CNGDetectFlag" id="CNGDetectFlag"  alt="config/fax/ced_cng_as_fax_tone"></td>
+          </tr>
+          <tr>
+            <td colspan="2">&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+      <td width="5%">&nbsp;</td>
+    </tr>
+  </table>
+</form>

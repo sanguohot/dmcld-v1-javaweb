@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblNeNaMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblNeNa" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="alm_status_bits" property="almStatusBits" jdbcType="INTEGER" />
+    <result column="add_flag" property="addFlag" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="sys_uuid" property="sysUuid" jdbcType="INTEGER" />
+    <result column="vendor_id" property="vendorId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="CHAR" />
+    <result column="outer_ip_addr" property="outerIpAddr" jdbcType="CHAR" />
+    <result column="inner_ip_addr" property="innerIpAddr" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_msg_time" property="lastMsgTime" jdbcType="TIMESTAMP" />
+    <result column="domain_name" property="domainName" jdbcType="CHAR" />
+    
+    <result column="product_sn" property="productSn" jdbcType="BINARY" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.dinstar.sim.model.TblNeNa" extends="BaseResultMap" >
+    <result column="product_sn" property="productSn" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    product_sn,uuid, rec_status, alias, admin_status, opr_status, run_status, action_status, action_result, 
+    alm_status_bits, add_flag, domain_uuid, sys_uuid, vendor_id, product_id, product_name, 
+    outer_ip_addr, inner_ip_addr, create_time, last_msg_time, domain_name
+  </sql>
+  <sql id="Blob_Column_List" >
+    product_sn
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.dinstar.sim.model.TblNeNaCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tbl_ne_na
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClause != null" >
+     	limit ${limitClause} 
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblNeNaCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_ne_na
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClause != null" >
+     	limit ${limitClause} 
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tbl_ne_na
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_ne_na
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblNeNaCriteria" >
+    delete from tbl_ne_na
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblNeNa" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_ne_na (uuid, rec_status, alias, 
+      admin_status, opr_status, run_status, 
+      action_status, action_result, alm_status_bits, 
+      add_flag, domain_uuid, sys_uuid, 
+      vendor_id, product_id, product_name, 
+      outer_ip_addr, inner_ip_addr, create_time, 
+      last_msg_time, domain_name, product_sn
+      )
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{alias,jdbcType=CHAR}, 
+      #{adminStatus,jdbcType=INTEGER}, #{oprStatus,jdbcType=INTEGER}, #{runStatus,jdbcType=INTEGER}, 
+      #{actionStatus,jdbcType=INTEGER}, #{actionResult,jdbcType=INTEGER}, #{almStatusBits,jdbcType=INTEGER}, 
+      #{addFlag,jdbcType=INTEGER}, #{domainUuid,jdbcType=INTEGER}, #{sysUuid,jdbcType=INTEGER}, 
+      #{vendorId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{productName,jdbcType=CHAR}, 
+      #{outerIpAddr,jdbcType=CHAR}, #{innerIpAddr,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastMsgTime,jdbcType=TIMESTAMP}, #{domainName,jdbcType=CHAR}, #{productSn,jdbcType=BINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblNeNa" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_ne_na
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="adminStatus != null" >
+        admin_status,
+      </if>
+      <if test="oprStatus != null" >
+        opr_status,
+      </if>
+      <if test="runStatus != null" >
+        run_status,
+      </if>
+      <if test="actionStatus != null" >
+        action_status,
+      </if>
+      <if test="actionResult != null" >
+        action_result,
+      </if>
+      <if test="almStatusBits != null" >
+        alm_status_bits,
+      </if>
+      <if test="addFlag != null" >
+        add_flag,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="sysUuid != null" >
+        sys_uuid,
+      </if>
+      <if test="vendorId != null" >
+        vendor_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="outerIpAddr != null" >
+        outer_ip_addr,
+      </if>
+      <if test="innerIpAddr != null" >
+        inner_ip_addr,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastMsgTime != null" >
+        last_msg_time,
+      </if>
+      <if test="domainName != null" >
+        domain_name,
+      </if>
+      <if test="productSn != null" >
+        product_sn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=CHAR},
+      </if>
+      <if test="adminStatus != null" >
+        #{adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oprStatus != null" >
+        #{oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="runStatus != null" >
+        #{runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionStatus != null" >
+        #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="almStatusBits != null" >
+        #{almStatusBits,jdbcType=INTEGER},
+      </if>
+      <if test="addFlag != null" >
+        #{addFlag,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="sysUuid != null" >
+        #{sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="vendorId != null" >
+        #{vendorId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=CHAR},
+      </if>
+      <if test="outerIpAddr != null" >
+        #{outerIpAddr,jdbcType=CHAR},
+      </if>
+      <if test="innerIpAddr != null" >
+        #{innerIpAddr,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastMsgTime != null" >
+        #{lastMsgTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="domainName != null" >
+        #{domainName,jdbcType=CHAR},
+      </if>
+      <if test="productSn != null" >
+        #{productSn,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblNeNaCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_ne_na
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_ne_na
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.alias != null" >
+        alias = #{record.alias,jdbcType=CHAR},
+      </if>
+      <if test="record.adminStatus != null" >
+        admin_status = #{record.adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.oprStatus != null" >
+        opr_status = #{record.oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.runStatus != null" >
+        run_status = #{record.runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionStatus != null" >
+        action_status = #{record.actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.actionResult != null" >
+        action_result = #{record.actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.almStatusBits != null" >
+        alm_status_bits = #{record.almStatusBits,jdbcType=INTEGER},
+      </if>
+      <if test="record.addFlag != null" >
+        add_flag = #{record.addFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sysUuid != null" >
+        sys_uuid = #{record.sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.vendorId != null" >
+        vendor_id = #{record.vendorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.productId != null" >
+        product_id = #{record.productId,jdbcType=INTEGER},
+      </if>
+      <if test="record.productName != null" >
+        product_name = #{record.productName,jdbcType=CHAR},
+      </if>
+      <if test="record.outerIpAddr != null" >
+        outer_ip_addr = #{record.outerIpAddr,jdbcType=CHAR},
+      </if>
+      <if test="record.innerIpAddr != null" >
+        inner_ip_addr = #{record.innerIpAddr,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastMsgTime != null" >
+        last_msg_time = #{record.lastMsgTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.domainName != null" >
+        domain_name = #{record.domainName,jdbcType=CHAR},
+      </if>
+      <if test="record.productSn != null" >
+        product_sn = #{record.productSn,jdbcType=BINARY},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update tbl_ne_na
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      alias = #{record.alias,jdbcType=CHAR},
+      admin_status = #{record.adminStatus,jdbcType=INTEGER},
+      opr_status = #{record.oprStatus,jdbcType=INTEGER},
+      run_status = #{record.runStatus,jdbcType=INTEGER},
+      action_status = #{record.actionStatus,jdbcType=INTEGER},
+      action_result = #{record.actionResult,jdbcType=INTEGER},
+      alm_status_bits = #{record.almStatusBits,jdbcType=INTEGER},
+      add_flag = #{record.addFlag,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      sys_uuid = #{record.sysUuid,jdbcType=INTEGER},
+      vendor_id = #{record.vendorId,jdbcType=INTEGER},
+      product_id = #{record.productId,jdbcType=INTEGER},
+      product_name = #{record.productName,jdbcType=CHAR},
+      outer_ip_addr = #{record.outerIpAddr,jdbcType=CHAR},
+      inner_ip_addr = #{record.innerIpAddr,jdbcType=CHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      last_msg_time = #{record.lastMsgTime,jdbcType=TIMESTAMP},
+      domain_name = #{record.domainName,jdbcType=CHAR},
+      product_sn = #{record.productSn,jdbcType=BINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_ne_na
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      alias = #{record.alias,jdbcType=CHAR},
+      admin_status = #{record.adminStatus,jdbcType=INTEGER},
+      opr_status = #{record.oprStatus,jdbcType=INTEGER},
+      run_status = #{record.runStatus,jdbcType=INTEGER},
+      action_status = #{record.actionStatus,jdbcType=INTEGER},
+      action_result = #{record.actionResult,jdbcType=INTEGER},
+      alm_status_bits = #{record.almStatusBits,jdbcType=INTEGER},
+      add_flag = #{record.addFlag,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      sys_uuid = #{record.sysUuid,jdbcType=INTEGER},
+      vendor_id = #{record.vendorId,jdbcType=INTEGER},
+      product_id = #{record.productId,jdbcType=INTEGER},
+      product_name = #{record.productName,jdbcType=CHAR},
+      outer_ip_addr = #{record.outerIpAddr,jdbcType=CHAR},
+      inner_ip_addr = #{record.innerIpAddr,jdbcType=CHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      last_msg_time = #{record.lastMsgTime,jdbcType=TIMESTAMP},
+      domain_name = #{record.domainName,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblNeNa" >
+    update tbl_ne_na
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=CHAR},
+      </if>
+      <if test="adminStatus != null" >
+        admin_status = #{adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oprStatus != null" >
+        opr_status = #{oprStatus,jdbcType=INTEGER},
+      </if>
+      <if test="runStatus != null" >
+        run_status = #{runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionStatus != null" >
+        action_status = #{actionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="actionResult != null" >
+        action_result = #{actionResult,jdbcType=INTEGER},
+      </if>
+      <if test="almStatusBits != null" >
+        alm_status_bits = #{almStatusBits,jdbcType=INTEGER},
+      </if>
+      <if test="addFlag != null" >
+        add_flag = #{addFlag,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="sysUuid != null" >
+        sys_uuid = #{sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="vendorId != null" >
+        vendor_id = #{vendorId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=CHAR},
+      </if>
+      <if test="outerIpAddr != null" >
+        outer_ip_addr = #{outerIpAddr,jdbcType=CHAR},
+      </if>
+      <if test="innerIpAddr != null" >
+        inner_ip_addr = #{innerIpAddr,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastMsgTime != null" >
+        last_msg_time = #{lastMsgTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="domainName != null" >
+        domain_name = #{domainName,jdbcType=CHAR},
+      </if>
+      <if test="productSn != null" >
+        product_sn = #{productSn,jdbcType=BINARY},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dinstar.sim.model.TblNeNa" >
+    update tbl_ne_na
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      alias = #{alias,jdbcType=CHAR},
+      admin_status = #{adminStatus,jdbcType=INTEGER},
+      opr_status = #{oprStatus,jdbcType=INTEGER},
+      run_status = #{runStatus,jdbcType=INTEGER},
+      action_status = #{actionStatus,jdbcType=INTEGER},
+      action_result = #{actionResult,jdbcType=INTEGER},
+      alm_status_bits = #{almStatusBits,jdbcType=INTEGER},
+      add_flag = #{addFlag,jdbcType=INTEGER},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      sys_uuid = #{sysUuid,jdbcType=INTEGER},
+      vendor_id = #{vendorId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=CHAR},
+      outer_ip_addr = #{outerIpAddr,jdbcType=CHAR},
+      inner_ip_addr = #{innerIpAddr,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_msg_time = #{lastMsgTime,jdbcType=TIMESTAMP},
+      domain_name = #{domainName,jdbcType=CHAR},
+      product_sn = #{productSn,jdbcType=BINARY}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblNeNa" >
+    update tbl_ne_na
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      alias = #{alias,jdbcType=CHAR},
+      admin_status = #{adminStatus,jdbcType=INTEGER},
+      opr_status = #{oprStatus,jdbcType=INTEGER},
+      run_status = #{runStatus,jdbcType=INTEGER},
+      action_status = #{actionStatus,jdbcType=INTEGER},
+      action_result = #{actionResult,jdbcType=INTEGER},
+      alm_status_bits = #{almStatusBits,jdbcType=INTEGER},
+      add_flag = #{addFlag,jdbcType=INTEGER},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      sys_uuid = #{sysUuid,jdbcType=INTEGER},
+      vendor_id = #{vendorId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=CHAR},
+      outer_ip_addr = #{outerIpAddr,jdbcType=CHAR},
+      inner_ip_addr = #{innerIpAddr,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_msg_time = #{lastMsgTime,jdbcType=TIMESTAMP},
+      domain_name = #{domainName,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

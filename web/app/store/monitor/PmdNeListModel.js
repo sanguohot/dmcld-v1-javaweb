@@ -1,0 +1,26 @@
+Ext.define('app.store.monitor.PmdNeListModel', {
+        extend: 'Ext.data.Model',
+        fields: [
+                 {name: 'uuid',type:'int'},
+                 {name: 'domainUuid',type:'int'},
+                 {name: 'domainName',type:'string'},
+                 {name: 'generateTime',type:'string'},
+                 {name: 'productName',type:'string'},
+                 {name: 'productSnStr',type:'string'},
+                 {name: 'runStatus',type:'int'},
+                 {name: 'adminStatus',type:'int'},
+                 {name: 'generateTime1',type:'date'},
+                 {name: 'neUuid',type:'int'},
+                 {name: 'productId',type:'int'},
+                 {name: 'deviceUuid',type:'int'},
+                 {name: 'name',type:'string'},
+                 {name: 'runTimeLen',type:'int'},
+                 {name: 'sysUpTimelen',type:'int'},
+                 {name: 'maxPingDelay',type:'int'},
+                 {name:'rate',type:'int'},
+                 {name:'asr',type:'int'},
+                 {name: 'acd',type:'int'},
+                 {name: 'lifeSecond',type:'int'},
+                 {name: 'usage',mapping:'rate',type:'int'},
+             ]
+});

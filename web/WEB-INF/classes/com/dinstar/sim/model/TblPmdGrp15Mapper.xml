@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblPmdGrp15Mapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblPmdGrp15" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="grp_uuid" property="grpUuid" jdbcType="INTEGER" />
+    <result column="serial_no" property="serialNo" jdbcType="INTEGER" />
+    <result column="generate_time" property="generateTime" jdbcType="TIMESTAMP" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="sim_switch_count" property="simSwitchCount" jdbcType="INTEGER" />
+    <result column="reg_error_count" property="regErrorCount" jdbcType="INTEGER" />
+    <result column="opr_error_all" property="oprErrorAll" jdbcType="INTEGER" />
+    <result column="pkt_count_all" property="pktCountAll" jdbcType="INTEGER" />
+    <result column="pkt_retries_all" property="pktRetriesAll" jdbcType="INTEGER" />
+    <result column="pkt_loss_all" property="pktLossAll" jdbcType="INTEGER" />
+    <result column="call_time_day" property="callTimeDay" jdbcType="INTEGER" />
+    <result column="call_time_month" property="callTimeMonth" jdbcType="INTEGER" />
+    <result column="call_time_all" property="callTimeAll" jdbcType="INTEGER" />
+    <result column="call_in_time_all" property="callInTimeAll" jdbcType="INTEGER" />
+    <result column="call_out_time_all" property="callOutTimeAll" jdbcType="INTEGER" />
+    <result column="call_count_day" property="callCountDay" jdbcType="INTEGER" />
+    <result column="call_count_month" property="callCountMonth" jdbcType="INTEGER" />
+    <result column="call_count_all" property="callCountAll" jdbcType="INTEGER" />
+    <result column="call_fail_count" property="callFailCount" jdbcType="INTEGER" />
+    <result column="call_short_count" property="callShortCount" jdbcType="INTEGER" />
+    <result column="call_normal_count" property="callNormalCount" jdbcType="INTEGER" />
+    <result column="call_succ_rate" property="callSuccRate" jdbcType="INTEGER" />
+    <result column="sms_count_day" property="smsCountDay" jdbcType="INTEGER" />
+    <result column="sms_count_month" property="smsCountMonth" jdbcType="INTEGER" />
+    <result column="sms_count_all" property="smsCountAll" jdbcType="INTEGER" />
+    <result column="sms_in_count" property="smsInCount" jdbcType="INTEGER" />
+    <result column="sms_out_count" property="smsOutCount" jdbcType="INTEGER" />
+    <result column="sms_fail_count" property="smsFailCount" jdbcType="INTEGER" />
+    <result column="sms_succ_rate" property="smsSuccRate" jdbcType="INTEGER" />
+    <result column="ussd_count_day" property="ussdCountDay" jdbcType="INTEGER" />
+    <result column="ussd_count_month" property="ussdCountMonth" jdbcType="INTEGER" />
+    <result column="ussd_count_all" property="ussdCountAll" jdbcType="INTEGER" />
+    <result column="ussd_in_count" property="ussdInCount" jdbcType="INTEGER" />
+    <result column="ussd_out_count" property="ussdOutCount" jdbcType="INTEGER" />
+    <result column="ussd_fail_count" property="ussdFailCount" jdbcType="INTEGER" />
+    <result column="ussd_succ_rate" property="ussdSuccRate" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, grp_uuid, serial_no, generate_time, domain_uuid, sim_switch_count, 
+    reg_error_count, opr_error_all, pkt_count_all, pkt_retries_all, pkt_loss_all, call_time_day, 
+    call_time_month, call_time_all, call_in_time_all, call_out_time_all, call_count_day, 
+    call_count_month, call_count_all, call_fail_count, call_short_count, call_normal_count, 
+    call_succ_rate, sms_count_day, sms_count_month, sms_count_all, sms_in_count, sms_out_count, 
+    sms_fail_count, sms_succ_rate, ussd_count_day, ussd_count_month, ussd_count_all, 
+    ussd_in_count, ussd_out_count, ussd_fail_count, ussd_succ_rate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblPmdGrp15Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_pmd_grp_15
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+       <if test="limitClause != null" >
+     	limit ${limitClause} 
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_pmd_grp_15
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_pmd_grp_15
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblPmdGrp15Criteria" >
+    delete from tbl_pmd_grp_15
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblPmdGrp15" >
+    insert into tbl_pmd_grp_15 (uuid, rec_status, grp_uuid, 
+      serial_no, generate_time, domain_uuid, 
+      sim_switch_count, reg_error_count, opr_error_all, 
+      pkt_count_all, pkt_retries_all, pkt_loss_all, 
+      call_time_day, call_time_month, call_time_all, 
+      call_in_time_all, call_out_time_all, call_count_day, 
+      call_count_month, call_count_all, call_fail_count, 
+      call_short_count, call_normal_count, call_succ_rate, 
+      sms_count_day, sms_count_month, sms_count_all, 
+      sms_in_count, sms_out_count, sms_fail_count, 
+      sms_succ_rate, ussd_count_day, ussd_count_month, 
+      ussd_count_all, ussd_in_count, ussd_out_count, 
+      ussd_fail_count, ussd_succ_rate)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{grpUuid,jdbcType=INTEGER}, 
+      #{serialNo,jdbcType=INTEGER}, #{generateTime,jdbcType=TIMESTAMP}, #{domainUuid,jdbcType=INTEGER}, 
+      #{simSwitchCount,jdbcType=INTEGER}, #{regErrorCount,jdbcType=INTEGER}, #{oprErrorAll,jdbcType=INTEGER}, 
+      #{pktCountAll,jdbcType=INTEGER}, #{pktRetriesAll,jdbcType=INTEGER}, #{pktLossAll,jdbcType=INTEGER}, 
+      #{callTimeDay,jdbcType=INTEGER}, #{callTimeMonth,jdbcType=INTEGER}, #{callTimeAll,jdbcType=INTEGER}, 
+      #{callInTimeAll,jdbcType=INTEGER}, #{callOutTimeAll,jdbcType=INTEGER}, #{callCountDay,jdbcType=INTEGER}, 
+      #{callCountMonth,jdbcType=INTEGER}, #{callCountAll,jdbcType=INTEGER}, #{callFailCount,jdbcType=INTEGER}, 
+      #{callShortCount,jdbcType=INTEGER}, #{callNormalCount,jdbcType=INTEGER}, #{callSuccRate,jdbcType=INTEGER}, 
+      #{smsCountDay,jdbcType=INTEGER}, #{smsCountMonth,jdbcType=INTEGER}, #{smsCountAll,jdbcType=INTEGER}, 
+      #{smsInCount,jdbcType=INTEGER}, #{smsOutCount,jdbcType=INTEGER}, #{smsFailCount,jdbcType=INTEGER}, 
+      #{smsSuccRate,jdbcType=INTEGER}, #{ussdCountDay,jdbcType=INTEGER}, #{ussdCountMonth,jdbcType=INTEGER}, 
+      #{ussdCountAll,jdbcType=INTEGER}, #{ussdInCount,jdbcType=INTEGER}, #{ussdOutCount,jdbcType=INTEGER}, 
+      #{ussdFailCount,jdbcType=INTEGER}, #{ussdSuccRate,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblPmdGrp15" >
+    insert into tbl_pmd_grp_15
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="grpUuid != null" >
+        grp_uuid,
+      </if>
+      <if test="serialNo != null" >
+        serial_no,
+      </if>
+      <if test="generateTime != null" >
+        generate_time,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="simSwitchCount != null" >
+        sim_switch_count,
+      </if>
+      <if test="regErrorCount != null" >
+        reg_error_count,
+      </if>
+      <if test="oprErrorAll != null" >
+        opr_error_all,
+      </if>
+      <if test="pktCountAll != null" >
+        pkt_count_all,
+      </if>
+      <if test="pktRetriesAll != null" >
+        pkt_retries_all,
+      </if>
+      <if test="pktLossAll != null" >
+        pkt_loss_all,
+      </if>
+      <if test="callTimeDay != null" >
+        call_time_day,
+      </if>
+      <if test="callTimeMonth != null" >
+        call_time_month,
+      </if>
+      <if test="callTimeAll != null" >
+        call_time_all,
+      </if>
+      <if test="callInTimeAll != null" >
+        call_in_time_all,
+      </if>
+      <if test="callOutTimeAll != null" >
+        call_out_time_all,
+      </if>
+      <if test="callCountDay != null" >
+        call_count_day,
+      </if>
+      <if test="callCountMonth != null" >
+        call_count_month,
+      </if>
+      <if test="callCountAll != null" >
+        call_count_all,
+      </if>
+      <if test="callFailCount != null" >
+        call_fail_count,
+      </if>
+      <if test="callShortCount != null" >
+        call_short_count,
+      </if>
+      <if test="callNormalCount != null" >
+        call_normal_count,
+      </if>
+      <if test="callSuccRate != null" >
+        call_succ_rate,
+      </if>
+      <if test="smsCountDay != null" >
+        sms_count_day,
+      </if>
+      <if test="smsCountMonth != null" >
+        sms_count_month,
+      </if>
+      <if test="smsCountAll != null" >
+        sms_count_all,
+      </if>
+      <if test="smsInCount != null" >
+        sms_in_count,
+      </if>
+      <if test="smsOutCount != null" >
+        sms_out_count,
+      </if>
+      <if test="smsFailCount != null" >
+        sms_fail_count,
+      </if>
+      <if test="smsSuccRate != null" >
+        sms_succ_rate,
+      </if>
+      <if test="ussdCountDay != null" >
+        ussd_count_day,
+      </if>
+      <if test="ussdCountMonth != null" >
+        ussd_count_month,
+      </if>
+      <if test="ussdCountAll != null" >
+        ussd_count_all,
+      </if>
+      <if test="ussdInCount != null" >
+        ussd_in_count,
+      </if>
+      <if test="ussdOutCount != null" >
+        ussd_out_count,
+      </if>
+      <if test="ussdFailCount != null" >
+        ussd_fail_count,
+      </if>
+      <if test="ussdSuccRate != null" >
+        ussd_succ_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="grpUuid != null" >
+        #{grpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="generateTime != null" >
+        #{generateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="simSwitchCount != null" >
+        #{simSwitchCount,jdbcType=INTEGER},
+      </if>
+      <if test="regErrorCount != null" >
+        #{regErrorCount,jdbcType=INTEGER},
+      </if>
+      <if test="oprErrorAll != null" >
+        #{oprErrorAll,jdbcType=INTEGER},
+      </if>
+      <if test="pktCountAll != null" >
+        #{pktCountAll,jdbcType=INTEGER},
+      </if>
+      <if test="pktRetriesAll != null" >
+        #{pktRetriesAll,jdbcType=INTEGER},
+      </if>
+      <if test="pktLossAll != null" >
+        #{pktLossAll,jdbcType=INTEGER},
+      </if>
+      <if test="callTimeDay != null" >
+        #{callTimeDay,jdbcType=INTEGER},
+      </if>
+      <if test="callTimeMonth != null" >
+        #{callTimeMonth,jdbcType=INTEGER},
+      </if>
+      <if test="callTimeAll != null" >
+        #{callTimeAll,jdbcType=INTEGER},
+      </if>
+      <if test="callInTimeAll != null" >
+        #{callInTimeAll,jdbcType=INTEGER},
+      </if>
+      <if test="callOutTimeAll != null" >
+        #{callOutTimeAll,jdbcType=INTEGER},
+      </if>
+      <if test="callCountDay != null" >
+        #{callCountDay,jdbcType=INTEGER},
+      </if>
+      <if test="callCountMonth != null" >
+        #{callCountMonth,jdbcType=INTEGER},
+      </if>
+      <if test="callCountAll != null" >
+        #{callCountAll,jdbcType=INTEGER},
+      </if>
+      <if test="callFailCount != null" >
+        #{callFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="callShortCount != null" >
+        #{callShortCount,jdbcType=INTEGER},
+      </if>
+      <if test="callNormalCount != null" >
+        #{callNormalCount,jdbcType=INTEGER},
+      </if>
+      <if test="callSuccRate != null" >
+        #{callSuccRate,jdbcType=INTEGER},
+      </if>
+      <if test="smsCountDay != null" >
+        #{smsCountDay,jdbcType=INTEGER},
+      </if>
+      <if test="smsCountMonth != null" >
+        #{smsCountMonth,jdbcType=INTEGER},
+      </if>
+      <if test="smsCountAll != null" >
+        #{smsCountAll,jdbcType=INTEGER},
+      </if>
+      <if test="smsInCount != null" >
+        #{smsInCount,jdbcType=INTEGER},
+      </if>
+      <if test="smsOutCount != null" >
+        #{smsOutCount,jdbcType=INTEGER},
+      </if>
+      <if test="smsFailCount != null" >
+        #{smsFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="smsSuccRate != null" >
+        #{smsSuccRate,jdbcType=INTEGER},
+      </if>
+      <if test="ussdCountDay != null" >
+        #{ussdCountDay,jdbcType=INTEGER},
+      </if>
+      <if test="ussdCountMonth != null" >
+        #{ussdCountMonth,jdbcType=INTEGER},
+      </if>
+      <if test="ussdCountAll != null" >
+        #{ussdCountAll,jdbcType=INTEGER},
+      </if>
+      <if test="ussdInCount != null" >
+        #{ussdInCount,jdbcType=INTEGER},
+      </if>
+      <if test="ussdOutCount != null" >
+        #{ussdOutCount,jdbcType=INTEGER},
+      </if>
+      <if test="ussdFailCount != null" >
+        #{ussdFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="ussdSuccRate != null" >
+        #{ussdSuccRate,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblPmdGrp15Criteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_pmd_grp_15
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_pmd_grp_15
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.grpUuid != null" >
+        grp_uuid = #{record.grpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.serialNo != null" >
+        serial_no = #{record.serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.generateTime != null" >
+        generate_time = #{record.generateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.simSwitchCount != null" >
+        sim_switch_count = #{record.simSwitchCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.regErrorCount != null" >
+        reg_error_count = #{record.regErrorCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.oprErrorAll != null" >
+        opr_error_all = #{record.oprErrorAll,jdbcType=INTEGER},
+      </if>
+      <if test="record.pktCountAll != null" >
+        pkt_count_all = #{record.pktCountAll,jdbcType=INTEGER},
+      </if>
+      <if test="record.pktRetriesAll != null" >
+        pkt_retries_all = #{record.pktRetriesAll,jdbcType=INTEGER},
+      </if>
+      <if test="record.pktLossAll != null" >
+        pkt_loss_all = #{record.pktLossAll,jdbcType=INTEGER},
+      </if>
+      <if test="record.callTimeDay != null" >
+        call_time_day = #{record.callTimeDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.callTimeMonth != null" >
+        call_time_month = #{record.callTimeMonth,jdbcType=INTEGER},
+      </if>
+      <if test="record.callTimeAll != null" >
+        call_time_all = #{record.callTimeAll,jdbcType=INTEGER},
+      </if>
+      <if test="record.callInTimeAll != null" >
+        call_in_time_all = #{record.callInTimeAll,jdbcType=INTEGER},
+      </if>
+      <if test="record.callOutTimeAll != null" >
+        call_out_time_all = #{record.callOutTimeAll,jdbcType=INTEGER},
+      </if>
+      <if test="record.callCountDay != null" >
+        call_count_day = #{record.callCountDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.callCountMonth != null" >
+        call_count_month = #{record.callCountMonth,jdbcType=INTEGER},
+      </if>
+      <if test="record.callCountAll != null" >
+        call_count_all = #{record.callCountAll,jdbcType=INTEGER},
+      </if>
+      <if test="record.callFailCount != null" >
+        call_fail_count = #{record.callFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.callShortCount != null" >
+        call_short_count = #{record.callShortCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.callNormalCount != null" >
+        call_normal_count = #{record.callNormalCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.callSuccRate != null" >
+        call_succ_rate = #{record.callSuccRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.smsCountDay != null" >
+        sms_count_day = #{record.smsCountDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.smsCountMonth != null" >
+        sms_count_month = #{record.smsCountMonth,jdbcType=INTEGER},
+      </if>
+      <if test="record.smsCountAll != null" >
+        sms_count_all = #{record.smsCountAll,jdbcType=INTEGER},
+      </if>
+      <if test="record.smsInCount != null" >
+        sms_in_count = #{record.smsInCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.smsOutCount != null" >
+        sms_out_count = #{record.smsOutCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.smsFailCount != null" >
+        sms_fail_count = #{record.smsFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.smsSuccRate != null" >
+        sms_succ_rate = #{record.smsSuccRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.ussdCountDay != null" >
+        ussd_count_day = #{record.ussdCountDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.ussdCountMonth != null" >
+        ussd_count_month = #{record.ussdCountMonth,jdbcType=INTEGER},
+      </if>
+      <if test="record.ussdCountAll != null" >
+        ussd_count_all = #{record.ussdCountAll,jdbcType=INTEGER},
+      </if>
+      <if test="record.ussdInCount != null" >
+        ussd_in_count = #{record.ussdInCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.ussdOutCount != null" >
+        ussd_out_count = #{record.ussdOutCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.ussdFailCount != null" >
+        ussd_fail_count = #{record.ussdFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.ussdSuccRate != null" >
+        ussd_succ_rate = #{record.ussdSuccRate,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_pmd_grp_15
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      grp_uuid = #{record.grpUuid,jdbcType=INTEGER},
+      serial_no = #{record.serialNo,jdbcType=INTEGER},
+      generate_time = #{record.generateTime,jdbcType=TIMESTAMP},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      sim_switch_count = #{record.simSwitchCount,jdbcType=INTEGER},
+      reg_error_count = #{record.regErrorCount,jdbcType=INTEGER},
+      opr_error_all = #{record.oprErrorAll,jdbcType=INTEGER},
+      pkt_count_all = #{record.pktCountAll,jdbcType=INTEGER},
+      pkt_retries_all = #{record.pktRetriesAll,jdbcType=INTEGER},
+      pkt_loss_all = #{record.pktLossAll,jdbcType=INTEGER},
+      call_time_day = #{record.callTimeDay,jdbcType=INTEGER},
+      call_time_month = #{record.callTimeMonth,jdbcType=INTEGER},
+      call_time_all = #{record.callTimeAll,jdbcType=INTEGER},
+      call_in_time_all = #{record.callInTimeAll,jdbcType=INTEGER},
+      call_out_time_all = #{record.callOutTimeAll,jdbcType=INTEGER},
+      call_count_day = #{record.callCountDay,jdbcType=INTEGER},
+      call_count_month = #{record.callCountMonth,jdbcType=INTEGER},
+      call_count_all = #{record.callCountAll,jdbcType=INTEGER},
+      call_fail_count = #{record.callFailCount,jdbcType=INTEGER},
+      call_short_count = #{record.callShortCount,jdbcType=INTEGER},
+      call_normal_count = #{record.callNormalCount,jdbcType=INTEGER},
+      call_succ_rate = #{record.callSuccRate,jdbcType=INTEGER},
+      sms_count_day = #{record.smsCountDay,jdbcType=INTEGER},
+      sms_count_month = #{record.smsCountMonth,jdbcType=INTEGER},
+      sms_count_all = #{record.smsCountAll,jdbcType=INTEGER},
+      sms_in_count = #{record.smsInCount,jdbcType=INTEGER},
+      sms_out_count = #{record.smsOutCount,jdbcType=INTEGER},
+      sms_fail_count = #{record.smsFailCount,jdbcType=INTEGER},
+      sms_succ_rate = #{record.smsSuccRate,jdbcType=INTEGER},
+      ussd_count_day = #{record.ussdCountDay,jdbcType=INTEGER},
+      ussd_count_month = #{record.ussdCountMonth,jdbcType=INTEGER},
+      ussd_count_all = #{record.ussdCountAll,jdbcType=INTEGER},
+      ussd_in_count = #{record.ussdInCount,jdbcType=INTEGER},
+      ussd_out_count = #{record.ussdOutCount,jdbcType=INTEGER},
+      ussd_fail_count = #{record.ussdFailCount,jdbcType=INTEGER},
+      ussd_succ_rate = #{record.ussdSuccRate,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblPmdGrp15" >
+    update tbl_pmd_grp_15
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="grpUuid != null" >
+        grp_uuid = #{grpUuid,jdbcType=INTEGER},
+      </if>
+      <if test="serialNo != null" >
+        serial_no = #{serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="generateTime != null" >
+        generate_time = #{generateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="simSwitchCount != null" >
+        sim_switch_count = #{simSwitchCount,jdbcType=INTEGER},
+      </if>
+      <if test="regErrorCount != null" >
+        reg_error_count = #{regErrorCount,jdbcType=INTEGER},
+      </if>
+      <if test="oprErrorAll != null" >
+        opr_error_all = #{oprErrorAll,jdbcType=INTEGER},
+      </if>
+      <if test="pktCountAll != null" >
+        pkt_count_all = #{pktCountAll,jdbcType=INTEGER},
+      </if>
+      <if test="pktRetriesAll != null" >
+        pkt_retries_all = #{pktRetriesAll,jdbcType=INTEGER},
+      </if>
+      <if test="pktLossAll != null" >
+        pkt_loss_all = #{pktLossAll,jdbcType=INTEGER},
+      </if>
+      <if test="callTimeDay != null" >
+        call_time_day = #{callTimeDay,jdbcType=INTEGER},
+      </if>
+      <if test="callTimeMonth != null" >
+        call_time_month = #{callTimeMonth,jdbcType=INTEGER},
+      </if>
+      <if test="callTimeAll != null" >
+        call_time_all = #{callTimeAll,jdbcType=INTEGER},
+      </if>
+      <if test="callInTimeAll != null" >
+        call_in_time_all = #{callInTimeAll,jdbcType=INTEGER},
+      </if>
+      <if test="callOutTimeAll != null" >
+        call_out_time_all = #{callOutTimeAll,jdbcType=INTEGER},
+      </if>
+      <if test="callCountDay != null" >
+        call_count_day = #{callCountDay,jdbcType=INTEGER},
+      </if>
+      <if test="callCountMonth != null" >
+        call_count_month = #{callCountMonth,jdbcType=INTEGER},
+      </if>
+      <if test="callCountAll != null" >
+        call_count_all = #{callCountAll,jdbcType=INTEGER},
+      </if>
+      <if test="callFailCount != null" >
+        call_fail_count = #{callFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="callShortCount != null" >
+        call_short_count = #{callShortCount,jdbcType=INTEGER},
+      </if>
+      <if test="callNormalCount != null" >
+        call_normal_count = #{callNormalCount,jdbcType=INTEGER},
+      </if>
+      <if test="callSuccRate != null" >
+        call_succ_rate = #{callSuccRate,jdbcType=INTEGER},
+      </if>
+      <if test="smsCountDay != null" >
+        sms_count_day = #{smsCountDay,jdbcType=INTEGER},
+      </if>
+      <if test="smsCountMonth != null" >
+        sms_count_month = #{smsCountMonth,jdbcType=INTEGER},
+      </if>
+      <if test="smsCountAll != null" >
+        sms_count_all = #{smsCountAll,jdbcType=INTEGER},
+      </if>
+      <if test="smsInCount != null" >
+        sms_in_count = #{smsInCount,jdbcType=INTEGER},
+      </if>
+      <if test="smsOutCount != null" >
+        sms_out_count = #{smsOutCount,jdbcType=INTEGER},
+      </if>
+      <if test="smsFailCount != null" >
+        sms_fail_count = #{smsFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="smsSuccRate != null" >
+        sms_succ_rate = #{smsSuccRate,jdbcType=INTEGER},
+      </if>
+      <if test="ussdCountDay != null" >
+        ussd_count_day = #{ussdCountDay,jdbcType=INTEGER},
+      </if>
+      <if test="ussdCountMonth != null" >
+        ussd_count_month = #{ussdCountMonth,jdbcType=INTEGER},
+      </if>
+      <if test="ussdCountAll != null" >
+        ussd_count_all = #{ussdCountAll,jdbcType=INTEGER},
+      </if>
+      <if test="ussdInCount != null" >
+        ussd_in_count = #{ussdInCount,jdbcType=INTEGER},
+      </if>
+      <if test="ussdOutCount != null" >
+        ussd_out_count = #{ussdOutCount,jdbcType=INTEGER},
+      </if>
+      <if test="ussdFailCount != null" >
+        ussd_fail_count = #{ussdFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="ussdSuccRate != null" >
+        ussd_succ_rate = #{ussdSuccRate,jdbcType=INTEGER},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblPmdGrp15" >
+    update tbl_pmd_grp_15
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      grp_uuid = #{grpUuid,jdbcType=INTEGER},
+      serial_no = #{serialNo,jdbcType=INTEGER},
+      generate_time = #{generateTime,jdbcType=TIMESTAMP},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      sim_switch_count = #{simSwitchCount,jdbcType=INTEGER},
+      reg_error_count = #{regErrorCount,jdbcType=INTEGER},
+      opr_error_all = #{oprErrorAll,jdbcType=INTEGER},
+      pkt_count_all = #{pktCountAll,jdbcType=INTEGER},
+      pkt_retries_all = #{pktRetriesAll,jdbcType=INTEGER},
+      pkt_loss_all = #{pktLossAll,jdbcType=INTEGER},
+      call_time_day = #{callTimeDay,jdbcType=INTEGER},
+      call_time_month = #{callTimeMonth,jdbcType=INTEGER},
+      call_time_all = #{callTimeAll,jdbcType=INTEGER},
+      call_in_time_all = #{callInTimeAll,jdbcType=INTEGER},
+      call_out_time_all = #{callOutTimeAll,jdbcType=INTEGER},
+      call_count_day = #{callCountDay,jdbcType=INTEGER},
+      call_count_month = #{callCountMonth,jdbcType=INTEGER},
+      call_count_all = #{callCountAll,jdbcType=INTEGER},
+      call_fail_count = #{callFailCount,jdbcType=INTEGER},
+      call_short_count = #{callShortCount,jdbcType=INTEGER},
+      call_normal_count = #{callNormalCount,jdbcType=INTEGER},
+      call_succ_rate = #{callSuccRate,jdbcType=INTEGER},
+      sms_count_day = #{smsCountDay,jdbcType=INTEGER},
+      sms_count_month = #{smsCountMonth,jdbcType=INTEGER},
+      sms_count_all = #{smsCountAll,jdbcType=INTEGER},
+      sms_in_count = #{smsInCount,jdbcType=INTEGER},
+      sms_out_count = #{smsOutCount,jdbcType=INTEGER},
+      sms_fail_count = #{smsFailCount,jdbcType=INTEGER},
+      sms_succ_rate = #{smsSuccRate,jdbcType=INTEGER},
+      ussd_count_day = #{ussdCountDay,jdbcType=INTEGER},
+      ussd_count_month = #{ussdCountMonth,jdbcType=INTEGER},
+      ussd_count_all = #{ussdCountAll,jdbcType=INTEGER},
+      ussd_in_count = #{ussdInCount,jdbcType=INTEGER},
+      ussd_out_count = #{ussdOutCount,jdbcType=INTEGER},
+      ussd_fail_count = #{ussdFailCount,jdbcType=INTEGER},
+      ussd_succ_rate = #{ussdSuccRate,jdbcType=INTEGER}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

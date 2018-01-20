@@ -1,0 +1,6 @@
+{
+	groupPolicyList:[
+		{id:123,name:'Policy Group 1',status:0,createtime:'2012-01-07',updatetime:'2012-04-07',description:'Group Policy Description'},
+		{id:234,name:'Policy Group 2',status:0,createtime:'2012-03-07',updatetime:'2012-01-07',description:'Group Policy Description'}
+	]
+}

@@ -1,0 +1,63 @@
+<form  name="CloudServerCfg" id="CloudServerCfg" ng-controller="CloudServerCfgCtrl">
+<input style="display:none" type="text" name="fakeusernameremembered"/>
+<input style="display:none" type="password" name="fakepasswordremembered"/>
+	<table width="600px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+		<tbody><tr>
+			<td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+			<td>云服务器</td>
+			<td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+		</tr>
+		</tbody></table>
+  <table width="600px" align="center" class="tblbody" cellpadding=0 cellspacing=0>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td>
+        <table width="100%" cellpadding=1 cellspacing=0 class="context">
+          <tr>
+            <td width="50%">&nbsp;</td>
+            <td width="50%">&nbsp;</td>
+          </tr>
+          <tr id='idCloudServerAddress'>
+            <td width="50%">地址</td>
+            <td width="50%">
+              <input class="text" id="CloudServerAddress" name="CloudServerAddress" style="width:80%;" maxlength="127" value="" alt="config/simserver/ip">
+            </td>
+          </tr>
+          <tr id='idCloudServerPort'>
+            <td width="50%">端口</td>
+            <td width="50%">
+              <input class="text" id="CloudServerPort" name="CloudServerPort" style="width:80%;" maxlength="5" value="" alt="config/simserver/port">
+            </td>
+          </tr>
+          <tr id='idCloudServerPwd'style="display:none">
+            <td width="50%">密码</td>
+            <td width="50%">
+              <input class="text" id="CloudServerPwd" name="CloudServerPwd" type="password" ng-blur="key_up()" style="width:80%;" maxlength="31" value="" alt="config/simserver/password">
+            </td>
+          </tr>
+          <tr id='idCloudServerDomain'>
+            <td>域名</td>
+            <td>
+              <input class="text" id="CloudServerDomain" name="CloudServerDomain" style="width:80%;" maxlength="31" value="" alt="config/simserver/domain">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr id='idDefaultCloudEnable'>
+            <td>加入远程管理计划</td>
+            <td>
+              <input id="DefaultCloudEnable" name="DefaultCloudEnable" type="checkbox"   ng-click="mouse_click();"   alt="config/simserver/default_configuration_enable">开启
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+      <td width="5%">&nbsp;</td>
+    </tr>
+  </table>
+	<input name="ModFlag" id="ModFlag" type="hidden" value="0">
+</form>

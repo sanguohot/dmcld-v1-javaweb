@@ -1,0 +1,353 @@
+<form  name="VLANCfg" id="VLANCfg" onsubmit="return form_check();">
+<table width="800px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+	<tbody><tr>
+		<td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+		<td>VLAN</td>
+		<td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+	</tr>
+	</tbody></table>
+<table width="800px" align="center" class="tblbody">
+<tbody><tr>
+<td width="5%">&nbsp;</td>
+<td>
+<table width="800px" cellspacing="0" cellpadding="0" class="context">
+<tbody><tr>
+	<td width="5%">&nbsp;</td>
+	<td width="5%">&nbsp;</td>
+	<td width="25%">&nbsp;</td>
+	<td width="25%">&nbsp;</td>
+	<td width="40%">&nbsp;</td>
+</tr>
+<tr id="idVlan1">
+	<td colspan="4" class="td_title">VLAN 1</td>
+	<td>
+		<input name="VlanEnable1" type="checkbox" id="VlanEnable1" onclick="mouse_click();">
+		启用</td>
+</tr>
+
+<tr id="idVlanType1">
+	<td>&nbsp;</td>
+	<td colspan="2">
+            <span title="数据启用后，网络数据使用本地网络中的配置">
+              <input name="DataVlanEnable1" type="checkbox" id="DataVlanEnable1" onclick="data_vlan_click(1);">数据</span></td>
+
+	<td><input name="VoiceVlanEnable1" type="checkbox" id="VoiceVlanEnable1" onclick="voice_vlan_click(1);">语音</td>
+	<td><input name="ManageVlanEnable1" type="checkbox" id="ManageVlanEnable1" onclick="manage_vlan_click(1);">管理</td>
+</tr>
+
+<tr id="idVlanIDVx1">
+	<td>&nbsp;</td>
+	<td colspan="3">802.1Q VLAN1 ID(0 - 4095)</td>
+	<td>
+		<input class="text" id="VlanID1" maxlength="4" name="VlanID1" size="20" value="1">
+	</td>
+</tr>
+
+<tr id="idVlanPriVx1">
+	<td>&nbsp;</td>
+	<td colspan="3">802.1P 优先级(0 - 7)</td>
+	<td>
+		<input class="text" id="VlanPri1" maxlength="1" name="VlanPri1" size="20" value="0">
+	</td>
+
+</tr><tr id="idVlanIPDscrp1">
+	<td>&nbsp;</td>
+	<td colspan="4">VLAN 1 网络设置</td>
+</tr>
+<tr id="idVlanIPAuto1">
+	<td>&nbsp;</td>
+	<td colspan="3">
+		<input type="radio" name="VlanGetIPMode1" value="2" onclick="mouse_click();" checked="">
+		自动获得 IP 地址</td>
+	<td>&nbsp;</td>
+</tr>
+<tr id="idVlanIPStatic1">
+	<td>&nbsp;</td>
+	<td colspan="3">
+		<input type="radio" name="VlanGetIPMode1" value="1" onclick="mouse_click();">
+		使用下面的 IP 地址</td>
+	<td>&nbsp;</td>
+</tr>
+<tr id="idVlanIP1">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td colspan="2">IP地址</td>
+	<td>
+		<input class="text" id="VlanIP1" maxlength="39" name="VlanIP1" size="20" value="">
+	</td>
+</tr>
+<tr id="idVlanMask1">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td colspan="2">子网掩码</td>
+	<td>
+		<input class="text" id="VlanMask1" maxlength="15" name="VlanMask1" size="20" value="">
+	</td>
+</tr>
+<tr id="idVlanGateway1">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td colspan="2">默认网关</td>
+	<td>
+		<input class="text" id="VlanGateway1" maxlength="39" name="VlanGateway1" size="20" value="">
+	</td>
+</tr>
+<tr id="idVlanDNSBlank1">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+<tr id="idVlanDNS1" style="display:none">
+	<td>&nbsp;</td>
+	<td colspan="3">VLAN 1 DNS 服务器</td>
+</tr>
+<tr id="idVlanDNSDHCP1">
+	<td>&nbsp;</td>
+	<td colspan="3">
+		<input type="radio" name="VlanDNSMode1" value="1" onclick="mouse_click();" checked="">自动获得 DNS 服务器地址</td>
+</tr>
+<tr id="idVlanDNSStatic1">
+	<td>&nbsp;</td>
+	<td colspan="3">
+		<input type="radio" name="VlanDNSMode1" value="0" onclick="mouse_click();">使用下面的 DNS 服务器地址</td>
+</tr>
+<tr id="idVlanDNSPrim1">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td colspan="2">主用 DNS 服务器</td>
+	<td>
+		<input class="text" id="VlanMasterDNS1" maxlength="39" name="VlanMasterDNS1" size="18" value="">
+	</td>
+</tr>
+<tr id="idVlanDNSSecond1">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td colspan="2">备用 DNS 服务器</td>
+	<td>
+		<input class="text" id="VlanSlaveDNS1" maxlength="39" name="VlanSlaveDNS1" size="18" value="">
+	</td>
+</tr>
+<tr id="idVlanMTU1">
+	<td>&nbsp;</td>
+	<td colspan="3">VLAN1 MTU</td>
+	<td>
+		<input class="text" id="VlanMTU1" maxlength="4" name="VlanMTU1" size="18" value="1400">
+	</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+
+<tr id="idVlan2">
+	<td colspan="4" class="td_title">VLAN 2</td>
+	<td>
+		<input name="VlanEnable2" type="checkbox" id="VlanEnable2" onclick="mouse_click();">
+		启用</td>
+</tr>
+
+<tr id="idVlanType2">
+	<td>&nbsp;</td>
+	<td colspan="2">
+            <span title="数据启用后，网络数据使用本地网络中的配置">
+              <input name="DataVlanEnable2" type="checkbox" id="DataVlanEnable2" onclick="data_vlan_click(2);">数据</span></td>
+
+	<td><input name="VoiceVlanEnable2" type="checkbox" id="VoiceVlanEnable2" onclick="voice_vlan_click(2);">语音</td>
+	<td><input name="ManageVlanEnable2" type="checkbox" id="ManageVlanEnable2" onclick="manage_vlan_click(2);">管理</td>
+</tr>
+
+<tr id="idVlanIDVx2">
+	<td>&nbsp;</td>
+	<td colspan="3">802.1Q VLAN2 ID(0 - 4095)</td>
+	<td>
+		<input class="text" id="VlanID2" maxlength="4" name="VlanID2" size="20" value="2">
+	</td>
+</tr>
+
+<tr id="idVlanPriVx2">
+	<td>&nbsp;</td>
+	<td colspan="3">802.1P 优先级(0 - 7)</td>
+	<td>
+		<input class="text" id="VlanPri2" maxlength="1" name="VlanPri2" size="20" value="0">
+	</td>
+
+</tr><tr id="idVlanIPDscrp2">
+	<td>&nbsp;</td>
+	<td colspan="4">VLAN 2 网络设置</td>
+</tr>
+<tr id="idVlanIPAuto2">
+	<td>&nbsp;</td>
+	<td colspan="3">
+		<input type="radio" name="VlanGetIPMode2" value="2" onclick="mouse_click();" checked="">
+		自动获得 IP 地址</td>
+	<td>&nbsp;</td>
+</tr>
+<tr id="idVlanIPStatic2">
+	<td>&nbsp;</td>
+	<td colspan="3">
+		<input type="radio" name="VlanGetIPMode2" value="1" onclick="mouse_click();">
+		使用下面的 IP 地址</td>
+	<td>&nbsp;</td>
+</tr>
+<tr id="idVlanIP2">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td colspan="2">IP地址</td>
+	<td>
+		<input class="text" id="VlanIP2" maxlength="39" name="VlanIP2" size="20" value="">
+	</td>
+</tr>
+<tr id="idVlanMask2">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td colspan="2">子网掩码</td>
+	<td>
+		<input class="text" id="VlanMask2" maxlength="15" name="VlanMask2" size="20" value="">
+	</td>
+</tr>
+<tr id="idVlanGateway2">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td colspan="2">默认网关</td>
+	<td>
+		<input class="text" id="VlanGateway2" maxlength="39" name="VlanGateway2" size="20" value="">
+	</td>
+</tr>
+<tr id="idVlanDNSBlank2">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+<tr id="idVlanDNS2" style="display:none">
+	<td>&nbsp;</td>
+	<td colspan="3">VLAN 2 DNS 服务器</td>
+</tr>
+<tr id="idVlanDNSDHCP2">
+	<td>&nbsp;</td>
+	<td colspan="3">
+		<input type="radio" name="VlanDNSMode2" value="1" onclick="mouse_click();" checked="">自动获得 DNS 服务器地址</td>
+</tr>
+<tr id="idVlanDNSStatic2">
+	<td>&nbsp;</td>
+	<td colspan="3">
+		<input type="radio" name="VlanDNSMode2" value="0" onclick="mouse_click();">使用下面的 DNS 服务器地址</td>
+</tr>
+<tr id="idVlanDNSPrim2">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td colspan="2">主用 DNS 服务器</td>
+	<td>
+		<input class="text" id="VlanMasterDNS2" maxlength="39" name="VlanMasterDNS2" size="18" value="">
+	</td>
+</tr>
+<tr id="idVlanDNSSecond2">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td colspan="2">备用 DNS 服务器</td>
+	<td>
+		<input class="text" id="VlanSlaveDNS2" maxlength="39" name="VlanSlaveDNS2" size="18" value="">
+	</td>
+</tr>
+<tr id="idVlanMTU2">
+	<td>&nbsp;</td>
+	<td colspan="3">VLAN2 MTU</td>
+	<td>
+		<input class="text" id="VlanMTU2" maxlength="4" name="VlanMTU2" size="18" value="1400">
+	</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+
+<tr id="idVlan3">
+	<td colspan="4" class="td_title">VLAN 3</td>
+	<td>
+		<input name="VlanEnable3" type="checkbox" id="VlanEnable3" onclick="mouse_click();">
+		启用</td>
+</tr>
+
+<tr id="idVlanType3">
+	<td>&nbsp;</td>
+	<td colspan="2">
+            <span title="数据启用后，网络数据使用本地网络中的配置">
+              <input name="DataVlanEnable3" type="checkbox" id="DataVlanEnable3" onclick="data_vlan_click(3);">数据</span></td>
+
+	<td><input name="VoiceVlanEnable3" type="checkbox" id="VoiceVlanEnable3" onclick="voice_vlan_click(3);">语音</td>
+	<td><input name="ManageVlanEnable3" type="checkbox" id="ManageVlanEnable3" onclick="manage_vlan_click(3);">管理</td>
+</tr>
+
+<tr id="idVlanIDVx3">
+	<td>&nbsp;</td>
+	<td colspan="3">802.1Q VLAN3 ID(0 - 4095)</td>
+	<td>
+		<input class="text" id="VlanID3" maxlength="4" name="VlanID3" size="20" value="3">
+	</td>
+</tr>
+
+<tr id="idVlanPriVx3">
+	<td>&nbsp;</td>
+	<td colspan="3">802.1P 优先级(0 - 7)</td>
+	<td>
+		<input class="text" id="VlanPri3" maxlength="1" name="VlanPri3" size="20" value="0">
+	</td>
+
+</tr><tr id="idVlanIPDscrp3">
+	<td>&nbsp;</td>
+	<td colspan="4">VLAN 3 网络设置</td>
+</tr>
+<tr id="idVlanIPAuto3">
+	<td>&nbsp;</td>
+	<td colspan="3">
+		<input type="radio" name="VlanGetIPMode3" value="2" onclick="mouse_click();" checked="">
+		自动获得 IP 地址</td>
+	<td>&nbsp;</td>
+</tr>
+<tr id="idVlanIPStatic3">
+	<td>&nbsp;</td>
+	<td colspan="3">
+		<input type="radio" name="VlanGetIPMode3" value="1" onclick="mouse_click();">
+		使用下面的 IP 地址</td>
+	<td>&nbsp;</td>
+</tr>
+<tr id="idVlanIP3">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td colspan="2">IP地址</td>
+	<td>
+		<input class="text" id="VlanIP3" maxlength="39" name="VlanIP3" size="20" value="">
+	</td><td colspan="2">备用 DNS 服务器</td>
+	<td>
+		<input class="text" id="VlanSlaveDNS3" maxlength="39" name="VlanSlaveDNS3" size="18" value="">
+	</td>
+</tr>
+<tr id="idVlanMTU3">
+	<td>&nbsp;</td>
+	<td colspan="3">VLAN3 MTU</td>
+	<td>
+		<input class="text" id="VlanMTU3" maxlength="4" name="VlanMTU3" size="18" value="1400">
+	</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+</tbody></table>
+</td>
+<td width="5%">&nbsp;</td>
+</tr>
+</tbody></table>
+</form>

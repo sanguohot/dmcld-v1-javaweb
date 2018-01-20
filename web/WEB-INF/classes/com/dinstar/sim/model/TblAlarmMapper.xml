@@ -1,0 +1,879 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblAlarmMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblAlarm" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="object_type" property="objectType" jdbcType="INTEGER" />
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="ne_uuid" property="neUuid" jdbcType="INTEGER" />
+    <result column="alarm_type" property="alarmType" jdbcType="INTEGER" />
+    <result column="cause_id" property="causeId" jdbcType="INTEGER" />
+    <result column="object_brief" property="objectBrief" jdbcType="CHAR" />
+    <result column="object_desc" property="objectDesc" jdbcType="CHAR" />
+    <result column="report_time" property="reportTime" jdbcType="TIMESTAMP" />
+    <result column="recv_time" property="recvTime" jdbcType="TIMESTAMP" />
+    <result column="alarm_id" property="alarmId" jdbcType="INTEGER" />
+    <result column="sys_uuid" property="sysUuid" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="alarm_sn" property="alarmSn" jdbcType="INTEGER" />
+    <result column="alarm_index" property="alarmIndex" jdbcType="INTEGER" />
+    <result column="clean_time" property="cleanTime" jdbcType="TIMESTAMP" />
+    <result column="clean_flag" property="cleanFlag" jdbcType="INTEGER" />
+    <result column="confirm_flag" property="confirmFlag" jdbcType="INTEGER" />
+    <result column="ne_inner_sn" property="neInnerSn" jdbcType="INTEGER" />
+    <result column="alarm_flag" property="alarmFlag" jdbcType="INTEGER" />
+    <result column="push_type" property="pushType" jdbcType="INTEGER" />
+    <result column="push_flag" property="pushFlag" jdbcType="INTEGER" />
+    <result column="push_sms_flag" property="pushSmsFlag" jdbcType="INTEGER" />
+    <result column="push_mail_flag" property="pushMailFlag" jdbcType="INTEGER" />
+    <result column="ne_cpu_use" property="neCpuUse" jdbcType="INTEGER" />
+    <result column="sip_register_interval" property="sipRegisterInterval" jdbcType="INTEGER" />
+    <result column="alarm_level" property="alarmLevel" jdbcType="INTEGER" />
+    <result column="alarm_alarm_type" property="alarmAlarmType" jdbcType="INTEGER" />
+    <result column="alarm_name" property="alarmName" jdbcType="CHAR" />
+    <result column="ne_sn" property="neSn" jdbcType="CHAR" />
+  </resultMap>
+  <!-- ###################################  new begin #####################################-->
+   <resultMap id="AlarmResultMap" type="com.dinstar.sim.model.TblAlarm" extends="BaseResultMap" >
+   	<result column="ne_alias" property="neAlias" jdbcType="CHAR" />
+   	<result column="object_type_name" property="objectTypeName" jdbcType="CHAR" />
+   	<result column="cause_desc" property="causeDesc" jdbcType="CHAR" />
+   	<result column="alarm_desc" property="alarmDesc" jdbcType="CHAR" />
+   	<result column="cause_name" property="causeName" jdbcType="CHAR" />
+	<result column="product_sn" property="productSn" jdbcType="BINARY" />
+   </resultMap>
+   
+   <select id="selectByExample1" resultMap="AlarmResultMap" >
+select ta.*,tn.alias AS ne_alias,tn.product_sn,tcd.cause_name
+	,tad.alarm_name,tot.`name` AS object_type_name
+	,tcd.cause_desc,tad.alarm_desc,tad.alarm_level 
+	FROM tbl_alarm ta
+	LEFT JOIN tbl_ne tn ON(ta.ne_uuid = tn.uuid)
+	LEFT JOIN tbl_alarm_desc tad ON(tad.alarm_id = ta.alarm_id)
+	LEFT JOIN tbl_cause_desc tcd ON(tcd.cause_id = ta.cause_id)
+	LEFT JOIN tbl_object_type tot ON(ta.object_type = tot.object_type_id)
+	where (ta.rec_status IS NULL OR ta.rec_status!=2)
+	AND (tn.rec_status IS NULL OR tn.rec_status!=2)
+	AND (tad.rec_status IS NULL OR tad.rec_status!=2)
+	AND (tcd.rec_status IS NULL OR tcd.rec_status!=2)
+	AND tad.alarm_level != 8
+	<if test="domainUuid>0">AND ta.domain_uuid =#{domainUuid}</if>
+	<if test="neUuid>0">AND ta.ne_uuid =#{neUuid}</if>
+	<if test="cleanFlag!=null">AND ta.clean_flag =#{cleanFlag}</if>
+	<if test="alarmType!=null">AND ta.alarm_type =#{alarmType}</if>
+	<if test="cleanTimeB!=null and cleanTimeB!=''">
+		<![CDATA[ 
+		 and ta.clean_time >= #{cleanTimeB}
+		 ]]>
+	</if>
+	<if test="cleanTimeE!=null and cleanTimeE!=''">
+		<![CDATA[
+		 and ta.clean_time <= #{cleanTimeE}
+		]]>
+	</if>
+	<if test="recvTimeB!=null and recvTimeB!=''">
+		<![CDATA[ 
+		 and ta.recv_time >= #{recvTimeB}
+		 ]]>
+	</if>
+	<if test="recvTimeE!=null and recvTimeE!=''">
+		<![CDATA[
+		 and ta.recv_time <= #{recvTimeE}
+		]]>
+	</if>
+	<if test="reportTimeB!=null and reportTimeB!=''">
+		<![CDATA[ 
+		 and ta.report_time >= #{reportTimeB}
+		 ]]>
+	</if>
+	<if test="reportTimeE!=null and reportTimeE!=''">
+		<![CDATA[
+		 and ta.report_time <= #{reportTimeE}
+		]]>
+	</if>
+	<if test="alarmLevel!=null and alarmLevel!=8">AND tad.alarm_level =#{alarmLevel}</if>
+	<if test="neAlias!=null and neAlias!=''">and tn.alias like #{neAlias}</if>
+	<if test="objectTypeName!=null and objectTypeName!=''">
+	and tot.`name` like #{objectTypeName}
+	</if>		
+	<if test="alarmName!=null and alarmName!=''">
+	and tad.alarm_name like #{alarmName}
+	</if>	
+	<if test="causeName!=null and causeName!=''">
+	and tcd.cause_name like #{causeName}
+	</if>
+	<if test="productSnStr!=null and productSnStr!=''">AND tn.product_sn =#{productSn}</if>
+	order by tad.alarm_level asc, ta.report_time desc
+	<if test="limit>0">LIMIT #{start},#{limit}</if>
+  </select>
+  <select id="selectByExample2" resultMap="AlarmResultMap" >
+select ta.*,tcd.cause_name
+	,tad.alarm_name,tot.`name` AS object_type_name
+	,tcd.cause_desc,tad.alarm_desc,tad.alarm_level 
+	FROM tbl_alarm ta
+	LEFT JOIN tbl_alarm_desc tad ON(tad.alarm_id = ta.alarm_id)
+	LEFT JOIN tbl_cause_desc tcd ON(tcd.cause_id = ta.cause_id)
+	LEFT JOIN tbl_object_type tot ON(ta.object_type = tot.object_type_id)
+	where (ta.rec_status IS NULL OR ta.rec_status!=2)
+	AND (tad.rec_status IS NULL OR tad.rec_status!=2)
+	AND (tcd.rec_status IS NULL OR tcd.rec_status!=2)
+	AND tad.alarm_level != 8
+	<if test="domainUuid>0">AND ta.domain_uuid =#{domainUuid}</if>
+	<if test="neUuid>0">AND ta.ne_uuid =#{neUuid}</if>
+	<if test="cleanFlag!=null">AND ta.clean_flag =#{cleanFlag}</if>
+	<if test="alarmType!=null">AND ta.alarm_type =#{alarmType}</if>
+	<if test="cleanTimeB!=null and cleanTimeB!=''">
+		<![CDATA[ 
+		 and ta.clean_time >= #{cleanTimeB}
+		 ]]>
+	</if>
+	<if test="cleanTimeE!=null and cleanTimeE!=''">
+		<![CDATA[
+		 and ta.clean_time <= #{cleanTimeE}
+		]]>
+	</if>
+	<if test="recvTimeB!=null and recvTimeB!=''">
+		<![CDATA[ 
+		 and ta.recv_time >= #{recvTimeB}
+		 ]]>
+	</if>
+	<if test="recvTimeE!=null and recvTimeE!=''">
+		<![CDATA[
+		 and ta.recv_time <= #{recvTimeE}
+		]]>
+	</if>
+	<if test="reportTimeB!=null and reportTimeB!=''">
+		<![CDATA[ 
+		 and ta.report_time >= #{reportTimeB}
+		 ]]>
+	</if>
+	<if test="reportTimeE!=null and reportTimeE!=''">
+		<![CDATA[
+		 and ta.report_time <= #{reportTimeE}
+		]]>
+	</if>
+	<if test="alarmLevel!=null and alarmLevel!=8">AND tad.alarm_level =#{alarmLevel}</if>
+	<if test="neAlias!=null and neAlias!=''">and tn.alias like #{neAlias}</if>
+	<if test="objectTypeName!=null and objectTypeName!=''">
+	and tot.`name` like #{objectTypeName}
+	</if>		
+	<if test="alarmName!=null and alarmName!=''">
+	and tad.alarm_name like #{alarmName}
+	</if>	
+	<if test="causeName!=null and causeName!=''">
+	and tcd.cause_name like #{causeName}
+	</if>
+	<if test="limit>0">LIMIT #{start},#{limit}</if>
+  </select>
+  <select id="countByExample1"  resultType="java.lang.Integer" >
+	SELECT COUNT(*)
+	FROM tbl_alarm ta
+	LEFT JOIN tbl_ne tn ON(ta.ne_uuid = tn.uuid)
+	LEFT JOIN tbl_alarm_desc tad ON(tad.alarm_id = ta.alarm_id)
+	LEFT JOIN tbl_cause_desc tcd ON(tcd.cause_id = ta.cause_id)
+	LEFT JOIN tbl_object_type tot ON(ta.object_type = tot.object_type_id)
+	where (ta.rec_status IS NULL OR ta.rec_status!=2)
+	AND (tn.rec_status IS NULL OR tn.rec_status!=2)
+	AND (tad.rec_status IS NULL OR tad.rec_status!=2)
+	AND (tcd.rec_status IS NULL OR tcd.rec_status!=2)
+	AND tad.alarm_level != 8
+	<if test="domainUuid>0">AND ta.domain_uuid =#{domainUuid}</if>
+	<if test="neUuid>0">AND ta.ne_uuid =#{neUuid}</if>
+	<if test="cleanFlag!=null">AND ta.clean_flag =#{cleanFlag}</if>
+	<if test="alarmType!=null">AND ta.alarm_type =#{alarmType}</if>
+	<if test="cleanTimeB!=null and cleanTimeB!=''">
+		<![CDATA[ 
+		 and ta.clean_time >= #{cleanTimeB}
+		 ]]>
+	</if>
+	<if test="cleanTimeE!=null and cleanTimeE!=''">
+		<![CDATA[
+		 and ta.clean_time <= #{cleanTimeE}
+		]]>
+	</if>
+	<if test="recvTimeB!=null and recvTimeB!=''">
+		<![CDATA[ 
+		 and ta.recv_time >= #{recvTimeB}
+		 ]]>
+	</if>
+	<if test="recvTimeE!=null and recvTimeE!=''">
+		<![CDATA[
+		 and ta.recv_time <= #{recvTimeE}
+		]]>
+	</if>
+	<if test="reportTimeB!=null and reportTimeB!=''">
+		<![CDATA[ 
+		 and ta.report_time >= #{reportTimeB}
+		 ]]>
+	</if>
+	<if test="reportTimeE!=null and reportTimeE!=''">
+		<![CDATA[
+		 and ta.report_time <= #{reportTimeE}
+		]]>
+	</if>
+	<if test="alarmLevel!=null and alarmLevel!=8">AND tad.alarm_level =#{alarmLevel}</if>
+	<if test="neAlias!=null and neAlias!=''">and tn.alias like #{neAlias}</if>
+	<if test="objectTypeName!=null and objectTypeName!=''">
+	and tot.`name` like #{objectTypeName}
+	</if>		
+	<if test="alarmName!=null and alarmName!=''">
+	and tad.alarm_name like #{alarmName}
+	</if>	
+	<if test="causeName!=null and causeName!=''">
+	and tcd.cause_name like #{causeName}
+	</if>
+	<if test="productSnStr!=null and productSnStr!=''">AND tn.product_sn =#{productSn}</if>
+  </select>
+  <select id="countByExample2"  resultType="java.lang.Integer" >
+	SELECT COUNT(*)
+	FROM tbl_alarm ta
+	LEFT JOIN tbl_alarm_desc tad ON(tad.alarm_id = ta.alarm_id)
+	LEFT JOIN tbl_cause_desc tcd ON(tcd.cause_id = ta.cause_id)
+	LEFT JOIN tbl_object_type tot ON(ta.object_type = tot.object_type_id)
+	where (ta.rec_status IS NULL OR ta.rec_status!=2)
+	AND (tad.rec_status IS NULL OR tad.rec_status!=2)
+	AND (tcd.rec_status IS NULL OR tcd.rec_status!=2)
+	AND tad.alarm_level != 8
+	<if test="domainUuid>0">AND ta.domain_uuid =#{domainUuid}</if>
+	<if test="neUuid>0">AND ta.ne_uuid =#{neUuid}</if>
+	<if test="cleanFlag!=null">AND ta.clean_flag =#{cleanFlag}</if>
+	<if test="alarmType!=null">AND ta.alarm_type =#{alarmType}</if>
+	<if test="cleanTimeB!=null and cleanTimeB!=''">
+		<![CDATA[ 
+		 and ta.clean_time >= #{cleanTimeB}
+		 ]]>
+	</if>
+	<if test="cleanTimeE!=null and cleanTimeE!=''">
+		<![CDATA[
+		 and ta.clean_time <= #{cleanTimeE}
+		]]>
+	</if>
+	<if test="recvTimeB!=null and recvTimeB!=''">
+		<![CDATA[ 
+		 and ta.recv_time >= #{recvTimeB}
+		 ]]>
+	</if>
+	<if test="recvTimeE!=null and recvTimeE!=''">
+		<![CDATA[
+		 and ta.recv_time <= #{recvTimeE}
+		]]>
+	</if>
+	<if test="reportTimeB!=null and reportTimeB!=''">
+		<![CDATA[ 
+		 and ta.report_time >= #{reportTimeB}
+		 ]]>
+	</if>
+	<if test="reportTimeE!=null and reportTimeE!=''">
+		<![CDATA[
+		 and ta.report_time <= #{reportTimeE}
+		]]>
+	</if>
+	<if test="alarmLevel!=null and alarmLevel!=8">AND tad.alarm_level =#{alarmLevel}</if>
+	<if test="objectTypeName!=null and objectTypeName!=''">
+	and tot.`name` like #{objectTypeName}
+	</if>		
+	<if test="alarmName!=null and alarmName!=''">
+	and tad.alarm_name like #{alarmName}
+	</if>	
+	<if test="causeName!=null and causeName!=''">
+	and tcd.cause_name like #{causeName}
+	</if>
+  </select>
+    <!-- ###################################  new end #####################################-->
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, object_type, object_id, ne_uuid, alarm_type, cause_id, object_brief, 
+    object_desc, report_time, recv_time, alarm_id, sys_uuid, domain_uuid, alarm_sn, alarm_index, 
+    clean_time, clean_flag, confirm_flag, ne_inner_sn, alarm_flag, push_type, push_flag, 
+    push_sms_flag, push_mail_flag, ne_cpu_use, sip_register_interval, alarm_level, alarm_alarm_type, 
+    alarm_name, ne_sn
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblAlarmCriteria" >
+	select
+    <if test="distinct" >
+      distinct
+    </if>
+    <choose>
+        <when test="myCol!=null"> ${myCol}</when>
+        <otherwise><include refid="Base_Column_List" /></otherwise>
+    </choose>
+    from tbl_alarm
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="groupBy != null" >
+      group by ${groupBy}
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+   <if test="limitClause != null" >
+      limit ${limitClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_alarm
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_alarm
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblAlarmCriteria" >
+    delete from tbl_alarm
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblAlarm" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_alarm (uuid, rec_status, object_type, 
+      object_id, ne_uuid, alarm_type, 
+      cause_id, object_brief, object_desc, 
+      report_time, recv_time, alarm_id, 
+      sys_uuid, domain_uuid, alarm_sn, 
+      alarm_index, clean_time, clean_flag, 
+      confirm_flag, ne_inner_sn, alarm_flag, 
+      push_type, push_flag, push_sms_flag, 
+      push_mail_flag, ne_cpu_use, sip_register_interval, 
+      alarm_level, alarm_alarm_type, alarm_name, 
+      ne_sn)
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{objectType,jdbcType=INTEGER}, 
+      #{objectId,jdbcType=INTEGER}, #{neUuid,jdbcType=INTEGER}, #{alarmType,jdbcType=INTEGER}, 
+      #{causeId,jdbcType=INTEGER}, #{objectBrief,jdbcType=CHAR}, #{objectDesc,jdbcType=CHAR}, 
+      #{reportTime,jdbcType=TIMESTAMP}, #{recvTime,jdbcType=TIMESTAMP}, #{alarmId,jdbcType=INTEGER}, 
+      #{sysUuid,jdbcType=INTEGER}, #{domainUuid,jdbcType=INTEGER}, #{alarmSn,jdbcType=INTEGER}, 
+      #{alarmIndex,jdbcType=INTEGER}, #{cleanTime,jdbcType=TIMESTAMP}, #{cleanFlag,jdbcType=INTEGER}, 
+      #{confirmFlag,jdbcType=INTEGER}, #{neInnerSn,jdbcType=INTEGER}, #{alarmFlag,jdbcType=INTEGER}, 
+      #{pushType,jdbcType=INTEGER}, #{pushFlag,jdbcType=INTEGER}, #{pushSmsFlag,jdbcType=INTEGER}, 
+      #{pushMailFlag,jdbcType=INTEGER}, #{neCpuUse,jdbcType=INTEGER}, #{sipRegisterInterval,jdbcType=INTEGER}, 
+      #{alarmLevel,jdbcType=INTEGER}, #{alarmAlarmType,jdbcType=INTEGER}, #{alarmName,jdbcType=CHAR}, 
+      #{neSn,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblAlarm" useGeneratedKeys="true" keyProperty="uuid">
+    insert into tbl_alarm
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="objectType != null" >
+        object_type,
+      </if>
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="neUuid != null" >
+        ne_uuid,
+      </if>
+      <if test="alarmType != null" >
+        alarm_type,
+      </if>
+      <if test="causeId != null" >
+        cause_id,
+      </if>
+      <if test="objectBrief != null" >
+        object_brief,
+      </if>
+      <if test="objectDesc != null" >
+        object_desc,
+      </if>
+      <if test="reportTime != null" >
+        report_time,
+      </if>
+      <if test="recvTime != null" >
+        recv_time,
+      </if>
+      <if test="alarmId != null" >
+        alarm_id,
+      </if>
+      <if test="sysUuid != null" >
+        sys_uuid,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="alarmSn != null" >
+        alarm_sn,
+      </if>
+      <if test="alarmIndex != null" >
+        alarm_index,
+      </if>
+      <if test="cleanTime != null" >
+        clean_time,
+      </if>
+      <if test="cleanFlag != null" >
+        clean_flag,
+      </if>
+      <if test="confirmFlag != null" >
+        confirm_flag,
+      </if>
+      <if test="neInnerSn != null" >
+        ne_inner_sn,
+      </if>
+      <if test="alarmFlag != null" >
+        alarm_flag,
+      </if>
+      <if test="pushType != null" >
+        push_type,
+      </if>
+      <if test="pushFlag != null" >
+        push_flag,
+      </if>
+      <if test="pushSmsFlag != null" >
+        push_sms_flag,
+      </if>
+      <if test="pushMailFlag != null" >
+        push_mail_flag,
+      </if>
+      <if test="neCpuUse != null" >
+        ne_cpu_use,
+      </if>
+      <if test="sipRegisterInterval != null" >
+        sip_register_interval,
+      </if>
+      <if test="alarmLevel != null" >
+        alarm_level,
+      </if>
+      <if test="alarmAlarmType != null" >
+        alarm_alarm_type,
+      </if>
+      <if test="alarmName != null" >
+        alarm_name,
+      </if>
+      <if test="neSn != null" >
+        ne_sn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="objectType != null" >
+        #{objectType,jdbcType=INTEGER},
+      </if>
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="neUuid != null" >
+        #{neUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alarmType != null" >
+        #{alarmType,jdbcType=INTEGER},
+      </if>
+      <if test="causeId != null" >
+        #{causeId,jdbcType=INTEGER},
+      </if>
+      <if test="objectBrief != null" >
+        #{objectBrief,jdbcType=CHAR},
+      </if>
+      <if test="objectDesc != null" >
+        #{objectDesc,jdbcType=CHAR},
+      </if>
+      <if test="reportTime != null" >
+        #{reportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recvTime != null" >
+        #{recvTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmId != null" >
+        #{alarmId,jdbcType=INTEGER},
+      </if>
+      <if test="sysUuid != null" >
+        #{sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alarmSn != null" >
+        #{alarmSn,jdbcType=INTEGER},
+      </if>
+      <if test="alarmIndex != null" >
+        #{alarmIndex,jdbcType=INTEGER},
+      </if>
+      <if test="cleanTime != null" >
+        #{cleanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cleanFlag != null" >
+        #{cleanFlag,jdbcType=INTEGER},
+      </if>
+      <if test="confirmFlag != null" >
+        #{confirmFlag,jdbcType=INTEGER},
+      </if>
+      <if test="neInnerSn != null" >
+        #{neInnerSn,jdbcType=INTEGER},
+      </if>
+      <if test="alarmFlag != null" >
+        #{alarmFlag,jdbcType=INTEGER},
+      </if>
+      <if test="pushType != null" >
+        #{pushType,jdbcType=INTEGER},
+      </if>
+      <if test="pushFlag != null" >
+        #{pushFlag,jdbcType=INTEGER},
+      </if>
+      <if test="pushSmsFlag != null" >
+        #{pushSmsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="pushMailFlag != null" >
+        #{pushMailFlag,jdbcType=INTEGER},
+      </if>
+      <if test="neCpuUse != null" >
+        #{neCpuUse,jdbcType=INTEGER},
+      </if>
+      <if test="sipRegisterInterval != null" >
+        #{sipRegisterInterval,jdbcType=INTEGER},
+      </if>
+      <if test="alarmLevel != null" >
+        #{alarmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="alarmAlarmType != null" >
+        #{alarmAlarmType,jdbcType=INTEGER},
+      </if>
+      <if test="alarmName != null" >
+        #{alarmName,jdbcType=CHAR},
+      </if>
+      <if test="neSn != null" >
+        #{neSn,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblAlarmCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_alarm
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_alarm
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.objectType != null" >
+        object_type = #{record.objectType,jdbcType=INTEGER},
+      </if>
+      <if test="record.objectId != null" >
+        object_id = #{record.objectId,jdbcType=INTEGER},
+      </if>
+      <if test="record.neUuid != null" >
+        ne_uuid = #{record.neUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmType != null" >
+        alarm_type = #{record.alarmType,jdbcType=INTEGER},
+      </if>
+      <if test="record.causeId != null" >
+        cause_id = #{record.causeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.objectBrief != null" >
+        object_brief = #{record.objectBrief,jdbcType=CHAR},
+      </if>
+      <if test="record.objectDesc != null" >
+        object_desc = #{record.objectDesc,jdbcType=CHAR},
+      </if>
+      <if test="record.reportTime != null" >
+        report_time = #{record.reportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.recvTime != null" >
+        recv_time = #{record.recvTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.alarmId != null" >
+        alarm_id = #{record.alarmId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sysUuid != null" >
+        sys_uuid = #{record.sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmSn != null" >
+        alarm_sn = #{record.alarmSn,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmIndex != null" >
+        alarm_index = #{record.alarmIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.cleanTime != null" >
+        clean_time = #{record.cleanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cleanFlag != null" >
+        clean_flag = #{record.cleanFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.confirmFlag != null" >
+        confirm_flag = #{record.confirmFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.neInnerSn != null" >
+        ne_inner_sn = #{record.neInnerSn,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmFlag != null" >
+        alarm_flag = #{record.alarmFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushType != null" >
+        push_type = #{record.pushType,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushFlag != null" >
+        push_flag = #{record.pushFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushSmsFlag != null" >
+        push_sms_flag = #{record.pushSmsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushMailFlag != null" >
+        push_mail_flag = #{record.pushMailFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.neCpuUse != null" >
+        ne_cpu_use = #{record.neCpuUse,jdbcType=INTEGER},
+      </if>
+      <if test="record.sipRegisterInterval != null" >
+        sip_register_interval = #{record.sipRegisterInterval,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmLevel != null" >
+        alarm_level = #{record.alarmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmAlarmType != null" >
+        alarm_alarm_type = #{record.alarmAlarmType,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmName != null" >
+        alarm_name = #{record.alarmName,jdbcType=CHAR},
+      </if>
+      <if test="record.neSn != null" >
+        ne_sn = #{record.neSn,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_alarm
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      object_type = #{record.objectType,jdbcType=INTEGER},
+      object_id = #{record.objectId,jdbcType=INTEGER},
+      ne_uuid = #{record.neUuid,jdbcType=INTEGER},
+      alarm_type = #{record.alarmType,jdbcType=INTEGER},
+      cause_id = #{record.causeId,jdbcType=INTEGER},
+      object_brief = #{record.objectBrief,jdbcType=CHAR},
+      object_desc = #{record.objectDesc,jdbcType=CHAR},
+      report_time = #{record.reportTime,jdbcType=TIMESTAMP},
+      recv_time = #{record.recvTime,jdbcType=TIMESTAMP},
+      alarm_id = #{record.alarmId,jdbcType=INTEGER},
+      sys_uuid = #{record.sysUuid,jdbcType=INTEGER},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      alarm_sn = #{record.alarmSn,jdbcType=INTEGER},
+      alarm_index = #{record.alarmIndex,jdbcType=INTEGER},
+      clean_time = #{record.cleanTime,jdbcType=TIMESTAMP},
+      clean_flag = #{record.cleanFlag,jdbcType=INTEGER},
+      confirm_flag = #{record.confirmFlag,jdbcType=INTEGER},
+      ne_inner_sn = #{record.neInnerSn,jdbcType=INTEGER},
+      alarm_flag = #{record.alarmFlag,jdbcType=INTEGER},
+      push_type = #{record.pushType,jdbcType=INTEGER},
+      push_flag = #{record.pushFlag,jdbcType=INTEGER},
+      push_sms_flag = #{record.pushSmsFlag,jdbcType=INTEGER},
+      push_mail_flag = #{record.pushMailFlag,jdbcType=INTEGER},
+      ne_cpu_use = #{record.neCpuUse,jdbcType=INTEGER},
+      sip_register_interval = #{record.sipRegisterInterval,jdbcType=INTEGER},
+      alarm_level = #{record.alarmLevel,jdbcType=INTEGER},
+      alarm_alarm_type = #{record.alarmAlarmType,jdbcType=INTEGER},
+      alarm_name = #{record.alarmName,jdbcType=CHAR},
+      ne_sn = #{record.neSn,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblAlarm" >
+    update tbl_alarm
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="objectType != null" >
+        object_type = #{objectType,jdbcType=INTEGER},
+      </if>
+      <if test="objectId != null" >
+        object_id = #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="neUuid != null" >
+        ne_uuid = #{neUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alarmType != null" >
+        alarm_type = #{alarmType,jdbcType=INTEGER},
+      </if>
+      <if test="causeId != null" >
+        cause_id = #{causeId,jdbcType=INTEGER},
+      </if>
+      <if test="objectBrief != null" >
+        object_brief = #{objectBrief,jdbcType=CHAR},
+      </if>
+      <if test="objectDesc != null" >
+        object_desc = #{objectDesc,jdbcType=CHAR},
+      </if>
+      <if test="reportTime != null" >
+        report_time = #{reportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recvTime != null" >
+        recv_time = #{recvTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmId != null" >
+        alarm_id = #{alarmId,jdbcType=INTEGER},
+      </if>
+      <if test="sysUuid != null" >
+        sys_uuid = #{sysUuid,jdbcType=INTEGER},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alarmSn != null" >
+        alarm_sn = #{alarmSn,jdbcType=INTEGER},
+      </if>
+      <if test="alarmIndex != null" >
+        alarm_index = #{alarmIndex,jdbcType=INTEGER},
+      </if>
+      <if test="cleanTime != null" >
+        clean_time = #{cleanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cleanFlag != null" >
+        clean_flag = #{cleanFlag,jdbcType=INTEGER},
+      </if>
+      <if test="confirmFlag != null" >
+        confirm_flag = #{confirmFlag,jdbcType=INTEGER},
+      </if>
+      <if test="neInnerSn != null" >
+        ne_inner_sn = #{neInnerSn,jdbcType=INTEGER},
+      </if>
+      <if test="alarmFlag != null" >
+        alarm_flag = #{alarmFlag,jdbcType=INTEGER},
+      </if>
+      <if test="pushType != null" >
+        push_type = #{pushType,jdbcType=INTEGER},
+      </if>
+      <if test="pushFlag != null" >
+        push_flag = #{pushFlag,jdbcType=INTEGER},
+      </if>
+      <if test="pushSmsFlag != null" >
+        push_sms_flag = #{pushSmsFlag,jdbcType=INTEGER},
+      </if>
+      <if test="pushMailFlag != null" >
+        push_mail_flag = #{pushMailFlag,jdbcType=INTEGER},
+      </if>
+      <if test="neCpuUse != null" >
+        ne_cpu_use = #{neCpuUse,jdbcType=INTEGER},
+      </if>
+      <if test="sipRegisterInterval != null" >
+        sip_register_interval = #{sipRegisterInterval,jdbcType=INTEGER},
+      </if>
+      <if test="alarmLevel != null" >
+        alarm_level = #{alarmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="alarmAlarmType != null" >
+        alarm_alarm_type = #{alarmAlarmType,jdbcType=INTEGER},
+      </if>
+      <if test="alarmName != null" >
+        alarm_name = #{alarmName,jdbcType=CHAR},
+      </if>
+      <if test="neSn != null" >
+        ne_sn = #{neSn,jdbcType=CHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblAlarm" >
+    update tbl_alarm
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      object_type = #{objectType,jdbcType=INTEGER},
+      object_id = #{objectId,jdbcType=INTEGER},
+      ne_uuid = #{neUuid,jdbcType=INTEGER},
+      alarm_type = #{alarmType,jdbcType=INTEGER},
+      cause_id = #{causeId,jdbcType=INTEGER},
+      object_brief = #{objectBrief,jdbcType=CHAR},
+      object_desc = #{objectDesc,jdbcType=CHAR},
+      report_time = #{reportTime,jdbcType=TIMESTAMP},
+      recv_time = #{recvTime,jdbcType=TIMESTAMP},
+      alarm_id = #{alarmId,jdbcType=INTEGER},
+      sys_uuid = #{sysUuid,jdbcType=INTEGER},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      alarm_sn = #{alarmSn,jdbcType=INTEGER},
+      alarm_index = #{alarmIndex,jdbcType=INTEGER},
+      clean_time = #{cleanTime,jdbcType=TIMESTAMP},
+      clean_flag = #{cleanFlag,jdbcType=INTEGER},
+      confirm_flag = #{confirmFlag,jdbcType=INTEGER},
+      ne_inner_sn = #{neInnerSn,jdbcType=INTEGER},
+      alarm_flag = #{alarmFlag,jdbcType=INTEGER},
+      push_type = #{pushType,jdbcType=INTEGER},
+      push_flag = #{pushFlag,jdbcType=INTEGER},
+      push_sms_flag = #{pushSmsFlag,jdbcType=INTEGER},
+      push_mail_flag = #{pushMailFlag,jdbcType=INTEGER},
+      ne_cpu_use = #{neCpuUse,jdbcType=INTEGER},
+      sip_register_interval = #{sipRegisterInterval,jdbcType=INTEGER},
+      alarm_level = #{alarmLevel,jdbcType=INTEGER},
+      alarm_alarm_type = #{alarmAlarmType,jdbcType=INTEGER},
+      alarm_name = #{alarmName,jdbcType=CHAR},
+      ne_sn = #{neSn,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

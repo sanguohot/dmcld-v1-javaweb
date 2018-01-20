@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<!-- domain 配置文件 -->
+<mapper namespace="com.dinstar.sim.mapper.Cloud">
+	<resultMap type="com.dinstar.sim.mapper.CloudMapper" id="cloudMapperMap">
+		<id column="uuid" property="uuid" jdbcType="INTEGER" />
+	    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="name" property="name" jdbcType="CHAR" />
+	    <result column="alias" property="alias" jdbcType="CHAR" />
+	    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+	    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+	    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+	    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+	    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+	    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+	    <result column="vendor_name" property="vendorName" jdbcType="CHAR" />
+	    <result column="product_name" property="productName" jdbcType="CHAR" />
+	    <result column="cli_prompt" property="cliPrompt" jdbcType="CHAR" />
+	    <result column="password_md5" property="passwordMd5" jdbcType="CHAR" />
+	    <result column="software_version" property="softwareVersion" jdbcType="CHAR" />
+	    <result column="software_build_time" property="softwareBuildTime" jdbcType="TIMESTAMP" />
+	    <result column="default_timezone_flag" property="defaultTimezoneFlag" jdbcType="INTEGER" />
+	    <result column="default_ntp_server1" property="defaultNtpServer1" jdbcType="CHAR" />
+	    <result column="default_ntp_server2" property="defaultNtpServer2" jdbcType="CHAR" />
+	    <result column="provision_url" property="provisionUrl" jdbcType="CHAR" />
+	    <result column="provision_username" property="provisionUsername" jdbcType="CHAR" />
+	    <result column="provision_password" property="provisionPassword" jdbcType="CHAR" />
+	    <result column="man_domain_uuid" property="manDomainUuid" jdbcType="INTEGER" />
+	    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	    <result column="detail_desc" property="detailDesc" jdbcType="CHAR" />
+	    <result column="man_domain_name" property="manDomainName" jdbcType="CHAR" />
+	</resultMap>
+
+	<select id="getCloudList" resultMap="cloudMapperMap">
+		SELECT tc.*,td.`name` AS man_domain_name 
+		FROM
+		tbl_cloud tc
+		LEFT JOIN tbl_domain td on(td.uuid=tc.man_domain_uuid)
+		WHERE 1=1
+		<if test="cloudName!=null and cloudName!=''">AND tc.`name` like #{cloudName}</if>
+		<if test="adminStatus!=null and adminStatus>0">AND tc.admin_status = #{adminStatus}</if>
+		<if test="runStatus!=null and runStatus>0">AND tc.run_status = #{runStatus}</if>
+		<if test="detailDesc!=null and detailDesc!=''">AND tc.detail_desc like #{detailDesc}</if>
+		<if test="cloudUuid!=null and cloudUuid>0">and tc.uuid = #{cloudUuid}</if>	
+		<if test="sort != null" >
+     		 order by ${sort}
+    	</if>
+		<if test="limit>0">LIMIT #{start},#{limit}</if>		
+    </select>
+</mapper>

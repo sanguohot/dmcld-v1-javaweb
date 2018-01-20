@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- tree mapper
+ #{domainUuid,mode=IN,jdbcType=INTEGER},#{userType,mode=IN,jdbcType=INTEGER},#{userUuid,mode=IN,jdbcType=INTEGER}
+  -->
+<mapper namespace="com.dinstar.sim.mapper.Pmd">
+	<resultMap type="com.dinstar.sim.model.TblPmdNe" id="baseResultMap">
+		<result column="uuid" property="uuid" jdbcType="INTEGER"/>
+		<result column="ne_uuid" property="neUuid" jdbcType="INTEGER"/>
+		<result column="device_uuid" property="deviceUuid" jdbcType="INTEGER"/>
+		<result column="port_num" property="portNum" jdbcType="INTEGER"/>
+       <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER"/>
+       <result column="domain_name" property="domainName" jdbcType="CHAR"/>
+       <result column="name" property="name" jdbcType="CHAR"/>
+       <result column="acd" property="acd" jdbcType="INTEGER"/>
+       <result column="asr" property="asr" jdbcType="INTEGER"/>
+       <result column="rate" property="rate" jdbcType="INTEGER"/>
+       <result column="run_time_len" property="runTimeLen" jdbcType="INTEGER"/>
+       <result column="sys_up_timelen" property="sysUpTimelen" jdbcType="INTEGER"/>
+       <result column="product_id" property="productId" jdbcType="INTEGER"/>
+       <result column="max_ping_delay" property="maxPingDelay" jdbcType="INTEGER"/>
+       <result column="generate_time" property="generateTime" jdbcType="TIMESTAMP" />
+       <result column="last_reg_time" property="lastRegTime" jdbcType="TIMESTAMP" />
+       <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+       <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+       <result column="product_sn" property="productSn" jdbcType="BINARY" />
+       <result column="product_name" property="productName" jdbcType="CHAR"/>
+    </resultMap>
+  <resultMap id="baseResultMap2" type="com.dinstar.sim.model.TblPmdNe15" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="ne_uuid" property="neUuid" jdbcType="INTEGER" />
+    <result column="serial_no" property="serialNo" jdbcType="INTEGER" />
+    <result column="generate_time" property="generateTime" jdbcType="TIMESTAMP" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="ne_reg_fail_cnt" property="neRegFailCnt" jdbcType="INTEGER" />
+    <result column="ne_run_timelen" property="neRunTimelen" jdbcType="INTEGER" />
+    <result column="recv_pkt_cnt" property="recvPktCnt" jdbcType="INTEGER" />
+    <result column="send_pkt_cnt" property="sendPktCnt" jdbcType="INTEGER" />
+    <result column="recv_loss_cnt" property="recvLossCnt" jdbcType="INTEGER" />
+    <result column="send_loss_cnt" property="sendLossCnt" jdbcType="INTEGER" />
+    <result column="recv_timeout_cnt" property="recvTimeoutCnt" jdbcType="INTEGER" />
+    <result column="send_timeout_cnt" property="sendTimeoutCnt" jdbcType="INTEGER" />
+    <result column="cur_ping_delay_ms" property="curPingDelayMs" jdbcType="INTEGER" />
+    <result column="min_ping_delay_ms" property="minPingDelayMs" jdbcType="INTEGER" />
+    <result column="max_ping_delay_ms" property="maxPingDelayMs" jdbcType="INTEGER" />
+    <result column="flash_rd_fail_count" property="flashRdFailCount" jdbcType="INTEGER" />
+    <result column="flash_wt_fail_count" property="flashWtFailCount" jdbcType="INTEGER" />
+    <result column="mem_alloc_fail_count" property="memAllocFailCount" jdbcType="INTEGER" />
+    <result column="total_call_count" property="totalCallCount" jdbcType="INTEGER" />
+    <result column="cur_call_count" property="curCallCount" jdbcType="INTEGER" />
+    <result column="cur_cpu_usage" property="curCpuUsage" jdbcType="INTEGER" />
+    <result column="asr" property="asr" jdbcType="INTEGER" />
+    <result column="acd" property="acd" jdbcType="INTEGER" />
+    <result column="sys_up_timelen" property="sysUpTimelen" jdbcType="INTEGER" />
+    <result column="rise_call_cnt" property="riseCallCnt" jdbcType="INTEGER" />
+    <result column="rise_call_time" property="riseCallTime" jdbcType="BIGINT" />
+    <result column="total_call_time" property="totalCallTime" jdbcType="BIGINT" />
+    <result column="total_call_fail_cnt" property="totalCallFailCnt" jdbcType="INTEGER" />
+    <result column="rise_call_fail_cnt" property="riseCallFailCnt" jdbcType="INTEGER" />
+    <result column="rise_asr" property="riseAsr" jdbcType="INTEGER" />
+    <result column="rise_acd" property="riseAcd" jdbcType="INTEGER" />
+    <result column="ping_sip_delay_ms" property="pingSipDelayMs" jdbcType="INTEGER" />
+    <result column="ping_sip_delay_lost" property="pingSipDelayLost" jdbcType="INTEGER" />
+    <result column="caps_in" property="capsIn" jdbcType="INTEGER" />
+    <result column="caps_out" property="capsOut" jdbcType="INTEGER" />
+    <result column="mem_usage" property="memUsage" jdbcType="INTEGER" />
+    <result column="comm_fail_count" property="commFailCount" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="getPmdNe2" resultMap="baseResultMap2" parameterType="java.util.HashMap">    
+    SELECT domain_uuid,ne_uuid,generate_time,round(avg(ne_reg_fail_cnt)) as ne_reg_fail_cnt,round(avg(ne_run_timelen)) as ne_run_timelen 
+		<!--,round(avg(recv_pkt_cnt)) as recv_pkt_cnt,round(avg(send_pkt_cnt)) as send_pkt_cnt-->
+		<!--,round(avg(recv_loss_cnt)) as recv_loss_cnt,round(avg(send_loss_cnt)) as send_loss_cnt-->
+		<!--,round(avg(recv_timeout_cnt)) as recv_timeout_cnt,round(avg(send_timeout_cnt)) as send_timeout_cnt-->
+		,round(avg(cur_ping_delay_ms)) as cur_ping_delay_ms,round(avg(min_ping_delay_ms)) as min_ping_delay_ms
+		,round(avg(max_ping_delay_ms)) as max_ping_delay_ms,round(avg(flash_rd_fail_count)) as flash_rd_fail_count
+		<!--,round(avg(flash_wt_fail_count)) as flash_wt_fail_count,round(avg(mem_alloc_fail_count)) as mem_alloc_fail_count-->
+		,round(avg(sys_up_timelen)) as sys_up_timelen,round(avg(cur_cpu_usage)) as cur_cpu_usage
+		,round(avg(comm_fail_count)) as comm_fail_count,round(avg(ping_sip_delay_lost)) as ping_sip_delay_lost
+		,round(avg(ping_sip_delay_ms)) as ping_sip_delay_ms,round(avg(mem_usage)) as mem_usage
+		FROM ${tbl} n
+		where 1=1
+		 <if test="domainUuid>0" >
+        AND n.domain_uuid=#{domainUuid}
+      </if>
+      <if test="neUuid>0" >
+        AND n.ne_uuid=#{neUuid}
+      </if>
+      <if test="fromDate!=null and fromDate!=''" >
+      <![CDATA[
+          and n.generate_time >= #{fromDate}
+          ]]>
+        </if>
+    <if test="toDate!=null and toDate!=''" >
+      <![CDATA[
+          and n.generate_time <= #{toDate}
+          ]]>
+        </if>
+      <if test="idl!=null">
+        and n.ne_uuid in
+      <foreach collection="idl" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+      </if>
+		group by generate_time;
+  </select>
+      
+	 <select id="getPmdNe" resultMap="baseResultMap" parameterType="java.util.HashMap">		
+		SELECT tpm.*,tn.uuid as ne_uuid ,tn.product_id,tn.alias as 'name',tn.last_reg_time,tn.domain_uuid 
+		,td.`name` as domain_name,tn.run_status,tn.product_sn,tn.admin_status,tn.product_name 
+		FROM tbl_domain td LEFT JOIN tbl_ne tn on(tn.domain_uuid=td.uuid)  
+		left JOIN (select tpm.max_ping_delay_ms as max_ping_delay,tpm.generate_time,tpm.ne_run_timelen as run_time_len,tpm.sys_up_timelen,tpm.ne_uuid 
+			from tbl_pmd_ne_15 tpm  order by tpm.generate_time desc) tpm 
+		on (tpm.ne_uuid=tn.uuid) 		
+		WHERE tn.rec_status!=2
+		<if test="domainName!=null and domainName!=''" >
+        	AND td.name like #{domainName}
+      	</if>
+      	<if test="neAlias!=null and neAlias!=''" >
+        	AND tn.alias like #{neAlias}
+      	</if>
+		<if test="domainUuid>0" >
+        	AND tn.domain_uuid = #{domainUuid}
+      	</if>
+      	<if test="cloudUuid!=null" >
+        	AND td.cloud_uuid = #{cloudUuid}
+      	</if>
+      	<if test="productSnStr!=null and productSnStr!=''">
+      		AND tn.product_sn =#{productSn}
+      	</if>
+       	group by tn.uuid
+		order by td.name,tn.alias
+		LIMIT #{start},#{limit}
+	</select>
+	
+	
+	<select id="countNe"  parameterType="java.util.HashMap" resultType="java.lang.Integer">		
+		SELECT count(*)
+		FROM tbl_ne tn
+		LEFT JOIN tbl_domain td on(tn.domain_uuid=td.uuid)
+		WHERE tn.rec_status!=2
+		<if test="domainName!=null and domainName!=''" >
+        	AND td.name like #{domainName}
+      	</if>
+      	<if test="neAlias!=null and neAlias!=''" >
+        	AND tn.alias like #{neAlias}
+      	</if>
+		<if test="domainUuid>0" >
+        	AND tn.domain_uuid = #{domainUuid}
+      	</if>
+      	<if test="cloudUuid!=null" >
+        	AND td.cloud_uuid = #{cloudUuid}
+      	</if>
+      	<if test="productSnStr!=null and productSnStr!=''">
+      		AND tn.product_sn =#{productSn}
+      	</if>
+	</select>
+	 <select id="getChartByNeUuid" resultMap="baseResultMap" parameterType="java.util.HashMap">		
+		SELECT tpg.uuid,tpg.generate_time,tg.uuid as device_uuid,tn.uuid as ne_uuid,
+		tn.domain_uuid,tg.gwp_num,tpg.call_succ_rate AS asr,
+		(case (ISNULL(tg.gwp_num) OR (tg.gwp_num=0))
+				WHEN 1 THEN 0
+				ELSE CONVERT((tpg.call_time_all*60)*100/(900*tg.gwp_num),SIGNED)
+			END) as rate 
+		FROM tbl_pmd_gw_15 tpg
+		LEFT JOIN tbl_gw tg on(tpg.gw_uuid=tg.uuid)
+		LEFT JOIN tbl_ne tn on(tg.ne_uuid=tn.uuid)
+		WHERE tn.rec_status!=2
+		AND tg.ne_uuid = #{neUuid}
+		<if test="fromDate != null" >
+			<![CDATA[
+        	and tpg.generate_time >= #{fromDate}
+        	]]>
+      	</if>
+		<if test="toDate != null" >
+			<![CDATA[
+        	and tpg.generate_time <= #{toDate}
+        	]]>
+      	</if>
+		ORDER BY tpg.generate_time DESC
+		LIMIT #{start},#{limit}
+	</select>
+	 <select id="getGwRate" statementType="CALLABLE" resultMap="baseResultMap" parameterType="java.util.HashMap">
+		<![CDATA[
+		  {call PROC_GET_PMD_BY_UUID (
+		  			#{neUuids,mode=IN,jdbcType=CHAR},
+		  			#{count,mode=IN,jdbcType=INTEGER}
+		  		)
+		  }
+		]]>
+	</select>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- ne port mapper -->
+<mapper namespace="com.dinstar.sim.mapper.OrderItem">
+	  <!-- 自定义 -->  
+  <insert id="insertMulSelective" parameterType="java.util.List">   
+    insert into tbl_order_item (rec_status, domain_uuid, 
+      domain_name, product_id, product_name, 
+      product_sn, product_mac, unit_cost, 
+      cnt, detail_desc,order_number,days,expire_day,user_uuid,user_name,user_domain_uuid,user_domain_name)   
+    values  
+    <foreach collection="list" item="item" index="index" separator="," >
+    (#{item.recStatus,jdbcType=INTEGER}, #{item.domainUuid,jdbcType=INTEGER}, 
+      #{item.domainName,jdbcType=CHAR}, #{item.productId,jdbcType=INTEGER}, #{item.productName,jdbcType=CHAR}, 
+      #{item.productSn,jdbcType=CHAR}, #{item.productMac,jdbcType=CHAR}, #{item.unitCost,jdbcType=INTEGER}, 
+      #{item.cnt,jdbcType=INTEGER}, #{item.detailDesc,jdbcType=CHAR}, #{item.orderNumber,jdbcType=CHAR}
+      , #{item.days}, #{item.expireDay}, #{item.userUuid}, #{item.userName}, #{item.userDomainUuid}, #{item.userDomainName})
+    </foreach>
+    ON DUPLICATE key UPDATE rec_status=values(rec_status)  
+</insert>
+</mapper>

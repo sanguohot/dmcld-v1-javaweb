@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- simbank 端口映射配置文件 -->
+<mapper namespace="com.dinstar.sim.mapper.Remote">
+	<resultMap type="com.dinstar.sim.mapper.RemoteMapper" id="remoteMapperMap">
+	    <result column="sys_ip_addr" property="sysIpAddr" jdbcType="CHAR" />
+	    <result column="sys_web_port" property="sysWebPort" jdbcType="CHAR" />
+	    <result column="idle_time" property="idleTime" jdbcType="INTEGER" />
+	    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+	    <result column="sys_uuid" property="sysUuid" jdbcType="INTEGER" />
+	    
+	</resultMap>
+	    
+    <select id="getRemoteIp" resultMap="remoteMapperMap" parameterType="java.lang.Integer">
+		select  td.uuid as domain_uuid,
+		ts.uuid as sys_uuid,ts.sys_ip_addr,ts.sys_web_port,td.idle_time from tbl_domain td, tbl_sys  ts
+		where td.sys_uuid=ts.uuid and td.uuid=#{domainUuid}
+    </select>
+</mapper>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CLOUD v1.5</title>
+
+  <!-- Bootstrap -->
+  <link href="dm/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="dm/css/tree.css" />
+  <link rel="stylesheet" type="text/css" href="dm/css/tab-menu.css" />
+  
+  <link rel="stylesheet" type="text/css" href="dm/css/dev-sch.css" />
+  <link rel="stylesheet" type="text/css" href="dm/css/headroom.css" />
+  <link href="dm/bootstrap-3.3.2-dist/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="dm/bootstrap-3.3.2-dist/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="dm/ace/assets/css/ace.min.css" />
+<link rel="stylesheet" type="text/css" href="dm/css/util.css" />  
+  <link rel="stylesheet" href="dm/bootstrap-table/bootstrap-table.min.css">
+  <link href="dm/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="dm/bootstrap-tags/dist/bootstrap-tagsinput.css">
+  <link rel="stylesheet" href="dm/bootstrap-tags/examples/assets/app.css">
+  <link rel="stylesheet" href="dm/lib/scojs/css/sco.message.css">
+  <link rel="stylesheet" href="dm/lib/scojs/css/scojs.css">
+  <link rel="stylesheet" href="dm/lib/jquery-tree/css/navigation.css">
+  <link rel="stylesheet" href="dm/car/css/car.css">
+</head>
+<body data-spy="scroll" data-target=".navbar">
+<nav class="navbar navbar-default" role="navigation" style="position: fixed;z-index: 999;right: 0;top:0;left: 0">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" id="logo" href="#"><i class="fa fa-cloud"></i>&nbsp;云管理中心</a>
+  </div>
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right" id="bs-example-navbar-collapse">
+      <!--<li class="active"><a id="work_station" href="#">工作台</a></li>-->
+      <li><a id="pay_manage" href="#"><i class="fa fa-cny"></i>充值</a></li>
+    </ul>
+      
+    
+
+
+  </div><!-- /.navbar-collapse -->
+</nav>
+<div id="page_message" >
+
+</div>
+<!--<div class="container-fluid" id="tooltips"  style="margin-top: 60px;z-index:9999;">-->
+ <!--&nbsp;-->
+<!--</div>-->
+<div class="row" style="margin-top: 80px;margin-right:0px;">
+  <div class="col-md-2 visible-lg-block" >
+    <div class="row" style="font-size:18px;margin-top: 40px;z-index:9999;">
+      <div class="col-md-12">
+        <div id="ur_here" style="font-size:13px;margin-left:0px;color:#9db3c0;">
+          <a pid='' nid='root' name=my_position >Cloud&nbsp;&gt;</a>
+        </div>
+        <div id="my_tree" style="margin-top:0px;">
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-8">
+        <div class="row">
+      <div class="col-md-12" style="width:100%">
+        <div id="main_search">
+
+        </div>
+      </div>
+    </div>
+    <div class="row hidden-xs">
+      <div class="col-md-12">
+        <div class="m-nav">
+
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top:4px;">
+      <div class="col-md-12" id="my-tab-position">
+        <!-- 标签页 -->
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+<canvas id="myCanvasa" >your browser does not support the canvas tag </canvas>
+  </div>
+
+</div>
+<!-- 模态框（Modal） -->
+<span id="strSize" style="visibility:hidden;"></span>
+<div class="modal fade " id="myModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   
+</div><!-- /.modal -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="dm/lib/requirejs/require.js" data-main="dm/js/main"></script>
+</body>
+</html>

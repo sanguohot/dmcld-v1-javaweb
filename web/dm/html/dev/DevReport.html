@@ -1,0 +1,26 @@
+{{? it.type=="add" }}
+<form id="{{=it.pid}}_form" role="form">
+    <div class="container-fluid my-tab">
+        <h4 class="header smaller lighter red">
+            {{=it.lan.searchCondition}}
+        </h4>
+        <div class="row alert alert-success">
+ 			{{=it.datetimeField}}
+        </div>
+        <h4 class="header smaller lighter red">
+            {{=it.lan.searchResult}}
+        </h4>
+        <div id="{{=it.id}}-toolbar" class="btn-group my-btn-group" role="group" aria-label="...">
+		<button name="expt" type="button" class="btn btn-sm btn-success" title="{{=it.lan.expt}}"><i class="fa fa-cloud-download bigger-130"></i>{{=it.lan.expt}}</button>
+		</div>
+        <table id="{{=it.id}}"></table>
+    </div>
+</form>
+{{?? it.type == "total"}}
+<div id="{{=it.id}}-toolbar" class="btn-group my-btn-group" role="group" aria-label="...">
+<button name="expt" type="button" class="btn btn-sm btn-success" title="{{=it.lan.expt}}"><i class="fa fa-cloud-download bigger-130"></i>{{=it.lan.expt}}</button>
+</div>
+<table id="{{=it.id}}"></table>
+{{??}}
+
+{{?}}

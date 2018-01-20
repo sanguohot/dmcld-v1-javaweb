@@ -1,0 +1,58 @@
+<div class="tab-content">
+    <h4 class="header smaller lighter red">订单信息<a style="position:absolute;right:5px;top:-10px;" name="back" type="button" class="btn btn-sm btn-info" ><i class="fa fa-reply bigger-130"></i>&nbsp;返回</a></h4>
+<div class="profile-user-info profile-user-info-striped" style="margin:0;">
+												<div class="profile-info-row">
+													<div class="profile-info-name"> 订单号 </div>
+
+													<div class="profile-info-value">
+														<span  >{{=it.number}}</span>
+													</div>
+												</div>
+                        <div class="profile-info-row">
+													<div class="profile-info-name"> 交易号 </div>
+
+													<div class="profile-info-value">
+														<span  >{{=it.tradeNo}}</span>
+													</div>
+												</div>
+												<div class="profile-info-row">
+													<div class="profile-info-name"> 下单人 </div>
+
+													<div class="profile-info-value">
+														<span  >{{=it.user}}</span>
+													</div>
+												</div>
+												<div class="profile-info-row">
+													<div class="profile-info-name"> 下单时间 </div>
+
+													<div class="profile-info-value">
+														<span >{{=it.createTime}}</span>
+													</div>
+												</div>
+												<div class="profile-info-row">
+													<div class="profile-info-name"> 总价 </div>
+
+													<div class="profile-info-value">
+														<span  >{{=it.price}}</span>
+													</div>
+												</div>
+												<div class="profile-info-row">
+													<div class="profile-info-name"> 订单状态 </div>
+
+													<div class="profile-info-value">
+														<span  >{{=it.status}}</span>
+													</div>
+												</div>
+												<div class="profile-info-row">
+													<div class="profile-info-name"> 交易状态 </div>
+
+													<div class="profile-info-value">
+														<span  >{{=it.tradeStatus}}</span>
+													</div>
+												</div>	                        
+											</div>
+    <h4 class="header smaller lighter red">充值列表</h4>   
+    <div class="row" name="table" style="margin-right:0px;margin-left:0px;margin-bottom:10px;" >
+    
+    </div>
+</div>

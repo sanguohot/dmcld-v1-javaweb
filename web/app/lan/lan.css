@@ -1,0 +1,8 @@
+.ds_top{ display:block; height:61px;}
+.ds_top .inner{ width:1000px; height:61px; margin:0 auto; position:relative;}
+.ds_top .inner .logo{ background:url(../img/logo2.png) no-repeat left center; width:400px; height:61px; position:absolute; top:0; left:0;}
+.ds_top .inner .type{ position:absolute; right:0; top:15px;}
+.ds_top .inner .s_nav{ position:absolute; right:0; top:36px;}
+.ds_top .inner .type a,.ds_top .inner .s_nav a{ margin:0 12px; color:#212121;}
+.ds_top .inner .type a:hover,.ds_top .inner .s_nav a:hover{text-decoration:underline;}
+.lanFont{font-size:20px;}

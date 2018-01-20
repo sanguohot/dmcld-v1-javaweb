@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dinstar.sim.dao.TblAgpMapper" >
+  <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblAgp" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="ne_uuid" property="neUuid" jdbcType="INTEGER" />
+    <result column="port_uuid" property="portUuid" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="mod_type" property="modType" jdbcType="INTEGER" />
+    <result column="work_state" property="workState" jdbcType="INTEGER" />
+    <result column="primary_user" property="primaryUser" jdbcType="VARCHAR" />
+    <result column="primary_user_reg" property="primaryUserReg" jdbcType="INTEGER" />
+    <result column="secondary_user" property="secondaryUser" jdbcType="VARCHAR" />
+    <result column="secondary_user_reg" property="secondaryUserReg" jdbcType="INTEGER" />
+    <result column="work_mode" property="workMode" jdbcType="INTEGER" />
+    <result column="primary_status" property="primaryStatus" jdbcType="INTEGER" />
+    <result column="secondary_status" property="secondaryStatus" jdbcType="INTEGER" />
+    <result column="last_fail" property="lastFail" jdbcType="INTEGER" />
+    <result column="call_status" property="callStatus" jdbcType="VARCHAR" />
+    <result column="last_duration" property="lastDuration" jdbcType="INTEGER" />
+    <result column="voltage" property="voltage" jdbcType="INTEGER" />
+    <result column="current" property="current" jdbcType="INTEGER" />
+    <result column="reg_fail_count" property="regFailCount" jdbcType="INTEGER" />
+    <result column="reg_fail_code" property="regFailCode" jdbcType="INTEGER" />
+    <result column="primary_sip" property="primarySip" jdbcType="VARCHAR" />
+    <result column="secondary_sip" property="secondarySip" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uuid, rec_status, ne_uuid, port_uuid, alias, domain_uuid, mod_type, work_state, primary_user, 
+    primary_user_reg, secondary_user, secondary_user_reg, work_mode, primary_status, 
+    secondary_status, last_fail, call_status, last_duration, voltage, current, reg_fail_count, 
+    reg_fail_code, primary_sip, secondary_sip
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dinstar.sim.model.TblAgpCriteria" >
+	select
+    <if test="distinct" >
+      distinct
+    </if>
+    <choose>
+        <when test="myCol!=null"> ${myCol}</when>
+        <otherwise><include refid="Base_Column_List" /></otherwise>
+    </choose>
+    from tbl_agp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="groupBy != null" >
+      group by ${groupBy}
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+   <if test="limitClause != null" >
+      limit ${limitClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_agp
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_agp
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dinstar.sim.model.TblAgpCriteria" >
+    delete from tbl_agp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dinstar.sim.model.TblAgp" >
+    insert into tbl_agp (uuid, rec_status, ne_uuid, 
+      port_uuid, alias, domain_uuid, 
+      mod_type, work_state, primary_user, 
+      primary_user_reg, secondary_user, secondary_user_reg, 
+      work_mode, primary_status, secondary_status, 
+      last_fail, call_status, last_duration, 
+      voltage, current, reg_fail_count, 
+      reg_fail_code, primary_sip, secondary_sip
+      )
+    values (#{uuid,jdbcType=INTEGER}, #{recStatus,jdbcType=INTEGER}, #{neUuid,jdbcType=INTEGER}, 
+      #{portUuid,jdbcType=INTEGER}, #{alias,jdbcType=CHAR}, #{domainUuid,jdbcType=INTEGER}, 
+      #{modType,jdbcType=INTEGER}, #{workState,jdbcType=INTEGER}, #{primaryUser,jdbcType=VARCHAR}, 
+      #{primaryUserReg,jdbcType=INTEGER}, #{secondaryUser,jdbcType=VARCHAR}, #{secondaryUserReg,jdbcType=INTEGER}, 
+      #{workMode,jdbcType=INTEGER}, #{primaryStatus,jdbcType=INTEGER}, #{secondaryStatus,jdbcType=INTEGER}, 
+      #{lastFail,jdbcType=INTEGER}, #{callStatus,jdbcType=VARCHAR}, #{lastDuration,jdbcType=INTEGER}, 
+      #{voltage,jdbcType=INTEGER}, #{current,jdbcType=INTEGER}, #{regFailCount,jdbcType=INTEGER}, 
+      #{regFailCode,jdbcType=INTEGER}, #{primarySip,jdbcType=VARCHAR}, #{secondarySip,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dinstar.sim.model.TblAgp" >
+    insert into tbl_agp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="recStatus != null" >
+        rec_status,
+      </if>
+      <if test="neUuid != null" >
+        ne_uuid,
+      </if>
+      <if test="portUuid != null" >
+        port_uuid,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid,
+      </if>
+      <if test="modType != null" >
+        mod_type,
+      </if>
+      <if test="workState != null" >
+        work_state,
+      </if>
+      <if test="primaryUser != null" >
+        primary_user,
+      </if>
+      <if test="primaryUserReg != null" >
+        primary_user_reg,
+      </if>
+      <if test="secondaryUser != null" >
+        secondary_user,
+      </if>
+      <if test="secondaryUserReg != null" >
+        secondary_user_reg,
+      </if>
+      <if test="workMode != null" >
+        work_mode,
+      </if>
+      <if test="primaryStatus != null" >
+        primary_status,
+      </if>
+      <if test="secondaryStatus != null" >
+        secondary_status,
+      </if>
+      <if test="lastFail != null" >
+        last_fail,
+      </if>
+      <if test="callStatus != null" >
+        call_status,
+      </if>
+      <if test="lastDuration != null" >
+        last_duration,
+      </if>
+      <if test="voltage != null" >
+        voltage,
+      </if>
+      <if test="current != null" >
+        current,
+      </if>
+      <if test="regFailCount != null" >
+        reg_fail_count,
+      </if>
+      <if test="regFailCode != null" >
+        reg_fail_code,
+      </if>
+      <if test="primarySip != null" >
+        primary_sip,
+      </if>
+      <if test="secondarySip != null" >
+        secondary_sip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="recStatus != null" >
+        #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="neUuid != null" >
+        #{neUuid,jdbcType=INTEGER},
+      </if>
+      <if test="portUuid != null" >
+        #{portUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=CHAR},
+      </if>
+      <if test="domainUuid != null" >
+        #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="modType != null" >
+        #{modType,jdbcType=INTEGER},
+      </if>
+      <if test="workState != null" >
+        #{workState,jdbcType=INTEGER},
+      </if>
+      <if test="primaryUser != null" >
+        #{primaryUser,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryUserReg != null" >
+        #{primaryUserReg,jdbcType=INTEGER},
+      </if>
+      <if test="secondaryUser != null" >
+        #{secondaryUser,jdbcType=VARCHAR},
+      </if>
+      <if test="secondaryUserReg != null" >
+        #{secondaryUserReg,jdbcType=INTEGER},
+      </if>
+      <if test="workMode != null" >
+        #{workMode,jdbcType=INTEGER},
+      </if>
+      <if test="primaryStatus != null" >
+        #{primaryStatus,jdbcType=INTEGER},
+      </if>
+      <if test="secondaryStatus != null" >
+        #{secondaryStatus,jdbcType=INTEGER},
+      </if>
+      <if test="lastFail != null" >
+        #{lastFail,jdbcType=INTEGER},
+      </if>
+      <if test="callStatus != null" >
+        #{callStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lastDuration != null" >
+        #{lastDuration,jdbcType=INTEGER},
+      </if>
+      <if test="voltage != null" >
+        #{voltage,jdbcType=INTEGER},
+      </if>
+      <if test="current != null" >
+        #{current,jdbcType=INTEGER},
+      </if>
+      <if test="regFailCount != null" >
+        #{regFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="regFailCode != null" >
+        #{regFailCode,jdbcType=INTEGER},
+      </if>
+      <if test="primarySip != null" >
+        #{primarySip,jdbcType=VARCHAR},
+      </if>
+      <if test="secondarySip != null" >
+        #{secondarySip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dinstar.sim.model.TblAgpCriteria" resultType="java.lang.Integer" >
+    select count(*) from tbl_agp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_agp
+    <set >
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.recStatus != null" >
+        rec_status = #{record.recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.neUuid != null" >
+        ne_uuid = #{record.neUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.portUuid != null" >
+        port_uuid = #{record.portUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.alias != null" >
+        alias = #{record.alias,jdbcType=CHAR},
+      </if>
+      <if test="record.domainUuid != null" >
+        domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.modType != null" >
+        mod_type = #{record.modType,jdbcType=INTEGER},
+      </if>
+      <if test="record.workState != null" >
+        work_state = #{record.workState,jdbcType=INTEGER},
+      </if>
+      <if test="record.primaryUser != null" >
+        primary_user = #{record.primaryUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.primaryUserReg != null" >
+        primary_user_reg = #{record.primaryUserReg,jdbcType=INTEGER},
+      </if>
+      <if test="record.secondaryUser != null" >
+        secondary_user = #{record.secondaryUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.secondaryUserReg != null" >
+        secondary_user_reg = #{record.secondaryUserReg,jdbcType=INTEGER},
+      </if>
+      <if test="record.workMode != null" >
+        work_mode = #{record.workMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.primaryStatus != null" >
+        primary_status = #{record.primaryStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.secondaryStatus != null" >
+        secondary_status = #{record.secondaryStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastFail != null" >
+        last_fail = #{record.lastFail,jdbcType=INTEGER},
+      </if>
+      <if test="record.callStatus != null" >
+        call_status = #{record.callStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastDuration != null" >
+        last_duration = #{record.lastDuration,jdbcType=INTEGER},
+      </if>
+      <if test="record.voltage != null" >
+        voltage = #{record.voltage,jdbcType=INTEGER},
+      </if>
+      <if test="record.current != null" >
+        current = #{record.current,jdbcType=INTEGER},
+      </if>
+      <if test="record.regFailCount != null" >
+        reg_fail_count = #{record.regFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.regFailCode != null" >
+        reg_fail_code = #{record.regFailCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.primarySip != null" >
+        primary_sip = #{record.primarySip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.secondarySip != null" >
+        secondary_sip = #{record.secondarySip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_agp
+    set uuid = #{record.uuid,jdbcType=INTEGER},
+      rec_status = #{record.recStatus,jdbcType=INTEGER},
+      ne_uuid = #{record.neUuid,jdbcType=INTEGER},
+      port_uuid = #{record.portUuid,jdbcType=INTEGER},
+      alias = #{record.alias,jdbcType=CHAR},
+      domain_uuid = #{record.domainUuid,jdbcType=INTEGER},
+      mod_type = #{record.modType,jdbcType=INTEGER},
+      work_state = #{record.workState,jdbcType=INTEGER},
+      primary_user = #{record.primaryUser,jdbcType=VARCHAR},
+      primary_user_reg = #{record.primaryUserReg,jdbcType=INTEGER},
+      secondary_user = #{record.secondaryUser,jdbcType=VARCHAR},
+      secondary_user_reg = #{record.secondaryUserReg,jdbcType=INTEGER},
+      work_mode = #{record.workMode,jdbcType=INTEGER},
+      primary_status = #{record.primaryStatus,jdbcType=INTEGER},
+      secondary_status = #{record.secondaryStatus,jdbcType=INTEGER},
+      last_fail = #{record.lastFail,jdbcType=INTEGER},
+      call_status = #{record.callStatus,jdbcType=VARCHAR},
+      last_duration = #{record.lastDuration,jdbcType=INTEGER},
+      voltage = #{record.voltage,jdbcType=INTEGER},
+      current = #{record.current,jdbcType=INTEGER},
+      reg_fail_count = #{record.regFailCount,jdbcType=INTEGER},
+      reg_fail_code = #{record.regFailCode,jdbcType=INTEGER},
+      primary_sip = #{record.primarySip,jdbcType=VARCHAR},
+      secondary_sip = #{record.secondarySip,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dinstar.sim.model.TblAgp" >
+    update tbl_agp
+    <set >
+      <if test="recStatus != null" >
+        rec_status = #{recStatus,jdbcType=INTEGER},
+      </if>
+      <if test="neUuid != null" >
+        ne_uuid = #{neUuid,jdbcType=INTEGER},
+      </if>
+      <if test="portUuid != null" >
+        port_uuid = #{portUuid,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=CHAR},
+      </if>
+      <if test="domainUuid != null" >
+        domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      </if>
+      <if test="modType != null" >
+        mod_type = #{modType,jdbcType=INTEGER},
+      </if>
+      <if test="workState != null" >
+        work_state = #{workState,jdbcType=INTEGER},
+      </if>
+      <if test="primaryUser != null" >
+        primary_user = #{primaryUser,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryUserReg != null" >
+        primary_user_reg = #{primaryUserReg,jdbcType=INTEGER},
+      </if>
+      <if test="secondaryUser != null" >
+        secondary_user = #{secondaryUser,jdbcType=VARCHAR},
+      </if>
+      <if test="secondaryUserReg != null" >
+        secondary_user_reg = #{secondaryUserReg,jdbcType=INTEGER},
+      </if>
+      <if test="workMode != null" >
+        work_mode = #{workMode,jdbcType=INTEGER},
+      </if>
+      <if test="primaryStatus != null" >
+        primary_status = #{primaryStatus,jdbcType=INTEGER},
+      </if>
+      <if test="secondaryStatus != null" >
+        secondary_status = #{secondaryStatus,jdbcType=INTEGER},
+      </if>
+      <if test="lastFail != null" >
+        last_fail = #{lastFail,jdbcType=INTEGER},
+      </if>
+      <if test="callStatus != null" >
+        call_status = #{callStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lastDuration != null" >
+        last_duration = #{lastDuration,jdbcType=INTEGER},
+      </if>
+      <if test="voltage != null" >
+        voltage = #{voltage,jdbcType=INTEGER},
+      </if>
+      <if test="current != null" >
+        current = #{current,jdbcType=INTEGER},
+      </if>
+      <if test="regFailCount != null" >
+        reg_fail_count = #{regFailCount,jdbcType=INTEGER},
+      </if>
+      <if test="regFailCode != null" >
+        reg_fail_code = #{regFailCode,jdbcType=INTEGER},
+      </if>
+      <if test="primarySip != null" >
+        primary_sip = #{primarySip,jdbcType=VARCHAR},
+      </if>
+      <if test="secondarySip != null" >
+        secondary_sip = #{secondarySip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dinstar.sim.model.TblAgp" >
+    update tbl_agp
+    set rec_status = #{recStatus,jdbcType=INTEGER},
+      ne_uuid = #{neUuid,jdbcType=INTEGER},
+      port_uuid = #{portUuid,jdbcType=INTEGER},
+      alias = #{alias,jdbcType=CHAR},
+      domain_uuid = #{domainUuid,jdbcType=INTEGER},
+      mod_type = #{modType,jdbcType=INTEGER},
+      work_state = #{workState,jdbcType=INTEGER},
+      primary_user = #{primaryUser,jdbcType=VARCHAR},
+      primary_user_reg = #{primaryUserReg,jdbcType=INTEGER},
+      secondary_user = #{secondaryUser,jdbcType=VARCHAR},
+      secondary_user_reg = #{secondaryUserReg,jdbcType=INTEGER},
+      work_mode = #{workMode,jdbcType=INTEGER},
+      primary_status = #{primaryStatus,jdbcType=INTEGER},
+      secondary_status = #{secondaryStatus,jdbcType=INTEGER},
+      last_fail = #{lastFail,jdbcType=INTEGER},
+      call_status = #{callStatus,jdbcType=VARCHAR},
+      last_duration = #{lastDuration,jdbcType=INTEGER},
+      voltage = #{voltage,jdbcType=INTEGER},
+      current = #{current,jdbcType=INTEGER},
+      reg_fail_count = #{regFailCount,jdbcType=INTEGER},
+      reg_fail_code = #{regFailCode,jdbcType=INTEGER},
+      primary_sip = #{primarySip,jdbcType=VARCHAR},
+      secondary_sip = #{secondarySip,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

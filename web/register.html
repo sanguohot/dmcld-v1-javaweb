@@ -1,0 +1,300 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title name="regTitle">Register UCSPEED SIM Cloud Managerment Services</title>
+
+<meta name="description" content = ""/>
+<script type="text/javascript" src="app/lan/BeforeLogin.js"></script>
+<script type="text/javascript" src="check.js"></script>
+<script type="text/javascript" src="ajax.js"></script>
+<link href="resources/css/register_1.css" rel="stylesheet" type="text/css">
+
+<link href="resources/css/register_2.css" rel="stylesheet" type="text/css">
+<link href="app/lan/lan.css" rel="stylesheet"
+	type="text/css">
+<script type="text/javascript">
+initLan();
+</script>
+<script type="text/javascript">
+
+</script>
+
+</head>
+
+<body  onload="findCloudSys();procLan();">
+<div class="ds_top">
+	    	<div class="inner">
+	            <div class="type"><a name="chinese" target="_self" onmouseover="this.style.cursor='hand'" onclick="changeLan(1)">中文</a>|<a name="english" onmouseover="this.style.cursor='hand'" onclick="changeLan(2)" title="English" target="_self">English</a></div>
+	        </div>
+	    </div>
+<form id="registerForm" name="login_form"  method="POST" action="registerManager.action">
+
+<div id="Rpage" class="Rpage-main">
+
+  <div id="Rheader">
+
+    <a class="logo" href="http://www.dinstar.com/" target="_blank"><img src="resources2/images/logo118x37.png" alt="DINSTAR" /></a>
+
+    <!-- <span class="slogan">Solutions for ITSP</span> -->
+
+    <div class="ext"><a name="login" href="login.html" target="_self">Login</a>&nbsp;
+    <!-- <a href="http://www.dinstar.net/help.html" target="_blank">Help</a> --></div>
+
+  </div>
+
+
+
+  <div id="Rbody">
+
+    <div class="title">
+
+      <b class="crl"></b>
+
+      <b class="crr"></b>
+
+      <!-- <a href="#" target="_blank" class="ext">Details&raquo;</a> -->
+
+      <h1 name="welcomeTitle">Welcome to use SIM Cloud </h1>
+
+    </div>
+
+    <div id="regContent" class="content">
+
+      <div class="g-collection collection-main">
+
+   			<div id="workServerItem" class="g-collection-item" hidden="true" style="display:none;">
+
+                <div class="disableMask"></div>
+
+              <label name='workServerSpec' class="g-collection-label" style="display:none;"><span class="txt-impt">*</span>&nbsp;Work Server&nbsp;</label>
+
+              <div id="usernameWrap" class="ipt-wraper ">
+
+                <select id="specSysUuid" name="specSysUuid" class="g-ipt" style="ime-mode:disabled;display:none;" >
+				</select>
+				<div id="worksys_verif_div" class="tit"  style="display:none;"></div>
+              </div>
+
+            </div>
+
+          	<div id="usernameitem" class="g-collection-item">
+
+                <div class="disableMask"><!-- 白色遮罩 --></div>
+
+              <label name="domainNameSpec" class="g-collection-label"><span class="txt-impt">*</span>&nbsp;Domain Name&nbsp;</label>
+
+              <div id="usernameWrap" class="ipt-wraper ">
+				<input type="hidden" id="vendorId" name="vendorId" value="2"/>
+                <input id="domainName" name="domainName" onblur="checkDn()" onfocus="focusName()" value="" class="g-ipt" style="ime-mode:disabled"  tabindex="2" />
+                <!--<input id="domainName1" type="text" style="opacity:0;filter:alpha(opacity=0)"  /> -->
+              	<div id="domainName_verif_div" class="tit"  style="display:none;"></div>
+              	  
+              </div>
+ <div name="suggest" class="txt-info">Suggest using your company name.<br/></div>
+              <div name="validDomainName" id="passwNot" class="txt-info" style="display:none">
+      Tips: valid domain name:<br/>
+      (1)at least 3 chars, and maximun 31 chars;<br/>
+      (2)valid char is 'a-z', 'A'-'Z', '0'-'9' or '-';<br/>
+      (3)first/last char can't be '-';
+       </div>
+      
+
+            </div>
+          
+          
+   			<div id="usernameitem" class="g-collection-item">
+
+                <div class="disableMask"><!-- 白色遮罩 --></div>
+
+              <label name="userNameSpec" class="g-collection-label"><span class="txt-impt">*</span>&nbsp;User Name&nbsp;</label>
+
+              <div id="usernameWrap" class="ipt-wraper ">
+
+                <input id="userName"  name="userName" onblur="checkUn()" value="" class="g-ipt" style="ime-mode:disabled"  tabindex="2" /> 
+				<div id="userName_verif_div" class="tit"  style="display:none;"></div>
+              </div>
+
+
+            </div>
+            
+            <div id="passworditem" class="g-collection-item">
+
+                <div class="disableMask"><!-- 白色遮罩 --></div>
+
+              <label name="passwordSpec" class="g-collection-label"><span class="txt-impt">*</span>&nbsp;Password&nbsp;</label>
+
+              <div id="passwWrap" class="ipt-wraper ">
+
+                <input id="password" name="password" type="password" onblur="checkPwd()" value="" class="g-ipt" style="ime-mode:disabled"  tabindex="3" /><input id="passwInp1" type="text" style="opacity:0;filter:alpha(opacity=0)" /> 
+				<div id="password_verif_div" class="tit"  style="display:none;"></div>
+                <p id="passStrong" style="display:none" class="notice pswState pswState-poor">强度：<em class="st1">弱</em><b class="ico"></b><em class="st2">强</em></p>
+
+              </div>
+
+              <div id="passwNot" class="txt-info"></div>
+
+            </div>
+
+            <div id="passwordconfitem"  class="g-collection-item">
+
+                <div class="disableMask"><!-- 白色遮罩 --></div>
+
+              <label name="confirmPwdSpec" class="g-collection-label"><span class="txt-impt">*</span>&nbsp;Confirm Password&nbsp;</label>
+
+              <div id="passconfimWrap"  class="ipt-wraper">
+
+                <input id="passwordConfirm" type="password"  onblur="checkPc()" class="g-ipt" style="ime-mode:disabled"  tabindex="4"/><input id="passConfim1" type="text" style="opacity:0;filter:alpha(opacity=0)" /> 
+				<div id="passwordConfirm_verif_div" class="tit"  style="display:none;"></div>
+              </div>
+
+              <div id="passwconfNot" class="txt-info"><!-- 6 ~ 16 characters, case-sensitive --></div>
+
+            </div>
+
+           
+			<div id="mobileitem"  class="g-collection-item">
+
+                <div class="disableMask"><!-- 白色遮罩 --></div>
+
+              <label name="emailSpec" class="g-collection-label"><span class="txt-impt">*</span>&nbsp;Email Address&nbsp;</label>
+
+              <div class="ipt-wraper" id="mobileWrap">
+
+                <input id="email" name="email" onblur="checkEmail()"  type="text" class="g-ipt" tabindex="5" /><input id="mobileInp1" type="text" style="opacity:0;filter:alpha(opacity=0)" /> 
+				<div id="email_verif_div" class="tit"  style="display:none;"></div>
+              </div>
+
+              <div name="emailTips" id="mobileNot" class="txt-info">Please enter a valid email address for yourself.</div>
+
+            </div>
+           
+            <div id="mobileitem"  class="g-collection-item">
+
+                <div class="disableMask"><!-- 白色遮罩 --></div>
+
+              <label name="phoneSpec" class="g-collection-label"><span class="txt-impt"></span><span class="txt-impt" style="visibility:hidden">*</span>&nbsp;Phone&nbsp;</label>
+
+              <div class="ipt-wraper" id="mobileWrap">
+
+                <input id="phone" name="phone" type="text" class="g-ipt" tabindex="6" /><input id="mobileInp1" type="text" style="opacity:0;filter:alpha(opacity=0)" /> 
+
+              </div>
+
+              <div id="phoneNot" class="txt-info"></div>
+
+            </div>
+            
+            <div id="mobileitem"  class="g-collection-item">
+
+                <div class="disableMask"><!-- 白色遮罩 --></div>
+
+              <label name="mobileSpec" class="g-collection-label"><span class="txt-impt"></span><span class="txt-impt" style="visibility:hidden">*</span>&nbsp;Mobile&nbsp;</label>
+
+              <div class="ipt-wraper" id="mobileWrap">
+
+                <input id="mobile" name="mobile" type="text" class="g-ipt" tabindex="7" /><input id="mobileInp1" type="text" style="opacity:0;filter:alpha(opacity=0)" /> 
+
+              </div>
+
+              <div id="mobileNot" class="txt-info"></div>
+
+            </div>
+
+
+            <div id="mobileitem"  class="g-collection-item">
+
+                <div class="disableMask"><!-- 白色遮罩 --></div>
+
+              <label name="addrSpec" class="g-collection-label"><span class="txt-impt"></span><span class="txt-impt" style="visibility:hidden">*</span>&nbsp;Address&nbsp;</label>
+
+              <div class="ipt-wraper" id="mobileWrap">
+
+                <input id="address" name="address" type="text" class="g-ipt" tabindex="8" /><input id="mobileInp1" type="text" style="opacity:0;filter:alpha(opacity=0)" /> 
+
+              </div>
+
+              <div id="addressNot" class="txt-info"></div>
+
+            </div>
+
+            <div id="vcodeitem" class="g-collection-item">
+
+                <div id="vcodemask" class="disableMask" style="height:71px" ><!-- 白色遮罩 --></div>
+
+              <label name="imageVeriSpec" class="g-collection-label"><span class="txt-impt">*</span>&nbsp;Image Verification&nbsp;</label>
+
+              <div class="ipt-wraper" id="verifycodeWrap">
+
+                <input id="verify" name="verify" type="text" onfocus="document.getElementById('verif_div').style.display='none'"; class="g-ipt" style="width:214px" tabindex="9" /> 
+
+                <img src="rand.action" id="verifyImg" onclick="changeValidateCode(this)"/> 
+				<div id="verif_div" class="tit"  style="display:none;"></div>
+                </div>
+
+              <div id="verifyCodeNot" class="txt-info"><span id="showimgMsg" name="imageVeriTips">Please enter the characters of pictures</span> <a href="javascript:changeValidateCode(document.getElementById('verifyImg'));" name="changeImage" id="imageA">change image</a></div>
+
+            </div>
+
+            <div id="usernotice" class="g-collection-item">
+
+                <div class="disableMask" style="height:100px"><!-- 白色遮罩 --></div>
+
+              <div class="ipt-wraper"  id="serviceItmeWrap">
+
+             <!-- <input type="checkbox" checked="checked" id="agreement"  />
+               
+                I have read, and agree to abide by the DINSTAR Cloud rules.“ <a href="http://www.dinstar.net/agreement.html" target="_blank">rules</a>" --> 
+                
+              </div>
+             
+              <div>
+              	<input type="btn" style="backgroup-image:resources/images/global2.png" class="btn-reg" 
+            	  		 value="" onclick="onSubmit()"  id="regBtn" tabindex="10" />
+				</br>
+              </div>
+				
+            </div>
+      </div>
+
+    </div>
+    <hr/>
+	<div id="loginInfo" class="g-collection-item" ></div>
+    
+    <div class="bottom">
+
+      <b class="crl"></b>
+
+      <b class="crr"></b>
+
+    </div>
+
+  </div>
+
+  <div id="Rfooter">
+
+  <a href="http://www.dinstar.com/Company/about.aspx" target="_blank">About DINSTAR</a>&nbsp;&nbsp;|&nbsp;&nbsp;Copyright &copy; DINSTAR Technologies Co., Ltd.  2012-2013. All Rights Reserved
+
+  </div>
+
+</div>
+</form>
+
+<script type="text/javascript">  
+ 
+    function changeValidateCode(obj) {  
+           //获取当前的时间作为参数，无具体意义  
+        var timenow = new Date().getTime();  
+           //每次请求需要一个不同的参数，否则可能会返回同样的验证码  
+        //这和浏览器的缓存机制有关系，也可以把页面设置为不缓存，这样就不用这个参数了。  
+        obj.src="rand.action?d="+timenow;  
+    }
+    
+    
+</script>  
+  
+</body>
+</html>

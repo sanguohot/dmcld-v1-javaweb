@@ -1,0 +1,5 @@
+{"children":[
+{name:'root', eType:'root', expanded:true, iconCls:'task-folder', 
+children:[{name:'sim_cloud', eType:'cloud', expanded:true, iconCls:'icon-cloud', 
+ children:[{name:'dinstar system', eType:'system', expanded:false, iconCls:'icon-server-conn', leaf:true}]}]}]}
+

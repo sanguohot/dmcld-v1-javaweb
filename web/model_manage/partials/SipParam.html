@@ -1,0 +1,414 @@
+<form  name="SipCfg" id="SipCfg" ng-controller = "SipParamCtrl">
+<table width="700px" border="0" align="center" cellpadding="0" cellspacing="0" class="tbltitle">
+	<tbody><tr>
+		<td width="1%"><img src="image/subarc_l.gif" alt="subarc_left" align="left"></td>
+		<td>SIP参数</td>
+		<td width="1%"><img src="image/subarc_r.gif" alt="subarc_right" align="right"></td>
+	</tr>
+	</tbody></table>
+<table width="700px" align="center" class="tblbody">
+<tr>
+<td width="5%">&nbsp;</td>
+<td>
+<table width="100%" cellspacing="0" cellpadding="0" class="context">
+<tr>
+  <td width="5%">&nbsp;</td>
+  <td width="50%">&nbsp;</td>
+  <td width="45%">&nbsp;</td>
+</tr>
+<tr>
+  <td colspan="2">邮件等待指示(MWI)</td>
+  <td>
+    <input id="MWIEnable" name="MWIEnable" type="checkbox" ng-click="mouse_click()"  alt="config/sip/mwi">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">MWI订阅时长(缺省: 3600)</td>
+  <td>
+    <input class="text" id="MWIExpires" maxlength="4" name="MWIExpires" size="18" value="3600" alt="config/sip/mwi_expires"> 秒
+  </td>
+</tr>
+<tr>
+  <td colspan="2">语音邮箱账户</td>
+  <td>
+    <input class="text" id="VMUserID" maxlength="31" name="VMUserID" size="18" value="" alt="config/sip/voicemail">
+  </td>
+</tr>
+<tr>
+  <td colspan="2">MWI点灯方式</td>
+  <td>
+    <select name="VisualMWIType" class="list" id="VisualMWIType" alt="config/sip/mwi_sig_type">
+      <option value="0" selected>NEON</option>
+      <option value="1" >FSK</option>
+    </select>
+  </td>
+</tr>
+
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td colspan="2">支持RFC3407</td>
+  <td>
+    <input id="RFC3407Support" name="RFC3407Support" type="checkbox"  alt="config/sip/rfc3407">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">直接IP地址呼叫</td>
+  <td>
+    <input id="DirectIPCallEnable" name="DirectIPCallEnable" type="checkbox" checked alt="config/sip/ip_to_ip_call">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">URI中携带"user=phone"</td>
+  <td>
+    <input id="UserIDIsPhoneNumber" name="UserIDIsPhoneNumber" type="checkbox"  alt="config/sip/include_user_is_phone">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">INVITE中携带"P-Preferred-Identity"头 (RFC3325)</td>
+  <td>
+    <input id="AddPPIParameter" name="AddPPIParameter" type="checkbox"  alt="config/sip/rfc3325">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">只接受ACL(SIP服务器或者IP中继)呼叫</td>
+  <td>
+    <input id="AcceptServerCallInOnly" name="AcceptServerCallInOnly" type="checkbox"  alt="config/sip/only_accept_calls_from_ACL">启用
+  </td>
+</tr>
+<tr style="display:none">
+  <td colspan="2">允许未注册呼出</td>
+  <td>
+    <input id="AllowCallOutUnReg" name="AllowCallOutUnReg" type="checkbox" >启用
+  </td>
+</tr>
+<tr style="display:none">
+  <td colspan="2">允许未注册呼入</td>
+  <td>
+    <input id="AllowCallInUnReg" name="AllowCallInUnReg" type="checkbox" >启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">匿名呼叫</td>
+  <td>
+    <input id="SendAnonymousEnable" name="SendAnonymousEnable" type="checkbox"  alt="config/sip/anonymous_call">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">拒绝匿名呼叫</td>
+  <td>
+    <input id="RejectAnonymousEnable" name="RejectAnonymousEnable" type="checkbox"  alt="config/sip/reject_anonymous_call">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">'#'为拨号结束符</td>
+  <td>
+    <input id="UseDialKey" name="UseDialKey" type="checkbox" ng-click="mouse_click()" checked alt="config/sip/sharp_as_end_dial">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">'#'转义</td>
+  <td>
+    <input id="SharpKeyEscape" name="SharpKeyEscape" type="checkbox"  alt="config/sip/sharp_escape">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">'*'开头号码发送'#'</td>
+  <td>
+    <input id="SharpKeySendEnable" name="SharpKeySendEnable" type="checkbox" checked alt="config/sip/sharp_send_enable">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">"Refer To"引用"Contact"内容</td>
+  <td>
+    <input id="SipReferToInfo" name="SipReferToInfo" type="checkbox"  alt="config/sip/refer_to_refers_contact">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">第三方不发送18x响应(振铃态询转)</td>
+  <td>
+    <input id="3rdNotSend18x" name="3rdNotSend18x" type="checkbox"  alt="config/sip/3rd_not_send_18x">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">延迟发送REFER</td>
+  <td>
+    <input id="ReferDelay" name="ReferDelay" type="checkbox"  alt="config/sip/refer_delay">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">收到REFER响应之后发送BYE(盲转)</td>
+  <td>
+    <input id="SendByeAfterRefer" name="SendByeAfterRefer" type="checkbox"  alt="config/sip/send_bye_after_refer">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">收到423响应之后启用新会话</td>
+  <td>
+    <input id="RegAgainWith423" name="RegAgainWith423" type="checkbox" checked alt="config/sip/send_new_reg_when_recv_423">启用
+  </td>
+</tr>
+<tr style="display: none">
+  <td colspan="2">支持隐式订阅</td>
+  <td>
+    <input id="ImplicitSubscribe" name="ImplicitSubscribe" type="checkbox" checked >启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">Cseq从1开始</td>
+  <td>
+    <input id="CseqStart1" name="CseqStart1" type="checkbox"  alt="config/sip/cseq_start_with_1">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">禁止reINVITE携带非激活的媒体行</td>
+  <td>
+    <input id="ForbidInvalidMedia" name="ForbidInvalidMedia" type="checkbox" checked alt="config/sip/forbid_invalid_media">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">呼叫证实音</td>
+  <td>
+    <input id="CallConfirmTone" name="CallConfirmTone" type="checkbox"  alt="config/sip/call_confirm_tone">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">呼叫保持时RTP模式</td>
+  <td>
+    <select name="SDPHoldPara" class="list" id="SDPHoldPara" alt="config/sip/rtp_mode_when_holding">
+      <option value="0" selected>sendonly</option>
+      <option value="1" >inactive</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td colspan="2">支持华为IPPBX的呼叫等待</td>
+  <td>
+    <input type="checkbox" id="SupportHWCW" name="SupportHWCW"  alt="config/sip/support_huawei_cw"/>启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">支持INVITE分叉</td>
+  <td>
+    <input type="checkbox" id="AcceptOrphan200" name="AcceptOrphan200"  alt="config/sip/accept_orphan_200ok" />启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">被叫号码优选</td>
+  <td>
+    <select name="CalledPrefered" class="list" id="CalledPrefered" alt="config/sip/get_called_prefered">
+      <option value="0" selected>P-Called-Party-ID头</option>
+      <option value="1" >请求行</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td colspan="2">任何时候都上报SDP</td>
+  <td>
+    <input type="checkbox" id="ReportSDPWhatever" name="ReportSDPWhatever"  alt="config/sip/report_sdp_whatever" />启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">优选18x响应</td>
+  <td>
+    <select name="18xResponsePrefered" class="list" id="18xResponsePrefered" alt="config/sip/18x_response_prefered">
+      <option value="0" selected>带SDP的18x响应</option>
+      <option value="1" >最后收到的18x响应</option>
+      <option value="2" >只播放本地回铃音</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td id="dx0" colspan="2"><div class="dash" >拍叉业务操作模式</div></td>
+  <td>
+    <select name="3WayMode" class="list" id="3WayMode" alt="config/sip/3way_mode">
+      <option value="0" selected>模式一</option>
+      <option value="1" >模式二</option>
+      <option value="2" >模式三</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td colspan="2">域名查询方式</td>
+  <td>
+    <select name="DNSQueryType" class="list" id="DNSQueryType" ng-click="mouse_click();" alt="config/sip/domain_query_type">
+      <option value="0" selected>A Query</option>
+      <option value="1" >SRV Query</option>
+      <option value="2" >NAPTR Query</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td colspan="2">域名再次解析时间间隔(0:禁用)</td>
+  <td>
+    <input name="DNSRefInterval" class="text" id="DNSRefInterval" value="0" size="18" maxlength="5" alt="config/sip/resolution_inteval">
+    分钟</td>
+</tr>
+<tr>
+  <td colspan="2">DNS缓存</td>
+  <td>
+    <input id="DNSCache" name="DNSCache" type="checkbox" checked alt="config/sip/dns_cache_enable">启用
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td colspan="2">早期媒体</td>
+  <td>
+    <input id="EarlyMedia" name="EarlyMedia" type="checkbox" ng-click="mouse_click()" checked alt="config/sip/early_media">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">临时响应可靠重传(PRACK)</td>
+  <td>
+    <input id="rel100Enable" name="rel100Enable" type="checkbox" checked alt="config/sip/rc3262">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">仅携带SDP的18x启用临时响应可靠重传</td>
+  <td>
+    <input id="rel100Only183" name="rel100Only183" type="checkbox" ng-click="mouse_click()"  alt="config/sip/preack_only_183">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">早期应答</td>
+  <td>
+    <input id="EarlyAnswer" name="EarlyAnswer" type="checkbox" ng-click="mouse_click()"  alt="config/sip/early_answer">启用
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td colspan="2">Session Timer(RFC4028)</td>
+  <td>
+    <input id="SessionTimer" name="SessionTimer" type="checkbox" ng-click="mouse_click()"  alt="config/sip/session_timer">启用
+  </td>
+</tr>
+<tr>
+  <td colspan="2">会话刷新间隔</td>
+  <td>
+    <input name="SessionInterval" class="text" id="SessionInterval" value="1800" size="18" maxlength="5" alt="config/sip/session_expires">秒</td>
+</tr>
+<tr>
+  <td colspan="2">会话刷新最小间隔</td>
+  <td>
+    <input name="SessionMinTimer" class="text" id="SessionMinTimer" value="1800" size="18" maxlength="5" alt="config/sip/min_se">秒</td>
+</tr>
+<tr>
+  <td colspan="2">会话刷新请求方法</td>
+  <td>
+    <select name="SessionRefreshMethod" class="list" id="SessionRefreshMethod" ng-click="mouse_click();" alt="config/sip/SessionRefreshMethod">
+      <option value="0" selected>INVITE</option>
+      <option value="1" >UPDATE</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td colspan="2">T1</td>
+  <td>
+    <input name="T1Time" class="text" id="T1Time" value="500" size="18" maxlength="18" alt="config/sip/t1">
+    毫秒 </td>
+</tr>
+<tr>
+  <td colspan="2">T2</td>
+  <td>
+    <input name="T2Time" class="text" id="T2Time" value="4000" size="18" maxlength="18" alt="config/sip/t2">
+    毫秒 </td>
+</tr>
+<tr>
+  <td colspan="2">T4</td>
+  <td>
+    <input name="T4Time" class="text" id="T4Time" value="5000" size="18" maxlength="18" alt="config/sip/t4">
+    毫秒 </td>
+</tr>
+<tr>
+  <td colspan="2">最大超时时长</td>
+  <td>
+    <input name="TMaxTime" class="text" id="TMaxTime" value="32000" size="18" maxlength="18" alt="config/sip/max_timeout">
+    毫秒 </td>
+</tr>
+<tr id="KeepAliveCfg">
+  <td colspan="2">心跳间隔(1 - 3600)</td>
+  <td>
+    <input name="SipKeepAliveInterval" class="text" id="SipKeepAliveInterval" value="10" size="18" maxlength="4" alt="config/sip/heartbeat_interval">
+    秒 </td>
+</tr>
+<tr>
+  <td colspan="2">心跳超时(4 - 64*T1/1000)</td>
+  <td>
+    <input type="text" id="HeartbeatTimeout" name="HeartbeatTimeout"  class="text" size="18" maxlength="2" value="16" alt="config/sip/heartbeat_timeout" /> 秒
+  </td>
+</tr>
+<tr>
+  <td colspan="2">OPTION请求的用户名(用于‘SIP服务器’的心跳检测)</td>
+  <td>
+    <input name="UserINOpt4Srv" class="text" id="UserINOpt4Srv" value="heartbeat" size="18" maxlength="31" alt="config/sip/username_in_option_for_server"></td>
+</tr>
+<tr>
+  <td colspan="2">OPTION请求的用户名(用于‘IP中继’的心跳检测)</td>
+  <td>
+    <input name="UserInOpt4Trk" class="text" id="UserInOpt4Trk" value="heartbeato" size="18" maxlength="31" alt="config/sip/username_in_option_for_trunk"></td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr style="display: none">
+  <td colspan="3" class="td_title">响应码变换</td>
+</tr>
+<tr style="display: none">
+  <td>&nbsp;</td>
+  <td>响应码</td>
+  <td>变换后的响应码</td>
+</tr>
+<tr style="display: none">
+  <td>&nbsp;</td>
+  <td><input class="text" id="SipResponseCode0" maxlength="3" name="SipResponseCode0" size="10" type="text" value="" alt="config/sip/code_switch0/response_code"></td>
+  <td><input class="text" id="SipResponseCodeMapped0" maxlength="3" name="SipResponseCodeMapped0" size="10" type="text" value="" alt="config/sip/code_switch0/result_code"></td>
+</tr>
+<tr style="display: none">
+  <td>&nbsp;</td>
+  <td><input class="text" id="SipResponseCode1" maxlength="3" name="SipResponseCode1" size="10" type="text" value="" alt="config/sip/code_switch1/response_code"></td>
+  <td><input class="text" id="SipResponseCodeMapped1" maxlength="3" name="SipResponseCodeMapped1" size="10" type="text" value="" alt="config/sip/code_switch1/result_code"></td>
+</tr>
+<tr style="display: none">
+  <td>&nbsp;</td>
+  <td><input class="text" id="SipResponseCode2" maxlength="3" name="SipResponseCode2" size="10" type="text" value="" alt="config/sip/code_switch2/response_code"></td>
+  <td><input class="text" id="SipResponseCodeMapped2" maxlength="3" name="SipResponseCodeMapped2" size="10" type="text" value="" alt="config/sip/code_switch2/result_code"></td>
+</tr>
+<tr style="display: none">
+  <td>&nbsp;</td>
+  <td><input class="text" id="SipResponseCode3" maxlength="3" name="SipResponseCode3" size="10" type="text" value="" alt="config/sip/code_switch3/response_code"></td>
+  <td><input class="text" id="SipResponseCodeMapped3" maxlength="3" name="SipResponseCodeMapped3" size="10" type="text" value="" alt="config/sip/code_switch3/result_code"></td>
+</tr>
+<tr style="display: none">
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+</table>
+</td>
+<td width="5%">&nbsp;</td>
+</tr>
+</table>
+</form>

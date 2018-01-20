@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- tree mapper
+ #{domainUuid,mode=IN,jdbcType=INTEGER},#{userType,mode=IN,jdbcType=INTEGER},#{userUuid,mode=IN,jdbcType=INTEGER}
+  -->
+<mapper namespace="com.dinstar.sim.mapper.AuthHis">
+	<resultMap type="com.dinstar.sim.model.TblAuthHis" id="baseResultMap">
+		<id column="uuid" property="uuid" jdbcType="INTEGER" />
+	    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+	    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+	    <result column="sys_uuid" property="sysUuid" jdbcType="INTEGER" />
+	    <result column="ne_uuid" property="neUuid" jdbcType="INTEGER" />
+	    <result column="device_sn" property="deviceSn" jdbcType="CHAR" />
+	    <result column="serial_no" property="serialNo" jdbcType="INTEGER" />
+	    <result column="avg_process_time" property="avgProcessTime" jdbcType="INTEGER" />
+	    <result column="max_process_time" property="maxProcessTime" jdbcType="INTEGER" />
+	    <result column="total_process" property="totalProcess" jdbcType="INTEGER" />
+	    <result column="cur_pending_cnt" property="curPendingCnt" jdbcType="INTEGER" />
+	    <result column="cur_deal_cnt" property="curDealCnt" jdbcType="INTEGER" />
+	    <result column="cur_deal_status1" property="curDealStatus1" jdbcType="INTEGER" />
+	    <result column="cur_deal_status2" property="curDealStatus2" jdbcType="INTEGER" />
+	    <result column="cur_deal_status3" property="curDealStatus3" jdbcType="INTEGER" />
+	    <result column="cur_deal_status4" property="curDealStatus4" jdbcType="INTEGER" />
+	    <result column="generate_time" property="generateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+ 	<select id="isExist" resultType="java.lang.Integer" parameterType="java.util.HashMap">   
+	    SELECT count(uuid) FROM ${tbn}
+	    where 1=1
+				<if test="domainUuid>0" >
+        	and domain_uuid=#{domainUuid}
+      	</if>
+				<if test="generateTime!=null and generateTime!=''" >
+        	and generate_time=${generateTime}
+      	</if>	    
+  	</select> 
+    <select id="getCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">   
+	    SELECT count(uuid) FROM ${tbn}
+	    where 1=1
+				<if test="domainUuid>0" >
+        	and domain_uuid=#{domainUuid}
+      	</if>
+				<if test="sysUuid>0" >
+        	and sys_uuid=#{sysUuid}
+      	</if>	    
+  	</select>
+      <select id="getEarliestList" resultMap="baseResultMap" parameterType="java.util.HashMap">   
+		SELECT * FROM ${tbn} 
+		where 1=1
+				<if test="domainUuid>0" >
+        	and domain_uuid=#{domainUuid}
+      	</if>
+				<if test="sysUuid>0" >
+        	and sys_uuid=#{sysUuid}
+      	</if>
+      	ORDER BY generate_time
+		<if test="limit>0" >
+        	LIMIT #{start},#{limit}
+      	</if>
+      	
+  	</select>
+  	<delete id="deleteList" parameterType="java.util.HashMap" >
+    delete from ${tbn}
+    where 1=1
+				<if test="domainUuid>0" >
+        	and domain_uuid=#{domainUuid}
+      	</if>
+				<if test="sysUuid>0" >
+        	and sys_uuid=#{sysUuid}
+      	</if>
+    <if test="idl!=null">
+        and uuid in
+      <foreach collection="idl" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    	</foreach>
+    </if>
+  </delete>
+  
+   <insert id="insertList" parameterType="java.util.HashMap" >
+    insert into ${tbn} (rec_status, domain_uuid, 
+      sys_uuid, ne_uuid, device_sn, 
+      serial_no, avg_process_time, max_process_time, 
+      total_process, cur_pending_cnt, cur_deal_cnt, 
+      cur_deal_status1, cur_deal_status2, cur_deal_status3, 
+      cur_deal_status4, generate_time) values
+   <foreach collection="list" item="item" index="index"  
+	        separator=",">  
+     (#{item.recStatus,jdbcType=INTEGER}, #{item.domainUuid,jdbcType=INTEGER}, 
+      #{item.sysUuid,jdbcType=INTEGER}, #{item.neUuid,jdbcType=INTEGER}, #{item.deviceSn,jdbcType=CHAR}, 
+      #{item.serialNo,jdbcType=INTEGER}, #{item.avgProcessTime,jdbcType=INTEGER}, #{item.maxProcessTime,jdbcType=INTEGER}, 
+      #{item.totalProcess,jdbcType=INTEGER}, #{item.curPendingCnt,jdbcType=INTEGER}, #{item.curDealCnt,jdbcType=INTEGER}, 
+      #{item.curDealStatus1,jdbcType=INTEGER}, #{item.curDealStatus2,jdbcType=INTEGER}, #{item.curDealStatus3,jdbcType=INTEGER}, 
+      #{item.curDealStatus4,jdbcType=INTEGER}, #{item.generateTime,jdbcType=TIMESTAMP})
+    </foreach>
+	ON DUPLICATE key UPDATE rec_status=4
+  </insert>
+  
+  <select id="getGroupList" resultMap="baseResultMap" parameterType="java.util.HashMap">   
+	SELECT
+	<if test="domainUuid>0" >
+        	domain_uuid,
+      	</if>
+	<if test="sysUuid>0" >
+        	sys_uuid,
+      	</if>       	 
+	1 as rec_status,0 as ne_uuid,'' as device_sn,0 as serial_no,generate_time,
+	SUM(avg_process_time) as avg_process_time,SUM(max_process_time) as max_process_time,
+	SUM(total_process) as total_process,SUM(cur_pending_cnt) as cur_pending_cnt,
+	SUM(cur_deal_cnt) as cur_deal_cnt,SUM(cur_deal_status1) as cur_deal_status1,
+	SUM(cur_deal_status2) as cur_deal_status2,SUM(cur_deal_status3) as cur_deal_status3,
+	SUM(cur_deal_status4) as cur_deal_status4
+	FROM ${tbn}
+	where 1=1
+	<if test="domainUuid>0" >
+       	and domain_uuid=#{domainUuid}
+    </if>
+	<if test="sysUuid>0" >
+        and sys_uuid=#{sysUuid}
+    </if>
+    GROUP BY generate_time
+    ORDER BY generate_time desc
+	LIMIT 0,1  	
+  	</select>
+</mapper>

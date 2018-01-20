@@ -1,0 +1,25 @@
+Ext.define('app.store.operation.domain.roamzone.site.nes.NeNaInfoModel',{
+	extend: 'Ext.data.Model',
+	fields: [
+	         {name: 'uuid',type: 'int'},
+	         {name: 'recStatus',type: 'int'},
+	         {name: 'alias',type: 'string'},
+	         {name: 'adminStatus',type: 'int'},
+	         {name: 'oprStatus',type: 'int'},
+	         {name: 'runStatus',type: 'int'},
+	         {name: 'almStatusBits',type: 'int'},
+	         {name: 'addFlag',type:'int'},
+	         {name: 'domainUuid',type:'int'},
+	         {name: 'sysUuid',type: 'int'},
+	         {name: 'vendorId',type: 'int'},
+	         {name: 'productId',type: 'int'},
+	         {name: 'productName',type: 'string'},
+	         {name: 'outerIpAddr',type: 'string'},
+	         {name: 'innerIpAddr',type: 'string'},
+	         {name: 'createTime',type: 'date'},
+	         {name: 'lastMsgTime',type: 'date'},
+	         {name: 'productSnStr',type: 'string'},
+	         {name: 'sysName',type: 'string'},
+	         {name: 'domainName',type: 'string'},
+	        ]
+});

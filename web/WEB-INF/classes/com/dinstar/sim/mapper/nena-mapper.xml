@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- ne port mapper -->
+<mapper namespace="com.dinstar.sim.mapper.NeNa">
+   <resultMap id="BaseResultMap" type="com.dinstar.sim.model.TblNeNa" >
+    <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="rec_status" property="recStatus" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="CHAR" />
+    <result column="admin_status" property="adminStatus" jdbcType="INTEGER" />
+    <result column="opr_status" property="oprStatus" jdbcType="INTEGER" />
+    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+    <result column="action_status" property="actionStatus" jdbcType="INTEGER" />
+    <result column="action_result" property="actionResult" jdbcType="INTEGER" />
+    <result column="alm_status_bits" property="almStatusBits" jdbcType="INTEGER" />
+    <result column="add_flag" property="addFlag" jdbcType="INTEGER" />
+    <result column="domain_uuid" property="domainUuid" jdbcType="INTEGER" />
+    <result column="sys_uuid" property="sysUuid" jdbcType="INTEGER" />
+    <result column="vendor_id" property="vendorId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="CHAR" />
+    <result column="outer_ip_addr" property="outerIpAddr" jdbcType="CHAR" />
+    <result column="inner_ip_addr" property="innerIpAddr" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_msg_time" property="lastMsgTime" jdbcType="TIMESTAMP" />
+    
+    <result column="sys_name" property="sysName" jdbcType="CHAR" />
+    <result column="domain_name" property="domainName" jdbcType="CHAR" />
+    <result column="product_sn" property="productSn" jdbcType="BINARY" />
+  </resultMap>
+  <select id="countNeNaList" resultType="java.lang.Integer">
+		select count(*)
+		from tbl_ne_na tnn 
+		left join tbl_sys ts  on (tnn.sys_uuid=ts.uuid)
+		left join tbl_domain td on (tnn.domain_uuid=td.uuid)
+		where 1=1 
+		<if test="sys_uuid > 0" >
+        AND  tnn.sys_uuid = #{sysUuid,jdbcType=INTEGER}
+        </if>
+        <if test="domainUuid > 0" >
+        AND  tnn.domain_uuid = #{domainUuid}
+        </if>
+        <if test="domainName!=null and domainName!=''" >
+        AND  td.name like #{domainName}
+        </if>
+        <if test="productSn != null" >
+        AND  tnn.product_sn = #{productSn}
+        </if>
+        <if test="alias!=null and alias!=''" >
+        AND  tnn.alias like #{alias}
+        </if>
+        <if test="productId > 0" >
+        AND  tnn.product_id = #{productId}
+        </if>
+        <if test="adminStatus > 0" >
+        AND  tnn.admin_status = #{adminStatus}
+        </if>
+        <if test="runStatus > 0" >
+        AND  tnn.run_status = #{runStatus}
+        </if>
+        <if test="addFlag!=null and addFlag > -1" >
+        AND  tnn.add_flag = #{addFlag}
+        </if>
+        <if test="productName!=null and productName!=''" >
+        AND  tnn.product_name like #{productName}
+        </if>
+        <if test="mySqlStr!=null and mySqlStr!=''" >
+        ${mySqlStr}
+        </if>
+    </select>
+    <select id="findNeNaList" resultMap="BaseResultMap">
+		select tnn.*,ts.name as sys_name,
+		CASE td.name is null
+		WHEN true THEN '-'
+		ELSE td.name 
+		END as domain_name
+		from tbl_ne_na tnn 
+		left join tbl_sys ts  on (tnn.sys_uuid=ts.uuid)
+		left join tbl_domain td on (tnn.domain_uuid=td.uuid)
+		where 1=1 
+		<if test="sys_uuid > 0" >
+        AND  tnn.sys_uuid = #{sysUuid,jdbcType=INTEGER}
+        </if>
+        <if test="domainUuid > 0" >
+        AND  tnn.domain_uuid = #{domainUuid}
+        </if>
+        <if test="domainName!=null and domainName!=''" >
+        AND  td.name like #{domainName}
+        </if>
+        <if test="productSn != null" >
+        AND  tnn.product_sn = #{productSn}
+        </if>
+        <if test="alias!=null and alias!=''" >
+        AND  tnn.alias like #{alias}
+        </if>
+        <if test="productId > 0" >
+        AND  tnn.product_id = #{productId}
+        </if>
+        <if test="adminStatus > 0" >
+        AND  tnn.admin_status = #{adminStatus}
+        </if>
+        <if test="runStatus > 0" >
+        AND  tnn.run_status = #{runStatus}
+        </if>
+        <if test="addFlag!=null and addFlag > -1" >
+        AND  tnn.add_flag = #{addFlag}
+        </if>
+        <if test="productName!=null and productName!=''" >
+        AND  tnn.product_name like #{productName}
+        </if>
+        <if test="mySqlStr!=null and mySqlStr!=''" >
+        ${mySqlStr}
+        </if>        
+        <if test="orderByClause !=null" >
+        order by ${orderByClause}
+        </if>
+        <if test="limitClause!=null" >
+        limit ${limitClause}
+        </if>
+    </select>
+    
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- tree mapper
+ #{domainUuid,mode=IN,jdbcType=INTEGER},#{userType,mode=IN,jdbcType=INTEGER},#{userUuid,mode=IN,jdbcType=INTEGER}
+  -->
+<mapper namespace="com.dinstar.sim.mapper.Privilege">
+	 <select id="updateDataByDomainAdmin" statementType="CALLABLE" >
+		
+		<![CDATA[
+		
+		  {call PROC_PRIVILEGE_CB ()
+		  }
+		
+		]]>
+		
+	</select>
+    <insert id="batchInsert" parameterType="java.util.List">
+		insert into tbl_privilege (rec_status,domain_uuid,role_id,operate_id,setting)
+		values  
+	    <foreach collection="list" item="item" index="index"  
+	        separator=",">  
+	        (#{item.recStatus}, #{item.domainUuid}, #{item.roleId},  
+	        #{item.operateId}, #{item.setting})  
+	    </foreach>
+	    ON DUPLICATE key UPDATE setting=VALUES(setting),rec_status=values(rec_status)  
+  	</insert>
+</mapper>

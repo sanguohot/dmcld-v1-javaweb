@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="com.dinstar.sim.dao.TblAlarmReportMapper">
+    <resultMap type="com.dinstar.sim.dao.TblAlarmReportMapper" id="TblAlarmReport">
+	 <id column="uuid" property="uuid" jdbcType="INTEGER" />
+    <result column="alarm_num" property="alarmNum" jdbcType="CHAR" />
+    <result column="serious_alarm_num" property="seriousAlarmNum" jdbcType="CHAR" />
+    <result column="repair_alarm_num" property="repairAlarmNum" jdbcType="CHAR" />
+     <result column="push_alarm_num" property="pushAlarmNum" jdbcType="CHAR" />
+     <result column="del_status" property="delStatus" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+   </resultMap>
+   
+    <select id="selectAlarmReportByExample" resultType="java.lang.Integer"  parameterType="com.dinstar.sim.dao.TblAlarmReportMapper">
+      select count(*) from tbl_alarm_log where 1=1 
+      and alarm_type=1
+      <if test="fromTime!=null and fromTime!=''" >
+   		 and report_time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>report_time
+     	</if>
+    </select>
+    
+    <select id="selectRepairAlarmReportByExample" resultType="java.lang.Integer"  parameterType="com.dinstar.sim.dao.TblAlarmReportMapper">
+      select count(*) from tbl_alarm_log where 1=1 
+      and alarm_type=3
+      <if test="fromTime!=null and fromTime!=''" >
+   		 and report_time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>report_time
+     	</if>
+    </select>
+    
+    <select id="selectSeriousAlarmNumByExample" resultType="java.lang.Integer"  parameterType="com.dinstar.sim.dao.TblAlarmReportMapper">
+        select count(*) from tbl_alarm_log where 1=1 
+      and alarm_type=3
+      and alarm_level=0
+      <if test="fromTime!=null and fromTime!=''" >
+   		 and report_time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>report_time
+     	</if>
+    </select>
+    
+    <select id="selectPushAlarmNumByExample" resultType="java.lang.Integer"  parameterType="com.dinstar.sim.dao.TblAlarmReportMapper">
+      select count(*) from tbl_alarm_push_rule where 1=1 
+     
+      <if test="fromTime!=null and fromTime!=''" >
+   		 and create_time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>create_time
+     	</if>
+    </select>
+    
+     <insert id="insetAlarmReportByExample"  parameterType="com.dinstar.sim.dao.TblAlarmReportMapper" useGeneratedKeys="true" keyProperty="uuid">
+        insert into tbl_alarm_report (uuid,alarm_num,serious_alarm_num,repair_alarm_num,push_alarm_num,del_status,create_time,update_time)
+          values ( #{uuid,jdbcType=INTEGER}, #{alarmNum,jdbcType=CHAR},#{seriousAlarmNum,jdbcType=CHAR},#{repairAlarmNum,jdbcType=CHAR},#{pushAlarmNum,jdbcType=CHAR},
+       #{delStatus,jdbcType=INTEGER},#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP} )
+     </insert>
+     
+     <select id="countAlarmReport" resultType="java.lang.Integer"  parameterType="com.dinstar.sim.dao.TblAlarmReportMapper">
+       select count(*) from (
+       select count(*) from tbl_alarm_report where 1=1 
+       <if test="fromTime!=null and fromTime!=''" >
+   		 and create_time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>create_time
+     	</if>
+     	and ${createTime}
+     	GROUP BY create_time )
+     	as a
+     </select>
+     <select id="selectAlarmReportByExample1" parameterType="com.dinstar.sim.dao.TblAlarmReportMapper" resultMap="TblAlarmReport">
+        select * from tbl_alarm_report where 1=1 
+       <if test="fromTime!=null and fromTime!=''" >
+   		 and create_time>#{fromTime}
+     	</if>
+     	<if test="toTime!=null and toTime!=''" >
+   		 and #{toTime}>create_time
+     	</if>
+     	and ${createTime}
+     	GROUP BY create_time 
+     	order by create_time desc 
+     	limit  #{start},#{limit}
+     </select>
+  </mapper>
